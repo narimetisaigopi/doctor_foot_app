@@ -1,0 +1,740 @@
+// import 'dart:io';
+// import 'dart:typed_data';
+
+import 'package:flutter/gestures.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+//import 'package:http/http.dart' as http;
+
+import 'package:flutter/material.dart';
+
+// import 'package:flutter/foundation.dart'
+//     show consolidateHttpClientResponseBytes, kIsWeb;
+import 'package:intl/intl.dart';
+
+class Utility {
+  static DateFormat formatter = DateFormat('dd-MM-yyyy HH:mm:ss aaa');
+  static DateFormat formatterOnlyDate = DateFormat('dd-MM-yyyy');
+
+  static showAlertDialog({
+    required BuildContext context,
+    required Function() yes,
+    required Function() no,
+    String title = "Confirm",
+    String content = "Do you want to Delete Address?",
+  }) {
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: [
+        TextButton(onPressed: no, child: const Text("Yes")),
+        TextButton(onPressed: yes, child: const Text("No"))
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  // static logout(BuildContext context) {
+  //   // set up the AlertDialog
+  //   AlertDialog alert = AlertDialog(
+  //     title: const Text("Logout"),
+  //     content: const Text("Do you want to logout from the app?"),
+  //     actions: [
+  //       TextButton(
+  //           onPressed: () {
+  //             Navigator.of(context).pop();
+  //           },
+  //           child: const Text("No")),
+  //       TextButton(
+  //           onPressed: () async {
+  //             Utility.toast("Thanks for using app");
+  //             logoutFunction(context);
+  //           },
+  //           child: const Text("Yes"))
+  //     ],
+  //   );
+
+  //   // show the dialog
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return alert;
+  //     },
+  //   );
+  // }
+
+  // static logoutFunction(BuildContext context) async {
+  //   try {
+  //     User user = FirebaseAuth.instance.currentUser!;
+  //     await user.delete();
+
+  //     await FirebaseAuth.instance.signOut();
+  //     await usersCollectionReference
+  //         .doc(loginUserModel!.getUserId())
+  //         .update({"deviceToken": null});
+  //     // loginUserModel! = null;
+  //     await Prefs.removeUser();
+  //     // ignore: use_build_context_synchronously
+  //     Navigator.pushAndRemoveUntil(
+  //         context,
+  //         MaterialPageRoute(builder: (builder) => const SplashScreenImage()),
+  //         (route) => false);
+  //   } catch (e) {
+  //     await Prefs.removeUser();
+  //     // ignore: use_build_context_synchronously
+  //     Navigator.pushAndRemoveUntil(
+  //         context,
+  //         MaterialPageRoute(builder: (builder) => const SplashScreenImage()),
+  //         (route) => false);
+  //   }
+  // }
+
+  static Future<String?> showMyDatePicker(BuildContext context,
+      {bool returnOnlyDate = true, DateTime? selectedDate}) async {
+    selectedDate ??= DateTime.now();
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      return returnOnlyDate
+          ? formatterOnlyDate.format(picked)
+          : DateTime.now().toString();
+    }
+
+    return "";
+  }
+
+  static toast(String message, {Color color = Colors.black}) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  static Widget dropDown({
+    @required BuildContext? context,
+    String title = "",
+    List list = const [],
+    String selectedOne = "",
+    @required Function(String?)? onChanged,
+  }) {
+    return Row(
+      children: [
+        title.isNotEmpty
+            ? Expanded(
+                flex: 4,
+                child: Text(title, style: const TextStyle(color: Colors.white)))
+            : Container(),
+        Expanded(
+          flex: 6,
+          child: DropdownButtonHideUnderline(
+            child: ButtonTheme(
+              alignedDropdown: true,
+              child: DropdownButton(
+                  onTap: () {
+                    if (context != null) {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    }
+                  },
+                  hint: Text(
+                    selectedOne,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  isExpanded: true,
+                  onChanged: (str) => onChanged!(str as String),
+                  items: list
+                      .map((e) => DropdownMenuItem(
+                            value: e,
+                            child: Text(e),
+                          ))
+                      .toList()),
+            ),
+          ),
+        ),
+        const Spacer(),
+      ],
+    );
+  }
+
+  static Widget arrangeDataLabels(
+      BuildContext context, String title, String value) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              flex: 5,
+              child: Text(
+                "$title ",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.end,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              flex: 5,
+              child: Text(
+                value,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.start,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        )
+      ],
+    );
+  }
+
+  // static navigateBasedOnRole(BuildContext context,
+  //     {bool signInAnonymously = false}) async {
+  //   Navigator.pushAndRemoveUntil(
+  //       context,
+  //       MaterialPageRoute(builder: (builder) => const DashBoardScreen()),
+  //       (route) => false);
+  // }
+
+  static String numberConvertToEnglish(int number) {
+    var formattedNumber = NumberFormat.compactCurrency(
+      decimalDigits: 0,
+      symbol:
+          '', // if you want to add currency symbol then pass that in this else leave it empty.
+    ).format(number);
+    return formattedNumber.toString();
+  }
+}
+
+// bool checkUserLoginOrNot(BuildContext context) {
+//   if (loginUserModel == null) {
+//     Utility.toast("Please login");
+//     // Navigator.push(
+//     //     context, MaterialPageRoute(builder: (context) => LoginPage()));
+//     Navigator.push(
+//         context, MaterialPageRoute(builder: (context) => NewLoginScreen()));
+//     return false;
+//   }
+//   return true;
+// }
+
+// shareImageOrText(BuildContext context, PostModel postModel,
+//     {Uint8List? uint8list}) async {
+//   var status = await Permission.storage.status;
+//   if (!status.isGranted) {
+//     await Permission.storage.request();
+//   }
+//   String title = await getSharingMatter(postModel);
+//   if (uint8list != null) {
+//     await Share.file(title, "amlog.png", uint8list, 'image/png', text: title);
+//   } else if (postModel.imageList.isNotEmpty) {
+//     var request = await HttpClient().getUrl(Uri.parse(postModel.imageList[0]));
+//     var response = await request.close();
+//     Uint8List bytes = await consolidateHttpClientResponseBytes(response);
+//     await Share.file(title, "amlog.jpg", bytes, 'image/jpg', text: title);
+//   } else {
+//     Share.text(title, title, "text/*");
+//   }
+// }
+
+// Future<String> getSharingMatter(PostModel postModel) async {
+//   String productUrl = await DynamicsService().generateLink(postModel);
+//   String title = '''
+// Hello, I found your product on Place Of Sales app very interesting. I have made an enquiry there, can you please tell me more details on:
+// The price of the product: ${postModel.price}\n
+// Here’s the link of our product on PlaceOfSales: $productUrl\n
+// Share link: $downloadAppLink\n
+// Awaiting your reply\n''';
+//   return title;
+// }
+
+// sendSMS(UserModel userModel, String message) async {
+//   // String msg = Uri.encodeFull(message); // To encode url
+//   String msg = message.replaceAll(" ", "+");
+//   String url =
+//       "http://sms.unik5.com/v3/api.php?username=ajayvja&apikey=31a2a167ded2a2018565&mobile=${userModel.mobileNumber}&senderid=AJYCHE&message=$msg";
+//   http.Response response = await http.get(Uri.parse(url));
+
+//   if (response.statusCode == 200) {
+//     Utility.toast("We have sent OTP to your number.");
+//   } else {
+//     Utility.toast("Failed to send OTP.");
+//   }
+// }
+
+covertInr(int number) {
+  final indianRupeesFormat = NumberFormat.currency(
+    name: "INR",
+    locale: 'en_IN',
+    decimalDigits: 0, // change it to get decimal places
+    symbol: '₹',
+  );
+  return indianRupeesFormat.format(number);
+}
+
+Widget policyWidget(BuildContext context, Color color) {
+  return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+          text: "By creating this post, you are accepting our",
+          style: TextStyle(color: color),
+          children: [
+            TextSpan(
+              text: "\nUser generated Content Policy",
+              style: const TextStyle(color: Colors.green),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  policyDialog(context);
+                },
+            )
+          ]));
+}
+
+policyDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('User generated content policy'),
+        content: const SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text(
+                  '- PlaceOfSales follows all security elements as per user generated content policy which are globally accepted.'),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                  '- The content you publish will be secure and confidential.'),
+              SizedBox(
+                height: 10,
+              ),
+              Text('- User privacy is our utmost prioritized policy'),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                  '- Any information regarding user identification is not allowed to publish and we request you to follow our policy'),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                  '- We do not accept any derogatory, sexually explicit, abusive, racist content to publish '),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                  '- PII - We require Phone Number as Personal identification for signing into app and we secure your information according to our privacy policy'),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                  '- We do not share your information to any third party services'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          Row(
+            children: [
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Widget customDropDownItem(
+    String hint, List<String> valuesList, Function(String) onChanged) {
+  return SizedBox(
+    width: double.infinity,
+    child: InputDecorator(
+      decoration: const InputDecoration(
+          contentPadding: EdgeInsets.all(4),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          )),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          borderRadius: BorderRadius.circular(12),
+          isExpanded: true,
+          iconSize: 24,
+          isDense: true,
+          hint: Text(hint),
+          onChanged: (String? newValue) {
+            onChanged(newValue!);
+          },
+          items: valuesList.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Text(value),
+              ),
+            );
+          }).toList(),
+        ),
+      ),
+    ),
+  );
+}
+
+// List<String> getCategories(CategoriesType categoriesType) {
+//   List<String> data = [];
+//   if (categoriesType == CategoriesType.feed) {
+//     data = feedCategoriesMap.keys.toList();
+//   } else if (categoriesType == CategoriesType.handloom) {
+//     data = handloomCategoriesMap.keys.toList();
+//   }
+//   return data;
+// }
+
+// List<String> getSubCategories(
+//     CategoriesType categoriesType, String selectedCategory) {
+//   List<String> data = [];
+//   if (categoriesType == CategoriesType.feed) {
+//     if (feedCategoriesMap[selectedCategory] != null) {
+//       data = feedCategoriesMap[selectedCategory].toList();
+//     }
+//   } else if (categoriesType == CategoriesType.handloom) {
+//     if (handloomCategoriesMap[selectedCategory] != null) {
+//       data = handloomCategoriesMap[selectedCategory].toList();
+//     }
+//   }
+//   return data;
+// }
+
+void makeAndAlertDialog(
+  BuildContext context, {
+  String title = "",
+  String description = "",
+  String rightText = "",
+  Function()? rightOnFunction,
+  String leftText = "",
+  Function()? leftOnFunction,
+}) {
+  showDialog<void>(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            10.0,
+          ),
+        ),
+        title: title.isNotEmpty ? Text(title) : null,
+        content: description.isNotEmpty
+            ? SingleChildScrollView(child: Text(description))
+            : null,
+        actions: <Widget>[
+          if (leftText.isNotEmpty)
+            TextButton(
+                onPressed: () {
+                  leftOnFunction!.call();
+                },
+                child: Text(leftText)),
+          if (rightText.isNotEmpty)
+            TextButton(
+                onPressed: () {
+                  rightOnFunction!.call();
+                },
+                child: Text(rightText)),
+        ],
+      );
+    },
+  );
+}
+
+// Widget callWhatsAppLayout(BuildContext context, String contactNumber) {
+//   return Container(
+//     height: 40,
+//     decoration: const BoxDecoration(
+//       color: Colors.white,
+//       borderRadius: BorderRadius.only(
+//           topLeft: Radius.circular(16),
+//           bottomLeft: Radius.circular(16),
+//           topRight: Radius.circular(16),
+//           bottomRight: Radius.circular(16)),
+//     ),
+//     child: Row(
+//       children: [
+//         Expanded(
+//           flex: 5,
+//           child: Container(
+//               width: MediaQuery.of(context).size.width / 2.5,
+//               decoration: const BoxDecoration(
+//                 color: Colors.blue,
+//                 borderRadius: BorderRadius.only(
+//                   topLeft: Radius.circular(16),
+//                   bottomLeft: Radius.circular(16),
+//                 ),
+//               ),
+//               child: TextButton.icon(
+//                   onPressed: () async {
+//                     if (checkUserLoginOrNot(context)) {
+//                       final Uri launchUri = Uri(
+//                         scheme: 'tel',
+//                         path: contactNumber,
+//                       );
+
+//                       await launchUrl(launchUri);
+//                     }
+//                   },
+//                   icon: const Icon(
+//                     Icons.call_sharp,
+//                     color: Colors.white,
+//                   ),
+//                   label: const Text(
+//                     "Call",
+//                     style: TextStyle(color: Colors.white),
+//                   ))),
+//         ),
+//         Expanded(
+//           flex: 5,
+//           child: Container(
+//               decoration: const BoxDecoration(
+//                 color: Colors.green,
+//                 borderRadius: BorderRadius.only(
+//                     topRight: Radius.circular(16),
+//                     bottomRight: Radius.circular(16)),
+//               ),
+//               width: MediaQuery.of(context).size.width / 2.5,
+//               child: TextButton.icon(
+//                   onPressed: () async {
+//                     if (checkUserLoginOrNot(context)) {
+//                       launchUrl(
+//                           Uri.parse(
+//                               'https://wa.me/91$contactNumber?text="i seen your shop in placeofsales of app."'),
+//                           mode: LaunchMode.externalApplication);
+//                     }
+//                   },
+//                   icon: const Icon(
+//                     FontAwesomeIcons.whatsapp,
+//                     color: Colors.white,
+//                   ),
+//                   label: const Text(
+//                     "Whatsapp",
+//                     style: TextStyle(color: Colors.white),
+//                   ))),
+//         ),
+//       ],
+//     ),
+//   );
+// }
+
+// Widget thisUserPosts(String userid, String header,
+//     {bool disableScroll = true}) {
+//   return PaginateFirestore(
+//     itemsPerPage: 10,
+//     shrinkWrap: true,
+//     physics: disableScroll
+//         ? const NeverScrollableScrollPhysics()
+//         : const AlwaysScrollableScrollPhysics(),
+//     onEmpty: const EmptyStateWidget(
+//       message: "No Posts",
+//       bottomMargin: 0,
+//     ),
+//     header: header.isNotEmpty
+//         ? SliverToBoxAdapter(
+//             child: Padding(
+//             padding: const EdgeInsets.all(8.0),
+//             child: Text(
+//               header,
+//               maxLines: 1,
+//               style: const TextStyle(fontSize: 16),
+//             ),
+//           ))
+//         : null,
+//     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//         childAspectRatio: 0.78, crossAxisCount: 2),
+//     itemBuilder: (context, documentSnapshots, index) {
+//       final data = documentSnapshots[index].data() as Map;
+//       PostModel postModel = PostModel(data);
+//       return GridPostItem(
+//         postModel,
+//         hideMorePosts: true,
+//       );
+//     },
+//     query: postsCollectionReference
+//         .where('userId', isEqualTo: userid)
+//         .orderBy("timestamp", descending: true),
+//     itemBuilderType: PaginateBuilderType.gridView,
+//     isLive: false,
+//   );
+// }
+
+// checkAuthTypeAndAskMobileNumber(BuildContext context) {
+//   if ((loginUserModel!.typeAuth == 1 ||
+//           loginUserModel!.typeAuth == 2 ||
+//           loginUserModel!.typeAuth == 3) &&
+//       loginUserModel!.socialAuthMobileNumber.isEmpty) {
+//     Utility.toast("You need to verify your mobile number posting..");
+//     Navigator.push(
+//         context,
+//         MaterialPageRoute(
+//             builder: (builder) => const VerifyMobileNumberScreen()));
+//     return false;
+//   }
+//   return true;
+// }
+
+// Future<String> getPriceMatter(PostModel postModel) async {
+//   String productUrl = await DynamicsService().generateLink(postModel);
+//   String title = '''
+// Hello ${postModel.contactName}, I found your product ${postModel.title} on Place Of Sales app very interesting. can you please tell me price :
+// Here’s the link of our product on PlaceOfSales: $productUrl\n
+// Awaiting your reply\n''';
+//   return title;
+// }
+
+// void sendGetPriceMessage(BuildContext context, PostModel postModel) async {
+//   if (checkUserLoginOrNot(context)) {
+//     String text = await getPriceMatter(postModel);
+//     String phoneNumber = "91${postModel.contactNumber}";
+//     launchUrl(Uri.parse('https://wa.me/$phoneNumber?text=$text'),
+//         mode: LaunchMode.externalApplication);
+//   }
+// }
+
+// Widget getPriceWidget(BuildContext context, PostModel postModel,
+//     {double width = 100}) {
+//   return InkWell(
+//     onTap: () {
+//       sendGetPriceMessage(context, postModel);
+//     },
+//     child: Container(
+//       width: width,
+//       height: 35,
+//       alignment: Alignment.center,
+//       padding: const EdgeInsets.fromLTRB(8, 0, 4, 0),
+//       decoration: const BoxDecoration(
+//           borderRadius: BorderRadius.vertical(
+//             top: Radius.circular(10),
+//             bottom: Radius.circular(10),
+//           ),
+//           gradient: LinearGradient(
+//             colors: [
+//               Color(0xFF3366FF),
+//               Color(0xFF00CCFF),
+//             ],
+//             begin: FractionalOffset(0.0, 0.0),
+//             end: FractionalOffset(1.0, 0.0),
+//             stops: [0.0, 1.0],
+//             tileMode: TileMode.clamp,
+//           ),
+//           color: Colors.black),
+//       child: const Text(
+//         "Get Price >",
+//         style: TextStyle(color: Colors.white),
+//       ),
+//     ),
+//   );
+// }
+
+// Widget reportWidget(BuildContext context, {bool doPop = false}) {
+//   return TextButton.icon(
+//     onPressed: () {
+//       if (doPop) Navigator.pop(context);
+//       Navigator.push(context,
+//           MaterialPageRoute(builder: (builder) => const ReportScreen()));
+//     },
+//     label: const Text(
+//       "Report",
+//       style: TextStyle(
+//         color: Colors.red,
+//       ),
+//     ),
+//     icon: const Icon(
+//       Icons.report_sharp,
+//       color: Colors.red,
+//     ),
+//   );
+// }
+
+// Future<void> openUrl(String url) async {
+//   if (!url.contains("http")) {
+//     url = "https://$url";
+//   }
+//   await launchUrl(
+//     Uri.parse(url),
+//     mode: LaunchMode.externalApplication,
+//   );
+// }
+
+// double getShopAverageRating(ShopModel shopModel) {
+//   try {
+//     return (shopModel.review / shopModel.noOfReviews).toPrecision(1);
+//   } catch (e) {
+//     return 0.0;
+//   }
+// }
+
+extension StringExtension on String {
+  String toCapitalize() {
+    try {
+      if (isEmpty) return this;
+      return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+    } catch (e) {
+      return this;
+    }
+  }
+}
+
+Widget payableData({
+  String title = "title",
+  String value = "value",
+  TextStyle style = const TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  ),
+  TextStyle valueStyle = const TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  ),
+}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(
+        title,
+        style: style,
+      ),
+      Text(
+        value,
+        style: valueStyle,
+      ),
+    ],
+  );
+}
