@@ -5,7 +5,8 @@ import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -19,23 +20,25 @@ class _IntroScreenState extends State<IntroScreen> {
     AssetsConstants.intro_1,
     AssetsConstants.intro_2,
     AssetsConstants.intro_3,
+      
+
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.primary,
-        body: PageView.builder(
-            itemCount: onBoardItems.length,
-            itemBuilder: ((context, index) {
-              final allImages = onBoardItems[index];
-              return Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
+      backgroundColor: AppColors.primary,
+      body: PageView.builder(
+        itemCount: onBoardItems.length,
+        itemBuilder: ((context, index) {
+          // final allImages = onBoardItems[index];
+          return Padding(
+            padding: const EdgeInsets.only(top: 70),
+            child: Center(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
@@ -46,56 +49,65 @@ class _IntroScreenState extends State<IntroScreen> {
                                   path: AssetsConstants.arrow_back,
                                 ),
                         ),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            Strings.skip,
-                            style: TextStyle(
-                                color: AppColors.textColor, fontSize: 22),
-                          ),
+                        Text(
+                          Strings.skip,
+                          style: GoogleFonts.dmSans().copyWith(
+                              fontSize: 16,
+                              color: AppColors.whiteTextColor,
+                              fontWeight: FontWeight.w700),
                         ),
                       ],
                     ),
-                    
-                    // const SvgImageWidget(
-                     
-                    //   path: AssetsConstants.intro_1,
-                    // ),
-                  
-                    SvgPicture.asset(allImages,color: Colors.black,),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    height: 563,
+                    width: 431,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          Strings.introText,
-                          style: TextStyle(
-                              fontSize: 32, color: AppColors.textColor),
-                        ),
+                        const Placeholder(),
                         const SizedBox(
                           height: 50,
                         ),
+                        Text(
+                          Strings.introText,
+                          style: GoogleFonts.dmSans().copyWith(
+                              fontSize: 24,
+                              color: AppColors.whiteTextColor,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
                         Container(
-                          height: 10, 
+                          width: 108,
+                          height: 8,
                           child: ListView.builder(
-                            padding: const EdgeInsets.fromLTRB(150, 0, 0, 0),
                             scrollDirection: Axis.horizontal,
                             itemCount: onBoardItems.length,
-                            itemBuilder: (context, i) => Container(
+                            itemBuilder: (ctx, i) => Container(
                               decoration: BoxDecoration(
+                               
                                   color: index == i
-                                      ? Colors.white70
+                                      ? AppColors.white_1
                                       : Colors.white24,
-                                  borderRadius: BorderRadius.circular(5)),
+                                  borderRadius: BorderRadius.circular(2)),
                               width: index == i ? 40 : 25,
                             ),
                           ),
                         )
                       ],
                     ),
-                  ],
-                ),
-              );
-            })));
+                  )
+                ],
+              ),
+            ),
+          );
+        }),
+      ),
+    );
   }
 }
-
