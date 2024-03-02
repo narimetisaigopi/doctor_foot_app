@@ -1,3 +1,5 @@
+// ignore_for_file: always_specify_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -7,13 +9,14 @@ class MyTextField extends StatefulWidget {
   final String label;
   final double borderRadius;
   // final int maxLength;
-  // final Color btnColor;
+  final Color btnColor;
   final Color bgColor;
-  // final Color iconColor;
+  final Color iconColor;
+  final bool labelNeeded;
   // final IconButton? icon;
-  final Icon leadingIcon;
+  final Widget? leadingIcon;
   final bool iconNeeded;
-  // final Icon trailingIcon;
+  final Icon trailingIcon;
   final TextEditingController textEditingController;
   final Function()? onPress;
   final Function()? validate;
@@ -23,13 +26,14 @@ class MyTextField extends StatefulWidget {
   const MyTextField({
     super.key,
     this.bgColor = Colors.white,
-    required this.label,
+    this.label = "label",
     this.maxLines = 1,
+    this.labelNeeded = true,
     this.borderRadius = 5,
     // this.minLines = 1,
     // this.maxLength = 10,
-    // this.btnColor = Colors.black,
-    // this.iconColor = Colors.black,
+    this.btnColor = Colors.black,
+    this.iconColor = Colors.black,
     required this.hint,
     // this.icon,
     required this.textEditingController,
@@ -37,8 +41,8 @@ class MyTextField extends StatefulWidget {
     this.onPress,
     this.validate,
     this.iconNeeded = false,
-    this.leadingIcon = const Icon(Icons.search),
-    // this.trailingIcon = const Icon(Icons.arrow_forward),
+    this.leadingIcon,
+    this.trailingIcon = const Icon(Icons.arrow_forward),
   });
 
   @override
@@ -50,18 +54,22 @@ class _MyTextFieldState extends State<MyTextField> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-            child: Text(
-              widget.label,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
+        widget.labelNeeded ? label() : SizedBox.shrink(),
         textFieldWidget(),
       ],
+    );
+  }
+
+  Align label() {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+        child: Text(
+          widget.label,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 
@@ -75,16 +83,17 @@ class _MyTextFieldState extends State<MyTextField> {
       ),
       //height: 50,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            offset: const Offset(0, 0),
-            blurRadius: 10,
-            // spreadRadius: 5,
+          borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
+          border: Border.all(color: Colors.grey.shade300)
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.grey.shade300,
+          //     offset: const Offset(0, 0),
+          //     blurRadius: 10,
+          //     // spreadRadius: 5,
+          //   ),
+          // ],
           ),
-        ],
-      ),
       child: TextFormField(
         // textDirection: BoxDecoration(),
         validator: FormBuilderValidators.compose([
@@ -126,22 +135,26 @@ class _MyTextFieldState extends State<MyTextField> {
             ),
             counterText: "",
             hintText: widget.hint,
-            hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),
+            hintStyle: const TextStyle(
+                color: Colors.grey,
+                fontSize: 15,
+                fontWeight: FontWeight.normal),
             fillColor: widget.bgColor,
             filled: true,
-            prefixIcon: widget.iconNeeded ? widget.leadingIcon : null,
-            // suffixIcon: widget.iconNeeded
-            //     ? IconButton(
-            //         style: ButtonStyle(
-            //           padding: const MaterialStatePropertyAll(
-            //               EdgeInsets.symmetric(horizontal: 20)),
-            //           backgroundColor: MaterialStatePropertyAll(widget.btnColor),
-            //         ),
-            //     onPressed: widget.onPress,
-            //     icon: widget.trailingIcon,
-            //     color: widget.iconColor,
-            //   )
-            // : null,
+            prefixIcon: widget.leadingIcon,
+            suffixIcon: widget.iconNeeded
+                ? IconButton(
+                    style: const ButtonStyle(
+                      padding: MaterialStatePropertyAll(
+                          EdgeInsets.symmetric(horizontal: 20)),
+                      // backgroundColor:
+                      //     MaterialStatePropertyAll(widget.btnColor),
+                    ),
+                    onPressed: widget.onPress,
+                    icon: widget.trailingIcon,
+                    color: widget.iconColor,
+                  )
+                : null,
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(widget.borderRadius)),

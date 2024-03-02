@@ -1,6 +1,7 @@
 // import 'dart:io';
 // import 'dart:typed_data';
 
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -38,6 +39,52 @@ class Utility {
       builder: (BuildContext context) {
         return alert;
       },
+    );
+  }
+
+  static myBottomSheet(BuildContext context, Widget widget) {
+    showModalBottomSheet(
+        isDismissible: false,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        //    isScrollControlled: true,
+        context: context,
+        builder: (BuildContext context) {
+          return widget;
+        });
+  }
+
+  static Widget choiceContainer({
+    bool sizeNeeded = false,
+    required String title,
+    String size = "Gender",
+    required bool isSelected,
+    double horizontal = 30,
+    double vertical = 10,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : Colors.transparent,
+          border: Border.all(color: Colors.grey.shade400),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.grey.shade600,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
