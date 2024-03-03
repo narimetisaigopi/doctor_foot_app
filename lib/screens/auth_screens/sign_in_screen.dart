@@ -67,7 +67,8 @@ class _SignInScreenState extends State<SignInScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: InkWell(
                 onTap: () {
-                  Get.to(() => const SignUpScreen());
+                  Utility.myBottomSheet(context, const SignUpScreen());
+                  //   Get.to(() => const SignUpScreen());
                 },
                 child: RichText(
                   text: TextSpan(
