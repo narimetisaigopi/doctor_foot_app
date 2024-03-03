@@ -48,7 +48,6 @@ class Utility {
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-        //    isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
           return widget;
@@ -56,13 +55,13 @@ class Utility {
   }
 
   static Widget choiceContainer({
-    bool sizeNeeded = false,
     required String title,
-    String size = "Gender",
     required bool isSelected,
+    required VoidCallback onTap,
+    String size = "Gender",
+    bool sizeNeeded = false,
     double horizontal = 30,
     double vertical = 10,
-    required VoidCallback onTap,
   }) {
     return InkWell(
       onTap: onTap,
@@ -87,6 +86,8 @@ class Utility {
       ),
     );
   }
+
+  // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
   // static logout(BuildContext context) {
   //   // set up the AlertDialog
@@ -260,6 +261,8 @@ class Utility {
     );
   }
 
+  // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
   // static navigateBasedOnRole(BuildContext context,
   //     {bool signInAnonymously = false}) async {
   //   Navigator.pushAndRemoveUntil(
@@ -278,6 +281,8 @@ class Utility {
   }
 }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // bool checkUserLoginOrNot(BuildContext context) {
 //   if (loginUserModel == null) {
 //     Utility.toast("Please login");
@@ -289,6 +294,8 @@ class Utility {
 //   }
 //   return true;
 // }
+
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // shareImageOrText(BuildContext context, PostModel postModel,
 //     {Uint8List? uint8list}) async {
@@ -309,6 +316,8 @@ class Utility {
 //   }
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // Future<String> getSharingMatter(PostModel postModel) async {
 //   String productUrl = await DynamicsService().generateLink(postModel);
 //   String title = '''
@@ -319,6 +328,8 @@ class Utility {
 // Awaiting your reply\n''';
 //   return title;
 // }
+
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // sendSMS(UserModel userModel, String message) async {
 //   // String msg = Uri.encodeFull(message); // To encode url
@@ -456,6 +467,7 @@ Widget customDropDownItem(
     ),
   );
 }
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // List<String> getCategories(CategoriesType categoriesType) {
 //   List<String> data = [];
@@ -523,6 +535,8 @@ void makeAndAlertDialog(
     },
   );
 }
+
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // Widget callWhatsAppLayout(BuildContext context, String contactNumber) {
 //   return Container(
@@ -601,6 +615,8 @@ void makeAndAlertDialog(
 //   );
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // Widget thisUserPosts(String userid, String header,
 //     {bool disableScroll = true}) {
 //   return PaginateFirestore(
@@ -675,6 +691,8 @@ void makeAndAlertDialog(
 //   }
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // Widget getPriceWidget(BuildContext context, PostModel postModel,
 //     {double width = 100}) {
 //   return InkWell(
@@ -710,6 +728,8 @@ void makeAndAlertDialog(
 //   );
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // Widget reportWidget(BuildContext context, {bool doPop = false}) {
 //   return TextButton.icon(
 //     onPressed: () {
@@ -730,6 +750,7 @@ void makeAndAlertDialog(
 //   );
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 // Future<void> openUrl(String url) async {
 //   if (!url.contains("http")) {
 //     url = "https://$url";

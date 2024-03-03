@@ -45,17 +45,15 @@ class _OtpScreenState extends State<OtpScreen> {
       ),
     );
     return Scaffold(
-      // resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const Text(
-                  'Verification code',
+                  Strings.verificationString,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 const SizedBox(
@@ -63,8 +61,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
                 RichText(
                   text: TextSpan(
-                    text:
-                        'Please enter 4 digit Code sent to your registered\n mobile number xxxxxx7890 ',
+                    text: Strings.otpString,
                     style: TextStyle(
                       color: Colors.grey.shade500,
                     ),
@@ -77,11 +74,6 @@ class _OtpScreenState extends State<OtpScreen> {
                     ],
                   ),
                 ),
-                // const Text(
-                //   'Please enter 4 digit Code sent to your registered\n mobile number xxxxxx7890',
-                //   textAlign: TextAlign.center,
-                //   style: TextStyle(fontSize: 14, color: Colors.grey),
-                // ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -114,7 +106,6 @@ class _OtpScreenState extends State<OtpScreen> {
                         context: context,
                         builder: (BuildContext context) {
                           return Container(
-                            //  height: 800,
                             padding: const EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 20),
                             width: double.infinity,
@@ -124,7 +115,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   Icons.lock_outlined,
                                   size: 50,
                                 ),
-                                Text('We value your privacy',
+                                Text(Strings.otpScreenTitle,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18)),
@@ -132,7 +123,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   height: 10,
                                 ),
                                 Text(
-                                  Strings.intor_text_1,
+                                  Strings.introSecurity1,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 13,
@@ -142,7 +133,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   height: 15,
                                 ),
                                 Text(
-                                  Strings.intor_text_2,
+                                  Strings.introSecurity2,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 13,
@@ -152,7 +143,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   height: 10,
                                 ),
                                 Text(
-                                  Strings.intor_text_3,
+                                  Strings.introSecurity3,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 13,
