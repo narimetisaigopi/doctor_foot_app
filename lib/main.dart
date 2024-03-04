@@ -1,7 +1,7 @@
+import 'package:doctor_foot_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());

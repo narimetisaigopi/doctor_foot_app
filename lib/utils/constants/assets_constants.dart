@@ -6,6 +6,12 @@ class AssetsConstants {
 
   // intro_images
   static const String intro_1 = "$_introImagesBasePath/intro_1.svg";
+  static const String intro_2 = "$_introImagesBasePath/intro_2.svg";
+  static const String intro_3 = "$_introImagesBasePath/intro_3.svg";
+  static const String arrow_back = "$_introImagesBasePath/arrow_back.svg";
+  static const String logo = "$_introImagesBasePath/logo.svg";
+  static const String rect_home = "$_introImagesBasePath/rect_home_image.svg";
+  static const String footUlcer = "$_introImagesBasePath/foot_ulcer.svg";
 
 // home_screen
   //static const String intro_1 = "$_introImagesBasePath/intro_1.svg";
