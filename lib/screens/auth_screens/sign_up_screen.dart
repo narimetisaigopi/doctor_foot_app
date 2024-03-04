@@ -4,6 +4,7 @@ import 'package:doctor_foot_app/controllers/authentication_controller.dart';
 import 'package:doctor_foot_app/screens/auth_screens/otp_screen.dart';
 import 'package:doctor_foot_app/screens/auth_screens/sign_in_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
@@ -26,10 +27,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.only(top: 30, bottom: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -38,8 +38,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Sign up & Let’s get started!',
-                  style: TextStyle(fontSize: 18),
+                  Strings.SignUpStarted,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -81,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 alignment: Alignment.topLeft,
                 child: Text(
                   'Gender',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ),
             ),
@@ -92,34 +92,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Utility.choiceContainer(
-                  title: 'Male',
+                  title: Strings.male,
                   isSelected: selectedContainerIndex == 0,
                   onTap: () {
                     setState(() {
                       selectedContainerIndex = 0;
-                      _authenticationController.genderController.text = 'Male';
+                      _authenticationController.genderController.text =
+                          Strings.male;
                     });
                   },
                 ),
                 Utility.choiceContainer(
-                  title: 'Female',
+                  title: Strings.female,
                   isSelected: selectedContainerIndex == 1,
                   onTap: () {
                     setState(() {
                       selectedContainerIndex = 1;
                       _authenticationController.genderController.text =
-                          'Female';
+                          Strings.female;
                     });
                   },
                 ),
                 Utility.choiceContainer(
-                  title: 'Others',
+                  title: Strings.others,
                   isSelected: selectedContainerIndex == 2,
                   onTap: () {
                     setState(() {
                       selectedContainerIndex = 2;
                       _authenticationController.genderController.text =
-                          'Others';
+                          Strings.others;
                     });
                   },
                 ),
@@ -138,7 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: 40,
             ),
             CustomButton(
-              btnName: 'SignUp',
+              buttonName: Strings.signUpText,
               onPress: () {
                 Utility.myBottomSheet(context, const OtpScreen());
               },
@@ -151,15 +152,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: InkWell(
                 onTap: () {
                   Utility.myBottomSheet(context, const SignInScreen());
-                  //  Get.to(() => const SignInScreen());
                 },
                 child: RichText(
                   text: TextSpan(
-                    text: 'Already have a account ! ',
-                    style: TextStyle(color: Colors.grey.shade500),
+                    text: Strings.alreadyHaveAccount,
+                    style: TextStyle(color: Colors.grey.shade500, fontSize: 18),
                     children: const [
                       TextSpan(
-                          text: ' SignIn',
+                          text: Strings.signInText,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: AppColors.primary)),

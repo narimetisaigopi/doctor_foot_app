@@ -44,10 +44,11 @@ class Utility {
 
   static myBottomSheet(BuildContext context, Widget widget) {
     showModalBottomSheet(
+        backgroundColor: AppColors.bottomSheetBackgroundColor,
         isDismissible: false,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         context: context,
         builder: (BuildContext context) {
           return widget;
@@ -58,7 +59,6 @@ class Utility {
     required String title,
     required bool isSelected,
     required VoidCallback onTap,
-    String size = "Gender",
     bool sizeNeeded = false,
     double horizontal = 30,
     double vertical = 10,

@@ -1,5 +1,6 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../utils/constants/string_constants.dart';
@@ -16,8 +17,8 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     final PinTheme defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
+      width: 52,
+      height: 52,
       textStyle: const TextStyle(
           fontSize: 20,
           color: Color.fromRGBO(30, 60, 87, 1),
@@ -25,7 +26,7 @@ class _OtpScreenState extends State<OtpScreen> {
       decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
                 offset: const Offset(2, 2),
@@ -36,7 +37,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
     final PinTheme focusedPinTheme = defaultPinTheme.copyDecorationWith(
       border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(10),
     );
 
     final PinTheme submittedPinTheme = defaultPinTheme.copyWith(
@@ -67,7 +68,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                     children: const [
                       TextSpan(
-                          text: ' Change',
+                          text: Strings.changeNumber,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: AppColors.primary)),
@@ -78,10 +79,14 @@ class _OtpScreenState extends State<OtpScreen> {
                   height: 20,
                 ),
                 Pinput(
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
                   defaultPinTheme: defaultPinTheme,
                   focusedPinTheme: focusedPinTheme,
                   submittedPinTheme: submittedPinTheme,
-                  length: 4,
+                  length: 6,
                 ),
                 const SizedBox(
                   height: 20,
@@ -98,7 +103,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   height: 20,
                 ),
                 CustomButton(
-                  btnName: 'Verify OTP',
+                  buttonName: 'Verify OTP',
                   onPress: () {
                     showModalBottomSheet(
                         shape: RoundedRectangleBorder(
@@ -153,7 +158,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   height: 30,
                                 ),
                                 CustomButton(
-                                  btnName: 'Accept & Continue',
+                                  buttonName: 'Accept & Continue',
                                 )
                               ],
                             ),

@@ -17,7 +17,6 @@ class _IntroScreenState extends State<IntroScreen> {
       child: CustomButton(
         onPress: () {
           Utility.myBottomSheet(context, const SignUpScreen());
-          //    Navigator.pop(context);
         },
       ),
     ));

@@ -11,11 +11,34 @@ class Strings {
 
   /// OTP Screen Strings/////
   static const String otpString =
-      'Please enter 4 digit Code sent to your registered\n mobile number xxxxxx7890 ';
+      'Please enter 6 digit Code sent to your registered\n mobile number xxxxxx7890 ';
 
   static const String verificationString = 'Verification code';
 
   static const String otpScreenTitle = 'We value your privacy';
 
   static const String appName = 'DoctorFoot';
+
+  /// Sign-In Screen Strings /////
+
+  static const String changeNumber = ' Change';
+
+  static const String alreadyHaveAccount = 'Already have a account ! ';
+
+  /// Sign-Up Screen Strings /////
+
+  static const String male = "Male";
+  static const String female = "Female";
+  static const String others = "Others";
+
+  static const String SignUpStarted = 'Sign up & Let’s get started!';
+
+  static const String getStartedSignIn =
+      'Let’s get started! Enter your mobile number';
+
+  static const String dontHaveAccount = 'If you don’t have a account ! ';
+
+  static const String signUpText = ' Signup';
+
+  static const String signInText = ' Send OTP';
 }

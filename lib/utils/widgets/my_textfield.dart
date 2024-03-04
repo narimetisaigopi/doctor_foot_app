@@ -1,5 +1,5 @@
 // ignore_for_file: always_specify_types
-
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -25,7 +25,7 @@ class MyTextField extends StatefulWidget {
   // final int minLines;
   const MyTextField({
     super.key,
-    this.bgColor = Colors.white,
+    this.bgColor = Colors.transparent,
     this.label = "label",
     this.maxLines = 1,
     this.labelNeeded = true,
@@ -54,7 +54,7 @@ class _MyTextFieldState extends State<MyTextField> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        widget.labelNeeded ? label() : SizedBox.shrink(),
+        widget.labelNeeded ? label() : const SizedBox.shrink(),
         textFieldWidget(),
       ],
     );
@@ -67,7 +67,7 @@ class _MyTextFieldState extends State<MyTextField> {
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
         child: Text(
           widget.label,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
         ),
       ),
     );
@@ -76,39 +76,21 @@ class _MyTextFieldState extends State<MyTextField> {
   Widget textFieldWidget() {
     return Container(
       height: 50,
-      // height: MediaQuery.of(context).size.height / 15,
       padding: EdgeInsets.zero,
       margin: const EdgeInsets.symmetric(
         horizontal: 20,
       ),
-      //height: 50,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
-          border: Border.all(color: Colors.grey.shade300)
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.grey.shade300,
-          //     offset: const Offset(0, 0),
-          //     blurRadius: 10,
-          //     // spreadRadius: 5,
-          //   ),
-          // ],
-          ),
+          border: Border.all(color: Colors.grey.shade300)),
       child: TextFormField(
-        // textDirection: BoxDecoration(),
-        validator: FormBuilderValidators.compose([
-          /// Makes this field required
-          FormBuilderValidators.required(),
+        onTap: () {},
 
-          /// Ensures the value entered is numeric - with a custom error message
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(),
           FormBuilderValidators.numeric(
               errorText: 'La edad debe ser numérica.'),
-
-          /// Sets a maximum value of 70
           FormBuilderValidators.max(70),
-
-          /// Include your own custom `FormFieldValidator` function, if you want
-          /// Ensures positive values only. We could also have used `FormBuilderValidators.min(0)` instead
           (val) {
             final number = int.tryParse(val!);
             if (number == null) return null;
@@ -119,7 +101,6 @@ class _MyTextFieldState extends State<MyTextField> {
         // expands: true,
         // minLines: null,
         maxLines: widget.maxLines,
-
         // maxLength: widget.maxLength,
         keyboardType: widget.textInputType,
         controller: widget.textEditingController,
@@ -134,9 +115,12 @@ class _MyTextFieldState extends State<MyTextField> {
               height: double.minPositive,
             ),
             counterText: "",
+            focusColor: AppColors.bottomSheetBackgroundColor,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
             hintText: widget.hint,
             hintStyle: const TextStyle(
-                color: Colors.grey,
+                color: AppColors.greyTextColor,
                 fontSize: 15,
                 fontWeight: FontWeight.normal),
             fillColor: widget.bgColor,
@@ -147,8 +131,6 @@ class _MyTextFieldState extends State<MyTextField> {
                     style: const ButtonStyle(
                       padding: MaterialStatePropertyAll(
                           EdgeInsets.symmetric(horizontal: 20)),
-                      // backgroundColor:
-                      //     MaterialStatePropertyAll(widget.btnColor),
                     ),
                     onPressed: widget.onPress,
                     icon: widget.trailingIcon,
@@ -160,9 +142,7 @@ class _MyTextFieldState extends State<MyTextField> {
                 borderRadius: BorderRadius.circular(widget.borderRadius)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius),
-                borderSide: const BorderSide(
-                  color: Colors.black,
-                ))),
+                borderSide: const BorderSide(color: AppColors.primary))),
       ),
     );
   }
