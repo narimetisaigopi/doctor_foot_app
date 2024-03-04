@@ -1,4 +1,6 @@
+import 'package:doctor_foot_app/screens/auth_screens/privacy.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
@@ -105,65 +107,8 @@ class _OtpScreenState extends State<OtpScreen> {
                 CustomButton(
                   buttonName: 'Verify OTP',
                   onPress: () {
-                    showModalBottomSheet(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 20),
-                            width: double.infinity,
-                            child: const Column(
-                              children: [
-                                Icon(
-                                  Icons.lock_outlined,
-                                  size: 50,
-                                ),
-                                Text(Strings.otpScreenTitle,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18)),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  Strings.introSecurity1,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Text(
-                                  Strings.introSecurity2,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  Strings.introSecurity3,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                CustomButton(
-                                  buttonName: 'Accept & Continue',
-                                )
-                              ],
-                            ),
-                          );
-                        });
+                    Utility.myBottomSheet(context,
+                        widget: const ValuePrivacy(), heightFactor: 0.7);
                   },
                 ),
               ],

@@ -13,12 +13,15 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(
-      child: CustomButton(
-        onPress: () {
-          Utility.myBottomSheet(context, const SignUpScreen());
-        },
+    return Scaffold(
+      body: Center(
+        child: CustomButton(
+          onPress: () {
+            Utility.myBottomSheet(context,
+                widget: const SignUpScreen(), heightFactor: 0.7);
+          },
+        ),
       ),
-    ));
+    );
   }
 }

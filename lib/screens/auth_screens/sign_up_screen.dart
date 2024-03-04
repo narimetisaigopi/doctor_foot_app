@@ -141,7 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             CustomButton(
               buttonName: Strings.signUpText,
               onPress: () {
-                Utility.myBottomSheet(context, const OtpScreen());
+                Utility.myBottomSheet(context, widget: const OtpScreen());
               },
             ),
             const SizedBox(
@@ -151,7 +151,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: InkWell(
                 onTap: () {
-                  Utility.myBottomSheet(context, const SignInScreen());
+                  Utility.myBottomSheet(context, widget: const SignInScreen());
                 },
                 child: RichText(
                   text: TextSpan(

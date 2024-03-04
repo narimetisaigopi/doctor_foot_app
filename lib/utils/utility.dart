@@ -42,8 +42,10 @@ class Utility {
     );
   }
 
-  static myBottomSheet(BuildContext context, Widget widget) {
+  static myBottomSheet(BuildContext context,
+      {required Widget widget, double heightFactor = 0.5}) {
     showModalBottomSheet(
+        isScrollControlled: true,
         backgroundColor: AppColors.bottomSheetBackgroundColor,
         isDismissible: false,
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -51,7 +53,14 @@ class Utility {
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         context: context,
         builder: (BuildContext context) {
-          return widget;
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter stateSetter) {
+              return FractionallySizedBox(
+                heightFactor: heightFactor,
+                child: widget,
+              );
+            },
+          );
         });
   }
 

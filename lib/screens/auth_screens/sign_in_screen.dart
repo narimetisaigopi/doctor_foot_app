@@ -70,7 +70,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: InkWell(
                   onTap: () {
-                    Utility.myBottomSheet(context, const SignUpScreen());
+                    Utility.myBottomSheet(context,
+                        widget: const SignUpScreen());
                   },
                   child: RichText(
                     text: TextSpan(
@@ -93,9 +94,9 @@ class _SignInScreenState extends State<SignInScreen> {
               Align(
                 alignment: Alignment.center,
                 child: CustomButton(
-                  buttonName: Strings.signInText,
+                  buttonName: Strings.sendOtpText,
                   onPress: () {
-                    Utility.myBottomSheet(context, const OtpScreen());
+                    Utility.myBottomSheet(context, widget: const OtpScreen());
                   },
                 ),
               )

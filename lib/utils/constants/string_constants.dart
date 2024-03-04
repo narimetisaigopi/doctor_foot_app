@@ -40,5 +40,7 @@ class Strings {
 
   static const String signUpText = ' Signup';
 
-  static const String signInText = ' Send OTP';
+  static const String sendOtpText = ' Send OTP';
+
+  static const String signInText = ' SignIn';
 }
