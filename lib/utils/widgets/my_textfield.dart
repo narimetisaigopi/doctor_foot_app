@@ -1,3 +1,5 @@
+// ignore_for_file: always_specify_types
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -7,38 +9,40 @@ class MyTextField extends StatefulWidget {
   final String label;
   final double borderRadius;
   // final int maxLength;
-  // final Color btnColor;
+  final Color btnColor;
   final Color bgColor;
-  // final Color iconColor;
+  final Color iconColor;
+  final bool labelNeeded;
   // final IconButton? icon;
-  final Icon leadingIcon;
+  final Widget? leadingIcon;
   final bool iconNeeded;
-  // final Icon trailingIcon;
+  final Icon trailingIcon;
   final TextEditingController textEditingController;
   final Function()? onPress;
-  final Function()? validate;
+  final Function()? onValidate;
   final TextInputType textInputType;
   final int maxLines;
   // final int minLines;
   const MyTextField({
     super.key,
-    this.bgColor = Colors.white,
-    required this.label,
+    required this.hint,
+    required this.textEditingController,
+    this.bgColor = Colors.transparent,
+    this.label = "label",
     this.maxLines = 1,
+    this.labelNeeded = true,
     this.borderRadius = 5,
     // this.minLines = 1,
     // this.maxLength = 10,
-    // this.btnColor = Colors.black,
-    // this.iconColor = Colors.black,
-    required this.hint,
+    this.btnColor = Colors.black,
+    this.iconColor = Colors.black,
     // this.icon,
-    required this.textEditingController,
     this.textInputType = TextInputType.text,
     this.onPress,
-    this.validate,
+    this.onValidate,
     this.iconNeeded = false,
-    this.leadingIcon = const Icon(Icons.search),
-    // this.trailingIcon = const Icon(Icons.arrow_forward),
+    this.leadingIcon,
+    this.trailingIcon = const Icon(Icons.arrow_forward),
   });
 
   @override
@@ -50,56 +54,43 @@ class _MyTextFieldState extends State<MyTextField> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-            child: Text(
-              widget.label,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
+        widget.labelNeeded ? label() : const SizedBox.shrink(),
         textFieldWidget(),
       ],
+    );
+  }
+
+  Align label() {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+        child: Text(
+          widget.label,
+          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+        ),
+      ),
     );
   }
 
   Widget textFieldWidget() {
     return Container(
       height: 50,
-      // height: MediaQuery.of(context).size.height / 15,
       padding: EdgeInsets.zero,
       margin: const EdgeInsets.symmetric(
         horizontal: 20,
       ),
-      //height: 50,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            offset: const Offset(0, 0),
-            blurRadius: 10,
-            // spreadRadius: 5,
-          ),
-        ],
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
+          border: Border.all(color: Colors.grey.shade300)),
       child: TextFormField(
-        // textDirection: BoxDecoration(),
-        validator: FormBuilderValidators.compose([
-          /// Makes this field required
-          FormBuilderValidators.required(),
+        onTap: () {},
 
-          /// Ensures the value entered is numeric - with a custom error message
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(),
           FormBuilderValidators.numeric(
               errorText: 'La edad debe ser numérica.'),
-
-          /// Sets a maximum value of 70
           FormBuilderValidators.max(70),
-
-          /// Include your own custom `FormFieldValidator` function, if you want
-          /// Ensures positive values only. We could also have used `FormBuilderValidators.min(0)` instead
           (val) {
             final number = int.tryParse(val!);
             if (number == null) return null;
@@ -110,7 +101,6 @@ class _MyTextFieldState extends State<MyTextField> {
         // expands: true,
         // minLines: null,
         maxLines: widget.maxLines,
-
         // maxLength: widget.maxLength,
         keyboardType: widget.textInputType,
         controller: widget.textEditingController,
@@ -125,31 +115,34 @@ class _MyTextFieldState extends State<MyTextField> {
               height: double.minPositive,
             ),
             counterText: "",
+            focusColor: AppColors.bottomSheetBackgroundColor,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
             hintText: widget.hint,
-            hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),
+            hintStyle: const TextStyle(
+                color: AppColors.greyTextColor,
+                fontSize: 15,
+                fontWeight: FontWeight.normal),
             fillColor: widget.bgColor,
             filled: true,
-            prefixIcon: widget.iconNeeded ? widget.leadingIcon : null,
-            // suffixIcon: widget.iconNeeded
-            //     ? IconButton(
-            //         style: ButtonStyle(
-            //           padding: const MaterialStatePropertyAll(
-            //               EdgeInsets.symmetric(horizontal: 20)),
-            //           backgroundColor: MaterialStatePropertyAll(widget.btnColor),
-            //         ),
-            //     onPressed: widget.onPress,
-            //     icon: widget.trailingIcon,
-            //     color: widget.iconColor,
-            //   )
-            // : null,
+            prefixIcon: widget.leadingIcon,
+            suffixIcon: widget.iconNeeded
+                ? IconButton(
+                    style: const ButtonStyle(
+                      padding: MaterialStatePropertyAll(
+                          EdgeInsets.symmetric(horizontal: 20)),
+                    ),
+                    onPressed: widget.onPress,
+                    icon: widget.trailingIcon,
+                    color: widget.iconColor,
+                  )
+                : null,
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(widget.borderRadius)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius),
-                borderSide: const BorderSide(
-                  color: Colors.black,
-                ))),
+                borderSide: const BorderSide(color: AppColors.primary))),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
-  final String btnName;
+  final String buttonName;
   final double width;
   final double borderRadius;
   final Function()? onPress;
@@ -13,7 +13,7 @@ class CustomButton extends StatefulWidget {
   final bool enablePrefixIcon;
   const CustomButton(
       {super.key,
-      this.btnName = "CustomBtn",
+      this.buttonName = "",
       this.width = 350,
       this.onPress,
       this.bgColor = AppColors.primary,
@@ -54,49 +54,16 @@ class _CustomButtonState extends State<CustomButton> {
             children: [
               widget.enablePrefixIcon ? widget.prefixIcon : Container(),
               Text(
-                widget.btnName,
+                widget.buttonName,
                 style: TextStyle(
-                    color: widget.tColor, fontWeight: FontWeight.bold),
+                    color: widget.tColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16),
               ),
             ],
           ),
         ),
       ),
-    )
-        //  ElevatedButton(
-        //   style: ButtonStyle(
-        //     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(widget.borderRadius))),
-        //     backgroundColor: MaterialStatePropertyAll(widget.bgColor),
-        //     padding: const MaterialStatePropertyAll(
-        //       EdgeInsets.symmetric(horizontal: 120, vertical: 15),
-        //     ),
-        //   ),
-        //   onPressed: () {
-
-        //   },
-        //   child: Row(
-        //     //mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [
-        //       // widget.prefixICon
-        //       //     ? const Icon(Icons.add_circle_outline_sharp)
-        //       //     : const Icon(
-        //       //         Icons.abc,
-        //       //         size: 1,
-        //       //       ),
-        //       // const SizedBox(
-        //       //   width: 20,
-        //       // ),
-        //       Text(
-        //         widget.btnName,
-        //         style: TextStyle(
-        //             color: widget.tColor,
-        //             fontWeight: FontWeight.bold,
-        //             fontSize: 18),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        );
+    ));
   }
 }
