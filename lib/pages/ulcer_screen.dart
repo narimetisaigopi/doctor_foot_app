@@ -15,76 +15,75 @@ class UlcerScreen extends StatefulWidget {
 }
 
 class _UlcerScreenState extends State<UlcerScreen> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondary,
       appBar: AppBar(
-        title: Text(Strings.ulcerMonitorText),
+        title: const Text(Strings.ulcerMonitorText),
         centerTitle: true,
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 18,vertical: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+        child: ListView(
           children: [
-            Text(
+            const Text(
               Strings.premiumPlan,
-              style: GoogleFonts.dmSans().copyWith(
+              style: TextStyle(
                   fontSize: 24,
-                  color: AppColors.blackTextColor,
+                  color: AppColors.textBackColor,
                   fontWeight: FontWeight.w700),
             ),
             BulletedList(
               listItems: names,
-              style: GoogleFonts.dmSans().copyWith(
+              style: const TextStyle(
                   fontSize: 14,
-                  color: AppColors.blackTextColor,
-                  fontWeight: FontWeight.w400),
-              bulletColor: AppColors.blackTextColor,
+                  color: AppColors.textBackColor,
+                  fontWeight: FontWeight.w400,),
+              bulletColor: AppColors.textBackColor,
               bulletType: BulletType.conventional,
             ),
-                        const SizedBox(height: 24,),
-
-           const Center(
+            const SizedBox(
+              height: 24,
+            ),
+            const Center(
               child: CustomButton(
                 btnName: Strings.premiumPlanAamount,
-               
               ),
             ),
-            const SizedBox(height: 24,),
-             Divider(),
-            Text(
+            const SizedBox(
+              height: 24,
+            ),
+            const Divider(),
+            const Text(
               Strings.freePlan,
-              style: GoogleFonts.dmSans().copyWith(
+              style: TextStyle(
                   fontSize: 24,
-                  color: AppColors.blackTextColor,
+                  color: AppColors.textBackColor,
                   fontWeight: FontWeight.w700),
             ),
-              BulletedList(
+            BulletedList(
               listItems: names2,
-              style: GoogleFonts.dmSans().copyWith(
+              style: const TextStyle(
                   fontSize: 14,
-                  color: AppColors.blackTextColor,
+                  color: AppColors.textBackColor,
                   fontWeight: FontWeight.w400),
-              bulletColor: AppColors.blackTextColor,
+              bulletColor: AppColors.textBackColor,
               bulletType: BulletType.conventional,
             ),
-                        const SizedBox(height: 24,),
-
+            const SizedBox(
+              height: 24,
+            ),
             const Center(
-              child:  CustomButton(
-                  btnName: Strings.freePlanb,
-                 
-                ),
+              child: CustomButton(
+                btnName: Strings.freePlanb,
+              ),
             ),
           ],
         ),
       ),
     );
   }
-
 }

@@ -1,3 +1,4 @@
+import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("Home SCreen"),),
+      body: Center(child: Text(Strings.homeText),),
     );
   }
 }

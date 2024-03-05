@@ -21,9 +21,8 @@ class _IntroScreenState extends State<IntroScreen> {
       body: PageView.builder(
         itemCount: onBoardItems.length,
         itemBuilder: ((context, index) {
-          // final allImages = onBoardItems[index];
           return Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               top: 84,
             ),
             child: Column(
@@ -44,11 +43,11 @@ class _IntroScreenState extends State<IntroScreen> {
                                 
                               ),
                       ),
-                      Text(
+                      const Text(
                         Strings.skip,
-                        style: GoogleFonts.dmSans().copyWith(
+                        style: TextStyle(
                             fontSize: 16,
-                            color: AppColors.whiteTextColor,
+                            color: AppColors.textWhiteColor,
                             fontWeight: FontWeight.w700),
                       ),
                     ],
@@ -58,7 +57,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   height: 50,
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 80),
+                  margin: const EdgeInsets.only(top: 80),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -66,11 +65,11 @@ class _IntroScreenState extends State<IntroScreen> {
                       const SizedBox(
                         height: 25,
                       ),
-                      Text(
+                      const Text(
                         Strings.introText,
-                        style: GoogleFonts.dmSans().copyWith(
+                        style: TextStyle(
                             fontSize: 24,
-                            color: AppColors.whiteTextColor,
+                            color: AppColors.textWhiteColor,
                             fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(
@@ -85,7 +84,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           itemBuilder: (ctx, i) => Container(
                             decoration: BoxDecoration(
                                 color: index == i
-                                    ? AppColors.white_1
+                                    ? AppColors.secondary
                                     : Colors.white24,
                                 borderRadius: BorderRadius.circular(0)),
                             width: index == i ? 40 : 25,

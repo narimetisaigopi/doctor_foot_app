@@ -5,9 +5,7 @@ import 'package:doctor_foot_app/pages/ulcer_screen.dart';
 import 'package:doctor_foot_app/pages/videos_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
@@ -17,7 +15,7 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  int selectindex = 0;
+  int selectedIndex = 0;
   List pages = [
     const HomeScreen(),
     const DietChartScreen(),
@@ -30,29 +28,29 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondary,
-      body: pages[selectindex],
+      body: pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.grey,
-        currentIndex: selectindex,
+        currentIndex: selectedIndex,
         onTap: (value) {
           setState(() {
-            selectindex = value;
+            selectedIndex = value;
           });
         },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Home",
+            label: Strings.homeText,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.food_bank),
-            label: "Diet Chart",
+            label: Strings.dietChartText,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.video_call),
-            label: "Videos",
+            label:Strings.videosText,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
@@ -60,7 +58,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: "Profile",
+            label: Strings.profile,
           ),
         ],
       ),

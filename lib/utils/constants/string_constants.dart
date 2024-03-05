@@ -7,6 +7,11 @@ class Strings {
   static const String serviceText = "Services";
   static const String ulcerMonitorText = "Ulcer Monitor";
   static const String ulcerMonitoringText = "Ulcer Monitoring";
+  static const String homeText = "Home";
+  static const String dietChartText = "Diet Chart";
+  static const String videosText = "Vidoes";
+
+
 
   // ulser monitoring screen benifits with 1000 plan texts
   static const String premiumPlan = "Benefits with ₹1000plan";
@@ -26,10 +31,11 @@ class Strings {
   static const String freePlanb = "Free Plan";
 
 // Profile Screen Texts
-  static const String profile = "S U M A N T H";
+  static const String profileName = "S U M A N T H";
     static const String regd = "Reg. No: 9087654321";
-    static const String profile1 = "Profile";
-    static const String appointment = "My Appointmentss";
+    static const String profile = "Profile";
+    static const String myProfile = "My Profile";
+    static const String appointment = "My Appointments";
     static const String service = "Service Orders";
     static const String payments = "Payments & Refunds";
     static const String contactus = "Contact Us";

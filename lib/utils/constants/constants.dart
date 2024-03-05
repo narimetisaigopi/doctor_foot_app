@@ -18,9 +18,9 @@ List<String> names = [
   ];
 
   List<String> onBoardItems = [
-    AssetsConstants.intro_1,
-    AssetsConstants.intro_2,
-    AssetsConstants.intro_3,
+    AssetsConstants.businessImage,
+    AssetsConstants.medicalKit,
+    AssetsConstants.doctor,
       
 
   ];
