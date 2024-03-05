@@ -47,16 +47,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: 10,
             ),
             MyTextField(
-                label: 'User Name',
-                hint: 'Enter your name here',
+                label: Strings.userNameTextFieldLabel,
+                hint: Strings.userNameTextFieldHint,
                 textEditingController:
                     _authenticationController.userNameController),
             const SizedBox(
               height: 10,
             ),
             MyTextField(
-              label: 'Date Of Birth',
-              hint: 'DD/MM/YYYY',
+              label: Strings.dateOfBirthTextFieldLabel,
+              hint: Strings.dateOfBirthTextFieldHint,
               textEditingController:
                   _authenticationController.dateOfBirthController,
               iconNeeded: true,
@@ -80,7 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Gender',
+                  Strings.gender,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ),
@@ -130,8 +130,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: 10,
             ),
             MyTextField(
-              label: 'Mobile Number',
-              hint: 'Enter Mobile Number',
+              label: Strings.mobileTextFieldLabel,
+              hint: Strings.mobileTextFieldHint,
               textEditingController:
                   _authenticationController.dateOfBirthController,
             ),

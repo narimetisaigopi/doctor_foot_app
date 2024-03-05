@@ -105,7 +105,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   height: 20,
                 ),
                 CustomButton(
-                  buttonName: 'Verify OTP',
+                  buttonName: Strings.verifyOtp,
                   onPress: () {
                     Utility.myBottomSheet(context,
                         widget: const ValuePrivacy(), heightFactor: 0.7);

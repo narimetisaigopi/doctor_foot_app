@@ -13,7 +13,7 @@ class CustomButton extends StatefulWidget {
   final bool enablePrefixIcon;
   const CustomButton(
       {super.key,
-      this.buttonName = "CustomButton",
+      this.buttonName = "",
       this.width = 350,
       this.onPress,
       this.bgColor = AppColors.primary,

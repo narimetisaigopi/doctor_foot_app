@@ -58,7 +58,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     style: TextStyle(color: Colors.grey.shade500, fontSize: 18),
                   ),
                 ),
-                hint: _focusNode.hasFocus ? "8888888888" : 'Mobile Number',
+                hint: _focusNode.hasFocus
+                    ? Strings.mobileTextFieldFocusHint
+                    : Strings.mobileTextFieldLabel,
                 textEditingController:
                     _authenticationController.mobileNumberController,
                 labelNeeded: false,

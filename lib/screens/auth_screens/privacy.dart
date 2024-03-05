@@ -1,5 +1,7 @@
+import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
+import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class ValuePrivacy extends StatefulWidget {
@@ -18,6 +20,8 @@ class _ValuePrivacyState extends State<ValuePrivacy> {
         width: double.infinity,
         child: const Column(
           children: [
+            // SVG IMAGES ERROR - ADDED THIS LINE FOR FUTURE USE
+            // SvgImageWidget(path: AssetsConstants.intro_lock_Icon),
             Icon(
               Icons.lock_outlined,
               size: 80,
@@ -57,7 +61,7 @@ class _ValuePrivacyState extends State<ValuePrivacy> {
               height: 30,
             ),
             CustomButton(
-              buttonName: 'Accept & Continue',
+              buttonName: Strings.acceptAndContinue,
             )
           ],
         ),

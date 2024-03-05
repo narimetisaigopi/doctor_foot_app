@@ -42,5 +42,23 @@ class Strings {
 
   static const String sendOtpText = ' Send OTP';
 
+  static const String verifyOtp = 'Verify OTP';
+
   static const String signInText = ' SignIn';
+
+  static const String acceptAndContinue = 'Accept & Continue';
+
+  /// Text Fields Strings////
+
+  static const String mobileTextFieldLabel = 'Mobile Number';
+  static const String mobileTextFieldHint = 'Enter Mobile Number';
+  static const String mobileTextFieldFocusHint = "8888888888";
+
+  static const String userNameTextFieldLabel = 'User Name';
+  static const String userNameTextFieldHint = 'Enter your name here';
+
+  static const String dateOfBirthTextFieldLabel = 'Date Of Birth';
+  static const String dateOfBirthTextFieldHint = 'DD/MM/YYYY';
+
+  static const String gender = 'Gender';
 }

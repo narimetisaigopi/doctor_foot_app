@@ -19,12 +19,14 @@ class MyTextField extends StatefulWidget {
   final Icon trailingIcon;
   final TextEditingController textEditingController;
   final Function()? onPress;
-  final Function()? validate;
+  final Function()? onValidate;
   final TextInputType textInputType;
   final int maxLines;
   // final int minLines;
   const MyTextField({
     super.key,
+    required this.hint,
+    required this.textEditingController,
     this.bgColor = Colors.transparent,
     this.label = "label",
     this.maxLines = 1,
@@ -34,12 +36,10 @@ class MyTextField extends StatefulWidget {
     // this.maxLength = 10,
     this.btnColor = Colors.black,
     this.iconColor = Colors.black,
-    required this.hint,
     // this.icon,
-    required this.textEditingController,
     this.textInputType = TextInputType.text,
     this.onPress,
-    this.validate,
+    this.onValidate,
     this.iconNeeded = false,
     this.leadingIcon,
     this.trailingIcon = const Icon(Icons.arrow_forward),
