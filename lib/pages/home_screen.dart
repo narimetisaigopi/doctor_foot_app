@@ -12,8 +12,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text(Strings.homeText),),
+    return  Scaffold(
+
+      appBar: AppBar(
+        leading: Icon(Icons.location_on),
+        
+      ),
+      body: Center(
+        child: Text(Strings.homeText),
+      ),
     );
   }
 }
