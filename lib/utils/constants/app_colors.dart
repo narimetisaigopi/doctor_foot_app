@@ -18,4 +18,9 @@ class AppColors {
     
 
 
+
+  static const Color greyTextColor = Color(0xFFA0A0A0);
+  static const Color greyBorderColor = Color(0xFFE4E4E4);
+
+  static const bottomSheetBackgroundColor = Color(0xFFB7B7B7);
 }

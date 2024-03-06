@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, constant_identifier_names
 
 class AssetsConstants {
   static const String _introImagesBasePath = "assets/images/intro";
@@ -13,6 +13,8 @@ class AssetsConstants {
   static const String logo = "$_introImagesBasePath/logo.svg";
   static const String rect_home = "$_introImagesBasePath/rect_home_image.svg";
   static const String footUlcer = "$_introImagesBasePath/foot_ulcer.svg";
+
+  static const String intro_lock_Icon = "$_introImagesBasePath/lock.svg";
 
 // home_screen
   //static const String intro_1 = "$_introImagesBasePath/intro_1.svg";

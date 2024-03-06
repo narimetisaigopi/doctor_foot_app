@@ -3,6 +3,9 @@ import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:doctor_foot_app/screens/auth_screens/sign_up_screen.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,7 +36,11 @@ class _IntroScreenState extends State<IntroScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+            Utility.myBottomSheet(context,
+                widget: const SignUpScreen(), heightFactor: 0.7);
+          
+                        },
                         icon: index == 0
                             ? Container()
                             : const SvgImageWidget(
@@ -98,7 +105,7 @@ class _IntroScreenState extends State<IntroScreen> {
             ),
           );
         }),
-      ),
-    );
+     
+    ));
   }
 }

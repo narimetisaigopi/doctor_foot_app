@@ -1,6 +1,7 @@
 // import 'dart:io';
 // import 'dart:typed_data';
 
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -40,6 +41,62 @@ class Utility {
       },
     );
   }
+
+  static myBottomSheet(BuildContext context,
+      {required Widget widget, double heightFactor = 0.5}) {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: AppColors.bottomSheetBackgroundColor,
+        isDismissible: false,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter stateSetter) {
+              return FractionallySizedBox(
+                heightFactor: heightFactor,
+                child: widget,
+              );
+            },
+          );
+        });
+  }
+
+  static Widget choiceContainer({
+    required String title,
+    required bool isSelected,
+    required VoidCallback onTap,
+    bool sizeNeeded = false,
+    double horizontal = 30,
+    double vertical = 10,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : Colors.transparent,
+          border: Border.all(color: Colors.grey.shade400),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.grey.shade600,
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
   // static logout(BuildContext context) {
   //   // set up the AlertDialog
@@ -213,6 +270,8 @@ class Utility {
     );
   }
 
+  // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
   // static navigateBasedOnRole(BuildContext context,
   //     {bool signInAnonymously = false}) async {
   //   Navigator.pushAndRemoveUntil(
@@ -231,6 +290,8 @@ class Utility {
   }
 }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // bool checkUserLoginOrNot(BuildContext context) {
 //   if (loginUserModel == null) {
 //     Utility.toast("Please login");
@@ -242,6 +303,8 @@ class Utility {
 //   }
 //   return true;
 // }
+
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // shareImageOrText(BuildContext context, PostModel postModel,
 //     {Uint8List? uint8list}) async {
@@ -262,6 +325,8 @@ class Utility {
 //   }
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // Future<String> getSharingMatter(PostModel postModel) async {
 //   String productUrl = await DynamicsService().generateLink(postModel);
 //   String title = '''
@@ -272,6 +337,8 @@ class Utility {
 // Awaiting your reply\n''';
 //   return title;
 // }
+
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // sendSMS(UserModel userModel, String message) async {
 //   // String msg = Uri.encodeFull(message); // To encode url
@@ -409,6 +476,7 @@ Widget customDropDownItem(
     ),
   );
 }
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // List<String> getCategories(CategoriesType categoriesType) {
 //   List<String> data = [];
@@ -476,6 +544,8 @@ void makeAndAlertDialog(
     },
   );
 }
+
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // Widget callWhatsAppLayout(BuildContext context, String contactNumber) {
 //   return Container(
@@ -554,6 +624,8 @@ void makeAndAlertDialog(
 //   );
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // Widget thisUserPosts(String userid, String header,
 //     {bool disableScroll = true}) {
 //   return PaginateFirestore(
@@ -628,6 +700,8 @@ void makeAndAlertDialog(
 //   }
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // Widget getPriceWidget(BuildContext context, PostModel postModel,
 //     {double width = 100}) {
 //   return InkWell(
@@ -663,6 +737,8 @@ void makeAndAlertDialog(
 //   );
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
+
 // Widget reportWidget(BuildContext context, {bool doPop = false}) {
 //   return TextButton.icon(
 //     onPressed: () {
@@ -683,6 +759,7 @@ void makeAndAlertDialog(
 //   );
 // }
 
+// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 // Future<void> openUrl(String url) async {
 //   if (!url.contains("http")) {
 //     url = "https://$url";
