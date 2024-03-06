@@ -61,7 +61,7 @@ class _DisChargeScreenState extends State<DisChargeScreen> {
             ),
             
               CustomButton(
-                btnName: Strings.uploadText,
+                buttonName: Strings.uploadText,
                 onPress: (){
                   Get.to(const DischargeReportScreen());
                 },

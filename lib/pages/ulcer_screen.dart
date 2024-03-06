@@ -50,7 +50,7 @@ class _UlcerScreenState extends State<UlcerScreen> {
             ),
             const Center(
               child: CustomButton(
-                btnName: Strings.premiumPlanAamount,
+                buttonName: Strings.premiumPlanAamount,
               ),
             ),
             const SizedBox(
@@ -78,7 +78,7 @@ class _UlcerScreenState extends State<UlcerScreen> {
             ),
             const Center(
               child: CustomButton(
-                btnName: Strings.freePlanb,
+                buttonName: Strings.freePlanb,
               ),
             ),
           ],

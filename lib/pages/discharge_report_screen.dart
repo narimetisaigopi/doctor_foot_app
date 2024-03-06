@@ -59,7 +59,7 @@ class _DischargeReportScreenState extends State<DischargeReportScreen> {
             ),
             CustomButton(
               width: 150,
-              btnName: Strings.uploadText,
+              buttonName: Strings.uploadText,
               onPress: () {},
             ),
           ],
