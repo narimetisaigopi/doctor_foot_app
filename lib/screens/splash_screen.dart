@@ -1,7 +1,10 @@
+import 'package:doctor_foot_app/pages/dash_board_screen.dart';
+import 'package:doctor_foot_app/screens/intro_screen.dart';
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
-import 'intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,15 +16,29 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   checkStatus() async {
     Future.delayed(const Duration(milliseconds: 600), () async {
-      Get.to(const IntroScreen());
+      Get.to(const DashBoardScreen());
     });
   }
 
   @override
+  void initState() {
+    checkStatus();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: AppColors.secondary,
       body: Center(
-        child: Text("Doctor Foot"),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 65,
+            width: double.infinity,
+            child: SvgPicture.asset(AssetsConstants.logo),
+          ),
+        ),
       ),
     );
   }
