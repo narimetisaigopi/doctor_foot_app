@@ -1,0 +1,173 @@
+[
+  {
+    "image": "assets/images/risk_factor_questionary/age.svg",
+    "question": "What is your age?",
+    "description": "",
+    "options": [{ "0 - 30": "", "31 - 50": "", "51 - 70": "", "Above 70": "" }]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/BMI.svg",
+    "question": "BMI (Body Mass Index)",
+    "description": "Click here to know your BMI",
+    "options": [
+      { "18.5 - 24.9": "", "25 - 29.9": "", "30 - 39.9": "", "40 or More": "" }
+    ]
+  },
+
+  {
+    "image": "assets/images/risk_factor_questionary/diabetic_machine.svg",
+    "question": "Since how many years have you been diabetic?",
+    "options": [
+      { "< 5 Yrs": "", "5 - 10 Yrs": "", "11 - 20 Yrs": "", "> 20 Yrs": "" }
+    ]
+  },
+
+  {
+    "image": "assets/images/risk_factor_questionary/HbA1C.svg",
+    "question": "What is your recent HbA1C value?",
+
+    "options": [
+      { "5.7 or Less": "", "5.7 - 6.4": "", "6.5 - 9": "", "9 or More": "" }
+    ]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/foot_ulcer.svg",
+    "question": "Do you have any history of foot ulcer?",
+
+    "options": [{ "NO": "", "Yes": "" }]
+  },
+
+  {
+    "question": "Do you have any history of previous amputation?",
+    "image": [
+      "assets/images/risk_factor_questionary/No.svg",
+      "assets/images/risk_factor_questionary/angioplasty.svg",
+      "assets/images/risk_factor_questionary/stenting.svg",
+      "assets/images/risk_factor_questionary/bypass_surgery.svg"
+    ],
+    "imageNames": [
+      { "NO": "", "Angioplasty": "", "Stenting": "", "Bypass Surgery": "" }
+    ]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/smoker.svg",
+    "question": "Are you a smoker?",
+    "options": [{ "NO": "", "Yes": "" }]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/burning_feet.svg",
+    "question": "Do you have burning/shooting pain in your feet? ",
+
+    "options": [
+      { "No pain": "", "Mild pain": "", "Moderate pain": "", "Severe pain": "" }
+    ],
+    "optionsDescription": [
+      {
+        "": "",
+        "": "",
+        "(Pain does not effect my daily activities)": "",
+        "(Pain effect my daily activities)": ""
+      }
+    ]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/burning_feet.svg",
+    "question": "Do you have any tingling/numbness in your feet? ",
+
+    "options": [
+      { "No pain": "", "Mild pain": "", "Moderate pain": "", "Severe pain": "" }
+    ],
+    "optionsDescription": [
+      {
+        "": "",
+        "": "",
+        "(Pain does not effect my daily activities)": "",
+        "(Pain effect my daily activities)": ""
+      }
+    ]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/infection_in_toes.svg",
+    "question": "Do you have any infection between toes of your feet?",
+
+    "options": [{ "NO": "", "Yes": "" }]
+  },
+
+  {
+    "image": [
+      "assets/images/risk_factor_questionary/intact_healthy.svg",
+      "assets/images/risk_factor_questionary/dry_funguscallus.svg",
+      "assets/images/risk_factor_questionary/heavy_callus.svg",
+      "assets/images/risk_factor_questionary/open_ulcer.svg"
+    ],
+    "imageNames": [
+      {
+        "Intact & healthy": "",
+        "Dry with fungus/callus": "",
+        "Heavy callus": "",
+        "Open ulcer": ""
+      }
+    ]
+  },
+  {
+    "image": [
+      "assets/images/risk_factor_questionary/well_kept_nails.svg",
+      "assets/images/risk_factor_questionary/thick_damaged.svg"
+    ],
+    "imageNames": [{ "Well kept nails": "", "Thick and damaged": "" }]
+  },
+  {
+    "image": [
+      "assets/images/risk_factor_questionary/regular_foot_wear.svg",
+      "assets/images/risk_factor_questionary/ortho_foot_wear.svg",
+      "assets/images/risk_factor_questionary/soft_insole_foot_wear.svg",
+      "assets/images/risk_factor_questionary/diabetic_foot_wear.svg"
+    ],
+    "imageNames": [
+      {
+        "Regular foot wear": "",
+        "Ortho foot wear": "",
+        "Soft Insole foot wear": "",
+        "Diabetic Foot wear": ""
+      }
+    ]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/diabetic_diet.svg",
+    "question": "Are you taking diabetic diet?",
+
+    "options": [{ "NO": "", "Yes": "" }]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/sensation_feet.svg",
+    "question": "Can you feel the sensation in your feet? ",
+
+    "options": [{ "NO": "", "Yes": "" }]
+  },
+  {
+    "image": [
+      "assets/images/risk_factor_questionary/abnormal_foot_shape_1.svg",
+      "assets/images/risk_factor_questionary/abnormal_foot_shape_2.svg",
+      "assets/images/risk_factor_questionary/abnormal_foot_shape_3.svg"
+    ],
+    "question": "Do you have abnormal foot shape?",
+    "options": [{ "NO": "", "Yes": "" }]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/kidney_issue.svg",
+    "question": "Do you have any kidney related issue ? ",
+
+    "options": [{ "NO": "", "Yes": "" }]
+  },
+  {
+    "image": ["assets/images/risk_factor_questionary/pain_after_walking.svg"],
+    "question": "Are you experiencing any pain after walking a certain distance?",
+    "options": [{ "NO": "", "Yes": "" }]
+  },
+  {
+    "image": "assets/images/risk_factor_questionary/dilated_veins.svg",
+    "question": "Do you have any blackish discoloration or dilated veins on your legs/feet? ",
+
+    "options": [{ "NO": "", "Yes": "" }]
+  }
+]

@@ -1,8 +1,9 @@
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
+import 'package:doctor_foot_app/screens/auth_screens/current_location_screen.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ValuePrivacy extends StatefulWidget {
   const ValuePrivacy({super.key});
@@ -18,50 +19,51 @@ class _ValuePrivacyState extends State<ValuePrivacy> {
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         width: double.infinity,
-        child: const Column(
+        child: Column(
           children: [
             // SVG IMAGES ERROR - ADDED THIS LINE FOR FUTURE USE
             // SvgImageWidget(path: AssetsConstants.intro_lock_Icon),
-            Icon(
+            const Icon(
               Icons.lock_outlined,
               size: 80,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               Strings.otpScreenTitle,
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 22),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               Strings.introSecurity1,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Text(
+            const Text(
               Strings.introSecurity2,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               Strings.introSecurity3,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             CustomButton(
               buttonName: Strings.acceptAndContinue,
+              onPress: () => Get.to(const CurrentLocationScreen()),
             )
           ],
         ),
