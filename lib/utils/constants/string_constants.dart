@@ -1,7 +1,7 @@
 class Strings {
   static const String skip = "Skip";
   static const String introText =
-      "Lorem Ipsum is simply \ndummy text of the printing\nand typesetting industry.";
+      "     Lorem Ipsum is simply \ndummy text of the printing\n  and typesetting industry.";
   static const String rectImageText =
       "Of the estimated 537 million people worldwide who have \n diabetes, 19-34% will develop an ulcer in their life time";
   static const String serviceText = "Services";
@@ -46,21 +46,7 @@ class Strings {
   static const String contactus = "Contact Us";
   static const String logout = "Logout";
 
-// discharge screen texts
-  static const String dischargeText = "Discharge";
-  static const String dischargeSummaryText = "Discharge Summary";
-  static const String uploadText = "Upload Here ";
-  static const String uploadSuccessfullyText = "You uploaded successfully";
-  static const String uploadUlcerPictureText = "Upload your current ulcer picture";
-  static const String uploadedText = "Your Picture have uploaded";
-  static const String dischargText1 =
-      "Discharge summary is a document given by the hospital at the time of your discharge, which includes information like your diagnosis, treatment, surgeries, and the medications to be used.";
-  static const String dischargeText2 =
-      "Upload your discharge summary given by your doctor at the time of your discharge. Kindly avoid uploading any investigation reports.";
-       static const String dischargeResultsText = "Your results will be sent to you after a through observation by experts. It may take some time until then we would ask you to follow the diet required for recovery ";
 
-
-// ignore_for_file: constant_identifier_names
 
 
   static const String introSecurity1 =
@@ -123,4 +109,18 @@ class Strings {
   static const String dateOfBirthTextFieldHint = 'DD/MM/YYYY';
 
   static const String gender = 'Gender';
+
+// home screen strings
+  static const String footUlcer_text = ' FOOT \nULCER';
+  static const String checkYourRisk_text = '   CHECK \nYOUR RISK';
+  static const String checkup_schedule_text = "  CHECK UP\n SCHEDULE";
+  static const String foot_service_text = "   FOOT\n SERVICES";
+  static const String kpbColonyText = 'KPB Colony';
+  static const String patientReviewsText = 'Patient Reviews';
+  static const String reviewverName = 'Naveena';
+  static const String venkataNagarText = 'Venkat Nagar Colony,...';
+  static const String postedDateText = 'Posted on 03 march';
+  static const String homeImageText = '  Of the estimated 537 million people worldwide who have \n   diabetes, 19-34% will develop an ulcer in their life time';
+static const String userReviewDicriptionText = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' ;
+
 }
