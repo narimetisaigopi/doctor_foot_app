@@ -1,0 +1,23 @@
+{
+  "introSecurity1": "For health analysis, we need your correct age (from your birth date), height and gender for our algorithms to work and give you better assessment of your health basis the principles of Health.",
+  "introSecurity2": "And to create your health profile, App needs your name and phone number or email ID, Hence your personal data is captured and stored.",
+  "introSecurity3": "However, you may choose to delete your profile anytime in the app by going to My Profile -> Account Settings",
+  "otpString": "Please enter 6 digit Code sent to your registered\n mobile number xxxxxx7890 '",
+  "verificationString": "Verification code",
+  "otpScreenTitle": "We value your privacy",
+  "changeNumber": "Change",
+  "alreadyHaveAccount": "Already have a account ! ",
+  "male": "Male",
+  "female": "Female",
+  "others": "Others",
+  "SignUpStarted": "Sign up & Let’s get started!",
+  "getStartedSignIn": "Let’s get started! Enter your mobile number",
+  "dontHaveAccount": "If you don’t have a account ! ",
+  "signUpText": "Signup",
+  "sendOtpText": "Send OTP",
+  "verifyOtp": "Verify OTP",
+  "signInText": "SignIn",
+  "acceptAndContinue": "Accept & Continue",
+  "mobileTextFieldLabel": "Mobile Number",
+  "mobileTextFieldFocusHint": "8888888888"
+}

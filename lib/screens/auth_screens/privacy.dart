@@ -1,5 +1,7 @@
 import 'package:doctor_foot_app/screens/auth_screens/current_location_screen.dart';
+import 'package:doctor_foot_app/screens/risk_factor_home.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 
 import 'package:flutter/material.dart';
@@ -62,9 +64,11 @@ class _ValuePrivacyState extends State<ValuePrivacy> {
               height: 30,
             ),
             CustomButton(
-              buttonName: Strings.acceptAndContinue,
-              onPress: () => Get.to(const CurrentLocationScreen()),
-            )
+                buttonName: Strings.acceptAndContinue,
+                onPress: () {
+                  Utility.myBottomSheet(context,
+                      widget: const RiskFactorHome(), heightFactor: 0.6);
+                })
           ],
         ),
       ),
