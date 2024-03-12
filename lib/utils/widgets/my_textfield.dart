@@ -1,5 +1,6 @@
 // ignore_for_file: always_specify_types
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -68,7 +69,7 @@ class _MyTextFieldState extends State<MyTextField> {
         child: Text(
           widget.label,
           style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-        ),
+        ).tr(),
       ),
     );
   }

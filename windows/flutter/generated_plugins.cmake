@@ -3,6 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  flutter_localization
+  geolocator_windows
   smart_auth
 )
 

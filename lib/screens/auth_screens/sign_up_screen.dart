@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_statements
-
 import 'package:doctor_foot_app/controllers/authentication_controller.dart';
 import 'package:doctor_foot_app/screens/auth_screens/otp_screen.dart';
 import 'package:doctor_foot_app/screens/auth_screens/sign_in_screen.dart';
@@ -8,6 +6,7 @@ import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -33,14 +32,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               child: Align(
                 alignment: Alignment.topLeft,
-                child: Text(
-                  Strings.SignUpStarted,
+                child: const Text(
+                  "SignUpStarted",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
+                ).tr(),
               ),
             ),
             const SizedBox(
@@ -75,14 +74,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(
               height: 10,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 22),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  Strings.gender,
+                  "gender",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
+                ).tr(),
               ),
             ),
             const SizedBox(
@@ -139,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: 40,
             ),
             CustomButton(
-              buttonName: Strings.signUpText,
+              buttonName: "signUpText",
               onPress: () {
                 Utility.myBottomSheet(context, widget: const OtpScreen());
               },

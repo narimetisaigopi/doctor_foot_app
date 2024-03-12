@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
@@ -59,7 +60,7 @@ class _CustomButtonState extends State<CustomButton> {
                     color: widget.tColor,
                     fontWeight: FontWeight.w500,
                     fontSize: 16),
-              ),
+              ).tr(),
             ],
           ),
         ),

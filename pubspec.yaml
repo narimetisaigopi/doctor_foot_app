@@ -46,6 +46,10 @@ dependencies:
   bulleted_list: ^0.0.1+0.1a
   file_picker: ^6.2.0
   pinput: ^4.0.0
+  google_maps_flutter: ^2.6.0
+  geolocator: ^11.0.0
+  easy_localization: any
+  flutter_localization: ^0.2.0
   flutter_rating_bar: ^4.0.1
   smooth_page_indicator: ^1.1.0
 
@@ -72,8 +76,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/risk_factor_questionary/
+    - assets/jsons/
+    - assets/translation/
     - assets/images/intro/
-   
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
