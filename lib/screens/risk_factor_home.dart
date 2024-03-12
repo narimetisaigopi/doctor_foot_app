@@ -1,9 +1,9 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:doctor_foot_app/controllers/risk_factor_controller.dart';
 import 'package:doctor_foot_app/models/risk_factor_model.dart';
+import 'package:doctor_foot_app/translation_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -51,13 +51,18 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // Row(
-          //   children: [
-          //     IconButton(
-          //         onPressed: () {}, icon: const Icon(Icons.arrow_back_ios_new))
-          //   ],
-          // ),
-          //  const SizedBox(height: 10),
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    Get.to(() => const TranslationScreen())!.then((value) {
+                      setState(() {});
+                    });
+                  },
+                  icon: const Icon(Icons.translate))
+            ],
+          ),
+          const SizedBox(height: 10),
 
           Visibility(
             maintainState: true,
@@ -80,7 +85,7 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
                 fontWeight: FontWeight.w700,
                 fontSize: 20,
               ),
-            ),
+            ).tr(),
           ),
           const SizedBox(height: 10),
           // if (riskFactorModel.description.isNotEmpty)

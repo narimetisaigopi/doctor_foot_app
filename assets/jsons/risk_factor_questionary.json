@@ -28,7 +28,7 @@
   {
     "id": 2,
     "image": "assets/images/risk_factor_questionary/diabetic_machine.svg",
-    "question": "Since how many years have\n you been diabetic?",
+    "question": "Since how many years have you been diabetic?",
     "description": "",
     "options": [
       { "image": "", "title": "< 5 Yrs", "subTitle": "" },
@@ -41,7 +41,7 @@
   {
     "id": 3,
     "image": "assets/images/risk_factor_questionary/HbA1C.svg",
-    "question": "What is your recent HbA1C\n  value?",
+    "question": "What is your recent HbA1C value?",
     "description": "",
     "options": [
       { "image": "", "title": "5.7 or Less", "subTitle": "" },
@@ -53,7 +53,7 @@
   {
     "id": 4,
     "image": "",
-    "question": "Do you have any history of\n  previous amputation?",
+    "question": "Do you have any history of  previous amputation?",
     "description": "",
     "options": [
       {
@@ -81,7 +81,7 @@
   {
     "id": 5,
     "image": "assets/images/risk_factor_questionary/foot_ulcer.svg",
-    "question": "Do you have any history of\n  foot ulcer?",
+    "question": "Do you have any history of  foot ulcer?",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -102,7 +102,7 @@
   {
     "id": 7,
     "image": "assets/images/risk_factor_questionary/visual_disturbance.svg",
-    "question": "Do you have any visual \n disturbances?",
+    "question": "Do you have any visual  disturbances?",
     "description": "",
     "options": [
       { "image": "", "title": "No", "subTitle": "" },
@@ -112,7 +112,7 @@
   {
     "id": 8,
     "image": "",
-    "question": "Do you have any history of\n  vascular surgery?",
+    "question": "Do you have any history of  vascular surgery?",
     "description": "",
     "options": [
       {
@@ -140,7 +140,7 @@
   {
     "id": 9,
     "image": "assets/images/risk_factor_questionary/burning_feet.svg",
-    "question": "Do you have burning/shooting pain in\n  your feet? ",
+    "question": "Do you have burning/shooting pain in  your feet? ",
     "description": "",
     "options": [
       {
@@ -168,7 +168,7 @@
   {
     "id": 10,
     "image": "assets/images/risk_factor_questionary/burning_feet.svg",
-    "question": "Do you have any tingling/numbness\n  in your feet? ",
+    "question": "Do you have any tingling/numbness  in your feet? ",
     "description": "",
     "options": [
       {
@@ -196,7 +196,7 @@
   {
     "id": 11,
     "image": "assets/images/risk_factor_questionary/infection_in_toes.svg",
-    "question": "Do you have any infection between\n  toes of your feet?",
+    "question": "Do you have any infection between  toes of your feet?",
     "description": "",
 
     "options": [
@@ -208,7 +208,7 @@
   {
     "id": 12,
     "image": "",
-    "question": "What is the present condition \n of your skin?",
+    "question": "What is the present condition  of your skin?",
     "description": "",
     "options": [
       {
@@ -236,7 +236,7 @@
   {
     "id": 13,
     "image": "",
-    "question": "What is the present condition\n  of your nails?",
+    "question": "What is the present condition  of your nails?",
     "description": "",
     "options": [
       {
@@ -254,7 +254,7 @@
   {
     "id": 14,
     "image": "",
-    "question": "What kind of Foot wear \n you are using? ",
+    "question": "What kind of Foot wear  you are using? ",
     "description": "",
     "options": [
       {
@@ -292,7 +292,7 @@
   {
     "id": 16,
     "image": "assets/images/risk_factor_questionary/sensation_feet.svg",
-    "question": "Can you feel the sensation\n  in your feet? ",
+    "question": "Can you feel the sensation  in your feet? ",
 
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -302,7 +302,7 @@
   {
     "id": 17,
     "image": "",
-    "question": "Do you have abnormal\n  foot shape?",
+    "question": "Do you have abnormal  foot shape?",
     "description": "",
     "options": [
       {
@@ -325,7 +325,7 @@
   {
     "id": 18,
     "image": "assets/images/risk_factor_questionary/kidney_issue.svg",
-    "question": "Do you have any kidney\n  related issue ? ",
+    "question": "Do you have any kidney  related issue ? ",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -335,7 +335,7 @@
   {
     "id": 19,
     "image": "assets/images/risk_factor_questionary/pain_after_walking.svg",
-    "question": "Are you experiencing any pain after\n  walking a certain distance?",
+    "question": "Are you experiencing any pain after  walking a certain distance?",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -345,7 +345,7 @@
   {
     "id": 20,
     "image": "assets/images/risk_factor_questionary/dilated_veins.svg",
-    "question": "Do you have any blackish discoloration\n  or dilated veins on your legs/feet? ",
+    "question": "Do you have any blackish discoloration  or dilated veins on your legs/feet? ",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },

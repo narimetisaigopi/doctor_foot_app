@@ -5,6 +5,7 @@ import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -40,12 +41,12 @@ class _SignInScreenState extends State<SignInScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  Strings.getStartedSignIn,
+                  "getStartedSignIn",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                ),
+                ).tr(),
               ),
               const SizedBox(
                 height: 10,
@@ -73,7 +74,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: InkWell(
                   onTap: () {
                     Utility.myBottomSheet(context,
-                        widget: const SignUpScreen());
+                        widget: const SignUpScreen(), heightFactor: 0.7);
                   },
                   child: RichText(
                     text: TextSpan(
@@ -96,9 +97,12 @@ class _SignInScreenState extends State<SignInScreen> {
               Align(
                 alignment: Alignment.center,
                 child: CustomButton(
-                  buttonName: Strings.sendOtpText,
+                  buttonName: "sendOtpText",
                   onPress: () {
-                    Utility.myBottomSheet(context, widget: const OtpScreen());
+                    Utility.myBottomSheet(
+                      context,
+                      widget: const OtpScreen(),
+                    );
                   },
                 ),
               )
