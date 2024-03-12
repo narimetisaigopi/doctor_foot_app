@@ -1,6 +1,9 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -11,7 +14,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   Divider forprofile = const Divider(
-    height: 20,
+    height: 16,
   );
   @override
   Widget build(BuildContext context) {
@@ -22,19 +25,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.only(left: 16,top: 16,right: 16),
         child: Column(
           children: [
-            const Center(
-              child: CircleAvatar(
-                radius: 70,
-                backgroundImage: NetworkImage(
-                  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fmedium.com%2Fflutter&psig=AOvVaw3VRZ-hK7FMVz138COjtmU4&ust=1709710344968000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPDKm8DN3IQDFQAAAAAdAAAAABAJ",
-                ),
-              ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(color:AppColors.secondary,width: 2)),
+              height: 124,
+              width: 124,
+              child: const SvgImageWidget(path: AssetsConstants.profile_image),
             ),
             const SizedBox(
-              height: 15,
+              height: 8,
             ),
             const Text(
               Strings.profileName,
@@ -45,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 8,
             ),
             const Text(
               Strings.regd,
@@ -56,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             const Divider(
-              height: 60,
+              height: 50,
             ),
             const ListTile(
               title: Text(Strings.myProfile,
@@ -122,6 +125,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const ListTile(
               title: Text(
                 Strings.payments,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.textBackColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              leading: CircleAvatar(
+                backgroundColor: AppColors.primary,
+                child: Icon(
+                  Icons.calendar_month,
+                  color: AppColors.secondary,
+                ),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 20,
+              ),
+            ),forprofile,
+            const ListTile(
+              title: Text(
+                Strings.orders,
                 style: TextStyle(
                   fontSize: 16,
                   color: AppColors.textBackColor,

@@ -11,23 +11,34 @@ class AppColors {
   static const Color notificationsButtonColor = Color(0xFF7389C1);
   static const Color notificationsButtonBgColor = Color(0xFFF0F4FF);
   static const Color ratingBarColor = Color(0xFFFFD414);
+  static const Color freePlanBgColor = Color(0xFFFFE7C8);
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);
   static const Color whiteBgColor = Color(0xFFFFFFFF);
 
   // grey varient colors
+    static const Color daysChipColor = Color(0xFFF2F0F0);
   static const Color grey2 = Color(0xFFB0B0B0);
   static const Color grey4 = Color(0xFFEEEDED);
 
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);
   static const Color textBackColor = Color(0xFF3C3C3C);
+  static const Color textBackThickColor = Color(0xFF101010);
 
   static const Color greyTextColor = Color(0xFFA0A0A0);
   static const Color greyBorderColor = Color(0xFFE4E4E4);
 
   static const bottomSheetBackgroundColor = Color(0xFFB7B7B7);
+  static const dietChartBgColor = Color(0xFF8EAEFF);
+
+  // image bg color from video screen
+    static const videoImageBgColor = Color(0xFF9EB5F0);
+    static const arrowForwardBlackColor = Color(0xFF0E101F);
+
+
+
 
   
 }

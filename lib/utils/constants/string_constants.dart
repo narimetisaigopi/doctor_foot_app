@@ -12,28 +12,29 @@ class Strings {
   static const String videosText = "Vidoes";
 
   // ulser monitoring screen benifits with 1000 plan texts
-  static const String premiumPlan = "Benefits with ₹1000plan";
+  static const String premiumPlanText = "Premium plan ";
   static const String premiumPlanText1 = "Daily Ulcer Monitoring";
   static const String premiumPlanText2 =
       "Experts review on ulcer images with in a day";
   static const String premiumPlanText3 =
-      "Lorem Ipsum is simply dummy text of the printing";
+      "Everyday report on your ulcer activity";
   static const String premiumPlanText4 =
-      "Lorem Ipsum is simply dummy text of the printing";
+      "Dressing and Home remedies";
   static const String premiumPlanText5 =
-      "Lorem Ipsum is simply dummy text of the printing";
-  static const String premiumPlanText6 =
-      "Lorem Ipsum is simply dummy text of the printing";
+      "Diet Suggestions according to ulcer condition";
+  
   static const String premiumPlanAamount = "₹1000 Plan";
 
   // ulser monitoring screen benifits with free plan texts
-  static const String freePlan = "Benefits with free plan";
-  static const String freePlan1 = "Weekly Ulcer Monitoring";
-  static const String freePlan2 =
-      "Lorem Ipsum is simply dummy text of the printing";
-  static const String freePlan3 =
-      "Lorem Ipsum is simply dummy text of the printing";
-  static const String freePlanb = "Free Plan";
+  static const String basicPlanText = "Basic plan";
+  static const String freeText = "Free";
+  static const String planAmountText = "₹1000/week";
+  static const String weeklyUmText = "Weekly Ulcer Monitoring";
+  static const String expertsText =
+      "Experts review on ulcer images after a week";
+  static const String reportText =
+      "Weekly report on your ulcer activity";
+  static const String getStartedButton = "Get started";
 
 // Profile Screen Texts
   static const String profileName = "S U M A N T H";
@@ -41,13 +42,11 @@ class Strings {
   static const String profile = "Profile";
   static const String myProfile = "My Profile";
   static const String appointment = "My Appointments";
-  static const String service = "Service Orders";
+  static const String service = "Service Bookings";
   static const String payments = "Payments & Refunds";
+  static const String orders = "Orders";
   static const String contactus = "Contact Us";
   static const String logout = "Logout";
-
-
-
 
   static const String introSecurity1 =
       '''For health analysis, we need your correct age (from your birth date), height and gender for our algorithms to work and give you better assessment of your health basis the principles of Health.''';
@@ -120,7 +119,30 @@ class Strings {
   static const String reviewverName = 'Naveena';
   static const String venkataNagarText = 'Venkat Nagar Colony,...';
   static const String postedDateText = 'Posted on 03 march';
-  static const String homeImageText = '  Of the estimated 537 million people worldwide who have \n   diabetes, 19-34% will develop an ulcer in their life time';
-static const String userReviewDicriptionText = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' ;
+  static const String homeImageText =
+      '  Of the estimated 537 million people worldwide who have \n   diabetes, 19-34% will develop an ulcer in their life time';
+  static const String userReviewDicriptionText =
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
 
+//diet chart screen strings
+  static const String monday = 'Monday';
+  static const String tuesday = 'Tuesday';
+  static const String wednesday = 'Wednesday';
+  static const String thursday = 'Thuraday';
+  static const String friday = 'Friday';
+  static const String saturday = 'Saturday';
+  static const String sunday = 'Sunday';
+  static const String morningText = 'Morning';
+  static const String afternoonText = 'Afternoon';
+  static const String eveningText = 'Evining';
+  static const String earlyMorning = 'Early Morning\n  (6am-7am)';
+
+  //video chart screen strings
+  static const String gettingMedisineText =
+      ' GETTING\n MEDICINE TO\n HEAL DIABETIC\n FOOT ULCER ';
+  static const String watchNowText = 'Watch Now';
+  static const String footAssessmentText = 'Foot Assessment';
+  static const String dailyFeaturedText = 'Daily Featured';
+  static const String diabetiesText = 'Diabeties';
+  static const String viewallText = 'View all';
 }

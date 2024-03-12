@@ -26,7 +26,8 @@ class AssetsConstants {
 
 // home_screen images
   //static const String intro_1 = "$_introImagesBasePath/intro_1.svg";
-  static const String diabetes_image = "$_introImagesBasePath/diabetes_image.svg";
+  static const String diabetes_image =
+      "$_introImagesBasePath/diabetes_image.svg";
   static const String foot = "$_introImagesBasePath/foot.svg";
   static const String user_image = "$_introImagesBasePath/user_image.svg";
   static const String foot_service = "$_introImagesBasePath/foot_service.svg";
@@ -36,4 +37,21 @@ class AssetsConstants {
   static const String moderate = "$_introImagesBasePath/moderate.svg";
   static const String percentage = "$_introImagesBasePath/percentage.svg";
   static const String speedometer = "$_introImagesBasePath/speedometer.svg";
+
+  //diet screen images
+  static const String diet_image = "$_introImagesBasePath/diet_image.svg";
+  static const String sun_morning = "$_introImagesBasePath/sun_morning.svg";
+  static const String sun_afternoon = "$_introImagesBasePath/sun_afternoon.svg";
+  static const String sun_evining = "$_introImagesBasePath/sun_evining.svg";
+
+  // video screen images
+  static const String doctor_rect = "$_introImagesBasePath/doctor_rect.svg";
+  static const String diabete_check_meter =
+      "$_introImagesBasePath/diabete_check_meter.svg";
+  static const String foot_testing = "$_introImagesBasePath/foot_testing.svg";
+  static const String toe_image = "$_introImagesBasePath/toe_image.svg";
+
+  //profile screen images
+    static const String profile_image = "$_introImagesBasePath/profile_image.svg";
+
 }

@@ -1,4 +1,5 @@
 import 'package:doctor_foot_app/screens/intro_screen.dart';
+import 'package:doctor_foot_app/screens/splash_screen.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: GoogleFonts.dmSans().fontFamily,
       ),
-      home: const IntroScreen(),
+      home: const SplashScreen(),
     );
   }
 }
