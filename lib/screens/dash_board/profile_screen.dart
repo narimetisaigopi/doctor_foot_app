@@ -3,7 +3,6 @@ import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,7 +12,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  Divider forprofile = const Divider(
+  Divider customDivider = const Divider(
     height: 16,
   );
   @override
@@ -79,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 size: 20,
               ),
             ),
-            forprofile,
+            customDivider,
             const ListTile(
               title: Text(Strings.appointment,
                   style: TextStyle(
@@ -99,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 size: 20,
               ),
             ),
-            forprofile,
+            customDivider,
             const ListTile(
               title: Text(
                 Strings.service,
@@ -121,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 size: 20,
               ),
             ),
-            forprofile,
+            customDivider,
             const ListTile(
               title: Text(
                 Strings.payments,
@@ -142,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Icons.arrow_forward_ios,
                 size: 20,
               ),
-            ),forprofile,
+            ),customDivider,
             const ListTile(
               title: Text(
                 Strings.orders,
@@ -164,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 size: 20,
               ),
             ),
-            forprofile,
+            customDivider,
             const ListTile(
               title: Text(
                 Strings.contactus,
@@ -186,7 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 size: 20,
               ),
             ),
-            forprofile,
+            customDivider,
             const ListTile(
               title: Text(
                 Strings.logout,
@@ -208,7 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 size: 20,
               ),
             ),
-            forprofile,
+            customDivider,
           ],
         ),
       ),

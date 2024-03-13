@@ -1,8 +1,7 @@
+import 'package:doctor_foot_app/models/videosModels/dailyFutured_model.dart';
+import 'package:doctor_foot_app/screens/dash_board/videosScreenWidgets/check_diabeties_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class DailyFeaturedWidget extends StatefulWidget {
@@ -18,7 +17,7 @@ class _DailyFeaturedWidgetState extends State<DailyFeaturedWidget> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      color: Colors.blue[50],
+      color: AppColors.videoImageBgColor,
       height: size.height * 0.4,
       width: double.infinity,
       child: Padding(
@@ -64,31 +63,13 @@ class _DailyFeaturedWidgetState extends State<DailyFeaturedWidget> {
                       crossAxisCount: 2,
                       crossAxisSpacing: 12,
                       mainAxisSpacing: 8),
-                  itemCount: videoscreen3.length,
+                  itemCount: videoscreenDfList.length,
                   itemBuilder: (context, index) {
-                    final videoscreen = videoscreen3[index];
-                    return Stack(
-                      children: [
-                        SizedBox(
-                          height: 160,
-                          width: 210,
-                          child: SvgImageWidget(
-                            path: "${videoscreen["image"]}",
-                            width: double.infinity,
-                          ),
-                        ),
-                        const Positioned(
-                          left: 36,
-                          bottom: 16,
-                          child: Text(
-                            Strings.diabetiesText,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.textWhiteColor),
-                          ),
-                        )
-                      ],
+                    final videoscreenDfItem = videoscreenDfList[index];
+                    return CheckDiabetiesWidget(
+                      image: videoscreenDfItem.image!,
+                      text: videoscreenDfItem.healthIssue!,
+                      onpressed: () {},
                     );
                   }),
             ),

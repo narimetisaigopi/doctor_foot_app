@@ -1,9 +1,7 @@
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/diet_plan_widget.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/week_days_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/dietChartScreenWidgets/diet_plan_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/dietChartScreenWidgets/week_days_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class DietChartScreen extends StatefulWidget {

@@ -1,10 +1,8 @@
+import 'package:doctor_foot_app/models/videosModels/footAssessment_model.dart';
+import 'package:doctor_foot_app/screens/dash_board/videosScreenWidgets/faImage_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
 
 class FootAssessmentWidget extends StatefulWidget {
   const FootAssessmentWidget({super.key});
@@ -52,16 +50,12 @@ class _FootAssessmentWidgetState extends State<FootAssessmentWidget> {
                   );
                 },
                 scrollDirection: Axis.horizontal,
-                itemCount: videoscreen2.length,
+                itemCount: videoscreenFaList.length,
                 itemBuilder: (context, index) {
-                  final videoscreen=videoscreen2[index];
-                  return GestureDetector(
-                    onTap: () {},
-                    child:  SvgImageWidget(
-                      path: "${videoscreen["image"]}",
-                      height: 144,
-                      width: 221,
-                    ),
+                  final videoscreenFaItem = videoscreenFaList[index];
+                  return FAImageWidget(
+                    image: videoscreenFaItem.image!,
+                    onPressed: () {},
                   );
                 }),
           ),

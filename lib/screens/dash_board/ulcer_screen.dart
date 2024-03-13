@@ -34,7 +34,7 @@ class _UlcerScreenState extends State<UlcerScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: AppColors.freePlanBgColor,
-                  border: Border.all(color: Colors.amber, width: 2),
+                  border: Border.all(color: AppColors.ulcerMonitorBorderColor, width: 2),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +83,7 @@ class _UlcerScreenState extends State<UlcerScreen> {
                 height: 16,
               ),
               Container(
-                height: size.height * 0.47,
+                height: size.height * 0.42,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),

@@ -1,48 +1,29 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/constants.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class PatiantReviewWidget extends StatefulWidget {
-  final Function() onPress;
-  const PatiantReviewWidget({super.key, required this.onPress});
+class ReviewWidget extends StatefulWidget {
+  final String image;
+  final String name;
+  final String? discr;
+  final String dateTime;
+  const ReviewWidget({super.key,required this.image,required this.name,this.discr,required this.dateTime});
 
   @override
-  State<PatiantReviewWidget> createState() => _PatiantReviewWidgetState();
+  State<ReviewWidget> createState() => _ReviewWidgetState();
 }
 
-class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
+class _ReviewWidgetState extends State<ReviewWidget> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onPress,
-      child: Container(
-        margin: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-        ),
-        height: MediaQuery.of(context).size.height * 0.27,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Container(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: 
-          ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: patientReviewsMap.length,
-              itemBuilder: (context, index) {
-                final review = patientReviewsMap[index];
-                return Column(
+    return Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgImageWidget(
-                          path: "${review["reviewer_image"]}",
+                          path: widget.image,
                         ),
                         const SizedBox(
                           width: 5,
@@ -51,7 +32,7 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${review["patientName"]}",
+                              widget.name,
                               style: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w700),
                             ),
@@ -76,7 +57,7 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
                       height: 8,
                     ),
                     Text(
-                      "${review["discription"]}",
+                      widget.discr!,
                       style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
@@ -87,7 +68,7 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
                     ),
                     Center(
                       child: Text(
-                        "${review["date"]}",
+                        widget.dateTime,
                         style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
@@ -96,9 +77,5 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
                     ),
                   ],
                 );
-              }),
-        ),
-      ),
-    );
   }
 }

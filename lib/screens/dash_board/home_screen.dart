@@ -1,7 +1,7 @@
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/app_bar_widget.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/home_image.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/patiant_review_widget.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/services_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/home_image.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/all_services_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 12,
               ),
-              ServicesWidget(onPress: () {}),
+              const AllServicesWidget(),
               const SizedBox(
                 height: 12,
               ),

@@ -11,7 +11,7 @@ class AppColors {
   static const Color notificationsButtonColor = Color(0xFF7389C1);
   static const Color notificationsButtonBgColor = Color(0xFFF0F4FF);
   static const Color ratingBarColor = Color(0xFFFFD414);
-  static const Color freePlanBgColor = Color(0xFFFFE7C8);
+  static const Color freePlanBgColor = Color.fromRGBO(255, 231, 200, 1);
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);
@@ -34,7 +34,8 @@ class AppColors {
   static const dietChartBgColor = Color(0xFF8EAEFF);
 
   // image bg color from video screen
-    static const videoImageBgColor = Color(0xFF9EB5F0);
+    static const videoImageBgColor = Color.fromRGBO(158, 181, 240, 0.1);
+    static const ulcerMonitorBorderColor = Color.fromRGBO(255, 231, 200, 1);
     static const arrowForwardBlackColor = Color(0xFF0E101F);
 
 
