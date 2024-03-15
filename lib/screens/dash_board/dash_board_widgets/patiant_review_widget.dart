@@ -30,8 +30,7 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
         ),
         child: Container(
           padding: const EdgeInsets.only(left: 16, right: 16),
-          child: 
-          ListView.builder(
+          child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: patientReviewsMap.length,
               itemBuilder: (context, index) {
