@@ -14,6 +14,7 @@ class MyTextField extends StatefulWidget {
   final Color bgColor;
   final Color iconColor;
   final bool labelNeeded;
+  final Widget? suffix;
   // final IconButton? icon;
   final Widget? leadingIcon;
   final bool iconNeeded;
@@ -27,6 +28,7 @@ class MyTextField extends StatefulWidget {
   const MyTextField({
     super.key,
     required this.hint,
+    this.suffix,
     required this.textEditingController,
     this.bgColor = Colors.transparent,
     this.label = "label",
@@ -43,7 +45,7 @@ class MyTextField extends StatefulWidget {
     this.onValidate,
     this.iconNeeded = false,
     this.leadingIcon,
-    this.trailingIcon = const Icon(Icons.arrow_forward),
+    this.trailingIcon = const Icon(Icons.search),
   });
 
   @override
@@ -78,9 +80,9 @@ class _MyTextFieldState extends State<MyTextField> {
     return Container(
       height: 50,
       padding: EdgeInsets.zero,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 20,
-      ),
+      // margin: const EdgeInsets.symmetric(
+      //   horizontal: 20,
+      // ),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
           border: Border.all(color: Colors.grey.shade300)),
@@ -127,6 +129,7 @@ class _MyTextFieldState extends State<MyTextField> {
             fillColor: widget.bgColor,
             filled: true,
             prefixIcon: widget.leadingIcon,
+            suffix: widget.suffix,
             suffixIcon: widget.iconNeeded
                 ? IconButton(
                     style: const ButtonStyle(

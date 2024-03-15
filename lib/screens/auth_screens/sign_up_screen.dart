@@ -75,10 +75,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: 10,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22),
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               child: Align(
                 alignment: Alignment.topLeft,
-                child: Text(
+                child: const Text(
                   "gender",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ).tr(),

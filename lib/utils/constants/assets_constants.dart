@@ -5,6 +5,7 @@ class AssetsConstants {
   static const String _homeScreenImagesBasePath = "assets/images/home_screen";
   static const String _riskFactorQuestionaryImagesBasePath =
       "assets/images/risk_factor_questionary";
+  static const String homeDressingServices = "assets/images/home_dressing";
 
   // intro_images
   static const String intro_1 = "$_introImagesBasePath/intro_1.svg";
@@ -113,4 +114,10 @@ class AssetsConstants {
 
   static const String well_kept_nails =
       "$_riskFactorQuestionaryImagesBasePath/well_kept_nails.svg";
+
+  static const String home_dressing_cover_img =
+      "$homeDressingServices/home_dressing_cover_img.svg";
+  static const String phonepe = "$homeDressingServices/phonePe.png";
+  static const String wounded_foot = "$homeDressingServices/wounded_foot.svg";
+  static const String successful = "$homeDressingServices/successful.svg";
 }

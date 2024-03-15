@@ -5,12 +5,13 @@ class SvgImageWidget extends StatefulWidget {
   final String path;
   final double width;
   final double height;
-  const SvgImageWidget({
-    super.key,
-    required this.path,
-    this.width = 50,
-    this.height = 50,
-  });
+  final BoxFit fit;
+  const SvgImageWidget(
+      {super.key,
+      required this.path,
+      this.width = 50,
+      this.height = 50,
+      this.fit = BoxFit.cover});
 
   @override
   State<SvgImageWidget> createState() => _SvgImageWidgetState();
@@ -23,6 +24,7 @@ class _SvgImageWidgetState extends State<SvgImageWidget> {
       height: widget.height,
       width: widget.width,
       widget.path,
+      fit: widget.fit,
     );
   }
 }

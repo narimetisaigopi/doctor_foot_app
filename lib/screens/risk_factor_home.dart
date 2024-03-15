@@ -1,6 +1,7 @@
 import 'package:doctor_foot_app/controllers/risk_factor_controller.dart';
 import 'package:doctor_foot_app/models/risk_factor_model.dart';
-import 'package:doctor_foot_app/translation_screen.dart';
+import 'package:doctor_foot_app/screens/home_dressing_services/home_dressing_services.dart';
+import 'package:doctor_foot_app/screens/translation_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -59,7 +60,14 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
                       setState(() {});
                     });
                   },
-                  icon: const Icon(Icons.translate))
+                  icon: const Icon(Icons.translate)),
+              IconButton(
+                  onPressed: () {
+                    Get.to(() => const HomeDressingServices())!.then((value) {
+                      setState(() {});
+                    });
+                  },
+                  icon: const Icon(Icons.local_hospital))
             ],
           ),
           const SizedBox(height: 10),

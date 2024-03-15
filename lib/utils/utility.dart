@@ -64,6 +64,46 @@ class Utility {
         });
   }
 
+  static Widget customChoiceChip(
+      {required String title,
+      required bool isSelected,
+      required VoidCallback onTap,
+      bool sizeNeeded = false,
+      double horizontal = 10,
+      double vertical = 5,
+      double? width,
+      Icon icon = const Icon(
+        Icons.home,
+        size: 20,
+      )}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: width,
+        height: 35,
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : Colors.white,
+          //border: Border.all(color: Colors.grey.shade400),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Row(
+          children: [
+            icon,
+            Text(
+              title,
+              style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.grey.shade600,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   static Widget choiceContainer({
     required String title,
     required bool isSelected,
@@ -84,11 +124,16 @@ class Utility {
         ),
         child: Column(
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                  color: isSelected ? Colors.white : Colors.grey.shade600,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
+            Row(
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                      color: isSelected ? Colors.white : Colors.grey.shade600,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal),
+                ),
+              ],
             ),
           ],
         ),

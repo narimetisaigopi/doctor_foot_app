@@ -61,4 +61,20 @@ class Strings {
   static const String dateOfBirthTextFieldHint = 'DD/MM/YYYY';
 
   static const String gender = 'Gender';
+  static const String home = "Home";
+  static const String work = "Work";
+  static const String friendsAndFamily = "Friends & Family";
+
+  static const String samll = "Samll";
+  static const String medium = "Medium";
+  static const String large = "Large";
+
+  static const String booking_confirmed = "Booking Confirmed!";
+  static const String orderId = "Order Id # 1234567890";
+  static const String orderDate = "Date: Sunday/31/Dec/2023";
+  static const String orderSuccessfulDescription =
+      "Thank you for placing the service!! Sit back and relax while we deliver an awesome service experience.";
+
+  static const String home_dressing_description =
+      "If your wound is < 1000cm , Then it is recommended.";
 }
