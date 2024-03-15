@@ -4,9 +4,30 @@ class AppColors {
   static const Color primary = Color(0xFF0035BC);
   static const Color secondary = Color(0xFFF1F0F5);
   static const Color secondaryButton = Color(0xFFDAE4FD);
+  static const Color grey = Color(0xFFB7B7B7);
+  static const Color greydivider = Color(0xFFCFCFCF);
+  static const Color blackBold = Color(0xFF000000);
+  static const Color searchButtonColor = Color(0xFF7389C1);
+  static const Color notificationsButtonColor = Color(0xFF7389C1);
+  static const Color notificationsButtonBgColor = Color(0xFFF0F4FF);
+  static const Color ratingBarColor = Color(0xFFFFD414);
+
+  // white varient colors
+  static const Color bgColor = Color(0xFFF2F2F2);
+  static const Color whiteBgColor = Color(0xFFFFFFFF);
+
+  // grey varient colors
+  static const Color grey2 = Color(0xFFB0B0B0);
+  static const Color grey4 = Color(0xFFEEEDED);
+
+  // text color
+  static const Color textWhiteColor = Color(0xFFFBFBFB);
+  static const Color textBackColor = Color(0xFF3C3C3C);
 
   static const Color greyTextColor = Color(0xFFA0A0A0);
   static const Color greyBorderColor = Color(0xFFE4E4E4);
 
   static const bottomSheetBackgroundColor = Color(0xFFB7B7B7);
+
+  
 }
