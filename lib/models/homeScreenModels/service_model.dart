@@ -2,10 +2,10 @@ import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 
 class ServicesModel {
-  String? image;
-  String? seiviceNames;
+  String image;
+  String seiviceNames;
 
-  ServicesModel({this.image, this.seiviceNames});
+  ServicesModel({this.image = "", this.seiviceNames = ""});
 }
 
 List<ServicesModel> servicesList = [

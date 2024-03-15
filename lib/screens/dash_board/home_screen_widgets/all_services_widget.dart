@@ -53,8 +53,8 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                   itemBuilder: (context, index) {
                     final servicesItem = servicesList[index];
                     return ServiceWidget(
-                      image: servicesItem.image!,
-                      name: servicesItem.seiviceNames!,
+                      image: servicesItem.image,
+                      name: servicesItem.seiviceNames,
                     );
                   }),
             )

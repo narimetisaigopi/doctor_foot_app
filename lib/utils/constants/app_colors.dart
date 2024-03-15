@@ -11,14 +11,14 @@ class AppColors {
   static const Color notificationsButtonColor = Color(0xFF7389C1);
   static const Color notificationsButtonBgColor = Color(0xFFF0F4FF);
   static const Color ratingBarColor = Color(0xFFFFD414);
-  static const Color freePlanBgColor = Color.fromRGBO(255, 231, 200, 1);
+  static const Color freePlanBgColor = Color(0xFFFFF8EF);
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);
   static const Color whiteBgColor = Color(0xFFFFFFFF);
 
   // grey varient colors
-    static const Color daysChipColor = Color(0xFFF2F0F0);
+  static const Color daysChipColor = Color(0xFFF2F0F0);
   static const Color grey2 = Color(0xFFB0B0B0);
   static const Color grey4 = Color(0xFFEEEDED);
 
@@ -34,12 +34,7 @@ class AppColors {
   static const dietChartBgColor = Color(0xFF8EAEFF);
 
   // image bg color from video screen
-    static const videoImageBgColor = Color.fromRGBO(158, 181, 240, 0.1);
-    static const ulcerMonitorBorderColor = Color.fromRGBO(255, 231, 200, 1);
-    static const arrowForwardBlackColor = Color(0xFF0E101F);
-
-
-
-
-  
+  static const videoImageBgColor = Color.fromRGBO(158, 181, 240, 0.1);
+  static const arrowForwardBlackColor = Color(0xFF0E101F);
+  static const ulcerMonitorBorderColor = Color(0xFFFFE7C8);
 }

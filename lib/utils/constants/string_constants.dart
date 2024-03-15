@@ -18,11 +18,10 @@ class Strings {
       "Experts review on ulcer images with in a day";
   static const String premiumPlanText3 =
       "Everyday report on your ulcer activity";
-  static const String premiumPlanText4 =
-      "Dressing and Home remedies";
+  static const String premiumPlanText4 = "Dressing and Home remedies";
   static const String premiumPlanText5 =
       "Diet Suggestions according to ulcer condition";
-  
+
   static const String premiumPlanAamount = "₹1000 Plan";
 
   // ulser monitoring screen benifits with free plan texts
@@ -32,12 +31,11 @@ class Strings {
   static const String weeklyUmText = "Weekly Ulcer Monitoring";
   static const String expertsText =
       "Experts review on ulcer images after a week";
-  static const String reportText =
-      "Weekly report on your ulcer activity";
+  static const String reportText = "Weekly report on your ulcer activity";
   static const String getStartedButton = "Get started";
 
 // Profile Screen Texts
-  static const String profileName = "S U M A N T H";
+  static const String profileName = "SUMANTH";
   static const String regd = "Reg. No: 9087654321";
   static const String profile = "Profile";
   static const String myProfile = "My Profile";
@@ -122,7 +120,7 @@ class Strings {
   static const String homeImageText =
       '  Of the estimated 537 million people worldwide who have \n   diabetes, 19-34% will develop an ulcer in their life time';
   static const String userReviewDicriptionText =
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
+      'Lorem Ipsum is simply dummy text of the printing and \n  typesetting industry. Lorem Ipsum has been the\n industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
 
 //diet chart screen strings
   static const String monday = 'Monday';

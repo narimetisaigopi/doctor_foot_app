@@ -20,24 +20,23 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
           left: 16,
           right: 16,
         ),
-        height: MediaQuery.of(context).size.height * 0.27,
+        height: MediaQuery.of(context).size.height * 0.28,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Container(
-          padding: const EdgeInsets.only(left: 16, right: 16),
+        child: Expanded(
           child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: patientReviewsList.length,
               itemBuilder: (context, index) {
                 final patientReviewsItem = patientReviewsList[index];
                 return ReviewWidget(
-                    image: patientReviewsItem.patientImage!,
-                    name: patientReviewsItem.patientName!,
+                    image: patientReviewsItem.patientImage,
+                    name: patientReviewsItem.patientName,
                     discr: patientReviewsItem.discription,
-                    dateTime: patientReviewsItem.date!);
+                    dateTime: patientReviewsItem.date);
               }),
         ),
       ),

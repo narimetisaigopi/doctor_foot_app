@@ -39,27 +39,90 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             selectedIndex = value;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: selectedIndex == 0
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.home))
+                : Container(child: const Icon(Icons.home)),
             label: Strings.homeText,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.food_bank),
+            icon: selectedIndex == 1
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.food_bank))
+                : Container(child: const Icon(Icons.food_bank)),
             label: Strings.dietChartText,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.video_call),
-            label:Strings.videosText,
+            icon: selectedIndex == 2
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.video_call))
+                : Container(child: const Icon(Icons.video_call)),
+            label: Strings.videosText,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
+           BottomNavigationBarItem(
+            icon: selectedIndex == 3
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.schedule))
+                : Container(child: const Icon(Icons.schedule)),
             label: Strings.ulcerMonitorText,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: selectedIndex == 4
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.person))
+                : Container(child: const Icon(Icons.person)),
             label: Strings.profile,
           ),
+         
+         
+         
         ],
       ),
     );

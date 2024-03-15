@@ -53,5 +53,6 @@ class AssetsConstants {
 
   //profile screen images
     static const String profile_image = "$_introImagesBasePath/profile_image.svg";
+    static const String contacu_us = "$_introImagesBasePath/contacu_us.svg";
 
 }

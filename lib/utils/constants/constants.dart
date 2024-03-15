@@ -8,11 +8,7 @@ List<String> names = [
   Strings.premiumPlanText4,
   Strings.premiumPlanText5,
 ];
-List<String> names2 = [
-  Strings.weeklyUmText,
-  Strings.expertsText,
-  Strings.expertsText,
-];
+
 
 const introScreenImages = [
   {
