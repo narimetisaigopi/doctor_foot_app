@@ -1,6 +1,7 @@
 import 'package:doctor_foot_app/screens/auth_screens/privacy.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
@@ -56,9 +57,9 @@ class _OtpScreenState extends State<OtpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Text(
-                  Strings.verificationString,
+                  "verificationString",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
+                ).tr(),
                 const SizedBox(
                   height: 10,
                 ),
@@ -105,7 +106,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   height: 20,
                 ),
                 CustomButton(
-                  buttonName: Strings.verifyOtp,
+                  buttonName: "verifyOtp",
                   onPress: () {
                     Utility.myBottomSheet(context,
                         widget: const ValuePrivacy(), heightFactor: 0.7);
