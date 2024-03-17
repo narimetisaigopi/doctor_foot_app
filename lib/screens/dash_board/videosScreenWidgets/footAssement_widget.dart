@@ -1,7 +1,7 @@
 import 'package:doctor_foot_app/models/videosModels/footAssessment_model.dart';
 import 'package:doctor_foot_app/screens/dash_board/videosScreenWidgets/faImage_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class FootAssessmentWidget extends StatefulWidget {
@@ -24,12 +24,12 @@ class _FootAssessmentWidgetState extends State<FootAssessmentWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                Strings.footAssessmentText,
+                "footAssessmentText",
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color: AppColors.textBackThickColor),
-              ),
+              ).tr(),
               IconButton(
                 onPressed: () {},
                 icon: const Icon(
@@ -54,7 +54,7 @@ class _FootAssessmentWidgetState extends State<FootAssessmentWidget> {
                 itemBuilder: (context, index) {
                   final videoscreenFaItem = videoscreenFaList[index];
                   return FAImageWidget(
-                    image: videoscreenFaItem.image!,
+                    image: videoscreenFaItem.image,
                     onPressed: () {},
                   );
                 }),

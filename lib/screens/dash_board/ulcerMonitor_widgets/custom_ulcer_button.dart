@@ -1,5 +1,5 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
 class CustomUlcerButton extends StatefulWidget {
@@ -24,14 +24,14 @@ class _CustomUlcerButtonState extends State<CustomUlcerButton> {
                   decoration: BoxDecoration(
                       color: AppColors.primary,
                       borderRadius: BorderRadius.circular(16)),
-                  child: const Center(
-                      child: Text(
-                    Strings.getStartedButton,
+                  child:  Center(
+                      child: const Text(
+                    "getStartedButton",
                     style: TextStyle(
                         fontSize: 16,
                         color: AppColors.textWhiteColor,
                         fontWeight: FontWeight.w700),
-                  )),
+                  ).tr()),
                 ),
               ),
             ),

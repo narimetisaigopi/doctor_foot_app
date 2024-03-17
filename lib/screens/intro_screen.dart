@@ -6,6 +6,7 @@ import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:doctor_foot_app/screens/auth_screens/sign_up_screen.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -53,13 +54,13 @@ class _IntroScreenState extends State<IntroScreen> {
                             onTap: () {
                               Get.to(const DashBoardScreen());
                             },
-                            child: const Text(
-                              Strings.skip,
+                            child:  const Text(
+                              "skip",
                               style: TextStyle(
                                   fontSize: 16,
                                   color: AppColors.primary,
                                   fontWeight: FontWeight.w700),
-                            ),
+                            ).tr(),
                           ),
               ),
             ]
@@ -91,12 +92,12 @@ class _IntroScreenState extends State<IntroScreen> {
                       height: 16,
                     ),
                     const Text(
-                      Strings.introText,
+                      "introText",
                       style: TextStyle(
                           fontSize: 24,
                           color: AppColors.primary,
                           fontWeight: FontWeight.w700),
-                    ),
+                    ).tr(),
                     const SizedBox(
                       height: 16,
                     ),

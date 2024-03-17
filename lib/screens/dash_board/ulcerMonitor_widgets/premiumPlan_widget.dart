@@ -2,7 +2,7 @@ import 'package:doctor_foot_app/models/ulcer_monitor_models/premium_model.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/custom_ulcer_button.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/dotted_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
 class PremiumPlanWidget extends StatefulWidget {
@@ -27,28 +27,28 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 16, top: 16),
-            child: Text(
-              Strings.premiumPlanText,
+           Padding(
+            padding: const EdgeInsets.only(left: 16, top: 16),
+            child: const Text(
+              "premiumPlanText",
               style: TextStyle(
                   fontSize: 18,
                   color: AppColors.textBackColor,
                   fontWeight: FontWeight.w700),
-            ),
+            ).tr(),
           ),
           const SizedBox(
             height: 08,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 16),
-            child: Text(
-              Strings.planAmountText,
+           Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: const Text(
+             "planAmountText",
               style: TextStyle(
                   fontSize: 24,
                   color: AppColors.primary,
                   fontWeight: FontWeight.w700),
-            ),
+            ).tr(),
           ),
           const SizedBox(
             height: 22,

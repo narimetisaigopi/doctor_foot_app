@@ -1,17 +1,16 @@
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 
 class MorningDietChartModel {
-  String? image;
-  String? textTime;
-  MorningDietChartModel({this.image, this.textTime});
+  String image;
+  String textTime;
+  MorningDietChartModel({this.image ="", this.textTime = ""});
 }
 
 List<MorningDietChartModel> morningDietList = [
   MorningDietChartModel(
-      image: AssetsConstants.diet_image, textTime: Strings.earlyMorning),
+      image: AssetsConstants.diet_image, textTime: "earlyMorning"),
   MorningDietChartModel(
-      image: AssetsConstants.diet_image, textTime: Strings.earlyMorning),
+      image: AssetsConstants.diet_image, textTime: "earlyMorning"),
   MorningDietChartModel(
-      image: AssetsConstants.diet_image, textTime: Strings.earlyMorning),
+      image: AssetsConstants.diet_image, textTime: "earlyMorning"),
 ];

@@ -1,9 +1,9 @@
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 
 class FootAssessmentModel{
-  String? image;
+  String image;
 
-  FootAssessmentModel({this.image});
+  FootAssessmentModel({this.image = ""});
 }
 List<FootAssessmentModel> videoscreenFaList = [
   FootAssessmentModel(image: AssetsConstants.foot_testing,),

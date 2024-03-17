@@ -2,6 +2,7 @@ import 'package:doctor_foot_app/models/videosModels/dailyFutured_model.dart';
 import 'package:doctor_foot_app/screens/dash_board/videosScreenWidgets/check_diabeties_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DailyFeaturedWidget extends StatefulWidget {
@@ -28,21 +29,21 @@ class _DailyFeaturedWidgetState extends State<DailyFeaturedWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  Strings.dailyFeaturedText,
+                  "dailyFeaturedText",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: AppColors.textBackThickColor),
-                ),
+                ).tr(),
                 Row(
                   children: [
                     const Text(
-                      Strings.viewallText,
+                      "viewallText",
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: AppColors.textBackThickColor),
-                    ),
+                    ).tr(),
                     IconButton(
                       onPressed: () {},
                       icon: const Icon(
@@ -67,8 +68,8 @@ class _DailyFeaturedWidgetState extends State<DailyFeaturedWidget> {
                   itemBuilder: (context, index) {
                     final videoscreenDfItem = videoscreenDfList[index];
                     return CheckDiabetiesWidget(
-                      image: videoscreenDfItem.image!,
-                      text: videoscreenDfItem.healthIssue!,
+                      image: videoscreenDfItem.image,
+                      text: videoscreenDfItem.healthIssue,
                       onpressed: () {},
                     );
                   }),

@@ -1,18 +1,19 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ReviewWidget extends StatefulWidget {
   final String image;
   final String name;
-  final String? discr;
+  final String discr;
   final String dateTime;
   const ReviewWidget(
       {super.key,
       required this.image,
       required this.name,
-      this.discr,
+      this.discr ="",
       required this.dateTime});
 
   @override
@@ -42,7 +43,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                     widget.name,
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.w700),
-                  ),
+                  ).tr(),
                   RatingBar.builder(
                     itemSize: 12,
                     initialRating: 5,
@@ -64,12 +65,12 @@ class _ReviewWidgetState extends State<ReviewWidget> {
             height: 8,
           ),
           Text(
-            widget.discr!,
+            widget.discr,
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
                 color: AppColors.textBackColor),
-          ),
+          ).tr(),
           const SizedBox(
             height: 12,
           ),
@@ -80,7 +81,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
                   color: AppColors.grey),
-            ),
+            ).tr(),
           ),
         ],
       ),

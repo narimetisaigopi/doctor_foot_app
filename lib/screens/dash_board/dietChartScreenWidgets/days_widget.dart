@@ -1,4 +1,5 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DaysWidget extends StatefulWidget {
@@ -18,7 +19,7 @@ class _DaysWidgetState extends State<DaysWidget> {
                         onTap: () {},
                         child: Container(
                           decoration: BoxDecoration(
-                              color: AppColors.grey2,
+                              color: AppColors.daysBgColor,
                               borderRadius: BorderRadius.circular(16)),
                           height: size.height * 0.058,
                           width: size.width * 0.35,
@@ -27,7 +28,7 @@ class _DaysWidgetState extends State<DaysWidget> {
                             widget.text,
                             style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w700),
-                          )),
+                          ).tr()),
                         ),
                       );
   }

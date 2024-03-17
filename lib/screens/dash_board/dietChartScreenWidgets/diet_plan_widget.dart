@@ -4,8 +4,8 @@ import 'package:doctor_foot_app/models/dietChartModels/morning_dietChart_model.d
 import 'package:doctor_foot_app/screens/dash_board/dietChartScreenWidgets/diet_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DietPlanWidget extends StatefulWidget {
@@ -22,7 +22,7 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
       height: MediaQuery.of(context).size.height * 0.72,
       width: double.infinity,
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.secondary),
+          border: Border.all(color: AppColors.whiteBgDietColor),
           color: AppColors.textWhiteColor,
           borderRadius: BorderRadius.circular(16)),
       child: Padding(
@@ -34,20 +34,20 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+             Row(
               children: [
-                SvgImageWidget(
+                const SvgImageWidget(
                   path: AssetsConstants.sun_morning,
                   height: 22,
                   width: 22,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Text(
-                  Strings.morningText,
+                const Text(
+                "morningText",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                ),
+                ).tr(),
               ],
             ),
             const SizedBox(
@@ -70,24 +70,24 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
                   itemBuilder: (context, index) {
                     final morningDietItem = morningDietList[index];
                     return DietWidget(
-                        image: morningDietItem.image!,
-                        timeText: morningDietItem.textTime!);
+                        image: morningDietItem.image,
+                        timeText: morningDietItem.textTime);
                   }),
             ),
-            const Row(
+             Row(
               children: [
-                SvgImageWidget(
+                const SvgImageWidget(
                   path: AssetsConstants.sun_afternoon,
                   height: 22,
                   width: 22,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Text(
-                  Strings.afternoonText,
+                const Text(
+                  "afternoonText",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                ),
+                ).tr(),
               ],
             ),
             const SizedBox(
@@ -108,24 +108,24 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
                   itemBuilder: (context, index) {
                     final afternoonDietItem = afternoonDietList[index];
                     return DietWidget(
-                        image: afternoonDietItem.image!,
-                        timeText: afternoonDietItem.textTime!);
+                        image: afternoonDietItem.image,
+                        timeText: afternoonDietItem.textTime);
                   }),
             ),
-            const Row(
+             Row(
               children: [
-                SvgImageWidget(
+                const SvgImageWidget(
                   path: AssetsConstants.sun_evining,
                   height: 22,
                   width: 22,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Text(
-                  Strings.eveningText,
+                const Text(
+                  "eveningText",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                ),
+                ).tr(),
               ],
             ),
             const SizedBox(
@@ -146,8 +146,8 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
                   itemBuilder: (context, index) {
                     final eviningDietItem = eviningDietList[index];
                     return DietWidget(
-                        image: eviningDietItem.image!,
-                        timeText: eviningDietItem.textTime!);
+                        image: eviningDietItem.image,
+                        timeText: eviningDietItem.textTime);
                   }),
             )
           ],

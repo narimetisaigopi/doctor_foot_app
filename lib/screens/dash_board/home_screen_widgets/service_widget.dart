@@ -1,5 +1,6 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ServiceWidget extends StatefulWidget {
@@ -51,7 +52,7 @@ class _ServiceWidgetState extends State<ServiceWidget> {
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                       color: AppColors.secondary),
-                ),
+                ).tr(),
               ),
             ),
           ),

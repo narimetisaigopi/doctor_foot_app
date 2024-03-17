@@ -1,12 +1,13 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DietWidget extends StatefulWidget {
   final String image;
   final String timeText;
 
-  const DietWidget({super.key,required this.image, required this.timeText});
+  const DietWidget({super.key, this.image = "",  this.timeText=""});
 
   @override
   State<DietWidget> createState() => _DietWidgetState();
@@ -41,8 +42,8 @@ class _DietWidgetState extends State<DietWidget> {
                               decoration: const BoxDecoration(
                                   color: AppColors.primary,
                                   borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(16),
-                                      bottom: Radius.circular(16))),
+                                    top: Radius.circular(7),
+                                      bottom: Radius.circular(7))),
                               child: Center(
                                 child: Text(
                                   widget.timeText,
@@ -50,7 +51,7 @@ class _DietWidgetState extends State<DietWidget> {
                                       fontSize: 12,
                                       fontWeight: FontWeight.w700,
                                       color: AppColors.secondary),
-                                ),
+                                ).tr(),
                               ),
                             ),
                           ),

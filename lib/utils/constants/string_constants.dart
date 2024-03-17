@@ -12,7 +12,7 @@ class Strings {
   static const String videosText = "Vidoes";
 
   // ulser monitoring screen benifits with 1000 plan texts
-  static const String premiumPlanText = "Premium plan ";
+  static const String premiumPlanText = "Premium plan";
   static const String premiumPlanText1 = "Daily Ulcer Monitoring";
   static const String premiumPlanText2 =
       "Experts review on ulcer images with in a day";
@@ -29,9 +29,9 @@ class Strings {
   static const String freeText = "Free";
   static const String planAmountText = "₹1000/week";
   static const String weeklyUmText = "Weekly Ulcer Monitoring";
-  static const String expertsText =
+  static const String freePlanText1 =
       "Experts review on ulcer images after a week";
-  static const String reportText = "Weekly report on your ulcer activity";
+  static const String freePlanText2 = "Weekly report on your ulcer activity";
   static const String getStartedButton = "Get started";
 
 // Profile Screen Texts

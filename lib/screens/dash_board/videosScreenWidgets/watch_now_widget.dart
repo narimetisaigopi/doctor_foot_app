@@ -36,7 +36,7 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
                 itemBuilder: (context, index) {
                   final videosImageItem = videosImageList[index];
                   return  VideosMainWidget(
-                    image: videosImageItem.image!,
+                    image: videosImageItem.image,
                   );
                 }),
           ),

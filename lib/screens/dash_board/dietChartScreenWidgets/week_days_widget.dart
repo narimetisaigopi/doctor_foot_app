@@ -30,7 +30,7 @@ class _WeekDaysWidgetState extends State<WeekDaysWidget> {
           itemBuilder: (context, index) {
             final weekDaysItem = weekDaysList[index];
             return DaysWidget(
-              text: weekDaysItem.text!,
+              text: weekDaysItem.text,
             );
           }),
     );

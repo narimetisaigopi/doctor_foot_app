@@ -1,4 +1,3 @@
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 
 class PremiumPlanModel {
   String text;
@@ -6,19 +5,20 @@ class PremiumPlanModel {
 }
 
 List<PremiumPlanModel> premiumPlanList = [
+ 
   PremiumPlanModel(
-    text: Strings.weeklyUmText,
+    text: "premiumPlanText1",
   ),
   PremiumPlanModel(
-    text: Strings.expertsText,
+    text: "premiumPlanText2",
   ),
   PremiumPlanModel(
-    text: Strings.expertsText,
+    text: "premiumPlanText3",
   ),
   PremiumPlanModel(
-    text: Strings.expertsText,
+    text: "premiumPlanText4",
   ),
-  PremiumPlanModel(
-    text: Strings.expertsText,
+   PremiumPlanModel(
+    text: "premiumPlanText5",
   ),
 ];

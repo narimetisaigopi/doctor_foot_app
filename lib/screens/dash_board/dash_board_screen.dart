@@ -4,7 +4,6 @@ import 'package:doctor_foot_app/screens/dash_board/profile_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcer_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/videos_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardScreen extends StatefulWidget {
@@ -54,7 +53,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.home))
                 : Container(child: const Icon(Icons.home)),
-            label: Strings.homeText,
+            label: "homeText",
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 1
@@ -70,7 +69,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.food_bank))
                 : Container(child: const Icon(Icons.food_bank)),
-            label: Strings.dietChartText,
+            label: "dietChartText",
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 2
@@ -86,7 +85,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.video_call))
                 : Container(child: const Icon(Icons.video_call)),
-            label: Strings.videosText,
+            label: "videosText",
           ),
            BottomNavigationBarItem(
             icon: selectedIndex == 3
@@ -102,7 +101,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.schedule))
                 : Container(child: const Icon(Icons.schedule)),
-            label: Strings.ulcerMonitorText,
+            label: "ulcerMonitorText",
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 4
@@ -118,7 +117,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.person))
                 : Container(child: const Icon(Icons.person)),
-            label: Strings.profile,
+            label: "profile",
           ),
          
          

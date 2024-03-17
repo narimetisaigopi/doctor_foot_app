@@ -1,4 +1,5 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomListTileWidget extends StatefulWidget {
@@ -23,7 +24,7 @@ class _CustomListTileWidgetState extends State<CustomListTileWidget> {
                       fontSize: 16,
                       color: AppColors.textBackColor,
                       fontWeight: FontWeight.w500,
-                    )),
+                    )).tr(),
                 leading:  CircleAvatar(
                     backgroundColor: AppColors.primary,
                     child: Icon(

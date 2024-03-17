@@ -1,7 +1,7 @@
 import 'package:doctor_foot_app/models/homeScreenModels/service_model.dart';
 import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,9 +33,9 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              Strings.serviceText,
+              "serviceText",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-            ),
+            ).tr(),
             const SizedBox(
               height: 10,
             ),

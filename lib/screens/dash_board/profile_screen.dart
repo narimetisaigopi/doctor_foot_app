@@ -1,9 +1,9 @@
 import 'package:doctor_foot_app/screens/dash_board/prifile_details/custom_listTile_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_sizedBox_widget.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: AppColors.secondary,
       appBar: AppBar(
-        title: const Text(Strings.profile),
+        title: const Text("profile").tr(),
         centerTitle: true,
         leading: const Icon(Icons.arrow_back_ios),
       ),
@@ -44,60 +44,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 08,
             ),
             const Text(
-              Strings.profileName,
+              "profileName",
               style: TextStyle(
                 fontSize: 18,
                 color: AppColors.textBackColor,
                 fontWeight: FontWeight.w700,
               ),
-            ),
+            ).tr(),
             const CustomSizedBox(
               height: 08,
             ),
             const Text(
-              Strings.regd,
+              "regd",
               style: TextStyle(
                 fontSize: 18,
                 color: AppColors.textBackColor,
                 fontWeight: FontWeight.w700,
               ),
-            ),
+            ).tr(),
             const CustomSizedBox(
               height: 30,
             ),
             customDivider,
             CustomListTileWidget(
-                text: Strings.myProfile,
+                text: "myProfile",
                 leadingIcon: Icons.person,
                 onPressed: () {}),
             customDivider,
             CustomListTileWidget(
-                text: Strings.appointment,
+                text: "appointment",
                 leadingIcon: Icons.calendar_month,
                 onPressed: () {}),
             customDivider,
             CustomListTileWidget(
-                text: Strings.service,
+                text: "service",
                 leadingIcon: Icons.calendar_month,
                 onPressed: () {}),
             customDivider,
             CustomListTileWidget(
-                text: Strings.payments,
+                text: "payments",
                 leadingIcon: Icons.calendar_month,
                 onPressed: () {}),
             customDivider,
             CustomListTileWidget(
-                text: Strings.orders,
+                text: "orders",
                 leadingIcon: Icons.calendar_month,
                 onPressed: () {}),
             customDivider,
             CustomListTileWidget(
-                text: Strings.contactus,
+                text: "contactus",
                 leadingIcon: Icons.call,
                 onPressed: () {}),
             customDivider,
             CustomListTileWidget(
-                text: Strings.logout,
+                text: "logout",
                 leadingIcon: Icons.logout,
                 onPressed: () {}),
             customDivider,

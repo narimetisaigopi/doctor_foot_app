@@ -16,11 +16,13 @@ class AppColors {
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);
   static const Color whiteBgColor = Color(0xFFFFFFFF);
+  static const Color whiteBgDietColor = Color(0xFFFCFCFC);
 
   // grey varient colors
   static const Color daysChipColor = Color(0xFFF2F0F0);
   static const Color grey2 = Color(0xFFB0B0B0);
   static const Color grey4 = Color(0xFFEEEDED);
+  static const Color daysBgColor = Color(0xFFF2F0F0);
 
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);
