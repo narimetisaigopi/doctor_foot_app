@@ -133,6 +133,21 @@ class Strings {
   static const String reviewverName = 'Naveena';
   static const String venkataNagarText = 'Venkat Nagar Colony,...';
   static const String postedDateText = 'Posted on 03 march';
+
+  static const String couponTitle1 = "10% OFF ";
+  static const String couponTitle2 = "20% OFF ";
+  static const String couponTitle3 = "30% OFF ";
+  static const String couponDescription1 = "Save ₹ 100 with this code";
+  static const String couponDescription2 = "Save ₹ 200 with this code";
+  static const String couponDescription3 = "Save ₹ 300 with this code";
+
+  static const String couponCommonDescription =
+      "This offer is personalized for you.";
+
+  static const String maximumDiscount1 = "Maximum instant discount of ₹";
+  static const String maximumDiscount2 = "Maximum instant discount of ₹";
+  static const String maximumDiscount3 = "Maximum instant discount of ₹";
+
   static const String homeImageText =
       '  Of the estimated 537 million people worldwide who have \n   diabetes, 19-34% will develop an ulcer in their life time';
   static const String userReviewDicriptionText =

@@ -39,11 +39,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: () {
-                            Utility.myBottomSheet(context,
-                                widget: const SignUpScreen(),
-                                heightFactor: 0.7);
-                          },
+                          onPressed: () {},
                           icon: index == 0
                               ? Container()
                               : const SvgImageWidget(
@@ -52,13 +48,20 @@ class _IntroScreenState extends State<IntroScreen> {
                                   height: 40,
                                 ),
                         ),
-                        const Text(
-                          Strings.skip,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.w700),
-                        ),
+                        TextButton(
+                          onPressed: () {
+                            Utility.myBottomSheet(context,
+                                widget: const SignUpScreen(),
+                                heightFactor: 0.7);
+                          },
+                          child: const Text(
+                            Strings.skip,
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -86,13 +89,12 @@ class _IntroScreenState extends State<IntroScreen> {
                       controller: pageController,
                       count: introScreenImages.length,
                       effect: const ExpandingDotsEffect(
-                        activeDotColor: AppColors.primary,
-                        dotColor: AppColors.grey2,
-                        dotWidth: 10.0,
-                        dotHeight: 8.0,
-                        radius: 4.0,
-                        offset: 50.0
-                      ),
+                          activeDotColor: AppColors.primary,
+                          dotColor: AppColors.grey2,
+                          dotWidth: 10.0,
+                          dotHeight: 8.0,
+                          radius: 4.0,
+                          offset: 50.0),
                     )
                   ],
                 ),

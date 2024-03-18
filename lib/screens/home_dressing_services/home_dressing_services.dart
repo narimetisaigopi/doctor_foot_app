@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+import 'package:doctor_foot_app/controllers/home_dressing_controller.dart';
 import 'package:doctor_foot_app/models/home_dressing/home_dressing_model.dart';
 import 'package:doctor_foot_app/screens/home_dressing_services/home_dressing_payment.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
@@ -19,6 +20,8 @@ class HomeDressingServices extends StatefulWidget {
 
 class _HomeDressingServicesState extends State<HomeDressingServices> {
   bool isAdded = false;
+  final HomeDressingController homeDressingController =
+      Get.put(HomeDressingController());
   HomeDressingModel homeDressingModel = HomeDressingModel();
   @override
   Widget build(BuildContext context) {
@@ -44,46 +47,41 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
               color: AppColors.primary,
             )),
       ),
-      body: Column(
-        children: [
-          const SvgImageWidget(
-            path: AssetsConstants.home_dressing_cover_img,
-            height: 200,
-            width: double.infinity,
-          ),
-          Expanded(
-            child: ListView.builder(
-                //  physics: const NeverScrollableScrollPhysics(),
-                itemCount: homeDressingServicesList.length,
-                itemBuilder: (context, index) {
-                  final homeDressingServices = homeDressingServicesList[index];
-                  return Container(
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: Column(
-                      children: [
-                        HomeDressingServiceWidget(
-                          title: homeDressingServices.title,
-                          textDescription: homeDressingServices.textDescription,
-                          description: homeDressingServices.description,
-                          imagePath: homeDressingServices.image,
-                          newPrice: homeDressingServices.newPrice,
-                          oldPrice: homeDressingServices.oldPrice,
-                          isAdded: isAdded,
-                          onPress: () {
-                            setState(() {
-                              isAdded = !isAdded;
-                              homeDressingModel = homeDressingServices;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                }),
-          ),
-        ],
-      ),
+      body: GetBuilder<HomeDressingController>(builder: (context) {
+        return Column(
+          children: [
+            const SvgImageWidget(
+              path: AssetsConstants.home_dressing_cover_img,
+              height: 200,
+              width: double.infinity,
+            ),
+            Expanded(
+              child: ListView.builder(
+                  //  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: homeDressingServicesList.length,
+                  itemBuilder: (context, index) {
+                    final homeDressingServices =
+                        homeDressingServicesList[index];
+                    return Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 5),
+                      child: Column(
+                        children: [
+                          HomeDressingServiceWidget(
+                            homeDressingModel: homeDressingServices,
+                            onPress: () {
+                              homeDressingController.addOrRemoveFromList(
+                                  homeDressingServices, isAdded);
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            ),
+          ],
+        );
+      }),
       floatingActionButton: isAdded
           ? FloatingActionButton.extended(
               extendedPadding: const EdgeInsets.symmetric(horizontal: 10),
@@ -105,7 +103,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                             fontWeight: FontWeight.w400, fontSize: 16),
                         children: [
                           TextSpan(
-                            text: "1500",
+                            text: "800",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700, fontSize: 16),
                           )

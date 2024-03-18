@@ -14,7 +14,8 @@ class MyTextField extends StatefulWidget {
   final Color bgColor;
   final Color iconColor;
   final bool labelNeeded;
-  final Widget? suffix;
+  final bool textButtonNeeded;
+  final Widget? textButton;
   // final IconButton? icon;
   final Widget? leadingIcon;
   final bool iconNeeded;
@@ -28,7 +29,8 @@ class MyTextField extends StatefulWidget {
   const MyTextField({
     super.key,
     required this.hint,
-    this.suffix,
+    this.textButton,
+    this.textButtonNeeded = false,
     required this.textEditingController,
     this.bgColor = Colors.transparent,
     this.label = "label",
@@ -129,18 +131,20 @@ class _MyTextFieldState extends State<MyTextField> {
             fillColor: widget.bgColor,
             filled: true,
             prefixIcon: widget.leadingIcon,
-            suffix: widget.suffix,
             suffixIcon: widget.iconNeeded
-                ? IconButton(
-                    style: const ButtonStyle(
-                      padding: MaterialStatePropertyAll(
-                          EdgeInsets.symmetric(horizontal: 20)),
-                    ),
-                    onPressed: widget.onPress,
-                    icon: widget.trailingIcon,
-                    color: widget.iconColor,
-                  )
+                ? (widget.textButtonNeeded
+                    ? null
+                    : IconButton(
+                        style: const ButtonStyle(
+                          padding: MaterialStatePropertyAll(
+                              EdgeInsets.symmetric(horizontal: 20)),
+                        ),
+                        onPressed: widget.onPress,
+                        icon: widget.trailingIcon,
+                        color: widget.iconColor,
+                      ))
                 : null,
+            suffix: widget.textButtonNeeded ? widget.textButton : null,
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(widget.borderRadius)),

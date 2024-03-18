@@ -1,19 +1,26 @@
 // ignore_for_file: unnecessary_import
 import 'package:doctor_foot_app/controllers/address_controller.dart';
+import 'package:doctor_foot_app/controllers/coupon_code_controller.dart';
+import 'package:doctor_foot_app/controllers/home_dressing_controller.dart';
+import 'package:doctor_foot_app/controllers/payment_controller.dart';
 import 'package:doctor_foot_app/models/home_dressing/home_dressing_model.dart';
 import 'package:doctor_foot_app/screens/home_dressing_services/available_offers.dart';
 import 'package:doctor_foot_app/screens/home_dressing_services/payment_gatway.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:doctor_foot_app/utils/widgets/home_dressing_service_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomeDressingPayment extends StatefulWidget {
   final String imagePath;
@@ -30,13 +37,13 @@ class HomeDressingPayment extends StatefulWidget {
     super.key,
     this.height = 160,
     this.width = double.infinity,
-    this.imagePath = "assets/images/home_dressing/wounded_foot.svg",
+    this.imagePath = AssetsConstants.wounded_foot,
     this.description = "If your wound is < 25cm , Then it is recommended.",
     this.oldPrice = 0,
     this.newPrice = 800,
     this.isAdded = false,
     this.textDescription = "1 Day",
-    this.title = "Small",
+    this.title = Strings.samll,
     required this.onPress,
   });
 
@@ -46,9 +53,15 @@ class HomeDressingPayment extends StatefulWidget {
 
 class _HomeDressingPaymentState extends State<HomeDressingPayment> {
   int selectedContainerIndex = 0;
+  final HomeDressingController homeDressingController =
+      Get.put(HomeDressingController());
+
+  final PaymentController paymentController = Get.put(PaymentController());
 
   final AddressesController _addressesController =
       Get.put(AddressesController());
+  final CouponCodeController couponCodeController =
+      Get.put(CouponCodeController());
   String selectedLabel = "";
   bool isAdded = true;
   @override
@@ -64,7 +77,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
               color: AppColors.primary,
               fontSize: 18,
               fontWeight: FontWeight.w700),
-        ),
+        ).tr(),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -77,23 +90,46 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          constraints:
+              BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 2),
           child: Column(
             children: [
-              HomeDressingServiceWidget(
-                description: widget.description,
-                imagePath: widget.imagePath,
-                title: widget.title,
-                newPrice: widget.newPrice,
-                oldPrice: widget.oldPrice,
-                textDescription: widget.textDescription,
-                isAdded: isAdded,
-                onPress: () {
-                  setState(() {
-                    isAdded = !isAdded;
-                  });
-                },
-              ),
+              ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: homeDressingController
+                      .homeDressingServicesAddedList.length,
+                  itemBuilder: (context, index) {
+                    final homeDressingService = homeDressingController
+                        .homeDressingServicesAddedList[index];
+                    return Column(
+                      children: [
+                        HomeDressingServiceWidget(
+                          homeDressingModel: homeDressingService,
+                          onPress: () {
+                            setState(() {
+                              homeDressingService.isAdded =
+                                  !homeDressingService.isAdded;
+
+                              if (homeDressingService.isAdded) {
+                                homeDressingController
+                                    .homeDressingServicesAddedList
+                                    .remove(homeDressingService);
+                              } else {
+                                homeDressingController
+                                    .homeDressingServicesAddedList
+                                    .add(homeDressingService);
+                              }
+                            });
+                          },
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        )
+                      ],
+                    );
+                  }),
               const SizedBox(
                 height: 20,
               ),
@@ -104,7 +140,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                height: 210,
+                height: 170,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -112,26 +148,26 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                 ),
                 child: Column(
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.topLeft,
-                      child: Text(
+                      child: const Text(
                         "Bill Details",
                         style: TextStyle(
                             fontWeight: FontWeight.w800,
                             fontSize: 18,
                             decoration: TextDecoration.underline),
-                      ),
+                      ).tr(),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     paymentText(),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     paymentText(defaultText: "Discount amount ", amount: 0),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     const Expanded(
                         child: Padding(
@@ -139,7 +175,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                       child: Divider(),
                     )),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     paymentText(
                       defaultText: "Pay you",
@@ -159,8 +195,13 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                   const Text(
                     "Selected Address",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
-                  TextButton(onPressed: () {}, child: const Text("Edit"))
+                  ).tr(),
+                  TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "Edit",
+                        style: TextStyle(color: AppColors.primary),
+                      ).tr())
                 ],
               ),
               Container(
@@ -169,22 +210,22 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12)),
-                child: const Center(
-                  child: Text(
+                child: Center(
+                  child: const Text(
                     "House No: 124-3, Main Road, near forum mall, KPHB, Hyderabad- 560058",
                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-                  ),
+                  ).tr(),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              const Align(
+              Align(
                 alignment: Alignment.topLeft,
-                child: Text(
+                child: const Text(
                   " Address",
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-                ),
+                ).tr(),
               ),
               const TextField(
                 decoration: InputDecoration(
@@ -209,6 +250,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
               Row(
                 children: [
                   Utility.customChoiceChip(
+                      iconData: Icons.home,
                       title: Strings.home,
                       isSelected: selectedContainerIndex == 1,
                       onTap: () {
@@ -222,10 +264,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                     width: 10,
                   ),
                   Utility.customChoiceChip(
-                      icon: const Icon(
-                        Icons.work,
-                        size: 18,
-                      ),
+                      iconData: Icons.work,
                       title: Strings.work,
                       isSelected: selectedContainerIndex == 2,
                       onTap: () {
@@ -239,10 +278,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                     width: 10,
                   ),
                   Utility.customChoiceChip(
-                      icon: const Icon(
-                        Icons.family_restroom_outlined,
-                        size: 18,
-                      ),
+                      iconData: Icons.family_restroom_outlined,
                       title: Strings.friendsAndFamily,
                       isSelected: selectedContainerIndex == 3,
                       onTap: () {
@@ -261,8 +297,8 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Utility.customChoiceChip(
+                      iconData: Icons.location_on,
                       width: 100,
-                      icon: const Icon(Icons.location_on),
                       title: Strings.others,
                       isSelected: selectedContainerIndex == 4,
                       onTap: () {
@@ -280,8 +316,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
               CustomButton(
                 buttonName: "Make Payment | Rs.1500",
                 onPress: () {
-                  Utility.myBottomSheet(context,
-                      widget: const PaymentGateWay());
+                  paymentController.startPayment();
                 },
               ),
               const SizedBox(
@@ -306,7 +341,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
         Text(
           defaultText,
           style: TextStyle(fontWeight: fontWeight, fontSize: fontSize),
-        ),
+        ).tr(),
         Text(
           "₹${amount.round()}",
           style: TextStyle(fontWeight: fontWeight, fontSize: fontSize),
@@ -322,7 +357,9 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
   }) {
     return InkWell(
       onTap: () {
-        Get.to(() => const AvailableOffers());
+        Get.to(() => const AvailableOffers())!.then((value) {
+          setState(() {});
+        });
       },
       child: Column(
         children: [
@@ -331,33 +368,49 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
             child: Text(
               title,
               style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
-            ),
+            ).tr(),
           ),
           const SizedBox(
             height: 10,
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(12)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    containerText,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w500),
+          GetBuilder<CouponCodeController>(builder: (context) {
+            return Container(
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      // containerText,
+                      couponCodeController.selectedCouponCodeModel == null
+                          ? containerText
+                          : couponCodeController
+                              .selectedCouponCodeModel!.couponTitle,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: couponCodeController.selectedCouponCodeModel ==
+                                  null
+                              ? Colors.black
+                              : Colors.green),
+                    ).tr(),
                   ),
-                ),
-                icon
-                    ? IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.arrow_forward_ios_outlined))
-                    : const SizedBox.shrink()
-              ],
-            ),
-          ),
+                  couponCodeController.selectedCouponCodeModel == null
+                      ? IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.arrow_forward_ios_outlined))
+                      : IconButton(
+                          onPressed: () {
+                            couponCodeController.removeSelectedCoupon();
+                          },
+                          icon: const Icon(FontAwesomeIcons.remove,
+                              color: Colors.green))
+                ],
+              ),
+            );
+          }),
         ],
       ),
     );
