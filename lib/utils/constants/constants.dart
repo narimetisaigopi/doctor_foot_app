@@ -19,6 +19,9 @@ List<String> names2 = [
 
 const introScreenImages = [
   {
+    "image": AssetsConstants.dr_consult,
+  },
+  {
     "image": AssetsConstants.dr_checkup,
   },
   {
@@ -43,5 +46,6 @@ const patientReviewsMap = [
     "patientName": Strings.reviewverName,
     "discription": Strings.userReviewDicriptionText,
     "date": Strings.postedDateText,
+    "image": AssetsConstants.dr_patiant_checkup,
   },
 ];

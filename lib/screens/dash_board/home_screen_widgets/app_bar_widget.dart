@@ -1,5 +1,5 @@
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatefulWidget {
@@ -17,13 +17,13 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Row(
+                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_on,
                           size: 24,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 05,
                         ),
                         SizedBox(
@@ -32,22 +32,22 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
+                               Row(
                                 children: [
-                                  Text(
-                                    Strings.kpbColonyText,
+                                  const Text(
+                                    "kpbColonyText",
                                     style: TextStyle(
                                       color: AppColors.primary,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     ),
-                                  ),
-                                  Icon(Icons.expand_more)
+                                  ).tr(),
+                                  const Icon(Icons.expand_more)
                                 ],
                               ),
-                              Text(
-                                Strings.venkataNagarText,
-                              )
+                              const Text(
+                                "venkataNagarText",
+                              ).tr()
                             ],
                           ),
                         ),

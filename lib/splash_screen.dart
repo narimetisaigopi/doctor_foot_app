@@ -17,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   checkStatus() async {
     Future.delayed(const Duration(milliseconds: 600), () async {
-      Get.to(const DashBoardScreen());
+      Get.to(const IntroScreen());
     });
   }
 

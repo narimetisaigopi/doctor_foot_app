@@ -4,7 +4,6 @@ import 'package:doctor_foot_app/screens/dash_board/profile_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcer_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/videos_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardScreen extends StatefulWidget {
@@ -39,27 +38,90 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             selectedIndex = value;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: Strings.homeText,
+            icon: selectedIndex == 0
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.home))
+                : Container(child: const Icon(Icons.home)),
+            label: "homeText",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.food_bank),
-            label: Strings.dietChartText,
+            icon: selectedIndex == 1
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.food_bank))
+                : Container(child: const Icon(Icons.food_bank)),
+            label: "dietChartText",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.video_call),
-            label:Strings.videosText,
+            icon: selectedIndex == 2
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.video_call))
+                : Container(child: const Icon(Icons.video_call)),
+            label: "videosText",
+          ),
+           BottomNavigationBarItem(
+            icon: selectedIndex == 3
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.schedule))
+                : Container(child: const Icon(Icons.schedule)),
+            label: "ulcerMonitorText",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
-            label: Strings.ulcerMonitorText,
+            icon: selectedIndex == 4
+                ? Container(
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.primary,
+                          width: 3.5,
+                        ),
+                      ),
+                    ),
+                    child: const Icon(Icons.person))
+                : Container(child: const Icon(Icons.person)),
+            label: "profile",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: Strings.profile,
-          ),
+         
+         
+         
         ],
       ),
     );
