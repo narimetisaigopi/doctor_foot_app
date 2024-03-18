@@ -7,6 +7,7 @@ import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/home_dressing_service_widget.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
               color: AppColors.primary,
               fontSize: 18,
               fontWeight: FontWeight.w700),
-        ),
+        ).tr(),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -57,7 +58,6 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
             ),
             Expanded(
               child: ListView.builder(
-                  //  physics: const NeverScrollableScrollPhysics(),
                   itemCount: homeDressingServicesList.length,
                   itemBuilder: (context, index) {
                     final homeDressingServices =
@@ -65,16 +65,15 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                     return Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 5),
-                      child: Column(
-                        children: [
-                          HomeDressingServiceWidget(
+                      child: HomeDressingServiceWidget(
+                        homeDressingModel: homeDressingServices,
+                        onPress: () {
+                          print(homeDressingController
+                              .homeDressingServicesAddedList.length);
+                          homeDressingController.addOrRemoveFromList(
                             homeDressingModel: homeDressingServices,
-                            onPress: () {
-                              homeDressingController.addOrRemoveFromList(
-                                  homeDressingServices, isAdded);
-                            },
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     );
                   }),
@@ -82,7 +81,8 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
           ],
         );
       }),
-      floatingActionButton: isAdded
+      floatingActionButton: homeDressingController
+              .homeDressingServicesAddedList.isNotEmpty
           ? FloatingActionButton.extended(
               extendedPadding: const EdgeInsets.symmetric(horizontal: 10),
               shape: RoundedRectangleBorder(
@@ -97,7 +97,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         text: "Added | Rs.",
                         style: TextStyle(
                             fontWeight: FontWeight.w400, fontSize: 16),
@@ -111,9 +111,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                       ),
                     ),
                     InkWell(
-                      onTap: () => Get.to(() => HomeDressingPayment(
-                            onPress: () {},
-                          )),
+                      onTap: () => Get.to(() => const HomeDressingPayment()),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
@@ -127,7 +125,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                               color: Colors.white),
-                        ),
+                        ).tr(),
                       ),
                     ),
                   ],

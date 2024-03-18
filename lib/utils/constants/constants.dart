@@ -1,7 +1,7 @@
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 
-var addressLabel = ["Home", "Work", "Family & friends", "Others"];
+List<String> addressLabel = ["Home", "Work", "Family & friends", "Others"];
 
 List<String> names = [
   Strings.premiumPlanText1,

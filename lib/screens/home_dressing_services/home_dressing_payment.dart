@@ -32,19 +32,18 @@ class HomeDressingPayment extends StatefulWidget {
   final double width;
   final double oldPrice;
   final double newPrice;
-  final Function onPress;
+
   const HomeDressingPayment({
     super.key,
     this.height = 160,
     this.width = double.infinity,
     this.imagePath = AssetsConstants.wounded_foot,
-    this.description = "If your wound is < 25cm , Then it is recommended.",
+    this.description = Strings.home_dressing_description,
     this.oldPrice = 0,
     this.newPrice = 800,
     this.isAdded = false,
     this.textDescription = "1 Day",
     this.title = Strings.samll,
-    required this.onPress,
   });
 
   @override

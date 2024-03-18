@@ -8,4 +8,15 @@ class CouponCodeController extends GetxController {
     selectedCouponCodeModel = null;
     update();
   }
+
+  void selectedCoupon(CouponCodeModel couponCodeModel, bool isApplied) {
+    if (isApplied) {
+      selectedCouponCodeModel = couponCodeModel;
+    } else {
+      selectedCouponCodeModel = null;
+    }
+
+    Get.back();
+    update();
+  }
 }

@@ -54,34 +54,28 @@ class _AvailableOffersState extends State<AvailableOffers> {
               const SizedBox(
                 height: 10,
               ),
-              TextField(
-                decoration: InputDecoration(
-                    hintText: "Type coupon code here",
-                    fillColor: Colors.white,
-                    filled: true,
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 20),
-                    suffixIcon: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Apply",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.greyTextColor),
-                        ).tr()),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(8)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide:
-                            const BorderSide(color: AppColors.primary))),
+              MyTextField(
+                labelNeeded: false,
+                bgColor: Colors.white,
+                hint: "Type coupon code here",
+                textEditingController:
+                    homeDressingController.searchCouponCodeController,
+                iconNeeded: true,
+                borderRadius: 8,
+                suffixIcon: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Apply",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.greyTextColor),
+                    )),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Expanded(
                   child: ListView.builder(
@@ -89,15 +83,8 @@ class _AvailableOffersState extends State<AvailableOffers> {
                       itemCount: couponCodesList.length,
                       itemBuilder: (context, index) {
                         final availableOffers = couponCodesList[index];
-                        return Column(
-                          children: [
-                            AvailableOffersWidget(
-                              couponCodeModel: availableOffers,
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            )
-                          ],
+                        return AvailableOffersWidget(
+                          couponCodeModel: availableOffers,
                         );
                       }),
                 ),

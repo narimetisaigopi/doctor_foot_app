@@ -19,6 +19,7 @@ class AppColors {
   // grey varient colors
   static const Color grey2 = Color(0xFFB0B0B0);
   static const Color grey4 = Color(0xFFEEEDED);
+  static const Color grey5 = Color(0xFF6B6B6B);
 
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);
@@ -28,6 +29,4 @@ class AppColors {
   static const Color greyBorderColor = Color(0xFFE4E4E4);
 
   static const bottomSheetBackgroundColor = Color(0xFFB7B7B7);
-
-  
 }

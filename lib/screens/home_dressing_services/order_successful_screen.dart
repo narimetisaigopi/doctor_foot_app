@@ -4,6 +4,7 @@ import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,9 +28,9 @@ class _OrderSuccessfulScreenState extends State<OrderSuccessfulScreen> {
             children: [
               const SvgImageWidget(path: AssetsConstants.successful),
               const Text(
-                Strings.booking_confirmed,
+                "booking_confirmed",
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
-              ),
+              ).tr(),
               const SizedBox(
                 height: 10,
               ),
@@ -39,21 +40,21 @@ class _OrderSuccessfulScreenState extends State<OrderSuccessfulScreen> {
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                     color: Color(0xFF6B6B6B)),
-              ),
+              ).tr(),
               const Text(
-                Strings.orderDate,
+                "orderDate",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                     color: Color(0xFF6B6B6B)),
-              ),
+              ).tr(),
               const Text(
                 "Afternoon - 3:00 PM",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                     color: Color(0xFF6B6B6B)),
-              ),
+              ).tr(),
               const SizedBox(
                 height: 20,
               ),
@@ -63,8 +64,8 @@ class _OrderSuccessfulScreenState extends State<OrderSuccessfulScreen> {
                 style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
-                    color: Color(0xFF6B6B6B)),
-              ),
+                    color: AppColors.grey5),
+              ).tr(),
               const SizedBox(
                 height: 20,
               ),

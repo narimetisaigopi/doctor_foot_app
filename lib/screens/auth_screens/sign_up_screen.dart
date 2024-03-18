@@ -59,7 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               textEditingController:
                   _authenticationController.dateOfBirthController,
               iconNeeded: true,
-              trailingIcon: const Icon(
+              suffixIcon: Icon(
                 Icons.date_range_outlined,
                 color: AppColors.primary,
               ),

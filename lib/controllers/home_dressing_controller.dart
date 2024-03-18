@@ -1,21 +1,44 @@
 import 'package:doctor_foot_app/models/home_dressing/home_dressing_model.dart';
-import 'package:doctor_foot_app/screens/home_dressing_services/home_dressing_services.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeDressingController extends GetxController {
-  Set<double> addedIds = {};
   List<HomeDressingModel> homeDressingServicesAddedList = [];
+
   TextEditingController searchCouponCodeController = TextEditingController();
+  void addOrRemoveFromList(
+      {HomeDressingModel? homeDressingModel, bool isAdded = false}) {
+    homeDressingServicesAddedList
+        .where((element) => element.id == homeDressingModel!.id);
+    // .any((item) => item.id == homeDressingModel!.id);
 
-  void addOrRemoveFromList(HomeDressingModel homeDressingModel, bool isAdded) {
-    isAdded = homeDressingModel.isAdded = !homeDressingModel.isAdded;
+    //  homeDressingModel!.isAdded = isAdded;
 
-    if (homeDressingModel.isAdded) {
-      homeDressingServicesAddedList.add(homeDressingModel);
+    if (isAdded) {
+      homeDressingServicesAddedList
+          .removeWhere((item) => item.id == homeDressingModel!.id);
     } else {
-      homeDressingServicesAddedList.remove(homeDressingModel);
+      homeDressingServicesAddedList.add(homeDressingModel!);
     }
     update();
   }
+
+  // void addOrRemoveFromList(HomeDressingModel homeDressingModel, bool isAdded) {
+
+  //   if (homeDressingServicesAddedList.contains(homeDressingModel.id) ==
+  //       homeDressingModel.id) {
+  //     homeDressingServicesAddedList.remove(homeDressingModel);
+  //     print(homeDressingServicesAddedList.length);
+  //   } else {
+  //     homeDressingServicesAddedList.add(homeDressingModel);
+  //   }
+  //   // if (homeDressingModel.isAdded) {
+  //   //   homeDressingServicesAddedList.add(homeDressingModel);
+  //   // } else {
+  //   //   homeDressingServicesAddedList.remove(homeDressingModel);
+  //   // }
+
+  //   update();
+  // }
 }

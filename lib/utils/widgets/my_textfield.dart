@@ -19,7 +19,7 @@ class MyTextField extends StatefulWidget {
   // final IconButton? icon;
   final Widget? leadingIcon;
   final bool iconNeeded;
-  final Icon trailingIcon;
+  final Widget? suffixIcon;
   final TextEditingController textEditingController;
   final Function()? onPress;
   final Function()? onValidate;
@@ -47,7 +47,7 @@ class MyTextField extends StatefulWidget {
     this.onValidate,
     this.iconNeeded = false,
     this.leadingIcon,
-    this.trailingIcon = const Icon(Icons.search),
+    this.suffixIcon,
   });
 
   @override
@@ -82,9 +82,6 @@ class _MyTextFieldState extends State<MyTextField> {
     return Container(
       height: 50,
       padding: EdgeInsets.zero,
-      // margin: const EdgeInsets.symmetric(
-      //   horizontal: 20,
-      // ),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
           border: Border.all(color: Colors.grey.shade300)),
@@ -131,19 +128,8 @@ class _MyTextFieldState extends State<MyTextField> {
             fillColor: widget.bgColor,
             filled: true,
             prefixIcon: widget.leadingIcon,
-            suffixIcon: widget.iconNeeded
-                ? (widget.textButtonNeeded
-                    ? null
-                    : IconButton(
-                        style: const ButtonStyle(
-                          padding: MaterialStatePropertyAll(
-                              EdgeInsets.symmetric(horizontal: 20)),
-                        ),
-                        onPressed: widget.onPress,
-                        icon: widget.trailingIcon,
-                        color: widget.iconColor,
-                      ))
-                : null,
+            suffixIcon:
+                widget.iconNeeded ? widget.suffixIcon : SizedBox.shrink(),
             suffix: widget.textButtonNeeded ? widget.textButton : null,
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,

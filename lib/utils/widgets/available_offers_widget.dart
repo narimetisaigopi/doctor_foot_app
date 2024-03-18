@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class AvailableOffersWidget extends StatefulWidget {
   final CouponCodeModel? couponCodeModel;
@@ -22,12 +24,11 @@ class AvailableOffersWidget extends StatefulWidget {
 class _AvailableOffersWidgetState extends State<AvailableOffersWidget> {
   final CouponCodeController couponCodeController =
       Get.put(CouponCodeController());
-  CouponCodeModel? couponCodeModel = CouponCodeModel();
+  CouponCodeModel? couponCodeModel;
   bool isApplied = false;
   @override
   void initState() {
     super.initState();
-    // Initialize the couponCodeModel state variable with the initial coupon code model
     couponCodeModel = widget.couponCodeModel;
   }
 
@@ -35,6 +36,7 @@ class _AvailableOffersWidgetState extends State<AvailableOffersWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: 140,
+      margin: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child: Row(
@@ -82,28 +84,23 @@ class _AvailableOffersWidgetState extends State<AvailableOffersWidget> {
                         style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 14),
                       ),
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              isApplied = !isApplied;
-                              if (isApplied) {
-                                couponCodeController.selectedCouponCodeModel =
-                                    couponCodeModel;
-                              } else {
-                                couponCodeController.selectedCouponCodeModel =
-                                    null;
-                              }
-
-                              Get.back();
-                            });
-                          },
-                          child: Text(
-                            isApplied ? "Applied" : "Apply",
-                            style: TextStyle(
-                                color: isApplied
-                                    ? Colors.green
-                                    : AppColors.primary),
-                          ))
+                      GetBuilder<CouponCodeController>(builder: (context) {
+                        return TextButton(
+                            onPressed: () {
+                              setState(() {
+                                isApplied = !isApplied;
+                              });
+                              couponCodeController.selectedCoupon(
+                                  widget.couponCodeModel!, isApplied);
+                            },
+                            child: Text(
+                              isApplied ? "Applied" : "Apply",
+                              style: TextStyle(
+                                  color: isApplied
+                                      ? Colors.green
+                                      : AppColors.primary),
+                            ).tr());
+                      })
                     ],
                   ),
                 ),
@@ -111,7 +108,6 @@ class _AvailableOffersWidgetState extends State<AvailableOffersWidget> {
                   widget.couponCodeModel!.description,
                   style: const TextStyle(
                       fontWeight: FontWeight.w500, fontSize: 12),
-                  // textAlign: TextAlign.start,
                 ).tr(),
                 const SizedBox(
                   height: 10,
@@ -122,7 +118,8 @@ class _AvailableOffersWidgetState extends State<AvailableOffersWidget> {
                 ).tr(),
                 Text(
                   "Maximum instant discount of ₹${widget.couponCodeModel!.maxDiscount}",
-                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w400, fontSize: 10),
                 ).tr(),
                 const SizedBox(
                   height: 10,

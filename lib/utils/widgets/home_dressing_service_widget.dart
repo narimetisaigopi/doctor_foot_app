@@ -11,13 +11,13 @@ class HomeDressingServiceWidget extends StatefulWidget {
   final double width;
 
   final Function onPress;
-  final HomeDressingModel? homeDressingModel;
+  final HomeDressingModel homeDressingModel;
 
   const HomeDressingServiceWidget({
     super.key,
     this.height = 160,
     this.width = double.infinity,
-    this.homeDressingModel,
+    required this.homeDressingModel,
     required this.onPress,
   });
 
@@ -46,7 +46,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
       child: Row(
         children: [
           SvgImageWidget(
-            path: widget.homeDressingModel!.image,
+            path: widget.homeDressingModel.image,
             height: 130,
           ),
           Expanded(
@@ -59,14 +59,14 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        widget.homeDressingModel!.title,
+                        widget.homeDressingModel.title,
                         style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
                             color: AppColors.primary),
                       ),
                       Text(
-                        widget.homeDressingModel!.textDescription,
+                        widget.homeDressingModel.textDescription,
                         style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -78,7 +78,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                     child: SizedBox(
                       width: 150,
                       child: Text(
-                        widget.homeDressingModel!.description,
+                        widget.homeDressingModel.description,
                         maxLines: 2,
                         //  textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -93,9 +93,9 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                   ),
                   Row(
                     children: [
-                      widget.homeDressingModel!.oldPrice != 0
+                      widget.homeDressingModel.oldPrice != 0
                           ? Text(
-                              "₹${widget.homeDressingModel!.oldPrice.round()}",
+                              "₹${widget.homeDressingModel.oldPrice.round()}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
@@ -104,7 +104,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                             )
                           : const SizedBox.shrink(),
                       Text(
-                        "₹${widget.homeDressingModel!.newPrice.round()}",
+                        "₹${widget.homeDressingModel.newPrice.round()}",
                         style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16),
                       ),
@@ -122,7 +122,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                     ),
                     onPressed: () => widget.onPress(),
                     child: Text(
-                      widget.homeDressingModel!.isAdded ? "Added" : "Add",
+                      widget.homeDressingModel.isAdded ? "Added" : "Add",
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,

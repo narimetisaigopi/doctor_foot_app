@@ -4,6 +4,7 @@ import 'package:doctor_foot_app/screens/home_dressing_services/order_successful_
 
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,18 +41,13 @@ class _PaymentGateWayState extends State<PaymentGateWay> {
               Image.asset(
                 AssetsConstants.phonepe,
               ),
-              // const SvgImageWidget(
-              //   path: AssetsConstants.phonepe,
-              //   height: 150,
-              // ),
-
               const Text(
                 "PhonePe UPI",
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 18,
                 ),
-              ),
+              ).tr(),
               const Text(
                 "Total : ₹800",
                 style: TextStyle(
@@ -64,59 +60,11 @@ class _PaymentGateWayState extends State<PaymentGateWay> {
               ),
               CustomButton(
                 buttonName: "PAY VIA PHONEPE",
-                onPress: () => startPayment(),
               )
             ],
           ),
         ),
       ),
     );
-  }
-
-  startPayment() {
-    Razorpay _razorpay = Razorpay();
-
-    var options = {
-      'key': 'rzp_test_sBvW9FmfSuEcOz',
-      //'key': "rzp_live_0KkXRascl6tEQL",
-      'amount': 1000 * 100,
-      'name': 'bharosa',
-      'description': 'Registration',
-      'prefill': {'contact': '1234567890', 'email': 'gowtham@gmail.com'}
-    };
-
-    _razorpay.open(options);
-
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-  }
-
-  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
-    log("_handlePaymentSuccess response ${response.toString()}");
-
-    Get.offAll(() => const OrderSuccessfulScreen());
-
-    // usersCollectionReference
-    //     .doc(user!.uid)
-    //     .update({"subscriptionTime": DateTime.now()});
-    // Get.put(SubscriptionController())
-    //     .addTransaction(subScriptionAmount.toString());
-    // Navigator.pushAndRemoveUntil(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => HomeScreen()),
-    //     (route) => false);
-  }
-
-  void _handlePaymentError(PaymentFailureResponse response) {
-    log("_handlePaymentError response ${response.toString()}");
-    Navigator.pop(context);
-    // Utils().showToast("Payment failed due to ${response.message}");
-  }
-
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    log("_handleExternalWallet response ${response.toString()}");
-
-    // Utils().showToast("Payment handleExternalWallet  ${response.walletName}");
   }
 }
