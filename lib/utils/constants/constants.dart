@@ -9,13 +9,13 @@ List<String> names = [
   Strings.premiumPlanText3,
   Strings.premiumPlanText4,
   Strings.premiumPlanText5,
-  Strings.premiumPlanText6,
+//Strings.premiumPlanText6,
 ];
-List<String> names2 = [
-  Strings.freePlan1,
-  Strings.freePlan2,
-  Strings.freePlan3,
-];
+// List<String> names2 = [
+//   Strings.freePlan1,
+//   Strings.freePlan2,
+//   Strings.freePlan3,
+// ];
 
 const introScreenImages = [
   {
