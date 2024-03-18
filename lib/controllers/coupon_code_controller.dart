@@ -10,6 +10,8 @@ class CouponCodeController extends GetxController {
   }
 
   void selectedCoupon(CouponCodeModel couponCodeModel, bool isApplied) {
+    isApplied = !isApplied;
+    update();
     if (isApplied) {
       selectedCouponCodeModel = couponCodeModel;
     } else {
@@ -18,5 +20,15 @@ class CouponCodeController extends GetxController {
 
     Get.back();
     update();
+  }
+
+  bool isCouponApplied(CouponCodeModel couponCodeModel) {
+    if (selectedCouponCodeModel == null) {
+      return false;
+    } else if (selectedCouponCodeModel!.id == couponCodeModel.id) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

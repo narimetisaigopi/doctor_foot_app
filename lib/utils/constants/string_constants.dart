@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class Strings {
   static const String skip = "Skip";
   static const String introText =
@@ -9,7 +11,7 @@ class Strings {
   static const String ulcerMonitoringText = "Ulcer Monitoring";
   static const String homeText = "Home";
   static const String dietChartText = "Diet Chart";
-  static const String videosText = "Vidoes";
+  static const String videosText = "Videos";
 
   // ulser monitoring screen benifits with 1000 plan texts
   static const String premiumPlanText = "Premium plan";
@@ -110,7 +112,7 @@ class Strings {
   static const String work = "Work";
   static const String friendsAndFamily = "Friends & Family";
 
-  static const String samll = "Samll";
+  static const String small = "Samll";
   static const String medium = "Medium";
   static const String large = "Large";
 
@@ -167,11 +169,13 @@ class Strings {
   static const String earlyMorning = 'Early Morning\n  (6am-7am)';
 
   //video chart screen strings
-  static const String gettingMedisineText =
+  static const String gettingMedicineText =
       ' GETTING\n MEDICINE TO\n HEAL DIABETIC\n FOOT ULCER ';
   static const String watchNowText = 'Watch Now';
   static const String footAssessmentText = 'Foot Assessment';
   static const String dailyFeaturedText = 'Daily Featured';
-  static const String diabetiesText = 'Diabeties';
-  static const String viewallText = 'View all';
+  static const String diabetesText = 'Diabeties';
+  static const String vieWallText = 'View all';
+
+  static const String languages = 'Languages';
 }

@@ -1,6 +1,4 @@
 import 'package:doctor_foot_app/screens/intro_screen.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_screen.dart';
-import 'package:doctor_foot_app/screens/intro_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:flutter/material.dart';

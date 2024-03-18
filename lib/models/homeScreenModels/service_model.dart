@@ -1,23 +1,19 @@
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 
 class ServicesModel {
   String image;
-  String seiviceNames;
+  String serviceNames;
 
-  ServicesModel({this.image = "", this.seiviceNames = ""});
+  ServicesModel({this.image = "", this.serviceNames = ""});
 }
 
 List<ServicesModel> servicesList = [
+  ServicesModel(image: AssetsConstants.foot, serviceNames: "footUlcer_text"),
   ServicesModel(
-      image: AssetsConstants.foot, seiviceNames: "footUlcer_text"),
-  ServicesModel(
-      image: AssetsConstants.speedometer,
-      seiviceNames: "checkYourRisk_text"),
+      image: AssetsConstants.speedometer, serviceNames: "checkYourRisk_text"),
   ServicesModel(
       image: AssetsConstants.checkup_shedule,
-      seiviceNames: "checkup_schedule_text"),
+      serviceNames: "checkup_schedule_text"),
   ServicesModel(
-      image: AssetsConstants.foot_service,
-      seiviceNames: "foot_service_text"),
+      image: AssetsConstants.foot_service, serviceNames: "foot_service_text"),
 ];

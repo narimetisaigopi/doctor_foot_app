@@ -7,38 +7,26 @@ class HomeDressingController extends GetxController {
   List<HomeDressingModel> homeDressingServicesAddedList = [];
 
   TextEditingController searchCouponCodeController = TextEditingController();
-  void addOrRemoveFromList(
-      {HomeDressingModel? homeDressingModel, bool isAdded = false}) {
-    homeDressingServicesAddedList
-        .where((element) => element.id == homeDressingModel!.id);
-    // .any((item) => item.id == homeDressingModel!.id);
+  void addOrRemoveFromList({
+    required HomeDressingModel homeDressingModel,
+  }) {
+    bool isExisted = isServiceAdded(homeDressingModel);
 
-    //  homeDressingModel!.isAdded = isAdded;
-
-    if (isAdded) {
+    if (isExisted) {
       homeDressingServicesAddedList
-          .removeWhere((item) => item.id == homeDressingModel!.id);
+          .removeWhere((item) => item.id == homeDressingModel.id);
     } else {
-      homeDressingServicesAddedList.add(homeDressingModel!);
+      homeDressingServicesAddedList.add(homeDressingModel);
     }
     update();
   }
 
-  // void addOrRemoveFromList(HomeDressingModel homeDressingModel, bool isAdded) {
-
-  //   if (homeDressingServicesAddedList.contains(homeDressingModel.id) ==
-  //       homeDressingModel.id) {
-  //     homeDressingServicesAddedList.remove(homeDressingModel);
-  //     print(homeDressingServicesAddedList.length);
-  //   } else {
-  //     homeDressingServicesAddedList.add(homeDressingModel);
-  //   }
-  //   // if (homeDressingModel.isAdded) {
-  //   //   homeDressingServicesAddedList.add(homeDressingModel);
-  //   // } else {
-  //   //   homeDressingServicesAddedList.remove(homeDressingModel);
-  //   // }
-
-  //   update();
-  // }
+  bool isServiceAdded(
+    HomeDressingModel homeDressingModel,
+  ) {
+    bool isExisted = homeDressingServicesAddedList
+        .where((element) => element.id == homeDressingModel.id)
+        .isNotEmpty;
+    return isExisted;
+  }
 }

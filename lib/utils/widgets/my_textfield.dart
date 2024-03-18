@@ -90,8 +90,7 @@ class _MyTextFieldState extends State<MyTextField> {
 
         validator: FormBuilderValidators.compose([
           FormBuilderValidators.required(),
-          FormBuilderValidators.numeric(
-              errorText: 'La edad debe ser numérica.'),
+          FormBuilderValidators.numeric(errorText: 'error text'),
           FormBuilderValidators.max(70),
           (val) {
             final number = int.tryParse(val!);
@@ -129,7 +128,7 @@ class _MyTextFieldState extends State<MyTextField> {
             filled: true,
             prefixIcon: widget.leadingIcon,
             suffixIcon:
-                widget.iconNeeded ? widget.suffixIcon : SizedBox.shrink(),
+                widget.iconNeeded ? widget.suffixIcon : const SizedBox.shrink(),
             suffix: widget.textButtonNeeded ? widget.textButton : null,
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,

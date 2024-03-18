@@ -1,10 +1,12 @@
+import 'package:doctor_foot_app/controllers/home_dressing_controller.dart';
 import 'package:doctor_foot_app/models/home_dressing/home_dressing_model.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
+
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class HomeDressingServiceWidget extends StatefulWidget {
   final double height;
@@ -27,9 +29,12 @@ class HomeDressingServiceWidget extends StatefulWidget {
 }
 
 class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
+  final HomeDressingController homeDressingController =
+      Get.put(HomeDressingController());
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
@@ -122,7 +127,10 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                     ),
                     onPressed: () => widget.onPress(),
                     child: Text(
-                      widget.homeDressingModel.isAdded ? "Added" : "Add",
+                      homeDressingController
+                              .isServiceAdded(widget.homeDressingModel)
+                          ? "Remove"
+                          : "Add",
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,

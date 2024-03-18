@@ -2,7 +2,6 @@ import 'package:doctor_foot_app/screens/dash_board/dash_board_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:doctor_foot_app/screens/auth_screens/sign_up_screen.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
@@ -28,39 +27,40 @@ class _IntroScreenState extends State<IntroScreen> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(76.0),
           child: AppBar(
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: IconButton(
-                  onPressed: () {
-                    Utility.myBottomSheet(context,
-                        widget: const SignUpScreen(), heightFactor: 0.7);
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: IconButton(
+                onPressed: () {
+                  Utility.myBottomSheet(context,
+                      widget: const SignUpScreen(), heightFactor: 0.7);
+                },
+                icon: pageController == introScreenImages[0]
+                    ? Container()
+                    : const SvgImageWidget(
+                        path: AssetsConstants.arrow_back,
+                        width: 40,
+                        height: 40,
+                      ),
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: InkWell(
+                  onTap: () {
+                    Get.to(const DashBoardScreen());
                   },
-                  icon: pageController == introScreenImages[0]
-                      ? Container()
-                      : const SvgImageWidget(
-                          path: AssetsConstants.arrow_back,
-                          width: 40,
-                          height: 40,
-                        ),
+                  child: const Text(
+                    "skip",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w700),
+                  ).tr(),
                 ),
               ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: InkWell(
-                    onTap: () {
-                      Get.to(const DashBoardScreen());
-                    },
-                    child: const Text(
-                      "skip",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.w700),
-                    ).tr(),
-                  ),
-                ),
-              ]),
+            ],
+          ),
         ),
         body: Center(
           child: PageView.builder(
@@ -76,42 +76,6 @@ class _IntroScreenState extends State<IntroScreen> {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: index == 0
-                              ? Container()
-                              : const SvgImageWidget(
-                                  path: AssetsConstants.arrow_back,
-                                  width: 40,
-                                  height: 40,
-                                ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Utility.myBottomSheet(context,
-                                widget: const SignUpScreen(),
-                                heightFactor: 0.7);
-                          },
-                          child: const Text(
-                            Strings.skip,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-
-                    // const SizedBox(
-                    //   height: 50,
-                    // ),
                     SvgImageWidget(
                       path: "${images["image"]}",
                       height: 413,

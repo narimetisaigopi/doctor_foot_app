@@ -1,11 +1,9 @@
-import 'package:doctor_foot_app/screens/intro_screen.dart';
 import 'package:doctor_foot_app/splash_screen.dart';
 
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'screens/intro_screen.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {

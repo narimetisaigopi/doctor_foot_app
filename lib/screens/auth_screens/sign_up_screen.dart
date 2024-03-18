@@ -8,7 +8,7 @@ import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -59,7 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               textEditingController:
                   _authenticationController.dateOfBirthController,
               iconNeeded: true,
-              suffixIcon: Icon(
+              suffixIcon: const Icon(
                 Icons.date_range_outlined,
                 color: AppColors.primary,
               ),

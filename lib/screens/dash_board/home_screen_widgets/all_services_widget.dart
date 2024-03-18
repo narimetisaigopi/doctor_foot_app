@@ -1,9 +1,14 @@
 import 'package:doctor_foot_app/models/homeScreenModels/service_model.dart';
+import 'package:doctor_foot_app/models/home_dressing/home_dressing_model.dart';
 import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/service_widget.dart';
+import 'package:doctor_foot_app/screens/home_dressing_services/home_dressing_services.dart';
+import 'package:doctor_foot_app/screens/risk_factor_home.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AllServicesWidget extends StatefulWidget {
   const AllServicesWidget({super.key});
@@ -45,16 +50,35 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                       vertical: 2.0, horizontal: 2.0),
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 4 / 5,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12),
+                    childAspectRatio: 4 / 5,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
                   itemCount: servicesList.length,
                   itemBuilder: (context, index) {
                     final servicesItem = servicesList[index];
-                    return ServiceWidget(
-                      image: servicesItem.image,
-                      name: servicesItem.seiviceNames,
+                    return InkWell(
+                      onTap: () {
+                        switch (index) {
+                          case 0:
+                            Get.to(() => const HomeDressingServices());
+
+                            break;
+                          case 1:
+                            Utility.myBottomSheet(context,
+                                heightFactor: 0.7,
+                                widget: const RiskFactorHome());
+                            break;
+
+                          default:
+                            break;
+                        }
+                      },
+                      child: ServiceWidget(
+                        image: servicesItem.image,
+                        name: servicesItem.serviceNames,
+                      ),
                     );
                   }),
             )

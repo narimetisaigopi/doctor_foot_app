@@ -50,9 +50,9 @@ class _FootAssessmentWidgetState extends State<FootAssessmentWidget> {
                   );
                 },
                 scrollDirection: Axis.horizontal,
-                itemCount: videoscreenFaList.length,
+                itemCount: videoScreenFaList.length,
                 itemBuilder: (context, index) {
-                  final videoscreenFaItem = videoscreenFaList[index];
+                  final videoscreenFaItem = videoScreenFaList[index];
                   return FAImageWidget(
                     image: videoscreenFaItem.image,
                     onPressed: () {},

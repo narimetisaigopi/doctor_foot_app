@@ -2,6 +2,7 @@
 // import 'dart:typed_data';
 
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -62,6 +63,13 @@ class Utility {
             },
           );
         });
+  }
+
+  static Widget customDivider() {
+    return Divider(
+      height: 10,
+      color: Colors.grey.shade300,
+    );
   }
 
   static Widget customChoiceChip({

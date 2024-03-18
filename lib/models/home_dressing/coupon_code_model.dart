@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 
 class CouponCodeModel {

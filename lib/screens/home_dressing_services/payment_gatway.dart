@@ -1,7 +1,3 @@
-import 'dart:developer';
-
-import 'package:doctor_foot_app/screens/home_dressing_services/order_successful_screen.dart';
-
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentGateWay extends StatefulWidget {
   const PaymentGateWay({super.key});
