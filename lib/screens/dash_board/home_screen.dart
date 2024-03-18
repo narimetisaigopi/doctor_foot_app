@@ -1,9 +1,9 @@
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/app_bar_widget.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/home_image.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/patiant_review_widget.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_widgets/services_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/home_image.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/all_services_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,16 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 12,
               ),
-              ServicesWidget(onPress: () {}),
+              const AllServicesWidget(),
               const SizedBox(
                 height: 12,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 16, right: 16),
-                child: Text(
-                  Strings.patientReviewsText,
+               Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: const Text(
+                  "patientReviewsText",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                ),
+                ).tr(),
               ),
               const SizedBox(
                 height: 12,

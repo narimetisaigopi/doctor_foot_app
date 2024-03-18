@@ -1,4 +1,3 @@
-import 'package:doctor_foot_app/screens/dash_board/dash_board_screen.dart';
 import 'package:doctor_foot_app/screens/intro_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
@@ -16,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   checkStatus() async {
     Future.delayed(const Duration(milliseconds: 600), () async {
-      Get.to(const DashBoardScreen());
+      Get.to(const IntroScreen());
     });
   }
 

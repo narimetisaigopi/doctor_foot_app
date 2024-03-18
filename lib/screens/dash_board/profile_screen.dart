@@ -1,5 +1,9 @@
+import 'package:doctor_foot_app/screens/dash_board/prifile_details/custom_listTile_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
+import 'package:doctor_foot_app/utils/widgets/custom_sizedBox_widget.dart';
+import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -10,181 +14,93 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  Divider forprofile = const Divider(
-    height: 20,
+  Divider customDivider = const Divider(
+    height: 16,
   );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondary,
       appBar: AppBar(
-        title: const Text(Strings.profile),
+        title: const Text("profile").tr(),
         centerTitle: true,
+        leading: const Icon(Icons.arrow_back_ios),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Center(
-              child: CircleAvatar(
-                radius: 70,
-                backgroundImage: NetworkImage(
-                  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fmedium.com%2Fflutter&psig=AOvVaw3VRZ-hK7FMVz138COjtmU4&ust=1709710344968000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPDKm8DN3IQDFQAAAAAdAAAAABAJ",
-                ),
-              ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(color: AppColors.secondary, width: 2)),
+              height: 124,
+              width: 124,
+              child: const SvgImageWidget(path: AssetsConstants.profile_image),
             ),
-            const SizedBox(
-              height: 15,
+            const CustomSizedBox(
+              height: 08,
             ),
             const Text(
-              Strings.profileName,
+              "profileName",
               style: TextStyle(
                 fontSize: 18,
                 color: AppColors.textBackColor,
                 fontWeight: FontWeight.w700,
               ),
-            ),
-            const SizedBox(
-              height: 10,
+            ).tr(),
+            const CustomSizedBox(
+              height: 08,
             ),
             const Text(
-              Strings.regd,
+              "regd",
               style: TextStyle(
                 fontSize: 18,
                 color: AppColors.textBackColor,
                 fontWeight: FontWeight.w700,
               ),
+            ).tr(),
+            const CustomSizedBox(
+              height: 30,
             ),
-            const Divider(
-              height: 60,
-            ),
-            const ListTile(
-              title: Text(Strings.myProfile,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: AppColors.textBackColor,
-                    fontWeight: FontWeight.w500,
-                  )),
-              leading: CircleAvatar(
-                  backgroundColor: AppColors.primary,
-                  child: Icon(
-                    Icons.person,
-                    color: AppColors.secondary,
-                  )),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 20,
-              ),
-            ),
-            forprofile,
-            const ListTile(
-              title: Text(Strings.appointment,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: AppColors.textBackColor,
-                    fontWeight: FontWeight.w500,
-                  )),
-              leading: CircleAvatar(
-                backgroundColor: AppColors.primary,
-                child: Icon(
-                  Icons.calendar_month,
-                  color: AppColors.secondary,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 20,
-              ),
-            ),
-            forprofile,
-            const ListTile(
-              title: Text(
-                Strings.service,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.textBackColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              leading: CircleAvatar(
-                backgroundColor: AppColors.primary,
-                child: Icon(
-                  Icons.calendar_month,
-                  color: AppColors.secondary,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 20,
-              ),
-            ),
-            forprofile,
-            const ListTile(
-              title: Text(
-                Strings.payments,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.textBackColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              leading: CircleAvatar(
-                backgroundColor: AppColors.primary,
-                child: Icon(
-                  Icons.calendar_month,
-                  color: AppColors.secondary,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 20,
-              ),
-            ),
-            forprofile,
-            const ListTile(
-              title: Text(
-                Strings.contactus,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.textBackColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              leading: CircleAvatar(
-                backgroundColor: AppColors.primary,
-                child: Icon(
-                  Icons.call,
-                  color: AppColors.secondary,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 20,
-              ),
-            ),
-            forprofile,
-            const ListTile(
-              title: Text(
-                Strings.logout,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.textBackColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              leading: CircleAvatar(
-                backgroundColor: AppColors.primary,
-                child: Icon(
-                  Icons.logout,
-                  color: AppColors.secondary,
-                ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 20,
-              ),
-            ),
-            forprofile,
+            customDivider,
+            CustomListTileWidget(
+                text: "myProfile",
+                leadingIcon: Icons.person,
+                onPressed: () {}),
+            customDivider,
+            CustomListTileWidget(
+                text: "appointment",
+                leadingIcon: Icons.calendar_month,
+                onPressed: () {}),
+            customDivider,
+            CustomListTileWidget(
+                text: "service",
+                leadingIcon: Icons.calendar_month,
+                onPressed: () {}),
+            customDivider,
+            CustomListTileWidget(
+                text: "payments",
+                leadingIcon: Icons.calendar_month,
+                onPressed: () {}),
+            customDivider,
+            CustomListTileWidget(
+                text: "orders",
+                leadingIcon: Icons.calendar_month,
+                onPressed: () {}),
+            customDivider,
+            CustomListTileWidget(
+                text: "contactus",
+                leadingIcon: Icons.call,
+                onPressed: () {}),
+            customDivider,
+            CustomListTileWidget(
+                text: "logout",
+                leadingIcon: Icons.logout,
+                onPressed: () {}),
+            customDivider,
           ],
         ),
       ),

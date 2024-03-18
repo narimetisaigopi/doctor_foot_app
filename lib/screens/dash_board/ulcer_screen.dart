@@ -1,8 +1,7 @@
-import 'package:bulleted_list/bulleted_list.dart';
+import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/basicPlan_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/premiumPlan_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class UlcerScreen extends StatefulWidget {
@@ -18,68 +17,22 @@ class _UlcerScreenState extends State<UlcerScreen> {
     return Scaffold(
       backgroundColor: AppColors.secondary,
       appBar: AppBar(
-        title: const Text(Strings.ulcerMonitorText),
+        title: const Text("ulcerMonitorText").tr(),
         centerTitle: true,
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-        child: ListView(
-          children: [
-            const Text(
-              Strings.premiumPlan,
-              style: TextStyle(
-                  fontSize: 24,
-                  color: AppColors.textBackColor,
-                  fontWeight: FontWeight.w700),
-            ),
-            BulletedList(
-              listItems: names,
-              style: const TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textBackColor,
-                  fontWeight: FontWeight.w400,),
-              bulletColor: AppColors.textBackColor,
-              bulletType: BulletType.conventional,
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            const Center(
-              child: CustomButton(
-                buttonName: Strings.premiumPlanAamount,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
+          color: AppColors.secondary,
+          child: const Column(
+            children: [
+              BasicPlanWidget(),
+              SizedBox(
+                height: 22,
               ),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            const Divider(),
-            const Text(
-              Strings.freePlan,
-              style: TextStyle(
-                  fontSize: 24,
-                  color: AppColors.textBackColor,
-                  fontWeight: FontWeight.w700),
-            ),
-            BulletedList(
-              listItems: names2,
-              style: const TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textBackColor,
-                  fontWeight: FontWeight.w400),
-              bulletColor: AppColors.textBackColor,
-              bulletType: BulletType.conventional,
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            const Center(
-              child: CustomButton(
-                buttonName: Strings.freePlanb,
-              ),
-            ),
-          ],
+              PremiumPlanWidget()
+            ],
+          ),
         ),
       ),
     );
