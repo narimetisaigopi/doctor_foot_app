@@ -3,9 +3,9 @@ import 'package:doctor_foot_app/models/home_dressing/home_dressing_model.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 
 class HomeDressingServiceWidget extends StatefulWidget {

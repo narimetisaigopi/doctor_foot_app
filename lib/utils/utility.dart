@@ -2,11 +2,9 @@
 // import 'dart:typed_data';
 
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-//import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
@@ -91,7 +89,6 @@ class Utility {
             EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primary : Colors.white,
-          //border: Border.all(color: Colors.grey.shade400),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Row(

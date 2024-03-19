@@ -94,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   text: "languages",
                   leadingIcon: Icons.translate,
                   onPressed: () {
-                    Get.to(() => const TranslationScreen());
+                    Get.to(() => TranslationScreen());
                   }),
               customDivider,
               CustomListTileWidget(
