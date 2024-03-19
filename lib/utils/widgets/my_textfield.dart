@@ -8,6 +8,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class MyTextField extends StatefulWidget {
   final String hint;
   final String label;
+  final String edit;
   final double borderRadius;
   // final int maxLength;
   final Color btnColor;
@@ -24,12 +25,14 @@ class MyTextField extends StatefulWidget {
   final TextInputType textInputType;
   final int maxLines;
   // final int minLines;
+  final bool editText;
   const MyTextField({
     super.key,
     required this.hint,
     required this.textEditingController,
     this.bgColor = Colors.transparent,
     this.label = "label",
+    this.edit = "",
     this.maxLines = 1,
     this.labelNeeded = true,
     this.borderRadius = 5,
@@ -44,6 +47,7 @@ class MyTextField extends StatefulWidget {
     this.iconNeeded = false,
     this.leadingIcon,
     this.trailingIcon = const Icon(Icons.arrow_forward),
+    this.editText = true
   });
 
   @override
@@ -66,10 +70,19 @@ class _MyTextFieldState extends State<MyTextField> {
       alignment: Alignment.topLeft,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-        child: Text(
-          widget.label,
-          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-        ).tr(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              widget.label,
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+            ).tr(),
+           Text(
+              widget.edit,
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+            ).tr(),
+          ],
+        ),
       ),
     );
   }

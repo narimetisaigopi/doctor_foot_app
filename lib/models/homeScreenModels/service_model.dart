@@ -10,14 +10,14 @@ class ServicesModel {
 
 List<ServicesModel> servicesList = [
   ServicesModel(
-      image: AssetsConstants.foot, seiviceNames: "footUlcer_text"),
+      image: AssetsConstants.foot, seiviceNames: "footUlcerText"),
   ServicesModel(
       image: AssetsConstants.speedometer,
-      seiviceNames: "checkYourRisk_text"),
+      seiviceNames: "checkYourRiskText"),
   ServicesModel(
       image: AssetsConstants.checkup_shedule,
-      seiviceNames: "checkup_schedule_text"),
+      seiviceNames: "checkupScheduleText"),
   ServicesModel(
       image: AssetsConstants.foot_service,
-      seiviceNames: "foot_service_text"),
+      seiviceNames: "footServiceText"),
 ];

@@ -98,20 +98,30 @@ class Strings {
   static const String mobileTextFieldLabel = 'Mobile Number';
   static const String mobileTextFieldHint = 'Enter Mobile Number';
   static const String mobileTextFieldFocusHint = "8888888888";
+  static const String emailIdTextFieldFocusLabel = "Email ID";
+  static const String emailTextFieldFocusHint = "doctor@gmail.com";
 
   static const String userNameTextFieldLabel = 'User Name';
+  static const String userFullNameTextFieldLabel = 'Full Name';
   static const String userNameTextFieldHint = 'Enter your name here';
 
   static const String dateOfBirthTextFieldLabel = 'Date Of Birth';
   static const String dateOfBirthTextFieldHint = 'DD/MM/YYYY';
 
   static const String gender = 'Gender';
+  static const String editText = 'Edit';
+  static const String addBloodGroupText = "Add blood group";
+  static const String bloodGroupText = "Blood group";
+  static const String addHeightText = "Add Height";
+  static const String heightText = "Height";
+  static const String addWeightText = "Add Weight";
+  static const String weightText = "Weight";
 
 // home screen strings
-  static const String footUlcer_text = ' FOOT \nULCER';
-  static const String checkYourRisk_text = '   CHECK \nYOUR RISK';
-  static const String checkup_schedule_text = "  CHECK UP\n SCHEDULE";
-  static const String foot_service_text = "   FOOT\n SERVICES";
+  static const String footUlcerText = ' FOOT \nULCER';
+  static const String checkYourRiskText = '   CHECK \nYOUR RISK';
+  static const String checkupScheduleText = "  CHECK UP\n SCHEDULE";
+  static const String footServiceText = "   FOOT\n SERVICES";
   static const String kpbColonyText = 'KPB Colony';
   static const String patientReviewsText = 'Patient Reviews';
   static const String reviewverName = 'Naveena';
