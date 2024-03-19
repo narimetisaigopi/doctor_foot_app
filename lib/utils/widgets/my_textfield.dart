@@ -21,6 +21,7 @@ class MyTextField extends StatefulWidget {
   final Widget? leadingIcon;
   final bool iconNeeded;
   final Widget? suffixIcon;
+  final Widget? trailingIcon;
   final TextEditingController textEditingController;
   final Function()? onPress;
   final Function()? onValidate;
@@ -51,7 +52,7 @@ class MyTextField extends StatefulWidget {
     this.iconNeeded = false,
     this.leadingIcon,
     this.trailingIcon = const Icon(Icons.arrow_forward),
-    this.editText = true
+    this.editText = true,
     this.suffixIcon,
   });
 
