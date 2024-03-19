@@ -21,6 +21,7 @@
   "mobileTextFieldLabel": "మొబైల్ నంబర్",
   "mobileTextFieldFocusHint": "8888888888",
   "gender": "లింగం",
+  "language": "భాష",
 
   "What is your age?": "మీ పరిచయం ఏమిటి?",
   "BMI (Body Mass Index)": "BMI (శరీర దృఢత)",
@@ -43,7 +44,7 @@
   "Do you have any kidney-related issue?": "మీకు ఎన్ని కిడ్ని సంబంధిత సమస్యలు ఉన్నాయా?",
   "Are you experiencing any pain after walking a certain distance?": "మీరు కొన్ని దూరం నడిచిన తర్వాత ఏమైనా నొప్పి అనుభవిస్తున్నారా?",
   "Do you have any blackish discoloration or dilated veins on your legs/feet?": "మీకు కాళ్ళుగా మోడలి లేదా వెన్నుల విస్తారాలు ఉన్నాయా?",
-  "skip":"వదిలివేయు",
+  "skip": "వదిలివేయు",
   "introText": "లోరెం ఐప్సమ్ స్యాంప్లీ డమ్మీ టెక్స్ట్\n    ఆఫ్ టెలుగు లో ప్రింటింగ్\n    అండ్ టైప్సెట్టింగ్ ఇండస్ట్రీ.",
   "rectImageText": "ప్రపంచవ్యాప్తంగా 537 మిలియన్ మంది మందికి డయాబెటీస్ ఉంటుంది, వాటిలో 19-34% వారిలో అక్కడ ఒక కాలంలో ఉల్సర్ రావడానికి అనుమానిస్తారు",
 "serviceText":"సేవలు",
@@ -101,7 +102,10 @@
       "payments" : "చెల్లింపులు & వాపసు",
       "orders" : "ఆదేశాలు",
       "contactus" : "మమ్మల్ని సంప్రదించండి",
-      "logout" : "లాగ్అవుట్"
-
-
+      "logout" : "లాగ్అవుట్",
+  "footUlcer_text": " పాదము\n  అల్సర్",
+  "checkYourRisk_text": "    తనిఖీ\nమీ ప్రమాదం",
+  "checkup_schedule_text": "  తనిఖీ\n షెడ్యూల్",
+  "foot_service_text": "పాదము\n సేవలు"
+  
 }

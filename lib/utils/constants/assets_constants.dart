@@ -5,6 +5,7 @@ class AssetsConstants {
   static const String _homeScreenImagesBasePath = "assets/images/home_screen";
   static const String _riskFactorQuestionaryImagesBasePath =
       "assets/images/risk_factor_questionary";
+  static const String homeDressingServices = "assets/images/home_dressing";
 
   // intro_images
   static const String intro_1 = "$_introImagesBasePath/intro_1.svg";
@@ -130,6 +131,13 @@ class AssetsConstants {
 
   static const String well_kept_nails =
       "$_riskFactorQuestionaryImagesBasePath/well_kept_nails.svg";
+
+  static const String home_dressing_cover_img =
+      "$homeDressingServices/home_dressing_cover_img.svg";
+  static const String phonepe = "$homeDressingServices/phonePe.png";
+  static const String wounded_foot = "$homeDressingServices/wounded_foot.svg";
+  static const String successful = "$homeDressingServices/successful.svg";
+
   // static const String diabetes_image = "$_introImagesBasePath/diabetes_image.svg";
   static const String foot = "$_introImagesBasePath/foot.svg";
   static const String user_image = "$_introImagesBasePath/user_image.svg";
@@ -155,7 +163,6 @@ class AssetsConstants {
   static const String toe_image = "$_introImagesBasePath/toe_image.svg";
 
   //profile screen images
-    static const String profile_image = "$_introImagesBasePath/profile_image.svg";
-    static const String contacu_us = "$_introImagesBasePath/contacu_us.svg";
-
+  static const String profile_image = "$_introImagesBasePath/profile_image.svg";
+  static const String contacu_us = "$_introImagesBasePath/contacu_us.svg";
 }

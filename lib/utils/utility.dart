@@ -2,10 +2,9 @@
 // import 'dart:typed_data';
 
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-//import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
@@ -64,6 +63,50 @@ class Utility {
         });
   }
 
+  static Widget customDivider() {
+    return Divider(
+      height: 10,
+      color: Colors.grey.shade300,
+    );
+  }
+
+  static Widget customChoiceChip({
+    required String title,
+    required bool isSelected,
+    required VoidCallback onTap,
+    bool sizeNeeded = false,
+    double horizontal = 10,
+    double vertical = 5,
+    double? width,
+    required IconData iconData,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: width,
+        height: 35,
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : Colors.white,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Row(
+          children: [
+            Icon(iconData, color: isSelected ? Colors.white : Colors.black),
+            Text(
+              title,
+              style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.black,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   static Widget choiceContainer({
     required String title,
     required bool isSelected,
@@ -84,11 +127,16 @@ class Utility {
         ),
         child: Column(
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                  color: isSelected ? Colors.white : Colors.grey.shade600,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
+            Row(
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                      color: isSelected ? Colors.white : Colors.grey.shade600,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal),
+                ),
+              ],
             ),
           ],
         ),

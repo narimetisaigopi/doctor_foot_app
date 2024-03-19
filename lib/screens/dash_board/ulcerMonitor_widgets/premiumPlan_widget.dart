@@ -27,7 +27,7 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Padding(
+          Padding(
             padding: const EdgeInsets.only(left: 16, top: 16),
             child: const Text(
               "premiumPlanText",
@@ -40,10 +40,10 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
           const SizedBox(
             height: 08,
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.only(left: 16),
             child: const Text(
-             "planAmountText",
+              "planAmountText",
               style: TextStyle(
                   fontSize: 24,
                   color: AppColors.primary,

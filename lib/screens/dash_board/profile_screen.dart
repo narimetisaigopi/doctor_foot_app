@@ -1,13 +1,15 @@
+import 'package:doctor_foot_app/screens/auth_screens/sign_up_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/prifile_details/custom_listTile_widget.dart';
 import 'package:doctor_foot_app/screens/dash_board/profile/myProfile_screen.dart';
+import 'package:doctor_foot_app/screens/translation_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_sizedBox_widget.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -43,6 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 124,
                 width: 124,
                 child: const SvgImageWidget(path: AssetsConstants.profile_image),
+             
               ),
               const CustomSizedBox(
                 height: 08,
@@ -75,6 +78,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   leadingIcon: Icons.person,
                   onPressed: () {
                     Get.to(const MyProfileScreen());
+                    Utility.myBottomSheet(context,
+                        heightFactor: 0.7, widget: const SignUpScreen());
                   }),
               customDivider,
               CustomListTileWidget(
@@ -86,6 +91,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   text: "service",
                   leadingIcon: Icons.calendar_month,
                   onPressed: () {}),
+              customDivider,
+              CustomListTileWidget(
+                  text: "languages",
+                  leadingIcon: Icons.translate,
+                  onPressed: () {
+                    Get.to(() => TranslationScreen());
+                  }),
               customDivider,
               CustomListTileWidget(
                   text: "payments",
@@ -106,6 +118,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   text: "logout",
                   leadingIcon: Icons.logout,
                   onPressed: () {}),
+              customDivider,
+              CustomListTileWidget(
+                  text: "logout", leadingIcon: Icons.logout, onPressed: () {}),
               customDivider,
             ],
           ),

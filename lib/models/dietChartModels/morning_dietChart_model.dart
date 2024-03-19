@@ -1,9 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 
 class MorningDietChartModel {
   String image;
   String textTime;
-  MorningDietChartModel({this.image ="", this.textTime = ""});
+  MorningDietChartModel({this.image = "", this.textTime = ""});
 }
 
 List<MorningDietChartModel> morningDietList = [

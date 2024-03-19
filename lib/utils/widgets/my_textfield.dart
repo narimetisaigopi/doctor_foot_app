@@ -15,10 +15,12 @@ class MyTextField extends StatefulWidget {
   final Color bgColor;
   final Color iconColor;
   final bool labelNeeded;
+  final bool textButtonNeeded;
+  final Widget? textButton;
   // final IconButton? icon;
   final Widget? leadingIcon;
   final bool iconNeeded;
-  final Icon trailingIcon;
+  final Widget? suffixIcon;
   final TextEditingController textEditingController;
   final Function()? onPress;
   final Function()? onValidate;
@@ -29,6 +31,8 @@ class MyTextField extends StatefulWidget {
   const MyTextField({
     super.key,
     required this.hint,
+    this.textButton,
+    this.textButtonNeeded = false,
     required this.textEditingController,
     this.bgColor = Colors.transparent,
     this.label = "label",
@@ -48,6 +52,7 @@ class MyTextField extends StatefulWidget {
     this.leadingIcon,
     this.trailingIcon = const Icon(Icons.arrow_forward),
     this.editText = true
+    this.suffixIcon,
   });
 
   @override
@@ -91,9 +96,6 @@ class _MyTextFieldState extends State<MyTextField> {
     return Container(
       height: 50,
       padding: EdgeInsets.zero,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 20,
-      ),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
           border: Border.all(color: Colors.grey.shade300)),
@@ -102,8 +104,7 @@ class _MyTextFieldState extends State<MyTextField> {
 
         validator: FormBuilderValidators.compose([
           FormBuilderValidators.required(),
-          FormBuilderValidators.numeric(
-              errorText: 'La edad debe ser numérica.'),
+          FormBuilderValidators.numeric(errorText: 'error text'),
           FormBuilderValidators.max(70),
           (val) {
             final number = int.tryParse(val!);
@@ -140,17 +141,9 @@ class _MyTextFieldState extends State<MyTextField> {
             fillColor: widget.bgColor,
             filled: true,
             prefixIcon: widget.leadingIcon,
-            suffixIcon: widget.iconNeeded
-                ? IconButton(
-                    style: const ButtonStyle(
-                      padding: MaterialStatePropertyAll(
-                          EdgeInsets.symmetric(horizontal: 20)),
-                    ),
-                    onPressed: widget.onPress,
-                    icon: widget.trailingIcon,
-                    color: widget.iconColor,
-                  )
-                : null,
+            suffixIcon:
+                widget.iconNeeded ? widget.suffixIcon : const SizedBox.shrink(),
+            suffix: widget.textButtonNeeded ? widget.textButton : null,
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(widget.borderRadius)),
