@@ -1,13 +1,14 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:doctor_foot_app/controllers/risk_factor_controller.dart';
 import 'package:doctor_foot_app/models/risk_factor_model.dart';
-import 'package:doctor_foot_app/translation_screen.dart';
+
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 
 class RiskFactorHome extends StatefulWidget {
@@ -33,6 +34,7 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
     return Scaffold(
       body: GetBuilder<RiskFactorController>(builder: (context) {
         return PageView.builder(
+          physics: NeverScrollableScrollPhysics(),
           controller: _pageController,
           scrollDirection: Axis.horizontal,
           itemCount: _riskFactorController.riskFactorsModelsList.length,
@@ -47,7 +49,7 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
 
   Widget buildRiskFactorItem(RiskFactorModel riskFactorModel) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 40),
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -55,11 +57,13 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
             children: [
               IconButton(
                   onPressed: () {
-                    Get.to(() => const TranslationScreen())!.then((value) {
-                      setState(() {});
-                    });
+                    _pageController.animateToPage(
+                      _pageController.page!.toInt() - 1,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
                   },
-                  icon: const Icon(Icons.translate))
+                  icon: const Icon(Icons.arrow_back_ios)),
             ],
           ),
           const SizedBox(height: 10),

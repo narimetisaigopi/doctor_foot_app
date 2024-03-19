@@ -1,12 +1,10 @@
-import 'package:doctor_foot_app/screens/auth_screens/current_location_screen.dart';
 import 'package:doctor_foot_app/screens/risk_factor_home.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+
 import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ValuePrivacy extends StatefulWidget {
   const ValuePrivacy({super.key});
@@ -36,6 +34,7 @@ class _ValuePrivacyState extends State<ValuePrivacy> {
               ),
               const Text(
                 "otpScreenTitle",
+                textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 22),
               ).tr(),
               const SizedBox(

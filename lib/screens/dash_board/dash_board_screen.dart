@@ -52,7 +52,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ),
                     ),
                     child: const Icon(Icons.home))
-                : Container(child: const Icon(Icons.home)),
+                : const Icon(Icons.home),
             label: "homeText",
           ),
           BottomNavigationBarItem(
@@ -68,7 +68,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ),
                     ),
                     child: const Icon(Icons.food_bank))
-                : Container(child: const Icon(Icons.food_bank)),
+                : const Icon(Icons.food_bank),
             label: "dietChartText",
           ),
           BottomNavigationBarItem(
@@ -84,10 +84,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ),
                     ),
                     child: const Icon(Icons.video_call))
-                : Container(child: const Icon(Icons.video_call)),
+                : const Icon(Icons.video_call),
             label: "videosText",
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: selectedIndex == 3
                 ? Container(
                     height: 40,
@@ -100,7 +100,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ),
                     ),
                     child: const Icon(Icons.schedule))
-                : Container(child: const Icon(Icons.schedule)),
+                : const Icon(Icons.schedule),
             label: "ulcerMonitorText",
           ),
           BottomNavigationBarItem(
@@ -116,12 +116,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ),
                     ),
                     child: const Icon(Icons.person))
-                : Container(child: const Icon(Icons.person)),
+                : const Icon(Icons.person),
             label: "profile",
           ),
-         
-         
-         
         ],
       ),
     );

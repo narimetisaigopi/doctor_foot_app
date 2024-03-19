@@ -22,6 +22,7 @@ class AppColors {
   static const Color daysChipColor = Color(0xFFF2F0F0);
   static const Color grey2 = Color(0xFFB0B0B0);
   static const Color grey4 = Color(0xFFEEEDED);
+  static const Color grey5 = Color(0xFF6B6B6B);
   static const Color daysBgColor = Color(0xFFF2F0F0);
 
   // text color

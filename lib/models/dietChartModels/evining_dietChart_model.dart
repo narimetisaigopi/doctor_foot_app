@@ -1,16 +1,19 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 
 class EviningDietChartModel {
   String image;
   String textTime;
-  EviningDietChartModel({this.image = "", this.textTime =""});
+  EviningDietChartModel.EveningDietChartModel(
+      {this.image = "", this.textTime = ""});
 }
 
 List<EviningDietChartModel> eviningDietList = [
-  EviningDietChartModel(
+  EviningDietChartModel.EveningDietChartModel(
       image: AssetsConstants.diet_image, textTime: "earlyMorning"),
-  EviningDietChartModel(
+  EviningDietChartModel.EveningDietChartModel(
       image: AssetsConstants.diet_image, textTime: "earlyMorning"),
-  EviningDietChartModel(
+  EviningDietChartModel.EveningDietChartModel(
       image: AssetsConstants.diet_image, textTime: "earlyMorning"),
 ];

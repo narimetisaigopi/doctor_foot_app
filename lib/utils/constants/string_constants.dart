@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class Strings {
   static const String skip = "Skip";
   static const String introText =
@@ -9,7 +11,7 @@ class Strings {
   static const String ulcerMonitoringText = "Ulcer Monitoring";
   static const String homeText = "Home";
   static const String dietChartText = "Diet Chart";
-  static const String videosText = "Vidoes";
+  static const String videosText = "Videos";
 
   // ulser monitoring screen benifits with 1000 plan texts
   static const String premiumPlanText = "Premium plan";
@@ -106,6 +108,22 @@ class Strings {
   static const String dateOfBirthTextFieldHint = 'DD/MM/YYYY';
 
   static const String gender = 'Gender';
+  static const String home = "Home";
+  static const String work = "Work";
+  static const String friendsAndFamily = "Friends & Family";
+
+  static const String small = "Samll";
+  static const String medium = "Medium";
+  static const String large = "Large";
+
+  static const String booking_confirmed = "Booking Confirmed!";
+  static const String orderId = "Order Id # 1234567890";
+  static const String orderDate = "Date: Sunday/31/Dec/2023";
+  static const String orderSuccessfulDescription =
+      "Thank you for placing the service!! Sit back and relax while we deliver an awesome service experience.";
+
+  static const String home_dressing_description =
+      "If your wound is < 1000cm , Then it is recommended.";
 
 // home screen strings
   static const String footUlcer_text = ' FOOT \nULCER';
@@ -117,10 +135,25 @@ class Strings {
   static const String reviewverName = 'Naveena';
   static const String venkataNagarText = 'Venkat Nagar Colony,...';
   static const String postedDateText = 'Posted on 03 march';
+
+  static const String couponTitle1 = "10% OFF ";
+  static const String couponTitle2 = "20% OFF ";
+  static const String couponTitle3 = "30% OFF ";
+  static const String couponDescription1 = "Save ₹ 100 with this code";
+  static const String couponDescription2 = "Save ₹ 200 with this code";
+  static const String couponDescription3 = "Save ₹ 300 with this code";
+
+  static const String couponCommonDescription =
+      "This offer is personalized for you.";
+
+  static const String maximumDiscount1 = "Maximum instant discount of ₹";
+  static const String maximumDiscount2 = "Maximum instant discount of ₹";
+  static const String maximumDiscount3 = "Maximum instant discount of ₹";
+
   static const String homeImageText =
       '  Of the estimated 537 million people worldwide who have \n   diabetes, 19-34% will develop an ulcer in their life time';
   static const String userReviewDicriptionText =
-      'Lorem Ipsum is simply dummy text of the printing and \n  typesetting industry. Lorem Ipsum has been the\n industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
 
 //diet chart screen strings
   static const String monday = 'Monday';
@@ -136,11 +169,13 @@ class Strings {
   static const String earlyMorning = 'Early Morning\n  (6am-7am)';
 
   //video chart screen strings
-  static const String gettingMedisineText =
+  static const String gettingMedicineText =
       ' GETTING\n MEDICINE TO\n HEAL DIABETIC\n FOOT ULCER ';
   static const String watchNowText = 'Watch Now';
   static const String footAssessmentText = 'Foot Assessment';
   static const String dailyFeaturedText = 'Daily Featured';
-  static const String diabetiesText = 'Diabeties';
-  static const String viewallText = 'View all';
+  static const String diabetesText = 'Diabeties';
+  static const String vieWallText = 'View all';
+
+  static const String languages = 'Languages';
 }
