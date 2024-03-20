@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "249366730872",
+    "project_id": "drfootapp-2a1c8",
+    "storage_bucket": "drfootapp-2a1c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249366730872:android:aaf2ce3e5c146748b0f58d",
+        "android_client_info": {
+          "package_name": "com.doctor_foot_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL2Th_cowV21x4ryJ1cdvobTD8rZF5E68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

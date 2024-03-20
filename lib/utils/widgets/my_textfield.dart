@@ -69,7 +69,7 @@ class _MyTextFieldState extends State<MyTextField> {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
         child: Text(
           widget.label,
           style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),

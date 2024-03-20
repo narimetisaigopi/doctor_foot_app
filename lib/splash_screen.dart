@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:doctor_foot_app/screens/intro_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -13,15 +16,15 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  checkStatus() async {
-    Future.delayed(const Duration(milliseconds: 600), () async {
-      Get.to(const IntroScreen());
-    });
+  checkandmove() {
+    Utility.checkUserUserTypeAndNavigate();
   }
 
   @override
   void initState() {
-    checkStatus();
+    Timer(const Duration(seconds: 3), () {
+      checkandmove();
+    });
     super.initState();
   }
 

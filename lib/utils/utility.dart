@@ -1,12 +1,16 @@
 // import 'dart:io';
 // import 'dart:typed_data';
 
+import 'package:doctor_foot_app/screens/dash_board/dash_board_screen.dart';
+import 'package:doctor_foot_app/screens/intro_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // import 'package:flutter/foundation.dart'
 //     show consolidateHttpClientResponseBytes, kIsWeb;
@@ -218,14 +222,47 @@ class Utility {
     return "";
   }
 
-  static toast(String message, {Color color = Colors.black}) {
+  static checkUserUserTypeAndNavigate() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      Get.offUntil(
+          MaterialPageRoute(builder: (builder) => const DashBoardScreen()),
+          (route) => false);
+    } else {
+      Get.offUntil(MaterialPageRoute(builder: (builder) => const IntroScreen()),
+          (route) => false);
+    }
+  }
+
+  // For Future need
+
+  // interNetCheck() async {
+  //   bool result = await InternetConnectionChecker().hasConnection;
+  //   if (result == true) {
+  //     print("interNet is connected");
+  //   } else {
+  //     ConnectionCheck(BuildContext context) {
+  //       AlertDialog alertDialog = AlertDialog(
+  //         title: Text("Connection error"),
+  //         content: Text("Please check the internet Connection"),
+  //         actions: [ElevatedButton(onPressed: () {}, child: Text("Ok"))],
+  //       );
+  //       return showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return alertDialog;
+  //         },
+  //       );
+  //     }}
+
+  static toast(String message,
+      {Color textColor = Colors.white, Color backgroundColor = Colors.green}) {
     Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
+        backgroundColor: backgroundColor,
+        textColor: textColor,
         fontSize: 16.0);
   }
 

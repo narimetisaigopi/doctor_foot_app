@@ -21,6 +21,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final FocusNode _focusNode = FocusNode();
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -99,10 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: CustomButton(
                   buttonName: "sendOtpText",
                   onPress: () {
-                    Utility.myBottomSheet(
-                      context,
-                      widget: const OtpScreen(),
-                    );
+                    validateForm();
                   },
                 ),
               )
@@ -111,5 +109,13 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
     );
+  }
+
+  validateForm() {
+    if (_authenticationController.mobileNumberController.text.isEmpty) {
+      return Utility.toast("Enter Mobile Number", backgroundColor: Colors.red);
+    } else {
+      Utility.myBottomSheet(context, widget: const OtpScreen());
+    }
   }
 }
