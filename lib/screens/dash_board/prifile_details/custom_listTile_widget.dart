@@ -7,7 +7,7 @@ class CustomListTileWidget extends StatefulWidget {
   final String text;
   final IconData leadingIcon;
   final bool isIconNeeded;
-  final bool isSelected; // New property to determine if the item is selected
+  final bool isSelected;
   final IconData? trailingIcon;
 
   const CustomListTileWidget({
@@ -16,7 +16,7 @@ class CustomListTileWidget extends StatefulWidget {
     required this.leadingIcon,
     required this.onPressed,
     this.isIconNeeded = false,
-    this.isSelected = false, // Default to false
+    this.isSelected = false,
     this.trailingIcon = Icons.arrow_forward_ios,
   }) : super(key: key);
 

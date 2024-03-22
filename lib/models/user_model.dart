@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
-  final String userName;
-  final String docId;
-  final String dateOfBirth;
-  final String gender;
-  final String mobileNumber;
+  String userName;
+  String docId;
+  String dateOfBirth;
+  String gender;
+  String mobileNumber;
+  var timestamp;
 
   UserModel({
     this.userName = "",
@@ -11,6 +14,7 @@ class UserModel {
     this.gender = "",
     this.mobileNumber = "",
     this.docId = "",
+    this.timestamp,
   });
 
   factory UserModel.fromJson(
@@ -22,6 +26,7 @@ class UserModel {
       dateOfBirth: map['dateOfBirth'] ?? "",
       gender: map['gender'] ?? "",
       mobileNumber: map['mobileNumber'] ?? "",
+      timestamp: map['timestamp'] ?? "",
     );
   }
 
@@ -32,6 +37,7 @@ class UserModel {
       'dateOfBirth': dateOfBirth,
       'gender': gender,
       'mobileNumber': mobileNumber,
+      'timestamp': DateTime.now().toString(),
     };
   }
 }

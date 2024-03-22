@@ -372,7 +372,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                       couponCodeController.selectedCouponCodeModel == null
                           ? containerText
                           : couponCodeController
-                              .selectedCouponCodeModel!.couponTitle,
+                              .selectedCouponCodeModel!.couponCode,
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

@@ -1,5 +1,6 @@
 import 'package:doctor_foot_app/controllers/coupon_code_controller.dart';
-import 'package:doctor_foot_app/models/home_dressing/coupon_code_model.dart';
+import 'package:doctor_foot_app/models/coupon_code_model.dart';
+import 'package:doctor_foot_app/models/home_dressing/c_model.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
@@ -56,7 +57,7 @@ class _AvailableOffersWidgetState extends State<AvailableOffersWidget> {
                   children: [
                     //const Icon(Icons.discount),
                     Text(
-                      widget.couponCodeModel.couponTitle,
+                      widget.couponCodeModel.couponCode,
                       style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -80,7 +81,7 @@ class _AvailableOffersWidgetState extends State<AvailableOffersWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${widget.couponCodeModel.couponTitle}% OFF ",
+                          "${widget.couponCodeModel.couponCode}% OFF ",
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 14),
                         ),

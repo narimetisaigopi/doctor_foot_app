@@ -89,6 +89,10 @@ class Strings {
 
   static const String sendOtpText = ' Send OTP';
 
+  static const String email = ' Email Address';
+
+  static const String password = ' Password';
+
   static const String verifyOtp = 'Verify OTP';
 
   static const String signInText = ' SignIn';

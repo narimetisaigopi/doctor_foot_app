@@ -1,4 +1,4 @@
-package com.doctor_foot_app
+package com.drfootapp
 
 import io.flutter.embedding.android.FlutterActivity
 

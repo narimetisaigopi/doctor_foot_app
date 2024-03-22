@@ -9,14 +9,13 @@ class MyTextField extends StatefulWidget {
   final String hint;
   final String label;
   final double borderRadius;
-  // final int maxLength;
+  final int? maxLength;
   final Color btnColor;
   final Color bgColor;
   final Color iconColor;
   final bool labelNeeded;
   final bool textButtonNeeded;
   final Widget? textButton;
-  // final IconButton? icon;
   final Widget? leadingIcon;
   final bool iconNeeded;
   final Widget? suffixIcon;
@@ -24,8 +23,8 @@ class MyTextField extends StatefulWidget {
   final Function()? onPress;
   final Function()? onValidate;
   final TextInputType textInputType;
-  final int maxLines;
-  // final int minLines;
+  final int? minLines;
+
   const MyTextField({
     super.key,
     required this.hint,
@@ -34,14 +33,12 @@ class MyTextField extends StatefulWidget {
     required this.textEditingController,
     this.bgColor = Colors.transparent,
     this.label = "label",
-    this.maxLines = 1,
     this.labelNeeded = true,
     this.borderRadius = 5,
-    // this.minLines = 1,
-    // this.maxLength = 10,
+    this.minLines = 1,
+    this.maxLength,
     this.btnColor = Colors.black,
     this.iconColor = Colors.black,
-    // this.icon,
     this.textInputType = TextInputType.text,
     this.onPress,
     this.onValidate,
@@ -83,26 +80,30 @@ class _MyTextFieldState extends State<MyTextField> {
       height: 50,
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
-          border: Border.all(color: Colors.grey.shade300)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(widget.borderRadius),
+        ),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
       child: TextFormField(
         onTap: () {},
 
-        validator: FormBuilderValidators.compose([
-          FormBuilderValidators.required(),
-          FormBuilderValidators.numeric(errorText: 'error text'),
-          FormBuilderValidators.max(70),
-          (val) {
-            final number = int.tryParse(val!);
-            if (number == null) return null;
-            if (number < 0) return 'We cannot have a negative age';
-            return null;
-          },
-        ]),
+        validator: FormBuilderValidators.compose(
+          [
+            FormBuilderValidators.required(),
+            FormBuilderValidators.numeric(errorText: 'error text'),
+            FormBuilderValidators.max(70),
+            (val) {
+              final number = int.tryParse(val!);
+              if (number == null) return null;
+              if (number < 0) return 'We cannot have a negative age';
+              return null;
+            },
+          ],
+        ),
         // expands: true,
-        // minLines: null,
-        maxLines: widget.maxLines,
-        // maxLength: widget.maxLength,
+        minLines: widget.minLines,
+        maxLength: widget.maxLength,
         keyboardType: widget.textInputType,
         controller: widget.textEditingController,
         inputFormatters: widget.textInputType == TextInputType.number

@@ -2,8 +2,12 @@
 
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_foot_app/admin/admin_panel.dart';
+import 'package:doctor_foot_app/main.dart';
 import 'package:doctor_foot_app/models/user_model.dart';
 import 'package:doctor_foot_app/screens/dash_board/dash_board_screen.dart';
+import 'package:doctor_foot_app/utils/constants/firebase_constatns.dart';
 import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +19,9 @@ class AuthenticationController extends GetxController {
   int? forceResendingToken;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   String? smsCode;
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   TextEditingController userNameController = TextEditingController();
   TextEditingController dateOfBirthController = TextEditingController();
@@ -29,7 +36,7 @@ class AuthenticationController extends GetxController {
           await _firebaseAuth.signInWithCredential(authCredential);
       if (userCredential.user != null) {
         log("userCredential ${userCredential.user!.phoneNumber}");
-
+        await firebaseAuthInsertData();
         Get.offAll(() => const DashBoardScreen());
       } else {
         Utility.toast("Something went wrong, please try again.",
@@ -106,8 +113,34 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  // _firebaseAuthInsertData() {
-  //   UserModel userModel = UserModel();
-  //   userModel.userName =
-  // }
+  DocumentReference getCurrentUserDocRef() {
+    return usersCollectionReference.doc(FirebaseAuth.instance.currentUser?.uid);
+  }
+
+  firebaseAuthInsertData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    try {
+      UserModel userModel = UserModel();
+      // userModel.userName = userNameController.text;
+      userModel.mobileNumber = user!.phoneNumber!;
+      userModel.docId = getCurrentUserDocRef().id;
+      // userModel.dateOfBirth = dateOfBirthController.text;
+      // userModel.gender = genderController.text;
+      // userModel.timestamp = DateTime.now() as Timestamp?;
+      await getCurrentUserDocRef().set(userModel.toMap());
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> signInwithEmail(String email, String password) async {
+    try {
+      final auth = FirebaseAuth.instance;
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+      Get.offAll(() => const AdminPanel());
+    } catch (e) {
+      log(e.toString());
+    }
+  }
 }

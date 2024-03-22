@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:249366730872:android:aaf2ce3e5c146748b0f58d",
+        "mobilesdk_app_id": "1:249366730872:android:f0e66b6038be3408b0f58d",
         "android_client_info": {
-          "package_name": "com.doctor_foot_app"
+          "package_name": "com.drfootapp"
         }
       },
       "oauth_client": [],

@@ -1,3 +1,5 @@
+import 'package:doctor_foot_app/admin/admin_login.dart';
+import 'package:doctor_foot_app/admin/admin_panel.dart';
 import 'package:doctor_foot_app/screens/auth_screens/sign_up_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/prifile_details/custom_listTile_widget.dart';
 import 'package:doctor_foot_app/screens/translation_screen.dart';
@@ -78,6 +80,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {
                     Utility.myBottomSheet(context,
                         heightFactor: 0.7, widget: const SignUpScreen());
+                  }),
+              customDivider,
+              CustomListTileWidget(
+                  text: "Admin",
+                  leadingIcon: Icons.person,
+                  onPressed: () {
+                    Get.to(() => const AdminLogin());
                   }),
               customDivider,
               CustomListTileWidget(

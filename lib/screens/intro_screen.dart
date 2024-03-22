@@ -48,7 +48,8 @@ class _IntroScreenState extends State<IntroScreen> {
                 padding: const EdgeInsets.only(right: 16),
                 child: InkWell(
                   onTap: () {
-                    Get.to(const DashBoardScreen());
+                    Utility.myBottomSheet(context,
+                        widget: const SignUpScreen(), heightFactor: 0.7);
                   },
                   child: const Text(
                     "skip",
