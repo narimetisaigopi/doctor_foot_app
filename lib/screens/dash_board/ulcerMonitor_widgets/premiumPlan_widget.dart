@@ -2,6 +2,7 @@ import 'package:doctor_foot_app/models/ulcer_monitor_models/premium_model.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/custom_ulcer_button.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/dotted_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -18,7 +19,7 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.39,
+      height: size.height * 0.57,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -55,6 +56,7 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
           ),
           Expanded(
             child: ListView.separated(
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: premiumPlanList.length,
                 separatorBuilder: (context, index) => const SizedBox(
                       height: 12,
@@ -66,7 +68,18 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
                   );
                 }),
           ),
-          CustomUlcerButton(onPressed: () {})
+          // CustomUlcerButton(onPressed: () {})
+         const  Padding(
+            padding:  EdgeInsets.only(bottom: 26),
+            child: Center(
+              child: CustomButton(
+                width: 318,
+                buttonName: "getStartedButton",
+                isBoxShadow: false,
+                borderRadius: 12,
+              ),
+            ),
+          )
         ],
       ),
     );

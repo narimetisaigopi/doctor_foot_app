@@ -34,7 +34,7 @@ class Strings {
   static const String freePlanText1 =
       "Experts review on ulcer images after a week";
   static const String freePlanText2 = "Weekly report on your ulcer activity";
-  static const String getStartedButton = "Get started";
+  static const String getStartedButton = "Get Started";
 
 // Profile Screen Texts
   static const String profileName = "SUMANTH";

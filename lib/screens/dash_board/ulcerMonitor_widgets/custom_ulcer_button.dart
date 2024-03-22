@@ -16,7 +16,7 @@ class _CustomUlcerButtonState extends State<CustomUlcerButton> {
     return GestureDetector(
             onTap: widget.onPressed,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 26),
+              padding: const EdgeInsets.only(bottom: 16),
               child: Center(
                 child: Container(
                   height: 44,
