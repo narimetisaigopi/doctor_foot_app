@@ -45,15 +45,10 @@ class _CustomButtonState extends State<CustomButton> {
            widget.isBoxShadow?  BoxShadow(
               color: Colors.grey.shade400,
               blurRadius: 8,
-              // spreadRadius: 2,
               blurStyle: BlurStyle.outer,
               offset: const Offset(1, 2),
-            ):BoxShadow(
-              // color: Colors.grey.shade400,
-              // blurRadius: 8,
-              // // spreadRadius: 2,
-              // blurStyle: BlurStyle.outer,
-              // offset: const Offset(1, 2),
+            ): const BoxShadow(
+            
             )
           ],
           borderRadius: BorderRadius.circular(widget.borderRadius),

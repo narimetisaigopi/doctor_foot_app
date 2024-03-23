@@ -14,7 +14,6 @@ class FootAssessmentWidget extends StatefulWidget {
 class _FootAssessmentWidgetState extends State<FootAssessmentWidget> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return Container(
       margin: const EdgeInsets.only(left: 16, right: 12, top: 06, bottom: 10),
@@ -41,7 +40,7 @@ class _FootAssessmentWidgetState extends State<FootAssessmentWidget> {
             ],
           ),
           SizedBox(
-            height: size.height * 0.15,
+            height: 144,
             width: double.infinity,
             child: ListView.separated(
                 separatorBuilder: (context, index) {

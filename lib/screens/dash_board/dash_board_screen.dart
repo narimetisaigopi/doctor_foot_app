@@ -1,6 +1,6 @@
 import 'package:doctor_foot_app/screens/dash_board/diet_chart_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/home_screen.dart';
-import 'package:doctor_foot_app/screens/dash_board/profile_screen.dart';
+import 'package:doctor_foot_app/screens/dash_board/profile_details_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcer_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/videos_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
