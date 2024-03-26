@@ -121,7 +121,7 @@ class Utility {
         padding:
             EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : Colors.transparent,
+          color: isSelected ? AppColors.primary : AppColors.whiteBgColor,
           border: Border.all(color: Colors.grey.shade400),
           borderRadius: BorderRadius.circular(5),
         ),

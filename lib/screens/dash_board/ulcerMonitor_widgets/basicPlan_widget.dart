@@ -1,7 +1,7 @@
 import 'package:doctor_foot_app/models/ulcer_monitor_models/free_plan_model.dart';
-import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/custom_ulcer_button.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/dotted_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +15,9 @@ class BasicPlanWidget extends StatefulWidget {
 class _BasicPlanWidgetState extends State<BasicPlanWidget> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.29,
+     height: 296,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -49,14 +48,14 @@ class _BasicPlanWidgetState extends State<BasicPlanWidget> {
             ).tr(),
           ),
           const SizedBox(
-            height: 12,
+            height: 08,
           ),
           Expanded(
-            child: ListView.separated(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
                 itemCount: freePlanList.length,
-                separatorBuilder: (context, index) => const SizedBox(
-                      height: 12,
-                    ),
+                
                 itemBuilder: (context, index) {
                   final freePlanItem = freePlanList[index];
                   return DottedWidget(
@@ -64,7 +63,16 @@ class _BasicPlanWidgetState extends State<BasicPlanWidget> {
                   );
                 }),
           ),
-          CustomUlcerButton(onPressed: () {})
+        const Expanded(
+           child: Center(
+             child: CustomButton(
+               width: 318,
+               buttonName: "getStartedButton",
+               isBoxShadow: false,
+               borderRadius: 12,
+             ),
+           ),
+         )
         ],
       ),
     );

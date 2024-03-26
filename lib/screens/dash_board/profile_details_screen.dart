@@ -1,9 +1,8 @@
-import 'package:doctor_foot_app/screens/auth_screens/sign_up_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/prifile_details/custom_listTile_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/profile/myProfile_screen.dart';
 import 'package:doctor_foot_app/screens/translation_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:doctor_foot_app/utils/widgets/custom_sizedBox_widget.dart';
 import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -43,8 +42,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     border: Border.all(color: AppColors.secondary, width: 2)),
                 height: 124,
                 width: 124,
-                child:
-                    const SvgImageWidget(path: AssetsConstants.profile_image),
+                child: const SvgImageWidget(path: AssetsConstants.profile_image),
+             
               ),
               const CustomSizedBox(
                 height: 08,
@@ -76,8 +75,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   text: "myProfile",
                   leadingIcon: Icons.person,
                   onPressed: () {
-                    Utility.myBottomSheet(context,
-                        heightFactor: 0.7, widget: const SignUpScreen());
+                    Get.to(const MyProfileScreen());
+                   
                   }),
               customDivider,
               CustomListTileWidget(
@@ -108,7 +107,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {}),
               customDivider,
               CustomListTileWidget(
-                  text: "contactus", leadingIcon: Icons.call, onPressed: () {}),
+                  text: "contactus",
+                  leadingIcon: Icons.call,
+                  onPressed: () {}),
+              customDivider,
+              CustomListTileWidget(
+                  text: "logout",
+                  leadingIcon: Icons.logout,
+                  onPressed: () {}),
               customDivider,
               CustomListTileWidget(
                   text: "logout", leadingIcon: Icons.logout, onPressed: () {}),

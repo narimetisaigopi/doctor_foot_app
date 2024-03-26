@@ -31,15 +31,7 @@ const introScreenImages = [
     "image": AssetsConstants.dr_patiant_checkup,
   },
 ];
-const serviceMap = [
-  {"image": AssetsConstants.foot, "name": Strings.footUlcer_text},
-  {"image": AssetsConstants.speedometer, "name": Strings.checkYourRisk_text},
-  {
-    "image": AssetsConstants.checkup_shedule,
-    "name": Strings.checkup_schedule_text
-  },
-  {"image": AssetsConstants.foot_service, "name": Strings.foot_service_text}
-];
+
 const patientReviewsMap = [
   {
     "reviewer_image": AssetsConstants.user_image,
@@ -48,4 +40,14 @@ const patientReviewsMap = [
     "date": Strings.postedDateText,
     "image": AssetsConstants.dr_patiant_checkup,
   },
+];
+List<String> bloodGroupList = [
+  "A  positive (A+)",
+  "A negative (A-)",
+  "B positive (B+)",
+      "B negative (B-)",
+      "O positive (O+)",
+      "O negative (O-)",
+      "AB positive (AB+)",
+      "AB negative (AB-)"
 ];

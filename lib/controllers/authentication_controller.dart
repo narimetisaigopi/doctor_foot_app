@@ -6,4 +6,8 @@ class AuthenticationController extends GetxController {
   TextEditingController dateOfBirthController = TextEditingController();
   TextEditingController genderController = TextEditingController();
   TextEditingController mobileNumberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController bloodGroupController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
 }

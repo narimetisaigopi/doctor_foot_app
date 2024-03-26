@@ -1,7 +1,7 @@
 import 'package:doctor_foot_app/models/ulcer_monitor_models/premium_model.dart';
-import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/custom_ulcer_button.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/dotted_widget.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -15,10 +15,9 @@ class PremiumPlanWidget extends StatefulWidget {
 class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.39,
+      height: 360,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -51,14 +50,13 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
             ).tr(),
           ),
           const SizedBox(
-            height: 22,
+            height: 08,
           ),
           Expanded(
-            child: ListView.separated(
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: premiumPlanList.length,
-                separatorBuilder: (context, index) => const SizedBox(
-                      height: 12,
-                    ),
                 itemBuilder: (context, index) {
                   final premiumPlanItem = premiumPlanList[index];
                   return DottedWidget(
@@ -66,7 +64,15 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
                   );
                 }),
           ),
-          CustomUlcerButton(onPressed: () {})
+          const Center(
+            child: CustomButton(
+              width: 318,
+              buttonName: "getStartedButton",
+              isBoxShadow: false,
+              borderRadius: 12,
+            ),
+          ),
+          SizedBox(height: 16,)
         ],
       ),
     );

@@ -7,9 +7,12 @@ class DottedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "   ●  $text",
-      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-    ).tr();
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 04),
+      child: Text(
+        "${"   ●  "}$text",
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+      ).tr(),
+    );
   }
 }

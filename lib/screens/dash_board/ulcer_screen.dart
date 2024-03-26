@@ -21,17 +21,19 @@ class _UlcerScreenState extends State<UlcerScreen> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
-          color: AppColors.secondary,
-          child: const Column(
-            children: [
-              BasicPlanWidget(),
-              SizedBox(
-                height: 22,
-              ),
-              PremiumPlanWidget()
-            ],
+        child: Expanded(
+          child: Container(
+            margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
+            color: AppColors.secondary,
+            child: const Column(
+              children:  [
+                BasicPlanWidget(),
+                SizedBox(
+                  height: 22,
+                ),
+                PremiumPlanWidget()
+              ],
+            ),
           ),
         ),
       ),

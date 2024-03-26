@@ -68,13 +68,9 @@ class _IntroScreenState extends State<IntroScreen> {
             itemCount: introScreenImages.length,
             itemBuilder: ((context, index) {
               final images = introScreenImages[index];
-              return Container(
-                margin: const EdgeInsets.only(
-                  left: 16,
-                  top: 84,
-                  right: 16,
-                ),
+              return Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SvgImageWidget(
                       path: "${images["image"]}",

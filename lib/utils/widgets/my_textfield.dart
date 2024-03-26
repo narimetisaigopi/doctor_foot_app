@@ -3,11 +3,11 @@ import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 class MyTextField extends StatefulWidget {
   final String hint;
   final String label;
+  final String edit;
   final double borderRadius;
   // final int maxLength;
   final Color btnColor;
@@ -20,35 +20,43 @@ class MyTextField extends StatefulWidget {
   final Widget? leadingIcon;
   final bool iconNeeded;
   final Widget? suffixIcon;
+  final Widget? trailingIcon;
   final TextEditingController textEditingController;
   final Function()? onPress;
   final Function()? onValidate;
   final TextInputType textInputType;
   final int maxLines;
   // final int minLines;
-  const MyTextField({
-    super.key,
-    required this.hint,
-    this.textButton,
-    this.textButtonNeeded = false,
-    required this.textEditingController,
-    this.bgColor = Colors.transparent,
-    this.label = "label",
-    this.maxLines = 1,
-    this.labelNeeded = true,
-    this.borderRadius = 5,
-    // this.minLines = 1,
-    // this.maxLength = 10,
-    this.btnColor = Colors.black,
-    this.iconColor = Colors.black,
-    // this.icon,
-    this.textInputType = TextInputType.text,
-    this.onPress,
-    this.onValidate,
-    this.iconNeeded = false,
-    this.leadingIcon,
-    this.suffixIcon,
-  });
+  final bool editText;
+  final String? Function(String?)? validator;
+  final AutovalidateMode? autovalidateMode;
+  const MyTextField(
+      {super.key,
+      required this.hint,
+      this.textButton,
+      this.textButtonNeeded = false,
+      required this.textEditingController,
+      this.bgColor = Colors.transparent,
+      this.label = "label",
+      this.edit = "",
+      this.maxLines = 1,
+      this.labelNeeded = true,
+      this.borderRadius = 5,
+      // this.minLines = 1,
+      // this.maxLength = 10,
+      this.btnColor = Colors.black,
+      this.iconColor = Colors.black,
+      // this.icon,
+      this.textInputType = TextInputType.text,
+      this.onPress,
+      this.onValidate,
+      this.iconNeeded = false,
+      this.leadingIcon,
+      this.trailingIcon = const Icon(Icons.arrow_forward),
+      this.editText = true,
+      this.suffixIcon,
+      this.validator,
+      this.autovalidateMode});
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
@@ -69,74 +77,68 @@ class _MyTextFieldState extends State<MyTextField> {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-        child: Text(
-          widget.label,
-          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-        ).tr(),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              widget.label,
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+            ).tr(),
+            Text(
+              widget.edit,
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+            ).tr(),
+          ],
+        ),
       ),
     );
   }
 
   Widget textFieldWidget() {
-    return Container(
-      height: 50,
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
-          border: Border.all(color: Colors.grey.shade300)),
-      child: TextFormField(
-        onTap: () {},
-
-        validator: FormBuilderValidators.compose([
-          FormBuilderValidators.required(),
-          FormBuilderValidators.numeric(errorText: 'error text'),
-          FormBuilderValidators.max(70),
-          (val) {
-            final number = int.tryParse(val!);
-            if (number == null) return null;
-            if (number < 0) return 'We cannot have a negative age';
-            return null;
-          },
-        ]),
-        // expands: true,
-        // minLines: null,
-        maxLines: widget.maxLines,
-        // maxLength: widget.maxLength,
-        keyboardType: widget.textInputType,
-        controller: widget.textEditingController,
-        inputFormatters: widget.textInputType == TextInputType.number
-            ? <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                FilteringTextInputFormatter.digitsOnly
-              ]
-            : null,
-        decoration: InputDecoration(
-            counterStyle: const TextStyle(
-              height: double.minPositive,
-            ),
-            counterText: "",
-            focusColor: AppColors.bottomSheetBackgroundColor,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-            hintText: widget.hint,
-            hintStyle: const TextStyle(
-                color: AppColors.greyTextColor,
-                fontSize: 15,
-                fontWeight: FontWeight.normal),
-            fillColor: widget.bgColor,
-            filled: true,
-            prefixIcon: widget.leadingIcon,
-            suffixIcon:
-                widget.iconNeeded ? widget.suffixIcon : const SizedBox.shrink(),
-            suffix: widget.textButtonNeeded ? widget.textButton : null,
-            border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(widget.borderRadius)),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-                borderSide: const BorderSide(color: AppColors.primary))),
-      ),
+    return TextFormField(
+    
+      onTap: () {},
+      validator: widget.validator,
+      autovalidateMode: widget.autovalidateMode,
+      // expands: true,
+      // minLines: null,
+      maxLines: widget.maxLines,
+      // maxLength: widget.maxLength,
+      keyboardType: widget.textInputType,
+      controller: widget.textEditingController,
+      inputFormatters: widget.textInputType == TextInputType.number
+          ? <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              FilteringTextInputFormatter.digitsOnly
+            ]
+          : null,
+      decoration: InputDecoration(
+        
+          counterStyle: const TextStyle(
+            height: double.minPositive,
+          ),
+          counterText: "",
+          focusColor: AppColors.bottomSheetBackgroundColor,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+          hintText: widget.hint,
+          hintStyle: const TextStyle(
+              color: AppColors.greyTextColor,
+              fontSize: 15,
+              fontWeight: FontWeight.normal),
+          fillColor: widget.bgColor,
+          filled: true,
+          prefixIcon: widget.leadingIcon,
+          suffixIcon:
+              widget.iconNeeded ? widget.suffixIcon : const SizedBox.shrink(),
+          suffix: widget.textButtonNeeded ? widget.textButton : null,
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(widget.borderRadius)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: const BorderSide(color: AppColors.primary))),
     );
   }
 }
