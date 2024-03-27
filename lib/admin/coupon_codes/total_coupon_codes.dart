@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 
 import '../../utils/widgets/my_switch.dart';
 
-class AllCoupons extends StatefulWidget {
-  const AllCoupons({super.key});
+class TotalCouponCodes extends StatefulWidget {
+  const TotalCouponCodes({super.key});
 
   @override
-  State<AllCoupons> createState() => _AllCouponsState();
+  State<TotalCouponCodes> createState() => _TotalCouponCodesState();
 }
 
-class _AllCouponsState extends State<AllCoupons> {
+class _TotalCouponCodesState extends State<TotalCouponCodes> {
   var docId = couponCodesCollectionReference.doc().id;
   bool isExpanded = false;
   @override

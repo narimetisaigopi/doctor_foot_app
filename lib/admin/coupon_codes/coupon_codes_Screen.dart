@@ -37,7 +37,7 @@ class _CouponCodesScreenState extends State<CouponCodesScreen> {
         body: const TabBarView(
           children: [
             CreateCouponCode(),
-            AllCoupons(),
+            TotalCouponCodes(),
             ExpireCoupons(),
           ],
         ),
