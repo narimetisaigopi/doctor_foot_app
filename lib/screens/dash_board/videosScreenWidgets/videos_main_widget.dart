@@ -14,35 +14,27 @@ class VideosMainWidget extends StatefulWidget {
 class _VideosMainWidgetState extends State<VideosMainWidget> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return GestureDetector(
       onTap: () {},
       child: Stack(children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-            height: size.height * 0.21,
-            width: double.infinity,
-            child: SizedBox(
-              child: SvgImageWidget(
-                path: widget.image,
-                height: size.height * 0.2,
-                width: size.width * 0.8,
-              ),
+        Center(
+          child: SizedBox(
+            child: SvgImageWidget(
+              path: widget.image,
+              height: 170,
+              width: double.infinity,
             ),
           ),
         ),
         Positioned(
-          top: 26,
-          left: 26,
+          top: 16,
+          left: 16,
           child: Column(
             children: [
               const Text(
                 "gettingMedisineText",
                 style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 18,
                     fontWeight: FontWeight.w700,
                     color: AppColors.textWhiteColor),
               ).tr(),
@@ -54,7 +46,7 @@ class _VideosMainWidgetState extends State<VideosMainWidget> {
                 width: 120,
                 decoration: BoxDecoration(
                     color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(16)),
+                    borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: const Text(
                     "watchNowText",

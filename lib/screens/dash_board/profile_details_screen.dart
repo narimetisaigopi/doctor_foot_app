@@ -1,13 +1,13 @@
 import 'package:drfootapp/admin/admin_login.dart';
-import 'package:drfootapp/admin/admin_panel.dart';
-import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/screens/dash_board/prifile_details/custom_listTile_widget.dart';
+import 'package:drfootapp/screens/dash_board/profile/myProfile_screen.dart';
 import 'package:drfootapp/screens/translation_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/utility.dart';
+
 import 'package:drfootapp/utils/widgets/custom_sizedBox_widget.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,8 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   text: "myProfile",
                   leadingIcon: Icons.person,
                   onPressed: () {
-                    Utility.myBottomSheet(context,
-                        heightFactor: 0.7, widget: const SignUpScreen());
+                    Get.to(const MyProfileScreen());
                   }),
               customDivider,
               CustomListTileWidget(
@@ -118,6 +117,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               customDivider,
               CustomListTileWidget(
                   text: "contactus", leadingIcon: Icons.call, onPressed: () {}),
+              customDivider,
+              CustomListTileWidget(
+                  text: "logout", leadingIcon: Icons.logout, onPressed: () {}),
               customDivider,
               CustomListTileWidget(
                   text: "logout", leadingIcon: Icons.logout, onPressed: () {}),

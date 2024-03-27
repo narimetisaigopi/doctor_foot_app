@@ -143,4 +143,8 @@ class AuthenticationController extends GetxController {
       log(e.toString());
     }
   }
+
+  TextEditingController bloodGroupController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
 }

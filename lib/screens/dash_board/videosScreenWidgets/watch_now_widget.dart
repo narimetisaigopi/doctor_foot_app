@@ -16,29 +16,28 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Container(
-      height: size.height * 0.24,
+      height: 225,
+      width: double.infinity,
       color: AppColors.videoImageBgColor,
       child: Column(
         children: [
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
-          SizedBox(
-            height: size.height * 0.2,
-            width: double.infinity,
-            child: PageView.builder(
-                controller: controller,
-                scrollDirection: Axis.horizontal,
-                itemCount: videosImageList.length,
-                itemBuilder: (context, index) {
-                  final videosImageItem = videosImageList[index];
-                  return VideosMainWidget(
-                    image: videosImageItem.image,
-                  );
-                }),
+          Expanded(
+            child: SizedBox(
+              child: PageView.builder(
+                  controller: controller,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: videosImageList.length,
+                  itemBuilder: (context, index) {
+                    final videosImageItem = videosImageList[index];
+                    return VideosMainWidget(
+                      image: videosImageItem.image,
+                    );
+                  }),
+            ),
           ),
           SmoothPageIndicator(
             controller: controller,
@@ -48,6 +47,9 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
               dotWidth: 08,
             ),
           ),
+          const SizedBox(
+            height: 08,
+          )
         ],
       ),
     );
