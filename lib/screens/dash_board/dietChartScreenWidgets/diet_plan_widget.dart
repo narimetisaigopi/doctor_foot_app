@@ -1,10 +1,10 @@
-import 'package:doctor_foot_app/models/dietChartModels/afternoon_dietChart_model.dart';
-import 'package:doctor_foot_app/models/dietChartModels/evining_dietChart_model.dart';
-import 'package:doctor_foot_app/models/dietChartModels/morning_dietChart_model.dart';
-import 'package:doctor_foot_app/screens/dash_board/dietChartScreenWidgets/diet_widget.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/models/dietChartModels/afternoon_dietChart_model.dart';
+import 'package:drfootapp/models/dietChartModels/evining_dietChart_model.dart';
+import 'package:drfootapp/models/dietChartModels/morning_dietChart_model.dart';
+import 'package:drfootapp/screens/dash_board/dietChartScreenWidgets/diet_widget.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Row(
+            Row(
               children: [
                 const SvgImageWidget(
                   path: AssetsConstants.sun_morning,
@@ -45,7 +45,7 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
                   width: 8,
                 ),
                 const Text(
-                "morningText",
+                  "morningText",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                 ).tr(),
               ],
@@ -74,7 +74,7 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
                         timeText: morningDietItem.textTime);
                   }),
             ),
-             Row(
+            Row(
               children: [
                 const SvgImageWidget(
                   path: AssetsConstants.sun_afternoon,
@@ -112,7 +112,7 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
                         timeText: afternoonDietItem.textTime);
                   }),
             ),
-             Row(
+            Row(
               children: [
                 const SvgImageWidget(
                   path: AssetsConstants.sun_evining,

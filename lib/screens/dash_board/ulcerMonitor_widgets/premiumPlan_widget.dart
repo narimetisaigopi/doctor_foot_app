@@ -1,7 +1,9 @@
-import 'package:doctor_foot_app/models/ulcer_monitor_models/premium_model.dart';
-import 'package:doctor_foot_app/screens/dash_board/ulcerMonitor_widgets/dotted_widget.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
+import 'package:drfootapp/models/ulcer_monitor_models/premium_model.dart';
+import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/custom_ulcer_button.dart';
+import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/dotted_widget.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -15,7 +17,6 @@ class PremiumPlanWidget extends StatefulWidget {
 class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: 360,
       width: double.infinity,
@@ -72,7 +73,9 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
               borderRadius: 12,
             ),
           ),
-          SizedBox(height: 16,)
+          SizedBox(
+            height: 16,
+          )
         ],
       ),
     );

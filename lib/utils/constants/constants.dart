@@ -1,5 +1,5 @@
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
 
 List<String> addressLabel = ["Home", "Work", "Family & friends", "Others"];
 
@@ -16,6 +16,12 @@ List<String> names = [
 //   Strings.freePlan2,
 //   Strings.freePlan3,
 // ];
+
+final List<String> options = [
+  'Total Users',
+  'Coupon Codes Screen',
+  'Home Dressing Services'
+];
 
 const introScreenImages = [
   {

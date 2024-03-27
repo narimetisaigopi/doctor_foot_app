@@ -21,7 +21,7 @@
   "mobileTextFieldLabel": "మొబైల్ నంబర్",
   "mobileTextFieldFocusHint": "8888888888",
   "gender": "లింగం",
-  "language": "భాష",
+  "languages": "భాష",
 
   "What is your age?": "మీ పరిచయం ఏమిటి?",
   "BMI (Body Mass Index)": "BMI (శరీర దృఢత)",

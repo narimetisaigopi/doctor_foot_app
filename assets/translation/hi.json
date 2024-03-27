@@ -21,7 +21,7 @@
   "mobileTextFieldLabel": "मोबाइल नंबर",
   "mobileTextFieldFocusHint": "8888888888",
   "gender": "लिंग",
-  "language": "भाषा",
+  "languages": "भाषा",
 
   "What is your age?": "आपकी आयु क्या है?",
   "BMI (Body Mass Index)": "बीएमआई (शारीरिक मास सूची)",

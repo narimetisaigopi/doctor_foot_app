@@ -1,18 +1,18 @@
 // ignore_for_file: unnecessary_import
-import 'package:doctor_foot_app/controllers/address_controller.dart';
-import 'package:doctor_foot_app/controllers/coupon_code_controller.dart';
-import 'package:doctor_foot_app/controllers/home_dressing_controller.dart';
-import 'package:doctor_foot_app/controllers/payment_controller.dart';
+import 'package:drfootapp/controllers/address_controller.dart';
+import 'package:drfootapp/controllers/coupon_code_controller.dart';
+import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/controllers/payment_controller.dart';
 
-import 'package:doctor_foot_app/screens/home_dressing_services/available_offers.dart';
+import 'package:drfootapp/screens/home_dressing_services/available_offers.dart';
 
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
-import 'package:doctor_foot_app/utils/widgets/home_dressing_service_widget.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/home_dressing_service_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -107,6 +107,9 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                       return HomeDressingServiceWidget(
                         homeDressingModel: homeDressingService,
                         onPress: () {
+                          couponCodeController.selectedCouponCodeModel == null
+                              ? Get.back()
+                              : Null;
                           homeDressingController.addOrRemoveFromList(
                               homeDressingModel: homeDressingService);
                         },
@@ -120,9 +123,9 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                   height: 20,
                 ),
                 Container(
+                  height: 200,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  height: 170,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -143,14 +146,29 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                       const SizedBox(
                         height: 10,
                       ),
-                      paymentText(),
+                      paymentText(
+                        amount: homeDressingController.finalAmount,
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
-                      paymentText(defaultText: "Discount amount ", amount: 0),
+                      paymentText(
+                        defaultText: "Discount amount ",
+                        amount: homeDressingController.discountAmount,
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
+                      couponCodeController.selectedCouponCodeModel == null
+                          ? const SizedBox.shrink()
+                          : paymentText(
+                              defaultText: "Coupon Applied",
+                              textColor: Colors.green,
+                              amount: double.parse(
+                                couponCodeController
+                                    .selectedCouponCodeModel!.maxDiscount
+                                    .toString(),
+                              )),
                       const Expanded(
                           child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -161,7 +179,12 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                       ),
                       paymentText(
                         defaultText: "Pay you",
-                        amount: 0,
+                        amount:
+                            couponCodeController.selectedCouponCodeModel == null
+                                ? homeDressingController.payableAmount
+                                : homeDressingController.payableAmount -
+                                    couponCodeController
+                                        .selectedCouponCodeModel!.maxDiscount,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
@@ -298,7 +321,8 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                   height: 60,
                 ),
                 CustomButton(
-                  buttonName: "Make Payment | Rs.1500",
+                  buttonName:
+                      "Make Payment | ₹ ${homeDressingController.finalAmount}",
                   onPress: () {
                     paymentController.startPayment();
                   },
@@ -318,6 +342,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
       {String defaultText = "Service total",
       double amount = 1500,
       FontWeight fontWeight = FontWeight.w500,
+      Color textColor = Colors.black,
       double fontSize = 14,
       TextStyle textStyle = const TextStyle()}) {
     return Row(
@@ -325,11 +350,13 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
       children: [
         Text(
           defaultText,
-          style: TextStyle(fontWeight: fontWeight, fontSize: fontSize),
+          style: TextStyle(
+              fontWeight: fontWeight, fontSize: fontSize, color: textColor),
         ).tr(),
         Text(
           "₹${amount.round()}",
-          style: TextStyle(fontWeight: fontWeight, fontSize: fontSize),
+          style: TextStyle(
+              fontWeight: fontWeight, fontSize: fontSize, color: textColor),
         )
       ],
     );
@@ -368,11 +395,9 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      // containerText,
                       couponCodeController.selectedCouponCodeModel == null
                           ? containerText
-                          : couponCodeController
-                              .selectedCouponCodeModel!.couponTitle,
+                          : "${couponCodeController.selectedCouponCodeModel!.couponCode}% OFF",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -389,6 +414,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                       : IconButton(
                           onPressed: () {
                             couponCodeController.removeSelectedCoupon();
+                            setState(() {});
                           },
                           icon: const Icon(FontAwesomeIcons.remove,
                               color: Colors.green))
