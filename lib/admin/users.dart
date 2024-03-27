@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_foot_app/models/user_model.dart';
-import 'package:doctor_foot_app/utils/constants/firebase_constatns.dart';
+import 'package:drfootapp/models/user_model.dart';
+import 'package:drfootapp/utils/constants/firebase_constatns.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 
@@ -12,7 +12,7 @@ class Users extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Users List"),
-        centerTitle: true,
+        //centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: usersCollectionReference.orderBy('timestamp').snapshots(),
@@ -39,7 +39,7 @@ class Users extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(8),
                   boxShadow: [
                     const BoxShadow(
                       color: Colors.transparent,

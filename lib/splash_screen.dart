@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:doctor_foot_app/admin/admin_login.dart';
-import 'package:doctor_foot_app/screens/intro_screen.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:drfootapp/admin/admin_login.dart';
+import 'package:drfootapp/screens/intro_screen.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -34,15 +34,15 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: AppColors.secondary,
       body: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 65,
-                  width: double.infinity,
-                  child: SvgPicture.asset(AssetsConstants.logo),
-                ),
-              ),
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 65,
+            width: double.infinity,
+            child: SvgPicture.asset(AssetsConstants.logo),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,7 +1,7 @@
-import 'package:doctor_foot_app/controllers/authentication_controller.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
-import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
+import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';

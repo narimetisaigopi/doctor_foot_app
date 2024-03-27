@@ -3,12 +3,12 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_foot_app/admin/admin_panel.dart';
-import 'package:doctor_foot_app/main.dart';
-import 'package:doctor_foot_app/models/user_model.dart';
-import 'package:doctor_foot_app/screens/dash_board/dash_board_screen.dart';
-import 'package:doctor_foot_app/utils/constants/firebase_constatns.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:drfootapp/admin/admin_panel.dart';
+import 'package:drfootapp/main.dart';
+import 'package:drfootapp/models/user_model.dart';
+import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
+import 'package:drfootapp/utils/constants/firebase_constatns.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -122,12 +122,12 @@ class AuthenticationController extends GetxController {
 
     try {
       UserModel userModel = UserModel();
-      // userModel.userName = userNameController.text;
+      userModel.userName = userNameController.text;
       userModel.mobileNumber = user!.phoneNumber!;
       userModel.docId = getCurrentUserDocRef().id;
-      // userModel.dateOfBirth = dateOfBirthController.text;
-      // userModel.gender = genderController.text;
-      // userModel.timestamp = DateTime.now() as Timestamp?;
+      userModel.dateOfBirth = dateOfBirthController.text;
+      userModel.gender = genderController.text;
+      userModel.timestamp = DateTime.now() as Timestamp?;
       await getCurrentUserDocRef().set(userModel.toMap());
     } catch (e) {
       log(e.toString());

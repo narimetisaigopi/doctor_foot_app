@@ -1,5 +1,5 @@
-import 'package:doctor_foot_app/models/dietChartModels/weekdays_model.dart';
-import 'package:doctor_foot_app/screens/dash_board/dietChartScreenWidgets/days_widget.dart';
+import 'package:drfootapp/models/dietChartModels/weekdays_model.dart';
+import 'package:drfootapp/screens/dash_board/dietChartScreenWidgets/days_widget.dart';
 import 'package:flutter/material.dart';
 
 class WeekDaysWidget extends StatefulWidget {

@@ -1,4 +1,4 @@
-// import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+// import 'package:drfootapp/utils/constants/string_constants.dart';
 
 // class CouponCodeModel {
 //   double offerPercentage;

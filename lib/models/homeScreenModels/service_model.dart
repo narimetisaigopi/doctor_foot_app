@@ -1,4 +1,4 @@
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 
 class ServicesModel {
   String image;

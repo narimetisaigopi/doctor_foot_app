@@ -1,9 +1,12 @@
-import 'package:doctor_foot_app/controllers/home_dressing_controller.dart';
-import 'package:doctor_foot_app/models/home_dressing/c_model.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/widgets/available_offers_widget.dart';
-import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
+import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/models/coupon_code_model.dart';
+import 'package:drfootapp/models/home_dressing/c_model.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/firebase_constatns.dart';
+import 'package:drfootapp/utils/widgets/available_offers_widget.dart';
+import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -74,6 +77,28 @@ class _AvailableOffersState extends State<AvailableOffers> {
               const SizedBox(
                 height: 20,
               ),
+              Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: FirestorePagination(
+                    onEmpty: const Center(
+                      child: Text("No couponCode available"),
+                    ),
+                    viewType: ViewType.list,
+                    bottomLoader: const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.blue,
+                      ),
+                    ),
+                    query: couponCodesCollectionReference,
+                    itemBuilder: (context, documentSnapshots, index) {
+                      CouponCodeModel couponCodeModel =
+                          CouponCodeModel.fromJson(
+                              documentSnapshots.data() as Map<String, dynamic>);
+                      return AvailableOffersWidget(
+                          couponCodeModel: couponCodeModel);
+                    }),
+              )
               // SizedBox(
               //   height: MediaQuery.of(context).size.height,
               //   child: Expanded(

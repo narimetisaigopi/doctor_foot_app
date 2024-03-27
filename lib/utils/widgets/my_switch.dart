@@ -1,8 +1,8 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:doctor_foot_app/models/coupon_code_model.dart';
+import 'package:drfootapp/models/coupon_code_model.dart';
 
-import 'package:doctor_foot_app/utils/constants/firebase_constatns.dart';
+import 'package:drfootapp/utils/constants/firebase_constatns.dart';
 import 'package:flutter/material.dart';
 
 class MySwitch extends StatefulWidget {

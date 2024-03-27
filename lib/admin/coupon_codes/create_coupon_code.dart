@@ -1,10 +1,10 @@
-import 'package:doctor_foot_app/admin/admin_panel.dart';
-import 'package:doctor_foot_app/controllers/coupon_code_controller.dart';
-import 'package:doctor_foot_app/models/coupon_code_model.dart';
-import 'package:doctor_foot_app/utils/constants/firebase_constatns.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
-import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
+import 'package:drfootapp/admin/admin_panel.dart';
+import 'package:drfootapp/controllers/coupon_code_controller.dart';
+import 'package:drfootapp/models/coupon_code_model.dart';
+import 'package:drfootapp/utils/constants/firebase_constatns.dart';
+import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -57,7 +57,6 @@ class _CreateCouponCodeState extends State<CreateCouponCode> {
               const SizedBox(
                 height: 20,
               ),
-
               MyTextField(
                   label: "Coupon Description",
                   maxLength: 3,
@@ -69,7 +68,6 @@ class _CreateCouponCodeState extends State<CreateCouponCode> {
               const SizedBox(
                 height: 20,
               ),
-
               const SizedBox(
                 height: 50,
               ),
@@ -79,17 +77,6 @@ class _CreateCouponCodeState extends State<CreateCouponCode> {
                   await createCouponCode();
                 },
               )
-              // Utils().customBtn(
-              //     bgColor: Colors.amber,
-              //     tColor: Colors.white,
-              //     btnIcon: const Icon(
-              //       Icons.discount,
-              //       color: Colors.white,
-              //     ),
-              //     text: "Create Coupon",
-              //     onTap: () async {
-              //       await createCouponCode();
-              //     })
             ],
           ),
         ),
@@ -114,6 +101,8 @@ class _CreateCouponCodeState extends State<CreateCouponCode> {
               _couponCodeController.couponNameController.text;
           couponCodeModel.uids = [];
           couponCodeModel.docId = docId;
+          couponCodeModel.description =
+              _couponCodeController.couponDescriptionController.text;
           // couponCodeModel.expireDate =
           //     _couponCodeController.couponExpireDateController.text;
           couponCodeModel.maxDiscount = discount;

@@ -1,9 +1,9 @@
 // import 'dart:io';
 // import 'dart:typed_data';
 
-import 'package:doctor_foot_app/screens/dash_board/dash_board_screen.dart';
-import 'package:doctor_foot_app/screens/intro_screen.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
+import 'package:drfootapp/screens/intro_screen.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/gestures.dart';

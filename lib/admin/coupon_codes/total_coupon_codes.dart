@@ -1,10 +1,10 @@
-import 'package:doctor_foot_app/models/coupon_code_model.dart';
-import 'package:doctor_foot_app/models/home_dressing/c_model.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/firebase_constatns.dart';
-import 'package:doctor_foot_app/utils/widgets/my_switch.dart';
+import 'package:drfootapp/models/coupon_code_model.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/firebase_constatns.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/widgets/my_switch.dart';
 
 class AllCoupons extends StatefulWidget {
   const AllCoupons({super.key});

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_foot_app/models/coupon_code_model.dart';
-import 'package:doctor_foot_app/utils/constants/firebase_constatns.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:drfootapp/models/coupon_code_model.dart';
+import 'package:drfootapp/utils/constants/firebase_constatns.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
