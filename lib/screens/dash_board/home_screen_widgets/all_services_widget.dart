@@ -22,7 +22,7 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 16, right: 16),
-      height: MediaQuery.of(context).size.height * 0.56,
+      height: 515,
       width: double.infinity,
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.secondary),

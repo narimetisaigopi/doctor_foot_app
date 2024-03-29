@@ -4,6 +4,7 @@ import 'package:doctor_foot_app/screens/dash_board/profile_details_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/ulcer_screen.dart';
 import 'package:doctor_foot_app/screens/dash_board/videos_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.home))
                 : const Icon(Icons.home),
-            label: "homeText",
+            label: "homeText".tr(),
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 1
@@ -69,7 +70,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.food_bank))
                 : const Icon(Icons.food_bank),
-            label: "dietChartText",
+            label: "dietChartText".tr(),
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 2
@@ -85,7 +86,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.video_call))
                 : const Icon(Icons.video_call),
-            label: "videosText",
+            label: "videosText".tr(),
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 3
@@ -101,7 +102,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.schedule))
                 : const Icon(Icons.schedule),
-            label: "ulcerMonitorText",
+            label: "ulcerMonitorText".tr(),
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 4
@@ -117,7 +118,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.person))
                 : const Icon(Icons.person),
-            label: "profile",
+            label: "profile".tr(),
           ),
         ],
       ),

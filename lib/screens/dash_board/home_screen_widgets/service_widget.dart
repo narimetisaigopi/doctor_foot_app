@@ -15,7 +15,6 @@ class ServiceWidget extends StatefulWidget {
 class _ServiceWidgetState extends State<ServiceWidget> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -32,8 +31,8 @@ class _ServiceWidgetState extends State<ServiceWidget> {
               alignment: Alignment.center,
               child: SvgImageWidget(
                 path: widget.image,
-                height: size.height * 0.172,
-                width: size.width * 0.63,
+                height: 148,
+                width: double.infinity,
               ),
             ),
           ),

@@ -28,6 +28,7 @@ class AppColors {
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);
   static const Color textBackColor = Color(0xFF3C3C3C);
+  static const Color textBlackColor = Color(0xFF535353);
   static const Color textBackThickColor = Color(0xFF101010);
 
   static const Color greyTextColor = Color(0xFFA0A0A0);

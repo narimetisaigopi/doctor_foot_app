@@ -47,7 +47,7 @@
  "introText" :
       "     Lorem Ipsum is simply \ndummy text of the printing\n  and typesetting industry.",
  "rectImageText" :
-      "Of the estimated 537 million people worldwide who have \n diabetes, 19-34% will develop an ulcer in their life time",
+      "Of the estimated 537 million people worldwide who have diabetes, 19-34% will develop an ulcer in their life time",
       "serviceText": "Services",
       "kpbColonyText" : "KPB Colony",
       "venkataNagarText": "Venkat Nagar Colony,...",
@@ -105,7 +105,8 @@
       "payments" : "Payments & Refunds",
       "orders" : "Orders",
       "contactus" : "Contact Us",
-      "logout" : "Logout"
+      "logout" : "Logout",
+      "dischargeText" : "Discharge"
 
   
 }

@@ -11,8 +11,8 @@ class HomeImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SvgImageWidget(
-          height: MediaQuery.of(context).size.height * 0.2,
+        const SvgImageWidget(
+          height: 180,
           width: double.infinity,
           path: AssetsConstants.diabetes_image,
         ),

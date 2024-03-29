@@ -1,6 +1,8 @@
+import 'package:doctor_foot_app/screens/Discharge%20Screens/update_discharge.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AppBarWidget extends StatefulWidget {
   const AppBarWidget({super.key});
@@ -61,7 +63,9 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                   size: 32,
                 ),
                 color: AppColors.searchButtonColor,
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(const UpdateDischarge());
+                },
               ),
               const SizedBox(
                 width: 5,

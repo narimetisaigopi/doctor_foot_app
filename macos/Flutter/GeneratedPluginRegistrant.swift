@@ -5,6 +5,7 @@
 import FlutterMacOS
 import Foundation
 
+import file_selector_macos
 import flutter_localization
 import geolocator_apple
 import package_info_plus
@@ -14,6 +15,7 @@ import smart_auth
 import sqflite
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+  FileSelectorPlugin.register(with: registry.registrar(forPlugin: "FileSelectorPlugin"))
   FlutterLocalizationPlugin.register(with: registry.registrar(forPlugin: "FlutterLocalizationPlugin"))
   GeolocatorPlugin.register(with: registry.registrar(forPlugin: "GeolocatorPlugin"))
   FPPPackageInfoPlusPlugin.register(with: registry.registrar(forPlugin: "FPPPackageInfoPlusPlugin"))
