@@ -1,8 +1,8 @@
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/home_image.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/all_services_widget.dart';
-import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/home_image.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/all_services_widget.dart';
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 12,
               ),
-              Padding(
+               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: const Text(
                   "patientReviewsText",

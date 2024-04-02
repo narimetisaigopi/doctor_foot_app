@@ -1,4 +1,4 @@
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class FAImageWidget extends StatefulWidget {

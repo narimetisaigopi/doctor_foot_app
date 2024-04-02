@@ -21,7 +21,7 @@ class MyProfileScreen extends StatefulWidget {
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String bloodGroupValue = "";
+  
   int selectedContainerIndex = 0;
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());

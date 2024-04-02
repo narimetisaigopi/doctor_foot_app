@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:drfootapp/models/risk_factor_model.dart';
+import 'package:doctor_foot_app/models/risk_factor_model.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 

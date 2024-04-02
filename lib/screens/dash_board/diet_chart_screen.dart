@@ -1,6 +1,6 @@
-import 'package:drfootapp/screens/dash_board/dietChartScreenWidgets/diet_plan_widget.dart';
-import 'package:drfootapp/screens/dash_board/dietChartScreenWidgets/week_days_widget.dart';
-import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/screens/dash_board/dietChartScreenWidgets/diet_plan_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/dietChartScreenWidgets/week_days_widget.dart';
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

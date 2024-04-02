@@ -1,7 +1,7 @@
-import 'package:drfootapp/controllers/translation_controller.dart';
-import 'package:drfootapp/screens/dash_board/prifile_details/custom_listTile_widget.dart';
-import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/utility.dart';
+import 'package:doctor_foot_app/controllers/translation_controller.dart';
+import 'package:doctor_foot_app/screens/dash_board/prifile_details/custom_listTile_widget.dart';
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

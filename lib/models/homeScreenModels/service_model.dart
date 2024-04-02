@@ -1,4 +1,5 @@
-import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
+import 'package:doctor_foot_app/utils/constants/string_constants.dart';
 
 class ServicesModel {
   String image;
@@ -8,12 +9,12 @@ class ServicesModel {
 }
 
 List<ServicesModel> servicesList = [
-  ServicesModel(image: AssetsConstants.foot, serviceNames: "footUlcer_text"),
+  ServicesModel(image: AssetsConstants.foot, serviceNames: Strings.footUlcerText),
   ServicesModel(
-      image: AssetsConstants.speedometer, serviceNames: "checkYourRisk_text"),
+      image: AssetsConstants.speedometer, serviceNames: Strings.checkYourRiskText),
   ServicesModel(
       image: AssetsConstants.checkup_shedule,
-      serviceNames: "checkup_schedule_text"),
+      serviceNames: Strings.checkupScheduleText),
   ServicesModel(
-      image: AssetsConstants.foot_service, serviceNames: "foot_service_text"),
+      image: AssetsConstants.foot_service, serviceNames: Strings.footServiceText),
 ];

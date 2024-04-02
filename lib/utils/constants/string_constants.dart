@@ -58,7 +58,7 @@ class Strings {
 
   /// OTP Screen Strings/////
   static const String otpString =
-      'Please enter 6 digit Code sent to your registered\n mobile number ';
+      'Please enter 6 digit Code sent to your registered\n mobile number xxxxxx7890 ';
 
   static const String verificationString = 'Verification code';
 
@@ -88,10 +88,6 @@ class Strings {
   static const String signUpText = ' Signup';
 
   static const String sendOtpText = ' Send OTP';
-
-  static const String email = ' Email Address';
-
-  static const String password = ' Password';
 
   static const String verifyOtp = 'Verify OTP';
 
@@ -192,4 +188,20 @@ class Strings {
   static const String vieWallText = 'View all';
 
   static const String languages = 'Languages';
+
+  //discharge Strings
+  static const String dischargeText = "Discharge";
+  static const String dischargeText1 = "Discharge summary is a document given by the hospital at the time of your discharge, which includes information like your diagnosis, treatment, surgeries, and the medications to be used."
+  ;
+static const String dischargeText2 = "Upload your discharge summary given by your doctor at the time of your discharge. Kindly avoid uploading any investigation reports. ";
+static const String uploadHearText = "Upload Here";
+static const String uploadText = "Upload";
+static const String submitPDFtext = "Discharge Report.pdf";
+static const String dischargeSummaryText = "Discharge Summary";
+static const String uploadedSuccessfullyText = "You uploaded successfully";
+static const String uploadYourCurrentUlcerText = "Upload your current ulcer picture";
+static const String dischargeSummaryDisText = "Lorem Ipsum is simply dummy text of the\n     printing and typesetting industry";
+static const String yourPictureHaveUploadedText = "Your Picture have uploaded";
+static const String yourResultText = "Your results will be sent to you after a through observation by experts. It may take some timeuntil then we would ask you to follow the diet required for recovery ";
+
 }

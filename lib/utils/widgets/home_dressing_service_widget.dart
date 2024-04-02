@@ -1,10 +1,8 @@
-import 'package:drfootapp/controllers/home_dressing_controller.dart';
-import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
-import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:doctor_foot_app/controllers/home_dressing_controller.dart';
+import 'package:doctor_foot_app/models/home_dressing/home_dressing_model.dart';
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 
 import 'package:flutter/material.dart';
 
@@ -52,8 +50,8 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
       width: widget.width,
       child: Row(
         children: [
-          const SvgImageWidget(
-            path: AssetsConstants.wounded_foot,
+          SvgImageWidget(
+            path: widget.homeDressingModel.image,
             height: 130,
           ),
           Expanded(
@@ -73,7 +71,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                             color: AppColors.primary),
                       ),
                       Text(
-                        widget.homeDressingModel.description,
+                        widget.homeDressingModel.textDescription,
                         style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -85,7 +83,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                     child: SizedBox(
                       width: 150,
                       child: Text(
-                        widget.homeDressingModel.textDescription,
+                        widget.homeDressingModel.description,
                         maxLines: 2,
                         //  textAlign: TextAlign.center,
                         style: const TextStyle(

@@ -2,7 +2,7 @@
 
 import 'dart:developer';
 
-import 'package:drfootapp/screens/home_dressing_services/order_successful_screen.dart';
+import 'package:doctor_foot_app/screens/home_dressing_services/order_successful_screen.dart';
 
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';

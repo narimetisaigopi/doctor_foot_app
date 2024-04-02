@@ -1,5 +1,5 @@
 // ignore_for_file: always_specify_types
-import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,13 +9,14 @@ class MyTextField extends StatefulWidget {
   final String label;
   final String edit;
   final double borderRadius;
-  final int? maxLength;
+  // final int maxLength;
   final Color btnColor;
   final Color bgColor;
   final Color iconColor;
   final bool labelNeeded;
   final bool textButtonNeeded;
   final Widget? textButton;
+  // final IconButton? icon;
   final Widget? leadingIcon;
   final bool iconNeeded;
   final Widget? suffixIcon;
@@ -25,6 +26,7 @@ class MyTextField extends StatefulWidget {
   final Function()? onValidate;
   final TextInputType textInputType;
   final int maxLines;
+  // final int minLines;
   final bool editText;
   final String? Function(String?)? validator;
   final AutovalidateMode? autovalidateMode;
@@ -40,7 +42,8 @@ class MyTextField extends StatefulWidget {
       this.maxLines = 1,
       this.labelNeeded = true,
       this.borderRadius = 5,
-      this.maxLength = 10,
+      // this.minLines = 1,
+      // this.maxLength = 10,
       this.btnColor = Colors.black,
       this.iconColor = Colors.black,
       // this.icon,
@@ -94,6 +97,7 @@ class _MyTextFieldState extends State<MyTextField> {
 
   Widget textFieldWidget() {
     return TextFormField(
+    
       onTap: () {},
       validator: widget.validator,
       autovalidateMode: widget.autovalidateMode,
@@ -110,6 +114,7 @@ class _MyTextFieldState extends State<MyTextField> {
             ]
           : null,
       decoration: InputDecoration(
+        
           counterStyle: const TextStyle(
             height: double.minPositive,
           ),

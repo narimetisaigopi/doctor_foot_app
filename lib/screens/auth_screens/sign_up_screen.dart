@@ -1,11 +1,11 @@
-import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
-import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
-import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/string_constants.dart';
-import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/custom_button.dart';
-import 'package:drfootapp/utils/widgets/my_textfield.dart';
+import 'package:doctor_foot_app/controllers/authentication_controller.dart';
+import 'package:doctor_foot_app/screens/auth_screens/otp_screen.dart';
+import 'package:doctor_foot_app/screens/auth_screens/sign_in_screen.dart';
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/utils/constants/string_constants.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
+import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -28,13 +28,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10),
         padding: const EdgeInsets.only(top: 30, bottom: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: const Text(
@@ -56,31 +55,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             MyTextField(
               label: Strings.dateOfBirthTextFieldLabel,
-              textInputType: TextInputType.number,
               hint: Strings.dateOfBirthTextFieldHint,
               textEditingController:
                   _authenticationController.dateOfBirthController,
               iconNeeded: true,
-              suffixIcon: IconButton(
-                onPressed: () async {
-                  var date = await Utility.showMyDatePicker(context);
-                  setState(() {
-                    _authenticationController.dateOfBirthController.text =
-                        date.toString();
-                  });
-                },
-                icon: const Icon(
-                  Icons.date_range_outlined,
-                  color: AppColors.primary,
-                ),
+              suffixIcon: const Icon(
+                Icons.date_range_outlined,
+                color: AppColors.primary,
               ),
-              onPress: () async {},
+              onPress: () async {
+                var date = await Utility.showMyDatePicker(context);
+                setState(() {
+                  _authenticationController.dateOfBirthController.text =
+                      date.toString();
+                });
+              },
             ),
             const SizedBox(
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: const Text(
@@ -134,11 +129,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: 10,
             ),
             MyTextField(
-              textInputType: TextInputType.number,
               label: Strings.mobileTextFieldLabel,
               hint: Strings.mobileTextFieldHint,
               textEditingController:
-                  _authenticationController.mobileNumberController,
+                  _authenticationController.dateOfBirthController,
             ),
             const SizedBox(
               height: 40,
@@ -146,7 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             CustomButton(
               buttonName: "signUpText",
               onPress: () {
-                validateForm();
+                Utility.myBottomSheet(context, widget: const OtpScreen());
               },
             ),
             const SizedBox(
@@ -177,22 +171,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     ));
-  }
-
-  validateForm() {
-    if (_authenticationController.userNameController.text.isEmpty) {
-      return Utility.toast("Enter User Name", backgroundColor: Colors.red);
-    }
-    if (_authenticationController.dateOfBirthController.text.isEmpty) {
-      return Utility.toast("Enter Date Of Birth", backgroundColor: Colors.red);
-    }
-    if (_authenticationController.genderController.text.isEmpty) {
-      return Utility.toast("Enter Gender", backgroundColor: Colors.red);
-    }
-    if (_authenticationController.mobileNumberController.text.isEmpty) {
-      return Utility.toast("Enter Mobile Number", backgroundColor: Colors.red);
-    } else {
-      Utility.myBottomSheet(context, widget: const OtpScreen());
-    }
   }
 }

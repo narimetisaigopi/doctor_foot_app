@@ -1,12 +1,10 @@
-import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
-import 'package:drfootapp/screens/risk_factor_home.dart';
+import 'package:doctor_foot_app/screens/risk_factor_home.dart';
 
-import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ValuePrivacy extends StatefulWidget {
   const ValuePrivacy({super.key});
@@ -69,7 +67,8 @@ class _ValuePrivacyState extends State<ValuePrivacy> {
               CustomButton(
                   buttonName: "acceptAndContinue",
                   onPress: () {
-                    Get.offAll(() => DashBoardScreen());
+                    Utility.myBottomSheet(context,
+                        widget: const RiskFactorHome(), heightFactor: 0.6);
                   })
             ],
           ),

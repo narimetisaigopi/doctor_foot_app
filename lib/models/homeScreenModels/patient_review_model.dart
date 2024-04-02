@@ -1,4 +1,4 @@
-import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 
 class PatientReviewModel {
   String patientImage;
@@ -7,10 +7,7 @@ class PatientReviewModel {
   String date;
 
   PatientReviewModel(
-      {this.patientImage = "",
-      this.patientName = "",
-      this.discription = "",
-      this.date = ""});
+      {this.patientImage = "", this.patientName = "", this.discription = "", this.date= ""});
 }
 
 List<PatientReviewModel> patientReviewsList = [

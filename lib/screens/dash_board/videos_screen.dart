@@ -1,7 +1,7 @@
-import 'package:drfootapp/screens/dash_board/videosScreenWidgets/daily_featured_widget.dart';
-import 'package:drfootapp/screens/dash_board/videosScreenWidgets/footAssement_widget.dart';
-import 'package:drfootapp/screens/dash_board/videosScreenWidgets/watch_now_widget.dart';
-import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:doctor_foot_app/screens/dash_board/videosScreenWidgets/daily_featured_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/videosScreenWidgets/footAssement_widget.dart';
+import 'package:doctor_foot_app/screens/dash_board/videosScreenWidgets/watch_now_widget.dart';
+import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +29,7 @@ class _VideosScreenState extends State<VideosScreen> {
                 WatchNowWidget(),
                 FootAssessmentWidget(),
                 DailyFeaturedWidget()
+                
               ],
             ),
           ),
