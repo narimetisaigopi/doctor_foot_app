@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
 import 'package:doctor_foot_app/utils/constants/string_constants.dart';
@@ -38,35 +37,35 @@ class _UploadYourCurrentUlcerState extends State<UploadYourCurrentUlcer> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(height: 30,),
-            const Column(
+             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  Strings.dischargeSummaryText,
+                const Text(
+                  "dischargeSummaryText",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: AppColors.blackBold),
-                ),
-                Text(
-                  Strings.dischargeSummaryDisText,
+                ).tr(),
+                const Text(
+                  "dischargeSummaryDisText",
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.textBackColor),
-                ),
-                SvgImageWidget(
+                      color: AppColors.textBlackColors),
+                ).tr(),
+                const SvgImageWidget(
                   height: 196,
                   width: double.infinity,
                   path: AssetsConstants.dr_consult,
                 ),
-                Text(
-                  Strings.uploadedSuccessfullyText,
+                const Text(
+                  "uploadedSuccessfullyText",
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w700,
                       color: AppColors.blackBold),
-                ),
+                ).tr(),
               ],
             ),
             Center(
@@ -90,8 +89,6 @@ class _UploadYourCurrentUlcerState extends State<UploadYourCurrentUlcer> {
     var selectedImage;
     selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
     if (xFile != null) {
-      // log("Image picked ${xFile?.path}");
-     
       setState(() {
         xFile = selectedImage;
       });

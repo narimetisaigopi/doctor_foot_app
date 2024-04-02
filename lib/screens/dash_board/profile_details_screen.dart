@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 "profileName",
                 style: TextStyle(
                   fontSize: 18,
-                  color: AppColors.textBackColor,
+                  color: AppColors.textBlackColors,
                   fontWeight: FontWeight.w700,
                 ),
               ).tr(),
@@ -63,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 "regd",
                 style: TextStyle(
                   fontSize: 18,
-                  color: AppColors.textBackColor,
+                  color: AppColors.textBlackColors,
                   fontWeight: FontWeight.w700,
                 ),
               ).tr(),

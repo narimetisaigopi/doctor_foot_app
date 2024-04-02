@@ -14,7 +14,6 @@ class FileUploadScreen extends StatefulWidget {
 }
 
 class _FileUploadScreenState extends State<FileUploadScreen> {
-  TextEditingController uploadController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,36 +39,36 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Column(
+             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Discharge Summary",
+                const Text(
+                    "dischargeSummaryText",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: AppColors.blackBold),
-                ),
-                SizedBox(
+                ).tr(),
+                const SizedBox(
                   height: 8,
                 ),
-                Text(
-                  Strings.dischargeText1,
+                const Text(
+                  "dischargeText1",
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: AppColors.textBlackColor),
-                ),
-                SizedBox(
+                ).tr(),
+                const SizedBox(
                   height: 16,
                 ),
-                Text(
-                  Strings.dischargeText2,
+                const Text(
+                  "dischargeText2",
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: AppColors.textBlackColor),
-                ),
+                ).tr(),
               ],
             ),
             Column(

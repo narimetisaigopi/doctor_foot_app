@@ -34,7 +34,7 @@ class _CustomListTileWidgetState extends State<CustomListTileWidget> {
           widget.text,
           style: const TextStyle(
             fontSize: 16,
-            color: AppColors.textBackColor,
+            color: AppColors.textBlackColors,
             fontWeight: FontWeight.w500,
           ),
         ).tr(),

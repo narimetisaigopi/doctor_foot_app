@@ -69,7 +69,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
-                color: AppColors.textBackColor),
+                color: AppColors.textBlackColors),
           ).tr(),
           const SizedBox(
             height: 12,

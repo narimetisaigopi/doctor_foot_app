@@ -6,14 +6,14 @@ import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class UploadedImageScreen extends StatefulWidget {
-  const UploadedImageScreen({super.key});
+class UploadImageScreen extends StatefulWidget {
+  const UploadImageScreen({super.key});
 
   @override
-  State<UploadedImageScreen> createState() => _UploadedImageScreenState();
+  State<UploadImageScreen> createState() => _UploadImageScreenState();
 }
 
-class _UploadedImageScreenState extends State<UploadedImageScreen> {
+class _UploadImageScreenState extends State<UploadImageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,42 +30,42 @@ class _UploadedImageScreenState extends State<UploadedImageScreen> {
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
-        child: const Column(
+        child:  Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  Strings.dischargeSummaryText,
+                const Text(
+                  "dischargeSummaryText",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: AppColors.blackBold),
-                ),
-                Text(
-                  Strings.yourResultText,
+                ).tr(),
+                const Text(
+               "yourResultText",
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.textBackColor),
-                ),
-                SvgImageWidget(
+                      color: AppColors.textBlackColors),
+                ).tr(),
+                const SvgImageWidget(
                   height: 196,
                   width: double.infinity,
                   path: AssetsConstants.dr_consult,
                 ),
-                Text(
-                  Strings.yourPictureHaveUploadedText,
+                const Text(
+                  "yourPictureHaveUploadedText",
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w700,
                       color: AppColors.blackBold),
-                ),
+                ).tr(),
               ],
             ),
-            Center(
+            const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

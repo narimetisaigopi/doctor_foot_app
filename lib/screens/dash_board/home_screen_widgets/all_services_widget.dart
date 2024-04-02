@@ -63,14 +63,14 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                         switch (index) {
                           case 0:
                             Get.to(() => const HomeDressingServices());
-
+    
                             break;
                           case 1:
                             Utility.myBottomSheet(context,
                                 heightFactor: 0.7,
                                 widget: const RiskFactorHome());
                             break;
-
+    
                           default:
                             break;
                         }

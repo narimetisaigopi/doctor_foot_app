@@ -10,4 +10,8 @@ class AuthenticationController extends GetxController {
   TextEditingController bloodGroupController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
+    TextEditingController uploadController = TextEditingController();
+    
+String bloodGroupValue = "";
+
 }

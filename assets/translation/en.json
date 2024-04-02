@@ -106,7 +106,16 @@
       "orders" : "Orders",
       "contactus" : "Contact Us",
       "logout" : "Logout",
-      "dischargeText" : "Discharge"
+      "dischargeText" : "Discharge",
+      "dischargeSummaryText" :"Discharge Summary",
+      "dischargeText1" : "Discharge summary is a document given by the hospital at the time of your discharge, which includes information like your diagnosis, treatment, surgeries, and the medications to be used.",
+      "dischargeText2" : "Upload your discharge summary given by your doctor at the time of your discharge. Kindly avoid uploading any investigation reports. ",
+      "uploadText" : "Upload",
+      "dischargeSummaryDisText" : "Lorem Ipsum is simply dummy text of the\n     printing and typesetting industry",
+      "uploadedSuccessfullyText" : "You uploaded successfully",
+      "yourResultText" : "Your results will be sent to you after a through observation by experts. It may take some timeuntil then we would ask you to follow the diet required for recovery",
+      "yourPictureHaveUploadedText" : "Your Picture have uploaded"
+      
 
   
 }

@@ -32,7 +32,7 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
               "premiumPlanText",
               style: TextStyle(
                   fontSize: 18,
-                  color: AppColors.textBackColor,
+                  color: AppColors.textBlackColors,
                   fontWeight: FontWeight.w700),
             ).tr(),
           ),

@@ -33,7 +33,7 @@ class _BasicPlanWidgetState extends State<BasicPlanWidget> {
               "basicPlanText",
               style: TextStyle(
                   fontSize: 18,
-                  color: AppColors.textBackColor,
+                  color: AppColors.textBlackColors,
                   fontWeight: FontWeight.w700),
             ).tr(),
           ),

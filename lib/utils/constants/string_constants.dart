@@ -191,7 +191,8 @@ class Strings {
 
   //discharge Strings
   static const String dischargeText = "Discharge";
-  static const String dischargeText1 = "Discharge summary is a document given by the hospital at the time of your discharge, which includes information like your diagnosis, treatment, surgeries, and the medications to be used.";
+  static const String dischargeText1 = "Discharge summary is a document given by the hospital at the time of your discharge, which includes information like your diagnosis, treatment, surgeries, and the medications to be used."
+  ;
 static const String dischargeText2 = "Upload your discharge summary given by your doctor at the time of your discharge. Kindly avoid uploading any investigation reports. ";
 static const String uploadHearText = "Upload Here";
 static const String uploadText = "Upload";
