@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 
+import 'package:drfootapp/admin/create_home_dressing_services.dart';
 import 'package:drfootapp/controllers/home_dressing_controller.dart';
-import 'package:drfootapp/models/homeScreenModels/service_model.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/screens/home_dressing_services/home_dressing_payment.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -11,13 +11,13 @@ import 'package:drfootapp/utils/widgets/home_dressing_service_widget.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 class HomeDressingServices extends StatefulWidget {
-  const HomeDressingServices({super.key});
+  final bool isAdmin;
+  const HomeDressingServices({super.key, this.isAdmin = false});
 
   @override
   State<HomeDressingServices> createState() => _HomeDressingServicesState();
@@ -66,11 +66,13 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const SvgImageWidget(
-                path: AssetsConstants.home_dressing_cover_img,
-                height: 200,
-                width: double.infinity,
-              ),
+              widget.isAdmin
+                  ? const SizedBox.shrink()
+                  : const SvgImageWidget(
+                      path: AssetsConstants.home_dressing_cover_img,
+                      height: 200,
+                      width: double.infinity,
+                    ),
               Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
@@ -82,15 +84,26 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                           HomeDressingModel.fromJson(
                               documentSnapshots.data() as Map<String, dynamic>);
 
-                      return HomeDressingServiceWidget(
-                        homeDressingModel: homeDressingModel,
-                        onPress: () {
-                          print(homeDressingController
-                              .homeDressingServicesAddedList.length);
-                          homeDressingController.addOrRemoveFromList(
-                            homeDressingModel: homeDressingModel,
-                          );
+                      return InkWell(
+                        onTap: () {
+                          print("CreateHomeDressingServices");
+                          widget.isAdmin
+                              ? Get.to(() => CreateHomeDressingServices(
+                                    isAdmin: true,
+                                    homeDressingModel: homeDressingModel,
+                                  ))
+                              : null;
                         },
+                        child: HomeDressingServiceWidget(
+                          homeDressingModel: homeDressingModel,
+                          onPress: () {
+                            print(homeDressingController
+                                .homeDressingServicesAddedList.length);
+                            homeDressingController.addOrRemoveFromList(
+                              homeDressingModel: homeDressingModel,
+                            );
+                          },
+                        ),
                       );
                     },
                   )),

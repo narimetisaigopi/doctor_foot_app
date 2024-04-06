@@ -1,9 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:drfootapp/admin/coupon_codes/coupon_codes_Screen.dart';
-import 'package:drfootapp/admin/home_dressing_services.dart';
+import 'package:drfootapp/admin/create_home_dressing_services.dart';
+import 'package:drfootapp/admin/admin_home_dressing_services.dart';
+import 'package:drfootapp/admin/total_orders.dart';
 import 'package:drfootapp/admin/users.dart';
-import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -105,8 +106,10 @@ class _AdminPanelState extends State<AdminPanel> {
               : _selectedIndex == 1
                   ? const CouponCodesScreen()
                   : _selectedIndex == 2
-                      ? const CreateHomeDressingServices()
-                      : Container(),
+                      ? const AdminHomeDressingServices()
+                      : _selectedIndex == 3
+                          ? const TotalOrders()
+                          : Container(),
         ),
       ],
     );

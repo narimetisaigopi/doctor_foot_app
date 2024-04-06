@@ -1,6 +1,5 @@
 import 'package:drfootapp/controllers/home_dressing_controller.dart';
 import 'package:drfootapp/models/coupon_code_model.dart';
-import 'package:drfootapp/models/home_dressing/c_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constatns.dart';
 import 'package:drfootapp/utils/widgets/available_offers_widget.dart';

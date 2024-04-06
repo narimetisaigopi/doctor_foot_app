@@ -4,7 +4,6 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/admin/admin_panel.dart';
-import 'package:drfootapp/main.dart';
 import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/firebase_constatns.dart';

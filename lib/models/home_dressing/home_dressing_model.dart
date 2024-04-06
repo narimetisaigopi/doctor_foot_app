@@ -1,6 +1,3 @@
-import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/constants/string_constants.dart';
-
 class HomeDressingModel {
   String image;
   String docId;
@@ -8,13 +5,13 @@ class HomeDressingModel {
   double newPrice;
   double oldPrice;
   String title;
-  String description;
+  String duration;
   String textDescription;
 
   HomeDressingModel({
     this.image = "",
     this.title = "",
-    this.description = "",
+    this.duration = "",
     this.docId = "",
     this.uId = "",
     this.newPrice = 0.0,
@@ -28,7 +25,7 @@ class HomeDressingModel {
       'docId': docId,
       'uId': uId,
       'title': title,
-      'description': description,
+      'duration': duration,
       'newPrice': newPrice,
       'oldPrice': oldPrice,
       'textDescription': textDescription,
@@ -43,34 +40,8 @@ class HomeDressingModel {
       title: map['title'] ?? "",
       newPrice: (map['newPrice'] ?? 0).toDouble(),
       oldPrice: (map['oldPrice'] ?? 0).toDouble(),
-      description: map['description'] ?? "",
+      duration: map['duration'] ?? "",
       textDescription: map['textDescription'] ?? "",
     );
   }
 }
-// List<HomeDressingModel> homeDressingServicesList = [
-//   HomeDressingModel(
-//       image: AssetsConstants.wounded_foot,
-//       title: Strings.small,
-//       description: Strings.home_dressing_description,
-//       id: 1,
-//       newPrice: 800,
-//       oldPrice: 0,
-//       textDescription: "1 Day"),
-//   HomeDressingModel(
-//       image: AssetsConstants.wounded_foot,
-//       title: Strings.medium,
-//       description: Strings.home_dressing_description,
-//       id: 2,
-//       newPrice: 1360,
-//       oldPrice: 1600,
-//       textDescription: "2 Day"),
-//   HomeDressingModel(
-//       image: AssetsConstants.wounded_foot,
-//       title: Strings.small,
-//       description: Strings.home_dressing_description,
-//       id: 3,
-//       newPrice: 2800,
-//       oldPrice: 4000,
-//       textDescription: "5 Day"),
-// ];

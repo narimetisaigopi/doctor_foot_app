@@ -82,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   }),
               customDivider,
               CustomListTileWidget(
-                  text: "Admin",
+                  text: "Addresses",
                   leadingIcon: Icons.person,
                   onPressed: () {
                     Get.to(() => const AdminLogin());

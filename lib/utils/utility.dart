@@ -31,8 +31,18 @@ class Utility {
       title: Text(title),
       content: Text(content),
       actions: [
-        TextButton(onPressed: no, child: const Text("Yes")),
-        TextButton(onPressed: yes, child: const Text("No"))
+        TextButton(
+            onPressed: no,
+            child: const Text(
+              "No",
+              style: TextStyle(color: Colors.black),
+            )),
+        TextButton(
+            onPressed: yes,
+            child: const Text(
+              "Yes",
+              style: TextStyle(color: Colors.red),
+            ))
       ],
     );
 

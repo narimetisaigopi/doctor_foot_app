@@ -10,6 +10,9 @@ CollectionReference couponCodesCollectionReference =
 CollectionReference homeDressingServicesCollectionReference =
     FirebaseFirestore.instance.collection("home_dressing_services");
 
+CollectionReference addressesCollectionReference =
+    FirebaseFirestore.instance.collection("addresses");
+
 final List<String> adminsList = [
   "bandigowtham6@gmail.com",
 ];

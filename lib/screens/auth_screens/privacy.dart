@@ -69,7 +69,7 @@ class _ValuePrivacyState extends State<ValuePrivacy> {
               CustomButton(
                   buttonName: "acceptAndContinue",
                   onPress: () {
-                    Get.offAll(() => DashBoardScreen());
+                    Get.offAll(() => const DashBoardScreen());
                   })
             ],
           ),

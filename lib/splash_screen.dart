@@ -1,11 +1,7 @@
 import 'dart:async';
-
-import 'package:drfootapp/admin/admin_login.dart';
-import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

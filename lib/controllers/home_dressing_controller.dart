@@ -9,13 +9,16 @@ import 'package:get/get.dart';
 
 class HomeDressingController extends GetxController {
   final TextEditingController serviceTitleController = TextEditingController();
-  final TextEditingController serviceDaysController = TextEditingController();
+  final TextEditingController serviceDurationController =
+      TextEditingController();
   final TextEditingController serviceDescriptionController =
       TextEditingController();
   final TextEditingController serviceOldPriceController =
       TextEditingController();
   final TextEditingController serviceNewPriceController =
       TextEditingController();
+
+  final TextEditingController serviceImageController = TextEditingController();
 
   List<HomeDressingModel> homeDressingServicesAddedList = [];
 
@@ -48,7 +51,7 @@ class HomeDressingController extends GetxController {
 
   void clearTextFields() {
     serviceTitleController.clear();
-    serviceDaysController.clear();
+    serviceDurationController.clear();
     serviceDescriptionController.clear();
     serviceNewPriceController.clear();
     serviceOldPriceController.clear();
@@ -91,6 +94,52 @@ class HomeDressingController extends GetxController {
       Utility.toast("Service added");
 
       update();
+    }
+  }
+
+  updateServices(HomeDressingModel homeDressingModel) async {
+    await homeDressingServicesCollectionReference
+        .doc(homeDressingModel.docId)
+        .update({
+      'image': serviceImageController.text,
+      'title': serviceTitleController.text,
+      'duration': serviceDurationController.text,
+      'newPrice': double.parse(serviceNewPriceController.text),
+      'oldPrice': double.parse(serviceOldPriceController.text),
+      'textDescription': serviceDescriptionController.text,
+    });
+    Utility.toast("Updated services", backgroundColor: Colors.green);
+    Get.back();
+  }
+
+  uploadService(HomeDressingController _homeDressingController) async {
+    try {
+      CollectionReference collectionReference =
+          homeDressingServicesCollectionReference;
+      DocumentReference documentReference = collectionReference.doc();
+      HomeDressingModel homeDressingModel = HomeDressingModel();
+      homeDressingModel.title =
+          _homeDressingController.serviceTitleController.text;
+      homeDressingModel.duration =
+          _homeDressingController.serviceDurationController.text;
+      homeDressingModel.docId = documentReference.id;
+      homeDressingModel.uId = FirebaseAuth.instance.currentUser!.uid;
+      homeDressingModel.image = "";
+      homeDressingModel.textDescription =
+          _homeDressingController.serviceDescriptionController.text;
+      homeDressingModel.newPrice =
+          double.parse(_homeDressingController.serviceNewPriceController.text);
+      homeDressingModel.oldPrice =
+          double.parse(_homeDressingController.serviceOldPriceController.text);
+
+      await documentReference.set(homeDressingModel.toMap());
+      _homeDressingController.clearTextFields();
+
+      Utility.toast("Service Uploaded Successfully",
+          backgroundColor: Colors.green);
+      update();
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

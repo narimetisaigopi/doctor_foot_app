@@ -44,7 +44,6 @@ dependencies:
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.1.0
   bulleted_list: ^0.0.1+0.1a
-  file_picker: ^6.2.0
   pinput: ^4.0.0
   google_maps_flutter: ^2.6.0
   geolocator: ^11.0.0
@@ -63,6 +62,8 @@ dependencies:
   firebase_auth: ^4.17.9
   cloud_firestore: ^4.15.9
   firebase_core: ^2.27.1
+
+  file_picker: ^8.0.0+1
 
 dev_dependencies:
   flutter_test:

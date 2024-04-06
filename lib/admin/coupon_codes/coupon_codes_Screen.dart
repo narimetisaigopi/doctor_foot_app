@@ -3,6 +3,7 @@
 import 'package:drfootapp/admin/coupon_codes/create_coupon_code.dart';
 import 'package:drfootapp/admin/coupon_codes/expire_coupons.dart';
 import 'package:drfootapp/admin/coupon_codes/total_coupon_codes.dart';
+import 'package:drfootapp/models/coupon_code_model.dart';
 import 'package:flutter/material.dart';
 
 class CouponCodesScreen extends StatefulWidget {
@@ -34,11 +35,15 @@ class _CouponCodesScreenState extends State<CouponCodesScreen> {
             ),
           ]),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            CreateCouponCode(),
-            TotalCouponCodes(),
-            ExpireCoupons(),
+            CreateCouponCode(
+              couponCodeModel: CouponCodeModel(),
+            ),
+            const TotalCouponCodes(
+              isAdmins: true,
+            ),
+            const ExpireCoupons(),
           ],
         ),
       ),

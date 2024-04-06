@@ -1,4 +1,3 @@
-import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
@@ -7,8 +6,6 @@ import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class IntroScreen extends StatefulWidget {

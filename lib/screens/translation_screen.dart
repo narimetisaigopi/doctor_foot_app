@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:drfootapp/controllers/translation_controller.dart';
 import 'package:drfootapp/screens/dash_board/prifile_details/custom_listTile_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -8,6 +10,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class TranslationScreen extends StatefulWidget {
+  const TranslationScreen({super.key});
+
   @override
   State<TranslationScreen> createState() => _TranslationScreenState();
 }
@@ -19,7 +23,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
   @override
   void initState() {
     translationController.loadSelectedLanguage();
-    // TODO: implement initState
+
     super.initState();
   }
 

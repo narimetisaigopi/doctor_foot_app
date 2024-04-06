@@ -426,4 +426,98 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
       ),
     );
   }
+
+  Widget addressContainer(AddressesController addressesController) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 5,
+                spreadRadius: 1,
+                blurStyle: BlurStyle.outer,
+                offset: const Offset(0, 0))
+          ]),
+      child: addressesController.addressesList.isEmpty
+          ? Center(
+              child: TextButton.icon(
+                  onPressed: () {
+                    //     Get.to(() => const MyAddresses());
+                  },
+                  icon: const Icon(
+                    Icons.add_location,
+                    size: 50,
+                    color: Colors.blue,
+                  ),
+                  label: const Text(
+                    "Add Address ",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.black),
+                  )),
+            )
+          : Column(
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.location_on_rounded),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Text(
+                        addressesController.selectedAddressesModel.addressLabel,
+                        // textAlign: TextAlign.start,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: TextButton(
+                        onPressed: () {
+                          //  Get.to(() => const MyAddresses());
+                        },
+                        child: const Text(
+                          "change address",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      //  mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "${addressesController.selectedAddressesModel.state}, ${addressesController.selectedAddressesModel.area}, ",
+                          maxLines: 3,
+                          //textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(color: Colors.blueGrey),
+                        ),
+                        Text(
+                          addressesController.selectedAddressesModel.landMark,
+                          maxLines: 3,
+                          // textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(color: Colors.blueGrey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+    );
+  }
 }

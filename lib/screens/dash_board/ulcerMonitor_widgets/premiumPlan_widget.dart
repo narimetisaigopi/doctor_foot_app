@@ -1,9 +1,7 @@
 import 'package:drfootapp/models/ulcer_monitor_models/premium_model.dart';
-import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/custom_ulcer_button.dart';
 import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/dotted_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -55,15 +53,16 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
           ),
           Expanded(
             child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: premiumPlanList.length,
-                itemBuilder: (context, index) {
-                  final premiumPlanItem = premiumPlanList[index];
-                  return DottedWidget(
-                    text: premiumPlanItem.text,
-                  );
-                }),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: premiumPlanList.length,
+              itemBuilder: (context, index) {
+                final premiumPlanItem = premiumPlanList[index];
+                return DottedWidget(
+                  text: premiumPlanItem.text,
+                );
+              },
+            ),
           ),
           const Center(
             child: CustomButton(
@@ -73,7 +72,7 @@ class _PremiumPlanWidgetState extends State<PremiumPlanWidget> {
               borderRadius: 12,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           )
         ],

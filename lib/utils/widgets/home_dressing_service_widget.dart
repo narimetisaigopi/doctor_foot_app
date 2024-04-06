@@ -2,12 +2,8 @@ import 'package:drfootapp/controllers/home_dressing_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/constants/string_constants.dart';
-
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class HomeDressingServiceWidget extends StatefulWidget {
@@ -73,7 +69,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                             color: AppColors.primary),
                       ),
                       Text(
-                        widget.homeDressingModel.description,
+                        widget.homeDressingModel.duration,
                         style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
