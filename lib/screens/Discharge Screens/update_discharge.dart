@@ -1,7 +1,7 @@
-import 'package:doctor_foot_app/screens/Discharge%20Screens/file_upload_screen.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
+import 'package:drfootapp/screens/Discharge%20Screens/file_upload_screen.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,8 +35,8 @@ class _UpdateDischargeState extends State<UpdateDischarge> {
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.only(left: 16, top: 16,bottom: 16),
-        child:  Column(
+        margin: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Column(
@@ -49,11 +49,11 @@ class _UpdateDischargeState extends State<UpdateDischarge> {
                       fontWeight: FontWeight.w500,
                       color: AppColors.blackBold),
                 ),
-                 SizedBox(
+                SizedBox(
                   height: 8,
                 ),
                 Text(
-                   Strings.dischargeText1,
+                  Strings.dischargeText1,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
@@ -71,13 +71,13 @@ class _UpdateDischargeState extends State<UpdateDischarge> {
                 ),
               ],
             ),
-             Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomButton(
                   buttonName: Strings.uploadHearText,
-                  onPress: (){
-Get.to(const FileUploadScreen());
+                  onPress: () {
+                    Get.to(const FileUploadScreen());
                   },
                 )
               ],

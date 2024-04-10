@@ -1,5 +1,5 @@
-import 'package:doctor_foot_app/models/homeScreenModels/patient_review_model.dart';
-import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/review_widget.dart';
+import 'package:drfootapp/models/homeScreenModels/patient_review_model.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/review_widget.dart';
 import 'package:flutter/material.dart';
 
 class PatiantReviewWidget extends StatefulWidget {

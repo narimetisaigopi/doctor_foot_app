@@ -1,5 +1,5 @@
 // ignore: file_names
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +23,7 @@ class CustomButton extends StatefulWidget {
       this.borderRadius = 6.0,
       this.enablePrefixIcon = false,
       this.prefixIcon = const Icon(Icons.abc),
-      this.isBoxShadow = true
-      });
+      this.isBoxShadow = true});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -42,14 +41,14 @@ class _CustomButtonState extends State<CustomButton> {
         decoration: BoxDecoration(
           color: widget.bgColor,
           boxShadow: [
-           widget.isBoxShadow?  BoxShadow(
-              color: Colors.grey.shade400,
-              blurRadius: 8,
-              blurStyle: BlurStyle.outer,
-              offset: const Offset(1, 2),
-            ): const BoxShadow(
-            
-            )
+            widget.isBoxShadow
+                ? BoxShadow(
+                    color: Colors.grey.shade400,
+                    blurRadius: 8,
+                    blurStyle: BlurStyle.outer,
+                    offset: const Offset(1, 2),
+                  )
+                : const BoxShadow()
           ],
           borderRadius: BorderRadius.circular(widget.borderRadius),
         ),

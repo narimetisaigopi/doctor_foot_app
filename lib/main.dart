@@ -1,5 +1,4 @@
-import 'package:doctor_foot_app/splash_screen.dart';
-
+import 'package:drfootapp/splash_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

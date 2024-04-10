@@ -1,5 +1,5 @@
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
@@ -52,7 +52,7 @@ class _PaymentGateWayState extends State<PaymentGateWay> {
               const SizedBox(
                 height: 20,
               ),
-              CustomButton(
+              const CustomButton(
                 buttonName: "PAY VIA PHONEPE",
               )
             ],
