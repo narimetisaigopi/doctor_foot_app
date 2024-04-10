@@ -1,10 +1,10 @@
-import 'package:doctor_foot_app/controllers/authentication_controller.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
-import 'package:doctor_foot_app/utils/widgets/drop_down_widget.dart';
-import 'package:doctor_foot_app/utils/widgets/my_textfield.dart';
+import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/drop_down_widget.dart';
+import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';

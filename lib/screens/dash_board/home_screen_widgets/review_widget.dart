@@ -1,5 +1,5 @@
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -13,7 +13,7 @@ class ReviewWidget extends StatefulWidget {
       {super.key,
       required this.image,
       required this.name,
-      this.discr ="",
+      this.discr = "",
       required this.dateTime});
 
   @override
@@ -24,7 +24,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16,  right: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16),
       child: Column(
         children: [
           Row(

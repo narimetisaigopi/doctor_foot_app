@@ -1,19 +1,23 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 
-import 'package:doctor_foot_app/controllers/home_dressing_controller.dart';
-import 'package:doctor_foot_app/models/home_dressing/home_dressing_model.dart';
-import 'package:doctor_foot_app/screens/home_dressing_services/home_dressing_payment.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/home_dressing_service_widget.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/admin/create_home_dressing_services.dart';
+import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
+import 'package:drfootapp/screens/home_dressing_services/home_dressing_payment.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/firebase_constants.dart';
+import 'package:drfootapp/utils/widgets/home_dressing_service_widget.dart';
+import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 class HomeDressingServices extends StatefulWidget {
-  const HomeDressingServices({super.key});
+  final bool isAdmin;
+  const HomeDressingServices({super.key, this.isAdmin = false});
 
   @override
   State<HomeDressingServices> createState() => _HomeDressingServicesState();
@@ -27,7 +31,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
 
   @override
   void initState() {
-    homeDressingController.homeDressingServicesAddedList;
+    // homeDressingController.homeDressingServicesAddedList;
     // TODO: implement initState
     super.initState();
   }
@@ -50,44 +54,61 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
           ).tr(),
           centerTitle: true,
           leading: IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: AppColors.primary,
-              )),
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.primary,
+            ),
+          ),
         ),
-        body: Column(
-          children: [
-            const SvgImageWidget(
-              path: AssetsConstants.home_dressing_cover_img,
-              height: 200,
-              width: double.infinity,
-            ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: homeDressingServicesList.length,
-                  itemBuilder: (context, index) {
-                    final homeDressingServices =
-                        homeDressingServicesList[index];
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
-                      child: HomeDressingServiceWidget(
-                        homeDressingModel: homeDressingServices,
-                        onPress: () {
-                          print(homeDressingController
-                              .homeDressingServicesAddedList.length);
-                          homeDressingController.addOrRemoveFromList(
-                            homeDressingModel: homeDressingServices,
-                          );
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              widget.isAdmin
+                  ? const SizedBox.shrink()
+                  : const SvgImageWidget(
+                      path: AssetsConstants.home_dressing_cover_img,
+                      height: 200,
+                      width: double.infinity,
+                    ),
+              Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: FirestorePagination(
+                    query: homeDressingServicesCollectionReference,
+                    itemBuilder: (context, documentSnapshots, index) {
+                      HomeDressingModel homeDressingModel =
+                          HomeDressingModel.fromJson(
+                              documentSnapshots.data() as Map<String, dynamic>);
+
+                      return InkWell(
+                        onTap: () {
+                          print("CreateHomeDressingServices");
+                          widget.isAdmin
+                              ? Get.to(() => CreateHomeDressingServices(
+                                    isAdmin: true,
+                                    homeDressingModel: homeDressingModel,
+                                  ))
+                              : null;
                         },
-                      ),
-                    );
-                  }),
-            ),
-          ],
+                        child: HomeDressingServiceWidget(
+                          homeDressingModel: homeDressingModel,
+                          onPress: () {
+                            print(homeDressingController
+                                .homeDressingServicesAddedList.length);
+                            homeDressingController.addOrRemoveFromList(
+                              homeDressingModel: homeDressingModel,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  )),
+            ],
+          ),
         ),
         floatingActionButton: homeDressingController
                 .homeDressingServicesAddedList.isNotEmpty
@@ -105,14 +126,14 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       RichText(
-                        text: const TextSpan(
+                        text: TextSpan(
                           text: "Added | Rs.",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 16),
                           children: [
                             TextSpan(
-                              text: "800",
-                              style: TextStyle(
+                              text: "${homeDressingController.finalAmount}",
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 16),
                             )
                           ],

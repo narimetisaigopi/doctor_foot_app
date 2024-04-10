@@ -1,6 +1,6 @@
-import 'package:doctor_foot_app/models/videosModels/footAssessment_model.dart';
-import 'package:doctor_foot_app/screens/dash_board/videosScreenWidgets/faImage_widget.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
+import 'package:drfootapp/models/videosModels/footAssessment_model.dart';
+import 'package:drfootapp/screens/dash_board/videosScreenWidgets/faImage_widget.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,6 @@ class FootAssessmentWidget extends StatefulWidget {
 class _FootAssessmentWidgetState extends State<FootAssessmentWidget> {
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: const EdgeInsets.only(left: 16, right: 12, top: 06, bottom: 10),
       child: Column(

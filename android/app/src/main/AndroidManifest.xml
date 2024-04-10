@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="doctor_foot_app"
+        android:label="drfootapp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
