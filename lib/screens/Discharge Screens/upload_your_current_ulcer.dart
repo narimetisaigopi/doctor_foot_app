@@ -1,9 +1,9 @@
 import 'dart:developer';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -33,11 +33,13 @@ class _UploadYourCurrentUlcerState extends State<UploadYourCurrentUlcer> {
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
-        child:  Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(height: 30,),
-             Column(
+            const SizedBox(
+              height: 30,
+            ),
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
@@ -84,8 +86,9 @@ class _UploadYourCurrentUlcerState extends State<UploadYourCurrentUlcer> {
       ),
     );
   }
-  Future pickImage() async{
-   ImagePicker imagePicker = ImagePicker();
+
+  Future pickImage() async {
+    ImagePicker imagePicker = ImagePicker();
     var selectedImage;
     selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
     if (xFile != null) {

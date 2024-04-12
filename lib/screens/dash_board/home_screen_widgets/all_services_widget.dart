@@ -1,10 +1,10 @@
-import 'package:doctor_foot_app/models/homeScreenModels/service_model.dart';
+import 'package:drfootapp/models/homeScreenModels/service_model.dart';
 
-import 'package:doctor_foot_app/screens/dash_board/home_screen_widgets/service_widget.dart';
-import 'package:doctor_foot_app/screens/home_dressing_services/home_dressing_services.dart';
-import 'package:doctor_foot_app/screens/risk_factor_home.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
+import 'package:drfootapp/screens/home_dressing_services/home_dressing_services.dart';
+import 'package:drfootapp/screens/risk_factor_home.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
@@ -63,14 +63,14 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                         switch (index) {
                           case 0:
                             Get.to(() => const HomeDressingServices());
-    
+
                             break;
                           case 1:
                             Utility.myBottomSheet(context,
                                 heightFactor: 0.7,
                                 widget: const RiskFactorHome());
                             break;
-    
+
                           default:
                             break;
                         }

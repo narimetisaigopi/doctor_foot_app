@@ -1,8 +1,8 @@
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
-import 'package:doctor_foot_app/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -30,10 +30,12 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
       ),
       body: Container(
         margin: const EdgeInsets.all(16),
-        child:  Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -45,7 +47,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
                       color: AppColors.blackBold),
                 ).tr(),
                 const Text(
-               "yourResultText",
+                  "yourResultText",
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,

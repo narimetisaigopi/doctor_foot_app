@@ -1,8 +1,9 @@
 // ignore_for_file: always_specify_types
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../constants/app_colors.dart';
 
 class MyTextField extends StatefulWidget {
   final String hint;
@@ -97,7 +98,6 @@ class _MyTextFieldState extends State<MyTextField> {
 
   Widget textFieldWidget() {
     return TextFormField(
-    
       onTap: () {},
       validator: widget.validator,
       autovalidateMode: widget.autovalidateMode,
@@ -114,7 +114,6 @@ class _MyTextFieldState extends State<MyTextField> {
             ]
           : null,
       decoration: InputDecoration(
-        
           counterStyle: const TextStyle(
             height: double.minPositive,
           ),

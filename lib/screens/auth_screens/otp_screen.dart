@@ -1,6 +1,6 @@
-import 'package:doctor_foot_app/screens/auth_screens/privacy.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/utility.dart';
+import 'package:drfootapp/screens/auth_screens/privacy.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

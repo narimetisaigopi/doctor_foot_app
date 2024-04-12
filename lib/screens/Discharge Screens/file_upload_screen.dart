@@ -1,7 +1,7 @@
-import 'package:doctor_foot_app/screens/Discharge%20Screens/upload_your_current_ulcer.dart';
-import 'package:doctor_foot_app/utils/constants/app_colors.dart';
-import 'package:doctor_foot_app/utils/constants/string_constants.dart';
-import 'package:doctor_foot_app/utils/widgets/custom_button.dart';
+import 'package:drfootapp/screens/Discharge%20Screens/upload_your_current_ulcer.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,15 +35,19 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.only(left: 16, top: 16, bottom: 16, ),
+        margin: const EdgeInsets.only(
+          left: 16,
+          top: 16,
+          bottom: 16,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                    "dischargeSummaryText",
+                  "dischargeSummaryText",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -81,10 +85,9 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
                       Expanded(
                         flex: 7,
                         child: Container(
-                          
                           height: 50,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(12),
                               color: AppColors.whiteBgColor,
                               border:
                                   Border.all(color: AppColors.greyBorderColor)),
@@ -94,10 +97,10 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
                               padding: EdgeInsets.only(left: 12),
                               child: Text(
                                 Strings.submitPDFtext,
-                                 style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: AppColors.blackBold),
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.blackBold),
                               ),
                             ),
                           ),
