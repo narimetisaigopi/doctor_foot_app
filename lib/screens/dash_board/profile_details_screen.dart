@@ -1,5 +1,5 @@
 import 'package:doctor_foot_app/screens/dash_board/prifile_details/custom_listTile_widget.dart';
-import 'package:doctor_foot_app/screens/dash_board/profile/myProfile_screen.dart';
+import 'package:doctor_foot_app/screens/dash_board/profile/my_profile_screen.dart';
 import 'package:doctor_foot_app/screens/translation_screen.dart';
 import 'package:doctor_foot_app/utils/constants/app_colors.dart';
 import 'package:doctor_foot_app/utils/constants/assets_constants.dart';
