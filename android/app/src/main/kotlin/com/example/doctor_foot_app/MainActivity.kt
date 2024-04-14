@@ -1,4 +1,4 @@
-package com.example.drfootapp
+package com.drfootapp
 
 import io.flutter.embedding.android.FlutterActivity
 

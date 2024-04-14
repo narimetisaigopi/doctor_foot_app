@@ -26,9 +26,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColors.textWhiteColor,
         body: SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.only(top: 30, bottom: 20),
+            padding:
+                const EdgeInsets.only(top: 30, bottom: 20, left: 8, right: 8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -75,12 +77,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22),
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: const Text(
-                  "gender",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      // "gender",
+                      Strings.gender,
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                 ).tr(),
               ),
             ),

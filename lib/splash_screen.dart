@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
-      Get.to(const IntroScreen());
+      Get.offAll(const IntroScreen());
     });
     super.initState();
   }
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
+          child: SizedBox(
             height: 65,
             width: double.infinity,
             child: SvgPicture.asset(AssetsConstants.logo),

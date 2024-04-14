@@ -132,8 +132,10 @@ class _MyTextFieldState extends State<MyTextField> {
           suffixIcon:
               widget.iconNeeded ? widget.suffixIcon : const SizedBox.shrink(),
           suffix: widget.textButtonNeeded ? widget.textButton : null,
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: const BorderSide(color: AppColors.grey)),
           border: OutlineInputBorder(
-              borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(widget.borderRadius)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
