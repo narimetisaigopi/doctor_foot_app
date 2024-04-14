@@ -99,10 +99,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: CustomButton(
                   buttonName: "sendOtpText",
                   onPress: () {
-                    Utility.myBottomSheet(
-                      context,
-                      widget: const OtpScreen(),
-                    );
+                    // Utility.myBottomSheet(
+                    //   context,
+                    //   widget: const OtpScreen(),
+                    // );
                   },
                 ),
               )

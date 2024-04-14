@@ -54,37 +54,39 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                     itemBuilder: (context, index) => const Icon(
                       Icons.star,
                       color: AppColors.ratingBarColor,
-                    ),
-                    onRatingUpdate: (rating) {},
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Text(
-            widget.discr,
-            style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: AppColors.textBlackColors),
-          ).tr(),
-          const SizedBox(
-            height: 12,
-          ),
-          Center(
-            child: Text(
-              widget.dateTime,
-              style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.grey),
-            ).tr(),
-          ),
-        ],
-      ),
-    );
+                    ), onRatingUpdate: (double value) {  },)
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                widget.discr,
+                style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textBlackColors),
+              ).tr(),
+            ),
+            const SizedBox(
+              height: 06,
+            ),
+            Center(
+              child: Text(
+                widget.dateTime,
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.grey),
+              ).tr(),
+            ),
+          ],
+        ),
+      );
+    
   }
 }

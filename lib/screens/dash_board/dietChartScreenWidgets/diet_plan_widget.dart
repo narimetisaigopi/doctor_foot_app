@@ -19,7 +19,7 @@ class _DietPlanWidgetState extends State<DietPlanWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.72,
+      height: 570,
       width: double.infinity,
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.whiteBgDietColor),

@@ -1,6 +1,7 @@
+
 import 'package:drfootapp/screens/dash_board/admin_login.dart';
 import 'package:drfootapp/screens/dash_board/prifile_details/custom_listTile_widget.dart';
-import 'package:drfootapp/screens/dash_board/profile/myProfile_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/my_profile_screen.dart';
 import 'package:drfootapp/screens/translation_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -102,7 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   text: "languages",
                   leadingIcon: Icons.translate,
                   onPressed: () {
-                    Get.to(() => TranslationScreen());
+                    Get.to(() => const TranslationScreen());
                   }),
               customDivider,
               CustomListTileWidget(

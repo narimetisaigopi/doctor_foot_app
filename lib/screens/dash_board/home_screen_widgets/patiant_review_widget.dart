@@ -20,7 +20,7 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
           left: 16,
           right: 16,
         ),
-        height: MediaQuery.of(context).size.height * 0.28,
+        height: 236,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
