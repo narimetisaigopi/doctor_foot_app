@@ -65,6 +65,8 @@ dependencies:
 
   file_picker: ^8.0.0+1
   image_picker: ^1.0.7
+  flutter_overlay_loader: ^2.0.0
+  firebase_messaging: ^14.8.1
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +96,7 @@ flutter:
     - assets/jsons/
     - assets/translation/
     - assets/images/intro/
+    - assets/svgs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -58,7 +58,7 @@ class Strings {
 
   /// OTP Screen Strings/////
   static const String otpString =
-      'Please enter 6 digit Code sent to your registered\n mobile number xxxxxx7890 ';
+      'Please enter 6 digit Code sent to your registered\n mobile number ';
 
   static const String verificationString = 'Verification code';
 

@@ -1,6 +1,7 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -17,6 +18,7 @@ class IntroScreen extends StatefulWidget {
 
 class _IntroScreenState extends State<IntroScreen> {
   final pageController = PageController();
+  int currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,24 +26,22 @@ class _IntroScreenState extends State<IntroScreen> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(76.0),
           child: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                Utility.myBottomSheet(context,
-                    widget: const SignUpScreen(), heightFactor: 0.7);
-              },
-              icon: const SvgImageWidget(
-                path: AssetsConstants.arrow_back,
-                width: 60,
-                height: 60,
-              ),
-            ),
+            leading: currentPage == 0
+                ? Container()
+                : IconButton(
+                    onPressed: () {},
+                    icon: const SvgImageWidget(
+                      path: AssetsConstants.arrow_back,
+                      width: 60,
+                      height: 60,
+                    ),
+                  ),
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: InkWell(
                   onTap: () {
-                    Utility.myBottomSheet(context,
-                        widget: const SignUpScreen(), heightFactor: 0.7);
+                    skipIntro();
                   },
                   child: const Text(
                     "skip",
@@ -58,6 +58,11 @@ class _IntroScreenState extends State<IntroScreen> {
         body: Center(
           child: PageView.builder(
             controller: pageController,
+            onPageChanged: (value) {
+              setState(() {
+                currentPage = value;
+              });
+            },
             itemCount: introScreenImages.length,
             itemBuilder: ((context, index) {
               final images = introScreenImages[index];
@@ -98,5 +103,16 @@ class _IntroScreenState extends State<IntroScreen> {
             }),
           ),
         ));
+  }
+
+  skipIntro() {
+    SPHelper().setIntroSeen();
+    // Get.offAll(() => const SignInScreen());
+    showSignUp();
+  }
+
+  showSignUp() {
+    Utility.myBottomSheet(context,
+        widget: const SignUpScreen(), heightFactor: 0.7);
   }
 }

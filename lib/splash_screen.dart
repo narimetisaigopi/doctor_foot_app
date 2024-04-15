@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,8 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Timer(const Duration(seconds: 3), () {
-      Get.offAll(const IntroScreen());
+    Timer(const Duration(seconds: 1), () {
+      // if (SPHelper().isIntroSeen()) {
+      //   Get.offAll(() => const SignInScreen());
+      // } else {
+      Get.offAll(() => const IntroScreen());
+      // }
     });
     super.initState();
   }

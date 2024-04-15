@@ -121,10 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               customDivider,
               CustomListTileWidget(
                   text: "logout", leadingIcon: Icons.logout, onPressed: () {}),
-              customDivider,
-              CustomListTileWidget(
-                  text: "logout", leadingIcon: Icons.logout, onPressed: () {}),
-              customDivider,
+              customDivider
             ],
           ),
         ),

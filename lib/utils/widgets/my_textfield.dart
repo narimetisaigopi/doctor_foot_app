@@ -27,6 +27,7 @@ class MyTextField extends StatefulWidget {
   final Function()? onValidate;
   final TextInputType textInputType;
   final int maxLines;
+  final int maxLength;
   // final int minLines;
   final bool editText;
   final String? Function(String?)? validator;
@@ -44,7 +45,7 @@ class MyTextField extends StatefulWidget {
       this.labelNeeded = true,
       this.borderRadius = 5,
       // this.minLines = 1,
-      // this.maxLength = 10,
+      this.maxLength = 100,
       this.btnColor = Colors.black,
       this.iconColor = Colors.black,
       // this.icon,
@@ -101,13 +102,12 @@ class _MyTextFieldState extends State<MyTextField> {
       onTap: () {},
       validator: widget.validator,
       autovalidateMode: widget.autovalidateMode,
-      // expands: true,
-      // minLines: null,
       maxLines: widget.maxLines,
-      // maxLength: widget.maxLength,
+      maxLength: widget.maxLength,
       keyboardType: widget.textInputType,
       controller: widget.textEditingController,
-      inputFormatters: widget.textInputType == TextInputType.number
+      inputFormatters: widget.textInputType == TextInputType.number ||
+              widget.textInputType == TextInputType.phone
           ? <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
               FilteringTextInputFormatter.digitsOnly

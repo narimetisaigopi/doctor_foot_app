@@ -4,9 +4,11 @@
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/widgets/custom_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/gestures.dart';
+import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:flutter/material.dart';
@@ -640,6 +642,10 @@ void makeAndAlertDialog(
   );
 }
 
+closeKeyboard() {
+  FocusManager.instance.primaryFocus?.unfocus();
+}
+
 // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // Widget callWhatsAppLayout(BuildContext context, String contactNumber) {
@@ -909,4 +915,29 @@ Widget payableData({
       ),
     ],
   );
+}
+
+showLoader(BuildContext context) {
+  Loader.show(context,
+      isSafeAreaOverlay: false,
+      isBottomBarOverlay: false,
+      overlayFromBottom: 80,
+      overlayColor: Colors.black26,
+      progressIndicator: const CustomLoader(),
+      themeData: Theme.of(context).copyWith(
+          colorScheme:
+              ColorScheme.fromSwatch().copyWith(secondary: Colors.green)));
+}
+
+hideLoader(BuildContext context) {
+  Loader.hide();
+}
+
+String maskMobileNumber(String mobileNumber) {
+  if (mobileNumber.length == 10) {
+    String maskedNumber = 'xxxxxx${mobileNumber.substring(6)}';
+    return maskedNumber;
+  } else {
+    return 'Invalid mobile number';
+  }
 }

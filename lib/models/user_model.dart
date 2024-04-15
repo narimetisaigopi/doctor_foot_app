@@ -5,6 +5,8 @@ class UserModel {
   String gender;
   String mobileNumber;
   var timestamp;
+  List<String> androidTokensList;
+  List<String> appleTokensList;
 
   UserModel({
     this.userName = "",
@@ -12,6 +14,8 @@ class UserModel {
     this.gender = "",
     this.mobileNumber = "",
     this.docId = "",
+    this.androidTokensList = const [],
+    this.appleTokensList = const [],
     this.timestamp,
   });
 
@@ -19,13 +23,14 @@ class UserModel {
     Map map,
   ) {
     return UserModel(
-      userName: map['userName'] ?? "",
-      docId: map['docId'] ?? "",
-      dateOfBirth: map['dateOfBirth'] ?? "",
-      gender: map['gender'] ?? "",
-      mobileNumber: map['mobileNumber'] ?? "",
-      timestamp: map['timestamp'] ?? "",
-    );
+        userName: map['userName'] ?? "",
+        docId: map['docId'] ?? "",
+        dateOfBirth: map['dateOfBirth'] ?? "",
+        gender: map['gender'] ?? "",
+        mobileNumber: map['mobileNumber'] ?? "",
+        timestamp: map['timestamp'] ?? "",
+        androidTokensList: map["androidTokensList"] ?? [],
+        appleTokensList: map["appleTokensList"] ?? []);
   }
 
   Map<String, dynamic> toMap() {
@@ -35,7 +40,21 @@ class UserModel {
       'dateOfBirth': dateOfBirth,
       'gender': gender,
       'mobileNumber': mobileNumber,
+      "androidTokensList": androidTokensList,
+      "appleTokensList": appleTokensList,
       'timestamp': DateTime.now().toString(),
     };
+  }
+
+  addNewAndroidToken(String token) {
+    if (!androidTokensList.contains(token)) {
+      androidTokensList.add(token);
+    }
+  }
+
+  addNewIosToken(String token) {
+    if (!androidTokensList.contains(token)) {
+      androidTokensList.add(token);
+    }
   }
 }
