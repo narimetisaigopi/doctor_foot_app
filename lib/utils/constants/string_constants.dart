@@ -204,4 +204,6 @@ static const String dischargeSummaryDisText = "Lorem Ipsum is simply dummy text 
 static const String yourPictureHaveUploadedText = "Your Picture have uploaded";
 static const String yourResultText = "Your results will be sent to you after a through observation by experts. It may take some timeuntil then we would ask you to follow the diet required for recovery ";
 
+static const String enterOTP = "Please enter OTP";
+
 }

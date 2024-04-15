@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/admin/admin_panel.dart';
 import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
-import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
+import 'package:drfootapp/screens/auth_screens/privacy.dart';
 import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
@@ -43,7 +43,7 @@ class AuthenticationController extends GetxController {
     _updateLoading(true);
     this.context = context;
     userModel = UserModel();
-    userModel.userName = userNameController.text;
+    userModel.userName = userNameController.text.toLowerCase();
     userModel.dateOfBirth = dateOfBirthController.text;
     userModel.gender = genderController.text;
     userModel.mobileNumber = mobileNumberController.text;
@@ -59,8 +59,9 @@ class AuthenticationController extends GetxController {
     } catch (e) {
       Utility.toast("Failed to Verify Phone Number: $e",
           backgroundColor: Colors.red);
+    } finally {
+      _updateLoading(false);
     }
-    _updateLoading(false);
   }
 
   _codeSent(verificationId, forceResendingToken) {
@@ -92,7 +93,9 @@ class AuthenticationController extends GetxController {
           await _firebaseAuth.signInWithCredential(authCredential);
       if (userCredential.user != null) {
         await _firebaseAuthInsertData();
-        Get.offAll(() => const DashBoardScreen());
+        Utility.myBottomSheet(context,
+            widget: const ValuePrivacy(), heightFactor: 0.7);
+        // Get.offAll(() => const DashBoardScreen());
       } else {
         Utility.toast("Something went wrong, please try again.",
             backgroundColor: Colors.red);
@@ -201,7 +204,27 @@ class AuthenticationController extends GetxController {
     return null;
   }
 
-  checkUserName() {}
+  Future<bool> checkUserName() async {
+    QuerySnapshot querySnapshot = await usersCollectionReference
+        .where("userName", isEqualTo: userModel.userName.toUpperCase())
+        .get();
+    if (querySnapshot.docs.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> checkMobileNumber() async {
+    QuerySnapshot querySnapshot = await usersCollectionReference
+        .where("mobileNumber", isEqualTo: userModel.mobileNumber)
+        .get();
+    if (querySnapshot.docs.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   logout(BuildContext context) {
     showDialog(

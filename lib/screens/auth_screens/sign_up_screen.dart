@@ -1,7 +1,5 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
-import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
-import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -12,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-
-import 'otp_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -62,6 +58,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hint: Strings.userNameTextFieldHint,
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
+                          FormBuilderValidators.minLength(3),
+                          FormBuilderValidators.maxLength(30),
                         ]),
                         textEditingController:
                             _authenticationController.userNameController),
@@ -211,9 +209,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     closeKeyboard();
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
     // Utility.myBottomSheet(context, widget: const HomeScreen());
-    Get.to(() => const DashBoardScreen());
+    // Get.to(() => const DashBoardScreen());
     if (status) {
-      // _authenticationController.firebaseSendOTP(context);
+      _authenticationController.firebaseSendOTP(context);
     }
   }
 }

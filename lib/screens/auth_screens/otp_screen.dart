@@ -28,6 +28,8 @@ class _OtpScreenState extends State<OtpScreen> {
   Timer? _timer;
   int _timerSeconds = 60;
 
+  String otp = "";
+
   void startTimer() {
     _timerSeconds = 60;
     const oneSec = Duration(seconds: 1);
@@ -131,6 +133,9 @@ class _OtpScreenState extends State<OtpScreen> {
                     height: 20,
                   ),
                   Pinput(
+                    onChanged: (value) {
+                      otp = value;
+                    },
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -143,7 +148,6 @@ class _OtpScreenState extends State<OtpScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  
                   InkWell(
                     onTap: _timerSeconds == 0
                         ? authenticationController.firebaseSendOTP(context)
@@ -162,11 +166,17 @@ class _OtpScreenState extends State<OtpScreen> {
                   const SizedBox(
                     height: 20,
                   ),
+                  authenticationController.isLoading
+                      ? const CircularProgressIndicator()
+                      :
                   CustomButton(
                     buttonName: "verifyOtp",
                     onPress: () {
-                      Utility.myBottomSheet(context,
-                          widget: const ValuePrivacy(), heightFactor: 0.7);
+                            if (otp.length == 6) {
+                              authenticationController.firebaseVerifyOTP(otp);
+                            } else {
+                              Utility.toast(Strings.enterOTP);
+                            }
                     },
                   ),
                 ],
