@@ -2,6 +2,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../constants/app_colors.dart';
 
@@ -98,7 +100,8 @@ class _MyTextFieldState extends State<MyTextField> {
   }
 
   Widget textFieldWidget() {
-    return TextFormField(
+    return FormBuilderTextField(
+      name: widget.label,
       onTap: () {},
       validator: widget.validator,
       autovalidateMode: widget.autovalidateMode,

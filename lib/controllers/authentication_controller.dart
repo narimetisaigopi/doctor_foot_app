@@ -40,6 +40,7 @@ class AuthenticationController extends GetxController {
 
   // this method is used to send otp to user .
   firebaseSendOTP(BuildContext context) async {
+    _updateLoading(true);
     this.context = context;
     userModel = UserModel();
     userModel.userName = userNameController.text;
@@ -90,7 +91,6 @@ class AuthenticationController extends GetxController {
       UserCredential userCredential =
           await _firebaseAuth.signInWithCredential(authCredential);
       if (userCredential.user != null) {
-        log("userCredential ${userCredential.user!.phoneNumber}");
         await _firebaseAuthInsertData();
         Get.offAll(() => const DashBoardScreen());
       } else {
@@ -107,9 +107,7 @@ class AuthenticationController extends GetxController {
 
   void _updateLoading(bool loading) {
     isLoading = loading;
-    Future.delayed(const Duration(milliseconds: 200), () {
-      update();
-    });
+    update();
   }
 
   // this method will verify the otp and perform the operation after that
@@ -119,8 +117,8 @@ class AuthenticationController extends GetxController {
           verificationId: _verificationId, smsCode: enteredOTP);
       await _firebasePhoneAuthVerifyCredentials(authCredential);
     } catch (e, stack) {
-      log("message$e");
-      log("message$stack");
+      log("message $e");
+      log("message $stack");
       Utility.toast("$e", backgroundColor: Colors.red);
     }
   }
@@ -202,6 +200,8 @@ class AuthenticationController extends GetxController {
     }
     return null;
   }
+
+  checkUserName() {}
 
   logout(BuildContext context) {
     showDialog(
