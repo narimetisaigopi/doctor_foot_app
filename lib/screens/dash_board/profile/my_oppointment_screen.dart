@@ -1,9 +1,6 @@
 import 'package:drfootapp/controllers/home_dressing_controller.dart';
-import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/home_dressing_service_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/instance_manager.dart';
 
 class MyOppointmentScreen extends StatefulWidget {
@@ -30,7 +27,7 @@ class _MyOppointmentScreenState extends State<MyOppointmentScreen> {
           ),
           title: const Text("My Appointments"),
         ),
-        body: SingleChildScrollView(
+        body: const SingleChildScrollView(
             child: Column(children: [
           // Expanded(
           //   child: ListView.builder(

@@ -1,16 +1,22 @@
 import 'package:drfootapp/splash_screen.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
+
+late SharedPreferences sharedPreferences;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  sharedPreferences = await SharedPreferences.getInstance();
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
@@ -34,7 +40,8 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
       debugShowCheckedModeBanner: false,
-      title: "Doctor Foot",
+      navigatorKey: NavigationService.navigatorKey, // set property
+      title: appName,
       locale: context.locale,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

@@ -1,6 +1,8 @@
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 
+const String appName = "Doctor Foot";
+
 List<String> addressLabel = ["Home", "Work", "Family & friends", "Others"];
 
 List<String> names = [
@@ -30,9 +32,6 @@ const introScreenImages = [
   },
   {
     "image": AssetsConstants.dr_checkup,
-  },
-  {
-    "image": AssetsConstants.dr_consult,
   },
   {
     "image": AssetsConstants.dr_patiant_checkup,

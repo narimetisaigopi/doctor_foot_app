@@ -1,9 +1,14 @@
+import 'dart:async';
+
+import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/auth_screens/privacy.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../utils/constants/string_constants.dart';
@@ -17,6 +22,40 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  AuthenticationController authenticationController =
+      Get.put(AuthenticationController());
+
+  Timer? _timer;
+  int _timerSeconds = 60;
+
+  void startTimer() {
+    _timerSeconds = 60;
+    const oneSec = Duration(seconds: 1);
+    if (_timer != null && _timer!.isActive) {
+      _timer!.cancel();
+    }
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_timerSeconds == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _timerSeconds--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final PinTheme defaultPinTheme = PinTheme(
@@ -49,74 +88,93 @@ class _OtpScreenState extends State<OtpScreen> {
       ),
     );
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  "verificationString",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ).tr(),
-                const SizedBox(
-                  height: 10,
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: Strings.otpString,
-                    style: TextStyle(
-                      color: Colors.grey.shade500,
-                    ),
-                    children: const [
-                      TextSpan(
-                          text: Strings.changeNumber,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primary)),
-                    ],
+      body: GetBuilder<AuthenticationController>(
+          builder: (authenticationController) {
+        return SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    Strings.verificationString,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ).tr(),
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Pinput(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                  ],
-                  defaultPinTheme: defaultPinTheme,
-                  focusedPinTheme: focusedPinTheme,
-                  submittedPinTheme: submittedPinTheme,
-                  length: 6,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  '60 sec',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomButton(
-                  buttonName: "verifyOtp",
-                  onPress: () {
-                    Utility.myBottomSheet(context,
-                        widget: const ValuePrivacy(), heightFactor: 0.7);
-                  },
-                ),
-              ],
+                  RichText(
+                    text: TextSpan(
+                      text: Strings.otpString,
+                      style: TextStyle(
+                        color: Colors.grey.shade500,
+                      ),
+                      children: [
+                        TextSpan(
+                            text: maskMobileNumber(authenticationController
+                                .userModel.mobileNumber),
+                            style: TextStyle(
+                              color: Colors.grey.shade500,
+                            )),
+                        TextSpan(
+                            text: Strings.changeNumber,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.pop(context),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primary)),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Pinput(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    ],
+                    defaultPinTheme: defaultPinTheme,
+                    focusedPinTheme: focusedPinTheme,
+                    submittedPinTheme: submittedPinTheme,
+                    length: 6,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  
+                  InkWell(
+                    onTap: _timerSeconds == 0
+                        ? authenticationController.firebaseSendOTP(context)
+                        : null,
+                    child: Text(
+                      _timerSeconds == 0
+                          ? 'Resent'
+                          : 'Retry after $_timerSeconds seconds',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomButton(
+                    buttonName: "verifyOtp",
+                    onPress: () {
+                      Utility.myBottomSheet(context,
+                          widget: const ValuePrivacy(), heightFactor: 0.7);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
