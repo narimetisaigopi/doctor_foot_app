@@ -19,8 +19,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class Utility {
-  static DateFormat formatter = DateFormat('dd-MM-yyyy HH:mm:ss aaa');
-  static DateFormat formatterOnlyDate = DateFormat('dd-MM-yyyy');
+  static DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss aaa');
+  static DateFormat formatterOnlyDate = DateFormat('yyyy-MM-dd');
 
   static showAlertDialog({
     required BuildContext context,
@@ -267,11 +267,11 @@ class Utility {
   //     }}
 
   static toast(String message,
-      {Color textColor = Colors.white, Color backgroundColor = Colors.green}) {
+      {Color textColor = Colors.white, Color backgroundColor = Colors.black}) {
     Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: backgroundColor,
         textColor: textColor,
