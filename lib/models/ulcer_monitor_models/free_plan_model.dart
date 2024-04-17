@@ -1,4 +1,6 @@
 
+import 'package:drfootapp/utils/constants/string_constants.dart';
+
 class FreePlanModel {
   String text;
   FreePlanModel({this.text = ''});
@@ -6,12 +8,12 @@ class FreePlanModel {
 
 List<FreePlanModel> freePlanList = [
   FreePlanModel(
-    text: "weeklyUmText",
+    text: Strings.weeklyUmText,
   ),
   FreePlanModel(
-    text: "freePlanText1",
+    text: Strings.freePlanText1,
   ),
   FreePlanModel(
-    text: "freePlanText2",
+    text: Strings.freePlanText2,
   ),
 ];

@@ -7,11 +7,13 @@ class AppColors {
   static const Color grey = Color(0xFFB7B7B7);
   static const Color greydivider = Color(0xFFCFCFCF);
   static const Color blackBold = Color(0xFF000000);
+  static const Color black2 = Color(0xFF333333);
   static const Color searchButtonColor = Color(0xFF7389C1);
   static const Color notificationsButtonColor = Color(0xFF7389C1);
   static const Color notificationsButtonBgColor = Color(0xFFF0F4FF);
   static const Color ratingBarColor = Color(0xFFFFD414);
   static const Color freePlanBgColor = Color(0xFFFFF8EF);
+  static const Color updateBgColor = Color(0xFFD2D8E7);
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);

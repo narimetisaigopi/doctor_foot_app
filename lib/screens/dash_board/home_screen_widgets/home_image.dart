@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
@@ -17,17 +18,20 @@ class HomeImage extends StatelessWidget {
           path: AssetsConstants.diabetes_image,
         ),
         Positioned(
-          bottom: 30,
-          left: 29,
+          bottom: 26,
+          left: 16,
           right: 16,
-          child: const Text(
-            "rectImageText",
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: AppColors.secondary),
-          ).tr(),
-        )
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+            child: const Text(
+              "rectImageText",
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.secondary),
+            ).tr(),
+          ),
+        ),
       ],
     );
   }

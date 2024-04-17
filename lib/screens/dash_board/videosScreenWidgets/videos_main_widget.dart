@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class VideosMainWidget extends StatefulWidget {
   final String image;
-  const VideosMainWidget({super.key, required this.image});
+  final Function()? onPress;
+  const VideosMainWidget({super.key, required this.image, required this.onPress});
 
   @override
   State<VideosMainWidget> createState() => _VideosMainWidgetState();
@@ -15,7 +16,7 @@ class _VideosMainWidgetState extends State<VideosMainWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: widget.onPress,
       child: Stack(children: [
         Center(
           child: SizedBox(

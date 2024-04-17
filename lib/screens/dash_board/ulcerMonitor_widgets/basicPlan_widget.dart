@@ -6,7 +6,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class BasicPlanWidget extends StatefulWidget {
-  const BasicPlanWidget({super.key});
+  final Function()? onPress;
+  const BasicPlanWidget({super.key, required this.onPress});
 
   @override
   State<BasicPlanWidget> createState() => _BasicPlanWidgetState();
@@ -15,63 +16,71 @@ class BasicPlanWidget extends StatefulWidget {
 class _BasicPlanWidgetState extends State<BasicPlanWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 296,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: AppColors.freePlanBgColor,
-        border: Border.all(color: AppColors.ulcerMonitorBorderColor, width: 2),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16, top: 16),
-            child: const Text(
-              "basicPlanText",
-              style: TextStyle(
-                  fontSize: 18,
-                  color: AppColors.textBlackColors,
-                  fontWeight: FontWeight.w700),
-            ).tr(),
+    return GestureDetector(
+      onTap: widget.onPress,
+      child: SizedBox(
+        child: Container(
+          height: 296,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: AppColors.freePlanBgColor,
+            border:
+                Border.all(color: AppColors.ulcerMonitorBorderColor, width: 2),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: const Text(
-              "freeText",
-              style: TextStyle(
-                  fontSize: 24,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.w700),
-            ).tr(),
-          ),
-          const SizedBox(
-            height: 08,
-          ),
-          Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: freePlanList.length,
-                itemBuilder: (context, index) {
-                  final freePlanItem = freePlanList[index];
-                  return DottedWidget(
-                    text: freePlanItem.text,
-                  );
-                }),
-          ),
-          const Expanded(
-            child: Center(
-              child: CustomButton(
-                width: 318,
-                buttonName: "getStartedButton",
-                isBoxShadow: false,
-                borderRadius: 12,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16, top: 16),
+                child: const Text(
+                  "basicPlanText",
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: AppColors.textBlackColors,
+                      fontWeight: FontWeight.w700),
+                ).tr(),
               ),
-            ),
-          )
-        ],
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: const Text(
+                  "freeText",
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.w700),
+                ).tr(),
+              ),
+              const SizedBox(
+                height: 08,
+              ),
+              Expanded(
+                flex: 3,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: freePlanList.length,
+                    itemBuilder: (context, index) {
+                      final freePlanItem = freePlanList[index];
+                      return DottedWidget(
+                        text: freePlanItem.text,
+                      );
+                    }),
+              ),
+              const Expanded(
+                child: Center(
+                  child: CustomButton(
+                    width: 318,
+                    buttonName: "getStartedButton",
+                    isBoxShadow: false,
+                    borderRadius: 12,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16,)
+            ],
+          ),
+        ),
       ),
     );
   }
