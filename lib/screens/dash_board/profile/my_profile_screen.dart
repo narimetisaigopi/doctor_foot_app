@@ -1,10 +1,12 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/drop_down_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
+import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -43,100 +45,142 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         ).tr(),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: FormBuilder(
-            key: _formKey,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 22,
-                ),
-                MyTextField(
-                  textInputType: TextInputType.text,
-                  borderRadius: 8,
-                  bgColor: AppColors.whiteBgColor,
-                  hint: Strings.userNameTextFieldLabel,
-                  textEditingController:
-                      _authenticationController.userNameController,
-                  editText: true,
-                  edit: Strings.editText,
-                  label: Strings.userFullNameTextFieldLabel,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.minLength(3,
-                        errorText: "name must be more than 3 char"),
-                  ]),
-                ),
-                MyTextField(
-                  textInputType: TextInputType.number,
-                  borderRadius: 8,
-                  bgColor: AppColors.whiteBgColor,
-                  hint: Strings.mobileTextFieldHint,
-                  textEditingController:
-                      _authenticationController.mobileNumberController,
-                  label: Strings.mobileTextFieldLabel,
-                  editText: true,
-                  edit: Strings.editText,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.minLength(6,
-                        errorText: "number must be more than 6 char"),
-                    FormBuilderValidators.maxLength(
-                      10,
-                    ),
-                  ]),
-                ),
-                MyTextField(
-                  borderRadius: 8,
-                  bgColor: AppColors.whiteBgColor,
-                  hint: Strings.emailTextFieldFocusHint,
-                  textEditingController:
-                      _authenticationController.emailController,
-                  label: Strings.emailIdTextFieldFocusLabel,
-                  editText: true,
-                  edit: Strings.editText,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.email(errorText: 'enter valid email'),
-                  ]),
-                ),
-                MyTextField(
-                  iconNeeded: true,
-                  borderRadius: 8,
-                  bgColor: AppColors.whiteBgColor,
-                  label: Strings.dateOfBirthTextFieldLabel,
-                  hint: Strings.dateOfBirthTextFieldHint,
-                  textEditingController:
-                      _authenticationController.dateOfBirthController,
-                  suffixIcon: InkWell(
-                    onTap: () async {
-                      var date = await Utility.showMyDatePicker(context);
-                      setState(() {
-                        _authenticationController.dateOfBirthController.text =
-                            date.toString();
-                      });
-                    },
-                    child: const Icon(
-                      Icons.date_range_outlined,
-                      color: AppColors.grey2,
-                    ),
+      body: GetBuilder<AuthenticationController>(
+          builder: (authenticationController) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: FormBuilder(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 22,
                   ),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(
-                        errorText: "please select dob"),
-                    FormBuilderValidators.min(1),
-                  ]),
-                ),
-                isSize,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22),
-                  child: Align(
+                  SizedBox(
+                    height: 160,
+                    width: 160,
+                    child: Stack(
+                        clipBehavior: Clip.none,
+                        fit: StackFit.expand,
+                        children: [
+                          Expanded(
+                            child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.whiteBgColor,
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: const SvgImageWidget(
+                                  path: AssetsConstants.profile_image,
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                )),
+                          ),
+                          Positioned(
+                              right: -8,
+                              bottom: 0,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      color: AppColors.primary,
+                                      borderRadius: BorderRadius.circular(100),
+                                      border: Border.all(
+                                          color: AppColors.whiteBgColor)),
+                                  height: 46,
+                                  width: 46,
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.edit,
+                                      color: AppColors.whiteBgColor,
+                                    ),
+                                    onPressed: () {},
+                                  )))
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //     boxShadow: BoxShadow.,
+                          //       color: AppColors.whiteBgColor,
+                          //       borderRadius: BorderRadius.circular(100),
+                          //       border:
+                          //           Border.all(color: AppColors.secondary, width: 2)),
+                          //   height: 160,
+                          //   width: 160,
+                          //   child: const SvgImageWidget(
+                          //       path: AssetsConstants.profile_image),
+                          // ),
+                        ]),
+                  ),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  MyTextField(
+                    textInputType: TextInputType.text,
+                    bgColor: AppColors.whiteBgColor,
+                    hint: Strings.userNameTextFieldLabel,
+                    textEditingController:
+                        _authenticationController.userNameController,
+                    editText: true,
+                    edit: Strings.editText,
+                    label: Strings.userFullNameTextFieldLabel,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                  ),
+                  MyTextField(
+                    textInputType: TextInputType.number,
+                    borderRadius: 8,
+                    bgColor: AppColors.whiteBgColor,
+                    hint: Strings.mobileTextFieldHint,
+                    textEditingController:
+                        _authenticationController.mobileNumberController,
+                    label: Strings.mobileTextFieldLabel,
+                    editText: true,
+                    edit: Strings.editText,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.maxLength(10),
+                      FormBuilderValidators.minLength(10),
+                    ]),
+                  ),
+                  MyTextField(
+                    borderRadius: 8,
+                    bgColor: AppColors.whiteBgColor,
+                    hint: Strings.emailTextFieldFocusHint,
+                    textEditingController:
+                        _authenticationController.emailController,
+                    label: Strings.emailIdTextFieldFocusLabel,
+                    editText: true,
+                    edit: Strings.editText,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.email(),
+                    ]),
+                  ),
+                  MyTextField(
+                    iconNeeded: true,
+                    borderRadius: 8,
+                    bgColor: AppColors.whiteBgColor,
+                    label: Strings.dateOfBirthTextFieldLabel,
+                    hint: Strings.dateOfBirthTextFieldHint,
+                    textEditingController:
+                        _authenticationController.dateOfBirthController,
+                    suffixIcon: InkWell(
+                      onTap: () async {
+                        var date = await Utility.showMyDatePicker(context);
+                        setState(() {
+                          _authenticationController.dateOfBirthController.text =
+                              date.toString();
+                        });
+                      },
+                      child: const Icon(
+                        Icons.date_range_outlined,
+                        color: AppColors.grey2,
+                      ),
+                    ),
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.dateString(),
+                    ]),
+                  ),
+                  isSize,
+                  Align(
                     alignment: Alignment.topLeft,
                     child: const Text(
                       Strings.gender,
@@ -144,116 +188,129 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                     ).tr(),
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Utility.choiceContainer(
-                      title: Strings.male,
-                      isSelected: selectedContainerIndex == 0,
-                      onTap: () {
-                        setState(() {
-                          selectedContainerIndex = 0;
-                          _authenticationController.genderController.text =
-                              Strings.male;
-                        });
-                      },
-                    ),
-                    Utility.choiceContainer(
-                      title: Strings.female,
-                      isSelected: selectedContainerIndex == 1,
-                      onTap: () {
-                        setState(() {
-                          selectedContainerIndex = 1;
-                          _authenticationController.genderController.text =
-                              Strings.female;
-                        });
-                      },
-                    ),
-                    Utility.choiceContainer(
-                      title: Strings.others,
-                      isSelected: selectedContainerIndex == 2,
-                      onTap: () {
-                        setState(() {
-                          selectedContainerIndex = 2;
-                          _authenticationController.genderController.text =
-                              Strings.others;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                isSize,
-                MyTextField(
-                  borderRadius: 8,
-                  bgColor: AppColors.whiteBgColor,
-                  hint: Strings.addBloodGroupText,
-                  textEditingController:
-                      _authenticationController.bloodGroupController,
-                  label: Strings.bloodGroupText,
-                  suffixIcon: const CustomDropDown(),
-                  iconNeeded: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                  ]),
-                ),
-                isSize,
-                MyTextField(
-                  borderRadius: 8,
-                  bgColor: AppColors.whiteBgColor,
-                  textInputType: TextInputType.number,
-                  hint: Strings.addHeightText,
-                  textEditingController:
-                      _authenticationController.heightController,
-                  label: Strings.heightText,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.minLength(1,
-                        errorText: ' select height'),
-                    FormBuilderValidators.maxLength(4,
-                        errorText: 'reached more weight'),
-                  ]),
-                ),
-                isSize,
-                MyTextField(
-                  borderRadius: 8,
-                  bgColor: AppColors.whiteBgColor,
-                  textInputType: TextInputType.number,
-                  hint: Strings.addWeightText,
-                  textEditingController:
-                      _authenticationController.weightController,
-                  label: Strings.weightText,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.minLength(2,
-                        errorText: 'please enter Weight'),
-                  ]),
-                ),
-                const SizedBox(
-                  height: 42,
-                ),
-                CustomButton(
-                  isBoxShadow: false,
-                  buttonName: "Save",
-                  onPress: () {
-                    if (_formKey.currentState!.validate()) {
-                      return Fluttertoast.showToast(msg: "success");
-                    } else {
-                      return Fluttertoast.showToast(msg: "Failed");
-                    }
-                  },
-                ),
-              ],
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Utility.choiceContainer(
+                        title: Strings.male,
+                        isSelected: selectedContainerIndex == 0,
+                        onTap: () {
+                          setState(() {
+                            selectedContainerIndex = 0;
+                            _authenticationController.genderController.text =
+                                Strings.male;
+                          });
+                        },
+                      ),
+                      Utility.choiceContainer(
+                        title: Strings.female,
+                        isSelected: selectedContainerIndex == 1,
+                        onTap: () {
+                          setState(() {
+                            selectedContainerIndex = 1;
+                            _authenticationController.genderController.text =
+                                Strings.female;
+                          });
+                        },
+                      ),
+                      Utility.choiceContainer(
+                        title: Strings.others,
+                        isSelected: selectedContainerIndex == 2,
+                        onTap: () {
+                          setState(() {
+                            selectedContainerIndex = 2;
+                            _authenticationController.genderController.text =
+                                Strings.others;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  isSize,
+                  MyTextField(
+                    borderRadius: 8,
+                    bgColor: AppColors.whiteBgColor,
+                    hint: "",
+                    textEditingController:
+                        _authenticationController.bloodGroupController,
+                    label: Strings.bloodGroupText,
+                    suffixIcon: const CustomDropDown(),
+                    iconNeeded: true,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                  ),
+                  isSize,
+                  MyTextField(
+                    borderRadius: 8,
+                    bgColor: AppColors.whiteBgColor,
+                    textInputType: TextInputType.number,
+                    hint: Strings.addHeightText,
+                    textEditingController:
+                        _authenticationController.heightController,
+                    label: Strings.heightText,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                  ),
+                  isSize,
+                  MyTextField(
+                    borderRadius: 8,
+                    bgColor: AppColors.whiteBgColor,
+                    textInputType: TextInputType.number,
+                    hint: Strings.addWeightText,
+                    textEditingController:
+                        _authenticationController.weightController,
+                    label: Strings.weightText,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
+                  ),
+                  const SizedBox(
+                    height: 42,
+                  ),
+                  authenticationController.isLoading
+                      ? const CircularProgressIndicator()
+                      : CustomButton(
+                          bgColor: AppColors.updateBgColor,
+                          buttonName: "updateText",
+                          tColor: AppColors.black2,
+                          isBoxShadow: false,
+                          onPress: () => validate(),
+                        ),
+                  // CustomButton(
+                  //   isBoxShadow: false,
+                  //   buttonName: "Save",
+                  //   onPress: () {
+                  //     if (_formKey.currentState!.validate()) {
+                  //       return Fluttertoast.showToast(msg: "success");
+                  //     } else {
+                  //       return Fluttertoast.showToast(msg: "Failed");
+                  //     }
+                  //   },
+                  // ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
+  }
+
+  validate() {
+    closeKeyboard();
+    // bool status = _formKey.currentState?.saveAndValidate() ?? false;
+    // Utility.myBottomSheet(context, widget: const HomeScreen());
+    // Get.to(() => const DashBoardScreen());
+    // if (status) {
+    //   // _authenticationController.firebaseSendOTP(context);
+    // }
   }
 }

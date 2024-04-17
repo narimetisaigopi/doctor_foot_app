@@ -1,6 +1,7 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -21,7 +22,10 @@ class _CustomDropDownState extends State<CustomDropDown> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: FormBuilderDropdown(
+        
         decoration: const InputDecoration(
+          hintStyle: TextStyle(color: AppColors.grey2),
+          hintText: Strings.addBloodGroupText,
             focusedBorder: InputBorder.none,
             focusColor: AppColors.whiteBgColor,
             disabledBorder: InputBorder.none,

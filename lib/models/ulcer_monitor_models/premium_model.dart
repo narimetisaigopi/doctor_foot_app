@@ -1,4 +1,6 @@
 
+import 'package:drfootapp/utils/constants/string_constants.dart';
+
 class PremiumPlanModel {
   String text;
   PremiumPlanModel({this.text = ''});
@@ -7,18 +9,18 @@ class PremiumPlanModel {
 List<PremiumPlanModel> premiumPlanList = [
  
   PremiumPlanModel(
-    text: "premiumPlanText1",
+    text: Strings.premiumPlanText1,
   ),
   PremiumPlanModel(
-    text: "premiumPlanText2",
+    text: Strings.premiumPlanText2,
   ),
   PremiumPlanModel(
-    text: "premiumPlanText3",
+    text: Strings.premiumPlanText3,
   ),
   PremiumPlanModel(
-    text: "premiumPlanText4",
+    text: Strings.premiumPlanText4,
   ),
    PremiumPlanModel(
-    text: "premiumPlanText5",
+    text: Strings.premiumPlanText5,
   ),
 ];
