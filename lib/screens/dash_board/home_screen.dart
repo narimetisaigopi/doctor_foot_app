@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const AppBarWidget(),
               const SizedBox(
-                height: 20,
+                height: 35,
               ),
               const HomeImage(),
               const SizedBox(

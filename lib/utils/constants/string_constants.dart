@@ -22,7 +22,7 @@ class Strings {
       "Everyday report on your ulcer activity";
   static const String premiumPlanText4 = "Dressing and Home remedies";
   static const String premiumPlanText5 =
-      "Diet Suggestions according to ulcer condition";
+      "Diet Suggestions according to ulcer   condition";
 
   static const String premiumPlanAamount = "₹1000 Plan";
 
@@ -32,7 +32,7 @@ class Strings {
   static const String planAmountText = "₹1000/week";
   static const String weeklyUmText = "Weekly Ulcer Monitoring";
   static const String freePlanText1 =
-      "Experts review on ulcer images after a week";
+      "Experts review on ulcer images after a\n     week";
   static const String freePlanText2 = "Weekly report on your ulcer activity";
   static const String getStartedButton = "Get Started";
 
@@ -112,7 +112,7 @@ class Strings {
 
   static const String gender = 'Gender';
   static const String editText = 'Edit';
-  static const String addBloodGroupText = "Add blood group";
+  static const String addBloodGroupText = " Add blood group";
   static const String bloodGroupText = "Blood group";
   static const String addHeightText = "Add Height";
   static const String heightText = "Height";
@@ -120,6 +120,7 @@ class Strings {
   static const String weightText = "Weight";
   static const String home = "Home";
   static const String work = "Work";
+  static const String updateText = "Update";
   static const String friendsAndFamily = "Friends & Family";
 
   static const String small = "Samll";

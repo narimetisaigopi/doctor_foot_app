@@ -10,8 +10,8 @@ class DottedWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 04),
       child: Text(
-        "${"   ●  "}$text",
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+        "${"   ●  "}${text.toString()}",
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
       ).tr(),
     );
   }

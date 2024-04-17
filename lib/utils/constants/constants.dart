@@ -48,12 +48,12 @@ const patientReviewsMap = [
   },
 ];
 List<String> bloodGroupList = [
-  "A  positive (A+)",
-  "A negative (A-)",
-  "B positive (B+)",
-  "B negative (B-)",
-  "O positive (O+)",
-  "O negative (O-)",
-  "AB positive (AB+)",
-  "AB negative (AB-)"
+  " A positive (A+)",
+  " A negative (A-)",
+  " B positive (B+)",
+  " B negative (B-)",
+  " O positive (O+)",
+  " O negative (O-)",
+  " AB positive (AB+)",
+  " AB negative (AB-)"
 ];
