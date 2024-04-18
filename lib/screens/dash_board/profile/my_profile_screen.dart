@@ -21,14 +21,48 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+final _formKey = GlobalKey<FormBuilderState>();
   int selectedContainerIndex = 0;
+
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());
+
   SizedBox isSize = const SizedBox(
     height: 10,
   );
+
+  setDefault() {
+    //email
+    _authenticationController.userNameController.text =
+        _authenticationController.loginUserModel.userName;
+    //mobile
+    _authenticationController.mobileNumberController.text =
+        _authenticationController.loginUserModel.mobileNumber;
+    //email
+    _authenticationController.emailController.text =
+        _authenticationController.loginUserModel.emailId;
+    //dob
+    _authenticationController.dateOfBirthController.text =
+        _authenticationController.loginUserModel.dateOfBirth;
+    //gender
+    _authenticationController.genderController.text =
+        _authenticationController.loginUserModel.gender;
+    //blood
+    _authenticationController.bloodGroupController.text =
+        _authenticationController.loginUserModel.bloodgroup;
+    //height
+    _authenticationController.heightController.text =
+        _authenticationController.loginUserModel.height;
+    //weight
+    _authenticationController.weightController.text =
+        _authenticationController.loginUserModel.weight;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setDefault();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +100,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           Expanded(
                             child: Container(
                                 decoration: BoxDecoration(
-                                  color: AppColors.whiteBgColor,
+                                    color: AppColors.whiteBgColor,
                                     borderRadius: BorderRadius.circular(100)),
                                 child: const SvgImageWidget(
                                   path: AssetsConstants.profile_image,
@@ -110,13 +144,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     height: 22,
                   ),
                   MyTextField(
+                    enabled: false,
                     textInputType: TextInputType.text,
                     bgColor: AppColors.whiteBgColor,
                     hint: Strings.userNameTextFieldLabel,
                     textEditingController:
                         _authenticationController.userNameController,
                     editText: true,
-                    edit: Strings.editText,
+                    edit: "",
                     label: Strings.userFullNameTextFieldLabel,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
@@ -125,13 +160,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   MyTextField(
                     textInputType: TextInputType.number,
                     borderRadius: 8,
+                    enabled: false,
                     bgColor: AppColors.whiteBgColor,
                     hint: Strings.mobileTextFieldHint,
                     textEditingController:
                         _authenticationController.mobileNumberController,
                     label: Strings.mobileTextFieldLabel,
                     editText: true,
-                    edit: Strings.editText,
+                    edit: "",
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                       FormBuilderValidators.maxLength(10),
@@ -146,7 +182,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         _authenticationController.emailController,
                     label: Strings.emailIdTextFieldFocusLabel,
                     editText: true,
-                    edit: Strings.editText,
+                    edit: "",
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                       FormBuilderValidators.email(),
@@ -305,11 +341,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   validate() {
     closeKeyboard();
-    // bool status = _formKey.currentState?.saveAndValidate() ?? false;
+    bool status = _formKey.currentState!.saveAndValidate();
     // Utility.myBottomSheet(context, widget: const HomeScreen());
     // Get.to(() => const DashBoardScreen());
-    // if (status) {
-    //   // _authenticationController.firebaseSendOTP(context);
-    // }
+    if (status) {
+      // _authenticationController.firebaseSendOTP(context);
+    }
   }
 }

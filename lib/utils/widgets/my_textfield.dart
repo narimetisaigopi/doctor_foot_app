@@ -31,6 +31,7 @@ class MyTextField extends StatefulWidget {
   final int maxLength;
   // final int minLines;
   final bool editText;
+  final bool enabled;
   final String? Function(String?)? validator;
   final AutovalidateMode? autovalidateMode;
   const MyTextField(
@@ -54,6 +55,7 @@ class MyTextField extends StatefulWidget {
       this.onPress,
       this.onValidate,
       this.iconNeeded = false,
+      this.enabled = true,
       this.leadingIcon,
       this.trailingIcon = const Icon(Icons.arrow_forward),
       this.editText = true,
@@ -103,6 +105,7 @@ class _MyTextFieldState extends State<MyTextField> {
     return FormBuilderTextField(
       name: widget.label,
       onTap: () {},
+      enabled: widget.enabled,
       validator: widget.validator,
       autovalidateMode: widget.autovalidateMode,
       maxLines: widget.maxLines,
@@ -136,6 +139,9 @@ class _MyTextFieldState extends State<MyTextField> {
           suffixIcon:
               widget.iconNeeded ? widget.suffixIcon : const SizedBox.shrink(),
           suffix: widget.textButtonNeeded ? widget.textButton : null,
+          disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: const BorderSide(color: AppColors.grey2)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
               borderSide: const BorderSide(color: AppColors.grey)),

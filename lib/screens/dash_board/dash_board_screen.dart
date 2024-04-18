@@ -1,3 +1,4 @@
+import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/screens/dash_board/diet_chart_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen.dart';
@@ -19,6 +20,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   int selectedIndex = 0;
 
   LocationController locationController = Get.put(LocationController());
+  AuthenticationController authenticationController =
+      Get.put(AuthenticationController());
 
   List pages = [
     const HomeScreen(),
@@ -31,6 +34,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   void initState() {
     locationController.determinePosition();
+    authenticationController.getUserDataAndStoreLocally();
     super.initState();
   }
 

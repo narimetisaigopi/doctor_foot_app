@@ -25,6 +25,8 @@ class AuthenticationController extends GetxController {
 
   bool isSignUp = true;
 
+  UserModel loginUserModel = UserModel();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
@@ -208,9 +210,10 @@ class AuthenticationController extends GetxController {
   Future<UserModel?> getUserDataAndStoreLocally() async {
     if (FirebaseAuth.instance.currentUser != null) {
       DocumentSnapshot documentSnapshot = await getCurrentUserDocRef().get();
+      logger(documentSnapshot.data().toString());
       if (documentSnapshot.data() != null) {
-        userModel = UserModel.fromJson(documentSnapshot.data() as Map);
-        return userModel;
+        loginUserModel = UserModel.fromJson(documentSnapshot.data() as Map);
+        return loginUserModel;
       }
     }
     return null;
