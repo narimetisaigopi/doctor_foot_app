@@ -33,7 +33,7 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
     return Scaffold(
       body: GetBuilder<RiskFactorController>(builder: (context) {
         return PageView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           controller: _pageController,
           scrollDirection: Axis.horizontal,
           itemCount: _riskFactorController.riskFactorsModelsList.length,

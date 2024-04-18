@@ -1,12 +1,13 @@
-// ignore_for_file: unused_field
-import 'dart:developer';
+// ignore_for_file: unused_field, use_build_context_synchronously
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/admin/admin_panel.dart';
 import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
 import 'package:drfootapp/screens/auth_screens/privacy.dart';
+import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/splash_screen.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -21,6 +22,8 @@ class AuthenticationController extends GetxController {
   int? forceResendingToken;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   String? smsCode;
+
+  bool isSignUp = true;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -38,15 +41,19 @@ class AuthenticationController extends GetxController {
 
   late BuildContext context;
 
-  // this method is used to send otp to user .
-  firebaseSendOTP(BuildContext context) async {
-    _updateLoading(true);
-    this.context = context;
+  _setSignUpData() {
     userModel = UserModel();
     userModel.userName = userNameController.text.toLowerCase();
     userModel.dateOfBirth = dateOfBirthController.text;
     userModel.gender = genderController.text;
     userModel.mobileNumber = mobileNumberController.text;
+  }
+
+  // this method is used to send otp to user .
+  firebaseSendOTP(BuildContext context) async {
+    _updateLoading(true);
+    this.context = context;
+
     try {
       await _firebaseAuth.verifyPhoneNumber(
           phoneNumber: "+91${userModel.mobileNumber}",
@@ -92,17 +99,23 @@ class AuthenticationController extends GetxController {
       UserCredential userCredential =
           await _firebaseAuth.signInWithCredential(authCredential);
       if (userCredential.user != null) {
-        await _firebaseAuthInsertData();
-        Utility.myBottomSheet(context,
-            widget: const ValuePrivacy(), heightFactor: 0.7);
-        // Get.offAll(() => const DashBoardScreen());
+        if (isSignUp) {
+          // if login taking directly to dashboard
+          await _firebaseAuthInsertData();
+          Utility.myBottomSheet(context,
+              widget: const ValuePrivacy(), heightFactor: 0.7);
+        } else {
+          // if login taking directly to sign up
+          await updateDeviceToken();
+          Get.offAll(() => const DashBoardScreen());
+        }
       } else {
         Utility.toast("Something went wrong, please try again.",
             backgroundColor: Colors.red);
       }
     } catch (e, stack) {
-      log(e.toString());
-      log(stack.toString());
+      logger(e.toString());
+      logger(stack.toString());
       Utility.toast(e.toString(), backgroundColor: Colors.red);
       _updateLoading(false);
     }
@@ -120,8 +133,8 @@ class AuthenticationController extends GetxController {
           verificationId: _verificationId, smsCode: enteredOTP);
       await _firebasePhoneAuthVerifyCredentials(authCredential);
     } catch (e, stack) {
-      log("message $e");
-      log("message $stack");
+      logger("message $e");
+      logger("message $stack");
       Utility.toast("$e", backgroundColor: Colors.red);
     }
   }
@@ -131,19 +144,18 @@ class AuthenticationController extends GetxController {
   }
 
   _firebaseAuthInsertData() async {
-    User? user = FirebaseAuth.instance.currentUser;
-
     try {
       UserModel userModel = UserModel();
       userModel.userName = userNameController.text;
-      userModel.mobileNumber = user!.phoneNumber!;
+      userModel.mobileNumber = userModel.mobileNumber;
       userModel.docId = getCurrentUserDocRef().id;
       userModel.dateOfBirth = dateOfBirthController.text;
       userModel.gender = genderController.text;
-      userModel.timestamp = DateTime.now() as Timestamp?;
+      userModel.timestamp = DateTime.now();
       await getCurrentUserDocRef().set(userModel.toMap());
+      await updateDeviceToken();
     } catch (e) {
-      log(e.toString());
+      logger(e.toString());
     }
   }
 
@@ -153,7 +165,7 @@ class AuthenticationController extends GetxController {
       await auth.signInWithEmailAndPassword(email: email, password: password);
       Get.offAll(() => const AdminPanel());
     } catch (e) {
-      log(e.toString());
+      logger(e.toString());
     }
   }
 
@@ -185,11 +197,11 @@ class AuthenticationController extends GetxController {
             });
           }
         } else {
-          debugPrint("token is null");
+          logger("token is null");
         }
       }
     } catch (e) {
-      debugPrint("updateDeviceToken failed exp ${e.toString()}");
+      logger("updateDeviceToken failed exp ${e.toString()}");
     }
   }
 
@@ -204,10 +216,50 @@ class AuthenticationController extends GetxController {
     return null;
   }
 
-  Future<bool> checkUserName() async {
+  signUpFirebaseValidation(BuildContext context) async {
+    try {
+      _updateLoading(true);
+      _setSignUpData();
+      bool userNameStatus = await isUsernameExisted();
+      if (!userNameStatus) {
+        Utility.toast("Username already taken, please enter another username");
+        return;
+      }
+      bool mobileNumberStatus = await isMobileExisted();
+      if (!mobileNumberStatus) {
+        Utility.toast("Mobile number already register, please login");
+        return;
+      }
+      await firebaseSendOTP(context);
+    } catch (e) {
+      logger(e.toString());
+    } finally {
+      _updateLoading(false);
+    }
+  }
+
+  signInFirebaseValidation(BuildContext context) async {
+    try {
+      _updateLoading(true);
+      _setSignUpData();
+      bool mobileNumberStatus = await isMobileExisted();
+      if (mobileNumberStatus) {
+        Utility.toast("Mobile number not registered, please create account");
+        return;
+      }
+      await firebaseSendOTP(context);
+    } catch (e) {
+      logger(e.toString());
+    } finally {
+      _updateLoading(false);
+    }
+  }
+
+  Future<bool> isUsernameExisted() async {
     QuerySnapshot querySnapshot = await usersCollectionReference
-        .where("userName", isEqualTo: userModel.userName.toUpperCase())
+        .where("userName", isEqualTo: userModel.userName.toLowerCase())
         .get();
+    logger("message ${querySnapshot.docs.length}");
     if (querySnapshot.docs.isEmpty) {
       return true;
     } else {
@@ -215,7 +267,7 @@ class AuthenticationController extends GetxController {
     }
   }
 
-  Future<bool> checkMobileNumber() async {
+  Future<bool> isMobileExisted() async {
     QuerySnapshot querySnapshot = await usersCollectionReference
         .where("mobileNumber", isEqualTo: userModel.mobileNumber)
         .get();
@@ -241,7 +293,7 @@ class AuthenticationController extends GetxController {
                     await updateDeviceToken(clearIt: true);
                     await FirebaseAuth.instance.signOut();
                   } catch (e) {
-                    debugPrint(e.toString());
+                    logger(e.toString());
                   } finally {
                     await SPHelper().clear();
                     Get.offUntil(

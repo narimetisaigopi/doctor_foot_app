@@ -22,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());
   final _formKey = GlobalKey<FormBuilderState>();
-  int selectedContainerIndex = 0;
+  int selectedContainerIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       suffixIcon: InkWell(
                         onTap: () async {
                           closeKeyboard();
-                          var date = await Utility.showMyDatePicker(context);
+                          var date = await Utility.showMyDatePicker(context,
+                              lastDate: DateTime.now());
                           setState(() {
                             _authenticationController
                                 .dateOfBirthController.text = date.toString();
@@ -161,6 +162,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textInputType: TextInputType.phone,
                       textEditingController:
                           _authenticationController.mobileNumberController,
+                      onSubmited: (value) {
+                        validate();
+                      },
                     ),
                     const SizedBox(
                       height: 40,
@@ -178,6 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: InkWell(
                         onTap: () {
+                          Get.back();
                           Utility.myBottomSheet(context,
                               widget: const SignInScreen());
                         },
@@ -208,10 +213,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   validate() {
     closeKeyboard();
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
-    // Utility.myBottomSheet(context, widget: const HomeScreen());
-    // Get.to(() => const DashBoardScreen());
     if (status) {
-      _authenticationController.firebaseSendOTP(context);
+      if (selectedContainerIndex == -1) {
+        Utility.toast("Please select gender");
+      } else {
+        _authenticationController.signUpFirebaseValidation(context);
+      } 
     }
   }
 }

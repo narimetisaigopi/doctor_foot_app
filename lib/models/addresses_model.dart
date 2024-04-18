@@ -6,7 +6,7 @@ class AddressesModel {
   String area = "";
   String landMark = "";
   String addressLabel = "";
-  var timestamp;
+  dynamic timestamp;
   bool selectedAddresses;
 
   AddressesModel({

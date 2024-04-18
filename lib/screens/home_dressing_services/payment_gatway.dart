@@ -18,45 +18,43 @@ class _PaymentGateWayState extends State<PaymentGateWay> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: const Icon(FontAwesomeIcons.remove))
-                ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: const Icon(FontAwesomeIcons.xmark))
+              ],
+            ),
+            Image.asset(
+              AssetsConstants.phonepe,
+            ),
+            const Text(
+              "PhonePe UPI",
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
               ),
-              Image.asset(
-                AssetsConstants.phonepe,
+            ).tr(),
+            const Text(
+              "Total : ₹800",
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
               ),
-              const Text(
-                "PhonePe UPI",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                ),
-              ).tr(),
-              const Text(
-                "Total : ₹800",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const CustomButton(
-                buttonName: "PAY VIA PHONEPE",
-              )
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const CustomButton(
+              buttonName: "PAY VIA PHONEPE",
+            )
+          ],
         ),
       ),
     );

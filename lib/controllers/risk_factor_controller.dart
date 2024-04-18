@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:drfootapp/models/risk_factor_model.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +22,7 @@ class RiskFactorController extends GetxController {
 
       update();
     } catch (error) {
-      print("Error fetching data: $error");
+      logger("Error fetching data: $error");
     }
   }
 

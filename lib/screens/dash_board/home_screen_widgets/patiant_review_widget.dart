@@ -26,19 +26,17 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Expanded(
-          child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: patientReviewsList.length,
-              itemBuilder: (context, index) {
-                final patientReviewsItem = patientReviewsList[index];
-                return ReviewWidget(
-                    image: patientReviewsItem.patientImage,
-                    name: patientReviewsItem.patientName,
-                    discr: patientReviewsItem.discription,
-                    dateTime: patientReviewsItem.date);
-              }),
-        ),
+        child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: patientReviewsList.length,
+            itemBuilder: (context, index) {
+              final patientReviewsItem = patientReviewsList[index];
+              return ReviewWidget(
+                  image: patientReviewsItem.patientImage,
+                  name: patientReviewsItem.patientName,
+                  discr: patientReviewsItem.discription,
+                  dateTime: patientReviewsItem.date);
+            }),
       ),
     );
   }

@@ -1,9 +1,13 @@
 // import 'dart:io';
 // import 'dart:typed_data';
 
+import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
+import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/widgets/custom_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -22,7 +26,7 @@ class Utility {
   static DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss aaa');
   static DateFormat formatterOnlyDate = DateFormat('yyyy-MM-dd');
 
-  static showAlertDialog({
+  static showAlertDialogger({
     required BuildContext context,
     required Function() yes,
     required Function() no,
@@ -162,69 +166,61 @@ class Utility {
 
   // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
-  // static logout(BuildContext context) {
-  //   // set up the AlertDialog
-  //   AlertDialog alert = AlertDialog(
-  //     title: const Text("Logout"),
-  //     content: const Text("Do you want to logout from the app?"),
-  //     actions: [
-  //       TextButton(
-  //           onPressed: () {
-  //             Navigator.of(context).pop();
-  //           },
-  //           child: const Text("No")),
-  //       TextButton(
-  //           onPressed: () async {
-  //             Utility.toast("Thanks for using app");
-  //             logoutFunction(context);
-  //           },
-  //           child: const Text("Yes"))
-  //     ],
-  //   );
+  static logout(BuildContext context) {
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Logout"),
+      content: const Text("Do you want to logout from the app?"),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("No")),
+        TextButton(
+            onPressed: () async {
+              Utility.toast("Thanks for using app");
+              logoutFunction(context);
+            },
+            child: const Text("Yes"))
+      ],
+    );
 
-  //   // show the dialog
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return alert;
-  //     },
-  //   );
-  // }
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
-  // static logoutFunction(BuildContext context) async {
-  //   try {
-  //     User user = FirebaseAuth.instance.currentUser!;
-  //     await user.delete();
-
-  //     await FirebaseAuth.instance.signOut();
-  //     await usersCollectionReference
-  //         .doc(loginUserModel!.getUserId())
-  //         .update({"deviceToken": null});
-  //     // loginUserModel! = null;
-  //     await Prefs.removeUser();
-  //     // ignore: use_build_context_synchronously
-  //     Navigator.pushAndRemoveUntil(
-  //         context,
-  //         MaterialPageRoute(builder: (builder) => const SplashScreenImage()),
-  //         (route) => false);
-  //   } catch (e) {
-  //     await Prefs.removeUser();
-  //     // ignore: use_build_context_synchronously
-  //     Navigator.pushAndRemoveUntil(
-  //         context,
-  //         MaterialPageRoute(builder: (builder) => const SplashScreenImage()),
-  //         (route) => false);
-  //   }
-  // }
+  static logoutFunction(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      await Get.put(AuthenticationController())
+          .getCurrentUserDocRef()
+          .update({"deviceToken": null});
+      await SPHelper().clear();
+      Get.offAll(() => const SplashScreen());
+    } catch (e) {
+      logger(e);
+    } finally {
+      Get.offAll(() => const SplashScreen());
+    }
+  }
 
   static Future<String?> showMyDatePicker(BuildContext context,
-      {bool returnOnlyDate = true, DateTime? selectedDate}) async {
+      {bool returnOnlyDate = true,
+      DateTime? selectedDate,
+      DateTime? lastDate}) async {
     selectedDate ??= DateTime.now();
+    lastDate ??= DateTime.now();
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
-        firstDate: DateTime.now(),
-        lastDate: DateTime(2101));
+        firstDate: DateTime(1950),
+        lastDate: lastDate);
     if (picked != null && picked != selectedDate) {
       return returnOnlyDate
           ? formatterOnlyDate.format(picked)
@@ -250,15 +246,15 @@ class Utility {
   // interNetCheck() async {
   //   bool result = await InternetConnectionChecker().hasConnection;
   //   if (result == true) {
-  //     print("interNet is connected");
+  //     logger("interNet is connected");
   //   } else {
   //     ConnectionCheck(BuildContext context) {
-  //       AlertDialog alertDialog = AlertDialog(
+  //       AlertDialog alertDialog = AlertDialogger(
   //         title: Text("Connection error"),
   //         content: Text("Please check the internet Connection"),
   //         actions: [ElevatedButton(onPressed: () {}, child: Text("Ok"))],
   //       );
-  //       return showDialog(
+  //       return showDialogger(
   //         context: context,
   //         builder: (BuildContext context) {
   //           return alertDialog;
@@ -473,13 +469,13 @@ Widget policyWidget(BuildContext context, Color color) {
               style: const TextStyle(color: Colors.green),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  policyDialog(context);
+                  policyDialogger(context);
                 },
             )
           ]));
 }
 
-policyDialog(BuildContext context) {
+policyDialogger(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -600,7 +596,7 @@ Widget customDropDownItem(
 //   return data;
 // }
 
-void makeAndAlertDialog(
+void makeAndAlertDialogger(
   BuildContext context, {
   String title = "",
   String description = "",

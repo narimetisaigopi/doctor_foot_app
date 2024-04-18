@@ -4,7 +4,7 @@ class UserModel {
   String dateOfBirth;
   String gender;
   String mobileNumber;
-  var timestamp;
+  dynamic timestamp;
   List<String> androidTokensList;
   List<String> appleTokensList;
 

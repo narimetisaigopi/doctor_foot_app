@@ -1,10 +1,10 @@
-
 import 'package:drfootapp/screens/dash_board/admin_login.dart';
-import 'package:drfootapp/screens/dash_board/prifile_details/custom_listTile_widget.dart';
+import 'package:drfootapp/screens/dash_board/prifile_details/custom_listtile_widget.dart';
 import 'package:drfootapp/screens/dash_board/profile/my_profile_screen.dart';
 import 'package:drfootapp/screens/translation_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 
 import 'package:drfootapp/utils/widgets/custom_sizedBox_widget.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
@@ -120,7 +120,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   text: "contactus", leadingIcon: Icons.call, onPressed: () {}),
               customDivider,
               CustomListTileWidget(
-                  text: "logout", leadingIcon: Icons.logout, onPressed: () {}),
+                  text: "logout",
+                  leadingIcon: Icons.logout,
+                  onPressed: () {
+                    Utility.logout(context);
+                  }),
               customDivider
             ],
           ),

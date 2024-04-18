@@ -1,6 +1,6 @@
-import 'dart:developer';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
@@ -89,14 +89,14 @@ class _UploadYourCurrentUlcerState extends State<UploadYourCurrentUlcer> {
 
   Future pickImage() async {
     ImagePicker imagePicker = ImagePicker();
-    var selectedImage;
+    dynamic selectedImage = "";
     selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
     if (xFile != null) {
       setState(() {
         xFile = selectedImage;
       });
     } else {
-      log("Image not picked");
+      logger("Image not picked");
     }
   }
 }

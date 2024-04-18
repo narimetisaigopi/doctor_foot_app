@@ -1,6 +1,6 @@
-import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/basicPlan_widget.dart';
+import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/basic_plan_widget.dart';
 import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/basic_plan_screen.dart';
-import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/premiumPlan_widget.dart';
+import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/premium_plan_widget.dart';
 import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/premium_plan_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -24,27 +24,25 @@ class _UlcerScreenState extends State<UlcerScreen> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
-            color: AppColors.secondary,
-            child: Column(
-              children: [
-                BasicPlanWidget(
-                  onPress: () {
-                    Get.to(const BasicPlanScreen());
-                  },
-                ),
-                const SizedBox(
-                  height: 22,
-                ),
-                PremiumPlanWidget(
-                  onPress: () {
-                    Get.to(const PremiumPlanScreen());
-                  },
-                )
-              ],
-            ),
+        child: Container(
+          margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
+          color: AppColors.secondary,
+          child: Column(
+            children: [
+              BasicPlanWidget(
+                onPress: () {
+                  Get.to(const BasicPlanScreen());
+                },
+              ),
+              const SizedBox(
+                height: 22,
+              ),
+              PremiumPlanWidget(
+                onPress: () {
+                  Get.to(const PremiumPlanScreen());
+                },
+              )
+            ],
           ),
         ),
       ),
