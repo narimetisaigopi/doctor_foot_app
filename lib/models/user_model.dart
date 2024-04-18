@@ -1,12 +1,17 @@
 class UserModel {
+  String fullName;
+  String emailId;
+  String bloodgroup;
+  String height;
+  String weight;
   String userName;
   String docId;
   String dateOfBirth;
   String gender;
   String mobileNumber;
   dynamic timestamp;
-  List<String> androidTokensList;
-  List<String> appleTokensList;
+  List<dynamic> androidTokensList;
+  List<dynamic> appleTokensList;
 
   UserModel({
     this.userName = "",
@@ -17,8 +22,12 @@ class UserModel {
     this.androidTokensList = const [],
     this.appleTokensList = const [],
     this.timestamp,
+    this.fullName = "",
+    this.emailId = "",
+    this.bloodgroup = "",
+    this.height = "",
+    this.weight = "",
   });
-
   factory UserModel.fromJson(
     Map map,
   ) {
@@ -30,7 +39,13 @@ class UserModel {
         mobileNumber: map['mobileNumber'] ?? "",
         timestamp: map['timestamp'] ?? "",
         androidTokensList: map["androidTokensList"] ?? [],
-        appleTokensList: map["appleTokensList"] ?? []);
+      appleTokensList: map["appleTokensList"] ?? [],
+      fullName: map['fullName'] ?? "",
+      emailId: map['emailId'] ?? "",
+      bloodgroup: map['bloodgroup'] ?? "",
+      height: map['height'] ?? "",
+      weight: map['weight'] ?? "",
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -43,6 +58,11 @@ class UserModel {
       "androidTokensList": androidTokensList,
       "appleTokensList": appleTokensList,
       'timestamp': DateTime.now().toString(),
+      'fullName': fullName,
+      'emailId': emailId,
+      'bloodgroup': bloodgroup,
+      'height': height,
+      'weight': weight,
     };
   }
 
