@@ -6,9 +6,7 @@ import 'package:drfootapp/utils/widgets/available_offers_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +33,7 @@ class _AvailableOffersState extends State<AvailableOffers> {
                 Get.back();
               },
               icon: const Icon(
-                FontAwesomeIcons.remove,
+                FontAwesomeIcons.xmark,
                 color: AppColors.greyTextColor,
               ))
         ],
@@ -76,7 +74,7 @@ class _AvailableOffersState extends State<AvailableOffers> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: FirestorePagination(

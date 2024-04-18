@@ -416,7 +416,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                             couponCodeController.removeSelectedCoupon();
                             setState(() {});
                           },
-                          icon: const Icon(FontAwesomeIcons.remove,
+                          icon: const Icon(FontAwesomeIcons.xmark,
                               color: Colors.green))
                 ],
               ),

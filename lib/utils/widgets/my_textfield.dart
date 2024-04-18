@@ -3,8 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
-
 import '../constants/app_colors.dart';
 
 class MyTextField extends StatefulWidget {
@@ -27,6 +25,7 @@ class MyTextField extends StatefulWidget {
   final TextEditingController textEditingController;
   final Function()? onPress;
   final Function()? onValidate;
+  final Function(String?)? onSubmited;
   final TextInputType textInputType;
   final int maxLines;
   final int maxLength;
@@ -60,6 +59,7 @@ class MyTextField extends StatefulWidget {
       this.editText = true,
       this.suffixIcon,
       this.validator,
+      this.onSubmited,
       this.autovalidateMode});
 
   @override
@@ -106,6 +106,7 @@ class _MyTextFieldState extends State<MyTextField> {
       validator: widget.validator,
       autovalidateMode: widget.autovalidateMode,
       maxLines: widget.maxLines,
+      onSubmitted: widget.onSubmited,
       maxLength: widget.maxLength,
       keyboardType: widget.textInputType,
       controller: widget.textEditingController,

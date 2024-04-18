@@ -1,5 +1,6 @@
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:flutter/material.dart';
 
 const String appName = "Doctor Foot";
 
@@ -57,3 +58,7 @@ List<String> bloodGroupList = [
   " AB positive (AB+)",
   " AB negative (AB-)"
 ];
+
+logger(dynamic message) {
+  debugPrint(message);
+}

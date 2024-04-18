@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/coupon_code_model.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class CouponCodeController extends GetxController {
         .where("couponCode", isEqualTo: couponCode)
         .get();
 
-    print("checkCouponCode${snapshot.docs.length}");
+    logger("checkCouponCode${snapshot.docs.length}");
     if (snapshot.docs.isNotEmpty) {
       couponCodeModel = CouponCodeModel.fromJson(snapshot.docs.first.data());
     }

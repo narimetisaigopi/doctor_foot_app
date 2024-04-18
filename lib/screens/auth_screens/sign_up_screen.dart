@@ -1,7 +1,5 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
-import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
-import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -12,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-
-import 'otp_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -26,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());
   final _formKey = GlobalKey<FormBuilderState>();
-  int selectedContainerIndex = 0;
+  int selectedContainerIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +58,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hint: Strings.userNameTextFieldHint,
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
+                          FormBuilderValidators.minLength(3),
+                          FormBuilderValidators.maxLength(30),
                         ]),
                         textEditingController:
                             _authenticationController.userNameController),
@@ -81,7 +79,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       suffixIcon: InkWell(
                         onTap: () async {
                           closeKeyboard();
-                          var date = await Utility.showMyDatePicker(context);
+                          var date = await Utility.showMyDatePicker(context,
+                              lastDate: DateTime.now());
                           setState(() {
                             _authenticationController
                                 .dateOfBirthController.text = date.toString();
@@ -163,6 +162,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textInputType: TextInputType.phone,
                       textEditingController:
                           _authenticationController.mobileNumberController,
+                      onSubmited: (value) {
+                        validate();
+                      },
                     ),
                     const SizedBox(
                       height: 40,
@@ -180,6 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: InkWell(
                         onTap: () {
+                          Get.back();
                           Utility.myBottomSheet(context,
                               widget: const SignInScreen());
                         },
@@ -210,10 +213,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   validate() {
     closeKeyboard();
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
-    // Utility.myBottomSheet(context, widget: const HomeScreen());
-    Get.to(() => const DashBoardScreen());
     if (status) {
-      // _authenticationController.firebaseSendOTP(context);
+      if (selectedContainerIndex == -1) {
+        Utility.toast("Please select gender");
+      } else {
+        _authenticationController.signUpFirebaseValidation(context);
+      } 
     }
   }
 }

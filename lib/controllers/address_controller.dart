@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/addresses_model.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class AddressesController extends GetxController {
   TextEditingController localityController = TextEditingController();
@@ -33,7 +33,7 @@ class AddressesController extends GetxController {
     addressesList = querySnapshot.docs
         .map((e) => AddressesModel.fromMap(e.data() as Map<String, dynamic>))
         .toList();
-    print("getMyAddress ${addressesList.length}");
+    logger("getMyAddress ${addressesList.length}");
     update();
   }
 

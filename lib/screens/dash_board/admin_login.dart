@@ -16,6 +16,7 @@ class AdminLogin extends StatefulWidget {
 class _AdminLoginState extends State<AdminLogin> {
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());
+  @override
   Widget build(BuildContext context) {
     return Material(
       child: ScreenTypeLayout.builder(

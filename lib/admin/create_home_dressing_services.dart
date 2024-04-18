@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:drfootapp/controllers/home_dressing_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
@@ -20,8 +19,8 @@ class CreateHomeDressingServices extends StatefulWidget {
     this.isAdmin = false,
     required this.homeDressingModel,
   });
-
   @override
+  // ignore: library_private_types_in_public_api
   _CreateHomeDressingServicesState createState() =>
       _CreateHomeDressingServicesState();
 }
@@ -72,7 +71,7 @@ class _CreateHomeDressingServicesState
                           alignment: Alignment.topRight,
                           child: TextButton.icon(
                             onPressed: () {
-                              Utility.showAlertDialog(
+                              Utility.showAlertDialogger(
                                   content: "Do you want to Delete Service",
                                   context: context,
                                   yes: () async {
@@ -189,10 +188,10 @@ class _CreateHomeDressingServicesState
         // Check if the platform is web
         if (kIsWeb) {
           // Use the bytes property to access the file contents
-          List<int> fileBytes = result.files.single.bytes!;
+          // List<int> fileBytes = result.files.single.bytes!;
           // Process the fileBytes as needed
           // For example, you can convert the bytes to a base64 string:
-          String base64String = base64Encode(fileBytes);
+          // String base64String = base64Encode(fileBytes);
           // Then, you can use the base64String or perform other operations
         } else {
           // If the platform is not web, use the path property as before

@@ -1,10 +1,8 @@
 import 'package:drfootapp/screens/dash_board/dietChartScreenWidgets/diet_plan_widget.dart';
 import 'package:drfootapp/screens/dash_board/dietChartScreenWidgets/week_days_widget.dart';
-import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class DietChartScreen extends StatefulWidget {
   const DietChartScreen({super.key});

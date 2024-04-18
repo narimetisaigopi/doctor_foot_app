@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/screens/auth_screens/privacy.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -28,6 +27,8 @@ class _OtpScreenState extends State<OtpScreen> {
   Timer? _timer;
   int _timerSeconds = 60;
 
+  String otp = "";
+
   void startTimer() {
     _timerSeconds = 60;
     const oneSec = Duration(seconds: 1);
@@ -38,9 +39,7 @@ class _OtpScreenState extends State<OtpScreen> {
       oneSec,
       (Timer timer) {
         if (_timerSeconds == 0) {
-          setState(() {
-            timer.cancel();
-          });
+          timer.cancel();
         } else {
           setState(() {
             _timerSeconds--;
@@ -131,6 +130,9 @@ class _OtpScreenState extends State<OtpScreen> {
                     height: 20,
                   ),
                   Pinput(
+                    onChanged: (value) {
+                      otp = value;
+                    },
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -143,7 +145,6 @@ class _OtpScreenState extends State<OtpScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  
                   InkWell(
                     onTap: _timerSeconds == 0
                         ? authenticationController.firebaseSendOTP(context)
@@ -162,13 +163,18 @@ class _OtpScreenState extends State<OtpScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  CustomButton(
-                    buttonName: "verifyOtp",
-                    onPress: () {
-                      Utility.myBottomSheet(context,
-                          widget: const ValuePrivacy(), heightFactor: 0.7);
-                    },
-                  ),
+                  authenticationController.isLoading
+                      ? const CircularProgressIndicator()
+                      : CustomButton(
+                          buttonName: "verifyOtp",
+                          onPress: () {
+                            if (otp.length == 6) {
+                              authenticationController.firebaseVerifyOTP(otp);
+                            } else {
+                              Utility.toast(Strings.enterOTP);
+                            }
+                          },
+                        ),
                 ],
               ),
             ),
@@ -176,5 +182,13 @@ class _OtpScreenState extends State<OtpScreen> {
         );
       }),
     );
+  }
+  
+  @override
+  void dispose() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    super.dispose();
   }
 }

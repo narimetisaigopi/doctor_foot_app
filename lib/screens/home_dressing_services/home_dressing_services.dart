@@ -6,6 +6,7 @@ import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/screens/home_dressing_services/home_dressing_payment.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/widgets/home_dressing_service_widget.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
@@ -32,7 +33,6 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
   @override
   void initState() {
     // homeDressingController.homeDressingServicesAddedList;
-    // TODO: implement initState
     super.initState();
   }
 
@@ -86,7 +86,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
 
                       return InkWell(
                         onTap: () {
-                          print("CreateHomeDressingServices");
+                          logger("CreateHomeDressingServices");
                           widget.isAdmin
                               ? Get.to(() => CreateHomeDressingServices(
                                     isAdmin: true,
@@ -97,7 +97,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                         child: HomeDressingServiceWidget(
                           homeDressingModel: homeDressingModel,
                           onPress: () {
-                            print(homeDressingController
+                            logger(homeDressingController
                                 .homeDressingServicesAddedList.length);
                             homeDressingController.addOrRemoveFromList(
                               homeDressingModel: homeDressingModel,

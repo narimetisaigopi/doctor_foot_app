@@ -18,7 +18,7 @@ class IntroScreen extends StatefulWidget {
 
 class _IntroScreenState extends State<IntroScreen> {
   final pageController = PageController();
-  int currentPage = 0;
+  double currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,14 @@ class _IntroScreenState extends State<IntroScreen> {
             leading: currentPage == 0
                 ? Container()
                 : IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (currentPage != 0) {
+                        setState(() {
+                          currentPage--;
+                          pageController.jumpTo(currentPage);
+                        });
+                      }
+                    },
                     icon: const SvgImageWidget(
                       path: AssetsConstants.arrow_back,
                       width: 60,
@@ -60,7 +67,7 @@ class _IntroScreenState extends State<IntroScreen> {
             controller: pageController,
             onPageChanged: (value) {
               setState(() {
-                currentPage = value;
+                currentPage = value.toDouble();
               });
             },
             itemCount: introScreenImages.length,

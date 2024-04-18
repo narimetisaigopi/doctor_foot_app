@@ -40,7 +40,7 @@ class _MyOppointmentScreenState extends State<MyOppointmentScreen> {
           //           child: HomeDressingServiceWidget(
           //             homeDressingModel: homeDressingServices,
           //             onPress: () {
-          //               print(homeDressingController
+          //               logger(homeDressingController
           //                   .homeDressingServicesAddedList.length);
           //               homeDressingController.addOrRemoveFromList(
           //                 homeDressingModel: homeDressingServices,

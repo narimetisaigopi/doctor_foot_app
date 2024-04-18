@@ -1,5 +1,5 @@
-import 'package:drfootapp/models/videosModels/footAssessment_model.dart';
-import 'package:drfootapp/screens/dash_board/videosScreenWidgets/faImage_widget.dart';
+import 'package:drfootapp/models/videosModels/foot_assessment_model.dart';
+import 'package:drfootapp/screens/dash_board/videosScreenWidgets/faimage_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

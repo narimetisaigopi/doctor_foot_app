@@ -6,7 +6,6 @@ import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 
@@ -55,7 +54,7 @@ class _CreateCouponCodeState extends State<CreateCouponCode> {
                       alignment: Alignment.topRight,
                       child: TextButton.icon(
                         onPressed: () {
-                          Utility.showAlertDialog(
+                          Utility.showAlertDialogger(
                               content: "Do you want to Delete Coupon Code",
                               context: context,
                               yes: () async {

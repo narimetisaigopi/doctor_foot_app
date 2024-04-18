@@ -1,4 +1,4 @@
-import 'package:drfootapp/models/videosModels/dailyFutured_model.dart';
+import 'package:drfootapp/models/videosModels/daily_futured_model.dart';
 import 'package:drfootapp/screens/dash_board/videosScreenWidgets/check_diabeties_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';

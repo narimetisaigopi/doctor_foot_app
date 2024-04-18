@@ -1,9 +1,6 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
-
-import 'dart:developer';
-
 import 'package:drfootapp/screens/home_dressing_services/order_successful_screen.dart';
-
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
@@ -28,7 +25,7 @@ class PaymentController extends GetxController {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
-    log("_handlePaymentSuccess response ${response.toString()}");
+    logger("_handlePaymentSuccess response ${response.toString()}");
 
     Get.offAll(() => const OrderSuccessfulScreen());
 
@@ -44,13 +41,13 @@ class PaymentController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    log("_handlePaymentError response ${response.toString()}");
+    logger("_handlePaymentError response ${response.toString()}");
     Get.back();
     // Utils().showToast("Payment failed due to ${response.message}");
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
-    log("_handleExternalWallet response ${response.toString()}");
+    logger("_handleExternalWallet response ${response.toString()}");
 
     // Utils().showToast("Payment handleExternalWallet  ${response.walletName}");
   }
