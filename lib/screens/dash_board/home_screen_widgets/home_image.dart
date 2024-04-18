@@ -22,7 +22,7 @@ class HomeImage extends StatelessWidget {
           left: 16,
           right: 16,
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+            filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
             child: const Text(
               "rectImageText",
               style: TextStyle(

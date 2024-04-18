@@ -1,3 +1,4 @@
+import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/screens/Discharge%20Screens/update_discharge.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,76 +13,83 @@ class AppBarWidget extends StatefulWidget {
 }
 
 class _AppBarWidgetState extends State<AppBarWidget> {
+  LocationController locationController = Get.put(LocationController());
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, top: 78, right: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              const Icon(
-                Icons.location_on,
-                size: 24,
-              ),
-              const SizedBox(
-                width: 05,
-              ),
-              SizedBox(
-                // height: 60,
-                // width: 133,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Text(
-                          "kpbColonyText",
-                          style: TextStyle(
-                            color: AppColors.primary,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
+    return GetBuilder<LocationController>(builder: (locationController) {
+      return Padding(
+        padding: const EdgeInsets.only(left: 16, top: 78, right: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                const Icon(
+                  Icons.location_on,
+                  size: 24,
+                ),
+                const SizedBox(
+                  width: 05,
+                ),
+                SizedBox(
+                  // height: 60,
+                  // width: 133,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            locationController.currentPlacemark != null
+                                ? "${locationController.currentPlacemark!.locality}"
+                                : "Not available",
+                            style: const TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ).tr(),
-                        const Icon(Icons.expand_more)
-                      ],
-                    ),
-                    const Text(
-                      "venkataNagarText",
-                    ).tr()
-                  ],
+                          const Icon(Icons.expand_more)
+                        ],
+                      ),
+                      Text(
+                        locationController.currentPlacemark != null
+                            ? "${locationController.currentPlacemark!.street}"
+                            : "Not available",
+                      ).tr()
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.search,
-                  size: 32,
+              ],
+            ),
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.search,
+                    size: 32,
+                  ),
+                  color: AppColors.searchButtonColor,
+                  onPressed: () {
+                    Get.to(const UpdateDischarge());
+                  },
                 ),
-                color: AppColors.searchButtonColor,
-                onPressed: () {
-                  Get.to(const UpdateDischarge());
-                },
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.notifications,
-                  size: 32,
+                const SizedBox(
+                  width: 5,
                 ),
-                color: AppColors.notificationsButtonColor,
-                onPressed: () {},
-              )
-            ],
-          )
-        ],
-      ),
-    );
+                IconButton(
+                  icon: const Icon(
+                    Icons.notifications,
+                    size: 32,
+                  ),
+                  color: AppColors.notificationsButtonColor,
+                  onPressed: () {},
+                )
+              ],
+            )
+          ],
+        ),
+      );
+    });
   }
 }
