@@ -10,6 +10,7 @@ class UserModel {
   String gender;
   String mobileNumber;
   dynamic timestamp;
+  String regNo;
   List<dynamic> androidTokensList;
   List<dynamic> appleTokensList;
 
@@ -27,6 +28,7 @@ class UserModel {
     this.bloodgroup = "",
     this.height = "",
     this.weight = "",
+      this.regNo = ""
   });
   factory UserModel.fromJson(
     Map map,
@@ -45,6 +47,7 @@ class UserModel {
       bloodgroup: map['bloodgroup'] ?? "",
       height: map['height'] ?? "",
       weight: map['weight'] ?? "",
+        regNo: map["regNo"] ?? ""
     );
   }
 
@@ -63,6 +66,7 @@ class UserModel {
       'bloodgroup': bloodgroup,
       'height': height,
       'weight': weight,
+      "regNo": regNo
     };
   }
 

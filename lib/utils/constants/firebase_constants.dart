@@ -12,6 +12,8 @@ CollectionReference homeDressingServicesCollectionReference =
 
 CollectionReference addressesCollectionReference =
     FirebaseFirestore.instance.collection("addresses");
+CollectionReference dietCollectionReference =
+    FirebaseFirestore.instance.collection("diet");
 
 final List<String> adminsList = [
   "bandigowtham6@gmail.com",

@@ -163,6 +163,8 @@ class AuthenticationController extends GetxController {
 
   Future<void> signInwithEmail(String email, String password) async {
     try {
+      logger(email);
+      logger(password);
       final auth = FirebaseAuth.instance;
       await auth.signInWithEmailAndPassword(email: email, password: password);
       Get.offAll(() => const AdminPanel());

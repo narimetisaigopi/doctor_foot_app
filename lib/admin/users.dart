@@ -25,52 +25,15 @@ class UsersScreen extends StatelessWidget {
             return const Center(child: Text('Error fetching users'));
           }
           final users = snapshot.data?.docs ?? [];
-          return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 10,
-              crossAxisSpacing: 10.0,
-              mainAxisSpacing: 10.0,
-            ),
+          return ListView.builder(
             itemCount: users.length,
             itemBuilder: (context, index) {
               final userModel = UserModel.fromJson(
                   users[index].data()! as Map<String, dynamic>);
-              return Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: Colors.transparent,
-                      blurRadius: 5,
-                      offset: Offset(-2, -2),
-                    ),
-                    BoxShadow(
-                      blurRadius: 10,
-                      offset: const Offset(5, 5),
-                      color: Colors.grey.shade200,
-                    ),
-                  ],
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.person,
-                        size: 50,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(userModel.mobileNumber),
-                      Text(Jiffy.parse(userModel.timestamp.toString())
-                          .fromNow()),
-                    ],
-                  ),
+              return Card(
+                child: ListTile(
+                  title: Text(userModel.userName),
+                  subtitle: Text(userModel.mobileNumber),
                 ),
               );
             },

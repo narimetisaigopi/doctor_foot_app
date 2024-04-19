@@ -1,4 +1,5 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
@@ -18,11 +19,12 @@ class _AdminLoginState extends State<AdminLogin> {
       Get.put(AuthenticationController());
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: ScreenTypeLayout.builder(
-        mobile: (BuildContext context) => mobileAdminLogin(),
-        desktop: (BuildContext context) => desktopAdminLogin(),
-      ),
+    return Scaffold(
+      body: desktopAdminLogin(),
+      // child: ScreenTypeLayout.builder(
+      //   mobile: (BuildContext context) => desktopAdminLogin(),
+      //   desktop: (BuildContext context) => desktopAdminLogin(),
+      // ),
     );
   }
 
@@ -76,10 +78,13 @@ class _AdminLoginState extends State<AdminLogin> {
                 ),
                 CustomButton(
                   buttonName: Strings.signInText,
-                  onPress: () => _authenticationController.signInwithEmail(
-                    _authenticationController.emailController.text,
-                    _authenticationController.passwordController.text,
-                  ),
+                  onPress: () {
+                    logger("signInwithEmail called");
+                    _authenticationController.signInwithEmail(
+                      _authenticationController.emailController.text,
+                      _authenticationController.passwordController.text,
+                    );
+                  },
                 ),
               ],
             ),
