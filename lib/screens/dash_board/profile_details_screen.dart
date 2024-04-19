@@ -24,7 +24,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   AuthenticationController authenticationController =
       Get.put(AuthenticationController());
-      
+
   Divider customDivider = const Divider(
     height: 16,
   );
@@ -38,7 +38,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           title: const Text("profile").tr(),
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back_ios),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -58,25 +57,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const CustomSizedBox(
                   height: 08,
                 ),
-                const Text(
-                  "profileName",
-                  style: TextStyle(
+                Text(
+                  authenticationController.loginUserModel.userName,
+                  style: const TextStyle(
                     fontSize: 18,
                     color: AppColors.arrowForwardBlackColor,
                     fontWeight: FontWeight.w700,
                   ),
                 ).tr(),
-                const CustomSizedBox(
-                  height: 08,
-                ),
-                const Text(
-                  "regd",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: AppColors.arrowForwardBlackColor,
-                    fontWeight: FontWeight.w700,
+                if (authenticationController.loginUserModel.regNo.isNotEmpty)
+                  Column(
+                    children: [
+                      const CustomSizedBox(
+                        height: 08,
+                      ),
+                      Text(
+                        authenticationController.loginUserModel.regNo,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: AppColors.arrowForwardBlackColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
-                ).tr(),
                 const CustomSizedBox(
                   height: 30,
                 ),
@@ -85,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     text: "myProfile",
                     leadingIcon: Icons.person,
                     onPressed: () {
-                      Get.to(const MyProfileScreen());
+                      Get.to(() => const MyProfileScreen());
                     }),
                 customDivider,
                 CustomListTileWidget(
@@ -139,7 +143,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       );
-    }
-    );
+    });
   }
 }

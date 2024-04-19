@@ -2,8 +2,10 @@
 
 import 'package:drfootapp/admin/coupon_codes/coupon_codes_Screen.dart';
 import 'package:drfootapp/admin/admin_home_dressing_services.dart';
+import 'package:drfootapp/admin/diet/add_diet_chart_screen.dart';
 import 'package:drfootapp/admin/total_orders.dart';
 import 'package:drfootapp/admin/users.dart';
+import 'package:drfootapp/screens/dash_board/diet_chart_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -98,19 +100,24 @@ class _AdminPanelState extends State<AdminPanel> {
             },
           ),
         ),
-        Expanded(
-          flex: 7,
-          child: _selectedIndex == 0
-              ? const UsersScreen()
-              : _selectedIndex == 1
-                  ? const CouponCodesScreen()
-                  : _selectedIndex == 2
-                      ? const AdminHomeDressingServices()
-                      : _selectedIndex == 3
-                          ? const TotalOrders()
-                          : Container(),
-        ),
+        Expanded(flex: 7, child: getLayout()),
       ],
     );
+  }
+
+  getLayout() {
+    if (_selectedIndex == 0) {
+      return const UsersScreen();
+    } else if (_selectedIndex == 1) {
+      return const CouponCodesScreen();
+    } else if (_selectedIndex == 2) {
+      return const AdminHomeDressingServices();
+    } else if (_selectedIndex == 3) {
+      return const TotalOrders();
+    } else if (_selectedIndex == 4) {
+      return const AddDietChartScreen();
+    } else {
+      return Container();
+    }
   }
 }

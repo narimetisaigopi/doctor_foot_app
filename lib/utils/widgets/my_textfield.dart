@@ -41,7 +41,7 @@ class MyTextField extends StatefulWidget {
       this.textButtonNeeded = false,
       required this.textEditingController,
       this.bgColor = Colors.transparent,
-      this.label = "label",
+      this.label = "",
       this.edit = "",
       this.maxLines = 1,
       this.labelNeeded = true,
