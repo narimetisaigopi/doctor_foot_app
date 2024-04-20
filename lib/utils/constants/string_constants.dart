@@ -192,19 +192,57 @@ class Strings {
 
   //discharge Strings
   static const String dischargeText = "Discharge";
-  static const String dischargeText1 = "Discharge summary is a document given by the hospital at the time of your discharge, which includes information like your diagnosis, treatment, surgeries, and the medications to be used."
-  ;
-static const String dischargeText2 = "Upload your discharge summary given by your doctor at the time of your discharge. Kindly avoid uploading any investigation reports. ";
-static const String uploadHearText = "Upload Here";
-static const String uploadText = "Upload";
-static const String submitPDFtext = "Discharge Report.pdf";
-static const String dischargeSummaryText = "Discharge Summary";
-static const String uploadedSuccessfullyText = "You uploaded successfully";
-static const String uploadYourCurrentUlcerText = "Upload your current ulcer picture";
-static const String dischargeSummaryDisText = "Lorem Ipsum is simply dummy text of the\n     printing and typesetting industry";
-static const String yourPictureHaveUploadedText = "Your Picture have uploaded";
-static const String yourResultText = "Your results will be sent to you after a through observation by experts. It may take some timeuntil then we would ask you to follow the diet required for recovery ";
+  static const String dischargeText1 =
+      "Discharge summary is a document given by the hospital at the time of your discharge, which includes information like your diagnosis, treatment, surgeries, and the medications to be used.";
+  static const String dischargeText2 =
+      "Upload your discharge summary given by your doctor at the time of your discharge. Kindly avoid uploading any investigation reports. ";
+  static const String uploadHearText = "Upload Here";
+  static const String uploadText = "Upload";
+  static const String submitPDFtext = "Discharge Report.pdf";
+  static const String dischargeSummaryText = "Discharge Summary";
+  static const String uploadedSuccessfullyText = "You uploaded successfully";
+  static const String uploadYourCurrentUlcerText =
+      "Upload your current ulcer picture";
+  static const String dischargeSummaryDisText =
+      "Lorem Ipsum is simply dummy text of the\n     printing and typesetting industry";
+  static const String yourPictureHaveUploadedText =
+      "Your Pi cture have uploaded";
+  static const String yourResultText =
+      "Your results will be sent to you after a through observation by experts. It may take some timeuntil then we would ask you to follow the diet required for recovery ";
 
-static const String enterOTP = "Please enter OTP";
+  static const String enterOTP = "Please enter OTP";
+
+// appointments
+
+  static const String appointmentsText = "Appointments";
+  static const String loremIpsumText = "Lorem Ipsum is...";
+  static const String totalReview = "(123 Reviews)";
+  static const String rateText = "4.5";
+  static const String oppointmentLocationText = "Lorem Ipsum is simply";
+  static const String oppointmentdateText = "06/Nov/2023";
+
+  //FAQs
+  static const String doctorQ1 = "1.	What is Foot doctor? ";
+  static const String doctorQ1Ans =
+      "Foot doctor is a comprehensive app specifically designed for diabetic patients, offering features such as monitoring diabetic foot ulcers, patient education, and appointment booking. ";
+  static const String doctorQ2 = "2. What are the key features of Foot doctor? ";
+  static const String doctorQ2Ans ="Foot doctor offers customized care plans tailored to each patient's needs, continuous monitoring of foot ulcers, real-time updates on healing progress, and notifications for any significant changes. ";
+static const String doctorQ3 = "3. How does Foot doctor benefit users?";
+static const String doctorQ3Ans = "Foot doctor saves time by allowing patients to schedule appointments through the app, assesses the risk of developing foot ulcers, keeps a close eye on foot ulcers, and fosters constant communication and support between patients and healthcare providers. ";
+static const String doctorQ4 = "4. Who is the intended audience for Foot doctor?";
+static const String doctorQ4Ans = " Foot doctor is specifically designed for diabetic patients at risk of developing foot ulcers, providing them with the tools, information, and support needed to manage their condition effectively. ";
+static const String doctorQ5 = "5. What is the user interface and experience like in Foot doctor?";
+static const String doctorQ5Ans = "Foot doctor boasts a user-friendly interface and a seamless user experience, making it easy for patients to navigate and access the app's various features.";
+static const String doctorQ6 = "6. What sets Foot doctor apart from its competitors? ";
+static const String doctorQ6Ans = "Foot doctor's approach to healthcare combines online booking, patient education, continuous ulcer monitoring, and personalized care, offering a holistic approach to diabetic foot ulcer management.";
+static const String doctorQ7 =  "7. How can I download Foot doctor? ";
+static const String doctorQ7Ans =  "You can download Foot doctor from the app store on your mobile device.";
+static const String doctorQ8 = "8. Is Foot doctor available for all types of mobile devices? "; 
+static const String doctorQ8Ans = "Yes, Foot doctor is available for both iOS and Android devices. "; 
+static const String doctorQ9 = "9. How can I get support for using Foot doctor? ";
+static const String doctorQ9Ans = "For any support or technical assistance with Foot doctor, you can contact our customer support team through the app or visit our website for further assistance. ";
+static const String doctorQ10 ="10. How can I trust Foot doctor to help manage my diabetic foot ulcers?";
+static const String doctorQ10Ans ="Foot doctor is committed to providing personalized care, continuous monitoring, and the support needed for diabetic foot ulcer management, making it your partner in leading a healthy life.";
+
 
 }

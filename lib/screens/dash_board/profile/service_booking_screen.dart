@@ -1,20 +1,16 @@
-import 'package:drfootapp/controllers/home_dressing_controller.dart';
 import 'package:drfootapp/screens/dash_board/profile/oppointments/book_oppointment.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
 
-class MyOppointmentScreen extends StatefulWidget {
-  const MyOppointmentScreen({super.key});
+class ServiceBookingScreen extends StatefulWidget {
+  const ServiceBookingScreen({super.key});
 
   @override
-  State<MyOppointmentScreen> createState() => _MyOppointmentScreenState();
+  State<ServiceBookingScreen> createState() => _ServiceBookingScreenState();
 }
 
-class _MyOppointmentScreenState extends State<MyOppointmentScreen> {
-  final HomeDressingController homeDressingController =
-      Get.put(HomeDressingController());
+class _ServiceBookingScreenState extends State<ServiceBookingScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -30,7 +26,7 @@ class _MyOppointmentScreenState extends State<MyOppointmentScreen> {
               },
             ),
             title: const Text(
-              "Appointments",
+              "Service Bookings",
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
