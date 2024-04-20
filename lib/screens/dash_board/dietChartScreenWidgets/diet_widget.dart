@@ -1,13 +1,12 @@
+import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:drfootapp/utils/widgets/networl_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class DietWidget extends StatefulWidget {
-  final String image;
-  final String timeText;
+  final DietChartModel dietChartModel;
 
-  const DietWidget({super.key, this.image = "", this.timeText = ""});
+  const DietWidget({super.key, required this.dietChartModel});
 
   @override
   State<DietWidget> createState() => _DietWidgetState();
@@ -18,6 +17,8 @@ class _DietWidgetState extends State<DietWidget> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 8, right: 6),
+      width: 120,
+      height: 150,
       decoration: BoxDecoration(
         border: Border.all(
           color: AppColors.dietChartBgColor,
@@ -28,11 +29,24 @@ class _DietWidgetState extends State<DietWidget> {
       child: Column(
         children: [
           Expanded(
-            flex: 8,
-            child: SvgImageWidget(
-              path: widget.image,
-              height: 148,
-              width: 63,
+            flex: 7,
+            child: Container(
+              decoration: const BoxDecoration(color: Colors.white),
+              child: Column(
+                children: [
+                  NetworkImageWidget(
+                    path: widget.dietChartModel.dietImage,
+                    fit: BoxFit.contain,
+                  ),
+                  Text(
+                    widget.dietChartModel.dietDescription,
+                    style: const TextStyle(
+                        fontSize: 8,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.black2),
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -45,12 +59,13 @@ class _DietWidgetState extends State<DietWidget> {
                       top: Radius.circular(7), bottom: Radius.circular(7))),
               child: Center(
                 child: Text(
-                  widget.timeText,
+                  "${widget.dietChartModel.slotTitle}\n(${widget.dietChartModel.slotTiming})",
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: AppColors.secondary),
-                ).tr(),
+                ),
               ),
             ),
           ),

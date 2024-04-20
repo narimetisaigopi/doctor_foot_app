@@ -14,23 +14,36 @@ class DietChartController extends GetxController {
   TextEditingController dietDescriptionController = TextEditingController();
   bool isLoading = false;
 
+  List<DietChartModel> dietChartModelList = [];
+
+  String selectedDietWeek = "";
+
+  selectWeek(String week) {
+    selectedDietWeek = week;
+    update();
+  }
+
   void _updateLoading(bool loading) {
     isLoading = loading;
     update();
   }
 
   getAllDiets() async {
+    if (dietChartModelList.isNotEmpty) {
+      return;
+    }
     QuerySnapshot querySnapshot = await dietCollectionReference.get();
-    return querySnapshot.docs
-        .map((e) => DietChartModel.fromJson(e as Map<String, dynamic>))
+    dietChartModelList = querySnapshot.docs
+        .map((e) => DietChartModel.fromJson(e.data() as Map<String, dynamic>))
         .toList();
+    update();
   }
 
   addNewDiet() async {
     _updateLoading(true);
     DietChartModel dietChartModel = DietChartModel();
     dietChartModel.slotTitle = slotTitleController.text;
-    dietChartModel.slotTiming = slotTitleController.text;
+    dietChartModel.slotTiming = slotTimingController.text;
     dietChartModel.dietDescription = dietDescriptionController.text;
     dietChartModel.week = weekController.text;
     dietChartModel.dietType = dietTypeController.text;
@@ -41,6 +54,4 @@ class DietChartController extends GetxController {
     _updateLoading(false);
     Utility.toast("Added sucessfully.");
   }
-
-  addDiet() async {}
 }
