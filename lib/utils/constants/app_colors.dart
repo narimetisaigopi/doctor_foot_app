@@ -16,6 +16,7 @@ class AppColors {
   static const Color updateBgColor = Color(0xFFD2D8E7);
   static const Color greenColor = Color(0xFF51B974);
   static const Color contactPageBtnColor = Color(0xFFD6E2FF);
+  static const Color moderateTextColor = Color(0xFF4D74FF);
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);
@@ -28,12 +29,16 @@ class AppColors {
   static const Color grey4 = Color(0xFFEEEDED);
   static const Color grey5 = Color(0xFF6B6B6B);
   static const Color daysBgColor = Color(0xFFF2F0F0);
+    static const Color bggrey = Color(0xFFF4F4F4);
+
 
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);
   static const Color textBlackColors = Color(0xFF3C3C3C);
   static const Color textBlackColor = Color(0xFF535353);
   static const Color textBackThickColor = Color(0xFF101010);
+    static const Color textblackbook = Color(0xFF3F3D3D);
+
 
   static const Color greyTextColor = Color(0xFFA0A0A0);
   static const Color greyBorderColor = Color(0xFFE4E4E4);

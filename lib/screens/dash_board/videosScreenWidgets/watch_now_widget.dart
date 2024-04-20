@@ -37,7 +37,7 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
                     final videosImageItem = videosImageList[index];
                     return VideosMainWidget(
                       image: videosImageItem.image,
-                      onPress: playVideo,
+                      onPress: (){},
                     );
                   }),
             ),
