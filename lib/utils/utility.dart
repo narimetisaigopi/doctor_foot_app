@@ -10,6 +10,7 @@ import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/widgets/custom_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
@@ -936,4 +937,8 @@ String maskMobileNumber(String mobileNumber) {
   } else {
     return 'Invalid mobile number';
   }
+}
+
+bool isAdmin() {
+  return kIsWeb;
 }

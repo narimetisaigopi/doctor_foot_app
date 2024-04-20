@@ -2,10 +2,9 @@
 
 import 'package:drfootapp/admin/coupon_codes/coupon_codes_Screen.dart';
 import 'package:drfootapp/admin/admin_home_dressing_services.dart';
-import 'package:drfootapp/admin/diet/add_diet_chart_screen.dart';
 import 'package:drfootapp/admin/total_orders.dart';
 import 'package:drfootapp/admin/users.dart';
-import 'package:drfootapp/screens/dash_board/diet_chart_screen.dart';
+import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +114,7 @@ class _AdminPanelState extends State<AdminPanel> {
     } else if (_selectedIndex == 3) {
       return const TotalOrders();
     } else if (_selectedIndex == 4) {
-      return const AddDietChartScreen();
+      return const DietChartScreen();
     } else {
       return Container();
     }

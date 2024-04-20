@@ -2,6 +2,7 @@ import 'package:drfootapp/controllers/diet_chart_controller.dart';
 import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/custom_drop_down_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -52,53 +53,52 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
                 children: [
                   defaultSize,
                   // Week dropdown
-                  DropdownButtonFormField<String>(
-                    hint: Text("Select week"),
-                    items: weeksList
-                        .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                        .toList(),
-                    onChanged: (value) {
-                      dietChartController.weekController.text = value ?? "";
-                    },
-                    validator: (value) =>
-                        value == null ? "Please select a day" : null,
-                  ),
+                  CustomDropDownWidget(
+                      hint: "Select week",
+                      menuItems: weeksList
+                          .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (value) {
+                        dietChartController.weekController.text = value ?? "";
+                      },
+                      errorMessage: "Please select a day"),
                   defaultSize,
-                  DropdownButtonFormField<String>(
-                    hint: Text("Select diet type"),
-                    items: dietTypesList
-                        .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                        .toList(),
-                    onChanged: (value) {
-                      dietChartController.dietTypeController.text = value ?? "";
-                    },
-                    validator: (value) =>
-                        value == null ? "Please select a diet type" : null,
-                  ),
+                  CustomDropDownWidget(
+                      hint: "Select diet type",
+                      menuItems: dietTypesList
+                          .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (value) {
+                        dietChartController.dietTypeController.text =
+                            value ?? "";
+                      },
+                      errorMessage: "Please select diet type"),
                   defaultSize,
-                  // Slot Title MyTextField
-                  MyTextField(
-                    hint: "Slot Title",
-                    label: "",
-                    labelNeeded: false,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                    ]),
-                    textEditingController:
-                        dietChartController.slotTitleController,
-                  ),
+                  CustomDropDownWidget(
+                      hint: "Select slot title",
+                      menuItems: dietTitlesList
+                          .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (value) {
+                        dietChartController.slotTitleController.text =
+                            value ?? "";
+                      },
+                      errorMessage: "Please select slot title"),
                   defaultSize,
-                  // Slot Timing MyTextField
-                  MyTextField(
-                    label: "Slot Timing",
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                    ]),
-                    labelNeeded: false,
-                    textEditingController:
-                        dietChartController.slotTimingController,
-                    hint: 'Slot Timing',
-                  ),
+                  CustomDropDownWidget(
+                      hint: "Select slot time",
+                      menuItems: dietTimingsList
+                          .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (value) {
+                        dietChartController.slotTimingController.text =
+                            value ?? "";
+                      },
+                      errorMessage: "Please select slot timing"),
                   defaultSize,
                   // Diet Image MyTextField (assuming image URL)
                   MyTextField(
@@ -107,6 +107,7 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
                     labelNeeded: false,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
+                      FormBuilderValidators.url(),
                     ]),
                     textEditingController:
                         dietChartController.dietImageController,
@@ -145,7 +146,7 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
   validate() {
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
     if (status) {
-      dietChartController.addDiet();
+      dietChartController.addNewDiet();
     }
   }
 }
