@@ -4,7 +4,7 @@ import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
-import 'package:drfootapp/utils/widgets/drop_down_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_drop_down_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -265,19 +265,19 @@ final _formKey = GlobalKey<FormBuilderState>();
                     ],
                   ),
                   isSize,
-                  MyTextField(
-                    borderRadius: 8,
-                    bgColor: AppColors.whiteBgColor,
-                    hint: "",
-                    textEditingController:
-                        _authenticationController.bloodGroupController,
-                    label: Strings.bloodGroupText,
-                    suffixIcon: const CustomDropDown(),
-                    iconNeeded: true,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                    ]),
-                  ),
+                  // MyTextField(
+                  //   borderRadius: 8,
+                  //   bgColor: AppColors.whiteBgColor,
+                  //   hint: "",
+                  //   textEditingController:
+                  //       _authenticationController.bloodGroupController,
+                  //   label: Strings.bloodGroupText,
+                  //   suffixIcon: const CustomDropDownWidget(),
+                  //   iconNeeded: true,
+                  //   validator: FormBuilderValidators.compose([
+                  //     FormBuilderValidators.required(),
+                  //   ]),
+                  // ),
                   isSize,
                   MyTextField(
                     borderRadius: 8,

@@ -154,7 +154,7 @@ class AssetsConstants {
   static const String diet_image = "$_introImagesBasePath/diet_image.svg";
   static const String sun_morning = "$_introImagesBasePath/sun_morning.svg";
   static const String sun_afternoon = "$_introImagesBasePath/sun_afternoon.svg";
-  static const String sun_evining = "$_introImagesBasePath/sun_evining.svg";
+  static const String sun_evening = "$_introImagesBasePath/sun_evening.svg";
 
   // video screen images
   static const String doctor_rect = "$_introImagesBasePath/doctor_rect.svg";

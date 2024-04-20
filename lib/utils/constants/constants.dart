@@ -92,6 +92,5 @@ final dietTimingsList = [
   "11am-11.30am",
   "1pm-2pm",
   "4pm-5pm",
-  "Dinner",
-  "Before Bedtime",
+  "8pm-9pm",
 ];
