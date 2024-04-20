@@ -1,7 +1,13 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/dash_board/admin_login.dart';
 import 'package:drfootapp/screens/dash_board/prifile_details/custom_listtile_widget.dart';
+import 'package:drfootapp/screens/dash_board/profile/contact_us_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/faqs_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/my_oppointment_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/my_profile_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/payments_and_refunds_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/records_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/service_booking_screen.dart';
 import 'package:drfootapp/screens/translation_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -86,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 customDivider,
                 CustomListTileWidget(
-                    text: "myProfile",
+                  text: "myProfile",
                     leadingIcon: Icons.person,
                     onPressed: () {
                       Get.to(() => const MyProfileScreen());
@@ -102,12 +108,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 CustomListTileWidget(
                     text: "appointment",
                     leadingIcon: Icons.calendar_month,
-                    onPressed: () {}),
+                    onPressed: () {
+                      Get.to(const MyOppointmentScreen());
+                    }),
                 customDivider,
                 CustomListTileWidget(
                     text: "service",
                     leadingIcon: Icons.calendar_month,
-                    onPressed: () {}),
+                    onPressed: () {
+                      Get.to(const ServiceBookingScreen());
+                    }),
                 customDivider,
                 CustomListTileWidget(
                     text: "languages",
@@ -119,17 +129,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 CustomListTileWidget(
                     text: "payments",
                     leadingIcon: Icons.calendar_month,
-                    onPressed: () {}),
+                    onPressed: () {
+                      Get.to(const PaymentsAndRefundScreen());
+                    }),
                 customDivider,
                 CustomListTileWidget(
-                    text: "orders",
+                    text: "Records",
                     leadingIcon: Icons.calendar_month,
-                    onPressed: () {}),
+                    onPressed: () {
+                      Get.to(const RecordsScreen());
+                    }),
                 customDivider,
                 CustomListTileWidget(
                     text: "contactus",
                     leadingIcon: Icons.call,
-                    onPressed: () {}),
+                    onPressed: () {
+                       Get.to(const ContactUsScreen());
+                    }),
+                     customDivider,
+                    CustomListTileWidget(
+                    text: "FAQs",
+                    leadingIcon: Icons.call,
+                    onPressed: () {
+                       Get.to(const FAQsScreen());
+                    }),
                 customDivider,
                 CustomListTileWidget(
                     text: "logout",

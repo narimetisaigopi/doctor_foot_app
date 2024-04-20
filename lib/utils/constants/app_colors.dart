@@ -14,6 +14,8 @@ class AppColors {
   static const Color ratingBarColor = Color(0xFFFFD414);
   static const Color freePlanBgColor = Color(0xFFFFF8EF);
   static const Color updateBgColor = Color(0xFFD2D8E7);
+  static const Color greenColor = Color(0xFF51B974);
+  static const Color contactPageBtnColor = Color(0xFFD6E2FF);
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);

@@ -1,5 +1,6 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
+import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -218,7 +219,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         Utility.toast("Please select gender");
       } else {
         _authenticationController.signUpFirebaseValidation(context);
-      } 
+      }
     }
   }
 }
