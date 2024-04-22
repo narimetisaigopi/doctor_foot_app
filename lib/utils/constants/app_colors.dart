@@ -16,7 +16,9 @@ class AppColors {
   static const Color updateBgColor = Color(0xFFD2D8E7);
   static const Color greenColor = Color(0xFF51B974);
   static const Color contactPageBtnColor = Color(0xFFD6E2FF);
+
   static const Color moderateTextColor = Color(0xFF4D74FF);
+
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);
