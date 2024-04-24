@@ -52,7 +52,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
             path: AssetsConstants.wounded_foot,
             height: 130,
           ),
-          Expanded(
+        Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
