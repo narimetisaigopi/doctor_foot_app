@@ -23,9 +23,6 @@ class AddAddressScreen extends StatefulWidget {
 }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {
-  int selectedContainerIndex = 0;
-
-  String selectedLabel = "";
   final AddressesController _addressesController =
       Get.put(AddressesController());
   @override
@@ -38,11 +35,12 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
     if (widget.isEdit) {
       _addressesController.localityController.text = widget.addressModel.area;
       _addressesController.streetNoController.text =
-          widget.addressModel.landMark;
-      _addressesController.alternateMobileNumberController.text =
           widget.addressModel.houseNo;
+      _addressesController.alternateMobileNumberController.text =
+          widget.addressModel.alternativeMobileNumber;
       _addressesController.addressLabelController.text =
-          widget.addressModel.landMark;
+          widget.addressModel.addressLabel;
+      _addressesController.pincodeController.text = widget.addressModel.pincode;
     }
     super.initState();
   }
@@ -150,12 +148,13 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               .addressLabelController.text.isEmpty) {
                             Utility.toast("Please select landmark");
                           } else {
-                            widget.isEdit
-                                ? await _addressesController
-                                    .updateAddress(widget.addressModel)
-                                : await _addressesController
-                                    .validateAddressAndSave(
-                                        _addressesController);
+                            if (widget.isEdit) {
+                              await _addressesController
+                                  .updateAddress(widget.addressModel);
+                            } else {
+                              await _addressesController
+                                  .validateAddressAndSave();
+                            }
                           }
                         },
                       )
@@ -175,12 +174,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             Utility.customChoiceChip(
                 iconData: Icons.home,
                 title: Strings.home,
-                isSelected: selectedContainerIndex == 1,
-                onTap: () {
+                isSelected: _addressesController.addressLabelController.text ==
+                    Strings.home,
+                onTap: (value) {
                   setState(() {
-                    selectedContainerIndex = 1;
-                    _addressesController.addressLabelController.text =
-                        Strings.home;
+                    _addressesController.addressLabelController.text = value;
                   });
                 }),
             const SizedBox(
@@ -189,12 +187,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             Utility.customChoiceChip(
                 iconData: Icons.work,
                 title: Strings.work,
-                isSelected: selectedContainerIndex == 2,
-                onTap: () {
+                isSelected: _addressesController.addressLabelController.text ==
+                    Strings.work,
+                onTap: (value) {
                   setState(() {
-                    selectedContainerIndex = 2;
-                    _addressesController.addressLabelController.text =
-                        Strings.home;
+                    _addressesController.addressLabelController.text = value;
                   });
                 }),
             const SizedBox(
@@ -203,12 +200,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
             Utility.customChoiceChip(
                 iconData: Icons.family_restroom_outlined,
                 title: Strings.friendsAndFamily,
-                isSelected: selectedContainerIndex == 3,
-                onTap: () {
+                isSelected: _addressesController.addressLabelController.text ==
+                    Strings.friendsAndFamily,
+                onTap: (value) {
                   setState(() {
-                    selectedContainerIndex = 3;
-                    _addressesController.addressLabelController.text =
-                        Strings.home;
+                    _addressesController.addressLabelController.text = value;
                   });
                 }),
           ],
@@ -223,12 +219,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 iconData: Icons.location_on,
                 width: 100,
                 title: Strings.others,
-                isSelected: selectedContainerIndex == 4,
-                onTap: () {
+                isSelected: _addressesController.addressLabelController.text ==
+                    Strings.others,
+                onTap: (value) {
                   setState(() {
-                    selectedContainerIndex = 4;
-                    _addressesController.addressLabelController.text =
-                        Strings.home;
+                    _addressesController.addressLabelController.text = value;
                   });
                 }),
           ],

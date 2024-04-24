@@ -61,34 +61,32 @@ class AddressesController extends GetxController {
   }
 
   updateAddress(AddressModel addressesModel) async {
-    update();
-    await addressesCollectionReference.doc(addressesModel.docId).update({
-      // "houseNo": houseNoController.text,
-      // "state": stateController.text,
-      // "area": areaController.text,
-      // "landMark": landMarkController.text,
-    });
-
-    update();
+    _updateLoading(true);
+    setAddressModel(addressesModel);
+    await addressesCollectionReference
+        .doc(addressesModel.docId)
+        .update(addressesModel.toMap());
+    Get.back();
+    _updateLoading(false);
   }
 
-  validateAddressAndSave(AddressesController addressesController) async {
+  setAddressModel(AddressModel addressModel) {
+    addressModel.houseNo = streetNoController.text;
+    addressModel.pincode = pincodeController.text;
+    addressModel.area = localityController.text;
+    addressModel.alternativeMobileNumber = alternateMobileNumberController.text;
+    addressModel.uid = getCurrentUserId();
+    addressModel.addressLabel = addressLabelController.text;
+  }
+
+  validateAddressAndSave() async {
     _updateLoading(true);
     AddressModel addressesModel = AddressModel();
+    setAddressModel(addressesModel);
     String docId = addressesCollectionReference.doc().id;
-    addressesModel.houseNo = addressesController.streetNoController.text;
-    addressesModel.pincode = addressesController.pincodeController.text;
-    addressesModel.area = addressesController.localityController.text;
-
-    addressesModel.alternativeMobileNumber =
-        addressesController.alternateMobileNumberController.text;
-    addressesModel.uid = getCurrentUserId();
-    addressesModel.addressLabel =
-        addressesController.addressLabelController.text;
     addressesModel.docId = docId;
     addressesModel.timestamp = DateTime.now();
     addressesList.add(addressesModel);
-
     await addressesCollectionReference.doc(docId).set(addressesModel.toMap());
     Get.back();
     Utility.toast("Address added successfully.");
