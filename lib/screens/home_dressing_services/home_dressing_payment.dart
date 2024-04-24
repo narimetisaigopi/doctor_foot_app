@@ -469,7 +469,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
-                        addressesController.selectedAddressesModel.addressLabel,
+                        addressesController.selectedAddressModel.addressLabel,
                         // textAlign: TextAlign.start,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
@@ -500,14 +500,14 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                       //  mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "${addressesController.selectedAddressesModel.state}, ${addressesController.selectedAddressesModel.area}, ",
+                          "${addressesController.selectedAddressModel.state}, ${addressesController.selectedAddressModel.area}, ",
                           maxLines: 3,
                           //textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(color: Colors.blueGrey),
                         ),
                         Text(
-                          addressesController.selectedAddressesModel.landMark,
+                          addressesController.selectedAddressModel.landMark,
                           maxLines: 3,
                           // textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,

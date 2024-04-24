@@ -115,6 +115,9 @@ class Utility {
         child: Row(
           children: [
             Icon(iconData, color: isSelected ? Colors.white : Colors.black),
+            const SizedBox(
+              width: 4,
+            ),
             Text(
               title,
               style: TextStyle(
@@ -963,6 +966,39 @@ T? stringToEnum<T>(String value, List<T> values) {
 getCurrentUserId() {
   User? user = FirebaseAuth.instance.currentUser;
   return user != null ? user.uid : "";
+}
+
+showAlertDialog({
+  required BuildContext context,
+  required Function() yesCallback,
+  required Function() noCallback,
+  String title = "Confirm",
+  String content = "Do you want to Delete Address?",
+}) {
+  AlertDialog alert = AlertDialog(
+    title: Text(title),
+    content: Text(content),
+    actions: [
+      TextButton(
+          onPressed: () {
+            yesCallback.call();
+          },
+          child: const Text("Yes")),
+      TextButton(
+          onPressed: () {
+            noCallback.call();
+          },
+          child: const Text("No"))
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
 
 // convertToIndianFormat(dynamic amount) {
