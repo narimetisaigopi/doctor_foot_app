@@ -2,7 +2,7 @@ import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile_details_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile_screen.dart';
 import 'package:drfootapp/screens/dash_board/ulcer_monitoring_screen.dart';
 import 'package:drfootapp/screens/dash_board/videos_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';

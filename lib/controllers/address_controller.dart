@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drfootapp/models/addresses_model.dart';
+import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -10,18 +10,24 @@ import 'package:get/get.dart';
 class AddressesController extends GetxController {
   TextEditingController localityController = TextEditingController();
   TextEditingController streetNoController = TextEditingController();
+  TextEditingController pincodeController = TextEditingController();
   TextEditingController alternateMobileNumberController =
       TextEditingController();
   TextEditingController addressLabelController = TextEditingController();
 
-  List<AddressesModel> addressesList = [];
+  List<AddressModel> addressesList = [];
 
-  AddressesModel selectedAddressesModel = AddressesModel();
+  AddressModel selectedAddressModel = AddressModel();
 
   bool isLoading = false;
 
-  updateSelectedAddress(AddressesModel addressesModel) {
-    selectedAddressesModel = addressesModel;
+  void _updateLoading(bool loading) {
+    isLoading = loading;
+    update();
+  }
+
+  updateSelectedAddress(AddressModel addressesModel) {
+    selectedAddressModel = addressesModel;
     update();
   }
 
@@ -31,20 +37,20 @@ class AddressesController extends GetxController {
         .get();
 
     addressesList = querySnapshot.docs
-        .map((e) => AddressesModel.fromMap(e.data() as Map<String, dynamic>))
+        .map((e) => AddressModel.fromMap(e.data() as Map<String, dynamic>))
         .toList();
     logger("getMyAddress ${addressesList.length}");
     update();
   }
 
-  deleteAddress(AddressesModel addressesModel) async {
+  deleteAddress(AddressModel addressesModel) async {
     try {
       update();
       addressesList.removeWhere(
-          (AddressesModel element) => element.docId == addressesModel.docId);
+          (AddressModel element) => element.docId == addressesModel.docId);
       await addressesCollectionReference.doc(addressesModel.docId).delete();
-      if (selectedAddressesModel.docId == addressesModel.docId) {
-        selectedAddressesModel = AddressesModel();
+      if (selectedAddressModel.docId == addressesModel.docId) {
+        selectedAddressModel = AddressModel();
       }
       Utility.toast("Address Deleted");
     } catch (e) {
@@ -54,7 +60,7 @@ class AddressesController extends GetxController {
     }
   }
 
-  updateAddress(AddressesModel addressesModel) async {
+  updateAddress(AddressModel addressesModel) async {
     update();
     await addressesCollectionReference.doc(addressesModel.docId).update({
       // "houseNo": houseNoController.text,
@@ -67,25 +73,25 @@ class AddressesController extends GetxController {
   }
 
   validateAddressAndSave(AddressesController addressesController) async {
-    update();
-    AddressesModel addressesModel = AddressesModel();
+    _updateLoading(true);
+    AddressModel addressesModel = AddressModel();
     String docId = addressesCollectionReference.doc().id;
-    // addressesModel.houseNo = addressesController.houseNoController.text;
-    // addressesModel.state = addressesController.stateController.text;
-    // addressesModel.area = addressesController.areaController.text;
-    // addressesModel.landMark = addressesController.landMarkController.text;
-    addressesModel.uid = FirebaseAuth.instance.currentUser!.uid;
+    addressesModel.houseNo = addressesController.streetNoController.text;
+    addressesModel.pincode = addressesController.pincodeController.text;
+    addressesModel.area = addressesController.localityController.text;
+
+    addressesModel.alternativeMobileNumber =
+        addressesController.alternateMobileNumberController.text;
+    addressesModel.uid = getCurrentUserId();
     addressesModel.addressLabel =
         addressesController.addressLabelController.text;
     addressesModel.docId = docId;
     addressesModel.timestamp = DateTime.now();
     addressesList.add(addressesModel);
 
-    await addressesCollectionReference
-        .doc(docId)
-        .set(addressesModel.toMap())
-        .then((value) => Get.back());
-
-    update();
+    await addressesCollectionReference.doc(docId).set(addressesModel.toMap());
+    Get.back();
+    Utility.toast("Address added successfully.");
+    _updateLoading(false);
   }
 }
