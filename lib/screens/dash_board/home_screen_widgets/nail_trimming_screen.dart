@@ -89,7 +89,6 @@ class _NailTrimmingScreenState extends State<NailTrimmingScreen> {
                           logger("CreateHomeDressingServices");
                           widget.isAdmin
                               ? Get.to(() => CreateHomeDressingServices(
-                                    isAdmin: true,
                                     homeDressingModel: homeDressingModel,
                                   ))
                               : null;
@@ -123,7 +122,6 @@ class _NailTrimmingScreenState extends State<NailTrimmingScreen> {
                           logger("CreateHomeDressingServices");
                           widget.isAdmin
                               ? Get.to(() => CreateHomeDressingServices(
-                                    isAdmin: true,
                                     homeDressingModel: homeDressingModel,
                                   ))
                               : null;

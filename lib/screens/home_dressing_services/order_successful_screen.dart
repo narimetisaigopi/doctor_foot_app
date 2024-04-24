@@ -1,5 +1,5 @@
 import 'package:drfootapp/models/homeScreenModels/order_model.dart';
-import 'package:drfootapp/screens/home_dressing_services/home_dressing_services.dart';
+import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
@@ -74,7 +74,7 @@ class _OrderSuccessfulScreenState extends State<OrderSuccessfulScreen> {
               CustomButton(
                 buttonName: "View details",
                 onPress: () {
-                  Get.offAll(() => const HomeDressingServices());
+                  Get.offAll(() => const DashBoardScreen());
                 },
               )
             ],

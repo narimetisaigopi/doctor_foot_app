@@ -2,6 +2,7 @@ import 'package:drfootapp/models/homeScreenModels/dressing_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
 import 'package:drfootapp/screens/home_dressing_services/home_dressing_services.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -68,16 +69,24 @@ class _DressingScreenState extends State<DressingScreen> {
                       onTap: () {
                         switch (index) {
                           case 0:
-                            Get.to(() => const HomeDressingServices());
+                            Get.to(() => const HomeDressingServices(
+                                  footServices: FootServices.dressingService,
+                                ));
                             break;
                           case 1:
-                            Get.to(() => const HomeDressingServices());
+                            Get.to(() => const HomeDressingServices(
+                                  footServices: FootServices.dressingService,
+                                ));
                             break;
                           case 2:
-                            Get.to(() => const HomeDressingServices());
+                            Get.to(() => const HomeDressingServices(
+                                  footServices: FootServices.dressingService,
+                                ));
                             break;
                           case 3:
-                            Get.to(() => const HomeDressingServices());
+                            Get.to(() => const HomeDressingServices(
+                                  footServices: FootServices.dressingService,
+                                ));
                             break;
                           default:
                             break;

@@ -1,22 +1,22 @@
 import 'dart:io';
 import 'package:drfootapp/controllers/home_dressing_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
-import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/firebase_constants.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/custom_drop_down_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 
 class CreateHomeDressingServices extends StatefulWidget {
-  final bool isAdmin;
+  final bool isUpdate;
   final HomeDressingModel homeDressingModel;
   const CreateHomeDressingServices({
     super.key,
-    this.isAdmin = false,
+    this.isUpdate = false,
     required this.homeDressingModel,
   });
   @override
@@ -30,21 +30,24 @@ class _CreateHomeDressingServicesState
   final HomeDressingController _homeDressingController =
       Get.put(HomeDressingController());
 
-  File? _pickedFile;
-
   @override
   void initState() {
-    if (widget.isAdmin) {
-      _homeDressingController.serviceDaysController.text =
+    _homeDressingController.clearTextFields();
+    if (widget.isUpdate) {
+      _homeDressingController.serviceDurationsController.text =
           widget.homeDressingModel.duration;
       _homeDressingController.serviceTitleController.text =
           widget.homeDressingModel.title;
       _homeDressingController.serviceDescriptionController.text =
-          widget.homeDressingModel.textDescription;
-      _homeDressingController.serviceNewPriceController.text =
-          widget.homeDressingModel.newPrice.toString();
-      _homeDressingController.serviceOldPriceController.text =
-          widget.homeDressingModel.oldPrice.toString();
+          widget.homeDressingModel.description;
+      _homeDressingController.serviceOriginalPriceController.text =
+          widget.homeDressingModel.originalPrice.toString();
+      _homeDressingController.serviceOfferPriceController.text =
+          widget.homeDressingModel.offerPrice.toString();
+      _homeDressingController.selectedFootService =
+          widget.homeDressingModel.footService!.index;
+      _homeDressingController.selectedDressingService =
+          widget.homeDressingModel.dressingService!.index;
     }
     super.initState();
   }
@@ -52,21 +55,23 @@ class _CreateHomeDressingServicesState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      appBar: AppBar(
+        title: Text("Add new service"),
+      ),
+      body: SingleChildScrollView(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 100, vertical: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
               width: MediaQuery.of(context).size.width / 2,
               decoration: BoxDecoration(color: Colors.white, boxShadow: [
                 BoxShadow(blurRadius: 10, color: Colors.grey.shade300)
               ]),
               child: Column(
                 children: [
-                  widget.isAdmin
+                  widget.isUpdate
                       ? Align(
                           alignment: Alignment.topRight,
                           child: TextButton.icon(
@@ -75,11 +80,9 @@ class _CreateHomeDressingServicesState
                                   content: "Do you want to Delete Service",
                                   context: context,
                                   yes: () async {
-                                    await homeDressingServicesCollectionReference
-                                        .doc(widget.homeDressingModel.docId)
-                                        .delete();
-                                    Utility.toast("Service deleted");
                                     Get.back();
+                                    _homeDressingController.deleteService(
+                                        widget.homeDressingModel);
                                   },
                                   no: () {
                                     Navigator.pop(context);
@@ -96,14 +99,6 @@ class _CreateHomeDressingServicesState
                           ),
                         )
                       : const SizedBox.shrink(),
-                  const Text(
-                    "Add New Service",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: AppColors.primary),
-                  ),
-                  const SizedBox(height: 20),
                   InkWell(
                     onTap: () => pickFile(),
                     child: Container(
@@ -112,65 +107,107 @@ class _CreateHomeDressingServicesState
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
                       ),
-                      child: _pickedFile != null
-                          ? const Icon(Icons.attach_file)
+                      child: _homeDressingController.pickedFile != null
+                          ? FutureBuilder(
+                              future: Future.value(_homeDressingController
+                                  .pickedFile!
+                                  .readAsBytes()),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData && snapshot.data != null) {
+                                  return Image.memory(snapshot.data!);
+                                }
+                                return Text("NA");
+                              })
                           : const Icon(Icons.image),
                     ),
                   ),
+                  TextButton(
+                      onPressed: pickFile, child: const Text("Pick image")),
+                  CustomDropDownWidget(
+                      hint: "Foot service",
+                      initialValue:
+                          _homeDressingController.selectedFootService != null
+                              ? enumToString(FootServices.values[
+                                  _homeDressingController.selectedFootService!])
+                              : null,
+                      menuItems: FootServices.values
+                          .map((e) => DropdownMenuItem(
+                              value: enumToString(e.toString()),
+                              child: Text(enumToString(e.toString()))))
+                          .toList(),
+                      onChanged: (value) {
+                        _homeDressingController.selectedFootService =
+                            stringToEnum(value!, FootServices.values)!.index;
+                        setState(() {});
+                      },
+                      errorMessage: "Select foot service"),
                   const SizedBox(height: 20),
+                  if (_homeDressingController.selectedFootService == 1)
+                    CustomDropDownWidget(
+                        hint: "Dressing service",
+                        menuItems: DressingServices.values
+                            .map((e) => DropdownMenuItem(
+                                value: enumToString(e.toString()),
+                                child: Text(enumToString(e.toString()))))
+                            .toList(),
+                        onChanged: (value) {
+                          _homeDressingController.selectedDressingService =
+                              stringToEnum(value!, DressingServices.values)!
+                                  .index;
+                        },
+                        errorMessage: "Select dressing service"),
                   MyTextField(
                     hint: "Large",
-                    label: "Service Title",
+                    label: "Title",
                     textEditingController:
                         _homeDressingController.serviceTitleController,
                   ),
                   MyTextField(
                     hint: "1 Day",
-                    label: "Service Days",
+                    label: "Days",
                     textEditingController:
-                        _homeDressingController.serviceDaysController,
+                        _homeDressingController.serviceDurationsController,
                   ),
                   MyTextField(
                     hint: "If your wound is < 500cm , Then it is recommended.",
-                    label: "Service Description",
+                    label: "Description",
                     textEditingController:
                         _homeDressingController.serviceDescriptionController,
                   ),
                   Row(
                     children: [
                       Expanded(
+                        flex: 5,
                         child: MyTextField(
                           hint: "₹3000",
-                          label: "Service Old Price",
+                          label: "Actutal price",
                           textInputType: TextInputType.number,
-                          textEditingController:
-                              _homeDressingController.serviceOldPriceController,
+                          textEditingController: _homeDressingController
+                              .serviceOriginalPriceController,
                         ),
                       ),
-                      const SizedBox(width: 20),
+                      const SizedBox(width: 10),
                       Expanded(
+                        flex: 5,
                         child: MyTextField(
                           hint: "₹2550",
-                          label: "Service New Price",
+                          label: "Service price",
                           textInputType: TextInputType.number,
-                          textEditingController:
-                              _homeDressingController.serviceNewPriceController,
+                          textEditingController: _homeDressingController
+                              .serviceOfferPriceController,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 50),
-                  CustomButton(
-                    buttonName:
-                        widget.isAdmin ? "Update Service" : "Add Service",
-                    onPress: () {
-                      // widget.isAdmin
-                      //     ? _homeDressingController
-                      //         .updateServices(widget.homeDressingModel)
-                      //     : _homeDressingController
-                      //         .uploadService(_homeDressingController);
-                    },
-                  ),
+                  const SizedBox(height: 10),
+                  _homeDressingController.isLoading
+                      ? const CircularProgressIndicator()
+                      : CustomButton(
+                          buttonName: widget.isUpdate
+                              ? "Update Service"
+                              : "Add Service",
+                          onPress: validate,
+                        ),
                 ],
               ),
             ),
@@ -180,24 +217,49 @@ class _CreateHomeDressingServicesState
     );
   }
 
-  Future<void> pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+  validate() {
+    if (_homeDressingController.selectedFootService == null) {
+      Utility.toast("please select foot service");
+    } else if (_homeDressingController.selectedFootService ==
+            FootServices.dressingService.index &&
+        _homeDressingController.selectedDressingService == null) {
+      Utility.toast("please select dressing service");
+    } else if (_homeDressingController.serviceTitleController.text.isEmpty) {
+      Utility.toast("please enter title");
+    } else if (_homeDressingController
+        .serviceDescriptionController.text.isEmpty) {
+      Utility.toast("please enter description");
+    } else if (_homeDressingController
+        .serviceOfferPriceController.text.isEmpty) {
+      Utility.toast("please enter offer price");
+    } else if (_homeDressingController
+        .serviceOriginalPriceController.text.isEmpty) {
+      Utility.toast("please enter origin price");
+    } else if (double.parse(
+            _homeDressingController.serviceOriginalPriceController.text) <
+        double.parse(
+            _homeDressingController.serviceOfferPriceController.text)) {
+      Utility.toast("Offer price should be lesser than original price");
+    } else {
+      if (!widget.isUpdate) {
+        _homeDressingController.addNewService();
+      } else {
+        _homeDressingController.updateService(widget.homeDressingModel);
+      }
+    }
+  }
 
+  Future<void> pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        allowedExtensions: allowedImageExtensions, type: FileType.custom);
     if (result != null) {
+      logger("pickFile done");
       setState(() {
-        // Check if the platform is web
-        if (kIsWeb) {
-          // Use the bytes property to access the file contents
-          // List<int> fileBytes = result.files.single.bytes!;
-          // Process the fileBytes as needed
-          // For example, you can convert the bytes to a base64 string:
-          // String base64String = base64Encode(fileBytes);
-          // Then, you can use the base64String or perform other operations
-        } else {
-          // If the platform is not web, use the path property as before
-          _pickedFile = File(result.files.single.path!);
-        }
+        _homeDressingController.pickedFile =
+            File.fromRawPath(result.files.single.bytes!);
       });
+    } else {
+      logger("not pickFile");
     }
   }
 }

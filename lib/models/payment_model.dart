@@ -58,7 +58,7 @@ class PaymentModel {
       amount: data['amount'],
       paymentStatus: data['paymentStatus'] != null
           ? PaymentStatus.values[data['paymentStatus']]
-          : PaymentStatus.none, // Retrieve enum from index
+          : PaymentStatus.none, 
       paymentServiceType: data['paymentServiceType'] != null
           ? PaymentServiceType.values[data['paymentServiceType']]
           : PaymentServiceType.none, // Retrieve enum from index
