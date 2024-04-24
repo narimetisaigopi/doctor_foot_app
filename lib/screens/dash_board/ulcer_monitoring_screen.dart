@@ -1,5 +1,6 @@
+import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/ulcer_monitoring_controller.dart';
-import 'package:drfootapp/models/ulcer_monitor_models/uncler_monitoring_plan_model.dart';
+import 'package:drfootapp/models/ulcer_monitor_models/ulcer_monitoring_plan_model.dart';
 import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/ulcer_monitoring_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -16,6 +17,8 @@ class UlcerMonitoringScreen extends StatefulWidget {
 class _UlcerMonitoringScreenState extends State<UlcerMonitoringScreen> {
   UlcerMonitoringController ulcerMonitoringController =
       Get.put(UlcerMonitoringController());
+  AuthenticationController authenticationController =
+      Get.put(AuthenticationController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<UlcerMonitoringController>(
@@ -48,6 +51,9 @@ class _UlcerMonitoringScreenState extends State<UlcerMonitoringScreen> {
                         isSelected: ulcerMonitoringPlanModel.planTitle ==
                             ulcerMonitoringController
                                 .selectedUlcerModel.planTitle,
+                        isCurrentPlan: authenticationController
+                                .loginUserModel.ulcerMonitoringPlan ==
+                            ulcerMonitoringPlanModel.id,
                         onPress: () {
                           ulcerMonitoringController
                               .updatePlanSelection(ulcerMonitoringPlanModel);

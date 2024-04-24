@@ -1,10 +1,12 @@
 class UlcerMonitoringPlanModel {
+  String id;
   String planTitle;
   int planAmount;
   String planDuration;
   List<String> planDetailItems;
   UlcerMonitoringPlanModel(
       {this.planTitle = '',
+      this.id = '0',
       this.planAmount = 0,
       this.planDuration = '',
       this.planDetailItems = const []});

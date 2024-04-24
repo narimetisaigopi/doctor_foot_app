@@ -942,3 +942,33 @@ String maskMobileNumber(String mobileNumber) {
 bool isAdmin() {
   return kIsWeb;
 }
+
+// PaymentStatus status = PaymentStatus.pending;
+//   String statusString = enumToString(status);
+//   print(statusString); // Output: pending
+
+//   PaymentStatus retrievedStatus = stringToEnum(statusString, PaymentStatus.values);
+//   print(retrievedStatus); // Output: PaymentStatus.pending
+
+// Convert enum to string
+String enumToString<T>(T enumValue) {
+  return enumValue.toString().split('.').last;
+}
+
+// Convert string to enum
+T? stringToEnum<T>(String value, List<T> values) {
+  return values.firstWhere((v) => enumToString(v) == value);
+}
+
+getCurrentUserId() {
+  User? user = FirebaseAuth.instance.currentUser;
+  return user != null ? user.uid : "";
+}
+
+// convertToIndianFormat(dynamic amount) {
+//   return NumberFormat.currency(
+//     symbol: '₹ ',
+//     locale: "HI",
+//     decimalDigits: 3,
+//   ).format(amount);
+// }
