@@ -71,6 +71,7 @@ dependencies:
   geolocator: ^11.0.0
   geocoding: ^3.0.0
   latlng: ^2.0.7
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
@@ -101,7 +102,7 @@ flutter:
     - assets/translation/
     - assets/images/intro/
     - assets/svgs/
-
+    - assets/images/notification_images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
