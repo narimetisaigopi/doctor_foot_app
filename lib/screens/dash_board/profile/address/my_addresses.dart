@@ -5,7 +5,6 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class MyAddresses extends StatefulWidget {
@@ -17,6 +16,12 @@ class MyAddresses extends StatefulWidget {
 
 class _MyAddressesState extends State<MyAddresses> {
   AddressesController addressesController = Get.put(AddressesController());
+
+  @override
+  void initState() {
+    addressesController.getMyAddress();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

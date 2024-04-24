@@ -94,7 +94,7 @@ class Utility {
   static Widget customChoiceChip({
     required String title,
     required bool isSelected,
-    required VoidCallback onTap,
+    required Function(String) onTap,
     bool sizeNeeded = false,
     double horizontal = 10,
     double vertical = 5,
@@ -102,7 +102,9 @@ class Utility {
     required IconData iconData,
   }) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        onTap(title);
+      },
       child: Container(
         width: width,
         height: 35,

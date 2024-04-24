@@ -261,7 +261,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         iconData: Icons.home,
                         title: Strings.home,
                         isSelected: selectedContainerIndex == 1,
-                        onTap: () {
+                        onTap: (value) {
                           setState(() {
                             selectedContainerIndex = 1;
                             _addressesController.addressLabelController.text =
@@ -275,7 +275,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         iconData: Icons.work,
                         title: Strings.work,
                         isSelected: selectedContainerIndex == 2,
-                        onTap: () {
+                        onTap: (value) {
                           setState(() {
                             selectedContainerIndex = 2;
                             _addressesController.addressLabelController.text =
@@ -289,7 +289,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         iconData: Icons.family_restroom_outlined,
                         title: Strings.friendsAndFamily,
                         isSelected: selectedContainerIndex == 3,
-                        onTap: () {
+                        onTap: (value) {
                           setState(() {
                             selectedContainerIndex = 3;
                             _addressesController.addressLabelController.text =
@@ -309,7 +309,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         width: 100,
                         title: Strings.others,
                         isSelected: selectedContainerIndex == 4,
-                        onTap: () {
+                        onTap: (value) {
                           setState(() {
                             selectedContainerIndex = 4;
                             _addressesController.addressLabelController.text =
