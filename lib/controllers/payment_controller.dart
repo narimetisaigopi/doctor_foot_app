@@ -1,54 +1,80 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
-import 'package:drfootapp/screens/home_dressing_services/order_successful_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/models/admin_model.dart';
+import 'package:drfootapp/models/payment_model.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/constants/firebase_constants.dart';
+import 'package:drfootapp/utils/enums.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentController extends GetxController {
-  startPayment() {
+  double amount = 0.0;
+  String description = "";
+  startPayment(
+      {required Function(PaymentSuccessResponse) onSuccess,
+      required Function(PaymentFailureResponse) onError,
+      required Function(ExternalWalletResponse) onExternalWallet}) async {
     Razorpay _razorpay = Razorpay();
+
+    AuthenticationController authenticationController =
+        Get.put(AuthenticationController());
 
     var options = {
       'key': 'rzp_test_sBvW9FmfSuEcOz',
-      //'key': "rzp_live_0KkXRascl6tEQL",
-      'amount': 1000 * 100,
-      'name': 'Doctor Foot',
-      'description': 'Registration',
-      'prefill': {'contact': '1234567890', 'email': 'gowtham@gmail.com'}
+      'amount': amount * 100,
+      'name': appName,
+      'description': description,
+      'prefill': {
+        'contact': authenticationController.loginUserModel.mobileNumber,
+        'email': authenticationController.loginUserModel.emailId
+      }
     };
-
     _razorpay.open(options);
-
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, onSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, onError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, onExternalWallet);
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
-    logger("_handlePaymentSuccess response ${response.toString()}");
-
-    Get.offAll(() => const OrderSuccessfulScreen());
-
-    // usersCollectionReference
-    //     .doc(user!.uid)
-    //     .update({"subscriptionTime": DateTime.now()});
-    // Get.put(SubscriptionController())
-    //     .addTransaction(subScriptionAmount.toString());
-    // Navigator.pushAndRemoveUntil(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => HomeScreen()),
-    //     (route) => false);
+  Future<int> generatePaymentId() async {
+    DocumentSnapshot documentSnapshot =
+        await adminCollectionReference.doc("admin").get();
+    int paymentId = 1;
+    AdminModel adminModel = AdminModel();
+    if (documentSnapshot.exists && documentSnapshot.data() != null) {
+      adminModel = AdminModel.fromSnapshot(documentSnapshot);
+      paymentId = adminModel.paymentId + 1;
+      await adminCollectionReference
+          .doc("admin")
+          .update({"paymentId": paymentId});
+    } else {
+      await adminCollectionReference.doc("admin").set(adminModel.toMap());
+    }
+    return paymentId;
   }
 
-  void _handlePaymentError(PaymentFailureResponse response) {
-    logger("_handlePaymentError response ${response.toString()}");
-    Get.back();
-    // Utils().showToast("Payment failed due to ${response.message}");
-  }
-
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    logger("_handleExternalWallet response ${response.toString()}");
-
-    // Utils().showToast("Payment handleExternalWallet  ${response.walletName}");
+  addPaymentTransaction({
+    required int amount,
+    String message = "",
+    required String subscriptionId,
+    String gatewayTransactionId = "",
+    required PaymentStatus paymentStatus,
+    required PaymentServiceType paymentServiceType,
+  }) async {
+    int paymentId = await generatePaymentId();
+    PaymentModel paymentModel = PaymentModel();
+    DocumentReference documentReference = paymentsCollectionReference.doc();
+    paymentModel.docId = documentReference.id;
+    paymentModel.message = message;
+    paymentModel.paymentId = paymentId;
+    paymentModel.uid = getCurrentUserId();
+    paymentModel.subscriptionId = subscriptionId;
+    paymentModel.paymentStatus = paymentStatus;
+    paymentModel.paymentServiceType = paymentServiceType;
+    paymentModel.amount = amount;
+    paymentModel.timestamp = Timestamp.now();
+    await documentReference.set(paymentModel.toMap());
   }
 }

@@ -94,7 +94,7 @@ class Utility {
   static Widget customChoiceChip({
     required String title,
     required bool isSelected,
-    required VoidCallback onTap,
+    required Function(String) onTap,
     bool sizeNeeded = false,
     double horizontal = 10,
     double vertical = 5,
@@ -102,7 +102,9 @@ class Utility {
     required IconData iconData,
   }) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        onTap(title);
+      },
       child: Container(
         width: width,
         height: 35,
@@ -115,6 +117,9 @@ class Utility {
         child: Row(
           children: [
             Icon(iconData, color: isSelected ? Colors.white : Colors.black),
+            const SizedBox(
+              width: 4,
+            ),
             Text(
               title,
               style: TextStyle(
@@ -942,3 +947,66 @@ String maskMobileNumber(String mobileNumber) {
 bool isAdmin() {
   return kIsWeb;
 }
+
+// PaymentStatus status = PaymentStatus.pending;
+//   String statusString = enumToString(status);
+//   print(statusString); // Output: pending
+
+//   PaymentStatus retrievedStatus = stringToEnum(statusString, PaymentStatus.values);
+//   print(retrievedStatus); // Output: PaymentStatus.pending
+
+// Convert enum to string
+String enumToString<T>(T enumValue) {
+  return enumValue.toString().split('.').last;
+}
+
+// Convert string to enum
+T? stringToEnum<T>(String value, List<T> values) {
+  return values.firstWhere((v) => enumToString(v) == value);
+}
+
+getCurrentUserId() {
+  User? user = FirebaseAuth.instance.currentUser;
+  return user != null ? user.uid : "";
+}
+
+showAlertDialog({
+  required BuildContext context,
+  required Function() yesCallback,
+  required Function() noCallback,
+  String title = "Confirm",
+  String content = "Do you want to Delete Address?",
+}) {
+  AlertDialog alert = AlertDialog(
+    title: Text(title),
+    content: Text(content),
+    actions: [
+      TextButton(
+          onPressed: () {
+            yesCallback.call();
+          },
+          child: const Text("Yes")),
+      TextButton(
+          onPressed: () {
+            noCallback.call();
+          },
+          child: const Text("No"))
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+// convertToIndianFormat(dynamic amount) {
+//   return NumberFormat.currency(
+//     symbol: '₹ ',
+//     locale: "HI",
+//     decimalDigits: 3,
+//   ).format(amount);
+// }

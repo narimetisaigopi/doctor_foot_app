@@ -1,6 +1,6 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/screens/dash_board/admin_login.dart';
 import 'package:drfootapp/screens/dash_board/prifile_details/custom_listtile_widget.dart';
+import 'package:drfootapp/screens/dash_board/profile/address/my_addresses.dart';
 import 'package:drfootapp/screens/dash_board/profile/contact_us_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/faqs_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/my_oppointment_screen.dart';
@@ -92,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 customDivider,
                 CustomListTileWidget(
-                  text: "myProfile",
+                    text: "myProfile",
                     leadingIcon: Icons.person,
                     onPressed: () {
                       Get.to(() => const MyProfileScreen());
@@ -102,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     text: "Addresses",
                     leadingIcon: Icons.person,
                     onPressed: () {
-                      Get.to(() => const AdminLogin());
+                      Get.to(() => const MyAddresses());
                     }),
                 customDivider,
                 CustomListTileWidget(
@@ -144,14 +144,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     text: "contactus",
                     leadingIcon: Icons.call,
                     onPressed: () {
-                       Get.to(const ContactUsScreen());
+                      Get.to(const ContactUsScreen());
                     }),
-                     customDivider,
-                    CustomListTileWidget(
+                customDivider,
+                CustomListTileWidget(
                     text: "FAQs",
                     leadingIcon: Icons.call,
                     onPressed: () {
-                       Get.to(const FAQsScreen());
+                      Get.to(const FAQsScreen());
                     }),
                 customDivider,
                 CustomListTileWidget(

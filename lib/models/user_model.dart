@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   String fullName;
   String emailId;
@@ -13,23 +15,27 @@ class UserModel {
   String regNo;
   List<dynamic> androidTokensList;
   List<dynamic> appleTokensList;
+  // ulcermonitoring
+  String ulcerMonitoringPlan;
+  Timestamp? ulcerMonitoringSubscriptionDate;
 
-  UserModel({
-    this.userName = "",
-    this.dateOfBirth = "",
-    this.gender = "",
-    this.mobileNumber = "",
-    this.docId = "",
-    this.androidTokensList = const [],
-    this.appleTokensList = const [],
-    this.timestamp,
-    this.fullName = "",
-    this.emailId = "",
-    this.bloodgroup = "",
-    this.height = "",
-    this.weight = "",
-      this.regNo = ""
-  });
+  UserModel(
+      {this.userName = "",
+      this.dateOfBirth = "",
+      this.gender = "",
+      this.mobileNumber = "",
+      this.docId = "",
+      this.androidTokensList = const [],
+      this.appleTokensList = const [],
+      this.timestamp,
+      this.fullName = "",
+      this.emailId = "",
+      this.bloodgroup = "",
+      this.height = "",
+      this.weight = "",
+      this.regNo = "",
+      this.ulcerMonitoringPlan = "0",
+      this.ulcerMonitoringSubscriptionDate});
   factory UserModel.fromJson(
     Map map,
   ) {
@@ -41,14 +47,16 @@ class UserModel {
         mobileNumber: map['mobileNumber'] ?? "",
         timestamp: map['timestamp'] ?? "",
         androidTokensList: map["androidTokensList"] ?? [],
-      appleTokensList: map["appleTokensList"] ?? [],
-      fullName: map['fullName'] ?? "",
-      emailId: map['emailId'] ?? "",
-      bloodgroup: map['bloodgroup'] ?? "",
-      height: map['height'] ?? "",
-      weight: map['weight'] ?? "",
-        regNo: map["regNo"] ?? ""
-    );
+        appleTokensList: map["appleTokensList"] ?? [],
+        fullName: map['fullName'] ?? "",
+        emailId: map['emailId'] ?? "",
+        bloodgroup: map['bloodgroup'] ?? "",
+        height: map['height'] ?? "",
+        weight: map['weight'] ?? "",
+        regNo: map["regNo"] ?? "",
+        ulcerMonitoringPlan: map["ulcerMonitoringPlan"] ?? "0",
+        ulcerMonitoringSubscriptionDate:
+            map["ulcerMonitoringSubscriptionDate"]);
   }
 
   Map<String, dynamic> toMap() {
@@ -66,7 +74,9 @@ class UserModel {
       'bloodgroup': bloodgroup,
       'height': height,
       'weight': weight,
-      "regNo": regNo
+      "regNo": regNo,
+      "ulcerMonitoringPlan": ulcerMonitoringPlan,
+      "ulcerMonitoringSubscriptionDate": ulcerMonitoringSubscriptionDate
     };
   }
 

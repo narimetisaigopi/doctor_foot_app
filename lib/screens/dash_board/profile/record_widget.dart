@@ -1,6 +1,5 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class RecordWidget extends StatelessWidget {
   const RecordWidget({super.key});

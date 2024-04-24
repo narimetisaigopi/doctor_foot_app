@@ -1,7 +1,11 @@
-import 'package:drfootapp/screens/dash_board/profile/pr_screen.dart';
+import 'package:drfootapp/models/payment_model.dart';
+import 'package:drfootapp/screens/dash_board/profile/payment_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/firebase_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:paginate_firestore/paginate_firestore.dart';
 
 class PaymentsAndRefundScreen extends StatefulWidget {
   const PaymentsAndRefundScreen({super.key});
@@ -32,30 +36,29 @@ class _PaymentsAndRefundScreenState extends State<PaymentsAndRefundScreen> {
               color: AppColors.primary),
         ).tr(),
       ),
-      body: Container(
-        margin: const EdgeInsets.only(left: 16, top: 22, right: 16),
-        child: const Column(
-          children: [
-            PrScreen(),
-           SizedBox(
-              height: 16,
-            ),
-            PrScreen(),
-            SizedBox(
-              height: 16,
-            ),
-            PrScreen(),
-            SizedBox(
-              height: 16,
-            ),
-            PrScreen(),
-            SizedBox(
-              height: 16,
-            ),
-            PrScreen(),
-          ],
-        ),
-      ),
+        body: Container(
+          margin: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
+          child: PaginateFirestore(
+              itemsPerPage: 10,
+              onEmpty: const Center(
+                child: Text("No transactions"),
+              ),
+              itemBuilderType: PaginateBuilderType.listView,
+              bottomLoader: const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                ),
+              ),
+              query: paymentsCollectionReference
+                  .where("uid", isEqualTo: getCurrentUserId())
+                  .orderBy('timestamp', descending: true),
+              itemBuilder: (context, documentSnapshots, index) {
+                PaymentModel paymentModel =
+                    PaymentModel.fromSnapshot(documentSnapshots[index]);
+                return PaymentWidget(paymentModel: paymentModel);
+              }),
+        )
+
     );
   }
 }
