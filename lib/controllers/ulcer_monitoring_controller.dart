@@ -117,7 +117,7 @@ class UlcerMonitoringController extends GetxController {
       _updateLoading(true);
       DocumentReference documentReference = paymentsCollectionReference.doc();
       await Get.put(PaymentController()).addPaymentTransaction(
-          amount: selectedUlcerModel.planAmount,
+          amount: selectedUlcerModel.planAmount.toDouble(),
           subscriptionId: documentReference.id,
           gatewayTransactionId: id,
           message: message,

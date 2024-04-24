@@ -3,12 +3,9 @@ import 'package:drfootapp/controllers/address_controller.dart';
 import 'package:drfootapp/controllers/coupon_code_controller.dart';
 import 'package:drfootapp/controllers/home_dressing_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
-
 import 'package:drfootapp/screens/home_dressing_services/available_offers.dart';
-
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
-
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -21,6 +18,9 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+
+import 'home_dressing_address.dart';
 
 class HomeDressingPayment extends StatefulWidget {
   final String imagePath;
@@ -64,6 +64,24 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
 
   String selectedLabel = "";
   bool isAdded = true;
+
+  @override
+  void initState() {
+    if (_addressesController.selectedAddressModel.docId.isEmpty) {
+      if (_addressesController.addressesList.isEmpty) {
+        _addressesController.getMyAddress().then((value) {
+          if (value.isNotEmpty) {
+            homeDressingController.updateAddressSelection(value.first);
+          }
+        });
+      } else {
+        homeDressingController
+            .updateAddressSelection(_addressesController.addressesList.first);
+      }
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -182,8 +200,8 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         defaultText: "Pay you",
                         amount:
                             couponCodeController.selectedCouponCodeModel == null
-                                ? homeDressingController.payableAmount
-                                : homeDressingController.payableAmount -
+                                ? homeDressingController.finalAmount
+                                : homeDressingController.finalAmount -
                                     couponCodeController
                                         .selectedCouponCodeModel!.maxDiscount,
                         fontSize: 16,
@@ -195,132 +213,18 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Selected Address",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                    ).tr(),
-                    TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Edit",
-                          style: TextStyle(color: AppColors.primary),
-                        ).tr())
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  height: 80,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Center(
-                    child: const Text(
-                      "House No: 124-3, Main Road, near forum mall, KPHB, Hyderabad- 560058",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-                    ).tr(),
-                  ),
+                GetBuilder<AddressesController>(builder: (context) {
+                  return HomeDressingAddressWidget(
+                    addressModel: homeDressingController.selectedAddressModel,
+                  );
+                }
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: const Text(
-                    " Address",
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-                  ).tr(),
-                ),
-                const TextField(
-                  decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(0),
-                      hintText: "Enter Locality (optional) ",
-                      hintStyle:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-                ),
-                const TextField(
-                  decoration: InputDecoration(
-                      hintText: "Flat No / Street No (optional) ",
-                      hintStyle:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-                ),
-                const TextField(
-                  decoration: InputDecoration(
-                      hintText: "Enter alternate mobile number (optional) ",
-                      hintStyle:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Utility.customChoiceChip(
-                        iconData: Icons.home,
-                        title: Strings.home,
-                        isSelected: selectedContainerIndex == 1,
-                        onTap: (value) {
-                          setState(() {
-                            selectedContainerIndex = 1;
-                            _addressesController.addressLabelController.text =
-                                Strings.home;
-                          });
-                        }),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Utility.customChoiceChip(
-                        iconData: Icons.work,
-                        title: Strings.work,
-                        isSelected: selectedContainerIndex == 2,
-                        onTap: (value) {
-                          setState(() {
-                            selectedContainerIndex = 2;
-                            _addressesController.addressLabelController.text =
-                                Strings.home;
-                          });
-                        }),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Utility.customChoiceChip(
-                        iconData: Icons.family_restroom_outlined,
-                        title: Strings.friendsAndFamily,
-                        isSelected: selectedContainerIndex == 3,
-                        onTap: (value) {
-                          setState(() {
-                            selectedContainerIndex = 3;
-                            _addressesController.addressLabelController.text =
-                                Strings.home;
-                          });
-                        }),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Utility.customChoiceChip(
-                        iconData: Icons.location_on,
-                        width: 100,
-                        title: Strings.others,
-                        isSelected: selectedContainerIndex == 4,
-                        onTap: (value) {
-                          setState(() {
-                            selectedContainerIndex = 4;
-                            _addressesController.addressLabelController.text =
-                                Strings.home;
-                          });
-                        }),
-                  ],
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
+                homeDressingController.isLoading
+                    ? const CircularProgressIndicator()
+                    :
                 CustomButton(
                   buttonName:
                       "Make Payment | ₹ ${homeDressingController.finalAmount}",
@@ -425,6 +329,100 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
           }),
         ],
       ),
+    );
+  }
+
+  addressLayout() {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.topLeft,
+          child: const Text(
+            "Address",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          ).tr(),
+        ),
+        const TextField(
+          decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(0),
+              hintText: "Enter Locality (optional) ",
+              hintStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+        ),
+        const TextField(
+          decoration: InputDecoration(
+              hintText: "Flat No / Street No (optional) ",
+              hintStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+        ),
+        const TextField(
+          decoration: InputDecoration(
+              hintText: "Enter alternate mobile number (optional) ",
+              hintStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+        ),
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            Utility.customChoiceChip(
+                iconData: Icons.home,
+                title: Strings.home,
+                isSelected: selectedContainerIndex == 1,
+                onTap: (value) {
+                  setState(() {
+                    selectedContainerIndex = 1;
+                    _addressesController.addressLabelController.text =
+                        Strings.home;
+                  });
+                }),
+            const SizedBox(
+              width: 10,
+            ),
+            Utility.customChoiceChip(
+                iconData: Icons.work,
+                title: Strings.work,
+                isSelected: selectedContainerIndex == 2,
+                onTap: (value) {
+                  setState(() {
+                    selectedContainerIndex = 2;
+                    _addressesController.addressLabelController.text =
+                        Strings.home;
+                  });
+                }),
+            const SizedBox(
+              width: 10,
+            ),
+            Utility.customChoiceChip(
+                iconData: Icons.family_restroom_outlined,
+                title: Strings.friendsAndFamily,
+                isSelected: selectedContainerIndex == 3,
+                onTap: (value) {
+                  setState(() {
+                    selectedContainerIndex = 3;
+                    _addressesController.addressLabelController.text =
+                        Strings.home;
+                  });
+                }),
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Utility.customChoiceChip(
+                iconData: Icons.location_on,
+                width: 100,
+                title: Strings.others,
+                isSelected: selectedContainerIndex == 4,
+                onTap: (value) {
+                  setState(() {
+                    selectedContainerIndex = 4;
+                    _addressesController.addressLabelController.text =
+                        Strings.home;
+                  });
+                }),
+          ],
+        ),
+      ],
     );
   }
 

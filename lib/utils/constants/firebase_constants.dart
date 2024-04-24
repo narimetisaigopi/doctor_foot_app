@@ -20,6 +20,10 @@ CollectionReference ulcerSubscrptionsCollectionReference =
 CollectionReference paymentsCollectionReference =
     FirebaseFirestore.instance.collection("payments");
 
+
+CollectionReference ordersCollectionReference =
+    FirebaseFirestore.instance.collection("orders");
+
 CollectionReference adminCollectionReference =
     FirebaseFirestore.instance.collection("admin");
 

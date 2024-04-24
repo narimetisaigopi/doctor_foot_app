@@ -62,7 +62,7 @@ List<String> bloodGroupList = [
 ];
 
 logger(dynamic message) {
-  log(message);
+  log("$message");
 }
 
 final weeksList = [
