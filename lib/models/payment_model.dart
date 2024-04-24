@@ -7,7 +7,7 @@ class PaymentModel {
   String gatewayTransactionId;
   String message;
   String subscriptionId;
-  int amount;
+  double amount;
   int paymentId;
   PaymentStatus paymentStatus;
   PaymentServiceType paymentServiceType;

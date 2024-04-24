@@ -1,7 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/controllers/coupon_code_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
+import 'package:drfootapp/models/address_model.dart';
+import 'package:drfootapp/models/admin_model.dart';
+import 'package:drfootapp/models/homeScreenModels/order_model.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
+import 'package:drfootapp/models/payment_model.dart';
+import 'package:drfootapp/screens/home_dressing_services/order_successful_screen.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -22,6 +30,19 @@ class HomeDressingController extends GetxController {
   List<HomeDressingModel> homeDressingServicesAddedList = [];
 
   var finalAmount = 0.0, discountAmount = 0.0, payableAmount = 0.0;
+
+  bool isLoading = false;
+
+  AddressModel selectedAddressModel = AddressModel();
+
+  updateAddressSelection(AddressModel addressModel) {
+    selectedAddressModel = addressModel;
+  }
+
+  void _updateLoading(bool loading) {
+    isLoading = loading;
+    update();
+  }
 
   TextEditingController searchCouponCodeController = TextEditingController();
   void addOrRemoveFromList({
@@ -96,11 +117,83 @@ class HomeDressingController extends GetxController {
     }
   }
 
+  Future<int> generateOrderId() async {
+    DocumentSnapshot documentSnapshot =
+        await adminCollectionReference.doc("admin").get();
+    int orderId = 1;
+    AdminModel adminModel = AdminModel();
+    if (documentSnapshot.exists && documentSnapshot.data() != null) {
+      adminModel = AdminModel.fromSnapshot(documentSnapshot);
+      orderId = adminModel.orderId + 1;
+      await adminCollectionReference.doc("admin").update({"orderId": orderId});
+    } else {
+      await adminCollectionReference.doc("admin").set(adminModel.toMap());
+    }
+    return orderId;
+  }
+
+  placeOrder() async {
+    try {
+      _updateLoading(true);
+      CouponCodeController couponCodeController =
+          Get.put(CouponCodeController());
+      PaymentController paymentController = Get.put(PaymentController());
+      int orderId = await generateOrderId();
+      OrderModel orderModel = OrderModel();
+      DocumentReference documentReference = ordersCollectionReference.doc();
+      orderModel.docId = documentReference.id;
+      orderModel.amount = finalAmount;
+      orderModel.uid = getCurrentUserId();
+      orderModel.discount = discountAmount;
+      orderModel.orderId = orderId;
+      // adding item ids to list
+      List<String> ids =
+          homeDressingServicesAddedList.map((e) => e.docId).toList();
+      orderModel.items = [...ids];
+      orderModel.quantity = homeDressingServicesAddedList.length;
+      // setting coupon code
+      if (couponCodeController.selectedCouponCodeModel != null) {
+        orderModel.couponCodeId =
+            couponCodeController.selectedCouponCodeModel!.docId;
+      }
+      // setting address
+      orderModel.address = selectedAddressModel;
+      // setting payment
+      PaymentModel paymentModel = await paymentController.addPaymentTransaction(
+          amount: finalAmount,
+          subscriptionId: orderModel.docId,
+          paymentStatus: PaymentStatus.completed,
+          paymentServiceType: PaymentServiceType.homeService);
+      orderModel.paymentId = paymentModel.docId;
+      // creating order
+      await documentReference.set(orderModel.toMap());
+      Utility.toast("Order placed successfully");
+      Get.offAll(() => OrderSuccessfulScreen(
+            orderModel: orderModel,
+          ));
+    } catch (e, stack) {
+      Utility.toast("Failed to place order, due to ${e.toString()}");
+      logger(e.toString());
+      logger(stack.toString());
+    } finally {
+      _updateLoading(false);
+    }
+  }
+
   proceedToPayment() {
     PaymentController paymentController = Get.put(PaymentController());
+    paymentController.amount = finalAmount;
+    paymentController.description = "Home services";
     paymentController.startPayment(
-        onSuccess: (PaymentSuccessResponse paymentSuccessResponse) {},
-        onError: (PaymentFailureResponse paymentFailureResponse) {},
-        onExternalWallet: (ExternalWalletResponse externalWalletResponse) {});
+        onSuccess: (PaymentSuccessResponse paymentSuccessResponse) async {
+      await placeOrder();
+    }, onError: (PaymentFailureResponse paymentFailureResponse) {
+      Utility.toast("Payment failed due to  ${paymentFailureResponse.message}");
+      _updateLoading(false);
+    }, onExternalWallet: (ExternalWalletResponse externalWalletResponse) {
+      Utility.toast(
+          "onExternalWallet: payment failed due to  ${externalWalletResponse.walletName}");
+      _updateLoading(false);
+    });
   }
 }

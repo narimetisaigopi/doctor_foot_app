@@ -55,8 +55,8 @@ class PaymentController extends GetxController {
     return paymentId;
   }
 
-  addPaymentTransaction({
-    required int amount,
+  Future<PaymentModel> addPaymentTransaction({
+    required double amount,
     String message = "",
     required String subscriptionId,
     String gatewayTransactionId = "",
@@ -76,5 +76,6 @@ class PaymentController extends GetxController {
     paymentModel.amount = amount;
     paymentModel.timestamp = Timestamp.now();
     await documentReference.set(paymentModel.toMap());
+    return paymentModel;
   }
 }

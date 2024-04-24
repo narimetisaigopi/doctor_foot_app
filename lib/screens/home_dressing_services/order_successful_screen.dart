@@ -1,3 +1,4 @@
+import 'package:drfootapp/models/homeScreenModels/order_model.dart';
 import 'package:drfootapp/screens/home_dressing_services/home_dressing_services.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -10,7 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderSuccessfulScreen extends StatefulWidget {
-  const OrderSuccessfulScreen({super.key});
+  final OrderModel orderModel;
+  const OrderSuccessfulScreen({super.key, required this.orderModel});
 
   @override
   State<OrderSuccessfulScreen> createState() => _OrderSuccessfulScreenState();
@@ -48,9 +50,9 @@ class _OrderSuccessfulScreenState extends State<OrderSuccessfulScreen> {
                     fontSize: 16,
                     color: Color(0xFF6B6B6B)),
               ).tr(),
-              const Text(
-                "Afternoon - 3:00 PM",
-                style: TextStyle(
+              Text(
+                widget.orderModel.timestamp.toString(),
+                style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                     color: Color(0xFF6B6B6B)),
