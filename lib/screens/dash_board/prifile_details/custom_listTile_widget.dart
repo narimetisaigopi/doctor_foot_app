@@ -30,29 +30,28 @@ class _CustomListTileWidgetState extends State<CustomListTileWidget> {
     return GestureDetector(
       onTap: widget.onPressed,
       child: ListTile(
-        title: Text(
-          widget.text,
-          style: const TextStyle(
-            fontSize: 16,
-            color: AppColors.textBlackColors,
-            fontWeight: FontWeight.w500,
-          ),
-        ).tr(),
-        leading: widget.isIconNeeded
-            ? CircleAvatar(
-                backgroundColor: AppColors.primary,
-                child: Icon(
-                  widget.leadingIcon,
-                  color: AppColors.secondary,
+          title: Text(
+            widget.text,
+            style: const TextStyle(
+              fontSize: 16,
+              color: AppColors.textBlackColors,
+              fontWeight: FontWeight.w500,
+            ),
+          ).tr(),
+          leading: 
+            CircleAvatar(
+                  backgroundColor: AppColors.primary,
+                  child: Icon(
+                    widget.leadingIcon,
+                    color: AppColors.secondary,
+                  ),
                 ),
-              )
-            : null,
-        trailing: widget.isSelected
-            ? const Icon(Icons.check, color: Colors.green)
-            : widget.isIconNeeded
-                ? Icon(widget.trailingIcon)
-                : null,
-      ),
+              
+          trailing: const Icon(
+            Icons.arrow_forward_ios,
+            color: AppColors.black2,
+            size: 24,
+          )),
     );
   }
 }
