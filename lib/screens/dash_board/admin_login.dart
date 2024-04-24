@@ -5,7 +5,6 @@ import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class AdminLogin extends StatefulWidget {
   const AdminLogin({super.key});

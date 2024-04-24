@@ -2,10 +2,11 @@ import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile_details_screen.dart';
-import 'package:drfootapp/screens/dash_board/ulcer_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile_screen.dart';
+import 'package:drfootapp/screens/dash_board/ulcer_monitoring_screen.dart';
 import 'package:drfootapp/screens/dash_board/videos_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +28,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     const HomeScreen(),
     const DietChartScreen(),
     const VideosScreen(),
-    const UlcerScreen(),
+    const UlcerMonitoringScreen(),
     const ProfileScreen(),
   ];
 
@@ -68,7 +69,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.home))
                 : const Icon(Icons.home),
-            label: "homeText".tr,
+            label: Strings.homeText.tr,
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 1
@@ -84,7 +85,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.food_bank))
                 : const Icon(Icons.food_bank),
-            label: "dietChartText".tr,
+            label: Strings.dietChartText.tr,
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 2
@@ -100,7 +101,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.video_call))
                 : const Icon(Icons.video_call),
-            label: "videosText".tr,
+            label: Strings.videosText.tr,
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 3
@@ -116,7 +117,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.schedule))
                 : const Icon(Icons.schedule),
-            label: "ulcerMonitorText".tr,
+            label: Strings.ulcerMonitorText.tr,
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 4
@@ -132,7 +133,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     ),
                     child: const Icon(Icons.person))
                 : const Icon(Icons.person),
-            label: "profile".tr,
+            label: Strings.profile.tr,
           ),
         ],
       ),

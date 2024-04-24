@@ -22,13 +22,14 @@ class Strings {
       "Everyday report on your ulcer activity";
   static const String premiumPlanText4 = "Dressing and Home remedies";
   static const String premiumPlanText5 =
-      "Diet Suggestions according to ulcer   condition";
+      "Diet Suggestions according to ulcer condition";
 
   static const String premiumPlanAamount = "₹1000 Plan";
 
   // ulser monitoring screen benifits with free plan texts
   static const String basicPlanText = "Basic plan";
   static const String freeText = "Free";
+  static const String weekText = "week";
   static const String planAmountText = "₹1000/week";
   static const String weeklyUmText = "Weekly Ulcer Monitoring";
   static const String freePlanText1 =

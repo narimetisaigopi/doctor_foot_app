@@ -1,4 +1,4 @@
-class AddressesModel {
+class AddressModel {
   String uid = "";
   String docId = "";
   String houseNo = "";
@@ -6,10 +6,12 @@ class AddressesModel {
   String area = "";
   String landMark = "";
   String addressLabel = "";
+  String alternativeMobileNumber = "";
+  String pincode = "";
   dynamic timestamp;
   bool selectedAddresses;
 
-  AddressesModel({
+  AddressModel({
     this.uid = "",
     this.selectedAddresses = false,
     this.docId = "",
@@ -19,10 +21,12 @@ class AddressesModel {
     this.timestamp,
     this.landMark = "",
     this.addressLabel = "",
+    this.alternativeMobileNumber = "",
+    this.pincode = "",
   });
 
-  factory AddressesModel.fromMap(Map<String, dynamic> map) {
-    return AddressesModel(
+  factory AddressModel.fromMap(Map<String, dynamic> map) {
+    return AddressModel(
       houseNo: map["houseNo"] ?? "",
       timestamp: map["timestamp"] ?? "",
       state: map["state"] ?? "",
@@ -31,6 +35,8 @@ class AddressesModel {
       selectedAddresses: map["selectedAddresses"] ?? false,
       area: map["area"] ?? "",
       landMark: map["landMark"] ?? "",
+      pincode: map["pincode"] ?? "",
+      alternativeMobileNumber: map["alternativeMobileNumber"] ?? "",
       addressLabel: map["addressLabel"] ?? "",
     );
   }
@@ -46,6 +52,12 @@ class AddressesModel {
       "area": area,
       "landMark": landMark,
       "addressLabel": addressLabel,
+      "pincode": pincode,
+      "alternativeMobileNumber": alternativeMobileNumber,
     };
+  }
+
+  getAddress() {
+    return "House No:$houseNo,\n$area - $pincode";
   }
 }

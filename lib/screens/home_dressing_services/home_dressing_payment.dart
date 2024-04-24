@@ -61,6 +61,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
       Get.put(AddressesController());
   final CouponCodeController couponCodeController =
       Get.put(CouponCodeController());
+
   String selectedLabel = "";
   bool isAdded = true;
   @override
@@ -260,7 +261,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         iconData: Icons.home,
                         title: Strings.home,
                         isSelected: selectedContainerIndex == 1,
-                        onTap: () {
+                        onTap: (value) {
                           setState(() {
                             selectedContainerIndex = 1;
                             _addressesController.addressLabelController.text =
@@ -274,7 +275,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         iconData: Icons.work,
                         title: Strings.work,
                         isSelected: selectedContainerIndex == 2,
-                        onTap: () {
+                        onTap: (value) {
                           setState(() {
                             selectedContainerIndex = 2;
                             _addressesController.addressLabelController.text =
@@ -288,7 +289,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         iconData: Icons.family_restroom_outlined,
                         title: Strings.friendsAndFamily,
                         isSelected: selectedContainerIndex == 3,
-                        onTap: () {
+                        onTap: (value) {
                           setState(() {
                             selectedContainerIndex = 3;
                             _addressesController.addressLabelController.text =
@@ -308,7 +309,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                         width: 100,
                         title: Strings.others,
                         isSelected: selectedContainerIndex == 4,
-                        onTap: () {
+                        onTap: (value) {
                           setState(() {
                             selectedContainerIndex = 4;
                             _addressesController.addressLabelController.text =
@@ -324,7 +325,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                   buttonName:
                       "Make Payment | ₹ ${homeDressingController.finalAmount}",
                   onPress: () {
-                    paymentController.startPayment();
+                    homeDressingController.proceedToPayment();
                   },
                 ),
                 const SizedBox(
@@ -468,7 +469,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
-                        addressesController.selectedAddressesModel.addressLabel,
+                        addressesController.selectedAddressModel.addressLabel,
                         // textAlign: TextAlign.start,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
@@ -499,14 +500,14 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                       //  mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "${addressesController.selectedAddressesModel.state}, ${addressesController.selectedAddressesModel.area}, ",
+                          "${addressesController.selectedAddressModel.state}, ${addressesController.selectedAddressModel.area}, ",
                           maxLines: 3,
                           //textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(color: Colors.blueGrey),
                         ),
                         Text(
-                          addressesController.selectedAddressesModel.landMark,
+                          addressesController.selectedAddressModel.landMark,
                           maxLines: 3,
                           // textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
