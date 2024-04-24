@@ -16,15 +16,15 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-class HomeDressingServices extends StatefulWidget {
+class FootCleansingScreen extends StatefulWidget {
   final bool isAdmin;
-  const HomeDressingServices({super.key, this.isAdmin = false});
+  const FootCleansingScreen({super.key, this.isAdmin = false});
 
   @override
-  State<HomeDressingServices> createState() => _HomeDressingServicesState();
+  State<FootCleansingScreen> createState() => _FootCleansingScreenState();
 }
 
-class _HomeDressingServicesState extends State<HomeDressingServices> {
+class _FootCleansingScreenState extends State<FootCleansingScreen> {
   bool isAdded = false;
   final HomeDressingController homeDressingController =
       Get.put(HomeDressingController());
@@ -46,7 +46,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
           elevation: 0,
           backgroundColor: Colors.white,
           title: const Text(
-            "Home Dressing Services",
+            "Foot Cleansing ",
             style: TextStyle(
                 color: AppColors.primary,
                 fontSize: 18,
@@ -74,6 +74,40 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                       width: double.infinity,
                     ),
               Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: FirestorePagination(
+                    query: homeDressingServicesCollectionReference,
+                    itemBuilder: (context, documentSnapshots, index) {
+                      HomeDressingModel homeDressingModel =
+                          HomeDressingModel.fromJson(
+                              documentSnapshots.data() as Map<String, dynamic>);
+
+                      return InkWell(
+                        onTap: () {
+                          logger("CreateHomeDressingServices");
+                          widget.isAdmin
+                              ? Get.to(() => CreateHomeDressingServices(
+                                    isAdmin: true,
+                                    homeDressingModel: homeDressingModel,
+                                  ))
+                              : null;
+                        },
+                        child: HomeDressingServiceWidget(
+                          homeDressingModel: homeDressingModel,
+                          onPress: () {
+                            logger(homeDressingController
+                                .homeDressingServicesAddedList.length);
+                            homeDressingController.addOrRemoveFromList(
+                              homeDressingModel: homeDressingModel,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  )),
+                  Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   margin: const EdgeInsets.symmetric(horizontal: 20),

@@ -245,5 +245,14 @@ static const String doctorQ9Ans = "For any support or technical assistance with 
 static const String doctorQ10 ="10. How can I trust Foot doctor to help manage my diabetic foot ulcers?";
 static const String doctorQ10Ans ="Foot doctor is committed to providing personalized care, continuous monitoring, and the support needed for diabetic foot ulcer management, making it your partner in leading a healthy life.";
 
+//foot services Strings
+ static const String dressingServicesText = "Dressing Services";
+ static const String nailTrimmingText = "Nail Trimming";
+ static const String footCleansingText = "Foot Cleansing";
+ static const String footwearText = "Footwear";
+ static const String smallText = "Small";
+ static const String moderateText = "Moderate";
+ static const String largeText = "Large";
+ static const String hugeText = "Huge";
 
 }
