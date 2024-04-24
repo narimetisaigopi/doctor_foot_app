@@ -1,5 +1,6 @@
 import 'package:drfootapp/controllers/location_controller.dart';
-import 'package:drfootapp/screens/Discharge%20Screens/update_discharge.dart';
+import 'package:drfootapp/screens/Notifications/notification_screen.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_factor_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                   ),
                   color: AppColors.searchButtonColor,
                   onPressed: () {
-                    Get.to(const UpdateDischarge());
+                    Get.to(const NotificationsScreen());
                   },
                 ),
                 const SizedBox(
@@ -83,7 +84,9 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                     size: 32,
                   ),
                   color: AppColors.notificationsButtonColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(const RiskFactorScreen());
+                  },
                 )
               ],
             )

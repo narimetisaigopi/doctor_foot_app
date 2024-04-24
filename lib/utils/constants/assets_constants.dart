@@ -172,4 +172,7 @@ class AssetsConstants {
   // discharge images
   static const String loader = "$_svgImages/loader.svg";
 
+  // notification images
+  static const String _notificationBasePath = "assets/images/notification_images";
+  static const String alaram_sign = "$_notificationBasePath/alaram_sign.svg";
 }
