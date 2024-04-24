@@ -4,7 +4,6 @@ import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
-import 'package:drfootapp/utils/widgets/custom_drop_down_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';

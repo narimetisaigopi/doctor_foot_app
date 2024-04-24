@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/controllers/payment_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -6,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class HomeDressingController extends GetxController {
   final TextEditingController serviceTitleController = TextEditingController();
@@ -92,5 +94,13 @@ class HomeDressingController extends GetxController {
 
       update();
     }
+  }
+
+  proceedToPayment() {
+    PaymentController paymentController = Get.put(PaymentController());
+    paymentController.startPayment(
+        onSuccess: (PaymentSuccessResponse paymentSuccessResponse) {},
+        onError: (PaymentFailureResponse paymentFailureResponse) {},
+        onExternalWallet: (ExternalWalletResponse externalWalletResponse) {});
   }
 }

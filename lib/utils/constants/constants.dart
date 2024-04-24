@@ -94,3 +94,5 @@ final dietTimingsList = [
   "4pm-5pm",
   "8pm-9pm",
 ];
+
+const String rupeeSymbol = "₹";
