@@ -1,5 +1,6 @@
 import 'package:drfootapp/models/homeScreenModels/service_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book%20appointement/appointment_booking_screen.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_service_home.dart';
 
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:drfootapp/screens/home_dressing_services/home_dressing_services.dart';
@@ -72,6 +73,12 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                             break;
                             case 2:
                             Get.to(() => const AppointmentBookingScreen());
+                             break;
+                              case 3:
+                            Utility.myBottomSheet(context,
+                                heightFactor: 0.7,
+                                widget: const FootServiceHome());
+                            break;
                           default:
                             break;
                         }

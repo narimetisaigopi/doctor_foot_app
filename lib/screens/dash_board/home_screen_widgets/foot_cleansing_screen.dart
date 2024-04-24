@@ -8,7 +8,6 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
-import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/home_dressing_service_widget.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -17,15 +16,15 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-class HomeDressingServices extends StatefulWidget {
+class FootCleansingScreen extends StatefulWidget {
   final bool isAdmin;
-  const HomeDressingServices({super.key, this.isAdmin = false});
+  const FootCleansingScreen({super.key, this.isAdmin = false});
 
   @override
-  State<HomeDressingServices> createState() => _HomeDressingServicesState();
+  State<FootCleansingScreen> createState() => _FootCleansingScreenState();
 }
 
-class _HomeDressingServicesState extends State<HomeDressingServices> {
+class _FootCleansingScreenState extends State<FootCleansingScreen> {
   bool isAdded = false;
   final HomeDressingController homeDressingController =
       Get.put(HomeDressingController());
@@ -47,7 +46,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
           elevation: 0,
           backgroundColor: Colors.white,
           title: const Text(
-            "Home Dressing Services",
+            "Foot Cleansing ",
             style: TextStyle(
                 color: AppColors.primary,
                 fontSize: 18,
@@ -98,6 +97,42 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                         child: HomeDressingServiceWidget(
                           homeDressingModel: homeDressingModel,
                           onPress: () {
+                            logger(homeDressingController
+                                .homeDressingServicesAddedList.length);
+                            homeDressingController.addOrRemoveFromList(
+                              homeDressingModel: homeDressingModel,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  )),
+                  Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: FirestorePagination(
+                    query: homeDressingServicesCollectionReference,
+                    itemBuilder: (context, documentSnapshots, index) {
+                      HomeDressingModel homeDressingModel =
+                          HomeDressingModel.fromJson(
+                              documentSnapshots.data() as Map<String, dynamic>);
+
+                      return InkWell(
+                        onTap: () {
+                          logger("CreateHomeDressingServices");
+                          widget.isAdmin
+                              ? Get.to(() => CreateHomeDressingServices(
+                                    isAdmin: true,
+                                    homeDressingModel: homeDressingModel,
+                                  ))
+                              : null;
+                        },
+                        child: HomeDressingServiceWidget(
+                          homeDressingModel: homeDressingModel,
+                          onPress: () {
+                            logger(homeDressingController
+                                .homeDressingServicesAddedList.length);
                             homeDressingController.addOrRemoveFromList(
                               homeDressingModel: homeDressingModel,
                             );
@@ -132,66 +167,34 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                           children: [
                             TextSpan(
                               text: "${homeDressingController.finalAmount}",
-
-        floatingActionButton:
-            homeDressingController.homeDressingServicesAddedList.isNotEmpty
-                ? FloatingActionButton.extended(
-                    extendedPadding: const EdgeInsets.symmetric(horizontal: 10),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    backgroundColor: AppColors.primary,
-                    onPressed: () {
-                      //  Get.to(() => const HomeDressingPayment());
-                    },
-                    label: SizedBox(
-                      width: 350,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              text: "Added | Rs.",
                               style: const TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 16),
-                              children: [
-                                TextSpan(
-                                  text: "${homeDressingController.finalAmount}",
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16),
-                                )
-                              ],
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              if (homeDressingController
-                                  .selectedAddressModel.docId.isEmpty) {
-                                Utility.toast("Please select address");
-                              } else {
-                                Get.to(() => const HomeDressingPayment());
-                              }
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: Colors.white10,
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 8),
-                              child: const Text(
-                                "Make Payment",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white),
-                              ).tr(),
-                            ),
-                          ),
-                        ],
+                                  fontWeight: FontWeight.w700, fontSize: 16),
+                            )
+                          ],
+                        ),
                       ),
-                    ))
-                : const SizedBox.shrink(),
+                      InkWell(
+                        onTap: () => Get.to(() => const HomeDressingPayment()),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white10,
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 8),
+                          child: const Text(
+                            "Make Payment",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ).tr(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ))
+            : const SizedBox.shrink(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       );
     });

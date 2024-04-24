@@ -47,8 +47,9 @@ class _ViewDetailsPageState extends State<ViewDetailsPage> {
 
   Widget body() {
     return const Padding(
-      padding: EdgeInsets.only(left: 16,right: 16,),
+      padding: EdgeInsets.only(left: 16, right: 16, top: 18),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Hospital Name",
@@ -57,25 +58,34 @@ class _ViewDetailsPageState extends State<ViewDetailsPage> {
                 fontWeight: FontWeight.w500,
                 color: AppColors.blackBold),
           ),
-          SizedBox(height: 12,),
-           Text(
+          SizedBox(
+            height: 16,
+          ),
+          Divider(),
+          Text(
             "No 249/A,Addagutta Society, street, 11, Pragathi Nagar Rd,...",
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.grey),
           ),
-           SizedBox(height: 12,),
-           Text(
+          SizedBox(
+            height: 20,
+          ),
+          Divider(),
+          Text(
             "Booked on Monday/25/Dec/2023 12:00 PM",
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: AppColors.grey2),
           ),
-            SizedBox(height: 12,),
-           Text(
-            "Booked on Monday/25/Dec/2023 12:00 PM",
+          SizedBox(
+            height: 20,
+          ),
+          Divider(),
+          Text(
+            "Appointment Id # 1234567890",
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
