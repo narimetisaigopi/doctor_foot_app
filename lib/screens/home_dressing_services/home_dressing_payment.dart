@@ -61,6 +61,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
       Get.put(AddressesController());
   final CouponCodeController couponCodeController =
       Get.put(CouponCodeController());
+
   String selectedLabel = "";
   bool isAdded = true;
   @override
@@ -324,7 +325,7 @@ class _HomeDressingPaymentState extends State<HomeDressingPayment> {
                   buttonName:
                       "Make Payment | ₹ ${homeDressingController.finalAmount}",
                   onPress: () {
-                    paymentController.startPayment();
+                    homeDressingController.proceedToPayment();
                   },
                 ),
                 const SizedBox(

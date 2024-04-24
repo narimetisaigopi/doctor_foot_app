@@ -1,54 +1,34 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
-import 'package:drfootapp/screens/home_dressing_services/order_successful_screen.dart';
+import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentController extends GetxController {
-  startPayment() {
+  double amount = 0.0;
+  String description = "";
+  startPayment(
+      {required Function(PaymentSuccessResponse) onSuccess,
+      required Function(PaymentFailureResponse) onError,
+      required Function(ExternalWalletResponse) onExternalWallet}) async {
     Razorpay _razorpay = Razorpay();
+
+    AuthenticationController authenticationController =
+        Get.put(AuthenticationController());
 
     var options = {
       'key': 'rzp_test_sBvW9FmfSuEcOz',
-      //'key': "rzp_live_0KkXRascl6tEQL",
-      'amount': 1000 * 100,
-      'name': 'Doctor Foot',
-      'description': 'Registration',
-      'prefill': {'contact': '1234567890', 'email': 'gowtham@gmail.com'}
+      'amount': amount * 100,
+      'name': appName,
+      'description': description,
+      'prefill': {
+        'contact': authenticationController.loginUserModel.mobileNumber,
+        'email': authenticationController.loginUserModel.emailId
+      }
     };
-
     _razorpay.open(options);
-
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-  }
-
-  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
-    logger("_handlePaymentSuccess response ${response.toString()}");
-
-    Get.offAll(() => const OrderSuccessfulScreen());
-
-    // usersCollectionReference
-    //     .doc(user!.uid)
-    //     .update({"subscriptionTime": DateTime.now()});
-    // Get.put(SubscriptionController())
-    //     .addTransaction(subScriptionAmount.toString());
-    // Navigator.pushAndRemoveUntil(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => HomeScreen()),
-    //     (route) => false);
-  }
-
-  void _handlePaymentError(PaymentFailureResponse response) {
-    logger("_handlePaymentError response ${response.toString()}");
-    Get.back();
-    // Utils().showToast("Payment failed due to ${response.message}");
-  }
-
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    logger("_handleExternalWallet response ${response.toString()}");
-
-    // Utils().showToast("Payment handleExternalWallet  ${response.walletName}");
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, onSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, onError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, onExternalWallet);
   }
 }
