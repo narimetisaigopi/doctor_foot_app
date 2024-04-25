@@ -1,10 +1,9 @@
 import 'package:drfootapp/models/homeScreenModels/foot_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/dressing_screen.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_cleansing_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_wear_screen.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/nail_trimming_screen.dart';
+import 'package:drfootapp/screens/home_dressing_services/foot_services_screens.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -70,6 +69,7 @@ class _FootServiceHomeState extends State<FootServiceHome> {
                     final footServicesItem = footServicesList[index];
                     return InkWell(
                       onTap: () {
+                        Get.back();
                         switch (index) {
                           case 0:
                             Utility.myBottomSheet(context,
@@ -77,15 +77,20 @@ class _FootServiceHomeState extends State<FootServiceHome> {
                                 widget: const DressingScreen());
                             break;
                           case 1:
-                            Get.to(() => const NailTrimmingScreen());
-
+                            Get.to(() => const HomeFootServicesScreen(
+                                  footServices:
+                                      FootServices.nailTrimmingService,
+                                ));
                             break;
                           case 2:
-                            Get.to(() => const FootCleansingScreen());
+                            Get.to(() => const HomeFootServicesScreen(
+                                  footServices: FootServices.footCleaning,
+                                ));
                             break;
                           case 3:
-                            Get.to(() => const FootWearScreen());
-
+                            Get.to(() => const HomeFootServicesScreen(
+                                  footServices: FootServices.footware,
+                                ));
                             break;
                           default:
                             break;

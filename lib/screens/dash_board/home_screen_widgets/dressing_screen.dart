@@ -1,6 +1,6 @@
 import 'package:drfootapp/models/homeScreenModels/dressing_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
-import 'package:drfootapp/screens/home_dressing_services/home_dressing_services.dart';
+import 'package:drfootapp/screens/home_dressing_services/foot_services_screens.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:flutter/material.dart';
@@ -35,14 +35,12 @@ class _DressingScreenState extends State<DressingScreen> {
                   },
                 ),
                 const Expanded(
-                  child: Center(
-                    child: Text(
-                      "Dressing Services",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.primary,
-                      ),
+                  child: Text(
+                    "Dressing Services",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.primary,
                     ),
                   ),
                 ),
@@ -67,25 +65,30 @@ class _DressingScreenState extends State<DressingScreen> {
                     final dressingServicesItem = dressingServicesList[index];
                     return InkWell(
                       onTap: () {
+                        Get.back();
                         switch (index) {
                           case 0:
-                            Get.to(() => const HomeDressingServices(
+                            Get.to(() => const HomeFootServicesScreen(
                                   footServices: FootServices.dressingService,
+                                  dressingServices: DressingServices.small,
                                 ));
                             break;
                           case 1:
-                            Get.to(() => const HomeDressingServices(
+                            Get.to(() => const HomeFootServicesScreen(
                                   footServices: FootServices.dressingService,
+                                  dressingServices: DressingServices.moderate,
                                 ));
                             break;
                           case 2:
-                            Get.to(() => const HomeDressingServices(
+                            Get.to(() => const HomeFootServicesScreen(
                                   footServices: FootServices.dressingService,
+                                  dressingServices: DressingServices.large,
                                 ));
                             break;
                           case 3:
-                            Get.to(() => const HomeDressingServices(
+                            Get.to(() => const HomeFootServicesScreen(
                                   footServices: FootServices.dressingService,
+                                  dressingServices: DressingServices.huge,
                                 ));
                             break;
                           default:

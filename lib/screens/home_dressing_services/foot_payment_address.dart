@@ -6,9 +6,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeDressingAddressWidget extends StatelessWidget {
+class FootPaymentWidget extends StatelessWidget {
   final AddressModel addressModel;
-  const HomeDressingAddressWidget({super.key, required this.addressModel});
+  const FootPaymentWidget({super.key, required this.addressModel});
 
   @override
   Widget build(BuildContext context) {

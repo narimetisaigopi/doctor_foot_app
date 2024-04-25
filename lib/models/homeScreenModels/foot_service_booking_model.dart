@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/utils/enums.dart';
 
-class OrderModel {
+class ServiceBookingOrderModel {
   String docId;
-  List<String> items;
+  List<dynamic> items;
   int quantity;
   double amount;
   double discount;
@@ -17,7 +17,7 @@ class OrderModel {
   Timestamp? lastUpdate;
   AddressModel? address;
 
-  OrderModel(
+  ServiceBookingOrderModel(
       {this.uid = "",
       this.quantity = 0,
       this.amount = 0,
@@ -33,9 +33,9 @@ class OrderModel {
       this.orderStatus = OrderStatus.none});
 
   // Create model from Firestore document snapshot
-  factory OrderModel.fromSnapshot(DocumentSnapshot snapshot) {
+  factory ServiceBookingOrderModel.fromSnapshot(DocumentSnapshot snapshot) {
     var data = snapshot.data() as Map<String, dynamic>;
-    return OrderModel(
+    return ServiceBookingOrderModel(
         docId: data["docId"] ?? "",
         uid: data["uid"] ?? "",
         quantity: data["quantity"] ?? 0,

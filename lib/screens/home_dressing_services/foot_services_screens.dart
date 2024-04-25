@@ -1,33 +1,34 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
-import 'package:drfootapp/screens/home_dressing_services/home_dressing_payment.dart';
+import 'package:drfootapp/screens/home_dressing_services/foot_payment.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/home_dressing_service_widget.dart';
+import 'package:drfootapp/utils/widgets/foot_service_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-class HomeDressingServices extends StatefulWidget {
+class HomeFootServicesScreen extends StatefulWidget {
   final FootServices footServices;
   final DressingServices? dressingServices;
-  const HomeDressingServices(
+  const HomeFootServicesScreen(
       {super.key, required this.footServices, this.dressingServices});
 
   @override
-  State<HomeDressingServices> createState() => _HomeDressingServicesState();
+  State<HomeFootServicesScreen> createState() => _HomeFootServicesScreenState();
 }
 
-class _HomeDressingServicesState extends State<HomeDressingServices> {
+class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
   bool isAdded = false;
-  final HomeDressingController homeDressingController =
-      Get.put(HomeDressingController());
+  final FootServiceController homeDressingController =
+      Get.put(FootServiceController());
 
   @override
   void initState() {
@@ -36,16 +37,15 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeDressingController>(
-        builder: (homeDressingController) {
+    return GetBuilder<FootServiceController>(builder: (homeDressingController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          title: const Text(
-            "Home Dressing Services",
-            style: TextStyle(
+          title: Text(
+            getTitle(),
+            style: const TextStyle(
                 color: AppColors.primary,
                 fontSize: 18,
                 fontWeight: FontWeight.w700),
@@ -64,10 +64,11 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
         body: FirestorePagination(
           query: getQuery(),
           limit: 10,
+          onEmpty: const Center(child: Text("No Services")),
           itemBuilder: (context, documentSnapshots, index) {
-            HomeDressingModel homeDressingModel = HomeDressingModel.fromJson(
+            FootServiceModel homeDressingModel = FootServiceModel.fromJson(
                 documentSnapshots.data() as Map<String, dynamic>);
-            return HomeDressingServiceWidget(
+            return FootServiceWidget(
               homeDressingModel: homeDressingModel,
               onPress: () {
                 homeDressingController.addOrRemoveFromList(
@@ -114,12 +115,7 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
                   ),
                   InkWell(
                     onTap: () {
-                      if (homeDressingController
-                          .selectedAddressModel.docId.isEmpty) {
-                        Utility.toast("Please select address");
-                      } else {
-                        Get.to(() => const HomeDressingPayment());
-                      }
+                      Get.to(() => const HomeFootPayment());
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -141,6 +137,21 @@ class _HomeDressingServicesState extends State<HomeDressingServices> {
               ),
             ))
         : const SizedBox.shrink();
+  }
+
+  String getTitle() {
+    String title = Strings.dressingServicesText;
+    if (widget.footServices == FootServices.dressingService) {
+      title =
+          "${Strings.dressingServicesText} - ${enumToString(widget.dressingServices)}";
+    } else if (widget.footServices == FootServices.nailTrimmingService) {
+      title = Strings.nailTrimmingText;
+    } else if (widget.footServices == FootServices.footCleaning) {
+      title = Strings.footCleansingText;
+    } else if (widget.footServices == FootServices.footware) {
+      title = Strings.footwearText;
+    }
+    return title;
   }
 
   Query getQuery() {

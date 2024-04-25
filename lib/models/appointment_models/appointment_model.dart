@@ -27,7 +27,7 @@ class AppointmentModel {
       'docId': docId,
       'uid': uid,
       'amount': amount,
-      'paymentStatus': appointmentStatus.index, // Store enum as index
+      'appointmentStatus': appointmentStatus.index, // Store enum as index
       'timestamp': timestamp,
       'lastUpdate': lastUpdate,
       'appointmentId': appointmentId

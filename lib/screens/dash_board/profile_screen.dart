@@ -3,11 +3,11 @@ import 'package:drfootapp/screens/dash_board/prifile_details/custom_listtile_wid
 import 'package:drfootapp/screens/dash_board/profile/address/my_addresses.dart';
 import 'package:drfootapp/screens/dash_board/profile/contact_us_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/faqs_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile/my_oppointment_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/appointments/my_appointment_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/my_profile_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/payments_and_refunds_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/records_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile/service_booking_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/service_bookings/my_service_bookings_screen.dart';
 import 'package:drfootapp/screens/translation_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -109,14 +109,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     text: "appointment",
                     leadingIcon: Icons.calendar_month,
                     onPressed: () {
-                      Get.to(const MyOppointmentScreen());
+                      Get.to(() => const MyAppointmentScreen());
                     }),
                 customDivider,
                 CustomListTileWidget(
                     text: "service",
                     leadingIcon: Icons.calendar_month,
                     onPressed: () {
-                      Get.to(const ServiceBookingScreen());
+                      Get.to(const MyServiceBookingsScreen());
                     }),
                 customDivider,
                 CustomListTileWidget(
