@@ -1,8 +1,8 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/ulcer_monitoring_controller.dart';
 import 'package:drfootapp/models/ulcer_monitor_models/ulcer_monitoring_plan_model.dart';
-import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/plan_detail_screen.dart';
-import 'package:drfootapp/screens/dash_board/ulcerMonitor_widgets/ulcer_monitoring_widget.dart';
+import 'package:drfootapp/screens/dash_board/ulcermonitor_widgets/plan_detail_screen.dart';
+import 'package:drfootapp/screens/dash_board/ulcermonitor_widgets/ulcer_monitoring_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';

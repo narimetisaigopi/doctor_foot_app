@@ -1,14 +1,13 @@
 import 'package:drfootapp/models/homeScreenModels/service_model.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/book%20appointement/appointment_booking_screen.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_booking_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_service_home.dart';
-
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
-import 'package:drfootapp/screens/home_dressing_services/home_dressing_services.dart';
+import 'package:drfootapp/screens/home_dressing_services/foot_services_screens.dart';
 import 'package:drfootapp/screens/risk_factor_home.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,7 +44,7 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
             ).tr(),
             const SizedBox(
               height: 10,
-            ),
+            ),  
             Expanded(
               child: GridView.builder(
                   padding: const EdgeInsets.symmetric(
@@ -64,7 +63,9 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                       onTap: () {
                         switch (index) {
                           case 0:
-                            Get.to(() => const HomeDressingServices());
+                            Get.to(() => const HomeFootServicesScreen(
+                                  footServices: FootServices.dressingService,
+                                ));
                             break;
                           case 1:
                             Utility.myBottomSheet(context,
@@ -84,9 +85,8 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                         }
                       },
                       child: ServiceWidget(
-                        image: servicesItem.image,
-                        name: servicesItem.serviceNames,
-                      ),
+                          image: servicesItem.image,
+                          name: servicesItem.serviceNames),
                     );
                   }),
             )

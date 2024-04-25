@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/Discharge%20Screens/upload_your_current_ulcer.dart';
+import 'package:drfootapp/screens/discharge_screens/upload_your_current_ulcer.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';

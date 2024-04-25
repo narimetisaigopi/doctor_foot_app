@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
@@ -31,7 +32,7 @@ class AddressesController extends GetxController {
     update();
   }
 
-  getMyAddress() async {
+  Future<List<AddressModel>> getMyAddress() async {
     QuerySnapshot querySnapshot = await addressesCollectionReference
         .where("uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get();
@@ -41,6 +42,7 @@ class AddressesController extends GetxController {
         .toList();
     logger("getMyAddress ${addressesList.length}");
     update();
+    return addressesList;
   }
 
   deleteAddress(AddressModel addressesModel) async {
@@ -51,6 +53,11 @@ class AddressesController extends GetxController {
       await addressesCollectionReference.doc(addressesModel.docId).delete();
       if (selectedAddressModel.docId == addressesModel.docId) {
         selectedAddressModel = AddressModel();
+      }
+      if (selectedAddressModel.docId ==
+          Get.put(FootServiceController()).selectedAddressModel.docId) {
+        Get.put(FootServiceController())
+            .updateAddressSelection(AddressModel());
       }
       Utility.toast("Address Deleted");
     } catch (e) {

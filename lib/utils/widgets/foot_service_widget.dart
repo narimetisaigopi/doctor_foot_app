@@ -1,19 +1,17 @@
-import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'networl_image_widget.dart';
 
-class HomeDressingServiceWidget extends StatefulWidget {
+class FootServiceWidget extends StatefulWidget {
   final double height;
   final double width;
-
   final Function onPress;
-  final HomeDressingModel homeDressingModel;
+  final FootServiceModel homeDressingModel;
 
-  const HomeDressingServiceWidget({
+  const FootServiceWidget({
     super.key,
     this.height = 160,
     this.width = double.infinity,
@@ -22,13 +20,12 @@ class HomeDressingServiceWidget extends StatefulWidget {
   });
 
   @override
-  State<HomeDressingServiceWidget> createState() =>
-      _HomeDressingServiceWidgetState();
+  State<FootServiceWidget> createState() => _FootServiceWidgetState();
 }
 
-class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
-  final HomeDressingController homeDressingController =
-      Get.put(HomeDressingController());
+class _FootServiceWidgetState extends State<FootServiceWidget> {
+  final FootServiceController homeDressingController =
+      Get.put(FootServiceController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,9 +45,9 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
       width: widget.width,
       child: Row(
         children: [
-          const SvgImageWidget(
-            path: AssetsConstants.wounded_foot,
-            height: 130,
+          NetworkImageWidget(
+            path: widget.homeDressingModel.image,
+            width: MediaQuery.of(context).size.width * 0.2,
           ),
           Expanded(
             child: Container(
@@ -81,7 +78,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                     child: SizedBox(
                       width: 150,
                       child: Text(
-                        widget.homeDressingModel.textDescription,
+                        widget.homeDressingModel.description,
                         maxLines: 2,
                         //  textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -96,9 +93,9 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                   ),
                   Row(
                     children: [
-                      widget.homeDressingModel.oldPrice != 0
+                      widget.homeDressingModel.offerPrice != 0
                           ? Text(
-                              "₹${widget.homeDressingModel.oldPrice.round()}",
+                              "₹${widget.homeDressingModel.originalPrice.round()}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
@@ -107,7 +104,7 @@ class _HomeDressingServiceWidgetState extends State<HomeDressingServiceWidget> {
                             )
                           : const SizedBox.shrink(),
                       Text(
-                        "₹${widget.homeDressingModel.newPrice.round()}",
+                        "₹${widget.homeDressingModel.offerPrice.round()}",
                         style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16),
                       ),

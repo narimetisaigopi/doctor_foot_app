@@ -62,7 +62,7 @@ List<String> bloodGroupList = [
 ];
 
 logger(dynamic message) {
-  log(message);
+  log("$message");
 }
 
 final weeksList = [
@@ -96,3 +96,5 @@ final dietTimingsList = [
 ];
 
 const String rupeeSymbol = "₹";
+
+const List<String> allowedImageExtensions = ['jpg', 'png', 'jpeg'];

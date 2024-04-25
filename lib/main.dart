@@ -1,11 +1,14 @@
+import 'package:drfootapp/notifications/notifications/listen_push_notifications.dart';
 import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
@@ -19,6 +22,15 @@ void main() async {
   sharedPreferences = await SharedPreferences.getInstance();
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
+  if (!kIsWeb) {
+    await Permission.notification.isDenied.then((value) {
+      if (value) {
+        Permission.notification.request();
+      }
+    });
+    await listenPushNotifications();
+  }
+  
   runApp(EasyLocalization(
     supportedLocales: const [
       Locale("te"),

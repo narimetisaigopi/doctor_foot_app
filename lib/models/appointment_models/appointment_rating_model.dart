@@ -1,6 +1,6 @@
 import 'package:drfootapp/utils/constants/string_constants.dart';
 
-class AppointmentModel {
+class AppointmentRatingModel {
   String name;
   String rating;
   String totalReviews;
@@ -8,7 +8,7 @@ class AppointmentModel {
   String date;
   bool isExpired;
 
-  AppointmentModel({
+  AppointmentRatingModel({
     this.name = "",
     this.rating = "",
     this.totalReviews = "",
@@ -18,8 +18,8 @@ class AppointmentModel {
   });
 }
 
-List<AppointmentModel> appointmentList = [
-  AppointmentModel(
+List<AppointmentRatingModel> appointmentList = [
+  AppointmentRatingModel(
     name: Strings.loremIpsumText,
     rating: Strings.rateText,
     totalReviews: Strings.totalReview,

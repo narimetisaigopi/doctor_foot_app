@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/Discharge%20Screens/file_upload_screen.dart';
+import 'package:drfootapp/screens/discharge_screens/file_upload_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';

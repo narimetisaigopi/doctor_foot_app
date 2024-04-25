@@ -1,17 +1,22 @@
+import 'package:drfootapp/models/appointment_models/appointment_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ViewDetailsPage extends StatefulWidget {
-  const ViewDetailsPage({super.key});
+class AppointemntViewDetailsPage extends StatefulWidget {
+  final AppointmentModel appointmentModel;
+  const AppointemntViewDetailsPage({super.key, required this.appointmentModel});
 
   @override
-  State<ViewDetailsPage> createState() => _ViewDetailsPageState();
+  State<AppointemntViewDetailsPage> createState() =>
+      _AppointemntViewDetailsPageState();
 }
 
-class _ViewDetailsPageState extends State<ViewDetailsPage> {
+class _AppointemntViewDetailsPageState
+    extends State<AppointemntViewDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,47 +51,47 @@ class _ViewDetailsPageState extends State<ViewDetailsPage> {
   }
 
   Widget body() {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.only(left: 16, right: 16, top: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Hospital Name",
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
                 color: AppColors.blackBold),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          Divider(),
-          Text(
+          const Divider(),
+          const Text(
             "No 249/A,Addagutta Society, street, 11, Pragathi Nagar Rd,...",
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: AppColors.grey),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Divider(),
+          const Divider(),
           Text(
-            "Booked on Monday/25/Dec/2023 12:00 PM",
-            style: TextStyle(
+            "Booked on ${formatDate(widget.appointmentModel.appointmentTimestamp!.toDate())} \n${formatTime(widget.appointmentModel.appointmentTimestamp!.toDate())}",
+            style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: AppColors.grey2),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Divider(),
+          const Divider(),
           Text(
-            "Appointment Id # 1234567890",
-            style: TextStyle(
+            "Appointment Id #${widget.appointmentModel.appointmentId}",
+            style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: AppColors.grey2),

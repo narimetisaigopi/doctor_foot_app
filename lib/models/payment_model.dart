@@ -7,7 +7,7 @@ class PaymentModel {
   String gatewayTransactionId;
   String message;
   String subscriptionId;
-  int amount;
+  double amount;
   int paymentId;
   PaymentStatus paymentStatus;
   PaymentServiceType paymentServiceType;
@@ -55,10 +55,10 @@ class PaymentModel {
       message: data["message"] ?? "",
       gatewayTransactionId: data["gatewayTransactionId"] ?? "",
       subscriptionId: data['subscriptionId'],
-      amount: data['amount'],
+      amount: double.parse(data['amount'].toString()),
       paymentStatus: data['paymentStatus'] != null
           ? PaymentStatus.values[data['paymentStatus']]
-          : PaymentStatus.none, // Retrieve enum from index
+          : PaymentStatus.none, 
       paymentServiceType: data['paymentServiceType'] != null
           ? PaymentServiceType.values[data['paymentServiceType']]
           : PaymentServiceType.none, // Retrieve enum from index

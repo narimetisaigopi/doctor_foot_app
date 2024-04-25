@@ -1,47 +1,71 @@
-class HomeDressingModel {
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/utils/enums.dart';
+
+class FootServiceModel {
   String image;
   String docId;
-  String uId;
-  double newPrice;
-  double oldPrice;
+  String uid;
+  double originalPrice;
+  double offerPrice;
   String title;
   String duration;
-  String textDescription;
+  String description;
+  FootServices? footService;
+  DressingServices? dressingService;
+  bool isActive;
+  Timestamp? timestamp;
 
-  HomeDressingModel({
+  FootServiceModel(
+      {
     this.image = "",
     this.title = "",
     this.duration = "",
     this.docId = "",
-    this.uId = "",
-    this.newPrice = 0.0,
-    this.oldPrice = 0.0,
-    this.textDescription = "",
+      this.uid = "",
+      this.originalPrice = 0.0,
+      this.offerPrice = 0.0,
+      this.description = "",
+      this.isActive = true,
+      this.footService = FootServices.dressingService,
+      this.dressingService = DressingServices.small,
+      this.timestamp
   });
 
   Map<String, dynamic> toMap() {
     return {
       'image': image,
       'docId': docId,
-      'uId': uId,
+      'uid': uid,
       'title': title,
       'duration': duration,
-      'newPrice': newPrice,
-      'oldPrice': oldPrice,
-      'textDescription': textDescription,
+      'originalPrice': originalPrice,
+      'offerPrice': offerPrice,
+      'description': description,
+      'footService': footService?.index,
+      'dressingService': dressingService?.index,
+      "isActive": isActive,
+      "timestamp": DateTime.now()
     };
   }
 
-  factory HomeDressingModel.fromJson(Map map) {
-    return HomeDressingModel(
+  factory FootServiceModel.fromJson(Map map) {
+    return FootServiceModel(
       image: map['image'] ?? "",
       docId: map['docId'] ?? "",
-      uId: map['uId'] ?? "",
+        uid: map['uid'] ?? "",
       title: map['title'] ?? "",
-      newPrice: (map['newPrice'] ?? 0).toDouble(),
-      oldPrice: (map['oldPrice'] ?? 0).toDouble(),
+        originalPrice: (map['originalPrice'] ?? 0).toDouble(),
+        offerPrice: (map['offerPrice'] ?? 0).toDouble(),
       duration: map['duration'] ?? "",
-      textDescription: map['textDescription'] ?? "",
+        isActive: map["isActive"] ?? true,
+        description: map['description'] ?? "",
+        footService: map['footService'] != null
+            ? FootServices.values[map['footService']]
+            : null,
+        dressingService: map['dressingService'] != null
+            ? DressingServices.values[map['dressingService']]
+            : null,
+        timestamp: map["timestamp"]
     );
   }
 }

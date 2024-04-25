@@ -20,8 +20,17 @@ CollectionReference ulcerSubscrptionsCollectionReference =
 CollectionReference paymentsCollectionReference =
     FirebaseFirestore.instance.collection("payments");
 
+CollectionReference footServicesCollectionReference =
+    FirebaseFirestore.instance.collection("foot_services");
+
 CollectionReference adminCollectionReference =
     FirebaseFirestore.instance.collection("admin");
+
+CollectionReference appointmentsCollectionReference =
+    FirebaseFirestore.instance.collection("appointments");
+
+const String storageHomeService = "homeservice";
+const String storageProfile = "profiles";
 
 final List<String> adminsList = [
   "bandigowtham6@gmail.com",
