@@ -311,7 +311,7 @@ final _formKey = GlobalKey<FormBuilderState>();
                       : CustomButton(
                           bgColor: AppColors.updateBgColor,
                           buttonName: "updateText",
-                          tColor: AppColors.black2,
+                          textColor: AppColors.black2,
                           isBoxShadow: false,
                           onPress: () => validate(),
                         ),

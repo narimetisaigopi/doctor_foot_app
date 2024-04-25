@@ -56,7 +56,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             CustomButton(
               bgColor: AppColors.contactPageBtnColor,
               buttonName: "+91 91234566780",
-              tColor: AppColors.primary,
+              textColor: AppColors.primary,
               isBoxShadow: false,
               onPress: () {},
             ),
@@ -66,7 +66,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             CustomButton(
               bgColor: AppColors.contactPageBtnColor,
               buttonName: "support@gmail.com",
-              tColor: AppColors.primary,
+              textColor: AppColors.primary,
               isBoxShadow: false,
               onPress: () {},
             ),

@@ -11,7 +11,7 @@ class CustomButton extends StatefulWidget {
   final Color bgColor;
   final Icon prefixIcon;
   final bool isBoxShadow;
-  final Color tColor;
+  final Color textColor;
   final bool enablePrefixIcon;
   const CustomButton(
       {super.key,
@@ -19,7 +19,7 @@ class CustomButton extends StatefulWidget {
       this.width = 350,
       this.onPress,
       this.bgColor = AppColors.primary,
-      this.tColor = Colors.white,
+      this.textColor = Colors.white,
       this.borderRadius = 6.0,
       this.enablePrefixIcon = false,
       this.prefixIcon = const Icon(Icons.abc),
@@ -50,6 +50,7 @@ class _CustomButtonState extends State<CustomButton> {
                   )
                 : const BoxShadow()
           ],
+          border: Border.all(color: AppColors.primary, width: 1),
           borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
         child: Center(
@@ -60,7 +61,7 @@ class _CustomButtonState extends State<CustomButton> {
               Text(
                 widget.buttonName,
                 style: TextStyle(
-                    color: widget.tColor,
+                    color: widget.textColor,
                     fontWeight: FontWeight.w500,
                     fontSize: 16),
               ).tr(),

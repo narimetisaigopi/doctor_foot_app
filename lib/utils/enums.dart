@@ -1,4 +1,12 @@
 enum PaymentStatus { none, pending, completed, cancelled, refunded }
+enum AppointmentStatus {
+  none,
+  pending,
+  booked,
+  confirmed,
+  cancelled,
+  completed,
+}
 enum PaymentServiceType { none, ulcerMonitoring, homeService }
 
 // home dressing service

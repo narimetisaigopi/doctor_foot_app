@@ -1,6 +1,7 @@
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/book%20appointement/booking_confirm_screen.dart';
+import 'package:drfootapp/controllers/appointment_controller.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book%20appointement/calender_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -16,30 +17,39 @@ class AppointmentBookingScreen extends StatefulWidget {
 }
 
 class _AppointmentBookingScreenState extends State<AppointmentBookingScreen> {
-  DateTime today = DateTime.now();
-  bool isSelected = false;
+  AppointmentController appointmentController =
+      Get.put(AppointmentController());
+
+  @override
+  void initState() {
+    appointmentController.isDateSelected = false;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.secondary,
-      appBar: AppBar(
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+    return GetBuilder<AppointmentController>(builder: (appointmentController) {
+      return Scaffold(
+        backgroundColor: AppColors.secondary,
+        appBar: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text(
+            "Appointments",
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: AppColors.primary),
+          ).tr(),
         ),
-        title: const Text(
-          "Appointments",
-          style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: AppColors.primary),
-        ).tr(),
-      ),
-      body: content(),
-    );
+        body: content(),
+      );
+    });
   }
 
   Widget content() {
@@ -49,10 +59,23 @@ class _AppointmentBookingScreenState extends State<AppointmentBookingScreen> {
         children: [
           TableCalendar(
             calendarBuilders: CalendarBuilders(
+              selectedBuilder: (context, day, focusedDay) {
+                return CalenderWidget(
+                  formate: getWeekName(day),
+                  date: "${day.day}",
+                  bgColor: AppColors.primary,
+                );
+              },
+              // todayBuilder: (context, day, focusedDay) {
+              //   return CalenderWidget(
+              //     formate: getWeekName(day),
+              //     date: "${day.day}",
+              //   );
+              // },
               defaultBuilder: (context, day, focusedDay) {
-                return const CalenderWidget(
-                  formate: "Sun",
-                  date: "09",
+                return CalenderWidget(
+                  formate: getWeekName(day),
+                  date: "${day.day}",
                 );
               },
             ),
@@ -63,6 +86,16 @@ class _AppointmentBookingScreenState extends State<AppointmentBookingScreen> {
                 color: AppColors.grey2,
               ),
             ),
+            currentDay: DateTime.now(),
+            selectedDayPredicate: (day) {
+              if (appointmentController.isDateSelected &&
+                  day.day == appointmentController.selectedDateTime.day &&
+                  day.month == appointmentController.selectedDateTime.month &&
+                  day.year == appointmentController.selectedDateTime.year) {
+                return true;
+              }
+              return false;
+            },
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
@@ -71,28 +104,52 @@ class _AppointmentBookingScreenState extends State<AppointmentBookingScreen> {
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
-            // availableGestures: AvailableGestures.all,
-            focusedDay: today,
-            firstDay: DateTime.utc(2010, 10, 16),
-            lastDay: DateTime.utc(2039, 3, 14),
-            onDaySelected: onDaySelect,
-            selectedDayPredicate: (day) => isSameDay(day, today),
+            firstDay: DateTime.now(),
+            lastDay: DateTime.now().add(const Duration(days: 30)),
+            onDaySelected: (s1, s2) {
+              appointmentController.onDateSelection(s2);
+            },
+            focusedDay: appointmentController.selectedDateTime,
           ),
           const Spacer(),
-           CustomButton(
-            buttonName: "Book an appointment",
-            onPress: (){
-              Get.to(const BookingConfirmScreen());
-            },
-          ),
+          appointmentController.isLoading
+              ? const CircularProgressIndicator()
+              : CustomButton(
+                  bgColor: appointmentController.isDateSelected
+                      ? AppColors.primary
+                      : AppColors.grey4,
+                  textColor: appointmentController.isDateSelected
+                      ? AppColors.whiteBgColor
+                      : AppColors.primary,
+                  buttonName: "Book an appointment",
+                  onPress: () {
+                    if (!appointmentController.isDateSelected) {
+                      Utility.toast("Please select appoinment date");
+                    } else {
+                      showConfirmationBottomSheet(
+                        context: context,
+                        title: "Are you sure want to book appointment?",
+                        onConfirm: () {
+                          Get.back();
+                          appointmentController.createAppointment();
+                        },
+                      );
+                    }
+                  },
+                ),
         ],
       ),
     );
   }
 
-  void onDaySelect(DateTime day, DateTime focusedDay) {
-    setState(() {
-      today = day;
-    });
+  String getWeekName(DateTime dateTime) {
+    // Weekday names
+    List<String> weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+    // Get the day of the week index (0 for Monday, 1 for Tuesday, ...)
+    int weekDayIndex = dateTime.weekday - 1;
+
+    // Return the 3-letter week name
+    return weekDays[weekDayIndex];
   }
 }

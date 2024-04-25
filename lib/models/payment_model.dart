@@ -55,7 +55,7 @@ class PaymentModel {
       message: data["message"] ?? "",
       gatewayTransactionId: data["gatewayTransactionId"] ?? "",
       subscriptionId: data['subscriptionId'],
-      amount: data['amount'],
+      amount: double.parse(data['amount'].toString()),
       paymentStatus: data['paymentStatus'] != null
           ? PaymentStatus.values[data['paymentStatus']]
           : PaymentStatus.none, 

@@ -38,7 +38,7 @@ class _MyAddressesState extends State<MyAddresses> {
           floatingActionButton: CustomButton(
             buttonName: "Add New Address",
             width: 300,
-            tColor: Colors.white,
+            textColor: Colors.white,
             onPress: () {
               Get.to(() => AddAddressScreen(
                     addressModel: AddressModel(),
