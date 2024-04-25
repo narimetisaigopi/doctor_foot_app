@@ -1,17 +1,18 @@
+import 'package:drfootapp/models/appointment_models/appointment_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
-class BookOppointment extends StatefulWidget {
-  final String title;
-  const BookOppointment({super.key,this.title = ""});
+class BookAppointmentWidget extends StatefulWidget {
+  final AppointmentModel appointmentModel;
+  const BookAppointmentWidget({super.key, required this.appointmentModel});
 
   @override
-  State<BookOppointment> createState() => _BookOppointmentState();
+  State<BookAppointmentWidget> createState() => _BookAppointmentWidgetState();
 }
 
-class _BookOppointmentState extends State<BookOppointment> {
+class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -10,27 +10,24 @@ class PaymentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: AppColors.whiteBgColor,
-          borderRadius: BorderRadius.circular(8)),
-      child: Padding(
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Container(
+        width: double.infinity,
         padding: const EdgeInsets.all(14.0),
-        child: Column(
+        decoration: BoxDecoration(
+            color: AppColors.whiteBgColor,
+            borderRadius: BorderRadius.circular(8)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                item(
-                    paymentModel.paymentStatus == PaymentStatus.refunded
-                        ? "Refund Id"
-                        : "Transaction Id",
-                    "#${paymentModel.paymentId.toString()}"),
-                item("Refund amount",
-                    "${paymentModel.amount.toInt().inRupeesFormat()}"),
-              ],
-            ),
+            item(
+                paymentModel.paymentStatus == PaymentStatus.refunded
+                    ? "Refund Id"
+                    : "Transaction Id",
+                "#${paymentModel.paymentId.toString()}"),
+            item("Refund amount",
+                paymentModel.amount.toInt().inRupeesFormat()),
           ],
         ),
       ),

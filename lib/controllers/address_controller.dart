@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
@@ -55,8 +55,8 @@ class AddressesController extends GetxController {
         selectedAddressModel = AddressModel();
       }
       if (selectedAddressModel.docId ==
-          Get.put(HomeDressingController()).selectedAddressModel.docId) {
-        Get.put(HomeDressingController())
+          Get.put(FootServiceController()).selectedAddressModel.docId) {
+        Get.put(FootServiceController())
             .updateAddressSelection(AddressModel());
       }
       Utility.toast("Address Deleted");

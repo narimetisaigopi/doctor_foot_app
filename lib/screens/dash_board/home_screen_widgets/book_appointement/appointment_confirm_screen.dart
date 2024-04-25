@@ -1,5 +1,5 @@
 import 'package:drfootapp/models/appointment_models/appointment_model.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/book%20appointement/appointment_view_details_page.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_view_details_page.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';

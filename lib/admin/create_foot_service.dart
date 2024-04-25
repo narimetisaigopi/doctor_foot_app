@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -9,24 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class CreateHomeDressingServices extends StatefulWidget {
+class CreateFootService extends StatefulWidget {
   final bool isUpdate;
-  final HomeDressingModel homeDressingModel;
-  const CreateHomeDressingServices({
+  final FootServiceModel homeDressingModel;
+  const CreateFootService({
     super.key,
     this.isUpdate = false,
     required this.homeDressingModel,
   });
   @override
   // ignore: library_private_types_in_public_api
-  _CreateHomeDressingServicesState createState() =>
-      _CreateHomeDressingServicesState();
+  _CreateFootServiceState createState() => _CreateFootServiceState();
 }
 
-class _CreateHomeDressingServicesState
-    extends State<CreateHomeDressingServices> {
-  final HomeDressingController _homeDressingController =
-      Get.put(HomeDressingController());
+class _CreateFootServiceState extends State<CreateFootService> {
+  final FootServiceController _homeDressingController =
+      Get.put(FootServiceController());
   String? _imagePath;
 
   @override
@@ -53,8 +51,7 @@ class _CreateHomeDressingServicesState
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeDressingController>(
-        builder: (homeDressingController) {
+    return GetBuilder<FootServiceController>(builder: (homeDressingController) {
       return Scaffold(
         appBar: AppBar(
           title: Text(widget.isUpdate ? "Update service" : "Add new service"),
@@ -210,8 +207,7 @@ class _CreateHomeDressingServicesState
           ),
         ),
       );
-    }
-    );
+    });
   }
 
   validate() {
@@ -245,8 +241,6 @@ class _CreateHomeDressingServicesState
       }
     }
   }
-
-  
 
   Future<void> pickFile() async {
     ImagePicker().pickImage(source: ImageSource.gallery).then((onValue) {

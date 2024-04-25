@@ -129,7 +129,7 @@ class Strings {
   static const String large = "Large";
 
   static const String booking_confirmed = "Booking Confirmed!";
-  static const String orderId = "Order Id # 1234567890";
+  static const String orderId = "Order Id";
   static const String orderDate = "Date: Sunday/31/Dec/2023";
   static const String orderSuccessfulDescription =
       "Thank you for placing the service!! Sit back and relax while we deliver an awesome service experience.";
@@ -255,5 +255,9 @@ static const String doctorQ10Ans ="Foot doctor is committed to providing persona
  static const String moderateText = "Moderate";
  static const String largeText = "Large";
  static const String hugeText = "Huge";
+
+  static const String completed = "Completed";
+  static const String upcoming = "UpComing";
+  static const String cancelled = "Cancelled";
 
 }

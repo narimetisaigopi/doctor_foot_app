@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/models/coupon_code_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
@@ -18,8 +18,8 @@ class AvailableOffers extends StatefulWidget {
 }
 
 class _AvailableOffersState extends State<AvailableOffers> {
-  final HomeDressingController homeDressingController =
-      Get.put(HomeDressingController());
+  final FootServiceController homeDressingController =
+      Get.put(FootServiceController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

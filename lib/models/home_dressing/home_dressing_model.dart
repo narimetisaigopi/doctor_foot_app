@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/utils/enums.dart';
 
-class HomeDressingModel {
+class FootServiceModel {
   String image;
   String docId;
   String uid;
@@ -15,7 +15,8 @@ class HomeDressingModel {
   bool isActive;
   Timestamp? timestamp;
 
-  HomeDressingModel({
+  FootServiceModel(
+      {
     this.image = "",
     this.title = "",
     this.duration = "",
@@ -47,8 +48,8 @@ class HomeDressingModel {
     };
   }
 
-  factory HomeDressingModel.fromJson(Map map) {
-    return HomeDressingModel(
+  factory FootServiceModel.fromJson(Map map) {
+    return FootServiceModel(
       image: map['image'] ?? "",
       docId: map['docId'] ?? "",
         uid: map['uid'] ?? "",

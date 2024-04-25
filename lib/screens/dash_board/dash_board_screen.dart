@@ -2,13 +2,39 @@ import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:drfootapp/screens/dash_board/profile_screen.dart';
 import 'package:drfootapp/screens/dash_board/ulcer_monitoring_screen.dart';
 import 'package:drfootapp/screens/dash_board/videos_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+Widget footulcerWidget = const ServiceWidget(
+  image: AssetsConstants.foot,
+  name: Strings.footUlcerText,
+);
+Widget checkYourRiskWidget = const ServiceWidget(
+  image: AssetsConstants.speedometer,
+  name: Strings.checkYourRiskText,
+);
+Widget checkUpSchedulemeter = const ServiceWidget(
+  image: AssetsConstants.checkup_shedule,
+  name: Strings.checkupScheduleText,
+);
+Widget footServiceWidget = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.footServiceText,
+);
+
+List<Widget> homeServicesList = [
+  footulcerWidget,
+  checkYourRiskWidget,
+  checkUpSchedulemeter,
+  footServiceWidget,
+];
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});

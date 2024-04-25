@@ -4,10 +4,10 @@ import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
 import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/models/admin_model.dart';
-import 'package:drfootapp/models/homeScreenModels/order_model.dart';
+import 'package:drfootapp/models/homeScreenModels/foot_service_booking_model.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/models/payment_model.dart';
-import 'package:drfootapp/screens/home_dressing_services/order_successful_screen.dart';
+import 'package:drfootapp/screens/home_dressing_services/foot_service_order_successful_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -17,7 +17,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-class HomeDressingController extends GetxController {
+class FootServiceController extends GetxController {
   final TextEditingController serviceTitleController = TextEditingController();
   final TextEditingController serviceDurationsController =
       TextEditingController();
@@ -29,9 +29,9 @@ class HomeDressingController extends GetxController {
       TextEditingController();
   int? selectedFootService, selectedDressingService;
 
-  List<HomeDressingModel> homeDressingServicesAddedList = [];
+  List<FootServiceModel> homeDressingServicesAddedList = [];
 
-  var finalAmount = 0.0, discountAmount = 0.0, payableAmount = 0.0;
+  var finalAmount = 0.0, discountAmount = 0.0;
   bool isLoading = false;
 
   XFile? pickedFile;
@@ -49,7 +49,7 @@ class HomeDressingController extends GetxController {
 
   TextEditingController searchCouponCodeController = TextEditingController();
   void addOrRemoveFromList({
-    required HomeDressingModel homeDressingModel,
+    required FootServiceModel homeDressingModel,
   }) {
     bool isExisted = isServiceAdded(homeDressingModel);
 
@@ -64,7 +64,7 @@ class HomeDressingController extends GetxController {
   }
 
   bool isServiceAdded(
-    HomeDressingModel homeDressingModel,
+    FootServiceModel homeDressingModel,
   ) {
     bool isExisted = homeDressingServicesAddedList
         .where((element) => element.docId == homeDressingModel.docId)
@@ -86,16 +86,14 @@ class HomeDressingController extends GetxController {
   void calculateRemovedService() {
     finalAmount = 0.0;
     discountAmount = 0.0;
-    payableAmount = 0.0;
     for (var item in homeDressingServicesAddedList) {
-      finalAmount += item.originalPrice;
-      discountAmount += (item.offerPrice - item.originalPrice);
+      finalAmount += item.offerPrice;
+      discountAmount += (item.originalPrice - item.offerPrice);
     }
-    payableAmount = finalAmount - discountAmount;
     update();
   }
 
-  setServiceData(HomeDressingModel homeDressingModel) {
+  setServiceData(FootServiceModel homeDressingModel) {
     homeDressingModel.footService = FootServices.values[selectedFootService!];
     if (selectedDressingService != null) {
       homeDressingModel.dressingService =
@@ -116,7 +114,7 @@ class HomeDressingController extends GetxController {
       _updateLoading(true);
       DocumentReference documentReference =
           homeDressingServicesCollectionReference.doc();
-      HomeDressingModel homeDressingModel = HomeDressingModel();
+      FootServiceModel homeDressingModel = FootServiceModel();
       if (pickedFile != null) {
         String path = await Get.put(FirebaseStorageController())
             .uploadImageToFirebase(
@@ -136,7 +134,7 @@ class HomeDressingController extends GetxController {
     }
   }
 
-  Future<void> updateService(HomeDressingModel homeDressingModel) async {
+  Future<void> updateService(FootServiceModel homeDressingModel) async {
     try {
       FirebaseStorageController firebaseStorageController =
           Get.put(FirebaseStorageController());
@@ -161,7 +159,7 @@ class HomeDressingController extends GetxController {
     }
   }
 
-  Future<void> deleteService(HomeDressingModel homeDressingModel) async {
+  Future<void> deleteService(FootServiceModel homeDressingModel) async {
     try {
       _updateLoading(true);
       await homeDressingServicesCollectionReference
@@ -198,13 +196,15 @@ class HomeDressingController extends GetxController {
           Get.put(CouponCodeController());
       PaymentController paymentController = Get.put(PaymentController());
       int orderId = await generateOrderId();
-      OrderModel orderModel = OrderModel();
-      DocumentReference documentReference = ordersCollectionReference.doc();
+      ServiceBookingOrderModel orderModel = ServiceBookingOrderModel();
+      DocumentReference documentReference =
+          footServicesCollectionReference.doc();
       orderModel.docId = documentReference.id;
       orderModel.amount = finalAmount;
       orderModel.uid = getCurrentUserId();
       orderModel.discount = discountAmount;
       orderModel.orderId = orderId;
+      orderModel.timestamp = Timestamp.now();
       // adding item ids to list
       List<String> ids =
           homeDressingServicesAddedList.map((e) => e.docId).toList();
@@ -227,7 +227,7 @@ class HomeDressingController extends GetxController {
       // creating order
       await documentReference.set(orderModel.toMap());
       Utility.toast("Order placed successfully");
-      Get.offAll(() => OrderSuccessfulScreen(
+      Get.offAll(() => FootServiceOrderSuccessfulScreen(
             orderModel: orderModel,
           ));
     } catch (e, stack) {

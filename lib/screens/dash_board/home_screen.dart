@@ -2,7 +2,10 @@ import 'package:drfootapp/screens/dash_board/home_screen_widgets/app_bar_widget.
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/home_image.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/all_services_widget.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

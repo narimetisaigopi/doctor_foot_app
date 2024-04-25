@@ -25,34 +25,28 @@ class _ServiceWidgetState extends State<ServiceWidget> {
       ),
       child: Column(
         children: [
-          Expanded(
-            flex: 8,
-            child: Align(
-              alignment: Alignment.center,
-              child: SvgImageWidget(
-                path: widget.image,
-                height: 148,
-                width: double.infinity,
-              ),
+          Align(
+            alignment: Alignment.center,
+            child: SvgImageWidget(
+              path: widget.image,
+              height: 148,
+              width: double.infinity,
             ),
           ),
-          Expanded(
-            flex: 3,
-            child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(16))),
-              child: Center(
-                child: Text(
-                  widget.name,
-                  style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.secondary),
-                ).tr(),
-              ),
+          Container(
+            width: double.infinity,
+            decoration: const BoxDecoration(
+                color: AppColors.primary,
+                borderRadius:
+                    BorderRadius.vertical(bottom: Radius.circular(16))),
+            child: Center(
+              child: Text(
+                widget.name,
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.secondary),
+              ).tr(),
             ),
           ),
         ],

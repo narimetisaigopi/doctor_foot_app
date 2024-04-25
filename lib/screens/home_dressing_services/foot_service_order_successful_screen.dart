@@ -1,8 +1,9 @@
-import 'package:drfootapp/models/homeScreenModels/order_model.dart';
+import 'package:drfootapp/models/homeScreenModels/foot_service_booking_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,15 +11,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OrderSuccessfulScreen extends StatefulWidget {
-  final OrderModel orderModel;
-  const OrderSuccessfulScreen({super.key, required this.orderModel});
+class FootServiceOrderSuccessfulScreen extends StatefulWidget {
+  final ServiceBookingOrderModel orderModel;
+  const FootServiceOrderSuccessfulScreen({super.key, required this.orderModel});
 
   @override
-  State<OrderSuccessfulScreen> createState() => _OrderSuccessfulScreenState();
+  State<FootServiceOrderSuccessfulScreen> createState() =>
+      _FootServiceOrderSuccessfulScreenState();
 }
 
-class _OrderSuccessfulScreenState extends State<OrderSuccessfulScreen> {
+class _FootServiceOrderSuccessfulScreenState
+    extends State<FootServiceOrderSuccessfulScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,28 +33,28 @@ class _OrderSuccessfulScreenState extends State<OrderSuccessfulScreen> {
             children: [
               const SvgImageWidget(path: AssetsConstants.successful),
               const Text(
-                "booking_confirmed",
+                Strings.booking_confirmed,
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
               ).tr(),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                Strings.orderId,
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: Color(0xFF6B6B6B)),
-              ).tr(),
-              const Text(
-                "orderDate",
-                style: TextStyle(
+              Text(
+                "${Strings.orderId} #${widget.orderModel.orderId}",
+                style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                     color: Color(0xFF6B6B6B)),
               ).tr(),
               Text(
-                widget.orderModel.timestamp.toString(),
+                "orderDate : ${formatDate(widget.orderModel.timestamp!.toDate())}",
+                style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    color: Color(0xFF6B6B6B)),
+              ).tr(),
+              Text(
+                formatTime(widget.orderModel.timestamp!.toDate()),
                 style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,

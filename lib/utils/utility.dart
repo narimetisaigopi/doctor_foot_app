@@ -23,6 +23,8 @@ import 'package:get/get.dart';
 // import 'package:flutter/foundation.dart'
 //     show consolidateHttpClientResponseBytes, kIsWeb;
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Utility {
   static DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss aaa');
@@ -1072,4 +1074,15 @@ String formatTime(DateTime dateTime) {
     periodOfDay = 'Evening';
   }
   return '$periodOfDay - $formattedTime $period';
+}
+
+Future<void> openUrl(String url) async {
+  print("openUrl $url");
+  if (!url.contains("http")) {
+    url = "https://$url";
+  }
+  await launchUrl(
+    Uri.parse(url),
+    mode: LaunchMode.externalApplication,
+  );
 }

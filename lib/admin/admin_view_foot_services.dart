@@ -1,27 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drfootapp/admin/create_home_dressing_services.dart';
-import 'package:drfootapp/controllers/home_dressing_controller.dart';
+import 'package:drfootapp/admin/create_foot_service.dart';
+import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
-import 'package:drfootapp/utils/widgets/home_dressing_service_widget.dart';
+import 'package:drfootapp/utils/widgets/foot_service_widget.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AdminViewHomeDressingServices extends StatefulWidget {
-  const AdminViewHomeDressingServices({super.key});
+class AdminViewFootServices extends StatefulWidget {
+  const AdminViewFootServices({super.key});
 
   @override
-  State<AdminViewHomeDressingServices> createState() =>
-      _AdminViewHomeDressingServicesState();
+  State<AdminViewFootServices> createState() => _AdminViewFootServicesState();
 }
 
-class _AdminViewHomeDressingServicesState
-    extends State<AdminViewHomeDressingServices> {
-  HomeDressingController homeDressingController =
-      Get.put(HomeDressingController());
+class _AdminViewFootServicesState extends State<AdminViewFootServices> {
+  FootServiceController homeDressingController =
+      Get.put(FootServiceController());
 
   int selectedFootServiceTab = FootServices.nailTrimmingService.index;
   int selectedDressingServiceTab = -1;
@@ -41,13 +39,12 @@ class _AdminViewHomeDressingServicesState
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeDressingController>(
-        builder: (homeDressingController) {
+    return GetBuilder<FootServiceController>(builder: (homeDressingController) {
       return Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Get.to(() => CreateHomeDressingServices(
-                    homeDressingModel: HomeDressingModel(),
+              Get.to(() => CreateFootService(
+                    homeDressingModel: FootServiceModel(),
                   ));
             },
             child: const Icon(Icons.add_outlined),
@@ -103,17 +100,17 @@ class _AdminViewHomeDressingServicesState
                   key: Key(dateTime),
                   query: getQuery(),
                   itemBuilder: (context, documentSnapshots, index) {
-                    HomeDressingModel homeDressingModel =
-                        HomeDressingModel.fromJson(
+                    FootServiceModel homeDressingModel =
+                        FootServiceModel.fromJson(
                             documentSnapshots.data() as Map<String, dynamic>);
                     return InkWell(
                       onTap: () {
-                        Get.to(() => CreateHomeDressingServices(
+                        Get.to(() => CreateFootService(
                               isUpdate: true,
                               homeDressingModel: homeDressingModel,
                             ));
                       },
-                      child: HomeDressingServiceWidget(
+                      child: FootServiceWidget(
                         homeDressingModel: homeDressingModel,
                         onPress: () {
                           homeDressingController.addOrRemoveFromList(

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/admin_model.dart';
 import 'package:drfootapp/models/appointment_models/appointment_model.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/book%20appointement/appointment_confirm_screen.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_confirm_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
