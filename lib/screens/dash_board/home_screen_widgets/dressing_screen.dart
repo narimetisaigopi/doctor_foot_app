@@ -1,6 +1,6 @@
 import 'package:drfootapp/models/homeScreenModels/dressing_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
-import 'package:drfootapp/screens/home_dressing_services/foot_services_screens.dart';
+import 'package:drfootapp/screens/foot_services/foot_services_screens.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:flutter/material.dart';

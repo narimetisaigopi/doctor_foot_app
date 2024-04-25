@@ -7,8 +7,10 @@ CollectionReference usersCollectionReference =
 CollectionReference couponCodesCollectionReference =
     FirebaseFirestore.instance.collection("coupon_codes");
 
-CollectionReference homeDressingServicesCollectionReference =
-    FirebaseFirestore.instance.collection("home_dressing_services");
+CollectionReference footServicesCollectionReference =
+    FirebaseFirestore.instance.collection("foot_services");
+CollectionReference footServicesBookingsCollectionReference =
+    FirebaseFirestore.instance.collection("foot_services_bookings");
 
 CollectionReference addressesCollectionReference =
     FirebaseFirestore.instance.collection("addresses");
@@ -20,8 +22,10 @@ CollectionReference ulcerSubscrptionsCollectionReference =
 CollectionReference paymentsCollectionReference =
     FirebaseFirestore.instance.collection("payments");
 
-CollectionReference footServicesCollectionReference =
-    FirebaseFirestore.instance.collection("foot_services");
+
+
+CollectionReference reviewsCollectionReference =
+    FirebaseFirestore.instance.collection("reviews");
 
 CollectionReference adminCollectionReference =
     FirebaseFirestore.instance.collection("admin");

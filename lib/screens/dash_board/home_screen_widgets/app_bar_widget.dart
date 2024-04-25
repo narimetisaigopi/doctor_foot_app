@@ -1,7 +1,5 @@
 import 'package:drfootapp/controllers/location_controller.dart';
-import 'package:drfootapp/screens/Notifications/notification_screen.dart';
 import 'package:drfootapp/screens/notifications/notification_screen.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_factor_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +32,6 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                   width: 05,
                 ),
                 SizedBox(
-                  // height: 60,
-                  // width: 133,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -73,7 +69,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                   ),
                   color: AppColors.searchButtonColor,
                   onPressed: () {
-                    Get.to(const NotificationsScreen());
+                    Get.to(() => const NotificationsScreen());
                   },
                 ),
                 const SizedBox(
@@ -86,7 +82,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                   ),
                   color: AppColors.notificationsButtonColor,
                   onPressed: () {
-                    Get.to(const NotificationsScreen());
+                    Get.to(() => const NotificationsScreen());
                   },
                 )
               ],

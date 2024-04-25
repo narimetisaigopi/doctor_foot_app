@@ -3,7 +3,7 @@ import 'package:drfootapp/controllers/address_controller.dart';
 import 'package:drfootapp/controllers/coupon_code_controller.dart';
 import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
-import 'package:drfootapp/screens/home_dressing_services/available_offers.dart';
+import 'package:drfootapp/screens/foot_services/available_offers.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -89,7 +89,7 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
             )),
       ),
       body:
-          GetBuilder<FootServiceController>(builder: (homeDressingController) {
+          GetBuilder<FootServiceController>(builder: (footServiceController) {
         return SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -97,25 +97,37 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
                 maxHeight: MediaQuery.of(context).size.height * 2),
             child: Column(
               children: [
-                ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: homeDressingController
-                        .homeDressingServicesAddedList.length,
-                    itemBuilder: (context, index) {
-                      final homeDressingService = homeDressingController
-                          .homeDressingServicesAddedList[index];
-                      return FootServiceWidget(
-                        homeDressingModel: homeDressingService,
+                FootServiceWidget(
+                  footServiceModel:
+                      footServiceController.selectedFootServiceModel,
                         onPress: () {
                           couponCodeController.selectedCouponCodeModel == null
                               ? Get.back()
                               : Null;
-                          homeDressingController.addOrRemoveFromList(
-                              homeDressingModel: homeDressingService);
+                    footServiceController.addOrRemoveFromList(
+                        footServiceModel:
+                            footServiceController.selectedFootServiceModel);
                         },
-                      );
-                    }),
+                ),
+                // ListView.builder(
+                //     physics: const NeverScrollableScrollPhysics(),
+                //     shrinkWrap: true,
+                //     itemCount: homeDressingController
+                //         .homeDressingServicesAddedList.length,
+                //     itemBuilder: (context, index) {
+                //       final homeDressingService = homeDressingController
+                //           .homeDressingServicesAddedList[index];
+                //       return FootServiceWidget(
+                //         footServiceModel: homeDressingService,
+                //         onPress: () {
+                //           couponCodeController.selectedCouponCodeModel == null
+                //               ? Get.back()
+                //               : Null;
+                //           homeDressingController.addOrRemoveFromList(
+                //               homeDressingModel: homeDressingService);
+                //         },
+                //       );
+                //     }),
                 const SizedBox(
                   height: 20,
                 ),
@@ -148,14 +160,14 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
                         height: 10,
                       ),
                       paymentText(
-                        amount: homeDressingController.finalAmount,
+                        amount: footServiceController.finalAmount,
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       paymentText(
                         defaultText: "Discount amount ",
-                        amount: homeDressingController.discountAmount,
+                        amount: footServiceController.discountAmount,
                       ),
                       const SizedBox(
                         height: 10,
@@ -182,8 +194,8 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
                         defaultText: "Pay you",
                         amount:
                             couponCodeController.selectedCouponCodeModel == null
-                                ? homeDressingController.finalAmount
-                                : homeDressingController.finalAmount -
+                                ? footServiceController.finalAmount
+                                : footServiceController.finalAmount -
                                     couponCodeController
                                         .selectedCouponCodeModel!.maxDiscount,
                         fontSize: 16,
@@ -197,23 +209,23 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
                 ),
                 GetBuilder<AddressesController>(builder: (context) {
                   return FootPaymentWidget(
-                    addressModel: homeDressingController.selectedAddressModel,
+                    addressModel: footServiceController.selectedAddressModel,
                   );
                 }),
                 const SizedBox(
                   height: 20,
                 ),
-                homeDressingController.isLoading
+                footServiceController.isLoading
                     ? const CircularProgressIndicator()
                     : CustomButton(
                         buttonName:
-                            "Make Payment | ₹ ${homeDressingController.finalAmount}",
+                            "Make Payment | ₹ ${footServiceController.finalAmount}",
                         onPress: () {
-                          if (homeDressingController
+                          if (footServiceController
                               .selectedAddressModel.docId.isEmpty) {
                             Utility.toast("Please select address");
                           } else {
-                            homeDressingController.proceedToPayment();
+                            footServiceController.proceedToPayment();
                           }
                         },
                       ),

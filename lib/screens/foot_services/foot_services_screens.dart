@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/controllers/foot_services_controller.dart';
-import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
-import 'package:drfootapp/screens/home_dressing_services/foot_payment.dart';
+import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
+import 'package:drfootapp/screens/foot_services/foot_payment.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
@@ -61,22 +61,25 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
             ),
           ),
         ),
-        body: FirestorePagination(
-          query: getQuery(),
-          limit: 10,
-          onEmpty: const Center(child: Text("No Services")),
-          itemBuilder: (context, documentSnapshots, index) {
-            FootServiceModel homeDressingModel = FootServiceModel.fromJson(
-                documentSnapshots.data() as Map<String, dynamic>);
-            return FootServiceWidget(
-              homeDressingModel: homeDressingModel,
-              onPress: () {
-                homeDressingController.addOrRemoveFromList(
-                  homeDressingModel: homeDressingModel,
-                );
-              },
-            );
-          },
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: FirestorePagination(
+            query: getQuery(),
+            limit: 10,
+            onEmpty: const Center(child: Text("No Services")),
+            itemBuilder: (context, documentSnapshots, index) {
+              FootServiceModel homeDressingModel = FootServiceModel.fromJson(
+                  documentSnapshots.data() as Map<String, dynamic>);
+              return FootServiceWidget(
+                footServiceModel: homeDressingModel,
+                onPress: () {
+                  homeDressingController.addOrRemoveFromList(
+                    footServiceModel: homeDressingModel,
+                  );
+                },
+              );
+            },
+          ),
         ),
         floatingActionButton: bottobBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -85,7 +88,7 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
   }
 
   Widget bottobBar() {
-    return homeDressingController.homeDressingServicesAddedList.isNotEmpty
+    return homeDressingController.selectedFootServiceModel.docId.isNotEmpty
         ? FloatingActionButton.extended(
             extendedPadding: const EdgeInsets.symmetric(horizontal: 10),
             shape:
@@ -155,11 +158,11 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
   }
 
   Query getQuery() {
-    Query query = homeDressingServicesCollectionReference
+    Query query = footServicesCollectionReference
         .where("footService", isEqualTo: widget.footServices.index)
         .where("isActive", isEqualTo: true);
     if (widget.dressingServices != null) {
-      query = homeDressingServicesCollectionReference
+      query = footServicesCollectionReference
           .where("footService", isEqualTo: widget.footServices.index)
           .where("dressingService", isEqualTo: widget.dressingServices!.index)
           .where("isActive", isEqualTo: true);
