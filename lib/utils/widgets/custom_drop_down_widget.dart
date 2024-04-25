@@ -8,11 +8,13 @@ class CustomDropDownWidget extends StatefulWidget {
   final Function(String?) onChanged;
   final String Function(String?)? onValidate;
   final String errorMessage;
+  final String? initialValue;
   const CustomDropDownWidget(
       {required this.hint,
       required this.menuItems,
       required this.onChanged,
       this.errorMessage = "",
+      this.initialValue,
       this.onValidate,
       super.key});
 
@@ -25,6 +27,7 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: FormBuilderDropdown(
+        initialValue: widget.initialValue,
         decoration: InputDecoration(
             hintStyle: const TextStyle(color: AppColors.grey2),
             hintText: widget.hint,

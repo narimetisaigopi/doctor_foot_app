@@ -25,6 +25,9 @@ class _NetworkImageWidgetState extends State<NetworkImageWidget> {
       width: widget.width,
       imageUrl: widget.path,
       fit: widget.fit,
+      errorWidget: (context, url, error) {
+        return Icon(Icons.image);
+      },
     );
   }
 }

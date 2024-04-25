@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/controllers/coupon_code_controller.dart';
+import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
 import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/models/admin_model.dart';
@@ -11,27 +14,28 @@ import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class HomeDressingController extends GetxController {
   final TextEditingController serviceTitleController = TextEditingController();
-  final TextEditingController serviceDaysController = TextEditingController();
+  final TextEditingController serviceDurationsController =
+      TextEditingController();
   final TextEditingController serviceDescriptionController =
       TextEditingController();
-  final TextEditingController serviceOldPriceController =
+  final TextEditingController serviceOriginalPriceController =
       TextEditingController();
-  final TextEditingController serviceNewPriceController =
+  final TextEditingController serviceOfferPriceController =
       TextEditingController();
+  int? selectedFootService, selectedDressingService;
 
   List<HomeDressingModel> homeDressingServicesAddedList = [];
 
   var finalAmount = 0.0, discountAmount = 0.0, payableAmount = 0.0;
-
   bool isLoading = false;
+
+  File? pickedFile;
 
   AddressModel selectedAddressModel = AddressModel();
 
@@ -70,50 +74,104 @@ class HomeDressingController extends GetxController {
   }
 
   void clearTextFields() {
+    selectedFootService = null;
+    selectedDressingService = null;
     serviceTitleController.clear();
-    serviceDaysController.clear();
+    serviceDurationsController.clear();
     serviceDescriptionController.clear();
-    serviceNewPriceController.clear();
-    serviceOldPriceController.clear();
+    serviceOfferPriceController.clear();
+    serviceOriginalPriceController.clear();
+    pickedFile = null;
   }
 
   void calculateRemovedService() {
     finalAmount = 0.0;
     discountAmount = 0.0;
     payableAmount = 0.0;
-
     for (var item in homeDressingServicesAddedList) {
-      finalAmount += item.newPrice;
-      discountAmount += (item.oldPrice - item.newPrice);
+      finalAmount += item.originalPrice;
+      discountAmount += (item.offerPrice - item.originalPrice);
     }
-
     payableAmount = finalAmount - discountAmount;
-
     update();
   }
 
-  Future<void> addServices(
-      HomeDressingModel homeDressingServices, BuildContext context) async {
-    if (FirebaseAuth.instance.currentUser != null) {
-      QuerySnapshot querySnapshot =
-          await homeDressingServicesCollectionReference
-              .where("uId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-              .get();
+  setServiceData(HomeDressingModel homeDressingModel) {
+    homeDressingModel.footService = FootServices.values[selectedFootService!];
+    if (selectedDressingService != null) {
+      homeDressingModel.dressingService =
+          DressingServices.values[selectedDressingService!];
+    }
+    homeDressingModel.originalPrice =
+        double.parse(serviceOriginalPriceController.text);
+    homeDressingModel.offerPrice =
+        double.parse(serviceOfferPriceController.text);
+    homeDressingModel.title = serviceTitleController.text;
+    homeDressingModel.description = serviceDescriptionController.text;
+    homeDressingModel.duration = serviceDurationsController.text;
+    homeDressingModel.isActive = true;
+  }
+
+  Future<void> addNewService() async {
+    try {
+      _updateLoading(true);
       DocumentReference documentReference =
           homeDressingServicesCollectionReference.doc();
       HomeDressingModel homeDressingModel = HomeDressingModel();
-      homeDressingModel.title = homeDressingServices.title;
+      if (pickedFile != null) {
+        String path = await Get.put(FirebaseStorageController())
+            .uploadImageToFirebase(
+                directoryName: storageHomeService, uploadFile: pickedFile!);
+        homeDressingModel.image = path;
+      }
+      setServiceData(homeDressingModel);
+      homeDressingModel.uid = getCurrentUserId();
+      homeDressingModel.docId = documentReference.id;
+      await documentReference.set(homeDressingModel.toMap());
+      Utility.toast("Service added.");
+      Get.back();
+    } catch (e) {
+      logger(e.toString());
+    } finally {
+      _updateLoading(false);
+    }
+  }
 
-      if (querySnapshot.docs.isEmpty) {
-        homeDressingModel.uId = FirebaseAuth.instance.currentUser!.uid;
+  Future<void> updateService(HomeDressingModel homeDressingModel) async {
+    try {
+      _updateLoading(true);
+      if (pickedFile != null) {
+        String path = await Get.put(FirebaseStorageController())
+            .uploadImageToFirebase(
+                directoryName: storageHomeService, uploadFile: pickedFile!);
+        homeDressingModel.image = path;
+      }
+      setServiceData(homeDressingModel);
+      homeDressingModel.uid = getCurrentUserId();
+      await homeDressingServicesCollectionReference
+          .doc(homeDressingModel.docId)
+          .update(homeDressingModel.toMap());
+      Utility.toast("Service updated.");
+      Get.back();
+    } catch (e) {
+      logger(e.toString());
+    } finally {
+      _updateLoading(false);
+    }
+  }
 
-        homeDressingModel.docId = documentReference.id;
-        homeDressingServicesAddedList.add(homeDressingServices);
-        await documentReference.set(homeDressingServices.toMap());
-      } else {}
-      Utility.toast("Service added");
-
-      update();
+  Future<void> deleteService(HomeDressingModel homeDressingModel) async {
+    try {
+      _updateLoading(true);
+      await homeDressingServicesCollectionReference
+          .doc(homeDressingModel.docId)
+          .update({"isActive": false});
+      Utility.toast("Service deleted.");
+      Get.back();
+    } catch (e) {
+      logger(e.toString());
+    } finally {
+      _updateLoading(false);
     }
   }
 

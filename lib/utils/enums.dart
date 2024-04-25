@@ -4,9 +4,9 @@ enum PaymentServiceType { none, ulcerMonitoring, homeService }
 // home dressing service
 enum OrderStatus { none, pending, completed, cancelled, refunded }
 
-enum FootServices {
-  dressingService,
+enum FootServices { 
   nailTrimmingService,
+  dressingService,
   footCleaning,
   footware
 }

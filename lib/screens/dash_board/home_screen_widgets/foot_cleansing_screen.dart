@@ -89,7 +89,6 @@ class _FootCleansingScreenState extends State<FootCleansingScreen> {
                           logger("CreateHomeDressingServices");
                           widget.isAdmin
                               ? Get.to(() => CreateHomeDressingServices(
-                                    isAdmin: true,
                                     homeDressingModel: homeDressingModel,
                                   ))
                               : null;
@@ -123,7 +122,7 @@ class _FootCleansingScreenState extends State<FootCleansingScreen> {
                           logger("CreateHomeDressingServices");
                           widget.isAdmin
                               ? Get.to(() => CreateHomeDressingServices(
-                                    isAdmin: true,
+
                                     homeDressingModel: homeDressingModel,
                                   ))
                               : null;

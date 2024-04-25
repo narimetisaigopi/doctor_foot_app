@@ -62,7 +62,7 @@ class OrderModel {
       "docId": docId,
       "paymentId": paymentId,
       "couponCodeId": couponCodeId,
-      "orderStatus": orderStatus,
+      "orderStatus": orderStatus.index,
       "timestamp": timestamp,
       "lastUpdate": lastUpdate,
       "items": items,
