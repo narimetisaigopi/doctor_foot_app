@@ -287,14 +287,6 @@ class Strings {
   static const String flatFeetText = "Flat Feet";
   static const String bunionsText = "Bunions";
   static const String charcotFootText = "Charcot Foot";
- static const String dressingServicesText = "Dressing Services";
- static const String nailTrimmingText = "Nail Trimming";
- static const String footCleansingText = "Foot Cleansing";
- static const String footwearText = "Footwear";
- static const String smallText = "Small";
- static const String moderateText = "Moderate";
- static const String largeText = "Large";
- static const String hugeText = "Huge";
 
   static const String completed = "Completed";
   static const String upcoming = "UpComing";

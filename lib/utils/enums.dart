@@ -20,3 +20,5 @@ enum FootServices {
 }
 
 enum DressingServices { small, moderate, large, huge }
+
+enum ReviewType { homeService, appointment }

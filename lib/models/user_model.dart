@@ -13,6 +13,7 @@ class UserModel {
   String mobileNumber;
   dynamic timestamp;
   String regNo;
+  String profilePic;
   List<dynamic> androidTokensList;
   List<dynamic> appleTokensList;
   // ulcermonitoring
@@ -35,6 +36,7 @@ class UserModel {
       this.weight = "",
       this.regNo = "",
       this.ulcerMonitoringPlan = "0",
+      this.profilePic = "",
       this.ulcerMonitoringSubscriptionDate});
   factory UserModel.fromJson(
     Map map,
@@ -54,6 +56,7 @@ class UserModel {
         height: map['height'] ?? "",
         weight: map['weight'] ?? "",
         regNo: map["regNo"] ?? "",
+        profilePic: map["profilePic"] ?? "",
         ulcerMonitoringPlan: map["ulcerMonitoringPlan"] ?? "0",
         ulcerMonitoringSubscriptionDate:
             map["ulcerMonitoringSubscriptionDate"]);
@@ -75,6 +78,7 @@ class UserModel {
       'height': height,
       'weight': weight,
       "regNo": regNo,
+      "profilePic": profilePic,
       "ulcerMonitoringPlan": ulcerMonitoringPlan,
       "ulcerMonitoringSubscriptionDate": ulcerMonitoringSubscriptionDate
     };

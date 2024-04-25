@@ -76,9 +76,10 @@ class _BookingServicesListScreenState extends State<BookingServicesListScreen> {
   }
 
   Query getQuery() {
-    Query query = footServicesCollectionReference.where("uid",
-        isEqualTo: getCurrentUserId());
-    //.where("appointmentStatus", isEqualTo: widget.appointmentStatus.index);
+    Query query = footServicesBookingsCollectionReference.where("uid",
+        isEqualTo: getCurrentUserId())
+        .where("appointmentStatus", isEqualTo: widget.orderStatus.index)
+        .orderBy("timestamp");
     return query;
   }
 }

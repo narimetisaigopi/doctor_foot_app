@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/admin/create_foot_service.dart';
 import 'package:drfootapp/controllers/foot_services_controller.dart';
-import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
+import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -39,7 +39,7 @@ class _AdminViewFootServicesState extends State<AdminViewFootServices> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<FootServiceController>(builder: (homeDressingController) {
+    return GetBuilder<FootServiceController>(builder: (footServiceController) {
       return Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -100,21 +100,21 @@ class _AdminViewFootServicesState extends State<AdminViewFootServices> {
                   key: Key(dateTime),
                   query: getQuery(),
                   itemBuilder: (context, documentSnapshots, index) {
-                    FootServiceModel homeDressingModel =
+                    FootServiceModel footServiceModel =
                         FootServiceModel.fromJson(
                             documentSnapshots.data() as Map<String, dynamic>);
                     return InkWell(
                       onTap: () {
                         Get.to(() => CreateFootService(
                               isUpdate: true,
-                              homeDressingModel: homeDressingModel,
+                              homeDressingModel: footServiceModel,
                             ));
                       },
                       child: FootServiceWidget(
-                        homeDressingModel: homeDressingModel,
+                        footServiceModel: footServiceModel,
                         onPress: () {
-                          homeDressingController.addOrRemoveFromList(
-                            homeDressingModel: homeDressingModel,
+                          footServiceController.addOrRemoveFromList(
+                            footServiceModel: footServiceModel,
                           );
                         },
                       ),
@@ -130,11 +130,11 @@ class _AdminViewFootServicesState extends State<AdminViewFootServices> {
   Query getQuery() {
     print("selectedFootServiceTab $selectedFootServiceTab");
     print("selectedDressingServiceTab $selectedDressingServiceTab");
-    Query query = homeDressingServicesCollectionReference
+    Query query = footServicesCollectionReference
         .where("footService", isEqualTo: selectedFootServiceTab)
         .where("isActive", isEqualTo: true);
     if (selectedDressingServiceTab != -1) {
-      query = homeDressingServicesCollectionReference
+      query = footServicesCollectionReference
           .where("footService", isEqualTo: selectedFootServiceTab)
           .where("dressingService", isEqualTo: selectedDressingServiceTab)
           .where("isActive", isEqualTo: true);

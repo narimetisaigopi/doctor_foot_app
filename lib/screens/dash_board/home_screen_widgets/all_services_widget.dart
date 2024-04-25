@@ -2,7 +2,7 @@ import 'package:drfootapp/models/homeScreenModels/service_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_booking_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_service_home.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
-import 'package:drfootapp/screens/home_dressing_services/foot_services_screens.dart';
+import 'package:drfootapp/screens/foot_services/foot_services_screens.dart';
 import 'package:drfootapp/screens/risk_factor_home.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';

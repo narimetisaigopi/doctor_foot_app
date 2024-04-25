@@ -5,9 +5,9 @@ import 'package:drfootapp/controllers/payment_controller.dart';
 import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/models/admin_model.dart';
 import 'package:drfootapp/models/homeScreenModels/foot_service_booking_model.dart';
-import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
+import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
 import 'package:drfootapp/models/payment_model.dart';
-import 'package:drfootapp/screens/home_dressing_services/foot_service_order_successful_screen.dart';
+import 'package:drfootapp/screens/foot_services/foot_service_order_successful_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -29,7 +29,9 @@ class FootServiceController extends GetxController {
       TextEditingController();
   int? selectedFootService, selectedDressingService;
 
-  List<FootServiceModel> homeDressingServicesAddedList = [];
+  // List<FootServiceModel> homeDressingServicesAddedList = [];
+
+  FootServiceModel selectedFootServiceModel = FootServiceModel();
 
   var finalAmount = 0.0, discountAmount = 0.0;
   bool isLoading = false;
@@ -49,15 +51,14 @@ class FootServiceController extends GetxController {
 
   TextEditingController searchCouponCodeController = TextEditingController();
   void addOrRemoveFromList({
-    required FootServiceModel homeDressingModel,
+    required FootServiceModel footServiceModel,
   }) {
-    bool isExisted = isServiceAdded(homeDressingModel);
+    bool isExisted = isServiceAdded(footServiceModel);
 
     if (isExisted) {
-      homeDressingServicesAddedList
-          .removeWhere((item) => item.docId == homeDressingModel.docId);
+      selectedFootServiceModel = FootServiceModel();
     } else {
-      homeDressingServicesAddedList.add(homeDressingModel);
+      selectedFootServiceModel = footServiceModel;
     }
     calculateRemovedService();
     update();
@@ -66,9 +67,7 @@ class FootServiceController extends GetxController {
   bool isServiceAdded(
     FootServiceModel homeDressingModel,
   ) {
-    bool isExisted = homeDressingServicesAddedList
-        .where((element) => element.docId == homeDressingModel.docId)
-        .isNotEmpty;
+    bool isExisted = selectedFootServiceModel.docId == homeDressingModel.docId;
     return isExisted;
   }
 
@@ -86,10 +85,9 @@ class FootServiceController extends GetxController {
   void calculateRemovedService() {
     finalAmount = 0.0;
     discountAmount = 0.0;
-    for (var item in homeDressingServicesAddedList) {
-      finalAmount += item.offerPrice;
-      discountAmount += (item.originalPrice - item.offerPrice);
-    }
+    finalAmount += selectedFootServiceModel.offerPrice;
+    discountAmount += (selectedFootServiceModel.originalPrice -
+        selectedFootServiceModel.offerPrice);
     update();
   }
 
@@ -113,7 +111,7 @@ class FootServiceController extends GetxController {
     try {
       _updateLoading(true);
       DocumentReference documentReference =
-          homeDressingServicesCollectionReference.doc();
+          footServicesCollectionReference.doc();
       FootServiceModel homeDressingModel = FootServiceModel();
       if (pickedFile != null) {
         String path = await Get.put(FirebaseStorageController())
@@ -147,7 +145,7 @@ class FootServiceController extends GetxController {
       }
       setServiceData(homeDressingModel);
       homeDressingModel.uid = getCurrentUserId();
-      await homeDressingServicesCollectionReference
+      await footServicesCollectionReference
           .doc(homeDressingModel.docId)
           .update(homeDressingModel.toMap());
       Utility.toast("Service updated.");
@@ -162,7 +160,7 @@ class FootServiceController extends GetxController {
   Future<void> deleteService(FootServiceModel homeDressingModel) async {
     try {
       _updateLoading(true);
-      await homeDressingServicesCollectionReference
+      await footServicesCollectionReference
           .doc(homeDressingModel.docId)
           .update({"isActive": false});
       Utility.toast("Service deleted.");
@@ -198,7 +196,7 @@ class FootServiceController extends GetxController {
       int orderId = await generateOrderId();
       ServiceBookingOrderModel orderModel = ServiceBookingOrderModel();
       DocumentReference documentReference =
-          footServicesCollectionReference.doc();
+          footServicesBookingsCollectionReference.doc();
       orderModel.docId = documentReference.id;
       orderModel.amount = finalAmount;
       orderModel.orderStatus = OrderStatus.upcoming;
@@ -206,11 +204,9 @@ class FootServiceController extends GetxController {
       orderModel.discount = discountAmount;
       orderModel.orderId = orderId;
       orderModel.timestamp = Timestamp.now();
-      // adding item ids to list
-      List<String> ids =
-          homeDressingServicesAddedList.map((e) => e.docId).toList();
-      orderModel.items = [...ids];
-      orderModel.quantity = homeDressingServicesAddedList.length;
+      orderModel.quantity = 1;
+      //
+      orderModel.serviceId = selectedFootServiceModel.docId;
       // setting coupon code
       if (couponCodeController.selectedCouponCodeModel != null) {
         orderModel.couponCodeId =

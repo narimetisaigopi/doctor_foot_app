@@ -4,7 +4,8 @@ import 'package:drfootapp/utils/enums.dart';
 
 class ServiceBookingOrderModel {
   String docId;
-  List<dynamic> items;
+  // List<dynamic> items;
+  String serviceId;
   int quantity;
   double amount;
   double discount;
@@ -16,6 +17,8 @@ class ServiceBookingOrderModel {
   Timestamp? timestamp;
   Timestamp? lastUpdate;
   AddressModel? address;
+  double review;
+  double noOfReviews;
 
   ServiceBookingOrderModel(
       {this.uid = "",
@@ -29,7 +32,9 @@ class ServiceBookingOrderModel {
       this.timestamp,
       this.lastUpdate,
       this.address,
-      this.items = const [],
+      this.serviceId = "",
+      this.noOfReviews = 0,
+      this.review = 0,
       this.orderStatus = OrderStatus.none});
 
   // Create model from Firestore document snapshot
@@ -47,8 +52,10 @@ class ServiceBookingOrderModel {
             ? OrderStatus.values[data['orderStatus']]
             : OrderStatus.none, // Retrieve enum from index
         timestamp: data['timestamp'],
-        items: data["items"] ?? [],
+        serviceId: data["serviceId"] ?? "",
         lastUpdate: data['lastUpdate'],
+        review: data["review"] ?? 0,
+        noOfReviews: data["noOfReviews"] ?? 0,
         address: AddressModel.fromMap(data['address']));
   }
 
@@ -65,8 +72,11 @@ class ServiceBookingOrderModel {
       "orderStatus": orderStatus.index,
       "timestamp": timestamp,
       "lastUpdate": lastUpdate,
-      "items": items,
+      "serviceId": serviceId,
       "address": address != null ? address!.toMap() : {},
+      "review": review,
+      "noOfReviews": noOfReviews,
+      
     };
   }
 }

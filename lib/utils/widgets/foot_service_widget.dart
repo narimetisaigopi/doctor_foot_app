@@ -1,5 +1,5 @@
 import 'package:drfootapp/controllers/foot_services_controller.dart';
-import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
+import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,13 +9,13 @@ class FootServiceWidget extends StatefulWidget {
   final double height;
   final double width;
   final Function onPress;
-  final FootServiceModel homeDressingModel;
+  final FootServiceModel footServiceModel;
 
   const FootServiceWidget({
     super.key,
     this.height = 160,
     this.width = double.infinity,
-    required this.homeDressingModel,
+    required this.footServiceModel,
     required this.onPress,
   });
 
@@ -46,7 +46,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
       child: Row(
         children: [
           NetworkImageWidget(
-            path: widget.homeDressingModel.image,
+            path: widget.footServiceModel.image,
             width: MediaQuery.of(context).size.width * 0.2,
           ),
           Expanded(
@@ -59,14 +59,14 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        widget.homeDressingModel.title,
+                        widget.footServiceModel.title,
                         style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
                             color: AppColors.primary),
                       ),
                       Text(
-                        widget.homeDressingModel.duration,
+                        widget.footServiceModel.duration,
                         style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
@@ -78,7 +78,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                     child: SizedBox(
                       width: 150,
                       child: Text(
-                        widget.homeDressingModel.description,
+                        widget.footServiceModel.description,
                         maxLines: 2,
                         //  textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -93,9 +93,9 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                   ),
                   Row(
                     children: [
-                      widget.homeDressingModel.offerPrice != 0
+                      widget.footServiceModel.offerPrice != 0
                           ? Text(
-                              "₹${widget.homeDressingModel.originalPrice.round()}",
+                              "₹${widget.footServiceModel.originalPrice.round()}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
@@ -104,7 +104,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                             )
                           : const SizedBox.shrink(),
                       Text(
-                        "₹${widget.homeDressingModel.offerPrice.round()}",
+                        "₹${widget.footServiceModel.offerPrice.round()}",
                         style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16),
                       ),
@@ -123,7 +123,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                     onPressed: () => widget.onPress(),
                     child: Text(
                       homeDressingController
-                              .isServiceAdded(widget.homeDressingModel)
+                              .isServiceAdded(widget.footServiceModel)
                           ? "Remove"
                           : "Add",
                       style: const TextStyle(

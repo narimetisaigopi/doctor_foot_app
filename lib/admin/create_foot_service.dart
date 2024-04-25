@@ -1,5 +1,5 @@
 import 'package:drfootapp/controllers/foot_services_controller.dart';
-import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
+import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
