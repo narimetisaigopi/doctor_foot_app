@@ -53,4 +53,7 @@ class AppColors {
   static const videoImageBgColor = Color.fromRGBO(158, 181, 240, 0.1);
   static const arrowForwardBlackColor = Color(0xFF0E101F);
   static const ulcerMonitorBorderColor = Color(0xFFFFE7C8);
+  static const dividerColor = Color(0xFF727272);
+
+  
 }

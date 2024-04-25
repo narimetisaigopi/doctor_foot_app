@@ -201,6 +201,7 @@ class FootServiceController extends GetxController {
           footServicesCollectionReference.doc();
       orderModel.docId = documentReference.id;
       orderModel.amount = finalAmount;
+      orderModel.orderStatus = OrderStatus.upcoming;
       orderModel.uid = getCurrentUserId();
       orderModel.discount = discountAmount;
       orderModel.orderId = orderId;

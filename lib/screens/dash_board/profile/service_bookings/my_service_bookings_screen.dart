@@ -67,7 +67,7 @@ class _MyServiceBookingsScreenState extends State<MyServiceBookingsScreen>
               ),
               body: const TabBarView(children: [
                 BookingServicesListScreen(
-                  orderStatus: OrderStatus.pending,
+                  orderStatus: OrderStatus.upcoming,
                   title: Strings.upcoming,
                 ),
                 BookingServicesListScreen(

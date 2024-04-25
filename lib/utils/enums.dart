@@ -10,7 +10,7 @@ enum AppointmentStatus {
 enum PaymentServiceType { none, ulcerMonitoring, homeService }
 
 // home dressing service
-enum OrderStatus { none, pending, completed, cancelled, refunded }
+enum OrderStatus { none, upcoming, completed, cancelled }
 
 enum FootServices { 
   nailTrimmingService,
