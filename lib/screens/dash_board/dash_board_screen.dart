@@ -57,6 +57,12 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     const UlcerMonitoringScreen(),
     const ProfileScreen(),
   ];
+  onBackPressed(didPop) {
+    if (didPop) {
+      return;
+    }
+    pages[selectedIndex];
+  }
 
   @override
   void initState() {
@@ -67,101 +73,107 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.secondary,
-      body: pages[selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.grey,
-        currentIndex: selectedIndex,
-        onTap: (value) {
-          setState(() {
-            selectedIndex = value;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: selectedIndex == 0
-                ? Container(
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: AppColors.primary,
-                          width: 3.5,
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        onBackPressed(didPop);
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.secondary,
+        body: pages[selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: AppColors.primary,
+          unselectedItemColor: AppColors.grey,
+          currentIndex: selectedIndex,
+          onTap: (value) {
+            setState(() {
+              selectedIndex = value;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: selectedIndex == 0
+                  ? Container(
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            color: AppColors.primary,
+                            width: 3.5,
+                          ),
                         ),
                       ),
-                    ),
-                    child: const Icon(Icons.home))
-                : const Icon(Icons.home),
-            label: Strings.homeText.tr,
-          ),
-          BottomNavigationBarItem(
-            icon: selectedIndex == 1
-                ? Container(
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: AppColors.primary,
-                          width: 3.5,
+                      child: const Icon(Icons.home))
+                  : const Icon(Icons.home),
+              label: Strings.homeText.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: selectedIndex == 1
+                  ? Container(
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            color: AppColors.primary,
+                            width: 3.5,
+                          ),
                         ),
                       ),
-                    ),
-                    child: const Icon(Icons.food_bank))
-                : const Icon(Icons.food_bank),
-            label: Strings.dietChartText.tr,
-          ),
-          BottomNavigationBarItem(
-            icon: selectedIndex == 2
-                ? Container(
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: AppColors.primary,
-                          width: 3.5,
+                      child: const Icon(Icons.food_bank))
+                  : const Icon(Icons.food_bank),
+              label: Strings.dietChartText.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: selectedIndex == 2
+                  ? Container(
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            color: AppColors.primary,
+                            width: 3.5,
+                          ),
                         ),
                       ),
-                    ),
-                    child: const Icon(Icons.video_call))
-                : const Icon(Icons.video_call),
-            label: Strings.videosText.tr,
-          ),
-          BottomNavigationBarItem(
-            icon: selectedIndex == 3
-                ? Container(
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: AppColors.primary,
-                          width: 3.5,
+                      child: const Icon(Icons.video_call))
+                  : const Icon(Icons.video_call),
+              label: Strings.videosText.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: selectedIndex == 3
+                  ? Container(
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            color: AppColors.primary,
+                            width: 3.5,
+                          ),
                         ),
                       ),
-                    ),
-                    child: const Icon(Icons.schedule))
-                : const Icon(Icons.schedule),
-            label: Strings.ulcerMonitorText.tr,
-          ),
-          BottomNavigationBarItem(
-            icon: selectedIndex == 4
-                ? Container(
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: AppColors.primary,
-                          width: 3.5,
+                      child: const Icon(Icons.schedule))
+                  : const Icon(Icons.schedule),
+              label: Strings.ulcerMonitorText.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: selectedIndex == 4
+                  ? Container(
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            color: AppColors.primary,
+                            width: 3.5,
+                          ),
                         ),
                       ),
-                    ),
-                    child: const Icon(Icons.person))
-                : const Icon(Icons.person),
-            label: Strings.profile.tr,
-          ),
-        ],
+                      child: const Icon(Icons.person))
+                  : const Icon(Icons.person),
+              label: Strings.profile.tr,
+            ),
+          ],
+        ),
       ),
     );
   }

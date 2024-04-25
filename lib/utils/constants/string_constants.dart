@@ -227,26 +227,66 @@ class Strings {
   static const String doctorQ1 = "1.	What is Foot doctor? ";
   static const String doctorQ1Ans =
       "Foot doctor is a comprehensive app specifically designed for diabetic patients, offering features such as monitoring diabetic foot ulcers, patient education, and appointment booking. ";
-  static const String doctorQ2 = "2. What are the key features of Foot doctor? ";
-  static const String doctorQ2Ans ="Foot doctor offers customized care plans tailored to each patient's needs, continuous monitoring of foot ulcers, real-time updates on healing progress, and notifications for any significant changes. ";
-static const String doctorQ3 = "3. How does Foot doctor benefit users?";
-static const String doctorQ3Ans = "Foot doctor saves time by allowing patients to schedule appointments through the app, assesses the risk of developing foot ulcers, keeps a close eye on foot ulcers, and fosters constant communication and support between patients and healthcare providers. ";
-static const String doctorQ4 = "4. Who is the intended audience for Foot doctor?";
-static const String doctorQ4Ans = " Foot doctor is specifically designed for diabetic patients at risk of developing foot ulcers, providing them with the tools, information, and support needed to manage their condition effectively. ";
-static const String doctorQ5 = "5. What is the user interface and experience like in Foot doctor?";
-static const String doctorQ5Ans = "Foot doctor boasts a user-friendly interface and a seamless user experience, making it easy for patients to navigate and access the app's various features.";
-static const String doctorQ6 = "6. What sets Foot doctor apart from its competitors? ";
-static const String doctorQ6Ans = "Foot doctor's approach to healthcare combines online booking, patient education, continuous ulcer monitoring, and personalized care, offering a holistic approach to diabetic foot ulcer management.";
-static const String doctorQ7 =  "7. How can I download Foot doctor? ";
-static const String doctorQ7Ans =  "You can download Foot doctor from the app store on your mobile device.";
-static const String doctorQ8 = "8. Is Foot doctor available for all types of mobile devices? "; 
-static const String doctorQ8Ans = "Yes, Foot doctor is available for both iOS and Android devices. "; 
-static const String doctorQ9 = "9. How can I get support for using Foot doctor? ";
-static const String doctorQ9Ans = "For any support or technical assistance with Foot doctor, you can contact our customer support team through the app or visit our website for further assistance. ";
-static const String doctorQ10 ="10. How can I trust Foot doctor to help manage my diabetic foot ulcers?";
-static const String doctorQ10Ans ="Foot doctor is committed to providing personalized care, continuous monitoring, and the support needed for diabetic foot ulcer management, making it your partner in leading a healthy life.";
+  static const String doctorQ2 =
+      "2. What are the key features of Foot doctor? ";
+  static const String doctorQ2Ans =
+      "Foot doctor offers customized care plans tailored to each patient's needs, continuous monitoring of foot ulcers, real-time updates on healing progress, and notifications for any significant changes. ";
+  static const String doctorQ3 = "3. How does Foot doctor benefit users?";
+  static const String doctorQ3Ans =
+      "Foot doctor saves time by allowing patients to schedule appointments through the app, assesses the risk of developing foot ulcers, keeps a close eye on foot ulcers, and fosters constant communication and support between patients and healthcare providers. ";
+  static const String doctorQ4 =
+      "4. Who is the intended audience for Foot doctor?";
+  static const String doctorQ4Ans =
+      " Foot doctor is specifically designed for diabetic patients at risk of developing foot ulcers, providing them with the tools, information, and support needed to manage their condition effectively. ";
+  static const String doctorQ5 =
+      "5. What is the user interface and experience like in Foot doctor?";
+  static const String doctorQ5Ans =
+      "Foot doctor boasts a user-friendly interface and a seamless user experience, making it easy for patients to navigate and access the app's various features.";
+  static const String doctorQ6 =
+      "6. What sets Foot doctor apart from its competitors? ";
+  static const String doctorQ6Ans =
+      "Foot doctor's approach to healthcare combines online booking, patient education, continuous ulcer monitoring, and personalized care, offering a holistic approach to diabetic foot ulcer management.";
+  static const String doctorQ7 = "7. How can I download Foot doctor? ";
+  static const String doctorQ7Ans =
+      "You can download Foot doctor from the app store on your mobile device.";
+  static const String doctorQ8 =
+      "8. Is Foot doctor available for all types of mobile devices? ";
+  static const String doctorQ8Ans =
+      "Yes, Foot doctor is available for both iOS and Android devices. ";
+  static const String doctorQ9 =
+      "9. How can I get support for using Foot doctor? ";
+  static const String doctorQ9Ans =
+      "For any support or technical assistance with Foot doctor, you can contact our customer support team through the app or visit our website for further assistance. ";
+  static const String doctorQ10 =
+      "10. How can I trust Foot doctor to help manage my diabetic foot ulcers?";
+  static const String doctorQ10Ans =
+      "Foot doctor is committed to providing personalized care, continuous monitoring, and the support needed for diabetic foot ulcer management, making it your partner in leading a healthy life.";
 
 //foot services Strings
+  static const String dressingServicesText = "Dressing Services";
+  static const String nailTrimmingText = "Nail Trimming";
+  static const String footCleansingText = "Foot Cleansing";
+  static const String footwearText = "Footwear";
+  static const String smallText = "Small";
+  static const String moderateText = "Moderate";
+  static const String largeText = "Large";
+  static const String hugeText = "Huge";
+  static const String skinNailText = "Skin & Nail";
+  static const String toeDeformitiesText = "Toe Deformities";
+  static const String footDeformitiesText = "Foot Deformities";
+  static const String footPainText = "Foot Pain";
+  static const String sportsInjuriesText = "Sports Injuries";
+  static const String footAnkleArthritisText = "Foot & Ankle Arthritis";
+  static const String ingrownToeNailText = "Ingrown Toe Nail";
+  static const String cornsText = "Corns";
+  static const String plantarWartsText = "Plantar Warts";
+  static const String toeNailFungusText = "Toe Nail Fungus";
+  static const String folliculitisText = "Folliculitis";
+  static const String hammertoeText = "Hammer toe";
+  static const String clawToeText = "Claw Toe";
+  static const String flatFeetText = "Flat Feet";
+  static const String bunionsText = "Bunions";
+  static const String charcotFootText = "Charcot Foot";
  static const String dressingServicesText = "Dressing Services";
  static const String nailTrimmingText = "Nail Trimming";
  static const String footCleansingText = "Foot Cleansing";
