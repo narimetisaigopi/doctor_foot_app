@@ -8,6 +8,7 @@ import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -1003,10 +1004,72 @@ showAlertDialog({
   );
 }
 
-// convertToIndianFormat(dynamic amount) {
-//   return NumberFormat.currency(
-//     symbol: '₹ ',
-//     locale: "HI",
-//     decimalDigits: 3,
-//   ).format(amount);
-// }
+void showConfirmationBottomSheet({
+  required BuildContext context,
+  String title = "'Are you sure you want to perform this action?'",
+  String confirmButtonText = "Yes",
+  String cancelButtonText = "No",
+  Function()? onConfirm,
+  Function()? onCancel,
+}) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              title,
+              style: const TextStyle(fontSize: 18.0),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Expanded(
+                  flex: 4,
+                  child: CustomButton(
+                    onPress: onConfirm,
+                    buttonName: confirmButtonText,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  flex: 4,
+                  child: CustomButton(
+                    onPress: () {
+                      Get.back();
+                    },
+                    buttonName: cancelButtonText,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+String formatDate(DateTime inputDate) {
+  String formattedDate = DateFormat('EEEE/d/MMM/yyyy').format(inputDate);
+  return formattedDate;
+}
+
+String formatTime(DateTime dateTime) {
+  String period = DateFormat('a').format(dateTime); // 'AM' or 'PM'
+  String formattedTime = DateFormat('h:mm').format(dateTime); // '3:00'
+  // Determine the period of the day
+  String periodOfDay = 'Morning';
+  if (dateTime.hour >= 12 && dateTime.hour < 17) {
+    periodOfDay = 'Afternoon';
+  } else if (dateTime.hour >= 17) {
+    periodOfDay = 'Evening';
+  }
+  return '$periodOfDay - $formattedTime $period';
+}

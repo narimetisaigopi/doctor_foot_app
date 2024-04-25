@@ -130,7 +130,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     : CustomButton(
                         buttonName:
                             widget.isEdit ? "Update Address" : "Add Address",
-                        tColor: Colors.white,
+                        textColor: Colors.white,
                         onPress: () async {
                           if (_addressesController
                               .streetNoController.text.isEmpty) {

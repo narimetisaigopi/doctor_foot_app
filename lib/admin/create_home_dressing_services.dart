@@ -1,15 +1,13 @@
-import 'dart:io';
 import 'package:drfootapp/controllers/home_dressing_controller.dart';
 import 'package:drfootapp/models/home_dressing/home_dressing_model.dart';
-import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_drop_down_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateHomeDressingServices extends StatefulWidget {
   final bool isUpdate;
@@ -29,6 +27,7 @@ class _CreateHomeDressingServicesState
     extends State<CreateHomeDressingServices> {
   final HomeDressingController _homeDressingController =
       Get.put(HomeDressingController());
+  String? _imagePath;
 
   @override
   void initState() {
@@ -54,166 +53,164 @@ class _CreateHomeDressingServicesState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Add new service"),
-      ),
-      body: SingleChildScrollView(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-              width: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                BoxShadow(blurRadius: 10, color: Colors.grey.shade300)
-              ]),
-              child: Column(
-                children: [
-                  widget.isUpdate
-                      ? Align(
-                          alignment: Alignment.topRight,
-                          child: TextButton.icon(
-                            onPressed: () {
-                              Utility.showAlertDialogger(
-                                  content: "Do you want to Delete Service",
-                                  context: context,
-                                  yes: () async {
-                                    Get.back();
-                                    _homeDressingController.deleteService(
-                                        widget.homeDressingModel);
-                                  },
-                                  no: () {
-                                    Navigator.pop(context);
-                                  });
-                            },
-                            icon: const Icon(
-                              Icons.delete_forever,
-                              color: Colors.red,
+    return GetBuilder<HomeDressingController>(
+        builder: (homeDressingController) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.isUpdate ? "Update service" : "Add new service"),
+        ),
+        body: SingleChildScrollView(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+                width: MediaQuery.of(context).size.width / 2,
+                decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                  BoxShadow(blurRadius: 10, color: Colors.grey.shade300)
+                ]),
+                child: Column(
+                  children: [
+                    widget.isUpdate
+                        ? Align(
+                            alignment: Alignment.topRight,
+                            child: TextButton.icon(
+                              onPressed: () {
+                                Utility.showAlertDialogger(
+                                    content: "Do you want to Delete Service",
+                                    context: context,
+                                    yes: () async {
+                                      Get.back();
+                                      _homeDressingController.deleteService(
+                                          widget.homeDressingModel);
+                                    },
+                                    no: () {
+                                      Navigator.pop(context);
+                                    });
+                              },
+                              icon: const Icon(
+                                Icons.delete_forever,
+                                color: Colors.red,
+                              ),
+                              label: const Text(
+                                "Delete Service",
+                                style: TextStyle(color: Colors.red),
+                              ),
                             ),
-                            label: const Text(
-                              "Delete Service",
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  InkWell(
-                    onTap: () => pickFile(),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
+                          )
+                        : const SizedBox.shrink(),
+                    InkWell(
+                      onTap: pickFile,
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                        ),
+                        child: _imagePath != null
+                            ? Image.network(_imagePath!)
+                            : const Icon(Icons.image),
                       ),
-                      child: _homeDressingController.pickedFile != null
-                          ? FutureBuilder(
-                              future: Future.value(_homeDressingController
-                                  .pickedFile!
-                                  .readAsBytes()),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData && snapshot.data != null) {
-                                  return Image.memory(snapshot.data!);
-                                }
-                                return Text("NA");
-                              })
-                          : const Icon(Icons.image),
                     ),
-                  ),
-                  TextButton(
-                      onPressed: pickFile, child: const Text("Pick image")),
-                  CustomDropDownWidget(
-                      hint: "Foot service",
-                      initialValue:
-                          _homeDressingController.selectedFootService != null
-                              ? enumToString(FootServices.values[
-                                  _homeDressingController.selectedFootService!])
-                              : null,
-                      menuItems: FootServices.values
-                          .map((e) => DropdownMenuItem(
-                              value: enumToString(e.toString()),
-                              child: Text(enumToString(e.toString()))))
-                          .toList(),
-                      onChanged: (value) {
-                        _homeDressingController.selectedFootService =
-                            stringToEnum(value!, FootServices.values)!.index;
-                        setState(() {});
-                      },
-                      errorMessage: "Select foot service"),
-                  const SizedBox(height: 20),
-                  if (_homeDressingController.selectedFootService == 1)
+                    TextButton(
+                        onPressed: pickFile, child: const Text("Pick image")),
                     CustomDropDownWidget(
-                        hint: "Dressing service",
-                        menuItems: DressingServices.values
+                        hint: "Foot service",
+                        initialValue:
+                            _homeDressingController.selectedFootService != null
+                                ? enumToString(FootServices.values[
+                                    _homeDressingController
+                                        .selectedFootService!])
+                                : null,
+                        menuItems: FootServices.values
                             .map((e) => DropdownMenuItem(
                                 value: enumToString(e.toString()),
                                 child: Text(enumToString(e.toString()))))
                             .toList(),
                         onChanged: (value) {
-                          _homeDressingController.selectedDressingService =
-                              stringToEnum(value!, DressingServices.values)!
-                                  .index;
+                          _homeDressingController.selectedFootService =
+                              stringToEnum(value!, FootServices.values)!.index;
+                          setState(() {});
                         },
-                        errorMessage: "Select dressing service"),
-                  MyTextField(
-                    hint: "Large",
-                    label: "Title",
-                    textEditingController:
-                        _homeDressingController.serviceTitleController,
-                  ),
-                  MyTextField(
-                    hint: "1 Day",
-                    label: "Days",
-                    textEditingController:
-                        _homeDressingController.serviceDurationsController,
-                  ),
-                  MyTextField(
-                    hint: "If your wound is < 500cm , Then it is recommended.",
-                    label: "Description",
-                    textEditingController:
-                        _homeDressingController.serviceDescriptionController,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 5,
-                        child: MyTextField(
-                          hint: "₹3000",
-                          label: "Actutal price",
-                          textInputType: TextInputType.number,
-                          textEditingController: _homeDressingController
-                              .serviceOriginalPriceController,
+                        errorMessage: "Select foot service"),
+                    const SizedBox(height: 20),
+                    if (_homeDressingController.selectedFootService == 1)
+                      CustomDropDownWidget(
+                          hint: "Dressing service",
+                          menuItems: DressingServices.values
+                              .map((e) => DropdownMenuItem(
+                                  value: enumToString(e.toString()),
+                                  child: Text(enumToString(e.toString()))))
+                              .toList(),
+                          onChanged: (value) {
+                            _homeDressingController.selectedDressingService =
+                                stringToEnum(value!, DressingServices.values)!
+                                    .index;
+                          },
+                          errorMessage: "Select dressing service"),
+                    MyTextField(
+                      hint: "Large",
+                      label: "Title",
+                      textEditingController:
+                          _homeDressingController.serviceTitleController,
+                    ),
+                    MyTextField(
+                      hint: "1 Day",
+                      label: "Days",
+                      textEditingController:
+                          _homeDressingController.serviceDurationsController,
+                    ),
+                    MyTextField(
+                      hint:
+                          "If your wound is < 500cm , Then it is recommended.",
+                      label: "Description",
+                      textEditingController:
+                          _homeDressingController.serviceDescriptionController,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 5,
+                          child: MyTextField(
+                            hint: "₹3000",
+                            label: "Actutal price",
+                            textInputType: TextInputType.number,
+                            textEditingController: _homeDressingController
+                                .serviceOriginalPriceController,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        flex: 5,
-                        child: MyTextField(
-                          hint: "₹2550",
-                          label: "Service price",
-                          textInputType: TextInputType.number,
-                          textEditingController: _homeDressingController
-                              .serviceOfferPriceController,
+                        const SizedBox(width: 10),
+                        Expanded(
+                          flex: 5,
+                          child: MyTextField(
+                            hint: "₹2550",
+                            label: "Service price",
+                            textInputType: TextInputType.number,
+                            textEditingController: _homeDressingController
+                                .serviceOfferPriceController,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  _homeDressingController.isLoading
-                      ? const CircularProgressIndicator()
-                      : CustomButton(
-                          buttonName: widget.isUpdate
-                              ? "Update Service"
-                              : "Add Service",
-                          onPress: validate,
-                        ),
-                ],
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    _homeDressingController.isLoading
+                        ? const CircularProgressIndicator()
+                        : CustomButton(
+                            buttonName: widget.isUpdate
+                                ? "Update Service"
+                                : "Add Service",
+                            onPress: validate,
+                          ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+      );
+    }
     );
   }
 
@@ -249,17 +246,13 @@ class _CreateHomeDressingServicesState
     }
   }
 
+  
+
   Future<void> pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-        allowedExtensions: allowedImageExtensions, type: FileType.custom);
-    if (result != null) {
-      logger("pickFile done");
-      setState(() {
-        _homeDressingController.pickedFile =
-            File.fromRawPath(result.files.single.bytes!);
-      });
-    } else {
-      logger("not pickFile");
-    }
+    ImagePicker().pickImage(source: ImageSource.gallery).then((onValue) {
+      _homeDressingController.pickedFile = onValue;
+      _imagePath = onValue!.path;
+      setState(() {});
+    });
   }
 }

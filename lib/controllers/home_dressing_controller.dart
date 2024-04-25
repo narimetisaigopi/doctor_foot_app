@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/controllers/coupon_code_controller.dart';
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
@@ -16,6 +14,7 @@ import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class HomeDressingController extends GetxController {
@@ -35,7 +34,7 @@ class HomeDressingController extends GetxController {
   var finalAmount = 0.0, discountAmount = 0.0, payableAmount = 0.0;
   bool isLoading = false;
 
-  File? pickedFile;
+  XFile? pickedFile;
 
   AddressModel selectedAddressModel = AddressModel();
 
@@ -139,11 +138,13 @@ class HomeDressingController extends GetxController {
 
   Future<void> updateService(HomeDressingModel homeDressingModel) async {
     try {
+      FirebaseStorageController firebaseStorageController =
+          Get.put(FirebaseStorageController());
       _updateLoading(true);
       if (pickedFile != null) {
-        String path = await Get.put(FirebaseStorageController())
-            .uploadImageToFirebase(
-                directoryName: storageHomeService, uploadFile: pickedFile!);
+        String path = await firebaseStorageController.uploadImageToFirebase(
+            directoryName: storageHomeService, uploadFile: pickedFile!);
+        firebaseStorageController.deleteImage(homeDressingModel.image);
         homeDressingModel.image = path;
       }
       setServiceData(homeDressingModel);

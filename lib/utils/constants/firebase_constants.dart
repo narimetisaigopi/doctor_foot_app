@@ -26,6 +26,9 @@ CollectionReference ordersCollectionReference =
 CollectionReference adminCollectionReference =
     FirebaseFirestore.instance.collection("admin");
 
+CollectionReference appointmentsCollectionReference =
+    FirebaseFirestore.instance.collection("appointments");
+
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";
 
