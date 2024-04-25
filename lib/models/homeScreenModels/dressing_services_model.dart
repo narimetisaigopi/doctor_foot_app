@@ -10,14 +10,14 @@ class DressingServicesModel {
 
 List<DressingServicesModel> dressingServicesList = [
   DressingServicesModel(
-      image: AssetsConstants.home_dressing_cover_img, serviceNames: Strings.smallText),
+      image: AssetsConstants.wounded_foot, serviceNames: Strings.smallText),
   DressingServicesModel(
-      image: AssetsConstants.well_kept_nails,
+      image: AssetsConstants.wounded_foot,
       serviceNames: Strings.moderateText),
   DressingServicesModel(
       image: AssetsConstants.wounded_foot,
       serviceNames: Strings.largeText),
   DressingServicesModel(
-      image: AssetsConstants.diabetic_foot_wear,
+      image: AssetsConstants.wounded_foot,
       serviceNames: Strings.hugeText),
 ];

@@ -18,6 +18,6 @@ List<FootServicesModel> footServicesList = [
       image: AssetsConstants.wounded_foot,
       serviceNames: Strings.footCleansingText),
   FootServicesModel(
-      image: AssetsConstants.diabetic_foot_wear,
+      image: AssetsConstants.foot_service,
       serviceNames: Strings.footwearText),
 ];
