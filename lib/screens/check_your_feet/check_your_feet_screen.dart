@@ -2,6 +2,7 @@ import 'package:drfootapp/models/check_your_feet_model.dart';
 import 'package:drfootapp/screens/check_your_feet/ankle_arthritis_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/check_your_feet_widget.dart';
 import 'package:drfootapp/screens/check_your_feet/foot_deformities_screen.dart';
+import 'package:drfootapp/screens/check_your_feet/foot_painn_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/skin_nail_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/sports_injuries_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/toe_deformities_screen.dart';
@@ -87,6 +88,11 @@ class _CheckYourFeetScreenState extends State<CheckYourFeetScreen> {
                             Utility.myBottomSheet(context,
                                 heightFactor: 0.4,
                                 widget: const FootDeformitiesScreen());
+                            break;
+                              case 3:
+                            Utility.myBottomSheet(context,
+                                heightFactor: 0.5,
+                                widget: const FootPainnScreen());
                             break;
                           case 4:
                             Get.to(() => const SportsInjuriesScreen());

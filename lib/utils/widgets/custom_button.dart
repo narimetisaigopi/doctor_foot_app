@@ -13,6 +13,7 @@ class CustomButton extends StatefulWidget {
   final bool isBoxShadow;
   final Color textColor;
   final bool enablePrefixIcon;
+  final bool border;
   const CustomButton(
       {super.key,
       this.buttonName = "",
@@ -23,7 +24,8 @@ class CustomButton extends StatefulWidget {
       this.borderRadius = 6.0,
       this.enablePrefixIcon = false,
       this.prefixIcon = const Icon(Icons.abc),
-      this.isBoxShadow = true});
+      this.isBoxShadow = true,
+      this.border = true});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -50,7 +52,9 @@ class _CustomButtonState extends State<CustomButton> {
                   )
                 : const BoxShadow()
           ],
-          border: Border.all(color: AppColors.primary, width: 1),
+          border: widget.border
+              ? Border.all(color: AppColors.primary, width: 1)
+              : null,
           borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
         child: Center(
