@@ -34,6 +34,7 @@ class AppColors {
   static const Color bggrey = Color(0xFFF4F4F4);
   static const Color calenderGrey = Color(0xFFE6E5E5);
   static const Color calenderTextGrey = Color(0xFFAAAAAA);
+  static const Color searchTextGrey = Color(0xFFBCBCBC);
 
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);
@@ -42,6 +43,7 @@ class AppColors {
   static const Color textBackThickColor = Color(0xFF101010);
   static const Color textblackbook = Color(0xFF3F3D3D);
   static const Color textred = Color(0xFFFF1313);
+  static const Color pastTextColor = Color(0xFF707070);
 
   static const Color greyTextColor = Color(0xFFA0A0A0);
   static const Color greyBorderColor = Color(0xFFE4E4E4);

@@ -1,4 +1,6 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class NotificationWidget extends StatefulWidget {
@@ -32,13 +34,16 @@ class _CustomnotificationState extends State<NotificationWidget> {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Expanded(
+            const Expanded(
               flex: 2,
-              child: Align(
+              child:  Align(
                 alignment: Alignment.center,
-                child: Container(
+                child: SizedBox(
                   height: 45,
-                  width: double.infinity,
+                  width: 45,
+                  child: SvgImageWidget(path: 
+                  AssetsConstants.HbA1C,
+                  ),
                 ),
               ),
             ),
