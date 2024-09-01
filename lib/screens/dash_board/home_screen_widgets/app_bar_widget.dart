@@ -18,77 +18,81 @@ class _AppBarWidgetState extends State<AppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LocationController>(builder: (locationController) {
-      return Padding(
-        padding: const EdgeInsets.only(left: 16, top: 78, right: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                const Icon(
-                  Icons.location_on,
-                  size: 24,
-                ),
-                const SizedBox(
-                  width: 05,
-                ),
-                SizedBox(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            locationController.currentPlacemark != null
-                                ? "${locationController.currentPlacemark!.locality}"
-                                : "Not available",
-                            style: const TextStyle(
-                              color: AppColors.primary,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
+      return Container(
+         color: AppColors.moderateTextColor, 
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, top: 78, right: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                    size: 24,
+                    color: AppColors.bgColor,
+                  ),
+                  const SizedBox(
+                    width: 05,
+                  ),
+                  SizedBox(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              locationController.currentPlacemark != null
+                                  ? "${locationController.currentPlacemark!.locality}"
+                                  : "Not available",
+                              style: const TextStyle(
+                                color: AppColors.bgColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          const Icon(Icons.expand_more)
-                        ],
-                      ),
-                      Text(
-                        locationController.currentPlacemark != null
-                            ? "${locationController.currentPlacemark!.street}"
-                            : "Not available",
-                      ).tr()
-                    ],
+                            const Icon(Icons.expand_more,color: AppColors.bgColor,)
+                          ],
+                        ),
+                        // Text(
+                        //   locationController.currentPlacemark != null
+                        //       ? "${locationController.currentPlacemark!.street}"
+                        //       : "Not available",
+                        // ).tr()
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.search,
-                    size: 32,
+                ],
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.search,
+                      size: 32,
+                    ),
+                    color: AppColors.bgColor,
+                    onPressed: () {
+                      Get.to(() => const SearchScreen());
+                    },
                   ),
-                  color: AppColors.searchButtonColor,
-                  onPressed: () {
-                    Get.to(() => const SearchScreen());
-                  },
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.notifications,
-                    size: 32,
+                  const SizedBox(
+                    width: 5,
                   ),
-                  color: AppColors.notificationsButtonColor,
-                  onPressed: () {
-                    Get.to(() => const NotificationsScreen());
-                  },
-                )
-              ],
-            )
-          ],
+                  IconButton(
+                    icon: const Icon(
+                      Icons.notifications,
+                      size: 32,
+                    ),
+                    color: AppColors.bgColor,
+                    onPressed: () {
+                      Get.to(() => const NotificationsScreen());
+                    },
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       );
     });

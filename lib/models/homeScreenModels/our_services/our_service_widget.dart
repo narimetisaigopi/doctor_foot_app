@@ -3,16 +3,16 @@ import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ServiceWidget extends StatefulWidget {
+class OurServiceWidget extends StatefulWidget {
   final String image;
   final String name;
-  const ServiceWidget({super.key, required this.image, required this.name});
+  const OurServiceWidget({super.key, required this.image, required this.name});
 
   @override
-  State<ServiceWidget> createState() => _ServiceWidgetState();
+  State<OurServiceWidget> createState() => _OurServiceWidget();
 }
 
-class _ServiceWidgetState extends State<ServiceWidget> {
+class _OurServiceWidget extends State<OurServiceWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(

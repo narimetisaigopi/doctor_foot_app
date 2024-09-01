@@ -4,6 +4,7 @@ import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeImage extends StatelessWidget {
   const HomeImage({super.key});
@@ -30,6 +31,23 @@ class HomeImage extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   color: AppColors.secondary),
             ).tr(),
+          ),
+        ),
+        Positioned(
+          bottom: 10,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: SmoothPageIndicator(
+              controller: PageController(),
+              count: 5,
+              effect: WormEffect(
+                // dotHeight: 9.0,
+                // dotWidth: 9.0,
+                activeDotColor: AppColors. secondary, 
+                dotColor: AppColors.grey, 
+              ),
+            ),
           ),
         ),
       ],

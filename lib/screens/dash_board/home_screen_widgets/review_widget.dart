@@ -28,7 +28,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SvgImageWidget(
                 path: widget.image,
@@ -42,6 +42,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                   Text(
                     widget.name,
                     style: const TextStyle(
+                    color: AppColors.secondary,
                         fontSize: 18, fontWeight: FontWeight.w700),
                   ).tr(),
                   RatingBar.builder(
@@ -54,9 +55,18 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                     itemBuilder: (context, index) => const Icon(
                       Icons.star,
                       color: AppColors.ratingBarColor,
-                    ), onRatingUpdate: (double value) {  },)
+                    ), onRatingUpdate: (double value) {  },
+                    )
                   ],
                 ),
+                SizedBox(width: 80,),
+                Text(
+                widget.dateTime,
+                style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.grey),
+                              ).tr(),
               ],
             ),
             const SizedBox(
@@ -68,22 +78,25 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                 widget.discr,
                 style: const TextStyle(
                     fontSize: 14,
+
                     fontWeight: FontWeight.w400,
-                    color: AppColors.textBlackColors),
+                    color: AppColors.secondary,
+                  //  color: AppColors.textBlackColors
+                    ),
               ).tr(),
             ),
             const SizedBox(
               height: 06,
             ),
-            Center(
-              child: Text(
-                widget.dateTime,
-                style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.grey),
-              ).tr(),
-            ),
+            // Center(
+            //   child: Text(
+            //     widget.dateTime,
+            //     style: const TextStyle(
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.w400,
+            //         color: AppColors.grey),
+            //   ).tr(),
+            // ),
           ],
         ),
       );

@@ -72,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hint: Strings.dateOfBirthTextFieldHint,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(),
-                        FormBuilderValidators.dateString(),
+                       // FormBuilderValidators.dateString(),
                       ]),
                       textEditingController:
                           _authenticationController.dateOfBirthController,

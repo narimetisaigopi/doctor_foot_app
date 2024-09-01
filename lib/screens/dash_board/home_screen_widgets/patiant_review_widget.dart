@@ -1,5 +1,6 @@
 import 'package:drfootapp/models/homeScreenModels/patient_review_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/review_widget.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PatiantReviewWidget extends StatefulWidget {
@@ -23,7 +24,8 @@ class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
         height: 236,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+         //color: Colors.white,
+          color: AppColors.primary,
           borderRadius: BorderRadius.circular(16),
         ),
         child: ListView.builder(

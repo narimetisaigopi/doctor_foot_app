@@ -117,7 +117,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               color: Colors.grey.shade500,
                             )),
                         TextSpan(
-                            text: Strings.changeNumber,
+                            text: Strings.editNumber,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => Navigator.pop(context),
                             style: const TextStyle(

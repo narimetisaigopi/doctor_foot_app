@@ -1,3 +1,5 @@
+import 'package:drfootapp/models/homeScreenModels/our_services/our_service_widget.dart';
+import 'package:drfootapp/models/homeScreenModels/our_services/our_services_model.dart';
 import 'package:drfootapp/models/homeScreenModels/service_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_booking_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_service_home.dart';
@@ -11,20 +13,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AllServicesWidget extends StatefulWidget {
-  const AllServicesWidget({super.key});
+class OurService extends StatefulWidget {
+  const OurService({super.key});
 
   @override
-  State<AllServicesWidget> createState() => _AllServicesWidgetState();
+  State<OurService> createState() => _OurServiceState();
 }
 
-class _AllServicesWidgetState extends State<AllServicesWidget> {
+class _OurServiceState extends State<OurService> {
   @override
   Widget build(BuildContext context) {
     return Container(
       //margin: const EdgeInsets.only(left: 16, right: 16),
-      //height: 515,
-      height: 300,
+      height: 1010,
+     // height: double.infinity,
       width: double.infinity,
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.secondary),
@@ -42,7 +44,7 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "ULCER ASSESMENT",
+              "OUR SERVICES",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
             ).tr(),
             const SizedBox(
@@ -59,10 +61,10 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
                   ),
-                 // itemCount: servicesList.length,
-                 itemCount: 2,
+                  itemCount: OurservicesList.length,
+                 //itemCount: 2,
                   itemBuilder: (context, index) {
-                    final servicesItem = servicesList[index];
+                    final OurservicesItem = OurservicesList[index];
                     return InkWell(
                       onTap: () {
                         switch (index) {
@@ -72,26 +74,26 @@ class _AllServicesWidgetState extends State<AllServicesWidget> {
                                 )
                                 );
                             break;
-                          case 1:
-                            Utility.myBottomSheet(context,
-                                heightFactor: 0.7,
-                                widget: const RiskFactorHome());
-                            break;
-                            // case 2:
-                            // Get.to(() => const AppointmentBookingScreen());
-                            //  break;
-                            //   case 3:
-                            // Utility.myBottomSheet(context,
-                            //     heightFactor: 0.7,
-                            //     widget: const FootServiceHome());
-                            // break;
-                          default:
-                            break;
+                          // case 1:
+                          //   Utility.myBottomSheet(context,
+                          //       heightFactor: 0.7,
+                          //       widget: const RiskFactorHome());
+                          //   break;
+                          //   case 2:
+                          //   Get.to(() => const AppointmentBookingScreen());
+                          //    break;
+                          //     case 3:
+                          //   Utility.myBottomSheet(context,
+                          //       heightFactor: 0.7,
+                          //       widget: const FootServiceHome());
+                          //   break;
+                          // default:
+                          //   break;
                         }
                       },
-                      child: ServiceWidget(
-                          image: servicesItem.image,
-                          name: servicesItem.serviceNames),
+                      child: OurServiceWidget(
+                          image: OurservicesItem.image,
+                          name: OurservicesItem.serviceNames),
                     );
                   }),
             )

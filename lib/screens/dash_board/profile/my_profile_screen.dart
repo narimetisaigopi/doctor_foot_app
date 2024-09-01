@@ -210,7 +210,7 @@ final _formKey = GlobalKey<FormBuilderState>();
                     ),
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
-                      FormBuilderValidators.dateString(),
+                    //  FormBuilderValidators.dateString(),
                     ]),
                   ),
                   isSize,

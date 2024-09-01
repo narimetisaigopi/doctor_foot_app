@@ -27,7 +27,7 @@ class AssetsConstants {
   static const String dr_consult = "$_introImagesBasePath/dr_consult.svg";
   static const String dr_patiant_checkup =
       "$_introImagesBasePath/dr_patiant_checkup.svg";
-
+//navigation images
 // home_screen images
   //static const String intro_1 = "$_introImagesBasePath/intro_1.svg";
   static const String diabetes_image =

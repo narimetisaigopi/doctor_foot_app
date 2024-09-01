@@ -5,7 +5,7 @@ class Strings {
   static const String introText =
       "     Lorem Ipsum is simply \ndummy text of the printing\n  and typesetting industry.";
   static const String rectImageText =
-      "Of the estimated 537 million people worldwide who have \n diabetes, 19-34% will develop an ulcer in their life time";
+      "    Of the estimated 537 million people \nworldwide who have diabetes, 19-34% will\n develop an ulcer in their life time";
   static const String serviceText = "Services";
   static const String ulcerMonitorText = "Ulcer Monitor";
   static const String ulcerMonitoringText = "Ulcer Monitoring";
@@ -69,8 +69,8 @@ class Strings {
 
   /// Sign-In Screen Strings /////
 
-  static const String changeNumber = ' Change';
-
+ // static const String changeNumber = ' Change';
+  static const String editNumber = ' Edit';
   static const String alreadyHaveAccount = 'Already have a account ! ';
 
   /// Sign-Up Screen Strings /////
@@ -138,8 +138,9 @@ class Strings {
       "If your wound is < 1000cm , Then it is recommended.";
 
 // home screen strings
-  static const String footUlcerText = ' FOOT \nULCER';
-  static const String checkYourRiskText = '   CHECK \nYOUR RISK';
+  // static const String footUlcerText = ' FOOT \nULCER';
+  static const String haveulcerText= ' HAVE ULCER';
+  static const String riskcheckerText = 'RISK CHECKER';
   static const String checkupScheduleText = "  CHECK UP\n SCHEDULE";
   static const String footServiceText = "   FOOT\n SERVICES";
   static const String kpbColonyText = 'KPB Colony';
@@ -147,14 +148,17 @@ class Strings {
   static const String reviewverName = 'Naveena';
   static const String venkataNagarText = 'Venkat Nagar Colony,...';
   static const String postedDateText = 'Posted on 03 march';
-
+  static const String consultyourdoctorText = '     CONSULT \nYOUR DOCTOR';
+  static const String footscreeningservicesText = " FOOT SCREENING\n       SERVICES";
+  static const String dressingAtText = " DRESSING AT \n     HOME";
+  static const String footWearTest = " FOOT \n WEAR";
   static const String couponTitle1 = "10% OFF ";
   static const String couponTitle2 = "20% OFF ";
   static const String couponTitle3 = "30% OFF ";
   static const String couponDescription1 = "Save ₹ 100 with this code";
   static const String couponDescription2 = "Save ₹ 200 with this code";
   static const String couponDescription3 = "Save ₹ 300 with this code";
-
+  
   static const String couponCommonDescription =
       "This offer is personalized for you.";
 
@@ -264,9 +268,9 @@ class Strings {
 
 //foot services Strings
   static const String dressingServicesText = "Dressing Services";
-  static const String nailTrimmingText = "Nail Trimming";
-  static const String footCleansingText = "Foot Cleansing";
-  static const String footwearText = "Footwear";
+  static const String nailTrimmingText = "     NAIL \nTRIMMING";
+  static const String footCleansingText = "   FOOT \nCLEANSING";
+  static const String footwearText = "FOOR \nWEAR";
   static const String smallText = "Small";
   static const String moderateText = "Moderate";
   static const String largeText = "Large";
@@ -287,7 +291,8 @@ class Strings {
   static const String flatFeetText = "Flat Feet";
   static const String bunionsText = "Bunions";
   static const String charcotFootText = "Charcot Foot";
-
+  static const String onlineConsultationText = "        ONLINE\n CONSULTATION";
+  static const String footProductsText = "    FOOT \nPRODUCTS";
   static const String completed = "Completed";
   static const String upcoming = "UpComing";
   static const String cancelled = "Cancelled";

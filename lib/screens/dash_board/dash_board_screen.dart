@@ -10,15 +10,17 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 Widget footulcerWidget = const ServiceWidget(
   image: AssetsConstants.foot,
-  name: Strings.footUlcerText,
+  // name: Strings.footUlcerText,
+   name: Strings.haveulcerText,
 );
 Widget checkYourRiskWidget = const ServiceWidget(
   image: AssetsConstants.speedometer,
-  name: Strings.checkYourRiskText,
+  name: Strings.riskcheckerText,
 );
 Widget checkUpSchedulemeter = const ServiceWidget(
   image: AssetsConstants.checkup_shedule,
@@ -54,7 +56,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     const HomeScreen(),
     const DietChartScreen(),
     const VideosScreen(),
-    const UlcerMonitoringScreen(),
+  //  const UlcerMonitoringScreen(),
     const ProfileScreen(),
   ];
   onBackPressed(didPop) {
@@ -104,9 +106,20 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           ),
                         ),
                       ),
+                    // child:SvgPicture.asset('', color: AppColors.primary, ),
                       child: const Icon(Icons.home))
                   : const Icon(Icons.home),
-              label: Strings.homeText.tr,
+             label: Strings.homeText.tr,
+              // child: SvgPicture.asset(
+              //           'assets/icons/home_icon.svg',
+              //           color: AppColors.primary,
+              //         ),
+              //       )
+                  // : SvgPicture.asset(
+                  //     'assets/icons/home_icon.svg',
+                  //     color: AppColors.grey,
+                  //   ),
+            //  label: Strings.homeText.tr,
             ),
             BottomNavigationBarItem(
               icon: selectedIndex == 1
@@ -123,6 +136,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       child: const Icon(Icons.food_bank))
                   : const Icon(Icons.food_bank),
               label: Strings.dietChartText.tr,
+              //  child: SvgPicture.asset(
+              //           'assets/icons/diet_chart_icon.svg',
+              //           color: AppColors.primary,
+              //         ),
+              //       )
+              //     : SvgPicture.asset(
+              //         'assets/icons/diet_chart_icon.svg',
+              //         color: AppColors.grey,
+              //       ),
+              // label: Strings.dietChartText.tr,
             ),
             BottomNavigationBarItem(
               icon: selectedIndex == 2
@@ -139,23 +162,33 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       child: const Icon(Icons.video_call))
                   : const Icon(Icons.video_call),
               label: Strings.videosText.tr,
+              //  child: SvgPicture.asset(
+              //           'assets/icons/videos_icon.svg',
+              //           color: AppColors.primary,
+              //         ),
+              //       )
+              //     : SvgPicture.asset(
+              //         'assets/icons/videos_icon.svg',
+              //         color: AppColors.grey,
+              //       ),
+              // label: Strings.videosText.tr,
             ),
-            BottomNavigationBarItem(
-              icon: selectedIndex == 3
-                  ? Container(
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: AppColors.primary,
-                            width: 3.5,
-                          ),
-                        ),
-                      ),
-                      child: const Icon(Icons.schedule))
-                  : const Icon(Icons.schedule),
-              label: Strings.ulcerMonitorText.tr,
-            ),
+            // BottomNavigationBarItem(
+            //   icon: selectedIndex == 3
+            //       ? Container(
+            //           height: 40,
+            //           decoration: const BoxDecoration(
+            //             border: Border(
+            //               top: BorderSide(
+            //                 color: AppColors.primary,
+            //                 width: 3.5,
+            //               ),
+            //             ),
+            //           ),
+            //           child: const Icon(Icons.schedule))
+            //       : const Icon(Icons.schedule),
+            //   label: Strings.ulcerMonitorText.tr,
+            // ),
             BottomNavigationBarItem(
               icon: selectedIndex == 4
                   ? Container(
@@ -171,6 +204,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       child: const Icon(Icons.person))
                   : const Icon(Icons.person),
               label: Strings.profile.tr,
+              // child: SvgPicture.asset(
+              //           'assets/icons/navigation.svg',
+              //           color: AppColors.primary,
+              //         ),
+              //       )
+              //     : SvgPicture.asset(
+              //         'assets/icons/profile_icon.svg',
+              //         color: AppColors.primary,
+              //       ),
+              // label: Strings.profile.tr,
             ),
           ],
         ),
