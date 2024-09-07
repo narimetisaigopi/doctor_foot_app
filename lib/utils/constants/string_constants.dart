@@ -138,15 +138,20 @@ class Strings {
       "If your wound is < 1000cm , Then it is recommended.";
 
 // home screen strings
-  static const String footUlcerText = ' FOOT \nULCER';
-  static const String checkYourRiskText = '   CHECK \nYOUR RISK';
-  static const String checkupScheduleText = "  CHECK UP\n SCHEDULE";
-  static const String footServiceText = "   FOOT\n SERVICES";
+  static const String consultYourDoctor = 'CONSULT YOUR DOCTOR';
+  static const String onlineConsultation = 'ONLINE CONSULTATION';
+  static const String footScreeningServices = 'FOOT SCREENING SERVICES';
+  static const String dressingAtHome = 'DRESSING AT HOME';
+  static const String footCleaning = 'FOOT CLEANSING';
+  static const String nailTrimming = 'NAIL TRIMMING';
+  static const String footWear = 'FOOT WEAR';
+  static const String footProducts = 'FOOT PRODUCTS';
+
   static const String kpbColonyText = 'KPB Colony';
   static const String patientReviewsText = 'Patient Reviews';
   static const String reviewverName = 'Naveena';
   static const String venkataNagarText = 'Venkat Nagar Colony,...';
-  static const String postedDateText = 'Posted on 03 march';
+  static const String postedDateText = '03 march';
 
   static const String couponTitle1 = "10% OFF ";
   static const String couponTitle2 = "20% OFF ";
@@ -291,5 +296,8 @@ class Strings {
   static const String completed = "Completed";
   static const String upcoming = "UpComing";
   static const String cancelled = "Cancelled";
-
+  // health records
+  static const String images = "Images";
+  static const String labReports = "LAB\nREPORTS";
+  static const String hospitalDocuments = " HOSPITAL\nDOCUMENTS";
 }

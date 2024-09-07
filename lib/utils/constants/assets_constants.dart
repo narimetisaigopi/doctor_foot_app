@@ -29,7 +29,35 @@ class AssetsConstants {
       "$_introImagesBasePath/dr_patiant_checkup.svg";
 
 // home_screen images
-  //static const String intro_1 = "$_introImagesBasePath/intro_1.svg";
+  static const String homePath = "assets/images/home";
+  // ulser assesment
+  static const String have_ulcer = "$homePath/have_ulcer.png";
+  static const String risk_checker = "$homePath/risk_checker.png";
+  // our services
+  static const String consult_doctor = "$homePath/consult_doctor.png";
+  static const String online_consultation = "$homePath/online_consultation.png";
+  static const String foot_screening_services =
+      "$homePath/foot_screening_services.png";
+  static const String dressing_at_home = "$homePath/dressing_at_home.png";
+  static const String foot_cleansing = "$homePath/foot_cleansing.png";
+  static const String nail_trimming = "$homePath/nail_trimming.png";
+  static const String foot_wear = "$homePath/foot_wear.png";
+  static const String foot_products = "$homePath/foot_products.png";
+  static const String book_premium_plan_image =
+      "$homePath/book_premium_plan_image.png";
+// check your feet
+  static const String skin_and_nail = "$homePath/skin_and_nail.png";
+  static const String toe_deformties = "$homePath/toe_deformties.png";
+  static const String foot_pain = "$homePath/foot_pain.png";
+  static const String foot_deformities = "$homePath/foot_deformities.png";
+  static const String sports_injuries = "$homePath/sports_injuries.png";
+  static const String foot_and_anckle = "$homePath/foot_and_anckle.png";
+  // health records
+  static const String images = "$homePath/images.png";
+  static const String lab_reports = "$homePath/lab_reports.png";
+  static const String hopspatil_documents = "$homePath/hopspatil_documents.png";
+  static const String articles = "$homePath/articles.png";
+
   static const String diabetes_image =
       "$_introImagesBasePath/diabetes_image.svg";
 
@@ -173,6 +201,7 @@ class AssetsConstants {
   static const String loader = "$_svgImages/loader.svg";
 
   // notification images
-  static const String _notificationBasePath = "assets/images/notification_images";
+  static const String _notificationBasePath =
+      "assets/images/notification_images";
   static const String alaram_sign = "$_notificationBasePath/alaram_sign.svg";
 }

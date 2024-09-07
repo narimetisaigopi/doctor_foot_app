@@ -19,5 +19,17 @@ List<PatientReviewModel> patientReviewsList = [
     patientName: "reviewverName",
     discription: "userReviewDicriptionText",
     date: "postedDateText",
+  ),
+  PatientReviewModel(
+    patientImage: AssetsConstants.user_image,
+    patientName: "reviewverName",
+    discription: "userReviewDicriptionText",
+    date: "postedDateText",
+  ),
+  PatientReviewModel(
+    patientImage: AssetsConstants.user_image,
+    patientName: "reviewverName",
+    discription: "userReviewDicriptionText",
+    date: "postedDateText",
   )
 ];

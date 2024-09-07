@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color primary = Color(0xFF0035BC);
+  static const Color primaryBlue = Color(0xFF0387D6);
   static const Color secondary = Color(0xFFF1F0F5);
   static const Color secondaryButton = Color(0xFFDAE4FD);
   static const Color grey = Color(0xFFB7B7B7);
@@ -18,6 +19,9 @@ class AppColors {
   static const Color contactPageBtnColor = Color(0xFFD6E2FF);
 
   static const Color moderateTextColor = Color(0xFF4D74FF);
+  // home screen
+  static const Color haveUlcerBg = Color(0xFFFFEEED);
+  static const Color riskCheckBg = Color(0xFFE7F6FF);
 
 
   // white varient colors
@@ -57,5 +61,6 @@ class AppColors {
   static const ulcerMonitorBorderColor = Color(0xFFFFE7C8);
   static const dividerColor = Color(0xFF727272);
 
-  
+  // border colors
+  static const abBorderColor = Color(0xFFE5EDF2);
 }

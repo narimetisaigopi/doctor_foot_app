@@ -42,19 +42,19 @@ class _CustomButtonState extends State<CustomButton> {
         width: widget.width,
         decoration: BoxDecoration(
           color: widget.bgColor,
-          boxShadow: [
-            widget.isBoxShadow
-                ? BoxShadow(
-                    color: Colors.grey.shade400,
-                    blurRadius: 8,
-                    blurStyle: BlurStyle.outer,
-                    offset: const Offset(1, 2),
-                  )
-                : const BoxShadow()
-          ],
-          border: widget.border
-              ? Border.all(color: AppColors.primary, width: 1)
-              : null,
+          // boxShadow: [
+          //   widget.isBoxShadow
+          //       ? BoxShadow(
+          //           color: Colors.grey.shade400,
+          //           blurRadius: 8,
+          //           blurStyle: BlurStyle.outer,
+          //           offset: const Offset(1, 2),
+          //         )
+          //       : const BoxShadow()
+          // ],
+          // border: widget.border
+          //     ? Border.all(color: AppColors.primary, width: 1)
+          //     : null,
           borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
         child: Center(

@@ -12,28 +12,48 @@ import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget footulcerWidget = const ServiceWidget(
+Widget consultYourDoctor = const ServiceWidget(
   image: AssetsConstants.foot,
-  name: Strings.footUlcerText,
+  name: Strings.consultYourDoctor,
 );
-Widget checkYourRiskWidget = const ServiceWidget(
+Widget onlineConsultation = const ServiceWidget(
   image: AssetsConstants.speedometer,
-  name: Strings.checkYourRiskText,
+  name: Strings.onlineConsultation,
 );
-Widget checkUpSchedulemeter = const ServiceWidget(
+Widget footScreeningServices = const ServiceWidget(
   image: AssetsConstants.checkup_shedule,
-  name: Strings.checkupScheduleText,
+  name: Strings.footScreeningServices,
 );
-Widget footServiceWidget = const ServiceWidget(
+Widget dressingAtHome = const ServiceWidget(
   image: AssetsConstants.foot_service,
-  name: Strings.footServiceText,
+  name: Strings.dressingAtHome,
+);
+Widget footCleaning = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.footCleaning,
+);
+Widget nailTrimming = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.nailTrimming,
+);
+Widget footWear = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.footWear,
+);
+Widget footProducts = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.footProducts,
 );
 
 List<Widget> homeServicesList = [
-  footulcerWidget,
-  checkYourRiskWidget,
-  checkUpSchedulemeter,
-  footServiceWidget,
+  consultYourDoctor,
+  onlineConsultation,
+  footScreeningServices,
+  dressingAtHome,
+  footCleaning,
+  nailTrimming,
+  footWear,
+  footProducts,
 ];
 
 class DashBoardScreen extends StatefulWidget {

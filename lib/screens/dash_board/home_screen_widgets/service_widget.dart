@@ -1,5 +1,4 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -25,28 +24,38 @@ class _ServiceWidgetState extends State<ServiceWidget> {
       ),
       child: Column(
         children: [
-          Align(
-            alignment: Alignment.center,
-            child: SvgImageWidget(
-              path: widget.image,
-              height: 148,
-              width: double.infinity,
+          Expanded(
+            flex: 7,
+            child: Align(
+              alignment: Alignment.center,
+              child: Image.asset(
+                widget.image,
+                height: double.infinity,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(
-                color: AppColors.primary,
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(16))),
-            child: Center(
-              child: Text(
-                widget.name,
-                style: const TextStyle(
+          Expanded(
+            flex: 3,
+            child: Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: AppColors.whiteBgColor,
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(16),
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  widget.name,
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.secondary),
-              ).tr(),
+                    color: AppColors.black2,
+                  ),
+                ).tr(),
+              ),
             ),
           ),
         ],

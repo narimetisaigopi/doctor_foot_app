@@ -1,6 +1,6 @@
 import 'package:drfootapp/models/foot_deformities_model.dart';
 import 'package:drfootapp/screens/check_your_feet/foot_pain_achilles_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/foot_pain_metarsalgia-screen.dart';
+import 'package:drfootapp/screens/check_your_feet/foot_pain_metarsalgia_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/foot_pain_plantarfascitis_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/select_region_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';

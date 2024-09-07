@@ -1,9 +1,7 @@
 import 'package:drfootapp/models/videosModels/videos_model.dart';
 import 'package:drfootapp/screens/dash_board/videosScreenWidgets/play_video_screen.dart';
 import 'package:drfootapp/screens/dash_board/videosScreenWidgets/videos_main_widget.dart';
-import 'package:drfootapp/screens/discharge_screens/popup1_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -39,11 +37,7 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
                     final videosImageItem = videosImageList[index];
                     return VideosMainWidget(
                       image: videosImageItem.image,
-                      onPress: (){
-                          Utility.myBottomSheet(context,
-                                heightFactor: 0.5,
-                                widget: const PopUp1Widget());
-                      },
+                      onPress: () {  },
                     );
                   }),
             ),
@@ -64,7 +58,7 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
     );
   }
 
- void playVideo() {
-  Get.to(const PlayVideoScreen());
+  void playVideo() {
+    Get.to(const PlayVideoScreen());
   }
 }

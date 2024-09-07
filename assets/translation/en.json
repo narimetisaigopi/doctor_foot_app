@@ -51,7 +51,7 @@
       "serviceText": "Services",
       "kpbColonyText" : "KPB Colony",
       "venkataNagarText": "Venkat Nagar Colony,...",
-      "footUlcerText" :"  FOOT\n ULCER",
+      "consultYourDoctor" :"CONSULT YOUR DOCTOR",
       "checkYourRiskText" :"  CHECK\n YOUR RISK",
       "checkupScheduleText" : "  CHECK UP\n SCHEDULE",
       "footServiceText" : "   FOOT\n SERVICES",
@@ -59,7 +59,7 @@
       "reviewverName" : "Naveena",
       "userReviewDicriptionText" :
       "Lorem Ipsum is simply dummy text of the printing  and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "postedDateText" : "Posted on 03 march",
+      "postedDateText" : "03 march",
       "homeText" : "Home",
       "dietChartText" : "Diet Chart",
       "videosText" : "Vidoes",

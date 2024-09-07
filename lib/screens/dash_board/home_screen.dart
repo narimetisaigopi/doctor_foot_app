@@ -1,13 +1,16 @@
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/home_image.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/all_services_widget.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
+import 'package:drfootapp/screens/home_widgets/book_premium_plan_widget.dart';
+import 'package:drfootapp/screens/home_widgets/check_your_feet_list.dart';
+import 'package:drfootapp/screens/home_widgets/health_records_list.dart';
+import 'package:drfootapp/screens/home_widgets/our_services_widget.dart';
+import 'package:drfootapp/screens/home_widgets/ulcer_assesment_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,45 +20,195 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.secondary,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const AppBarWidget(),
-              const SizedBox(
-                height: 15,
+      backgroundColor: AppColors.whiteBgColor,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const AppBarWidget(),
+            const HomeImage(),
+            const SizedBox(
+              height: 12,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: const Text(
+                "ULCER ASSESMENT",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textBackThickColor,
+                ),
+              ).tr(),
+            ),
+            const SizedBox(height: 12),
+            const UlcerAssesmentWidget(),
+            const SizedBox(height: 12),
+            const Divider(
+              color: AppColors.riskCheckBg,
+              thickness: 5,
+            ),
+            const OurServicesWidget(),
+            const SizedBox(height: 20),
+            const Divider(
+              color: AppColors.riskCheckBg,
+              thickness: 10,
+            ),
+            const SizedBox(height: 20),
+            const BookPremiumPlanWidget(),
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: const Text(
+                "patientReviewsText",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ).tr(),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            // PatiantReviewWidget(
+            //   onPress: () {},
+            // ),
+            const SizedBox(height: 12),
+            const Divider(
+              color: AppColors.riskCheckBg,
+              thickness: 10,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: Text(
+                "Check your feet",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.black2,
+                ),
               ),
-              const HomeImage(),
-              const SizedBox(
-                height: 12,
+            ),
+            const SizedBox(height: 12),
+            const CheckYourFeetList(),
+            const Divider(
+              color: AppColors.riskCheckBg,
+              thickness: 10,
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: const Text(
+                "HEALTH RECORDS",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                color: AppColors.textBackThickColor,
+                ),
+              ).tr(),
+            ),
+
+            const HealthRecordsList(),
+            const SizedBox(
+              height: 12,
+            ),
+            const Divider(
+              color: AppColors.riskCheckBg,
+              thickness: 5,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: const Text(
+                "Articles & Blogs",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textBackThickColor,
+                ),
+              ).tr(),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: Container(
+                height: 358,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: AppColors.abBorderColor,
+                    width: 2,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 8, right: 8, top: 6, bottom: 6),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 6,
+                        child: Image.asset(
+                          AssetsConstants.articles,
+                          width: 244,
+                          height: 215,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          children: [
+                            const Text(
+                              "VEINS OF VULNERABILITY",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.textBackThickColor,
+                              ),
+                            ).tr(),
+                            const SizedBox(height: 8),
+                            const ReadMoreText(
+                              'Lorem Ipsum is simply dummy\ntext of the printing and type\nsetting industry. Lorem Ipsum is\nsimply dummy ',
+                              trimMode: TrimMode.Line,
+                              trimLines: 3,
+                              colorClickableText: AppColors.primaryBlue,
+                              trimCollapsedText: 'view more...',
+                              trimExpandedText: 'view less...',
+                              moreStyle: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.primaryBlue,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              const AllServicesWidget(),
-              const SizedBox(
-                height: 12,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: const Text(
-                  "patientReviewsText",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                ).tr(),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              PatiantReviewWidget(
-                onPress: () {},
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
-        ));
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Image.asset(
+              'assets/images/home/dr_foot.png',
+              width: 156,
+              height: 56,
+              fit: BoxFit.cover,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

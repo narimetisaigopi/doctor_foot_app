@@ -372,6 +372,7 @@ class Utility {
     );
   }
 
+  
   // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
   // static navigateBasedOnRole(BuildContext context,
