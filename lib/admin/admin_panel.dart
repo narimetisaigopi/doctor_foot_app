@@ -4,6 +4,7 @@ import 'package:drfootapp/admin/admin_view_foot_services.dart';
 import 'package:drfootapp/admin/coupon_codes/coupon_codes_Screen.dart';
 import 'package:drfootapp/admin/total_orders.dart';
 import 'package:drfootapp/admin/users.dart';
+import 'package:drfootapp/admin/video_posting_screen.dart';
 import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -115,6 +116,8 @@ class _AdminPanelState extends State<AdminPanel> {
       return const TotalOrders();
     } else if (_selectedIndex == 4) {
       return const DietChartScreen();
+    } else if (_selectedIndex == 5) {
+      return const VideoPostingScreen();
     } else {
       return Container();
     }

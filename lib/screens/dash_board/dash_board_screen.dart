@@ -4,7 +4,6 @@ import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_s
 import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:drfootapp/screens/dash_board/profile_screen.dart';
-import 'package:drfootapp/screens/dash_board/ulcer_monitoring_screen.dart';
 import 'package:drfootapp/screens/dash_board/videos_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -12,28 +11,48 @@ import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget footulcerWidget = const ServiceWidget(
+Widget consultYourDoctor = const ServiceWidget(
   image: AssetsConstants.foot,
-  name: Strings.footUlcerText,
+  name: Strings.consultYourDoctor,
 );
-Widget checkYourRiskWidget = const ServiceWidget(
+Widget onlineConsultation = const ServiceWidget(
   image: AssetsConstants.speedometer,
-  name: Strings.checkYourRiskText,
+  name: Strings.onlineConsultation,
 );
-Widget checkUpSchedulemeter = const ServiceWidget(
+Widget footScreeningServices = const ServiceWidget(
   image: AssetsConstants.checkup_shedule,
-  name: Strings.checkupScheduleText,
+  name: Strings.footScreeningServices,
 );
-Widget footServiceWidget = const ServiceWidget(
+Widget dressingAtHome = const ServiceWidget(
   image: AssetsConstants.foot_service,
-  name: Strings.footServiceText,
+  name: Strings.dressingAtHome,
+);
+Widget footCleaning = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.footCleaning,
+);
+Widget nailTrimming = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.nailTrimming,
+);
+Widget footWear = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.footWear,
+);
+Widget footProducts = const ServiceWidget(
+  image: AssetsConstants.foot_service,
+  name: Strings.footProducts,
 );
 
 List<Widget> homeServicesList = [
-  footulcerWidget,
-  checkYourRiskWidget,
-  checkUpSchedulemeter,
-  footServiceWidget,
+  consultYourDoctor,
+  onlineConsultation,
+  footScreeningServices,
+  dressingAtHome,
+  footCleaning,
+  nailTrimming,
+  footWear,
+  footProducts,
 ];
 
 class DashBoardScreen extends StatefulWidget {
@@ -54,7 +73,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     const HomeScreen(),
     const DietChartScreen(),
     const VideosScreen(),
-    const UlcerMonitoringScreen(),
     const ProfileScreen(),
   ];
   onBackPressed(didPop) {
@@ -139,22 +157,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       child: const Icon(Icons.video_call))
                   : const Icon(Icons.video_call),
               label: Strings.videosText.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: selectedIndex == 3
-                  ? Container(
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: AppColors.primary,
-                            width: 3.5,
-                          ),
-                        ),
-                      ),
-                      child: const Icon(Icons.schedule))
-                  : const Icon(Icons.schedule),
-              label: Strings.ulcerMonitorText.tr,
             ),
             BottomNavigationBarItem(
               icon: selectedIndex == 4

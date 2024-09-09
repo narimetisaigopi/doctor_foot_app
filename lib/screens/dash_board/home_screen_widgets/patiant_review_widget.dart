@@ -13,31 +13,23 @@ class PatiantReviewWidget extends StatefulWidget {
 class _PatiantReviewWidgetState extends State<PatiantReviewWidget> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onPress,
-      child: Container(
-        margin: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-        ),
-        height: 236,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: patientReviewsList.length,
-            itemBuilder: (context, index) {
-              final patientReviewsItem = patientReviewsList[index];
-              return ReviewWidget(
-                  image: patientReviewsItem.patientImage,
-                  name: patientReviewsItem.patientName,
-                  discr: patientReviewsItem.discription,
-                  dateTime: patientReviewsItem.date);
-            }),
-      ),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.3,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 3,
+          itemBuilder: (context, index) {
+            final patientReviewsItem = patientReviewsList[index];
+            return InkWell(
+              onTap: widget.onPress,
+              child: ReviewWidget(
+                image: patientReviewsItem.patientImage,
+                name: patientReviewsItem.patientName,
+                discr: patientReviewsItem.discription,
+                dateTime: patientReviewsItem.date,
+              ),
+            );
+          }),
     );
   }
 }

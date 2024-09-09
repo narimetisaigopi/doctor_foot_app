@@ -10,18 +10,20 @@ class CheckYourFeetModel {
 
 List<CheckYourFeetModel> checkYourFeetList = [
   CheckYourFeetModel(
-      image: AssetsConstants.home_dressing_cover_img,
-      serviceNames: Strings.skinNailText),
+      image: AssetsConstants.skin_and_nail, serviceNames: Strings.skinNailText),
   CheckYourFeetModel(
-      image: AssetsConstants.well_kept_nails,
+      image: AssetsConstants.toe_deformties,
       serviceNames: Strings.toeDeformitiesText),
   CheckYourFeetModel(
-      image: AssetsConstants.wounded_foot,
+      image: AssetsConstants.foot_pain,
       serviceNames: Strings.footDeformitiesText),
   CheckYourFeetModel(
-      image: AssetsConstants.foot_service, serviceNames: Strings.footPainText),
+      image: AssetsConstants.foot_deformities,
+      serviceNames: Strings.footPainText),
   CheckYourFeetModel(
-      image: AssetsConstants.foot_service, serviceNames: Strings.sportsInjuriesText),
+      image: AssetsConstants.sports_injuries,
+      serviceNames: Strings.sportsInjuriesText),
   CheckYourFeetModel(
-      image: AssetsConstants.foot_service, serviceNames: Strings.footAnkleArthritisText),
+      image: AssetsConstants.foot_and_anckle,
+      serviceNames: Strings.footAnkleArthritisText),
 ];

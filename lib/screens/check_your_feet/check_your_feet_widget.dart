@@ -1,5 +1,5 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:flutter/material.dart';
 
 class CheckYourFeetWidget extends StatefulWidget {
@@ -32,9 +32,9 @@ class _CheckYourFeetWidgetState extends State<CheckYourFeetWidget> {
               ),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: SvgImageWidget(
-              height: double.infinity,
+            child: CustomImage(
               path: widget.image,
+              height: double.infinity,
               width: double.infinity,
             ),
           ),
@@ -45,9 +45,10 @@ class _CheckYourFeetWidgetState extends State<CheckYourFeetWidget> {
             child: Text(
               widget.title,
               style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.primary),
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: AppColors.black2,
+              ),
             ),
           ),
         )

@@ -23,40 +23,62 @@ class ReviewWidget extends StatefulWidget {
 class _ReviewWidgetState extends State<ReviewWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgImageWidget(
-                path: widget.image,
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.name,
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w700),
-                  ).tr(),
-                  RatingBar.builder(
-                    itemSize: 12,
-                    initialRating: 5,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemBuilder: (context, index) => const Icon(
-                      Icons.star,
-                      color: AppColors.ratingBarColor,
-                    ), onRatingUpdate: (double value) {  },)
+    return Container(
+      width: MediaQuery.of(context).size.width*0.8,
+      margin: const EdgeInsets.only(left: 16, right: 16),
+      decoration: BoxDecoration(
+        color: AppColors.primaryBlue,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 6),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgImageWidget(
+                      path: widget.image,
+                    ),
+                    const SizedBox(width: 5),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.name,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.whiteBgColor,
+                          ),
+                        ).tr(),
+                        RatingBar.builder(
+                          itemSize: 12,
+                          initialRating: 5,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemBuilder: (context, index) => const Icon(
+                            Icons.star,
+                            color: AppColors.ratingBarColor,
+                          ),
+                          onRatingUpdate: (double value) {},
+                        )
+                      ],
+                    ),
                   ],
                 ),
+                Text(
+                  widget.dateTime,
+                  style: const TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.whiteBgColor,
+                  ),
+                ).tr(),
               ],
             ),
             const SizedBox(
@@ -67,26 +89,15 @@ class _ReviewWidgetState extends State<ReviewWidget> {
               child: Text(
                 widget.discr,
                 style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.textBlackColors),
-              ).tr(),
-            ),
-            const SizedBox(
-              height: 06,
-            ),
-            Center(
-              child: Text(
-                widget.dateTime,
-                style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.grey),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.whiteBgColor,
+                ),
               ).tr(),
             ),
           ],
         ),
-      );
-    
+      ),
+    );
   }
 }

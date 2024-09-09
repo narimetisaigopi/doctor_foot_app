@@ -72,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hint: Strings.dateOfBirthTextFieldHint,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(),
-                        FormBuilderValidators.dateString(),
+                        FormBuilderValidators.date(),
                       ]),
                       textEditingController:
                           _authenticationController.dateOfBirthController,
@@ -175,7 +175,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         : CustomButton(
                             buttonName: "signUpText",
                             // onPres(s: () => validate(),
-                            onPress: (){
+                            onPress: () {
                               Get.to(const DashBoardScreen());
                             },
                           ),
@@ -220,9 +220,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (status) {
       if (selectedContainerIndex == -1) {
         Utility.toast("Please select gender");
-      } else {
-        _authenticationController.signUpFirebaseValidation(context);
-      }
+      } else {}
     }
   }
 }

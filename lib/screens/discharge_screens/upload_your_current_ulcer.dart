@@ -76,7 +76,9 @@ class _UploadYourCurrentUlcerState extends State<UploadYourCurrentUlcer> {
                 children: [
                   CustomButton(
                     buttonName: Strings.uploadYourCurrentUlcerText,
-                    onPress: pickImage,
+                    onPress: () {
+                      pickImage();
+                    },
                   )
                 ],
               ),

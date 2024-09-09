@@ -5,10 +5,10 @@ import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,28 +29,30 @@ class _SplashScreenState extends State<SplashScreen> {
       if (kIsWeb) {
         Get.offAll(() => const AdminPanel());
       } else {
-if (FirebaseAuth.instance.currentUser != null) {
-        Get.offAll(() => const DashBoardScreen());
-      } else {
-        Get.offAll(() => const IntroScreen());
+        if (FirebaseAuth.instance.currentUser != null) {
+          Get.offAll(() => const DashBoardScreen());
+        } else {
+          Get.offAll(() => const IntroScreen());
+        }
       }
-      }
-      
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.secondary,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0),
           child: SizedBox(
             height: 65,
             width: double.infinity,
-            child: SvgPicture.asset(AssetsConstants.logo),
+            child: CustomImage(
+              path: AssetsConstants.logo,
+              fit: BoxFit.contain,
+            ),
           ),
         ),
       ),
