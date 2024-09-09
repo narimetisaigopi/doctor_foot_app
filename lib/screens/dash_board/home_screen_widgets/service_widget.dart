@@ -1,4 +1,5 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -26,14 +27,10 @@ class _ServiceWidgetState extends State<ServiceWidget> {
         children: [
           Expanded(
             flex: 7,
-            child: Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                widget.image,
-                height: double.infinity,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+            child: CustomImage(
+              path: widget.image,
+              height: double.infinity,
+              width: double.infinity,
             ),
           ),
           Expanded(

@@ -16,7 +16,7 @@ class AssetsConstants {
   static const String doctor = "$_introImagesBasePath/doctor.svg";
   static const String medicalKit = "$_introImagesBasePath/medicalKit.svg";
   static const String arrow_back = "$_introImagesBasePath/arrow_back.svg";
-  static const String logo = "$_introImagesBasePath/logo.svg";
+  static const String logo = "assets/images/home/dr_foot.png";
   static const String rect_home = "$_introImagesBasePath/rect_home_image.svg";
   static const String footUlcer = "$_introImagesBasePath/foot_ulcer.svg";
 

@@ -4,7 +4,6 @@ import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_s
 import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:drfootapp/screens/dash_board/profile_screen.dart';
-import 'package:drfootapp/screens/dash_board/ulcer_monitoring_screen.dart';
 import 'package:drfootapp/screens/dash_board/videos_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -74,7 +73,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     const HomeScreen(),
     const DietChartScreen(),
     const VideosScreen(),
-    const UlcerMonitoringScreen(),
     const ProfileScreen(),
   ];
   onBackPressed(didPop) {
@@ -159,22 +157,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       child: const Icon(Icons.video_call))
                   : const Icon(Icons.video_call),
               label: Strings.videosText.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: selectedIndex == 3
-                  ? Container(
-                      height: 40,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: AppColors.primary,
-                            width: 3.5,
-                          ),
-                        ),
-                      ),
-                      child: const Icon(Icons.schedule))
-                  : const Icon(Icons.schedule),
-              label: Strings.ulcerMonitorText.tr,
             ),
             BottomNavigationBarItem(
               icon: selectedIndex == 4

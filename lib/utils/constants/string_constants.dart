@@ -300,4 +300,8 @@ class Strings {
   static const String images = "Images";
   static const String labReports = "LAB\nREPORTS";
   static const String hospitalDocuments = " HOSPITAL\nDOCUMENTS";
+  // articles & blog
+  static const String articleTitle = "VEINS OF VULNERABILITY";
+  static const String articleDiscription =
+      'Lorem Ipsum is simply dummy\ntext of the printing and type\nsetting industry. Lorem Ipsum is\nsimply dummy ';
 }

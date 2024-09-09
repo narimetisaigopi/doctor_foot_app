@@ -14,29 +14,28 @@ class _HealthRecordsListState extends State<HealthRecordsList> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.24,
-      width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16),
-        child: Expanded(
-          child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3),
-
-              // physics: const NeverScrollableScrollPhysics(),
-              itemCount: healthRecordsList.length,
-              itemBuilder: (context, index) {
-                final checkYourFeetItem = healthRecordsList[index];
-                return InkWell(
-                  onTap: () {
-                    switch (index) {}
-                  },
-                  child: HealthRecordWidget(
-                    image: checkYourFeetItem.image,
-                    title: checkYourFeetItem.serviceNames,
-                  ),
-                );
-              }),
-        ),
+        child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 6,
+            ),
+            itemCount: healthRecordsList.length,
+            itemBuilder: (context, index) {
+              final healthRecordsItem = healthRecordsList[index];
+              return InkWell(
+                onTap: () {
+                  switch (index) {}
+                },
+                child: HealthRecordWidget(
+                  image: healthRecordsItem.image,
+                  title: healthRecordsItem.serviceNames,
+                ),
+              );
+            }),
       ),
     );
   }

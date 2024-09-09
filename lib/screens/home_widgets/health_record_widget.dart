@@ -1,4 +1,5 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -20,27 +21,34 @@ class _HealthRecordWidgetState extends State<HealthRecordWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.riskCheckBg,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20,top: 6,bottom: 6),
-            child: Image.asset(
-              widget.image,
-              height: 100,
-              width: 70,
+        Expanded(
+          flex: 7,
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.riskCheckBg,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: CustomImage(
+              path: widget.image,
+              height: double.infinity,
+              width: double.infinity,
+              fit: BoxFit.contain,
             ),
           ),
         ),
-        Text(
-          widget.title,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
+        Expanded(
+          flex: 3,
+          child: Center(
+            child: Text(
+              widget.title,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: AppColors.black2,
+              ),
+            ).tr(),
           ),
-        ).tr(),
+        )
       ],
     );
   }
