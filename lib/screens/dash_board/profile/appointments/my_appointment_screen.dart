@@ -15,11 +15,16 @@ class MyAppointmentScreen extends StatefulWidget {
 }
 
 class _MyAppointmentScreenState extends State<MyAppointmentScreen>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   final AppointmentController appointmentController =
       Get.put(AppointmentController());
 
-  late TabController tabController;
+  late TabController tabController = TabController(
+    length: 2,
+    vsync: this,
+    initialIndex: 0,
+    animationDuration: const Duration(milliseconds: 800),
+  );
 
   @override
   void initState() {
@@ -31,49 +36,79 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen>
   }
 
   @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<AppointmentController>(builder: (context) {
       return DefaultTabController(
-          length: 2,
-          initialIndex: 0,
-          child: Scaffold(
-              backgroundColor: AppColors.secondary,
-              appBar: AppBar(
-                centerTitle: true,
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios),
-                  onPressed: () {
-                    Get.back();
-                  },
-                ),
-                bottom: const TabBar(
-                  tabs: [
-                    Tab(
-                      text: Strings.completed,
-                    ),
-                    Tab(
-                      text: Strings.cancelled,
-                    ),
-                  ],
-                ),
-                title: const Text(
-                  "My Appointments",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.primary),
-                ).tr(),
+        length: 2,
+        initialIndex: 0,
+        child: Scaffold(
+          backgroundColor: AppColors.secondaryColor,
+          appBar: AppBar(
+            backgroundColor: AppColors.primaryBlue,
+            centerTitle: true,
+            leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
+                color: AppColors.whiteBgColor,
               ),
-              body: const TabBarView(children: [
-                AppointmentsListScreen(
-                  appointmentStatus: AppointmentStatus.pending,
-                  title: Strings.upcoming,
-                ),
-                AppointmentsListScreen(
-                  appointmentStatus: AppointmentStatus.cancelled,
-                  title: "",
-                ),
-              ])));
+              onPressed: () {
+                Get.back();
+              },
+            ),
+            // bottom: const TabBar(
+            //   tabs: [
+            //     Tab(
+            //       text: Strings.completed,
+            //     ),
+            //     Tab(
+            //       text: Strings.cancelled,
+            //     ),
+            //   ],
+            // ),
+            title: const Text(
+              "My Appointments",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: AppColors.whiteBgColor,
+              ),
+            ).tr(),
+          ),
+          // body: const TabBarView(children: [
+          //   AppointmentsListScreen(
+          //     appointmentStatus: AppointmentStatus.pending,
+          //     title: Strings.upcoming,
+          //   ),
+          //   AppointmentsListScreen(
+          //     appointmentStatus: AppointmentStatus.cancelled,
+          //     title: Strings.cancelled,
+          //   ),
+          // ]),
+          body: _tabBar(),
+        ),
+      );
     });
+  }
+
+  Widget _tabBar() {
+    return TabBar(
+      indicatorColor: AppColors.primaryBlue,
+      indicatorWeight: 5,
+      controller: tabController,
+      tabs: const [
+        Tab(
+          text: Strings.completed,
+        ),
+        Tab(
+          text: Strings.cancelled,
+        ),
+      ],
+    );
   }
 }

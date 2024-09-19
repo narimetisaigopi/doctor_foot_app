@@ -45,6 +45,8 @@ class AssetsConstants {
   static const String foot_products = "$homePath/foot_products.png";
   static const String book_premium_plan_image =
       "$homePath/book_premium_plan_image.png";
+  static const String profile_image =
+      "$homePath/profile_image.png";
 // check your feet
   static const String skin_and_nail = "$homePath/skin_and_nail.png";
   static const String toe_deformties = "$homePath/toe_deformties.png";
@@ -192,7 +194,7 @@ class AssetsConstants {
   static const String toe_image = "$_introImagesBasePath/toe_image.svg";
 
   //profile screen images
-  static const String profile_image = "$_introImagesBasePath/profile_image.svg";
+  // static const String profile_image = "$_introImagesBasePath/profile_image.svg";
   static const String contacu_us = "$_introImagesBasePath/contacu_us.svg";
 // discharge images
   static const String uploadSuccussfully = "$_introImagesBasePath/success.svg";

@@ -20,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Container(
             height: 140,
             width: double.infinity,
-            color: AppColors.textWhiteColor,
+            color: AppColors.primaryBlue,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -45,7 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 Navigator.pop(context);
                               },
                               icon: const Icon(
-                                Icons.arrow_back_ios,
+                                Icons.arrow_back,
                                 size: 24,
                                 color: AppColors.primary,
                               ),
@@ -78,9 +78,9 @@ class _SearchScreenState extends State<SearchScreen> {
                             IconButton(
                               onPressed: () {},
                               icon: const Icon(
-                                Icons.mic,
+                                Icons.mic_none,
                                 size: 24,
-                                color: AppColors.primary,
+                                color: AppColors.primaryBlue,
                               ),
                             ),
                           ],
@@ -111,7 +111,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
-                          color: AppColors.primary),
+                          color: AppColors.primaryBlue),
                     ),
                   ],
                 ),

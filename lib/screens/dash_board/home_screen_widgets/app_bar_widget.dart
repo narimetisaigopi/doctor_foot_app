@@ -1,4 +1,5 @@
 import 'package:drfootapp/controllers/location_controller.dart';
+import 'package:drfootapp/screens/auth_screens/location_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/search_screen.dart';
 import 'package:drfootapp/screens/notifications/notification_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -51,7 +52,15 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const Icon(Icons.expand_more)
+                            InkWell(
+                              onTap: () {
+                                Get.to(() => const LocationScreen());
+                              },
+                              child: const Icon(
+                                Icons.expand_more,
+                                color: AppColors.whiteBgDietColor,
+                              ),
+                            )
                           ],
                         ),
                         Text(

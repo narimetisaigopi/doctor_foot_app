@@ -19,7 +19,7 @@ class CustomButton extends StatefulWidget {
       this.buttonName = "",
       this.width = 350,
       this.onPress,
-      this.bgColor = AppColors.primary,
+      this.bgColor = AppColors.primaryBlue,
       this.textColor = Colors.white,
       this.borderRadius = 6.0,
       this.enablePrefixIcon = false,

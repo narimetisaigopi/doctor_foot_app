@@ -159,7 +159,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               label: Strings.videosText.tr,
             ),
             BottomNavigationBarItem(
-              icon: selectedIndex == 4
+              icon: selectedIndex == 3
                   ? Container(
                       height: 40,
                       decoration: const BoxDecoration(

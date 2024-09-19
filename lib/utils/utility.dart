@@ -114,12 +114,16 @@ class Utility {
         padding:
             EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : Colors.white,
+          color: isSelected ? AppColors.primaryBlue : Colors.white,
           borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+            color: AppColors.grey,
+            width: 1,
+          )
         ),
         child: Row(
           children: [
-            Icon(iconData, color: isSelected ? Colors.white : Colors.black),
+            Icon(iconData, color: isSelected ? Colors.white : Colors.grey),
             const SizedBox(
               width: 4,
             ),

@@ -42,12 +42,14 @@ class AppColors {
 
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);
+  static const Color textGreyColor = Color(0xFF898384);
   static const Color textBlackColors = Color(0xFF3C3C3C);
   static const Color textBlackColor = Color(0xFF535353);
   static const Color textBackThickColor = Color(0xFF101010);
   static const Color textblackbook = Color(0xFF3F3D3D);
   static const Color textred = Color(0xFFFF1313);
   static const Color pastTextColor = Color(0xFF707070);
+  static const Color profileTextColor = Color(0xFF5A5A5A);
 
   static const Color greyTextColor = Color(0xFFA0A0A0);
   static const Color greyBorderColor = Color(0xFFE4E4E4);
@@ -63,4 +65,8 @@ class AppColors {
 
   // border colors
   static const abBorderColor = Color(0xFFE5EDF2);
+  static const deviderColor = Color(0xFFE8E8E8);
+  static const greyBorder = Color(0xFFCBCBCB);
+  static const secondaryColor = Color(0xFFDEE2EC);
+  static const buttonBg = Color(0xFF7C99AF);
 }

@@ -40,14 +40,29 @@ class _MyServiceBookingsScreenState extends State<MyServiceBookingsScreen>
           child: Scaffold(
               backgroundColor: AppColors.secondary,
               appBar: AppBar(
+                backgroundColor: AppColors.primaryBlue,
+                title: const Text(
+                  "Booked Services",
+                  style: TextStyle(
+                    color: AppColors.whiteBgColor,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ).tr(),
                 centerTitle: true,
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios),
-                  onPressed: () {
+                leading: InkWell(
+                  onTap: () {
                     Get.back();
                   },
+                  child: const Icon(
+                    Icons.arrow_back_outlined,
+                    color: AppColors.whiteBgColor,
+                  ),
                 ),
                 bottom: const TabBar(
+                  dividerColor: AppColors.secondaryColor,
+                  indicatorWeight: 6,
+                  indicatorColor: AppColors.primaryBlue,
                   tabs: [
                     Tab(
                       text: Strings.completed,
@@ -57,13 +72,6 @@ class _MyServiceBookingsScreenState extends State<MyServiceBookingsScreen>
                     ),
                   ],
                 ),
-                title: const Text(
-                  "My Service Bookings",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.primary),
-                ).tr(),
               ),
               body: const TabBarView(children: [
                 BookingServicesListScreen(
