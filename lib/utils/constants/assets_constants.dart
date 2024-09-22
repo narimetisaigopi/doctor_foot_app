@@ -45,8 +45,12 @@ class AssetsConstants {
   static const String foot_products = "$homePath/foot_products.png";
   static const String book_premium_plan_image =
       "$homePath/book_premium_plan_image.png";
-  static const String profile_image =
-      "$homePath/profile_image.png";
+  static const String profile_image = "$homePath/profile_image.png";
+  static const String contact_us_image = "$homePath/contact_us_image.png";
+  // consult your doctor
+  static const String find_doctor = "$homePath/find_doctor.png";
+  static const String patients = "$homePath/patients.png";
+
 // check your feet
   static const String skin_and_nail = "$homePath/skin_and_nail.png";
   static const String toe_deformties = "$homePath/toe_deformties.png";

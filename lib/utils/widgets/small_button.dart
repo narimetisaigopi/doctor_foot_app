@@ -1,9 +1,8 @@
-// ignore: file_names
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatefulWidget {
+class SmallButton extends StatefulWidget {
   final String buttonName;
   final double width;
   final double borderRadius;
@@ -14,47 +13,35 @@ class CustomButton extends StatefulWidget {
   final Color textColor;
   final bool enablePrefixIcon;
   final bool border;
-  const CustomButton(
-      {super.key,
-      this.buttonName = "",
-      this.width = 350,
-      this.onPress,
-      this.bgColor = AppColors.primaryBlue,
-      this.textColor = Colors.white,
-      this.borderRadius = 6.0,
-      this.enablePrefixIcon = false,
-      this.prefixIcon = const Icon(Icons.abc),
-      this.isBoxShadow = true,
-      this.border = true});
+  const SmallButton({
+    super.key,
+    this.buttonName = "",
+    this.width = 125,
+    this.onPress,
+    this.bgColor = AppColors.primaryBlue,
+    this.textColor = Colors.white,
+    this.borderRadius = 6.0,
+    this.enablePrefixIcon = false,
+    this.prefixIcon = const Icon(Icons.abc),
+    this.isBoxShadow = true,
+    this.border = true,
+  });
 
   @override
-  State<CustomButton> createState() => _CustomButtonState();
+  State<SmallButton> createState() => _SmallButtonState();
 }
 
-class _CustomButtonState extends State<CustomButton> {
+class _SmallButtonState extends State<SmallButton> {
   @override
   Widget build(BuildContext context) {
     return Material(
         child: InkWell(
       onTap: widget.onPress,
       child: Container(
-        height: 50,
+        height: 32,
         width: widget.width,
         decoration: BoxDecoration(
           color: widget.bgColor,
-          // boxShadow: [
-          //   widget.isBoxShadow
-          //       ? BoxShadow(
-          //           color: Colors.grey.shade400,
-          //           blurRadius: 8,
-          //           blurStyle: BlurStyle.outer,
-          //           offset: const Offset(1, 2),
-          //         )
-          //       : const BoxShadow()
-          // ],
-          // border: widget.border
-          //     ? Border.all(color: AppColors.primary, width: 1)
-          //     : null,
           borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
         child: Center(
@@ -62,9 +49,9 @@ class _CustomButtonState extends State<CustomButton> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 12
-                ),
-                child: widget.enablePrefixIcon ? widget.prefixIcon : Container(),
+                padding: const EdgeInsets.only(right: 12),
+                child:
+                    widget.enablePrefixIcon ? widget.prefixIcon : Container(),
               ),
               Text(
                 widget.buttonName,

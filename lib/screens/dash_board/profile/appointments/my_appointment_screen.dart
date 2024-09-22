@@ -1,8 +1,6 @@
 import 'package:drfootapp/controllers/appointment_controller.dart';
-import 'package:drfootapp/screens/dash_board/profile/appointments/appointments_list_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
-import 'package:drfootapp/utils/enums.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,7 +1,9 @@
 import 'package:drfootapp/models/homeScreenModels/service_model.dart';
+import 'package:drfootapp/screens/consult_your_doctor/search_location_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OurServicesWidget extends StatefulWidget {
   const OurServicesWidget({super.key});
@@ -50,7 +52,10 @@ class _OurServicesWidgetState extends State<OurServicesWidget> {
                     final servicesItem = servicesList[index];
                     return InkWell(
                       onTap: () {
-                        switch (index) {}
+                        switch (index) {
+                          case 0:
+                            Get.to(() => const SearchLocationScreen());
+                        }
                       },
                       child: ServiceWidget(
                           image: servicesItem.image,

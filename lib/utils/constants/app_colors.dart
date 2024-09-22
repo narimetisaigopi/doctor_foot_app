@@ -69,4 +69,5 @@ class AppColors {
   static const greyBorder = Color(0xFFCBCBCB);
   static const secondaryColor = Color(0xFFDEE2EC);
   static const buttonBg = Color(0xFF7C99AF);
+  static const buttonBg1 = Color(0xFFE8F1F5);
 }

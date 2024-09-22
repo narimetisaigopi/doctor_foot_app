@@ -13,8 +13,8 @@ class CurrentLocationScreen extends StatefulWidget {
 
 class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   late GoogleMapController googleMapController;
-  static CameraPosition initialCameraPosition =
-      const CameraPosition(target: LatLng(17.123184, 79.208824), zoom: 5);
+  // static CameraPosition initialCameraPosition =
+  //     const CameraPosition(target: LatLng(17.123184, 79.208824), zoom: 5);
   Set<Marker> markers = {};
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
       backgroundColor: AppColors.secondary,
       appBar: AppBar(
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: const Icon(

@@ -30,7 +30,7 @@ class _DietChartScreenState extends State<DietChartScreen> {
     double height = 200;
     return GetBuilder<DietChartController>(builder: (dietChartController) {
       return Scaffold(
-          backgroundColor: AppColors.whiteBgColor,
+          backgroundColor: AppColors.secondary,
           floatingActionButton: isAdmin()
               ? FloatingActionButton(
                   onPressed: () {
@@ -40,7 +40,24 @@ class _DietChartScreenState extends State<DietChartScreen> {
                 )
               : null,
           appBar: AppBar(
-            title: const Text("dietChartText").tr(),
+            backgroundColor: AppColors.primaryBlue,
+            leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
+                color: AppColors.whiteBgColor,
+              ),
+              onPressed: () {
+                Get.back();
+              },
+            ),
+            title: const Text(
+              "dietChartText",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: AppColors.whiteBgColor,
+              ),
+            ).tr(),
             centerTitle: true,
           ),
           body: SingleChildScrollView(
@@ -59,37 +76,43 @@ class _DietChartScreenState extends State<DietChartScreen> {
                   decoration: BoxDecoration(
                       color: AppColors.whiteBgColor,
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(width: 0.5, color: AppColors.primary)),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: height,
-                        width: double.infinity,
-                        child: DietPlanLayout(
-                          title: Strings.morningText,
-                          dietChartModelList:
-                              dietChartController.dietChartModelList,
+                      border: Border.all(
+                        width: 0.5,
+                        color: AppColors.primaryBlue,
+                      )),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: height,
+                          width: double.infinity,
+                          child: DietPlanLayout(
+                            title: Strings.morningText,
+                            dietChartModelList:
+                                dietChartController.dietChartModelList,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height,
-                        width: double.infinity,
-                        child: DietPlanLayout(
-                          title: Strings.afternoonText,
-                          dietChartModelList:
-                              dietChartController.dietChartModelList,
+                        SizedBox(
+                          height: height,
+                          width: double.infinity,
+                          child: DietPlanLayout(
+                            title: Strings.afternoonText,
+                            dietChartModelList:
+                                dietChartController.dietChartModelList,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height,
-                        width: double.infinity,
-                        child: DietPlanLayout(
-                          title: Strings.eveningText,
-                          dietChartModelList:
-                              dietChartController.dietChartModelList,
+                        SizedBox(
+                          height: height,
+                          width: double.infinity,
+                          child: DietPlanLayout(
+                            title: Strings.eveningText,
+                            dietChartModelList:
+                                dietChartController.dietChartModelList,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(

@@ -41,19 +41,25 @@ class _WeekDaysWidgetState extends State<WeekDaysWidget> {
 
   Widget weekContainer(String text, bool isSelected) {
     return Container(
-      width: 150,
-      height: 150,
       decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : AppColors.daysBgColor,
-          borderRadius: BorderRadius.circular(16)),
-      child: Center(
-          child: Text(
-        text,
-        style: TextStyle(
+          color: isSelected ? AppColors.primaryBlue : AppColors.whiteBgColor,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: AppColors.grey4,
+            width: 1,
+          )),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+        child: Center(
+            child: Text(
+          text,
+          style: TextStyle(
             fontSize: 18,
-            color: isSelected ? AppColors.whiteBgColor : AppColors.black2,
-            fontWeight: FontWeight.w700),
-      ).tr()),
+            color: isSelected ? AppColors.whiteBgColor : AppColors.grey,
+            fontWeight: FontWeight.w700,
+          ),
+        ).tr()),
+      ),
     );
   }
 }

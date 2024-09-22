@@ -180,9 +180,9 @@ class Strings {
   static const String friday = 'Friday';
   static const String saturday = 'Saturday';
   static const String sunday = 'Sunday';
-  static const String morningText = 'Morning';
-  static const String afternoonText = 'Afternoon';
-  static const String eveningText = 'Evening';
+  static const String morningText = 'Morning - Noon';
+  static const String afternoonText = 'Afternoon - Evening';
+  static const String eveningText = 'Evening - Bedtime';
   static const String nightText = 'Night';
   static const String earlyMorning = 'Early Morning\n  (6am-7am)';
 
