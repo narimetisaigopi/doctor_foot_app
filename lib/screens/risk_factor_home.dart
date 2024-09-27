@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RiskFactorHome extends StatefulWidget {
-  const RiskFactorHome({Key? key}) : super(key: key);
+  const RiskFactorHome({super.key});
 
   @override
   _RiskFactorHomeState createState() => _RiskFactorHomeState();
@@ -56,13 +56,14 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
             children: [
               IconButton(
                   onPressed: () {
+                    Get.back();
                     _pageController.animateToPage(
                       _pageController.page!.toInt() - 1,
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.easeInOut,
                     );
                   },
-                  icon: const Icon(Icons.arrow_back_ios)),
+                  icon: const Icon(Icons.arrow_back)),
             ],
           ),
           const SizedBox(height: 10),
@@ -99,9 +100,10 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
             child: Text(
               riskFactorModel.description,
               style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  color: AppColors.primary),
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                color: AppColors.primaryBlue,
+              ),
             ),
           ),
 

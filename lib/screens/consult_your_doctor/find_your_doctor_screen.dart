@@ -1,5 +1,4 @@
 import 'package:drfootapp/controllers/appointment_controller.dart';
-import 'package:drfootapp/screens/consult_your_doctor/doctor_details_screen.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/all_bookings_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
@@ -33,20 +32,6 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
       return Scaffold(
         backgroundColor: AppColors.secondary,
         appBar: AppBar(
-          actions: [
-            InkWell(
-              onTap: () {
-                Get.to(() => const DoctorDetailsScreen());
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(right: 12),
-                child: Icon(
-                  Icons.arrow_circle_right_outlined,
-                  color: AppColors.blackBold,
-                ),
-              ),
-            ),
-          ],
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back,

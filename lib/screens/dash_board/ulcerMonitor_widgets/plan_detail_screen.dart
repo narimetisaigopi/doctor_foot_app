@@ -188,10 +188,7 @@ class _PlanDetailScreenState extends State<PlanDetailScreen> {
               child: CustomButton(
                 buttonName: "Proceed to pay ",
                 isBoxShadow: false,
-                onPress: () {
-                  Utility.myBottomSheet(context,
-                      heightFactor: 0.7, widget: const CheckYourFeetScreen());
-                },
+                onPress: () {},
               ),
             )
           ],

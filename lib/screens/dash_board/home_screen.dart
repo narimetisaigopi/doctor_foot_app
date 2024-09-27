@@ -1,6 +1,7 @@
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/home_image.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
+import 'package:drfootapp/screens/dash_board/ulcer_monitoring_screen.dart';
 import 'package:drfootapp/screens/home_widgets/article_and_blog_list_widget.dart';
 import 'package:drfootapp/screens/home_widgets/book_premium_plan_widget.dart';
 import 'package:drfootapp/screens/home_widgets/check_your_feet_list.dart';
@@ -11,6 +12,7 @@ import 'package:drfootapp/screens/home_widgets/ulcer_assesment_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -57,8 +59,24 @@ class _HomeScreenState extends State<HomeScreen> {
               color: AppColors.riskCheckBg,
               thickness: 10,
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            BookPremiumPlanWidget(
+              onPress: () {
+                Get.to(
+                  () => const UlcerMonitoringScreen(),
+                );
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Divider(
+              color: AppColors.riskCheckBg,
+              thickness: 10,
+            ),
             const SizedBox(height: 12),
-         
             const Padding(
               padding: EdgeInsets.only(left: 16, right: 16),
               child: Text(
@@ -89,7 +107,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ).tr(),
             ),
             const HealthRecordsList(),
-           
             const Divider(
               color: AppColors.riskCheckBg,
               thickness: 5,
@@ -112,10 +129,6 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 12,
             ),
             const ArticleAndBlogWidgetList(),
-            const SizedBox(
-              height: 20,
-            ),
-            const BookPremiumPlanWidget(),
             const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16),

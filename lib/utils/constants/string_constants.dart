@@ -304,4 +304,9 @@ class Strings {
   static const String articleTitle = "VEINS OF VULNERABILITY";
   static const String articleDiscription =
       'Lorem Ipsum is simply dummy\ntext of the printing and type\nsetting industry. Lorem Ipsum is\nsimply dummy ';
+// foot screening
+  static const String pulseExamination = "   Pulse\nExamination";
+  static const String abiTbi = "ABI &\n TBI";
+  static const String neuropathyAssessment = "Neuropathy\nAssessment";
+  static const String footPressureAssessment = "Foot Pressure\n Assessment";
 }

@@ -42,13 +42,14 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
         backgroundColor: AppColors.secondary,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.whiteBgColor,
           title: Text(
             getTitle(),
             style: const TextStyle(
-                color: AppColors.primary,
-                fontSize: 18,
-                fontWeight: FontWeight.w700),
+              color: AppColors.primaryBlue,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
           ).tr(),
           centerTitle: true,
           leading: IconButton(
@@ -56,8 +57,8 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
               Get.back();
             },
             icon: const Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.primary,
+              Icons.arrow_back,
+              color: AppColors.primaryBlue,
             ),
           ),
         ),
@@ -93,7 +94,7 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
             extendedPadding: const EdgeInsets.symmetric(horizontal: 10),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            backgroundColor: AppColors.primary,
+            backgroundColor: AppColors.primaryBlue,
             onPressed: () {
               //  Get.to(() => const HomeDressingPayment());
             },
@@ -128,7 +129,7 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 8),
                       child: const Text(
-                        "Make Payment",
+                        "Pay now",
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,

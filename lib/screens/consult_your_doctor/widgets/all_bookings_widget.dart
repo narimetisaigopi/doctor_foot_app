@@ -1,5 +1,7 @@
+import 'package:drfootapp/screens/consult_your_doctor/doctor_details_screen.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/book_now_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AllBookingsWidget extends StatefulWidget {
   const AllBookingsWidget({super.key});
@@ -16,7 +18,14 @@ class _AllBookingsWidgetState extends State<AllBookingsWidget> {
       child: ListView.builder(
           itemCount: 10,
           itemBuilder: (context, index) {
-            return const BookNowWidget();
+            return InkWell(
+              onTap: () {
+                Get.to(
+                  () => const DoctorDetailsScreen(),
+                );
+              },
+              child: const BookNowWidget(),
+            );
           }),
     );
   }

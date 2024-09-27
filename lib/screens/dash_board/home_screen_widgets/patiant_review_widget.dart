@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 
 class PatiantReviewWidget extends StatefulWidget {
   final Function() onPress;
-  const PatiantReviewWidget({super.key, required this.onPress});
+  const PatiantReviewWidget({
+    super.key,
+    required this.onPress,
+  });
 
   @override
   State<PatiantReviewWidget> createState() => _PatiantReviewWidgetState();

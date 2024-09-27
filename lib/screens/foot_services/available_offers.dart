@@ -48,7 +48,7 @@ class _AvailableOffersState extends State<AvailableOffers> {
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
-                    color: AppColors.primary),
+                    color: AppColors.primaryBlue,),
               ).tr(),
               const SizedBox(
                 height: 10,

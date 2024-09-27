@@ -48,8 +48,42 @@ class AssetsConstants {
   static const String profile_image = "$homePath/profile_image.png";
   static const String contact_us_image = "$homePath/contact_us_image.png";
   // consult your doctor
-  static const String find_doctor = "$homePath/find_doctor.png";
-  static const String patients = "$homePath/patients.png";
+  static const String consult_doctor_path =
+      "assets/images/consult_doctor_image";
+  static const String find_doctor = "$consult_doctor_path/find_doctor.png";
+  static const String patients = "$consult_doctor_path/patients.png";
+  static const String experience = "$consult_doctor_path/experience.png";
+  static const String star_image = "$consult_doctor_path/star_image.png";
+  static const String book_summary_image =
+      "$consult_doctor_path/book_summary_image.png";
+  static const String doctor_history =
+      "$consult_doctor_path/doctor_history.png";
+  static const String doctor_location_image =
+      "$consult_doctor_path/doctor_location_image.png";
+  static const String doctor_profile_dotted_circle =
+      "$consult_doctor_path/doctor_profile_dotted_circle.png";
+  //foot screening services images
+  static const String foot_screening_service_path =
+      "assets/images/foot_screening_images";
+  static const String foot_presser_image =
+      "$foot_screening_service_path/foot_presser_image.png";
+  static const String abi_tbi_image =
+      "$foot_screening_service_path/abi_tbi_image.png";
+  static const String neuropathy_image =
+      "$foot_screening_service_path/neuropathy_image.png";
+  static const String pulse_examination_image =
+      "$foot_screening_service_path/pulse_examination_image.png";
+  // dressing images
+  static const String dressing_images_path =
+      "assets/images/dressing_services_images";
+        static const String small =
+      "$dressing_images_path/small.png";
+        static const String moderate_image =
+      "$dressing_images_path/moderate.png";
+        static const String large =
+      "$dressing_images_path/large.png";
+        static const String huge =
+      "$dressing_images_path/huge.png";
 
 // check your feet
   static const String skin_and_nail = "$homePath/skin_and_nail.png";
