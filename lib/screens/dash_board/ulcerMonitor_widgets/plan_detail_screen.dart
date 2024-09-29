@@ -1,7 +1,5 @@
-import 'package:drfootapp/screens/check_your_feet/check_your_feet_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
-import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 

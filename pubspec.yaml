@@ -117,6 +117,10 @@ flutter:
     - assets/images/consult_doctor_image/
     - assets/images/foot_screening_images/
     - assets/images/dressing_services_images/
+    - assets/images/skin_and_nail_images/
+    - assets/images/foot_deformities_images/
+    - assets/images/toe_deformities_images/
+    - assets/images/foot_pain_images/
     - assets/svgs/
     - assets/images/notification_images/
   # An image asset can refer to one or more resolution-specific "variants", see

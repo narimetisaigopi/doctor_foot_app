@@ -10,10 +10,11 @@ class ToeDeformitiesModel {
 
 List<ToeDeformitiesModel> toeDeformitiesList = [
   ToeDeformitiesModel(
-      image: AssetsConstants.home_dressing_cover_img,
-      serviceNames: Strings.hammertoeText),
+    image: AssetsConstants.hammer_toe,
+    serviceNames: Strings.hammertoeText,
+  ),
   ToeDeformitiesModel(
-    image: AssetsConstants.well_kept_nails,
+    image: AssetsConstants.claw_toe,
     serviceNames: Strings.clawToeText,
   ),
 ];

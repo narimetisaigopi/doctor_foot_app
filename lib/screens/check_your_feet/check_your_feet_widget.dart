@@ -23,24 +23,15 @@ class _CheckYourFeetWidgetState extends State<CheckYourFeetWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Expanded(
-          flex: 7,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.greyBorderColor,
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: CustomImage(
-              path: widget.image,
-              height: double.infinity,
-              width: double.infinity,
-            ),
+          flex: 8,
+          child: CustomImage(
+            path: widget.image,
+            height: double.infinity,
+            width: double.infinity,
           ),
         ),
         Expanded(
-          flex: 3,
+          flex: 2,
           child: Center(
             child: Text(
               widget.title,

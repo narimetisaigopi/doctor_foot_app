@@ -138,14 +138,14 @@ class Strings {
       "If your wound is < 1000cm , Then it is recommended.";
 
 // home screen strings
-  static const String consultYourDoctor = 'CONSULT YOUR DOCTOR';
-  static const String onlineConsultation = 'ONLINE CONSULTATION';
-  static const String footScreeningServices = 'FOOT SCREENING SERVICES';
-  static const String dressingAtHome = 'DRESSING AT HOME';
-  static const String footCleaning = 'FOOT CLEANSING';
-  static const String nailTrimming = 'NAIL TRIMMING';
-  static const String footWear = 'FOOT WEAR';
-  static const String footProducts = 'FOOT PRODUCTS';
+  static const String consultYourDoctor = '   CONSULT\n YOUR DOCTOR';
+  static const String onlineConsultation = '    ONLINE \nCONSULTATION';
+  static const String footScreeningServices = 'FOOT SCREENING\n      SERVICES';
+  static const String dressingAtHome = 'DRESSING AT\n     HOME';
+  static const String footCleaning = '   FOOT\nCLEANSING';
+  static const String nailTrimming = '   NAIL\nTRIMMING';
+  static const String footWear = 'FOOT \nWEAR';
+  static const String footProducts = '   FOOT\nPRODUCTS';
 
   static const String kpbColonyText = 'KPB Colony';
   static const String patientReviewsText = 'Patient Reviews';

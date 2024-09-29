@@ -20,6 +20,7 @@ class _SkinAndNailScreenState extends State<SkinAndNailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteBgColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 22),
         child: Column(
@@ -31,10 +32,10 @@ class _SkinAndNailScreenState extends State<SkinAndNailScreen> {
                   icon: const Icon(
                     Icons.arrow_back_ios,
                     size: 16,
-                    color: AppColors.primary,
+                    color: AppColors.black1,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                 ),
                 const Expanded(
@@ -44,7 +45,7 @@ class _SkinAndNailScreenState extends State<SkinAndNailScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.primary,
+                        color: AppColors.black2,
                       ),
                     ),
                   ),
@@ -72,21 +73,23 @@ class _SkinAndNailScreenState extends State<SkinAndNailScreen> {
                       onTap: () {
                         switch (index) {
                           case 0:
+                            Get.back();
                             Get.to(() => const IngrownToeNailScreen());
-
                             break;
                           case 1:
+                            Get.back();
                             Get.to(() => const CornsScreen());
-
                             break;
                           case 2:
+                            Get.back();
                             Get.to(() => const PlantarWartsScreen());
                             break;
                           case 3:
+                            Get.back();
                             Get.to(() => const ToeNailFungusScreen());
-
                             break;
                           case 4:
+                            Get.back();
                             Get.to(() => const FolliculitisScreen());
                             break;
                           default:

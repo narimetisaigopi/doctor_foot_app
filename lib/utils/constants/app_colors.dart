@@ -51,6 +51,7 @@ class AppColors {
   static const Color textred = Color(0xFFFF1313);
   static const Color pastTextColor = Color(0xFF707070);
   static const Color profileTextColor = Color(0xFF5A5A5A);
+  static const Color introTextColor = Color(0xFF5A5555);
 
   static const Color greyTextColor = Color(0xFFA0A0A0);
   static const Color greyBorderColor = Color(0xFFE4E4E4);

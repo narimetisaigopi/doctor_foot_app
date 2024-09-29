@@ -17,6 +17,7 @@ class _ToeDeformitiesScreenState extends State<ToeDeformitiesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteBgColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 22),
         child: Column(
@@ -28,10 +29,10 @@ class _ToeDeformitiesScreenState extends State<ToeDeformitiesScreen> {
                   icon: const Icon(
                     Icons.arrow_back_ios,
                     size: 16,
-                    color: AppColors.primary,
+                    color: AppColors.black1,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                 ),
                 const Expanded(
@@ -41,7 +42,7 @@ class _ToeDeformitiesScreenState extends State<ToeDeformitiesScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.primary,
+                        color: AppColors.blackBold,
                       ),
                     ),
                   ),
@@ -70,13 +71,11 @@ class _ToeDeformitiesScreenState extends State<ToeDeformitiesScreen> {
                         switch (index) {
                           case 0:
                             Get.to(() => const HammerToeScreen());
-
                             break;
                           case 1:
+                            Get.back();
                             Get.to(() => const ClawToeScreen());
-
                             break;
-
                           default:
                             break;
                         }

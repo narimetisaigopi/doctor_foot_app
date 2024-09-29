@@ -1,4 +1,5 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
 import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
@@ -49,17 +50,16 @@ class _SignInScreenState extends State<SignInScreen> {
             child: FormBuilder(
               key: _formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Text(
-                      "getStartedSignIn",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    ).tr(),
-                  ),
+                  const Text(
+                    "Let’s get started!",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.black2,
+                    ),
+                  ).tr(),
                   const SizedBox(
                     height: 10,
                   ),
@@ -91,6 +91,24 @@ class _SignInScreenState extends State<SignInScreen> {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: authenticationController.isLoading
+                        ? const CircularProgressIndicator()
+                        : CustomButton(
+                            buttonName: "sendOtpText",
+                            onPress: () {
+                              Utility.myBottomSheet(
+                                context,
+                                heightFactor: 0.5,
+                                widget: const OtpScreen(),
+                              );
+                            },
+                          ),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -110,25 +128,14 @@ class _SignInScreenState extends State<SignInScreen> {
                             TextSpan(
                                 text: Strings.signUpText,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primary)),
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primaryBlue,
+                                )),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: authenticationController.isLoading
-                        ? const CircularProgressIndicator()
-                        : CustomButton(
-                            buttonName: "sendOtpText",
-                            onPress: validate,
-                          ),
-                  )
                 ],
               ),
             ),
