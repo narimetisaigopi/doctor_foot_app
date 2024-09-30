@@ -45,7 +45,7 @@ class MyTextField extends StatefulWidget {
       this.edit = "",
       this.maxLines = 1,
       this.labelNeeded = true,
-      this.borderRadius = 5,
+      this.borderRadius = 12,
       // this.minLines = 1,
       this.maxLength = 100,
       this.btnColor = Colors.black,

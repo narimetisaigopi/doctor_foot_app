@@ -7,6 +7,7 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FootPainnScreen extends StatefulWidget {
   const FootPainnScreen({super.key});
@@ -20,6 +21,7 @@ class _FootPainnScreenState extends State<FootPainnScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteBgColor,
       body: Padding(
         padding:
             const EdgeInsets.only(left: 16, right: 16, top: 22, bottom: 30),
@@ -32,10 +34,10 @@ class _FootPainnScreenState extends State<FootPainnScreen> {
                   icon: const Icon(
                     Icons.arrow_back_ios,
                     size: 16,
-                    color: AppColors.primary,
+                    color: AppColors.black1,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                 ),
                 const Expanded(
@@ -45,7 +47,7 @@ class _FootPainnScreenState extends State<FootPainnScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.blackBold,
+                        color: AppColors.black2,
                       ),
                     ),
                   ),
@@ -66,23 +68,26 @@ class _FootPainnScreenState extends State<FootPainnScreen> {
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 10,
                   ),
-                  itemCount: footDeformitiesList.length,
+                  itemCount: footPainList.length,
                   itemBuilder: (context, index) {
                     final footDeformitiesItem = footDeformitiesList[index];
                     return InkWell(
                       onTap: () {
                         switch (index) {
                           case 0:
+                            Get.back();
                             Utility.myBottomSheet(context,
                                 heightFactor: 0.6,
                                 widget: const FootPainMetarsalgiaScreen());
                             break;
                           case 1:
+                            Get.back();
                             Utility.myBottomSheet(context,
                                 heightFactor: 0.6,
                                 widget: const FootPainPlantarFascitisScreen());
                             break;
                           case 2:
+                            Get.back();
                             Utility.myBottomSheet(context,
                                 heightFactor: 0.6,
                                 widget: const FootPainAchillesScreen());

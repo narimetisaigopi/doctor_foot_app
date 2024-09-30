@@ -45,6 +45,42 @@ class AssetsConstants {
   static const String foot_products = "$homePath/foot_products.png";
   static const String book_premium_plan_image =
       "$homePath/book_premium_plan_image.png";
+  static const String profile_image = "$homePath/profile_image.png";
+  static const String contact_us_image = "$homePath/contact_us_image.png";
+  // consult your doctor
+  static const String consult_doctor_path =
+      "assets/images/consult_doctor_image";
+  static const String find_doctor = "$consult_doctor_path/find_doctor.png";
+  static const String patients = "$consult_doctor_path/patients.png";
+  static const String experience = "$consult_doctor_path/experience.png";
+  static const String star_image = "$consult_doctor_path/star_image.png";
+  static const String book_summary_image =
+      "$consult_doctor_path/book_summary_image.png";
+  static const String doctor_history =
+      "$consult_doctor_path/doctor_history.png";
+  static const String doctor_location_image =
+      "$consult_doctor_path/doctor_location_image.png";
+  static const String doctor_profile_dotted_circle =
+      "$consult_doctor_path/doctor_profile_dotted_circle.png";
+  //foot screening services images
+  static const String foot_screening_service_path =
+      "assets/images/foot_screening_images";
+  static const String foot_presser_image =
+      "$foot_screening_service_path/foot_presser_image.png";
+  static const String abi_tbi_image =
+      "$foot_screening_service_path/abi_tbi_image.png";
+  static const String neuropathy_image =
+      "$foot_screening_service_path/neuropathy_image.png";
+  static const String pulse_examination_image =
+      "$foot_screening_service_path/pulse_examination_image.png";
+  // dressing images
+  static const String dressing_images_path =
+      "assets/images/dressing_services_images";
+  static const String small = "$dressing_images_path/small.png";
+  static const String moderate_image = "$dressing_images_path/moderate.png";
+  static const String large = "$dressing_images_path/large.png";
+  static const String huge = "$dressing_images_path/huge.png";
+
 // check your feet
   static const String skin_and_nail = "$homePath/skin_and_nail.png";
   static const String toe_deformties = "$homePath/toe_deformties.png";
@@ -52,6 +88,65 @@ class AssetsConstants {
   static const String foot_deformities = "$homePath/foot_deformities.png";
   static const String sports_injuries = "$homePath/sports_injuries.png";
   static const String foot_and_anckle = "$homePath/foot_and_anckle.png";
+  // skin & nail
+  static const String skin_and_nail_path = "assets/images/skin_and_nail_images";
+  static const String ingrow_toe_nail =
+      "$skin_and_nail_path/ingrow_toe_nail.png";
+  static const String corns_image = "$skin_and_nail_path/corns_image.png";
+  static const String planter_warts = "$skin_and_nail_path/planter_warts.png";
+  static const String toe_nail_fungus =
+      "$skin_and_nail_path/toe_nail_fungus.png";
+  static const String foliquilities = "$skin_and_nail_path/foliquilities.png";
+  static const String ingrow_toe_nail_full_image =
+      "$skin_and_nail_path/ingrow_toe_nail_full_image.png";
+  static const String corn_full_image =
+      "$skin_and_nail_path/corn_full_image.png";
+  static const String planter_warts_full_image =
+      "$skin_and_nail_path/planter_warts_full_image.png";
+  static const String toe_nail_fungus_full_image =
+      "$toe_deformities_images_path/toe_nail_fungus_full_image.png";
+  static const String filiculities_full_image =
+      "$toe_deformities_images_path/filiculities_full_image.png";
+  static const String ankle_spains =
+      "$toe_deformities_images_path/ankle_spains.png";
+  static const String foot_and_ankle =
+      "$toe_deformities_images_path/foot_and_ankle.png";
+  // toe deformities
+  static const String toe_deformities_images_path =
+      "assets/images/toe_deformities_images";
+  static const String hammer_toe =
+      "$toe_deformities_images_path/hammer_toe.png";
+  static const String claw_toe = "$toe_deformities_images_path/claw_toe.png";
+  static const String hammer_toe_full_image =
+      "$toe_deformities_images_path/hammer_toe_full_image.png";
+  static const String claw_toe_full_image =
+      "$toe_deformities_images_path/claw_toe_full_image.png";
+// foot deformities
+  static const String foot_deformities_images_path =
+      "assets/images/foot_deformities_images";
+  static const String flat_feet = "$foot_deformities_images_path/flat_feet.png";
+  static const String buniouns = "$foot_deformities_images_path/buniouns.png";
+  static const String charchot_feet =
+      "$foot_deformities_images_path/charchot_feet.png";
+  static const String flat_feet_full_image =
+      "$foot_deformities_images_path/flat_feet_full_image.png";
+  static const String bunioun_full_image =
+      "$foot_deformities_images_path/bunioun_full_image.png";
+  static const String charchot_feet_full_image =
+      "$foot_deformities_images_path/charchot_feet_full_image.png";
+  // foot pain
+  static const String foot_pain_images_path = "assets/images/foot_pain_images";
+  static const String foot_pain_one =
+      "$foot_pain_images_path/foot_pain_one.png";
+  static const String foot_pain_two =
+      "$foot_pain_images_path/foot_pain_two.png";
+  static const String foot_pain_three =
+      "$foot_pain_images_path/foot_pain_three.png";
+  static const String metatarsalgia =
+      "$foot_pain_images_path/metatarsalgia.png";
+  static const String planter = "$foot_pain_images_path/planter.png";
+  static const String achkills = "$foot_pain_images_path/achkills.png";
+
   // health records
   static const String images = "$homePath/images.png";
   static const String lab_reports = "$homePath/lab_reports.png";
@@ -192,7 +287,7 @@ class AssetsConstants {
   static const String toe_image = "$_introImagesBasePath/toe_image.svg";
 
   //profile screen images
-  static const String profile_image = "$_introImagesBasePath/profile_image.svg";
+  // static const String profile_image = "$_introImagesBasePath/profile_image.svg";
   static const String contacu_us = "$_introImagesBasePath/contacu_us.svg";
 // discharge images
   static const String uploadSuccussfully = "$_introImagesBasePath/success.svg";

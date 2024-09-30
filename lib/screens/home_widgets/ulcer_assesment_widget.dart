@@ -1,5 +1,7 @@
+import 'package:drfootapp/screens/risk_factor_home.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -17,58 +19,70 @@ class _UlcerAssesmentWidgetState extends State<UlcerAssesmentWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: AppColors.haveUlcerBg,
-                  borderRadius: BorderRadius.circular(32)),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: CustomImage(
-                  path: AssetsConstants.have_ulcer,
-                  height: 142,
-                  width: 100,
-                  fit: BoxFit.contain,
+        InkWell(
+          onTap: () {},
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: AppColors.haveUlcerBg,
+                    borderRadius: BorderRadius.circular(32)),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: CustomImage(
+                    path: AssetsConstants.have_ulcer,
+                    height: 142,
+                    width: 100,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 12),
-            const Text(
-              "HAVE ULCER",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ).tr(),
-          ],
+              const SizedBox(height: 12),
+              const Text(
+                "HAVE ULCER",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ).tr(),
+            ],
+          ),
         ),
-        Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.riskCheckBg,
-                borderRadius: BorderRadius.circular(32),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: CustomImage(
-                  path: AssetsConstants.risk_checker,
-                  height: 142,
-                  width: 100,
-                  fit: BoxFit.contain,
+        InkWell(
+          onTap: () {
+            Utility.myBottomSheet(
+              context,
+              heightFactor: 0.7,
+              widget: const RiskFactorHome(),
+            );
+          },
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.riskCheckBg,
+                  borderRadius: BorderRadius.circular(32),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: CustomImage(
+                    path: AssetsConstants.risk_checker,
+                    height: 142,
+                    width: 100,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 12),
-            const Text(
-              "RISK CHECKER",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ).tr(),
-          ],
+              const SizedBox(height: 12),
+              const Text(
+                "RISK CHECKER",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ).tr(),
+            ],
+          ),
         )
       ],
     );

@@ -22,6 +22,10 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
         width: double.infinity,
         decoration: BoxDecoration(
             color: AppColors.whiteBgColor,
+            border: Border.all(
+              color: AppColors.grey,
+              width: 1,
+            ),
             borderRadius: BorderRadius.circular(8)),
         child: Row(
           children: [
@@ -62,25 +66,6 @@ class _BookAppointmentWidgetState extends State<BookAppointmentWidget> {
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.blackBold),
                           ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.task_alt,
-                                color: AppColors.greenColor,
-                                size: 14,
-                              ),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                "Completed",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.greenColor),
-                              ),
-                            ],
-                          )
                         ],
                       ),
                       Row(

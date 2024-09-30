@@ -74,7 +74,7 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
         title: const Text(
           "Payment",
           style: TextStyle(
-              color: AppColors.primary,
+              color: AppColors.primaryBlue,
               fontSize: 18,
               fontWeight: FontWeight.w700),
         ).tr(),
@@ -84,12 +84,11 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
               Get.back();
             },
             icon: const Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.primary,
+              Icons.arrow_back,
+              color: AppColors.primaryBlue,
             )),
       ),
-      body:
-          GetBuilder<FootServiceController>(builder: (footServiceController) {
+      body: GetBuilder<FootServiceController>(builder: (footServiceController) {
         return SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -100,14 +99,14 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
                 FootServiceWidget(
                   footServiceModel:
                       footServiceController.selectedFootServiceModel,
-                        onPress: () {
-                          couponCodeController.selectedCouponCodeModel == null
-                              ? Get.back()
-                              : Null;
+                  onPress: () {
+                    couponCodeController.selectedCouponCodeModel == null
+                        ? Get.back()
+                        : Null;
                     footServiceController.addOrRemoveFromList(
                         footServiceModel:
                             footServiceController.selectedFootServiceModel);
-                        },
+                  },
                 ),
                 // ListView.builder(
                 //     physics: const NeverScrollableScrollPhysics(),

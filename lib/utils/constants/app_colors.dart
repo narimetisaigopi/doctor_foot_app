@@ -13,6 +13,8 @@ class AppColors {
   static const Color notificationsButtonColor = Color(0xFF7389C1);
   static const Color notificationsButtonBgColor = Color(0xFFF0F4FF);
   static const Color ratingBarColor = Color(0xFFFFD414);
+  static const Color redColor = Color(0xFFFF485A);
+  static const Color redBgColor = Color(0xFFFFE5E5);
   static const Color freePlanBgColor = Color(0xFFFFF8EF);
   static const Color updateBgColor = Color(0xFFD2D8E7);
   static const Color greenColor = Color(0xFF51B974);
@@ -22,7 +24,6 @@ class AppColors {
   // home screen
   static const Color haveUlcerBg = Color(0xFFFFEEED);
   static const Color riskCheckBg = Color(0xFFE7F6FF);
-
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);
@@ -42,12 +43,15 @@ class AppColors {
 
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);
+  static const Color textGreyColor = Color(0xFF898384);
   static const Color textBlackColors = Color(0xFF3C3C3C);
   static const Color textBlackColor = Color(0xFF535353);
   static const Color textBackThickColor = Color(0xFF101010);
   static const Color textblackbook = Color(0xFF3F3D3D);
   static const Color textred = Color(0xFFFF1313);
   static const Color pastTextColor = Color(0xFF707070);
+  static const Color profileTextColor = Color(0xFF5A5A5A);
+  static const Color introTextColor = Color(0xFF5A5555);
 
   static const Color greyTextColor = Color(0xFFA0A0A0);
   static const Color greyBorderColor = Color(0xFFE4E4E4);
@@ -63,4 +67,14 @@ class AppColors {
 
   // border colors
   static const abBorderColor = Color(0xFFE5EDF2);
+  static const deviderColor = Color(0xFFE8E8E8);
+  static const greyBorder = Color(0xFFCBCBCB);
+  static const secondaryColor = Color(0xFFDEE2EC);
+  static const buttonBg = Color(0xFF7C99AF);
+  static const buttonBg1 = Color(0xFFE8F1F5);
+  static const expBg = Color(0xFFF4FAFF);
+  //treatment Colors
+  static const treatmentYesbg = Color(0xFFE7F6FF);
+  static const black3 = Color(0xFF535353);
+  static const black1 = Color(0xFF101010);
 }

@@ -61,16 +61,18 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                       Text(
                         widget.footServiceModel.title,
                         style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
-                            color: AppColors.primary),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          color: AppColors.primaryBlue,
+                        ),
                       ),
                       Text(
                         widget.footServiceModel.duration,
                         style: const TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color: AppColors.primary),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: AppColors.primaryBlue,
+                        ),
                       )
                     ],
                   ),
@@ -114,8 +116,9 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                     style: ButtonStyle(
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),
-                      backgroundColor:
-                          MaterialStateProperty.all(AppColors.primary),
+                      backgroundColor: MaterialStateProperty.all(
+                        AppColors.primaryBlue,
+                      ),
                       padding: MaterialStateProperty.all(
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                       ),

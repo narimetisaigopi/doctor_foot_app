@@ -28,7 +28,23 @@ class _UlcerMonitoringScreenState extends State<UlcerMonitoringScreen> {
       return Scaffold(
         backgroundColor: AppColors.secondary,
         appBar: AppBar(
-          title: const Text("ulcerMonitorText").tr(),
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: const Icon(
+              Icons.arrow_back_outlined,
+              color: AppColors.whiteBgColor,
+            ),
+          ),
+          backgroundColor: AppColors.primaryBlue,
+          title: const Text(
+            "ulcerMonitorText",
+            style: TextStyle(
+                color: AppColors.whiteBgColor,
+                fontSize: 17,
+                fontWeight: FontWeight.w700),
+          ).tr(),
           centerTitle: true,
         ),
         body: Container(

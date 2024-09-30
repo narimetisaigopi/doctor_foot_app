@@ -40,7 +40,7 @@ dependencies:
   intl: any
   get: ^4.6.6
   flutter_form_builder: ^9.2.1
-  form_builder_validators: 
+  form_builder_validators:
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.1.0
   bulleted_list: ^0.0.1+0.1a
@@ -78,13 +78,12 @@ dependencies:
   flutter_local_notifications: ^17.1.0
   url_launcher: ^6.2.6
   permission_handler: ^11.3.1
-
+  rflutter_alert: ^2.0.7
 
   paginate_firestore:
     git:
       url: https://github.com/waqadArshad/paginate_firestore.git
   readmore: ^3.0.0
-
 
 dev_dependencies:
   flutter_test:
@@ -115,6 +114,13 @@ flutter:
     - assets/translation/
     - assets/images/intro/
     - assets/images/home/
+    - assets/images/consult_doctor_image/
+    - assets/images/foot_screening_images/
+    - assets/images/dressing_services_images/
+    - assets/images/skin_and_nail_images/
+    - assets/images/foot_deformities_images/
+    - assets/images/toe_deformities_images/
+    - assets/images/foot_pain_images/
     - assets/svgs/
     - assets/images/notification_images/
   # An image asset can refer to one or more resolution-specific "variants", see

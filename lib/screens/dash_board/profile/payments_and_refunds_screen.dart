@@ -19,23 +19,28 @@ class _PaymentsAndRefundScreenState extends State<PaymentsAndRefundScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
-      appBar: AppBar(
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          "Payments & Refunds",
-          style: TextStyle(
+        backgroundColor: AppColors.secondary,
+        appBar: AppBar(
+          backgroundColor: AppColors.primaryBlue,
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: AppColors.whiteBgColor,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text(
+            "Payments & Refunds",
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: AppColors.primary),
-        ).tr(),
-      ),
+              color: AppColors.whiteBgColor,
+            ),
+          ).tr(),
+        ),
         body: Container(
           margin: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
           child: PaginateFirestore(
@@ -57,8 +62,6 @@ class _PaymentsAndRefundScreenState extends State<PaymentsAndRefundScreen> {
                     PaymentModel.fromSnapshot(documentSnapshots[index]);
                 return PaymentWidget(paymentModel: paymentModel);
               }),
-        )
-
-    );
+        ));
   }
 }

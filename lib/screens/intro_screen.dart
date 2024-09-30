@@ -22,47 +22,52 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.whiteBgColor,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(76.0),
-          child: AppBar(
-            leading: currentPage == 0
-                ? Container()
-                : IconButton(
-                    onPressed: () {
-                      if (currentPage != 0) {
-                        setState(() {
-                          currentPage--;
-                          pageController.jumpTo(currentPage);
-                        });
-                      }
-                    },
-                    icon: const SvgImageWidget(
-                      path: AssetsConstants.arrow_back,
-                      width: 60,
-                      height: 60,
-                    ),
-                  ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: InkWell(
-                  onTap: () {
-                    skipIntro();
-                  },
-                  child: const Text(
-                    "skip",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w700),
-                  ).tr(),
-                ),
-              ),
-            ],
-          ),
-        ),
-        body: Center(
+        // backgroundColor: AppColors.whiteBgColor,
+        // appBar: PreferredSize(
+        //   preferredSize: const Size.fromHeight(76.0),
+        //   child: AppBar(
+        //     leading: currentPage == 0
+        //         ? Container()
+        //         : IconButton(
+        //             onPressed: () {
+        //               if (currentPage != 0) {
+        //                 setState(() {
+        //                   currentPage--;
+        //                   pageController.jumpTo(currentPage);
+        //                 });
+        //               }
+        //             },
+        //             icon: const SvgImageWidget(
+        //               path: AssetsConstants.arrow_back,
+        //               width: 60,
+        //               height: 60,
+        //             ),
+        //           ),
+        //     // actions: [
+        //     //   Padding(
+        //     //     padding: const EdgeInsets.only(right: 16),
+        //     //     child: InkWell(
+        //     //       onTap: () {
+        //     //         skipIntro();
+        //     //       },
+        //     //       child: const Text(
+        //     //         "skip",
+        //     //         style: TextStyle(
+        //     //           fontSize: 16,
+        //     //           color: AppColors.primary,
+        //     //           fontWeight: FontWeight.w700,
+        //     //         ),
+        //     //       ).tr(),
+        //     //     ),
+        //     //   ),
+        //     // ],
+        //   ),
+        // ),
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          flex: 80,
           child: PageView.builder(
             controller: pageController,
             onPageChanged: (value) {
@@ -78,7 +83,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 children: [
                   SvgImageWidget(
                     path: "${images["image"]}",
-                    height: 413,
+                    height: 380,
                     width: 430,
                   ),
                   const SizedBox(
@@ -87,9 +92,10 @@ class _IntroScreenState extends State<IntroScreen> {
                   const Text(
                     "introText",
                     style: TextStyle(
-                        fontSize: 24,
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w700),
+                      fontSize: 24,
+                      color: AppColors.introTextColor,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ).tr(),
                   const SizedBox(
                     height: 16,
@@ -98,18 +104,71 @@ class _IntroScreenState extends State<IntroScreen> {
                     controller: pageController,
                     count: introScreenImages.length,
                     effect: const ExpandingDotsEffect(
-                        activeDotColor: AppColors.primary,
+                        activeDotColor: AppColors.primaryBlue,
                         dotColor: AppColors.grey2,
                         dotWidth: 10.0,
                         dotHeight: 8.0,
                         radius: 4.0,
                         offset: 50.0),
-                  )
+                  ),
+                  const SizedBox(height: 8),
+                  const Divider(
+                    color: AppColors.grey,
+                    thickness: 5,
+                  ),
                 ],
               );
             }),
           ),
-        ));
+        ),
+        Expanded(
+          flex: 20,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Let’s get started!",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: AppColors.blackBold,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ).tr(),
+                const SizedBox(height: 12),
+                InkWell(
+                  onTap: () {
+                    Utility.myBottomSheet(context,
+                        widget: const SignUpScreen(), heightFactor: 0.7);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: AppColors.grey,
+                          width: 0.5,
+                        )),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: const Text(
+                        "Enter mobile number",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: AppColors.black2,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ).tr(),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        )
+      ],
+    ));
   }
 
   skipIntro() {

@@ -21,7 +21,7 @@ class _DietWidgetState extends State<DietWidget> {
       height: 150,
       decoration: BoxDecoration(
         border: Border.all(
-          color: AppColors.dietChartBgColor,
+          color: AppColors.primaryBlue,
           width: 1,
         ),
         borderRadius: BorderRadius.circular(16),
@@ -31,7 +31,7 @@ class _DietWidgetState extends State<DietWidget> {
           Expanded(
             flex: 7,
             child: Container(
-              decoration: const BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(color: AppColors.whiteBgColor),
               child: Column(
                 children: [
                   NetworkImageWidget(
@@ -54,7 +54,7 @@ class _DietWidgetState extends State<DietWidget> {
             child: Container(
               width: double.infinity,
               decoration: const BoxDecoration(
-                  color: AppColors.primary,
+                  color: AppColors.primaryBlue,
                   borderRadius: BorderRadius.vertical(
                       top: Radius.circular(7), bottom: Radius.circular(7))),
               child: Center(

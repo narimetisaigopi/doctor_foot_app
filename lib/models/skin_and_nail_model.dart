@@ -10,17 +10,19 @@ class SkinAndNailModel {
 
 List<SkinAndNailModel> skinAndNailList = [
   SkinAndNailModel(
-      image: AssetsConstants.home_dressing_cover_img,
+      image: AssetsConstants.ingrow_toe_nail,
       serviceNames: Strings.ingrownToeNailText),
   SkinAndNailModel(
-      image: AssetsConstants.well_kept_nails,
-      serviceNames: Strings.cornsText),
+      image: AssetsConstants.corns_image, serviceNames: Strings.cornsText),
   SkinAndNailModel(
-      image: AssetsConstants.wounded_foot,
+      image: AssetsConstants.planter_warts,
       serviceNames: Strings.plantarWartsText),
   SkinAndNailModel(
-      image: AssetsConstants.foot_service, serviceNames: Strings.toeNailFungusText),
+    image: AssetsConstants.toe_nail_fungus,
+    serviceNames: Strings.toeNailFungusText,
+  ),
   SkinAndNailModel(
-      image: AssetsConstants.foot_service,
-      serviceNames: Strings.folliculitisText),
+    image: AssetsConstants.foliquilities,
+    serviceNames: Strings.folliculitisText,
+  ),
 ];

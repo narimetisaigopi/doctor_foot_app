@@ -28,6 +28,14 @@ final List<String> options = [
   'Total Orders',
   'Diet Chart',
 ];
+final List<String> chooseTimes = [
+  '09 AM - 11 AM',
+  '11 AM - 01PM',
+  '01PM - 03PM',
+  '03PM - 05PM',
+  '05 PM - 07PM',
+  '07PM-09 PM',
+];
 
 const introScreenImages = [
   {

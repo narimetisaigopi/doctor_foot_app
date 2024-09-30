@@ -138,14 +138,14 @@ class Strings {
       "If your wound is < 1000cm , Then it is recommended.";
 
 // home screen strings
-  static const String consultYourDoctor = 'CONSULT YOUR DOCTOR';
-  static const String onlineConsultation = 'ONLINE CONSULTATION';
-  static const String footScreeningServices = 'FOOT SCREENING SERVICES';
-  static const String dressingAtHome = 'DRESSING AT HOME';
-  static const String footCleaning = 'FOOT CLEANSING';
-  static const String nailTrimming = 'NAIL TRIMMING';
-  static const String footWear = 'FOOT WEAR';
-  static const String footProducts = 'FOOT PRODUCTS';
+  static const String consultYourDoctor = '   CONSULT\n YOUR DOCTOR';
+  static const String onlineConsultation = '    ONLINE \nCONSULTATION';
+  static const String footScreeningServices = 'FOOT SCREENING\n      SERVICES';
+  static const String dressingAtHome = 'DRESSING AT\n     HOME';
+  static const String footCleaning = '   FOOT\nCLEANSING';
+  static const String nailTrimming = '   NAIL\nTRIMMING';
+  static const String footWear = 'FOOT \nWEAR';
+  static const String footProducts = '   FOOT\nPRODUCTS';
 
   static const String kpbColonyText = 'KPB Colony';
   static const String patientReviewsText = 'Patient Reviews';
@@ -180,9 +180,9 @@ class Strings {
   static const String friday = 'Friday';
   static const String saturday = 'Saturday';
   static const String sunday = 'Sunday';
-  static const String morningText = 'Morning';
-  static const String afternoonText = 'Afternoon';
-  static const String eveningText = 'Evening';
+  static const String morningText = 'Morning - Noon';
+  static const String afternoonText = 'Afternoon - Evening';
+  static const String eveningText = 'Evening - Bedtime';
   static const String nightText = 'Night';
   static const String earlyMorning = 'Early Morning\n  (6am-7am)';
 
@@ -304,4 +304,9 @@ class Strings {
   static const String articleTitle = "VEINS OF VULNERABILITY";
   static const String articleDiscription =
       'Lorem Ipsum is simply dummy\ntext of the printing and type\nsetting industry. Lorem Ipsum is\nsimply dummy ';
+// foot screening
+  static const String pulseExamination = "   Pulse\nExamination";
+  static const String abiTbi = "ABI &\n TBI";
+  static const String neuropathyAssessment = "Neuropathy\nAssessment";
+  static const String footPressureAssessment = "Foot Pressure\n Assessment";
 }

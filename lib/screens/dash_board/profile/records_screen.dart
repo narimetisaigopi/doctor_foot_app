@@ -16,9 +16,13 @@ class _RecordsScreenState extends State<RecordsScreen> {
     return Scaffold(
       backgroundColor: AppColors.secondary,
       appBar: AppBar(
+        backgroundColor: AppColors.primaryBlue,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: AppColors.whiteBgColor,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -26,9 +30,10 @@ class _RecordsScreenState extends State<RecordsScreen> {
         title: const Text(
           "Records",
           style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: AppColors.primary),
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: AppColors.whiteBgColor,
+          ),
         ).tr(),
       ),
       body: SingleChildScrollView(
@@ -46,9 +51,9 @@ class _RecordsScreenState extends State<RecordsScreen> {
               ),
               RecordWidget(),
               SizedBox(
-              height: 22,
-            ),
-            RecordWidget(),
+                height: 22,
+              ),
+              RecordWidget(),
             ],
           ),
         ),

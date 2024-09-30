@@ -1,5 +1,6 @@
 import 'package:drfootapp/controllers/diet_chart_controller.dart';
 import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_drop_down_widget.dart';
@@ -40,6 +41,7 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.primaryBlue,
         title: Text(
             widget.dietChart != null ? "Edit Diet Chart" : "New Diet Chart"),
       ),

@@ -18,6 +18,7 @@ class _FootDeformitiesScreenState extends State<FootDeformitiesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteBgColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 22),
         child: Column(
@@ -29,7 +30,7 @@ class _FootDeformitiesScreenState extends State<FootDeformitiesScreen> {
                   icon: const Icon(
                     Icons.arrow_back_ios,
                     size: 16,
-                    color: AppColors.primary,
+                    color: AppColors.black1,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -42,7 +43,7 @@ class _FootDeformitiesScreenState extends State<FootDeformitiesScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.primary,
+                        color: AppColors.black2,
                       ),
                     ),
                   ),
@@ -50,7 +51,7 @@ class _FootDeformitiesScreenState extends State<FootDeformitiesScreen> {
               ],
             ),
             const SizedBox(
-              height: 28,
+              height: 22,
             ),
             Expanded(
               child: GridView.builder(
@@ -70,18 +71,17 @@ class _FootDeformitiesScreenState extends State<FootDeformitiesScreen> {
                       onTap: () {
                         switch (index) {
                           case 0:
+                            Get.back();
                             Get.to(() => const FlatFeetScreen());
-
                             break;
                           case 1:
+                            Get.back();
                             Get.to(() => const BunionsScreen());
-
                             break;
-                             case 2:
+                          case 2:
+                            Get.back();
                             Get.to(() => const ChaecotFootScreen());
-
                             break;
-
                           default:
                             break;
                         }

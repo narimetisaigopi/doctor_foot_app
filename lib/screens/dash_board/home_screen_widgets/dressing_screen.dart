@@ -47,7 +47,7 @@ class _DressingScreenState extends State<DressingScreen> {
               ],
             ),
             const SizedBox(
-              height: 28,
+              height: 12,
             ),
             Expanded(
               child: GridView.builder(
@@ -55,10 +55,10 @@ class _DressingScreenState extends State<DressingScreen> {
                       vertical: 2.0, horizontal: 2.0),
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 4 / 4,
+                    childAspectRatio: 3.4 / 4.8,
                     crossAxisCount: 2,
                     crossAxisSpacing: 20,
-                    mainAxisSpacing: 25,
+                    mainAxisSpacing: 12,
                   ),
                   itemCount: dressingServicesList.length,
                   itemBuilder: (context, index) {

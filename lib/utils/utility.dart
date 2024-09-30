@@ -19,12 +19,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 // import 'package:flutter/foundation.dart'
 //     show consolidateHttpClientResponseBytes, kIsWeb;
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class Utility {
   static DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss aaa');
@@ -114,12 +112,15 @@ class Utility {
         padding:
             EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : Colors.white,
-          borderRadius: BorderRadius.circular(5),
-        ),
+            color: isSelected ? AppColors.primaryBlue : Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+              color: AppColors.grey,
+              width: 1,
+            )),
         child: Row(
           children: [
-            Icon(iconData, color: isSelected ? Colors.white : Colors.black),
+            Icon(iconData, color: isSelected ? Colors.white : Colors.grey),
             const SizedBox(
               width: 4,
             ),
@@ -150,8 +151,8 @@ class Utility {
         padding:
             EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : AppColors.whiteBgColor,
-          border: Border.all(color: Colors.grey.shade400),
+          color: isSelected ? AppColors.primaryBlue : AppColors.whiteBgColor,
+          border: Border.all(color: AppColors.grey,width: 0.5),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
@@ -372,7 +373,6 @@ class Utility {
     );
   }
 
-  
   // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
   // static navigateBasedOnRole(BuildContext context,

@@ -11,14 +11,14 @@ class CustomListTileWidget extends StatefulWidget {
   final IconData? trailingIcon;
 
   const CustomListTileWidget({
-    Key? key,
+    super.key,
     required this.text,
     required this.leadingIcon,
     required this.onPressed,
     this.isIconNeeded = false,
     this.isSelected = false, // Default to false
     this.trailingIcon = Icons.arrow_forward_ios,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomListTileWidget> createState() => _CustomListTileWidgetState();
@@ -29,29 +29,47 @@ class _CustomListTileWidgetState extends State<CustomListTileWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onPressed,
-      child: ListTile(
-          title: Text(
-            widget.text,
-            style: const TextStyle(
-              fontSize: 16,
-              color: AppColors.textBlackColors,
-              fontWeight: FontWeight.w500,
-            ),
-          ).tr(),
-          leading: 
-            CircleAvatar(
-                  backgroundColor: AppColors.primary,
-                  child: Icon(
-                    widget.leadingIcon,
-                    color: AppColors.secondary,
+      child: Column(
+        children: [
+          ListTile(
+              title: Text(
+                widget.text,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: AppColors.profileTextColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              ).tr(),
+              leading: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8)),
+                child: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundColor: AppColors.primaryBlue,
+                    child: Icon(
+                      widget.leadingIcon,
+                      color: AppColors.secondary,
+                    ),
                   ),
                 ),
-              
-          trailing: const Icon(
-            Icons.arrow_forward_ios,
-            color: AppColors.black2,
-            size: 24,
-          )),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.grey,
+                size: 22,
+              )),
+          const Divider(
+            color: AppColors.deviderColor,
+            thickness: 1,
+          ),
+        ],
+      ),
     );
   }
 }
