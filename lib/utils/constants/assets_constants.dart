@@ -47,10 +47,12 @@ class AssetsConstants {
       "$homePath/book_premium_plan_image.png";
   static const String profile_image = "$homePath/profile_image.png";
   static const String contact_us_image = "$homePath/contact_us_image.png";
+  static const String article_blog_image = "$homePath/article&blog_image.png";
   // consult your doctor
   static const String consult_doctor_path =
       "assets/images/consult_doctor_image";
   static const String find_doctor = "$consult_doctor_path/find_doctor.png";
+  static const String kims_hosptl = "$consult_doctor_path/kims_hosptl.png";
   static const String patients = "$consult_doctor_path/patients.png";
   static const String experience = "$consult_doctor_path/experience.png";
   static const String star_image = "$consult_doctor_path/star_image.png";

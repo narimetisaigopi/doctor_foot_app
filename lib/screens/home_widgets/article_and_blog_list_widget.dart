@@ -1,6 +1,8 @@
+import 'package:drfootapp/screens/articles&blogs/articles_info_screen.dart';
 import 'package:drfootapp/screens/home_widgets/article_and_blog_widget.dart';
 import 'package:drfootapp/screens/home_widgets/models/article_and_blog_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ArticleAndBlogWidgetList extends StatefulWidget {
   const ArticleAndBlogWidgetList({super.key});
@@ -21,8 +23,13 @@ class _ArticleAndBlogWidgetListState extends State<ArticleAndBlogWidgetList> {
           itemBuilder: (context, index) {
             ArticleAndBlogModel articleAndBlogItem =
                 articleAndBlogModelList[index];
-            return ArticleAndBlogWidget(
-              articleAndBlogModel: articleAndBlogItem,
+            return InkWell(
+              onTap: () {
+                Get.to(() => const ArticlesInfoScreen());
+              },
+              child: ArticleAndBlogWidget(
+                articleAndBlogModel: articleAndBlogItem,
+              ),
             );
           }),
     );
