@@ -1,9 +1,11 @@
+import 'package:drfootapp/screens/consult_your_doctor/foot_screening_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SportsInjuriesScreen extends StatefulWidget {
   const SportsInjuriesScreen({super.key});
@@ -201,7 +203,6 @@ class _SportsInjuriesScreenState extends State<SportsInjuriesScreen> {
                         SizedBox(
                           height: 24,
                         ),
-                     
                       ],
                     ),
                   )
@@ -218,7 +219,9 @@ class _SportsInjuriesScreenState extends State<SportsInjuriesScreen> {
                   bgColor: AppColors.primaryBlue,
                   buttonName: "Book appointment",
                   textColor: AppColors.whiteBgColor,
-                  onPress: () {},
+                  onPress: () {
+                    Get.to(() => const FootScreeningScreen());
+                  },
                 ),
               ),
             ),

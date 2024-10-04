@@ -1,4 +1,5 @@
 import 'package:drfootapp/screens/risk_factor_home.dart';
+import 'package:drfootapp/screens/treatement/ulcer_yes_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -20,7 +21,13 @@ class _UlcerAssesmentWidgetState extends State<UlcerAssesmentWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Utility.myBottomSheet(
+              context,
+              heightFactor: 0.5,
+              widget: const UlcerYesScreen(),
+            );
+          },
           child: Column(
             children: [
               Container(

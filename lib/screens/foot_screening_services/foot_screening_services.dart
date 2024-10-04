@@ -1,3 +1,4 @@
+import 'package:drfootapp/screens/consult_your_doctor/foot_screening_screen.dart';
 import 'package:drfootapp/screens/foot_screening_services/models/foot_screening_model.dart';
 import 'package:drfootapp/screens/foot_screening_services/widgets/foot_screening_service_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -64,34 +65,21 @@ class _FootScreeningServicesState extends State<FootScreeningServices> {
                         footScreeningServicesList[index];
                     return InkWell(
                       onTap: () {
-                        Get.back();
                         switch (index) {
-                          // case 0:
-                          //   Get.to(() => const HomeFootServicesScreen(
-                          //         footServices: FootServices.dressingService,
-                          //         dressingServices: DressingServices.small,
-                          //       ));
-                          //   break;
-                          // case 1:
-                          //   Get.to(() => const HomeFootServicesScreen(
-                          //         footServices: FootServices.dressingService,
-                          //         dressingServices: DressingServices.moderate,
-                          //       ));
-                          //   break;
-                          // case 2:
-                          //   Get.to(() => const HomeFootServicesScreen(
-                          //         footServices: FootServices.dressingService,
-                          //         dressingServices: DressingServices.large,
-                          //       ));
-                          //   break;
-                          // case 3:
-                          //   Get.to(() => const HomeFootServicesScreen(
-                          //         footServices: FootServices.dressingService,
-                          //         dressingServices: DressingServices.huge,
-                          //       ));
-                          //   break;
-                          // default:
-                          //   break;
+                          case 0:
+                            Get.to(() => const FootScreeningScreen());
+                            break;
+                          case 1:
+                            Get.to(() => const FootScreeningScreen());
+                            break;
+                          case 2:
+                            Get.to(() => const FootScreeningScreen());
+                            break;
+                          case 3:
+                            Get.to(() => const FootScreeningScreen());
+                            break;
+                          default:
+                            break;
                         }
                       },
                       child: FootScreeningServiceWidget(

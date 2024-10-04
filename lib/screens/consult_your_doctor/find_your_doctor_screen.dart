@@ -51,60 +51,11 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
           ).tr(),
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
             child: Column(
               children: [
-                // TableCalendar(
-                //   calendarBuilders: CalendarBuilders(
-                //     selectedBuilder: (context, day, focusedDay) {
-                //       return CalenderWidget(
-                //         formate: getWeekName(day),
-                //         date: "${day.day}",
-                //         bgColor: AppColors.primary,
-                //       );
-                //     },
-
-                //     defaultBuilder: (context, day, focusedDay) {
-                //       return CalenderWidget(
-                //         formate: getWeekName(day),
-                //         date: "${day.day}",
-                //       );
-                //     },
-                //   ),
-                //   rowHeight: 60,
-                //   locale: "en_US",
-                //   calendarStyle: const CalendarStyle(
-                //     selectedDecoration: BoxDecoration(
-                //       color: AppColors.grey2,
-                //     ),
-                //   ),
-                //   currentDay: DateTime.now(),
-                //   selectedDayPredicate: (day) {
-                //     if (appointmentController.isDateSelected &&
-                //         day.day == appointmentController.selectedDateTime.day &&
-                //         day.month == appointmentController.selectedDateTime.month &&
-                //         day.year == appointmentController.selectedDateTime.year) {
-                //       return true;
-                //     }
-                //     return false;
-                //   },
-                //   headerStyle: HeaderStyle(
-                //     formatButtonVisible: false,
-                //     titleCentered: true,
-                //     formatButtonDecoration: BoxDecoration(
-                //       color: AppColors.primary,
-                //       borderRadius: BorderRadius.circular(4),
-                //     ),
-                //   ),
-                //   firstDay: DateTime.now(),
-                //   lastDay: DateTime.now().add(const Duration(days: 30)),
-                //   onDaySelected: (s1, s2) {
-                //     appointmentController.onDateSelection(s2);
-                //   },
-                //   focusedDay: appointmentController.selectedDateTime,
-                // ),
                 MyTextField(
                   borderRadius: 8,
                   bgColor: AppColors.whiteBgColor,
