@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "image": "assets/images/risk_factor_questionary/age.svg",
+    "image": "assets/images/risk_factor_questionary/your_age_image.png",
     "question": "What is your age?",
     "description": "",
     "options": [
@@ -13,7 +13,7 @@
   },
   {
     "id": 1,
-    "image": "assets/images/risk_factor_questionary/BMI.svg",
+    "image": "assets/images/risk_factor_questionary/bmi_image.png",
     "question": "BMI (Body Mass Index)",
     "description": "Click here to know your BMI",
 
@@ -27,7 +27,7 @@
 
   {
     "id": 2,
-    "image": "assets/images/risk_factor_questionary/diabetic_machine.svg",
+    "image": "assets/images/risk_factor_questionary/how_many_years_diabetise.png",
     "question": "Since how many years have you been diabetic?",
     "description": "",
     "options": [
@@ -40,7 +40,7 @@
 
   {
     "id": 3,
-    "image": "assets/images/risk_factor_questionary/HbA1C.svg",
+    "image": "assets/images/risk_factor_questionary/hbac.png",
     "question": "What is your recent HbA1C value?",
     "description": "",
     "options": [
@@ -57,22 +57,22 @@
     "description": "",
     "options": [
       {
-        "image": "assets/images/risk_factor_questionary/No.svg",
+        "image": "assets/images/risk_factor_questionary/no.png",
         "title": "NO",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/toe_amputation.svg",
+        "image": "assets/images/risk_factor_questionary/toe_aumpitation.png",
         "title": "Angioplasty",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/below_knee.svg",
+        "image": "assets/images/risk_factor_questionary/below_knee.png",
         "title": "Stenting",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/above_knee.svg",
+        "image": "assets/images/risk_factor_questionary/above_knee.png",
         "title": "Bypass Surgery",
         "subTitle": ""
       }
@@ -80,7 +80,7 @@
   },
   {
     "id": 5,
-    "image": "assets/images/risk_factor_questionary/foot_ulcer.svg",
+    "image": "assets/images/risk_factor_questionary/history_foot_ulcer.png",
     "question": "Do you have any history of  foot ulcer?",
     "description": "",
     "options": [
@@ -91,7 +91,7 @@
 
   {
     "id": 6,
-    "image": "assets/images/risk_factor_questionary/smoker.svg",
+    "image": "assets/images/risk_factor_questionary/smoker.png",
     "question": "Are you a smoker?",
     "description": "",
     "options": [
@@ -101,8 +101,8 @@
   },
   {
     "id": 7,
-    "image": "assets/images/risk_factor_questionary/visual_disturbance.svg",
-    "question": "Do you have any visual  disturbances?",
+    "image": "assets/images/risk_factor_questionary/viaual_disturbution.png",
+    "question": "Do you have any history of vascular surgery?",
     "description": "",
     "options": [
       { "image": "", "title": "No", "subTitle": "" },
@@ -116,22 +116,22 @@
     "description": "",
     "options": [
       {
-        "image": "assets/images/risk_factor_questionary/No.svg",
+        "image": "assets/images/risk_factor_questionary/no.png",
         "title": "NO",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/angioplasty.svg",
+        "image": "assets/images/risk_factor_questionary/angiplosty.png",
         "title": "Angioplasty",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/stenting.svg",
+        "image": "assets/images/risk_factor_questionary/stenting.png",
         "title": "Stenting",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/bypass_surgery.svg",
+        "image": "assets/images/risk_factor_questionary/bypass_surgery.png",
         "title": "Bypass Surgery",
         "subTitle": ""
       }
@@ -139,7 +139,7 @@
   },
   {
     "id": 9,
-    "image": "assets/images/risk_factor_questionary/burning_feet.svg",
+    "image": "assets/images/risk_factor_questionary/burnig_shooting.png",
     "question": "Do you have burning/shooting pain in  your feet? ",
     "description": "",
     "options": [
@@ -167,7 +167,7 @@
   },
   {
     "id": 10,
-    "image": "assets/images/risk_factor_questionary/burning_feet.svg",
+    "image": "assets/images/risk_factor_questionary/burnig_shooting.png",
     "question": "Do you have any tingling/numbness  in your feet? ",
     "description": "",
     "options": [
@@ -195,7 +195,7 @@
   },
   {
     "id": 11,
-    "image": "assets/images/risk_factor_questionary/infection_in_toes.svg",
+    "image": "assets/images/risk_factor_questionary/infection.png",
     "question": "Do you have any infection between  toes of your feet?",
     "description": "",
 
@@ -212,22 +212,22 @@
     "description": "",
     "options": [
       {
-        "image": "assets/images/risk_factor_questionary/intact_healthy.svg",
+        "image": "assets/images/risk_factor_questionary/intact_healty.png",
         "title": "Intact & healthy",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/dry_funguscallus.svg",
+        "image": "assets/images/risk_factor_questionary/dry_fungas_cells.png",
         "title": "Dry with fungus/callus",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/heavy_callus.svg",
+        "image": "assets/images/risk_factor_questionary/heavy_cellus.png",
         "title": "Heavy callus",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/open_ulcer.svg",
+        "image": "assets/images/risk_factor_questionary/open_ulcer.png",
         "title": "Open ulcer",
         "subTitle": ""
       }
@@ -240,12 +240,12 @@
     "description": "",
     "options": [
       {
-        "image": "assets/images/risk_factor_questionary/well_kept_nails.svg",
+        "image": "assets/images/risk_factor_questionary/well_kept_nails.png",
         "title": "Well kept nails",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/thick_damaged.svg",
+        "image": "assets/images/risk_factor_questionary/thick_damaged.png",
         "title": "Thick and damaged",
         "subTitle": ""
       }
@@ -258,22 +258,22 @@
     "description": "",
     "options": [
       {
-        "image": "assets/images/risk_factor_questionary/regular_foot_wear.svg",
+        "image": "assets/images/risk_factor_questionary/regular_foot_wear.png",
         "title": "Regular foot wear",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/ortho_foot_wear.svg",
+        "image": "assets/images/risk_factor_questionary/ortho_foot_wear.png",
         "title": "Ortho foot wear",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/soft_insole_foot_wear.svg",
+        "image": "assets/images/risk_factor_questionary/soft_insole_foot_wear.png",
         "title": "Soft Insole foot wear",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/diabetic_foot_wear.svg",
+        "image": "assets/images/risk_factor_questionary/diabetic_foot_wear.png",
         "title": "Diabetic Foot wear",
         "subTitle": ""
       }
@@ -281,7 +281,7 @@
   },
   {
     "id": 15,
-    "image": "assets/images/risk_factor_questionary/diabetic_diet.svg",
+    "image": "assets/images/risk_factor_questionary/diabetic_diet.png",
     "question": "Are you taking diabetic diet?",
     "description": "",
     "options": [
@@ -291,7 +291,7 @@
   },
   {
     "id": 16,
-    "image": "assets/images/risk_factor_questionary/sensation_feet.svg",
+    "image": "assets/images/risk_factor_questionary/feet_sensation.png",
     "question": "Can you feel the sensation  in your feet? ",
 
     "options": [
@@ -306,17 +306,17 @@
     "description": "",
     "options": [
       {
-        "image": "assets/images/risk_factor_questionary/abnormal_foot_shape_1.svg",
+        "image": "assets/images/risk_factor_questionary/foot_shape_1.png",
         "title": "NO",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/abnormal_foot_shape_2.svg",
+        "image": "assets/images/risk_factor_questionary/foot_shape_2.png",
         "title": "Yes",
         "subTitle": ""
       },
       {
-        "image": "assets/images/risk_factor_questionary/abnormal_foot_shape_3.svg",
+        "image": "assets/images/risk_factor_questionary/foot_shape_3.png",
         "title": "",
         "subTitle": ""
       }
@@ -324,7 +324,7 @@
   },
   {
     "id": 18,
-    "image": "assets/images/risk_factor_questionary/kidney_issue.svg",
+    "image": "assets/images/risk_factor_questionary/kidney.png",
     "question": "Do you have any kidney  related issue ? ",
     "description": "",
     "options": [
@@ -334,7 +334,7 @@
   },
   {
     "id": 19,
-    "image": "assets/images/risk_factor_questionary/pain_after_walking.svg",
+    "image": "assets/images/risk_factor_questionary/walking.png",
     "question": "Are you experiencing any pain after  walking a certain distance?",
     "description": "",
     "options": [
@@ -344,7 +344,7 @@
   },
   {
     "id": 20,
-    "image": "assets/images/risk_factor_questionary/dilated_veins.svg",
+    "image": "assets/images/risk_factor_questionary/blakish_feet.png",
     "question": "Do you have any blackish discoloration  or dilated veins on your legs/feet? ",
     "description": "",
     "options": [

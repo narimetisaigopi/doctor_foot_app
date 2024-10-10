@@ -1,8 +1,8 @@
-import 'dart:io';
-
-import 'package:drfootapp/screens/treatement/have_ulcer_yes_screen.dart';
+import 'package:drfootapp/screens/treatement/how_to_upload_image_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,26 +49,13 @@ class _UlcerNoScreenState extends State<UlcerNoScreen> {
             const SizedBox(
               height: 16,
             ),
-            Center(
-              child: InkWell(
-                onTap: () {
-                  pickImage();
-                  setState(() {});
-                },
-                child: xFile != null
-                    ? CircleAvatar(
-                        radius: 60,
-                        backgroundColor: AppColors.treatmentYesbg,
-                        backgroundImage: FileImage(File(xFile!.path)),
-                      )
-                    : const Center(
-                        child: CircleAvatar(
-                          radius: 70,
-                          backgroundColor: AppColors.treatmentYesbg,
-                        ),
-                      ),
-              ),
-            ),
+            const Center(
+                child: CustomImage(
+              path: AssetsConstants.treatement_no,
+              height: 156,
+              width: 156,
+              fit: BoxFit.contain,
+            )),
             const SizedBox(
               height: 16,
             ),
@@ -94,7 +81,63 @@ class _UlcerNoScreenState extends State<UlcerNoScreen> {
                 bgColor: AppColors.primaryBlue,
                 textColor: AppColors.whiteBgColor,
                 onPress: () {
-                  Get.to(() => const HaveUlcerYesScreen());
+                  Get.defaultDialog(
+                      title: "",
+                      content: Column(
+                        children: [
+                          Row(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(left: 22),
+                                child: Text(
+                                  "How To Upload Ulcer Picture",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: AppColors.black1,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              const Spacer(),
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: AppColors.primaryBlue,
+                                    size: 20,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          const HowToUploadImage(
+                            image: AssetsConstants.how_to_upload_1,
+                            nametext: 'Image 1 :',
+                            descriptiontext:
+                                'Image should be taken from the front which should revile the entire ulcer wound along with entire foot as shown in the example image. ',
+                          ),
+                          const HowToUploadImage(
+                            image: AssetsConstants.how_to_upload_2,
+                            nametext: 'Image 2 :',
+                            descriptiontext:
+                                'Image should be taken from the top which should revile the depth of the ulcer as shown in the example image. ',
+                          ),
+                          const HowToUploadImage(
+                            image: AssetsConstants.how_to_upload_3,
+                            nametext: 'Image 3 :',
+                            descriptiontext:
+                                'Image should be taken from side to locate the place of the ulcer on the feet as shown in the example image. ',
+                          ),
+                        ],
+                      ));
                 },
               ),
             )
@@ -111,7 +154,6 @@ class _UlcerNoScreenState extends State<UlcerNoScreen> {
     if (xFile != null) {
       Utility.toast("Image  Picked");
 
-      // print("Image picked ${xFile?.path}");
       setState(() {});
     } else {
       Utility.toast(
