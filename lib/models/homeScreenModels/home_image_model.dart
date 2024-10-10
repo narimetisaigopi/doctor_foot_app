@@ -7,18 +7,18 @@ class HomeImageModel {
 
 List<HomeImageModel> homeImagesList = [
   HomeImageModel(
-    image: AssetsConstants.diabetes_image,
+    image: AssetsConstants.home_image,
   ),
   HomeImageModel(
-    image: AssetsConstants.diabetes_image,
+    image: AssetsConstants.home_image,
   ),
   HomeImageModel(
-    image: AssetsConstants.diabetes_image,
+    image: AssetsConstants.home_image,
   ),
   HomeImageModel(
-    image: AssetsConstants.diabetes_image,
+    image: AssetsConstants.home_image,
   ),
   HomeImageModel(
-    image: AssetsConstants.diabetes_image,
+    image: AssetsConstants.home_image,
   ),
 ];

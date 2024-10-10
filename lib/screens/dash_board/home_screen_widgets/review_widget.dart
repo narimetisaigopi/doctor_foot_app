@@ -24,10 +24,10 @@ class _ReviewWidgetState extends State<ReviewWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width*0.8,
+      width: MediaQuery.of(context).size.width * 0.8,
       margin: const EdgeInsets.only(left: 16, right: 16),
       decoration: BoxDecoration(
-        color: AppColors.primaryBlue,
+        color: AppColors.patientReviewBg,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(

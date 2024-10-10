@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:drfootapp/screens/treatement/have_ulcer_screen.dart';
+import 'package:drfootapp/screens/treatement/have_ulcer_yes_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -31,7 +31,6 @@ class _UlcerNoScreenState extends State<UlcerNoScreen> {
               children: [
                 InkWell(
                     onTap: () {
-                      Get.back();
                       Get.back();
                     },
                     child: const Icon(
@@ -95,7 +94,7 @@ class _UlcerNoScreenState extends State<UlcerNoScreen> {
                 bgColor: AppColors.primaryBlue,
                 textColor: AppColors.whiteBgColor,
                 onPress: () {
-                  Get.to(() => const HaveUlcerScreen());
+                  Get.to(() => const HaveUlcerYesScreen());
                 },
               ),
             )

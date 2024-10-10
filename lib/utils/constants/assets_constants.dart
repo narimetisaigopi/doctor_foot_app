@@ -31,6 +31,7 @@ class AssetsConstants {
 // home_screen images
   static const String homePath = "assets/images/home";
   // ulser assesment
+  static const String home_image = "$homePath/home_image.png";
   static const String have_ulcer = "$homePath/have_ulcer.png";
   static const String risk_checker = "$homePath/risk_checker.png";
   // our services
@@ -157,6 +158,18 @@ class AssetsConstants {
 
   static const String diabetes_image =
       "$_introImagesBasePath/diabetes_image.svg";
+
+  // have ulser
+
+  static const String layer_1 = "assets/images/treatement/Layer_1.png";
+  static const String discharge_summary_image =
+      "assets/images/treatement/discharge_summary_image.png";
+  static const String how_to_upload_1 =
+      "assets/images/treatement/how_to_upload_1.png";
+  static const String how_to_upload_2 =
+      "assets/images/treatement/how_to_upload_2.png";
+  static const String how_to_upload_3 =
+      "assets/images/treatement/how_to_upload_3.png";
 
   // risk_factor_questionary
   static const String abnormal_foot_shape_1 =

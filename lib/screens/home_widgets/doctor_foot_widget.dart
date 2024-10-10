@@ -29,9 +29,9 @@ class _DoctorFootWidgetState extends State<DoctorFootWidget> {
             ),
             const SizedBox(height: 6),
             const Text(
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+              "Introducing Doctor Foot, an innovative app designed to monitor diabetic foot ulcers and assess the associated risks. With a focus on automating care, Doctor Foot empowers diabetic patients to manage their health more effectively, providing peace of mind and reducing the risk of serious complications.",
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.justify,

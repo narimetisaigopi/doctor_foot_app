@@ -32,7 +32,6 @@ class _BookPremiumPlanWidgetState extends State<BookPremiumPlanWidget> {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Text(
                       "BOOK PREMIUM PLAN",
@@ -42,7 +41,7 @@ class _BookPremiumPlanWidgetState extends State<BookPremiumPlanWidget> {
                         color: AppColors.whiteBgColor,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 6),
                     const Text(
                       "TO GET EXPERTS ADVICE DAILY\nREGARDING YOUR ULCERS",
                       style: TextStyle(
@@ -58,7 +57,7 @@ class _BookPremiumPlanWidgetState extends State<BookPremiumPlanWidget> {
                           borderRadius: BorderRadius.circular(8)),
                       child: const Padding(
                         padding: EdgeInsets.only(
-                            left: 22, right: 22, top: 6, bottom: 6),
+                            left: 22, right: 22, top: 8, bottom: 8),
                         child: Text(
                           "Explore Now",
                           style: TextStyle(
@@ -74,7 +73,7 @@ class _BookPremiumPlanWidgetState extends State<BookPremiumPlanWidget> {
                 Image.asset(
                   AssetsConstants.book_premium_plan_image,
                   height: 172,
-                  width: 82,
+                  width: 112,
                   alignment: Alignment.bottomCenter,
                 )
               ],

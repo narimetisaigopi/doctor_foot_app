@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:drfootapp/models/homeScreenModels/home_image_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -26,13 +27,12 @@ class _HomeImageState extends State<HomeImage> {
           scrollDirection: Axis.horizontal,
           itemCount: homeImagesList.length,
           itemBuilder: (context, index) {
-            final homeImagesItem = homeImagesList[index];
             return Stack(
               children: [
-                SvgImageWidget(
+                const CustomImage(
+                  path: AssetsConstants.home_image,
                   height: 180,
                   width: double.infinity,
-                  path: homeImagesItem.image,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +49,7 @@ class _HomeImageState extends State<HomeImage> {
                             fontWeight: FontWeight.w400,
                             color: AppColors.secondary,
                           ),
+                          textAlign: TextAlign.center,
                         ).tr(),
                       ),
                     ),

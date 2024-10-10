@@ -32,9 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             const AppBarWidget(),
             const HomeImage(),
-            const SizedBox(
-              height: 12,
-            ),
+            const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: const Text(
@@ -46,9 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ).tr(),
             ),
-            const SizedBox(height: 12),
             const UlcerAssesmentWidget(),
-            const SizedBox(height: 12),
             const Divider(
               color: AppColors.riskCheckBg,
               thickness: 5,
@@ -77,11 +73,11 @@ class _HomeScreenState extends State<HomeScreen> {
               thickness: 10,
             ),
             const SizedBox(height: 12),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, right: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
               child: Text(
-                "Check your feet",
-                style: TextStyle(
+                "Check your feet".toUpperCase(),
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: AppColors.black2,
@@ -90,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 12),
             const CheckYourFeetList(),
+            const SizedBox(height: 12),
             const Divider(
               color: AppColors.riskCheckBg,
               thickness: 10,
@@ -130,13 +127,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const ArticleAndBlogWidgetList(),
             const SizedBox(height: 12),
+            const Divider(
+              color: AppColors.riskCheckBg,
+              thickness: 10,
+            ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: const Text(
-                "patientReviewsText",
-                style: TextStyle(
+              padding: const EdgeInsets.only(left: 16, right: 16,top: 8),
+              child:  Text(
+                "Patient Reviews".toUpperCase(),
+                style: const TextStyle(
                   fontSize: 20,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w700,
                 ),
               ).tr(),
             ),

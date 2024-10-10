@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/treatement/have_ulcer_screen.dart';
+import 'package:drfootapp/screens/treatement/have_ulcer_yes_screen.dart';
 import 'package:drfootapp/screens/treatement/ulcer_no_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -19,21 +19,20 @@ class _UlcerYesScreenState extends State<UlcerYesScreen> {
     return Scaffold(
       backgroundColor: AppColors.whiteBgColor,
       body: Padding(
-        padding:
-            const EdgeInsets.only(left: 16, right: 16,  bottom: 16),
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    size: 16,
-                    color: AppColors.black1,
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
-                ),
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                size: 16,
+                color: AppColors.black1,
+              ),
+              onPressed: () {
+                Get.back();
+              },
+            ),
             const Center(
               child: CircleAvatar(
                 radius: 70,
@@ -45,11 +44,12 @@ class _UlcerYesScreenState extends State<UlcerYesScreen> {
             ),
             const Center(
               child: Text(
-                'Did You Get A Treatment For \nRecognized Hospital',
+                'Did you get your treatment from \na recognized hospital?',
                 style: TextStyle(
-                    color: AppColors.blackBold,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700),
+                  color: AppColors.blackBold,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -62,12 +62,11 @@ class _UlcerYesScreenState extends State<UlcerYesScreen> {
               children: [
                 InkWell(
                   onTap: () {
-                     Utility.myBottomSheet(
-
-                                context,
-                                heightFactor: 0.52,
-                                widget: const UlcerNoScreen(),
-                              );
+                    Utility.myBottomSheet(
+                      context,
+                      heightFactor: 0.52,
+                      widget: const UlcerNoScreen(),
+                    );
                   },
                   child: const CustomButton(
                     width: 150,
@@ -79,7 +78,7 @@ class _UlcerYesScreenState extends State<UlcerYesScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const HaveUlcerScreen());
+                    Get.to(const HaveUlcerYesScreen());
                   },
                   child: const CustomButton(
                     width: 150,
