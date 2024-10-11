@@ -59,10 +59,11 @@ class _DailyFeaturedWidgetState extends State<DailyFeaturedWidget> {
               child: GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 4.1 / 3,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 8),
+                    childAspectRatio: 4.1 / 3,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 16,
+                  ),
                   itemCount: videoscreenDfList.length,
                   itemBuilder: (context, index) {
                     final videoscreenDfItem = videoscreenDfList[index];

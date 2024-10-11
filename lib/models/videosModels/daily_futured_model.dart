@@ -8,11 +8,11 @@ class DailyFeaturedModel {
 
 List<DailyFeaturedModel> videoscreenDfList = [
   DailyFeaturedModel(
-      image: AssetsConstants.diabete_check_meter, healthIssue: "diabetiesText"),
+      image: AssetsConstants.diabatic_image, healthIssue: "diabetiesText"),
   DailyFeaturedModel(
-      image: AssetsConstants.diabete_check_meter, healthIssue: "diabetiesText"),
+      image: AssetsConstants.diabatic_image, healthIssue: "diabetiesText"),
   DailyFeaturedModel(
-      image: AssetsConstants.diabete_check_meter, healthIssue: "diabetiesText"),
+      image: AssetsConstants.diabatic_image, healthIssue: "diabetiesText"),
   DailyFeaturedModel(
-      image: AssetsConstants.diabete_check_meter, healthIssue: "diabetiesText"),
+      image: AssetsConstants.diabatic_image, healthIssue: "diabetiesText"),
 ];
