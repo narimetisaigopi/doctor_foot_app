@@ -152,7 +152,7 @@ class Utility {
             EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primaryBlue : AppColors.whiteBgColor,
-          border: Border.all(color: AppColors.grey,width: 0.5),
+          border: Border.all(color: AppColors.grey, width: 0.5),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
