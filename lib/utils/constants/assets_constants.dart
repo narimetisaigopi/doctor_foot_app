@@ -37,6 +37,7 @@ class AssetsConstants {
   static const String person_profile = "$homePath/person_profile.png";
   static const String bell = "$homePath/bell.png";
   static const String home_1 = "$homePath/home-1.png";
+  static const String home_one = "$homePath/home_one.png";
   static const String calendar = "$homePath/calendar.png";
   // our services
   static const String consult_doctor = "$homePath/consult_doctor.png";
@@ -305,7 +306,10 @@ class AssetsConstants {
   static const String sun_evening = "$_introImagesBasePath/sun_evening.svg";
 
   // video screen images
-  static const String doctor_rect = "$_introImagesBasePath/doctor_rect.svg";
+  static const String doctor_horizontal =
+      "assets/images/video_images/doctor_horizontal.png";
+  static const String diabatic_image =
+      "assets/images/video_images/diabatic_image.png";
   static const String diabete_check_meter =
       "$_introImagesBasePath/diabete_check_meter.svg";
   static const String foot_testing = "$_introImagesBasePath/foot_testing.svg";

@@ -49,94 +49,91 @@ class _SignInScreenState extends State<SignInScreen> {
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
             child: FormBuilder(
               key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Let’s get started!",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black2,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Let’s get started!",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.black2,
+                      ),
+                    ).tr(),
+                    const SizedBox(
+                      height: 20,
                     ),
-                  ).tr(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  MyTextField(
-                    leadingIcon: Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 10),
-                      child: Text(
-                        '+91 | ',
-                        style: TextStyle(
-                            color: Colors.grey.shade500, fontSize: 18),
+                    MyTextField(
+                      hint: _focusNode.hasFocus
+                          ? Strings.mobileTextFieldFocusHint
+                          : Strings.mobileTextFieldHint,
+                      textEditingController:
+                          _authenticationController.mobileNumberController,
+                      labelNeeded: false,
+                      maxLength: 10,
+                      textInputType: TextInputType.phone,
+                      onSubmited: (value) {
+                        validate();
+                      },
+                      validator: FormBuilderValidators.compose(
+                        [
+                          FormBuilderValidators.required(),
+                          FormBuilderValidators.maxLength(10),
+                          FormBuilderValidators.minLength(10),
+                        ],
                       ),
                     ),
-                    hint: _focusNode.hasFocus
-                        ? Strings.mobileTextFieldFocusHint
-                        : Strings.mobileTextFieldLabel,
-                    textEditingController:
-                        _authenticationController.mobileNumberController,
-                    labelNeeded: false,
-                    maxLength: 10,
-                    textInputType: TextInputType.phone,
-                    onSubmited: (value) {
-                      validate();
-                    },
-                    validator: FormBuilderValidators.compose(
-                      [
-                        FormBuilderValidators.required(),
-                        FormBuilderValidators.maxLength(10),
-                        FormBuilderValidators.minLength(10),
-                      ],
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: authenticationController.isLoading
-                        ? const CircularProgressIndicator()
-                        : CustomButton(
-                            buttonName: "sendOtpText",
-                            onPress: () {
-                              Utility.myBottomSheet(
-                                context,
-                                heightFactor: 0.5,
-                                widget: const OtpScreen(),
-                              );
-                            },
+                    Align(
+                      alignment: Alignment.center,
+                      child: authenticationController.isLoading
+                          ? const CircularProgressIndicator()
+                          : CustomButton(
+                              bgColor: AppColors.sentOtpBg,
+                              textColor: AppColors.sentOtptextColor,
+                              buttonName: "sendOtpText",
+                              onPress: () {
+                                Utility.myBottomSheet(
+                                  context,
+                                  heightFactor: 0.5,
+                                  widget: const OtpScreen(),
+                                );
+                              },
+                            ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: InkWell(
+                        onTap: () {
+                          Get.back();
+                          Utility.myBottomSheet(context,
+                              widget: const SignUpScreen(), heightFactor: 0.7);
+                        },
+                        child: RichText(
+                          text: TextSpan(
+                            text: Strings.dontHaveAccount,
+                            style: TextStyle(color: Colors.grey.shade500),
+                            children: const [
+                              TextSpan(
+                                  text: Strings.signUpText,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryBlue,
+                                  )),
+                            ],
                           ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: InkWell(
-                      onTap: () {
-                        Get.back();
-                        Utility.myBottomSheet(context,
-                            widget: const SignUpScreen(), heightFactor: 0.7);
-                      },
-                      child: RichText(
-                        text: TextSpan(
-                          text: Strings.dontHaveAccount,
-                          style: TextStyle(color: Colors.grey.shade500),
-                          children: const [
-                            TextSpan(
-                                text: Strings.signUpText,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primaryBlue,
-                                )),
-                          ],
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

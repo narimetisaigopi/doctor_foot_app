@@ -45,11 +45,11 @@ class _WeekDaysWidgetState extends State<WeekDaysWidget> {
           color: isSelected ? AppColors.primaryBlue : AppColors.whiteBgColor,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: AppColors.grey4,
+            color: isSelected ? AppColors.primaryBlue : AppColors.grey4,
             width: 1,
           )),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
         child: Center(
             child: Text(
           text,
@@ -58,6 +58,7 @@ class _WeekDaysWidgetState extends State<WeekDaysWidget> {
             color: isSelected ? AppColors.whiteBgColor : AppColors.grey,
             fontWeight: FontWeight.w700,
           ),
+          textAlign: TextAlign.center,
         ).tr()),
       ),
     );

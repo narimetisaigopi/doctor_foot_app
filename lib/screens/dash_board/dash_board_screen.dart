@@ -8,7 +8,6 @@ import 'package:drfootapp/screens/dash_board/videos_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
-import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -102,7 +101,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         body: pages[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.primary,
+          selectedItemColor: AppColors.patientReviewBg,
           unselectedItemColor: AppColors.grey,
           currentIndex: selectedIndex,
           onTap: (value) {
@@ -124,16 +123,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           ),
                         ),
                       ),
-                      child: CustomImage(
-                        path: AssetsConstants.home_1,
-                        height: 8,
-                        width: 8,
+                      child: Image.asset(
+                        AssetsConstants.home_one,
+                        color: selectedIndex == 0
+                            ? AppColors.patientReviewBg
+                            : AppColors.grey,
                       ),
                     )
-                  : CustomImage(
-                      path: AssetsConstants.home_1,
-                      height: 24,
-                      width: 24,
+                  : Image.asset(
+                      AssetsConstants.home_one,
                     ),
               label: Strings.homeText.tr,
             ),
@@ -150,15 +148,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           ),
                         ),
                       ),
-                      child: CustomImage(
-                      path: AssetsConstants.calendar,
-                      height: 18,
-                      width: 18,
-                    ),)
-                  : CustomImage(
-                      path: AssetsConstants.calendar,
-                      height: 24,
-                      width: 24,
+                      child: Image.asset(
+                        AssetsConstants.calendar,
+                        color: selectedIndex == 1
+                            ? AppColors.patientReviewBg
+                            : AppColors.grey,
+                      ),
+                    )
+                  : Image.asset(
+                      AssetsConstants.calendar,
                     ),
               label: Strings.dietChartText.tr,
             ),
@@ -175,15 +173,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           ),
                         ),
                       ),
-                      child: CustomImage(
-                      path: AssetsConstants.bell,
-                      height: 24,
-                      width: 24,
-                    ),)
-                  : CustomImage(
-                      path: AssetsConstants.bell,
-                      height: 24,
-                      width: 24,
+                      child: Image.asset(
+                        AssetsConstants.bell,
+                        color: selectedIndex == 2
+                            ? AppColors.patientReviewBg
+                            : AppColors.grey,
+                      ),
+                    )
+                  : Image.asset(
+                      AssetsConstants.bell,
                     ),
               label: Strings.videosText.tr,
             ),
@@ -200,15 +198,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           ),
                         ),
                       ),
-                      child: CustomImage(
-                      path: AssetsConstants.person_profile,
-                      height: 24,
-                      width: 24,
-                    ),)
-                  : CustomImage(
-                      path: AssetsConstants.person_profile,
-                      height: 24,
-                      width: 24,
+                      child: Image.asset(
+                        AssetsConstants.person_profile,
+                        color: selectedIndex == 3
+                            ? AppColors.patientReviewBg
+                            : AppColors.grey,
+                      ),
+                    )
+                  : Image.asset(
+                      AssetsConstants.person_profile,
                     ),
               label: Strings.profile.tr,
             ),

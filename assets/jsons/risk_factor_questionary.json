@@ -3,6 +3,7 @@
     "id": 0,
     "image": "assets/images/risk_factor_questionary/your_age_image.png",
     "question": "What is your age?",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "0 - 30", "subTitle": "" },
@@ -15,6 +16,7 @@
     "id": 1,
     "image": "assets/images/risk_factor_questionary/bmi_image.png",
     "question": "BMI (Body Mass Index)",
+    "type": "",
     "description": "Click here to know your BMI",
 
     "options": [
@@ -29,6 +31,7 @@
     "id": 2,
     "image": "assets/images/risk_factor_questionary/how_many_years_diabetise.png",
     "question": "Since how many years have you been diabetic?",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "< 5 Yrs", "subTitle": "" },
@@ -42,6 +45,7 @@
     "id": 3,
     "image": "assets/images/risk_factor_questionary/hbac.png",
     "question": "What is your recent HbA1C value?",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "5.7 or Less", "subTitle": "" },
@@ -54,6 +58,7 @@
     "id": 4,
     "image": "",
     "question": "Do you have any history of  previous amputation?",
+    "type": "grid",
     "description": "",
     "options": [
       {
@@ -82,6 +87,7 @@
     "id": 5,
     "image": "assets/images/risk_factor_questionary/history_foot_ulcer.png",
     "question": "Do you have any history of  foot ulcer?",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -93,6 +99,7 @@
     "id": 6,
     "image": "assets/images/risk_factor_questionary/smoker.png",
     "question": "Are you a smoker?",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "No", "subTitle": "" },
@@ -103,6 +110,7 @@
     "id": 7,
     "image": "assets/images/risk_factor_questionary/viaual_disturbution.png",
     "question": "Do you have any history of vascular surgery?",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "No", "subTitle": "" },
@@ -113,6 +121,7 @@
     "id": 8,
     "image": "",
     "question": "Do you have any history of  vascular surgery?",
+    "type": "grid",
     "description": "",
     "options": [
       {
@@ -141,6 +150,7 @@
     "id": 9,
     "image": "assets/images/risk_factor_questionary/burnig_shooting.png",
     "question": "Do you have burning/shooting pain in  your feet? ",
+    "type": "",
     "description": "",
     "options": [
       {
@@ -169,6 +179,7 @@
     "id": 10,
     "image": "assets/images/risk_factor_questionary/burnig_shooting.png",
     "question": "Do you have any tingling/numbness  in your feet? ",
+    "type": "",
     "description": "",
     "options": [
       {
@@ -197,6 +208,7 @@
     "id": 11,
     "image": "assets/images/risk_factor_questionary/infection.png",
     "question": "Do you have any infection between  toes of your feet?",
+    "type": "",
     "description": "",
 
     "options": [
@@ -209,6 +221,7 @@
     "id": 12,
     "image": "",
     "question": "What is the present condition  of your skin?",
+    "type": "grid",
     "description": "",
     "options": [
       {
@@ -237,6 +250,7 @@
     "id": 13,
     "image": "",
     "question": "What is the present condition  of your nails?",
+    "type": "gridHorizontal",
     "description": "",
     "options": [
       {
@@ -255,6 +269,7 @@
     "id": 14,
     "image": "",
     "question": "What kind of Foot wear  you are using? ",
+    "type": "grid",
     "description": "",
     "options": [
       {
@@ -283,6 +298,7 @@
     "id": 15,
     "image": "assets/images/risk_factor_questionary/diabetic_diet.png",
     "question": "Are you taking diabetic diet?",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -293,6 +309,7 @@
     "id": 16,
     "image": "assets/images/risk_factor_questionary/feet_sensation.png",
     "question": "Can you feel the sensation  in your feet? ",
+    "type": "",
 
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -303,6 +320,7 @@
     "id": 17,
     "image": "",
     "question": "Do you have abnormal  foot shape?",
+    "type": "gridHorizontal",
     "description": "",
     "options": [
       {
@@ -326,6 +344,7 @@
     "id": 18,
     "image": "assets/images/risk_factor_questionary/kidney.png",
     "question": "Do you have any kidney  related issue ? ",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -336,6 +355,7 @@
     "id": 19,
     "image": "assets/images/risk_factor_questionary/walking.png",
     "question": "Are you experiencing any pain after  walking a certain distance?",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },
@@ -346,6 +366,7 @@
     "id": 20,
     "image": "assets/images/risk_factor_questionary/blakish_feet.png",
     "question": "Do you have any blackish discoloration  or dilated veins on your legs/feet? ",
+    "type": "",
     "description": "",
     "options": [
       { "image": "", "title": "NO", "subTitle": "" },

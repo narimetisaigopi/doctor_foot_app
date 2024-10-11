@@ -37,7 +37,8 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
                     final videosImageItem = videosImageList[index];
                     return VideosMainWidget(
                       image: videosImageItem.image,
-                      onPress: () {  },
+                      title: videosImageItem.title,
+                      onPress: () {},
                     );
                   }),
             ),
@@ -46,6 +47,7 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
             controller: controller,
             count: 5,
             effect: const ScrollingDotsEffect(
+              activeDotColor: AppColors.primaryBlue,
               dotHeight: 08,
               dotWidth: 08,
             ),

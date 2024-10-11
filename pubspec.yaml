@@ -123,6 +123,7 @@ flutter:
     - assets/images/toe_deformities_images/
     - assets/images/foot_pain_images/
     - assets/images/treatement/
+    - assets/images/video_images/
     - assets/svgs/
     - assets/images/notification_images/
   # An image asset can refer to one or more resolution-specific "variants", see

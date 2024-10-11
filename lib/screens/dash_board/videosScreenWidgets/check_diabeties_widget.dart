@@ -1,5 +1,5 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -27,9 +27,10 @@ class _CheckDiabetiesWidgetState extends State<CheckDiabetiesWidget> {
           SizedBox(
             height: 160,
             width: 210,
-            child: SvgImageWidget(
+            child: CustomImage(
               path: widget.image,
               width: double.infinity,
+              fit: BoxFit.contain,
             ),
           ),
           Positioned(

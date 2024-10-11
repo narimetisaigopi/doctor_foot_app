@@ -117,8 +117,11 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
           Expanded(
             child: GridView.builder(
               itemCount: riskFactorModel.options.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 2.5),
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2.5, 
+                // riskFactorModel.options[""] ?2.5:riskFactorModel.options["grid"]?2.5/4? riskFactorModel.options["gridHorizontal"]? 3/4: null,
+              ),
               itemBuilder: (context, index) {
                 return buildGridViewItem(
                     riskFactorModel, riskFactorModel.options[index]);

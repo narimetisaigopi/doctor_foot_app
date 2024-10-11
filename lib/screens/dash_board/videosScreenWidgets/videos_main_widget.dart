@@ -1,12 +1,18 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class VideosMainWidget extends StatefulWidget {
   final String image;
+  final String title;
   final Function()? onPress;
-  const VideosMainWidget({super.key, required this.image, required this.onPress});
+  const VideosMainWidget({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.onPress,
+  });
 
   @override
   State<VideosMainWidget> createState() => _VideosMainWidgetState();
@@ -20,9 +26,9 @@ class _VideosMainWidgetState extends State<VideosMainWidget> {
       child: Stack(children: [
         Center(
           child: SizedBox(
-            child: SvgImageWidget(
+            child: CustomImage(
               path: widget.image,
-              height: 170,
+              height: 160,
               width: double.infinity,
             ),
           ),
@@ -49,8 +55,8 @@ class _VideosMainWidgetState extends State<VideosMainWidget> {
                     color: AppColors.primary,
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
-                  child: const Text(
-                    "watchNowText",
+                  child:  Text(
+                    widget.title,
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,

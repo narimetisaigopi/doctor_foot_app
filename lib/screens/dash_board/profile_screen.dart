@@ -63,15 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   'Logout',
                   AppColors.black1,
                   () {
-                    customAlert(
-                      title: ' Are sure you want to  \n  Cancel Booking ',
-                      no: () {
-                        Get.back();
-                      },
-                      yes: () {
-                        Utility.logout(context);
-                      },
-                    );
+                    Utility.logout(context);
                   },
                 ),
               ],

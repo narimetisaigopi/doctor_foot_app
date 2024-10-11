@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/treatement/image_view_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -105,10 +106,13 @@ class _HowToUploadImageState extends State<HowToUploadImage> {
 
   _pickImage() async {
     ImagePicker imagePicker = ImagePicker();
+    UserModel userModel = UserModel();
 
     xFile = await imagePicker.pickImage(source: ImageSource.camera);
     if (xFile != null) {
-      Get.to(() => const ImageViewScreen());
+      Get.to(() => ImageViewScreen(
+            userModel: userModel,
+          ));
       setState(() {});
     } else {
       Utility.toast(

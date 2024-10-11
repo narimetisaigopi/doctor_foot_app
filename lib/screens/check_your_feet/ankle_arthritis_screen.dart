@@ -181,13 +181,6 @@ class _AnkleArthritisScreenState extends State<AnkleArthritisScreen> {
                         SizedBox(
                           height: 24,
                         ),
-                        CustomButton(
-                          buttonName: "Book an appointment",
-                          isBoxShadow: false,
-                        ),
-                        SizedBox(
-                          height: 24,
-                        ),
                       ],
                     ),
                   )

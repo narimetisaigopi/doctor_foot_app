@@ -1,10 +1,16 @@
+import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/widgets/cached_network_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ImageViewScreen extends StatefulWidget {
-  const ImageViewScreen({super.key});
+  final UserModel userModel;
+  const ImageViewScreen({
+    super.key,
+    required this.userModel,
+  });
 
   @override
   State<ImageViewScreen> createState() => _ImageViewScreenState();
@@ -41,6 +47,7 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
                     ),
                   ),
                   Slider(
+                    inactiveColor: AppColors.grey2,
                     activeColor: AppColors.patientReviewBg,
                     min: 0,
                     max: 3,
@@ -60,12 +67,15 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
               ),
               const SizedBox(height: 12),
               Container(
-                height: 479,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(8)),
-              ),
+                  height: 479,
+                  width: double.infinity,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                  child: MyCachedNetworkImage(
+                    url: widget.userModel.profilePic,
+                    height: double.infinity,
+                    width: double.infinity,
+                  )),
               const Spacer(),
               Center(
                 child: CustomButton(

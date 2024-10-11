@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 class AddDietChartScreen extends StatefulWidget {
   final DietChartModel? dietChart; // Existing diet chart data (optional)
 
-  const AddDietChartScreen({Key? key, this.dietChart}) : super(key: key);
+  const AddDietChartScreen({super.key, this.dietChart});
 
   @override
   State<AddDietChartScreen> createState() => _AddDietChartScreenState();
