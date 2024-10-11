@@ -36,6 +36,7 @@ class _UlcerNoScreenState extends State<UlcerNoScreen> {
                     child: const Icon(
                       Icons.arrow_back_ios,
                     )),
+                const SizedBox(width: 4),
                 const Text(
                   'UPLOAD YOUR ULCER PICTURE',
                   style: TextStyle(
@@ -71,14 +72,13 @@ class _UlcerNoScreenState extends State<UlcerNoScreen> {
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 20,
             ),
             Center(
               child: CustomButton(
-                width: 150,
                 borderRadius: 16,
                 buttonName: "Next",
-                bgColor: AppColors.primaryBlue,
+                bgColor: AppColors.patientReviewBg,
                 textColor: AppColors.whiteBgColor,
                 onPress: () {
                   Get.defaultDialog(

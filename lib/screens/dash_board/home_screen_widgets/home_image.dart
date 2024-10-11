@@ -34,34 +34,36 @@ class _HomeImageState extends State<HomeImage> {
                   height: 180,
                   width: double.infinity,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Positioned(
-                      left: 16,
-                      right: 16,
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
-                        child: const Text(
-                          "rectImageText",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.secondary,
-                          ),
-                          textAlign: TextAlign.center,
-                        ).tr(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30, top: 72),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Positioned(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
+                          child: const Text(
+                            "rectImageText",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.secondary,
+                            ),
+                            textAlign: TextAlign.center,
+                          ).tr(),
+                        ),
                       ),
-                    ),
-                    SmoothPageIndicator(
-                      controller: homeImagesController,
-                      count: 5,
-                      effect: const ScrollingDotsEffect(
-                        dotHeight: 08,
-                        dotWidth: 08,
+                      const SizedBox(height: 8),
+                      SmoothPageIndicator(
+                        controller: homeImagesController,
+                        count: 5,
+                        effect: const ScrollingDotsEffect(
+                          dotHeight: 08,
+                          dotWidth: 08,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             );

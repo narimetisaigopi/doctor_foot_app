@@ -74,7 +74,7 @@ class _HaveUlcerScreenState extends State<HaveUlcerScreen> {
                   onTap: () {
                     Utility.myBottomSheet(
                       context,
-                      heightFactor: 0.52,
+                      heightFactor: 0.6,
                       widget: const UlcerNoScreen(),
                     );
                   },

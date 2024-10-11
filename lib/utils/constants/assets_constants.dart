@@ -69,6 +69,10 @@ class AssetsConstants {
       "$consult_doctor_path/doctor_location_image.png";
   static const String doctor_profile_dotted_circle =
       "$consult_doctor_path/doctor_profile_dotted_circle.png";
+  static const String doctor_details_bg_image =
+      "$consult_doctor_path/doctor_details_bg_image.png";
+  static const String doctor_rounded =
+      "$consult_doctor_path/doctor_rounded.png";
   //foot screening services images
   static const String foot_screening_service_path =
       "assets/images/foot_screening_images";

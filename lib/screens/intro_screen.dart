@@ -1,5 +1,4 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
@@ -147,11 +146,11 @@ class _IntroScreenState extends State<IntroScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: AppColors.grey,
+                          color: AppColors.bookSumBorder,
                           width: 0.5,
                         )),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: const Text(
                         "Enter mobile number",
                         style: TextStyle(

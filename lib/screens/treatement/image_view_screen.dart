@@ -41,6 +41,7 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
                     ),
                   ),
                   Slider(
+                    activeColor: AppColors.patientReviewBg,
                     min: 0,
                     max: 3,
                     value: _value,

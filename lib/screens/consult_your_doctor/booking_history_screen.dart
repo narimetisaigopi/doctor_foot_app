@@ -99,12 +99,13 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                 children: [
                   Stack(
                     children: <Widget>[
-                      const Column(
+                      Column(
                         children: <Widget>[
                           CustomImage(
-                            height: 307,
+                            height: 300,
                             width: double.infinity,
                             path: AssetsConstants.doctor_history,
+                            fit: BoxFit.fill,
                           ),
                         ],
                       ),
@@ -112,19 +113,20 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                         alignment: Alignment.topCenter,
                         padding: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * .3,
-                          right: 20.0,
-                          left: 20.0,
+                          right: 10.0,
+                          left: 10.0,
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: AppColors.whiteBgColor,
-                              border: Border.all(
-                                color: AppColors.grey,
-                                width: 1,
-                              )),
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.whiteBgColor,
+                            border: Border.all(
+                              color: AppColors.grey4,
+                              width: 1,
+                            ),
+                          ),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 8, top: 8),
+                            padding: const EdgeInsets.only(left: 16, top: 12),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

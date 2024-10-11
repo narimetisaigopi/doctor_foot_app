@@ -142,10 +142,10 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
                                     width: 1,
-                                    color: AppColors.grey,
+                                    color: AppColors.bookSumBorder,
                                   )),
                               child: const Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(12.0),
                                 child: IntrinsicHeight(
                                   child: Row(
                                     children: [
@@ -179,7 +179,9 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                               children: [
                                 GenderWidget(text: "Self"),
                                 SizedBox(width: 22),
-                                GenderWidget(text: "Others"),
+                                GenderWidget(
+                                  text: "Others",
+                                ),
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -200,7 +202,7 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                                     color: AppColors.grey,
                                   )),
                               child: const Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(12.0),
                                 child: Text(
                                   "Suresh Reddy",
                                   style: TextStyle(
@@ -222,10 +224,10 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                                         borderRadius: BorderRadius.circular(8),
                                         border: Border.all(
                                           width: 1,
-                                          color: AppColors.grey,
+                                          color: AppColors.bookSumBorder,
                                         )),
                                     child: const Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Text(
                                         "+91",
                                         style: TextStyle(
@@ -246,10 +248,10 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                                         borderRadius: BorderRadius.circular(8),
                                         border: Border.all(
                                           width: 1,
-                                          color: AppColors.grey,
+                                          color: AppColors.bookSumBorder,
                                         )),
                                     child: const Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Text(
                                         "9876543210",
                                         style: TextStyle(
@@ -267,9 +269,9 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                             const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                GenderWidget(text: "55 "),
-                                GenderWidget(text: "Male"),
+                                GenderWidget(text: "55  "),
                                 GenderWidget(text: "Female"),
+                                GenderWidget(text: "Male"),
                                 GenderWidget(text: "Others"),
                               ],
                             ),
@@ -311,7 +313,7 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                                     border: Border.all(
                                         color: AppColors.greyBorderColor)),
                                 child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(12.0),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -324,7 +326,11 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                                           color: AppColors.black2,
                                         ),
                                       ),
-                                      Icon(Icons.arrow_forward_ios)
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: AppColors.forwardArrowColor,
+                                        size: 20,
+                                      )
                                     ],
                                   ),
                                 ),

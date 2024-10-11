@@ -20,10 +20,11 @@ class _DoctorDetailWidgetState extends State<DoctorDetailWidget> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: AppColors.whiteBgColor,
-            border: Border.all(
-              color: AppColors.grey,
-              width: 0.5,
-            )),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.secondary,
+              ),
+            ]),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

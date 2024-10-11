@@ -81,6 +81,9 @@ class AppColors {
   static const black1 = Color(0xFF101010);
 
   // icon colors
-    static const searchIconColor = Color(0xFFE5E7EA);
-
+  static const searchIconColor = Color(0xFFE5E7EA);
+  // butons bgs
+  static const nextButonBg = Color(0xFFE8F1F5);
+  static const bookSumBorder = Color(0xFFE3E3E3);
+  static const forwardArrowColor = Color(0xFF2A2A2A);
 }
