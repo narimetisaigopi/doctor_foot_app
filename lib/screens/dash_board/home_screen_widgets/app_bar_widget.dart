@@ -3,7 +3,6 @@ import 'package:drfootapp/screens/auth_screens/location_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/search_screen.dart';
 import 'package:drfootapp/screens/notifications/notification_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +21,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       return Container(
         color: AppColors.primaryBlue,
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, top: 56, right: 16),
+          padding: const EdgeInsets.only(left: 16, top: 56, right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -37,42 +36,28 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                     width: 05,
                   ),
                   SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              locationController.currentPlacemark != null
-                                  ? "${locationController.currentPlacemark!.locality}"
-                                  : "Not available",
-                              style: const TextStyle(
-                                color: AppColors.whiteBgDietColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(() => const LocationScreen());
-                              },
-                              child: const Icon(
-                                Icons.expand_more,
-                                color: AppColors.whiteBgDietColor,
-                              ),
-                            )
-                          ],
-                        ),
                         Text(
                           locationController.currentPlacemark != null
-                              ? "${locationController.currentPlacemark!.street}"
+                              ? "${locationController.currentPlacemark!.locality}"
                               : "Not available",
                           style: const TextStyle(
                             color: AppColors.whiteBgDietColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
                           ),
-                        ).tr()
+                          maxLines: 1,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const LocationScreen());
+                          },
+                          child: const Icon(
+                            Icons.expand_more,
+                            color: AppColors.whiteBgDietColor,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -84,7 +69,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                     icon: const Icon(
                       Icons.search,
                       size: 32,
-                      color: AppColors.whiteBgDietColor,
+                      color: AppColors.searchIconColor,
                     ),
                     onPressed: () {
                       Get.to(() => const SearchScreen());

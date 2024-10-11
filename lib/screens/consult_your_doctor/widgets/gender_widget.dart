@@ -20,10 +20,11 @@ class _GenderWidgetState extends State<GenderWidget> {
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             width: 1,
-            color: AppColors.grey,
+            color: AppColors.bookSumBorder,
           )),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:
+            const EdgeInsets.all(12),
         child: Text(
           widget.text,
           style: const TextStyle(

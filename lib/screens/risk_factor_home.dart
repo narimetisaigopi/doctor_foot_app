@@ -3,7 +3,7 @@
 import 'package:drfootapp/controllers/risk_factor_controller.dart';
 import 'package:drfootapp/models/risk_factor_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
@@ -31,6 +31,7 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteBgColor,
       body: GetBuilder<RiskFactorController>(builder: (context) {
         return PageView.builder(
           physics: const NeverScrollableScrollPhysics(),
@@ -72,11 +73,17 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
             maintainState: true,
             visible: riskFactorModel.image.isNotEmpty,
             child: Container(
-                padding: const EdgeInsets.all(10),
-                margin: const EdgeInsets.symmetric(),
-                child: SvgImageWidget(
-                  path: riskFactorModel.image,
-                  height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: AppColors.riskCheckBg,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomImage(
+                    path: riskFactorModel.image,
+                    height: 104,
+                    width: 104,
+                  ),
                 )),
           ),
           //   const SizedBox(height: 10),
@@ -144,7 +151,7 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: isSelected
-                        ? AppColors.primary
+                        ? AppColors.primaryBlue
                         : AppColors.secondaryButton,
                     borderRadius: BorderRadius.circular(8)),
                 margin: const EdgeInsets.all(10),

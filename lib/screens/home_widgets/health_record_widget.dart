@@ -28,11 +28,14 @@ class _HealthRecordWidgetState extends State<HealthRecordWidget> {
               color: AppColors.riskCheckBg,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: CustomImage(
-              path: widget.image,
-              height: double.infinity,
-              width: double.infinity,
-              fit: BoxFit.contain,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: CustomImage(
+                path: widget.image,
+                height: 52,
+                width: 70,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),
@@ -40,11 +43,11 @@ class _HealthRecordWidgetState extends State<HealthRecordWidget> {
           flex: 3,
           child: Center(
             child: Text(
-              widget.title,
+              widget.title.toUpperCase(),
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: AppColors.black2,
+                color: AppColors.black1,
               ),
             ).tr(),
           ),

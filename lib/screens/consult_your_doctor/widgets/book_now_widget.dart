@@ -135,7 +135,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                         ),
                         const SizedBox(height: 8),
                         SmallButton(
-                          bgColor: AppColors.primaryBlue,
+                          bgColor: AppColors.patientReviewBg,
                           buttonName: "Book Now",
                           textColor: AppColors.whiteBgColor,
                           onPress: (){},

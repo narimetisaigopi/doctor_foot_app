@@ -42,9 +42,10 @@ class _ArticleAndBlogWidgetState extends State<ArticleAndBlogWidget> {
                   path: widget.articleAndBlogModel.image,
                   height: double.infinity,
                   width: double.infinity,
+                  fit: BoxFit.contain,
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 6),
               Expanded(
                 flex: 4,
                 child: Column(
@@ -56,6 +57,7 @@ class _ArticleAndBlogWidgetState extends State<ArticleAndBlogWidget> {
                         fontWeight: FontWeight.w700,
                         color: AppColors.textBackThickColor,
                       ),
+                      maxLines: 4,
                     ).tr(),
                     const SizedBox(height: 8),
                     ReadMoreText(

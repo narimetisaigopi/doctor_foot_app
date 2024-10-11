@@ -31,8 +31,13 @@ class AssetsConstants {
 // home_screen images
   static const String homePath = "assets/images/home";
   // ulser assesment
+  static const String home_image = "$homePath/home_image.png";
   static const String have_ulcer = "$homePath/have_ulcer.png";
   static const String risk_checker = "$homePath/risk_checker.png";
+  static const String person_profile = "$homePath/person_profile.png";
+  static const String bell = "$homePath/bell.png";
+  static const String home_1 = "$homePath/home-1.png";
+  static const String calendar = "$homePath/calendar.png";
   // our services
   static const String consult_doctor = "$homePath/consult_doctor.png";
   static const String online_consultation = "$homePath/online_consultation.png";
@@ -64,6 +69,10 @@ class AssetsConstants {
       "$consult_doctor_path/doctor_location_image.png";
   static const String doctor_profile_dotted_circle =
       "$consult_doctor_path/doctor_profile_dotted_circle.png";
+  static const String doctor_details_bg_image =
+      "$consult_doctor_path/doctor_details_bg_image.png";
+  static const String doctor_rounded =
+      "$consult_doctor_path/doctor_rounded.png";
   //foot screening services images
   static const String foot_screening_service_path =
       "assets/images/foot_screening_images";
@@ -157,6 +166,20 @@ class AssetsConstants {
 
   static const String diabetes_image =
       "$_introImagesBasePath/diabetes_image.svg";
+
+  // have ulser
+
+  static const String layer_1 = "assets/images/treatement/Layer_1.png";
+  static const String discharge_summary_image =
+      "assets/images/treatement/discharge_summary_image.png";
+  static const String how_to_upload_1 =
+      "assets/images/treatement/how_to_upload_1.png";
+  static const String how_to_upload_2 =
+      "assets/images/treatement/how_to_upload_2.png";
+  static const String how_to_upload_3 =
+      "assets/images/treatement/how_to_upload_3.png";
+  static const String treatement_no =
+      "assets/images/treatement/treatement_no.png";
 
   // risk_factor_questionary
   static const String abnormal_foot_shape_1 =

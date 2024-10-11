@@ -62,14 +62,29 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                       color: AppColors.whiteBgColor,
                       height: MediaQuery.of(context).size.height * 0.34,
                       width: double.infinity,
-                      child: const Stack(
+                      child: Stack(
                         children: [
                           Center(
-                            child: CustomImage(
-                              path:
-                                  AssetsConstants.doctor_profile_dotted_circle,
-                              height: 228,
-                              width: 206,
+                            child: Stack(
+                              children: [
+                                CustomImage(
+                                  path: AssetsConstants.doctor_details_bg_image,
+                                  height: 228,
+                                  width: 206,
+                                ),
+                                Positioned(
+                                  left: 25,
+                                  right: 25,
+                                  top: 25,
+                                  bottom: 25,
+                                  child: CustomImage(
+                                    path: AssetsConstants.doctor_rounded,
+                                    height: 158,
+                                    width: 158,
+                                    fit: BoxFit.contain,
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                           Positioned(
@@ -215,7 +230,8 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                             ),
                           ).tr(),
                           const SizedBox(height: 16),
-                          const ChooseTime()
+                          const ChooseTime(),
+                          const SizedBox(height: 20),
                         ],
                       ),
                     ),
@@ -230,9 +246,9 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
               color: AppColors.whiteBgColor,
               child: Center(
                 child: CustomButton(
-                  bgColor: AppColors.buttonBg,
+                  bgColor: AppColors.nextButonBg,
                   buttonName: "Next",
-                  textColor: AppColors.whiteBgColor,
+                  textColor: AppColors.grey2,
                   onPress: () {
                     Get.to(
                       () => const BookingSummaryScreen(),

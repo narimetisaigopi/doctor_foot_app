@@ -16,6 +16,12 @@ class AppointmentController extends GetxController {
     isLoading = loading;
     update();
   }
+  String selectedDate = "";
+
+  selectDate(String date) {
+    selectedDate = date;
+    update();
+  }
 
   Future<int> _generatePaymentId() async {
     DocumentSnapshot documentSnapshot =

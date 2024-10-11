@@ -138,14 +138,14 @@ class Strings {
       "If your wound is < 1000cm , Then it is recommended.";
 
 // home screen strings
-  static const String consultYourDoctor = '   CONSULT\n YOUR DOCTOR';
-  static const String onlineConsultation = '    ONLINE \nCONSULTATION';
-  static const String footScreeningServices = 'FOOT SCREENING\n      SERVICES';
-  static const String dressingAtHome = 'DRESSING AT\n     HOME';
-  static const String footCleaning = '   FOOT\nCLEANSING';
-  static const String nailTrimming = '   NAIL\nTRIMMING';
+  static const String consultYourDoctor = 'CONSULT\n YOUR DOCTOR';
+  static const String onlineConsultation = 'ONLINE \nCONSULTATION';
+  static const String footScreeningServices = 'FOOT SCREENING\nSERVICES';
+  static const String dressingAtHome = 'DRESSING AT\nHOME';
+  static const String footCleaning = 'FOOT\nCLEANSING';
+  static const String nailTrimming = 'NAIL\nTRIMMING';
   static const String footWear = 'FOOT \nWEAR';
-  static const String footProducts = '   FOOT\nPRODUCTS';
+  static const String footProducts = 'FOOT\nPRODUCTS';
 
   static const String kpbColonyText = 'KPB Colony';
   static const String patientReviewsText = 'Patient Reviews';
@@ -278,10 +278,11 @@ class Strings {
   static const String hugeText = "Huge";
   static const String skinNailText = "Skin & Nail";
   static const String toeDeformitiesText = "Toe Deformities";
-  static const String footDeformitiesText = "Foot Deformities";
+  static const String footDeformitiesText = "Foot \nDeformities";
+  static const String DeformitiesText = "Foot \nDeformities";
   static const String footPainText = "Foot Pain";
-  static const String sportsInjuriesText = "Sports Injuries";
-  static const String footAnkleArthritisText = "Foot & Ankle Arthritis";
+  static const String sportsInjuriesText = "Sports \nInjuries";
+  static const String footAnkleArthritisText = "Foot & Ankle \nArthritis";
   static const String ingrownToeNailText = "Ingrown Toe Nail";
   static const String cornsText = "Corns";
   static const String plantarWartsText = "Plantar Warts";

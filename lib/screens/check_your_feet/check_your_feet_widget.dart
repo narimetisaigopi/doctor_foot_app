@@ -34,12 +34,13 @@ class _CheckYourFeetWidgetState extends State<CheckYourFeetWidget> {
           flex: 2,
           child: Center(
             child: Text(
-              widget.title,
+              widget.title.toUpperCase(),
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: AppColors.black2,
               ),
+              textAlign: TextAlign.center,
             ),
           ),
         )

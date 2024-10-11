@@ -8,6 +8,7 @@ import 'package:drfootapp/screens/dash_board/videos_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -114,64 +115,101 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               icon: selectedIndex == 0
                   ? Container(
                       height: 40,
+                      width: 56,
                       decoration: const BoxDecoration(
                         border: Border(
                           top: BorderSide(
-                            color: AppColors.primary,
-                            width: 3.5,
+                            color: AppColors.patientReviewBg,
+                            width: 6,
                           ),
                         ),
                       ),
-                      child: const Icon(Icons.home))
-                  : const Icon(Icons.home),
+                      child: CustomImage(
+                        path: AssetsConstants.home_1,
+                        height: 8,
+                        width: 8,
+                      ),
+                    )
+                  : CustomImage(
+                      path: AssetsConstants.home_1,
+                      height: 24,
+                      width: 24,
+                    ),
               label: Strings.homeText.tr,
             ),
             BottomNavigationBarItem(
               icon: selectedIndex == 1
                   ? Container(
                       height: 40,
+                      width: 56,
                       decoration: const BoxDecoration(
                         border: Border(
                           top: BorderSide(
-                            color: AppColors.primary,
-                            width: 3.5,
+                            color: AppColors.patientReviewBg,
+                            width: 6,
                           ),
                         ),
                       ),
-                      child: const Icon(Icons.food_bank))
-                  : const Icon(Icons.food_bank),
+                      child: CustomImage(
+                      path: AssetsConstants.calendar,
+                      height: 18,
+                      width: 18,
+                    ),)
+                  : CustomImage(
+                      path: AssetsConstants.calendar,
+                      height: 24,
+                      width: 24,
+                    ),
               label: Strings.dietChartText.tr,
             ),
             BottomNavigationBarItem(
               icon: selectedIndex == 2
                   ? Container(
                       height: 40,
+                      width: 56,
                       decoration: const BoxDecoration(
                         border: Border(
                           top: BorderSide(
-                            color: AppColors.primary,
-                            width: 3.5,
+                            color: AppColors.patientReviewBg,
+                            width: 6,
                           ),
                         ),
                       ),
-                      child: const Icon(Icons.video_call))
-                  : const Icon(Icons.video_call),
+                      child: CustomImage(
+                      path: AssetsConstants.bell,
+                      height: 24,
+                      width: 24,
+                    ),)
+                  : CustomImage(
+                      path: AssetsConstants.bell,
+                      height: 24,
+                      width: 24,
+                    ),
               label: Strings.videosText.tr,
             ),
             BottomNavigationBarItem(
               icon: selectedIndex == 3
                   ? Container(
                       height: 40,
+                      width: 56,
                       decoration: const BoxDecoration(
                         border: Border(
                           top: BorderSide(
-                            color: AppColors.primary,
-                            width: 3.5,
+                            color: AppColors.patientReviewBg,
+                            width: 6,
                           ),
                         ),
                       ),
-                      child: const Icon(Icons.person))
-                  : const Icon(Icons.person),
+                      child: CustomImage(
+                      path: AssetsConstants.person_profile,
+                      height: 24,
+                      width: 24,
+                    ),)
+                  : CustomImage(
+                      path: AssetsConstants.person_profile,
+                      height: 24,
+                      width: 24,
+                    ),
               label: Strings.profile.tr,
             ),
           ],

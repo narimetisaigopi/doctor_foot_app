@@ -16,10 +16,10 @@ List<CheckYourFeetModel> checkYourFeetList = [
       serviceNames: Strings.toeDeformitiesText),
   CheckYourFeetModel(
       image: AssetsConstants.foot_pain,
-      serviceNames: Strings.footDeformitiesText),
+      serviceNames: Strings.footPainText),
   CheckYourFeetModel(
       image: AssetsConstants.foot_deformities,
-      serviceNames: Strings.footPainText),
+      serviceNames: Strings.footDeformitiesText),
   CheckYourFeetModel(
       image: AssetsConstants.sports_injuries,
       serviceNames: Strings.sportsInjuriesText),

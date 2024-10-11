@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 
 class FindYourDoctorScreen extends StatefulWidget {
   const FindYourDoctorScreen({super.key});
@@ -25,6 +26,7 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
   }
 
   final TextEditingController searchController = TextEditingController();
+  var selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -52,28 +54,55 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-            child: Column(
-              children: [
-                MyTextField(
-                  borderRadius: 8,
-                  bgColor: AppColors.whiteBgColor,
-                  hint: "Search for a doctor",
-                  textEditingController: searchController,
-                  suffixIcon: const Icon(
-                    Icons.cancel,
-                    color: AppColors.grey,
-                  ),
-                  iconNeeded: true,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                  ]),
+          child: Column(
+            children: [
+              HorizontalWeekCalendar(
+                minDate: DateTime(2023, 12, 31),
+                maxDate: DateTime(2024, 1, 31),
+                initialDate: DateTime(2024, 1, 15),
+                onDateChange: (date) {
+                  setState(() {
+                    selectedDate = date;
+                  });
+                },
+                showTopNavbar: false,
+                monthFormat: "MMMM yyyy",
+                showNavigationButtons: true,
+                weekStartFrom: WeekStartFrom.Monday,
+                activeBackgroundColor: AppColors.patientReviewBg,
+                activeTextColor: AppColors.whiteBgColor,
+                inactiveBackgroundColor: AppColors.whiteBgColor,
+                inactiveTextColor: AppColors.grey,
+                disabledTextColor: Colors.grey,
+                disabledBackgroundColor: AppColors.whiteBgColor,
+                activeNavigatorColor: AppColors.primaryBlue,
+                inactiveNavigatorColor: AppColors.whiteBgColor,
+                monthColor: AppColors.primaryBlue,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: Column(
+                  children: [
+                    MyTextField(
+                      borderRadius: 8,
+                      bgColor: AppColors.whiteBgColor,
+                      hint: "Search for a doctor",
+                      textEditingController: searchController,
+                      suffixIcon: const Icon(
+                        Icons.cancel,
+                        color: AppColors.grey,
+                      ),
+                      iconNeeded: true,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(),
+                      ]),
+                    ),
+                    const SizedBox(height: 8),
+                    const AllBookingsWidget()
+                  ],
                 ),
-                const SizedBox(height: 8),
-                const AllBookingsWidget()
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
