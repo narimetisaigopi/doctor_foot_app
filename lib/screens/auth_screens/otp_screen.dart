@@ -122,7 +122,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               ..onTap = () => Navigator.pop(context),
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.primary)),
+                                color: AppColors.primaryBlue)),
                       ],
                     ),
                   ),

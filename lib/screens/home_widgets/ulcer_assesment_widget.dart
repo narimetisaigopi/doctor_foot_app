@@ -37,11 +37,11 @@ class _UlcerAssesmentWidgetState extends State<UlcerAssesmentWidget> {
                       color: AppColors.haveUlcerBg,
                       borderRadius: BorderRadius.circular(32)),
                   child: const Padding(
-                    padding: EdgeInsets.only(left: 40, right: 40,top: 12,bottom: 12),
+                    padding: EdgeInsets.only(left: 30, right: 30,top: 12,bottom: 12),
                     child: CustomImage(
                       path: AssetsConstants.have_ulcer,
-                      height: 142,
-                      width: 100,
+                      height: 152,
+                      width: 120,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -73,11 +73,11 @@ class _UlcerAssesmentWidgetState extends State<UlcerAssesmentWidget> {
                     borderRadius: BorderRadius.circular(32),
                   ),
                   child: const Padding(
-                    padding: EdgeInsets.only(left: 40, right: 40,top: 12,bottom: 12),
+                    padding: EdgeInsets.only(left: 30, right: 30,top: 12,bottom: 12),
                     child: CustomImage(
                       path: AssetsConstants.risk_checker,
-                      height: 142,
-                      width: 100,
+                       height: 152,
+                      width: 120,
                       fit: BoxFit.contain,
                     ),
                   ),

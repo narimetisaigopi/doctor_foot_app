@@ -29,7 +29,7 @@ class _HealthRecordWidgetState extends State<HealthRecordWidget> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.only(left: 30,right: 30,top: 20,bottom: 20),
               child: CustomImage(
                 path: widget.image,
                 height: 52,

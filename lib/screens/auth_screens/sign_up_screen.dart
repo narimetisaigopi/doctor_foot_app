@@ -172,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ? const CircularProgressIndicator()
                       : CustomButton(
                           buttonName: "signUpText",
-                          // onPres(s: () => validate(),
+                          // onPres: validate,
                           onPress: () {
                             Get.to(const DashBoardScreen());
                           },

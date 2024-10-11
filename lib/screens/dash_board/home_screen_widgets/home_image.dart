@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:drfootapp/models/homeScreenModels/home_image_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,10 +26,11 @@ class _HomeImageState extends State<HomeImage> {
           scrollDirection: Axis.horizontal,
           itemCount: homeImagesList.length,
           itemBuilder: (context, index) {
+            final homeData = homeImagesList[index];
             return Stack(
               children: [
-                const CustomImage(
-                  path: AssetsConstants.home_image,
+                CustomImage(
+                  path: homeData.image,
                   height: 180,
                   width: double.infinity,
                 ),
@@ -42,8 +42,8 @@ class _HomeImageState extends State<HomeImage> {
                       Positioned(
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
-                          child: const Text(
-                            "rectImageText",
+                          child: Text(
+                            homeData.title,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -60,6 +60,7 @@ class _HomeImageState extends State<HomeImage> {
                         effect: const ScrollingDotsEffect(
                           dotHeight: 08,
                           dotWidth: 08,
+                          activeDotColor: AppColors.whiteBgColor,
                         ),
                       ),
                     ],

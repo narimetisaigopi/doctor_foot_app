@@ -112,8 +112,8 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                   const SizedBox(height: 8),
                   const Divider(
-                    color: AppColors.grey,
-                    thickness: 5,
+                    color: AppColors.grey4,
+                    thickness: 3,
                   ),
                 ],
               );
@@ -146,8 +146,8 @@ class _IntroScreenState extends State<IntroScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: AppColors.bookSumBorder,
-                          width: 0.5,
+                          color: AppColors.grey2,
+                          width: 1,
                         )),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -155,7 +155,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         "Enter mobile number",
                         style: TextStyle(
                           fontSize: 18,
-                          color: AppColors.black2,
+                          color: AppColors.grey,
                           fontWeight: FontWeight.w400,
                         ),
                       ).tr(),
