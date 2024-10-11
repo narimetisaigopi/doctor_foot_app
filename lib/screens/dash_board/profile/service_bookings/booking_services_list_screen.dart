@@ -44,7 +44,8 @@ class _BookingServicesListScreenState extends State<BookingServicesListScreen> {
             onEmpty: Center(child: emptyState()),
             itemBuilder: (context, documentSnapshots, index) {
               ServiceBookingOrderModel serviceBookingOrderModel =
-                  ServiceBookingOrderModel.fromSnapshot(documentSnapshots);
+                  ServiceBookingOrderModel.fromSnapshot(
+                      documentSnapshots[index]);
               return ServiceBookingWidget(
                 serviceBookingOrderModel: serviceBookingOrderModel,
               );

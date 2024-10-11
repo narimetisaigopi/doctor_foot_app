@@ -2,9 +2,9 @@ import 'package:drfootapp/controllers/review_rating_controller.dart';
 import 'package:drfootapp/models/review_rating_model.dart';
 import 'package:drfootapp/screens/reviewrating/review_rating_item.dart';
 import 'package:drfootapp/utils/enums.dart';
+import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:paginate_firestore/paginate_firestore.dart';
 
 class ReviewRatingsListScreen extends StatefulWidget {
   final ReviewType reviewType;
@@ -27,8 +27,8 @@ class _ReviewRatingsListScreenState extends State<ReviewRatingsListScreen> {
       appBar: AppBar(
         title: const Text("Reviews"),
       ),
-      body: PaginateFirestore(
-        itemsPerPage: 10,
+      body: FirestorePagination(
+        limit: 10,
         onEmpty: const Text("No Reviews"),
         itemBuilder: (context, documentSnapshots, index) {
           ReviewRatingModel reviewRatingModel =
@@ -43,7 +43,7 @@ class _ReviewRatingsListScreenState extends State<ReviewRatingsListScreen> {
             .doc(widget.docId)
             .collection("reviews")
             .orderBy("timestamp"),
-        itemBuilderType: PaginateBuilderType.listView,
+        viewType: ViewType.list,
         isLive: false,
       ),
     );

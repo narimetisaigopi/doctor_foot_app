@@ -102,7 +102,8 @@ class _AdminViewFootServicesState extends State<AdminViewFootServices> {
                   itemBuilder: (context, documentSnapshots, index) {
                     FootServiceModel footServiceModel =
                         FootServiceModel.fromJson(
-                            documentSnapshots.data() as Map<String, dynamic>);
+                            documentSnapshots[index]
+                            .data() as Map<String, dynamic>);
                     return InkWell(
                       onTap: () {
                         Get.to(() => CreateFootService(

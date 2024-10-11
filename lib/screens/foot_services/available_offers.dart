@@ -91,7 +91,8 @@ class _AvailableOffersState extends State<AvailableOffers> {
                     itemBuilder: (context, documentSnapshots, index) {
                       CouponCodeModel couponCodeModel =
                           CouponCodeModel.fromJson(
-                              documentSnapshots.data() as Map<String, dynamic>);
+                              documentSnapshots[index]
+                              .data() as Map<String, dynamic>);
                       return AvailableOffersWidget(
                           couponCodeModel: couponCodeModel);
                     }),
