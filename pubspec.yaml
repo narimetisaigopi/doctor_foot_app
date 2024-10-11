@@ -37,16 +37,16 @@ dependencies:
   http: ^1.2.0
   cached_network_image: ^3.3.1
   fluttertoast: ^8.2.4
-  intl: any
+  intl: ^0.19.0
   get: ^4.6.6
   flutter_form_builder: ^9.2.1
-  form_builder_validators:
+  form_builder_validators: ^11.0.0
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.1.0
   bulleted_list: ^0.0.1+0.1a
   pinput: ^5.0.0
   easy_localization: any
-  flutter_localization:
+  flutter_localization: ^0.2.0
   flutter_rating_bar: ^4.0.1
   smooth_page_indicator: ^1.1.0
   chips_choice: ^3.0.1
@@ -55,36 +55,41 @@ dependencies:
   shared_preferences: ^2.2.2
   responsive_builder: ^0.7.0
   jiffy: ^6.2.1
-  firebase_pagination: ^3.1.0
 
-  firebase_auth: ^4.17.9
-  cloud_firestore: ^4.15.9
-  firebase_core: ^2.27.1
-  firebase_storage: ^11.7.4
+  firebase_pagination: ^4.0.1
+  firebase_auth: ^5.3.1
+  cloud_firestore: ^5.4.4
+  firebase_core: ^3.6.0
+  firebase_storage: ^12.3.3
+  firebase_messaging: ^15.1.3
 
-  file_picker: ^8.0.0+1
+  file_picker: ^8.0.2
   image_picker: ^1.0.7
   percent_indicator: ^4.2.3
   flutter_overlay_loader: ^2.0.0
-  firebase_messaging: ^14.8.1
+  
   # location
   google_maps_flutter: ^2.6.0
-  geolocator: ^12.0.0
+  geolocator: ^13.0.1
   geocoding: ^3.0.0
   latlng: ^2.0.7
   path_provider: ^2.1.3
   path: ^1.9.0
   table_calendar: ^3.0.9
-  flutter_local_notifications: ^17.1.0
+  flutter_local_notifications: ^17.2.3
   url_launcher: ^6.2.6
   permission_handler: ^11.3.1
-  rflutter_alert: ^2.0.7
-  horizontal_week_calendar: ^0.0.18
+  video_player: ^2.8.6
+  chewie: ^1.8.0
 
-  paginate_firestore:
-    git:
-      url: https://github.com/waqadArshad/paginate_firestore.git
+
+  # paginate_firestore:
+  #   git:
+  #     url: https://github.com/waqadArshad/paginate_firestore.git
+  # paginate_firestore_plus: ^1.0.1+2
   readmore: ^3.0.0
+  rflutter_alert:
+  horizontal_week_calendar:
 
 dev_dependencies:
   flutter_test:
@@ -114,16 +119,6 @@ flutter:
     - assets/jsons/
     - assets/translation/
     - assets/images/intro/
-    - assets/images/home/
-    - assets/images/consult_doctor_image/
-    - assets/images/foot_screening_images/
-    - assets/images/dressing_services_images/
-    - assets/images/skin_and_nail_images/
-    - assets/images/foot_deformities_images/
-    - assets/images/toe_deformities_images/
-    - assets/images/foot_pain_images/
-    - assets/images/treatement/
-    - assets/images/video_images/
     - assets/svgs/
     - assets/images/notification_images/
   # An image asset can refer to one or more resolution-specific "variants", see

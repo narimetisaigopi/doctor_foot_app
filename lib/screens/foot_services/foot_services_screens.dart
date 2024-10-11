@@ -70,7 +70,7 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
             onEmpty: const Center(child: Text("No Services")),
             itemBuilder: (context, documentSnapshots, index) {
               FootServiceModel homeDressingModel = FootServiceModel.fromJson(
-                  documentSnapshots.data() as Map<String, dynamic>);
+                  documentSnapshots[index].data() as Map<String, dynamic>);
               return FootServiceWidget(
                 footServiceModel: homeDressingModel,
                 onPress: () {

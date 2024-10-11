@@ -44,7 +44,7 @@ class _AppointmentsListScreenState extends State<AppointmentsListScreen> {
             onEmpty: Center(child: emptyState()),
             itemBuilder: (context, documentSnapshots, index) {
               AppointmentModel homeDressingModel =
-                  AppointmentModel.fromSnapshot(documentSnapshots);
+                  AppointmentModel.fromSnapshot(documentSnapshots[index]);
               return BookAppointmentWidget(
                 appointmentModel: homeDressingModel,
               );
@@ -69,7 +69,7 @@ class _AppointmentsListScreenState extends State<AppointmentsListScreen> {
             onEmpty: Center(child: emptyState()),
             itemBuilder: (context, documentSnapshots, index) {
               AppointmentModel homeDressingModel =
-                  AppointmentModel.fromSnapshot(documentSnapshots);
+                  AppointmentModel.fromSnapshot(documentSnapshots[index]);
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(

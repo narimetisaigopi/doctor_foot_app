@@ -34,7 +34,7 @@ class _ExpireCouponsState extends State<ExpireCoupons> {
               isEqualTo: true),
           itemBuilder: (context, documentSnapshots, index) {
             CouponCodeModel couponCodeModel = CouponCodeModel.fromJson(
-                documentSnapshots.data() as Map<String, dynamic>);
+                documentSnapshots[index].data() as Map<String, dynamic>);
 
             return Container(
               width: double.infinity,

@@ -40,7 +40,7 @@ class _TotalCouponCodesState extends State<TotalCouponCodes> {
               isEqualTo: false),
           itemBuilder: (context, documentSnapshots, index) {
             CouponCodeModel couponCodeModel = CouponCodeModel.fromJson(
-                documentSnapshots.data() as Map<String, dynamic>);
+                documentSnapshots[index].data() as Map<String, dynamic>);
 
             return couponCodeWidget(couponCodeModel, () {
               widget.isAdmins

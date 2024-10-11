@@ -4,8 +4,8 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
-import 'package:paginate_firestore/paginate_firestore.dart';
 
 class PaymentsAndRefundScreen extends StatefulWidget {
   const PaymentsAndRefundScreen({super.key});
@@ -43,12 +43,12 @@ class _PaymentsAndRefundScreenState extends State<PaymentsAndRefundScreen> {
         ),
         body: Container(
           margin: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
-          child: PaginateFirestore(
-              itemsPerPage: 10,
+          child: FirestorePagination(
+              limit: 10,
               onEmpty: const Center(
                 child: Text("No transactions"),
               ),
-              itemBuilderType: PaginateBuilderType.listView,
+              viewType: ViewType.list,
               bottomLoader: const Center(
                 child: CircularProgressIndicator(
                   color: Colors.blue,
