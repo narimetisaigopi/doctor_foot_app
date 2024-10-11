@@ -181,6 +181,8 @@ class AssetsConstants {
       "assets/images/treatement/how_to_upload_3.png";
   static const String treatement_no =
       "assets/images/treatement/treatement_no.png";
+  static const String upload_doc =
+      "assets/images/treatement/upload_doc.png";
 
   // risk_factor_questionary
   static const String abnormal_foot_shape_1 =
