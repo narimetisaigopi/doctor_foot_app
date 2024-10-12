@@ -53,6 +53,7 @@ class _IngrownToeNailScreenState extends State<IngrownToeNailScreen> {
                     height: 196,
                     width: double.infinity,
                     path: AssetsConstants.ingrow_toe_nail_full_image,
+                    fit: BoxFit.fill,
                   ),
                   SizedBox(
                     height: 8,

@@ -66,6 +66,7 @@ class _FootScreeningServiceWidgetState
                     fontWeight: FontWeight.w700,
                     color: AppColors.black2,
                   ),
+                  textAlign: TextAlign.center,
                 ).tr(),
               ),
             ),

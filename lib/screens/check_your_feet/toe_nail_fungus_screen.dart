@@ -52,7 +52,8 @@ class _ToeNailFungusScreenState extends State<ToeNailFungusScreen> {
                   CustomImage(
                     height: 196,
                     width: double.infinity,
-                    path: AssetsConstants.toe_nail_fungus_full_image,
+                    path: AssetsConstants.nail_fungs_full_image,
+                    fit: BoxFit.fill,
                   ),
                   SizedBox(
                     height: 8,
@@ -188,13 +189,6 @@ class _ToeNailFungusScreenState extends State<ToeNailFungusScreen> {
                             fontWeight: FontWeight.w400,
                             color: AppColors.textBlackColor,
                           ),
-                        ),
-                        SizedBox(
-                          height: 34,
-                        ),
-                        CustomButton(
-                          buttonName: "Next",
-                          isBoxShadow: false,
                         ),
                         SizedBox(
                           height: 34,

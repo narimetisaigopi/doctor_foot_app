@@ -117,12 +117,16 @@ class AssetsConstants {
       "$skin_and_nail_path/planter_warts_full_image.png";
   static const String toe_nail_fungus_full_image =
       "$toe_deformities_images_path/toe_nail_fungus_full_image.png";
+  static const String nail_fungs_full_image =
+      "assets/images/skin_and_nail_images/nail_fungs_full_image.png";
   static const String filiculities_full_image =
       "$toe_deformities_images_path/filiculities_full_image.png";
+  static const String folli_full_image =
+      "assets/images/skin_and_nail_images/folli_full_image.png";
   static const String ankle_spains =
-      "$toe_deformities_images_path/ankle_spains.png";
+      "assets/images/skin_and_nail_images/ankle_spains.png";
   static const String foot_and_ankle =
-      "$toe_deformities_images_path/foot_and_ankle.png";
+      "assets/images/skin_and_nail_images/foot_and_ankle.png";
   // toe deformities
   static const String toe_deformities_images_path =
       "assets/images/toe_deformities_images";
