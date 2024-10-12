@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:drfootapp/utils/widgets/custom_circular_loader.dart';
 import 'package:flutter/material.dart';
 
 class CustomNetworkImageWidget extends StatefulWidget {
@@ -26,8 +27,11 @@ class _CustomNetworkImageWidgetState extends State<CustomNetworkImageWidget> {
       width: widget.width,
       imageUrl: widget.path,
       fit: widget.fit,
+      placeholder: (context, url) {
+        return const CustomCircularLoader();
+      },
       errorWidget: (context, url, error) {
-        return Icon(Icons.image);
+        return const Icon(Icons.image);
       },
     );
   }

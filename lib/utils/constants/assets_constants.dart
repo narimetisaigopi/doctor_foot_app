@@ -323,9 +323,6 @@ class AssetsConstants {
 // discharge images
   static const String uploadSuccussfully = "$_introImagesBasePath/success.svg";
 
-  // discharge images
-  static const String loader = "$_svgImages/loader.svg";
-
   // notification images
   static const String _notificationBasePath =
       "assets/images/notification_images";

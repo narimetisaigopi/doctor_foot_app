@@ -9,7 +9,7 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
-import 'package:drfootapp/utils/widgets/custom_loader.dart';
+import 'package:drfootapp/utils/widgets/custom_circular_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
@@ -929,7 +929,7 @@ showLoader(BuildContext context) {
       isBottomBarOverlay: false,
       overlayFromBottom: 80,
       overlayColor: Colors.black26,
-      progressIndicator: const CustomLoader(),
+      progressIndicator: const CustomCircularLoader(),
       themeData: Theme.of(context).copyWith(
           colorScheme:
               ColorScheme.fromSwatch().copyWith(secondary: Colors.green)));
