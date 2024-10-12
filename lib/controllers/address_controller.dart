@@ -82,7 +82,7 @@ class AddressesController extends GetxController {
     addressModel.pincode = pincodeController.text;
     addressModel.area = localityController.text;
     addressModel.alternativeMobileNumber = alternateMobileNumberController.text;
-    addressModel.uid = getCurrentUserId();
+    addressModel.uid = Utility().getCurrentUserId();
     addressModel.addressLabel = addressLabelController.text;
   }
 

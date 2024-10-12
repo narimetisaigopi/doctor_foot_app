@@ -40,7 +40,7 @@ class NotificationService {
       if (match != null) {
         String result = match.group(1)!;
         log(result);
-        openUrl(result);
+        Utility().openUrl(result);
       } else {
         log('No match found');
       }

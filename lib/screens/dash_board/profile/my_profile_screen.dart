@@ -461,7 +461,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   }
 
   validate() {
-    closeKeyboard();
+    Utility().closeKeyboard();
     bool status = _formKey.currentState!.saveAndValidate();
     // Utility.myBottomSheet(context, widget: const HomeScreen());
     // Get.to(() => const DashBoardScreen());

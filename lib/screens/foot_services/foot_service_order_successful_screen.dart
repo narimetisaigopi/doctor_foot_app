@@ -47,14 +47,14 @@ class _FootServiceOrderSuccessfulScreenState
                     color: Color(0xFF6B6B6B)),
               ).tr(),
               Text(
-                "orderDate : ${formatDate(widget.orderModel.timestamp!.toDate())}",
+                "orderDate : ${Utility().formatDate(widget.orderModel.timestamp!.toDate())}",
                 style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                     color: Color(0xFF6B6B6B)),
               ).tr(),
               Text(
-                formatTime(widget.orderModel.timestamp!.toDate()),
+                Utility().formatTime(widget.orderModel.timestamp!.toDate()),
                 style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,

@@ -391,7 +391,7 @@ class Utility {
     ).format(number);
     return formattedNumber.toString();
   }
-}
+
 
 // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
@@ -884,18 +884,6 @@ closeKeyboard() {
 //     return 0.0;
 //   }
 // }
-
-extension StringExtension on String {
-  String toCapitalize() {
-    try {
-      if (isEmpty) return this;
-      return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
-    } catch (e) {
-      return this;
-    }
-  }
-}
-
 Widget payableData({
   String title = "title",
   String value = "value",
@@ -948,25 +936,18 @@ String maskMobileNumber(String mobileNumber) {
   }
 }
 
-bool isAdmin() {
+static bool isAdmin() {
   return kIsWeb;
 }
 
-// PaymentStatus status = PaymentStatus.pending;
-//   String statusString = enumToString(status);
-//   print(statusString); // Output: pending
-
-//   PaymentStatus retrievedStatus = stringToEnum(statusString, PaymentStatus.values);
-//   print(retrievedStatus); // Output: PaymentStatus.pending
-
 // Convert enum to string
-String enumToString<T>(T enumValue) {
+static String enumToString<T>(T enumValue) {
   return enumValue.toString().split('.').last;
 }
 
 // Convert string to enum
-T? stringToEnum<T>(String value, List<T> values) {
-  return values.firstWhere((v) => enumToString(v) == value);
+static T? stringToEnum<T>(String value, List<T> values) {
+    return values.firstWhere((v) => Utility.enumToString(v) == value);
 }
 
 getCurrentUserId() {
@@ -1086,4 +1067,15 @@ Future<void> openUrl(String url) async {
     Uri.parse(url),
     mode: LaunchMode.externalApplication,
   );
+}
+
+String toIndianFormat(dynamic value) {
+    final indianRupeesFormat = NumberFormat.currency(
+      name: "INR",
+      locale: 'en_IN',
+      decimalDigits: 0, // change it to get decimal places
+      symbol: '₹ ',
+    );
+    return indianRupeesFormat.format(value);
+  }
 }

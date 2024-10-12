@@ -120,7 +120,7 @@ class FootServiceController extends GetxController {
         homeDressingModel.image = path;
       }
       setServiceData(homeDressingModel);
-      homeDressingModel.uid = getCurrentUserId();
+      homeDressingModel.uid = Utility().getCurrentUserId();
       homeDressingModel.docId = documentReference.id;
       await documentReference.set(homeDressingModel.toMap());
       Utility.toast("Service added.");
@@ -144,7 +144,7 @@ class FootServiceController extends GetxController {
         homeDressingModel.image = path;
       }
       setServiceData(homeDressingModel);
-      homeDressingModel.uid = getCurrentUserId();
+      homeDressingModel.uid = Utility().getCurrentUserId();
       await footServicesCollectionReference
           .doc(homeDressingModel.docId)
           .update(homeDressingModel.toMap());
@@ -200,7 +200,7 @@ class FootServiceController extends GetxController {
       orderModel.docId = documentReference.id;
       orderModel.amount = finalAmount;
       orderModel.orderStatus = OrderStatus.upcoming;
-      orderModel.uid = getCurrentUserId();
+      orderModel.uid = Utility().getCurrentUserId();
       orderModel.discount = discountAmount;
       orderModel.orderId = orderId;
       orderModel.timestamp = Timestamp.now();

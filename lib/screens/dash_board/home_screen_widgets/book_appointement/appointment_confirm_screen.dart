@@ -57,7 +57,7 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
             height: 16,
           ),
           Text(
-            "Date: ${formatDate(widget.appointmentModel.appointmentTimestamp!.toDate())}",
+            "Date: ${Utility().formatDate(widget.appointmentModel.appointmentTimestamp!.toDate())}",
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
@@ -68,7 +68,8 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
             height: 20,
           ),
           Text(
-            formatTime(widget.appointmentModel.appointmentTimestamp!.toDate()),
+            Utility().formatTime(
+                widget.appointmentModel.appointmentTimestamp!.toDate()),
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,

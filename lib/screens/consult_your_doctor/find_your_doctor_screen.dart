@@ -1,5 +1,5 @@
 import 'package:drfootapp/controllers/appointment_controller.dart';
-import 'package:drfootapp/screens/consult_your_doctor/widgets/all_bookings_widget.dart';
+import 'package:drfootapp/screens/consult_your_doctor/widgets/all_doctors_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -98,7 +98,7 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
                       ]),
                     ),
                     const SizedBox(height: 8),
-                    const AllBookingsWidget()
+                    const AllDoctorsScreen()
                   ],
                 ),
               ),

@@ -56,7 +56,7 @@ class AppointmentController extends GetxController {
       appointmentModel.appointmentTimestamp =
           Timestamp.fromDate(selectedDateTime);
       appointmentModel.timestamp = Timestamp.now();
-      appointmentModel.uid = getCurrentUserId();
+      appointmentModel.uid = Utility().getCurrentUserId();
       appointmentModel.docId = documentReference.id;
       appointmentModel.appointmentId = appointmentId;
       appointmentModel.timestamp = Timestamp.now();

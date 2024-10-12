@@ -45,6 +45,8 @@ CollectionReference doctorsCollectionReference =
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";
 const String storageArticlesBlogs = "articles_blogs";
+const String storageHospitals = "hospitals";
+const String storageDoctors = "doctors";
 
 final List<String> adminsList = [
   "bandigowtham6@gmail.com",

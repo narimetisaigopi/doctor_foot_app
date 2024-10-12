@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class HospitalController extends GetxController {
+class HospitalsController extends GetxController {
   XFile? xFile;
   bool isLoading = false;
   TextEditingController titleTextEditingController = TextEditingController();
@@ -30,7 +30,7 @@ class HospitalController extends GetxController {
       // If a new image is picked, upload it and update the image URL
       if (xFile != null) {
         String url = await FirebaseStorageController().uploadImageToFirebase(
-            directoryName: storageArticlesBlogs, uploadFile: xFile!);
+            directoryName: storageHospitals, uploadFile: xFile!);
         newHospitalModel.image = url;
       }
       // Update the model with form data

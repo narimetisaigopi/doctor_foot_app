@@ -4,9 +4,10 @@ import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/screens/dash_board/profile/address/add_address_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
-import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../utils/utility.dart';
 
 class MyAddressWidget extends StatefulWidget {
   final AddressModel addressModel;
@@ -112,7 +113,7 @@ class _MyAddressWidgetState extends State<MyAddressWidget> {
                         ),
                         InkWell(
                             onTap: () async {
-                              showAlertDialog(
+                              Utility().showAlertDialog(
                                 context: context,
                                 yesCallback: () async {
                                   Navigator.pop(context);

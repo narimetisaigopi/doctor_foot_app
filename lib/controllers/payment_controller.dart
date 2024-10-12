@@ -69,7 +69,7 @@ class PaymentController extends GetxController {
     paymentModel.docId = documentReference.id;
     paymentModel.message = message;
     paymentModel.paymentId = paymentId;
-    paymentModel.uid = getCurrentUserId();
+    paymentModel.uid = Utility().getCurrentUserId();
     paymentModel.subscriptionId = subscriptionId;
     paymentModel.paymentStatus = paymentStatus;
     paymentModel.paymentServiceType = paymentServiceType;

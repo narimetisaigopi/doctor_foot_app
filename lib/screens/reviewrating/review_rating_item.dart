@@ -79,14 +79,14 @@ class _ReviewRatingItemState extends State<ReviewRatingItem> {
   }
 
   Widget actionLayout() {
-    return widget.ratingModel.uid == getCurrentUserId().uid
+    return widget.ratingModel.uid == Utility().getCurrentUserId().uid
         ? SizedBox(
             width: 100,
             child: Row(
               children: [
                 InkWell(
                   onTap: () {
-                    showAlertDialog(
+                    Utility().showAlertDialog(
                       content: "Do you want to delete review?",
                       context: context,
                       yesCallback: () async {

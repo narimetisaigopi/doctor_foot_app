@@ -147,7 +147,7 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
     String title = Strings.dressingServicesText;
     if (widget.footServices == FootServices.dressingService) {
       title =
-          "${Strings.dressingServicesText} - ${enumToString(widget.dressingServices)}";
+          "${Strings.dressingServicesText} - ${Utility.enumToString(widget.dressingServices)}";
     } else if (widget.footServices == FootServices.nailTrimmingService) {
       title = Strings.nailTrimmingText;
     } else if (widget.footServices == FootServices.footCleaning) {

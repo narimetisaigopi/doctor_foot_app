@@ -16,7 +16,7 @@ class _VideoPostingScreenState extends State<VideoPostingScreen> {
   Widget build(BuildContext context) {
     return  Scaffold(
          backgroundColor: AppColors.whiteBgColor,
-          floatingActionButton: isAdmin()
+      floatingActionButton: Utility.isAdmin()
               ? FloatingActionButton(
                   onPressed: () {
                     Get.to(() => const AddDietChartScreen());
