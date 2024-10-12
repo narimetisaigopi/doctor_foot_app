@@ -1,27 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/admin/articles/create_article.dart';
 import 'package:drfootapp/models/article_model.dart';
 import 'package:drfootapp/screens/home_widgets/article_and_blog_widget.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/widgets/empty_state.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class ArticleAndBlogWidgetList extends StatefulWidget {
-  const ArticleAndBlogWidgetList({super.key});
+class AdminAllArticles extends StatefulWidget {
+  const AdminAllArticles({super.key});
 
   @override
-  State<ArticleAndBlogWidgetList> createState() =>
-      _ArticleAndBlogWidgetListState();
+  State<AdminAllArticles> createState() => _AdminAllArticlesState();
 }
 
-class _ArticleAndBlogWidgetListState extends State<ArticleAndBlogWidgetList> {
+class _AdminAllArticlesState extends State<AdminAllArticles> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.48,
-      child: FirestorePagination(
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Get.to(() => const CreateArticle());
+      }),
+      body: FirestorePagination(
         shrinkWrap: false,
         query: getQuery(),
+        viewType: ViewType.grid,
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
         onEmpty: const Center(child: EmptyState()),
         itemBuilder: (context, documentSnapshots, index) {
           ArticleModel articleModel =
@@ -31,21 +37,6 @@ class _ArticleAndBlogWidgetListState extends State<ArticleAndBlogWidgetList> {
           );
         },
       ),
-      // child: ListView.builder(
-      //     scrollDirection: Axis.horizontal,
-      //     itemCount: articleAndBlogModelList.length,
-      //     itemBuilder: (context, index) {
-      //       ArticleAndBlogModel articleAndBlogItem =
-      //           articleAndBlogModelList[index];
-      //       return InkWell(
-      //         onTap: () {
-      //           Get.to(() => const ArticlesInfoScreen());
-      //         },
-      //         child: ArticleAndBlogWidget(
-      //           articleAndBlogModel: articleAndBlogItem,
-      //         ),
-      //       );
-      //     }),
     );
   }
 

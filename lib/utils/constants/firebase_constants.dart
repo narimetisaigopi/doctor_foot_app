@@ -33,8 +33,12 @@ CollectionReference adminCollectionReference =
 CollectionReference appointmentsCollectionReference =
     FirebaseFirestore.instance.collection("appointments");
 
+CollectionReference articlesAndBlogsCollectionReference =
+    FirebaseFirestore.instance.collection("articles_blogs");
+
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";
+const String storageArticlesBlogs = "articles_blogs";
 
 final List<String> adminsList = [
   "bandigowtham6@gmail.com",

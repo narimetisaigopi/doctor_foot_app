@@ -90,6 +90,8 @@ dependencies:
   readmore: ^3.0.0
   rflutter_alert:
   horizontal_week_calendar:
+  html_editor_enhanced: ^2.6.0
+  flutter_widget_from_html: ^0.15.2
 
 dev_dependencies:
   flutter_test:
@@ -100,7 +102,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -119,6 +121,16 @@ flutter:
     - assets/jsons/
     - assets/translation/
     - assets/images/intro/
+    - assets/images/home/
+    - assets/images/consult_doctor_image/
+    - assets/images/foot_screening_images/
+    - assets/images/dressing_services_images/
+    - assets/images/skin_and_nail_images/
+    - assets/images/foot_deformities_images/
+    - assets/images/toe_deformities_images/
+    - assets/images/foot_pain_images/
+    - assets/images/treatement/
+    - assets/images/video_images/
     - assets/svgs/
     - assets/images/notification_images/
   # An image asset can refer to one or more resolution-specific "variants", see

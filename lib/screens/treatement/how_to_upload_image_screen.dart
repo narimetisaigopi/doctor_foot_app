@@ -4,7 +4,7 @@ import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/treatement/image_view_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/custom_Image.dart';
+import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';

@@ -4,7 +4,7 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/networl_image_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/rating_book_again.dart';
 import 'package:flutter/material.dart';
 import '../../../../models/homeScreenModels/foot_service_booking_model.dart';
@@ -49,7 +49,7 @@ class _ServiceBookingWidgetState extends State<ServiceBookingWidget> {
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10)),
-                            child: NetworkImageWidget(
+                            child: CustomNetworkImageWidget(
                               path: footServiceModel.image,
                               height: 108,
                               width: double.infinity,

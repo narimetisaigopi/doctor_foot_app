@@ -3,7 +3,7 @@
 import 'package:drfootapp/controllers/risk_factor_controller.dart';
 import 'package:drfootapp/models/risk_factor_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/custom_Image.dart';
+import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';

@@ -10,30 +10,43 @@ import 'package:path/path.dart' as pppp;
 class FirebaseStorageController extends GetxController {
   Future<String> uploadImageToFirebase(
       {required String directoryName, required XFile uploadFile}) async {
-    String filePath =
-        '$directoryName/${DateTime.now().microsecondsSinceEpoch}__${pppp.basename(uploadFile.path)}';
-    File file = File(uploadFile.path);
-    String url = "";
-    try {
-      late TaskSnapshot uploadTask;
-      if (kIsWeb) {
-        Uint8List uint8list = await uploadFile.readAsBytes();
-        uploadTask = await firebase_storage.FirebaseStorage.instance
-            .ref(filePath)
-            .putData(uint8list);
-      } else {
-        uploadTask = await firebase_storage.FirebaseStorage.instance
-            .ref(filePath)
-            .putFile(file);
-      }
-      url = await uploadTask.ref.getDownloadURL();
-    } on FirebaseException catch (e) {
-      logger(e.toString());
-    } catch (e, stack) {
-      logger("uploadImageToFirebase ${e.toString()}");
-      logger("uploadImageToFirebase ${stack.toString()}");
-    } finally {}
-    return url;
+    List<String> urls = await uploadImagesToFirebase(
+        directoryName: directoryName, uploadFiles: [uploadFile]);
+    if (urls.isNotEmpty) {
+      return urls.first;
+    }
+    return "";
+  }
+
+  Future<List<String>> uploadImagesToFirebase(
+      {required String directoryName, required List<XFile> uploadFiles}) async {
+    List<String> urls = [];
+    for (XFile uploadFile in uploadFiles) {
+      String filePath =
+          '$directoryName/${DateTime.now().microsecondsSinceEpoch}__${pppp.basename(uploadFile.path)}';
+      File file = File(uploadFile.path);
+      try {
+        late TaskSnapshot uploadTask;
+        if (kIsWeb) {
+          Uint8List uint8list = await uploadFile.readAsBytes();
+          uploadTask = await firebase_storage.FirebaseStorage.instance
+              .ref(filePath)
+              .putData(uint8list);
+        } else {
+          uploadTask = await firebase_storage.FirebaseStorage.instance
+              .ref(filePath)
+              .putFile(file);
+        }
+        String url = await uploadTask.ref.getDownloadURL();
+        urls.add(url);
+      } on FirebaseException catch (e) {
+        logger(e.toString());
+      } catch (e, stack) {
+        logger("uploadImageToFirebase ${e.toString()}");
+        logger("uploadImageToFirebase ${stack.toString()}");
+      } finally {}
+    }
+    return urls;
   }
 
   deleteImage(String url) async {

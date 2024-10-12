@@ -3,7 +3,7 @@ import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'networl_image_widget.dart';
+import 'custom_network_image_widget.dart';
 
 class FootServiceWidget extends StatefulWidget {
   final double height;
@@ -45,7 +45,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
       width: widget.width,
       child: Row(
         children: [
-          NetworkImageWidget(
+          CustomNetworkImageWidget(
             path: widget.footServiceModel.image,
             width: MediaQuery.of(context).size.width * 0.2,
           ),

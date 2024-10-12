@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:drfootapp/models/homeScreenModels/home_image_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/custom_Image.dart';
+import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
