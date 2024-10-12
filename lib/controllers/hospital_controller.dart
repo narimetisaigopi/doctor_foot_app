@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/article_model.dart';
+import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,11 @@ import 'package:get/get.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ArticlesController extends GetxController {
+class HospitalController extends GetxController {
   XFile? xFile;
   bool isLoading = false;
   TextEditingController titleTextEditingController = TextEditingController();
-  HtmlEditorController htmlEditorController = HtmlEditorController();
-
+  TextEditingController addressTextEditingController = TextEditingController();
   doUpdate(bool status) {
     isLoading = status;
     update();
@@ -24,25 +24,25 @@ class ArticlesController extends GetxController {
     update();
   }
 
-  createArticle() async {
+  createHospital() async {
     try {
       doUpdate(true);
-      ArticleModel articleModel = ArticleModel();
+      HospitalModel hospitalModel = HospitalModel();
       if (xFile != null) {
         String url = await FirebaseStorageController().uploadImageToFirebase(
             directoryName: storageArticlesBlogs, uploadFile: xFile!);
-        articleModel.image = url;
+        hospitalModel.image = url;
       }
 
-      articleModel.title = titleTextEditingController.text;
-      articleModel.description = await htmlEditorController.getText();
-      DocumentReference documentReference =
-          articlesAndBlogsCollectionReference.doc();
-      articleModel.uid = documentReference.id;
-      articleModel.timestamp = DateTime.now();
-      articleModel.isActive = true;
-      await documentReference.set(articleModel.toJson());
-      Utility.toast("Posted successfully.");
+      hospitalModel.title = titleTextEditingController.text;
+      hospitalModel.address = addressTextEditingController.text;
+      DocumentReference documentReference = hospitalsCollectionReference.doc();
+      hospitalModel.uid = documentReference.id;
+      hospitalModel.timestamp = DateTime.now();
+      hospitalModel.isActive = true;
+      await documentReference.set(hospitalModel.toJson());
+      Utility.toast("Created successfully.");
+      Get.back();
     } catch (e) {
       Utility.toast("Failed to create $e");
     } finally {

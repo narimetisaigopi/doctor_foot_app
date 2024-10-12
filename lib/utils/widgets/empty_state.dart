@@ -6,7 +6,7 @@ class EmptyState extends StatelessWidget {
   final IconData iconData;
   const EmptyState(
       {super.key,
-      this.message = "",
+      this.message = "No data",
       this.iconData = Icons.hourglass_empty_outlined});
 
   @override
@@ -23,7 +23,7 @@ class EmptyState extends StatelessWidget {
           ),
           Text(
             message,
-            style: const TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18, color: Colors.black),
           )
         ],
       ),
