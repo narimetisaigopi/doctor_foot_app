@@ -91,7 +91,8 @@ class _ServiceBookingWidgetState extends State<ServiceBookingWidget> {
                                           width: 4,
                                         ),
                                         Text(
-                                          enumToString(OrderStatus.values[widget
+                                          Utility.enumToString(
+                                              OrderStatus.values[widget
                                               .serviceBookingOrderModel
                                               .orderStatus
                                               .index]),
@@ -125,7 +126,7 @@ class _ServiceBookingWidgetState extends State<ServiceBookingWidget> {
                                   ],
                                 ),
                                 Text(
-                                  formatDate(widget
+                                  Utility().formatDate(widget
                                       .serviceBookingOrderModel.timestamp!
                                       .toDate()),
                                   style: const TextStyle(

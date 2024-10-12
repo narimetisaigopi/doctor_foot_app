@@ -32,7 +32,7 @@ class ReviewRatingController extends GetxController {
     return getCollection(reviewType)
         .doc(docId)
         .collection("reviews")
-        .doc(getCurrentUserId());
+        .doc(Utility().getCurrentUserId());
   }
 
   Future<ReviewRatingModel> getMyRating(
@@ -53,7 +53,7 @@ class ReviewRatingController extends GetxController {
     ReviewRatingModel ratingModel = ReviewRatingModel();
     ratingModel.rating = selectedRating;
     ratingModel.review = messageTextEditingController.text;
-    ratingModel.uid = getCurrentUserId();
+    ratingModel.uid = Utility().getCurrentUserId();
     await getServicesReviewsCollection(reviewType, docId)
         .set(ratingModel.toMap());
     if (myRatingModel.uid.isNotEmpty) {

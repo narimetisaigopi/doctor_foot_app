@@ -7,6 +7,17 @@ final indianRupeesFormat = NumberFormat.currency(
   symbol: '₹ ',
 );
 
+extension StringExtension on String {
+  String toCapitalize() {
+    try {
+      if (isEmpty) return this;
+      return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+    } catch (e) {
+      return this;
+    }
+  }
+}
+
 extension RupeesFormatter on int {
   String inRupeesFormat() {
     return indianRupeesFormat.format(this);

@@ -79,7 +79,7 @@ class _AppointemntViewDetailsPageState
           ),
           const Divider(),
           Text(
-            "Booked on ${formatDate(widget.appointmentModel.appointmentTimestamp!.toDate())} \n${formatTime(widget.appointmentModel.appointmentTimestamp!.toDate())}",
+            "Booked on ${Utility().formatDate(widget.appointmentModel.appointmentTimestamp!.toDate())} \n${Utility().formatTime(widget.appointmentModel.appointmentTimestamp!.toDate())}",
             style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,

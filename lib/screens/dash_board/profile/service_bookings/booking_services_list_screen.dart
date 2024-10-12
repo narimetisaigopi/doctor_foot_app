@@ -78,7 +78,7 @@ class _BookingServicesListScreenState extends State<BookingServicesListScreen> {
 
   Query getQuery() {
     Query query = footServicesBookingsCollectionReference.where("uid",
-        isEqualTo: getCurrentUserId())
+        isEqualTo: Utility().getCurrentUserId())
         .where("appointmentStatus", isEqualTo: widget.orderStatus.index)
         .orderBy("timestamp");
     return query;

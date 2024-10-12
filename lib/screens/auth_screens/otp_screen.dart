@@ -111,7 +111,8 @@ class _OtpScreenState extends State<OtpScreen> {
                       ),
                       children: [
                         TextSpan(
-                            text: maskMobileNumber(authenticationController
+                            text: Utility().maskMobileNumber(
+                                authenticationController
                                 .mobileNumberController.text),
                             style: TextStyle(
                               color: Colors.grey.shade500,

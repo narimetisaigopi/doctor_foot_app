@@ -78,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       iconNeeded: true,
                       suffixIcon: InkWell(
                         onTap: () async {
-                          closeKeyboard();
+                          Utility().closeKeyboard();
                           var date = await Utility.showMyDatePicker(context,
                               lastDate: DateTime.now());
                           setState(() {
@@ -218,7 +218,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   validate() {
-    closeKeyboard();
+    Utility().closeKeyboard();
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
     if (status) {
       if (selectedContainerIndex == -1) {

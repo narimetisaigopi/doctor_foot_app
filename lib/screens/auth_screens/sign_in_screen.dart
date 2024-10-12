@@ -143,7 +143,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   validate() {
-    closeKeyboard();
+    Utility().closeKeyboard();
     _authenticationController.isSignUp = false;
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
     if (status) {

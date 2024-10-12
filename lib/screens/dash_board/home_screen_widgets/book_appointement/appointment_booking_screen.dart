@@ -126,7 +126,7 @@ class _AppointmentBookingScreenState extends State<AppointmentBookingScreen> {
                     if (!appointmentController.isDateSelected) {
                       Utility.toast("Please select appoinment date");
                     } else {
-                      showConfirmationBottomSheet(
+                      Utility().showConfirmationBottomSheet(
                         context: context,
                         title: "Are you sure want to book appointment?",
                         onConfirm: () {

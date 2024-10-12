@@ -85,7 +85,7 @@ class UlcerMonitoringController extends GetxController {
   addUlcerSubscriptionData(PaymentStatus paymentStatus, String id) async {
     try {
       _updateLoading(true);
-      await usersCollectionReference.doc(getCurrentUserId()).update({
+      await usersCollectionReference.doc(Utility().getCurrentUserId()).update({
         "ulcerMonitoringPlan": selectedUlcerModel.id,
         "ulcerMonitoringSubscriptionDate": Timestamp.now()
       });
@@ -93,7 +93,7 @@ class UlcerMonitoringController extends GetxController {
           UlcerMonitoringSubscriptionModel();
       DocumentReference documentReference =
           ulcerSubscrptionsCollectionReference.doc();
-      ulcerMonitoringSubscriptionModel.uid = getCurrentUserId();
+      ulcerMonitoringSubscriptionModel.uid = Utility().getCurrentUserId();
       ulcerMonitoringSubscriptionModel.docId = documentReference.id;
       ulcerMonitoringSubscriptionModel.subscriptionId = selectedUlcerModel.id;
       ulcerMonitoringSubscriptionModel.amount = selectedUlcerModel.planAmount;

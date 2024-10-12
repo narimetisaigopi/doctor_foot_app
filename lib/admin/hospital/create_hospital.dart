@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/hospital_controller.dart';
+import 'package:drfootapp/controllers/hospitals_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/screens/maps/my_google_maps.dart';
@@ -21,7 +21,7 @@ class CreateHospital extends StatefulWidget {
 }
 
 class _CreateHospitalState extends State<CreateHospital> {
-  HospitalController hospitalController = Get.put(HospitalController());
+  HospitalsController hospitalController = Get.put(HospitalsController());
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -41,7 +41,7 @@ class _CreateHospitalState extends State<CreateHospital> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HospitalController>(builder: (hospitalController) {
+    return GetBuilder<HospitalsController>(builder: (hospitalController) {
       return Scaffold(
         appBar: AppBar(
           title: Text(widget.hospitalModel != null

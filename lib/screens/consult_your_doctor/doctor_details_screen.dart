@@ -205,7 +205,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                             iconNeeded: true,
                             suffixIcon: InkWell(
                               onTap: () async {
-                                closeKeyboard();
+                                Utility().closeKeyboard();
                                 var date = await Utility.showMyDatePicker(
                                     context,
                                     lastDate: DateTime.now());

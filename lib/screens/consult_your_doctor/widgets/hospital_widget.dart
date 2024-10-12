@@ -1,5 +1,5 @@
 import 'package:drfootapp/admin/hospital/create_hospital.dart';
-import 'package:drfootapp/controllers/hospital_controller.dart';
+import 'package:drfootapp/controllers/hospitals_controller.dart';
 import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
@@ -140,7 +140,7 @@ class _HospitalWidgetState extends State<HospitalWidget> {
               Switch(
                   value: widget.hospitalModel.isActive,
                   onChanged: (status) async {
-                    await Get.put(HospitalController())
+                    await Get.put(HospitalsController())
                         .updateActivieStatus(widget.hospitalModel, status);
                     widget.hospitalModel.isActive = status;
                     setState(() {});

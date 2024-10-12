@@ -117,18 +117,20 @@ class _CreateFootServiceState extends State<CreateFootService> {
                         hint: "Foot service",
                         initialValue:
                             _homeDressingController.selectedFootService != null
-                                ? enumToString(FootServices.values[
+                                ? Utility.enumToString(FootServices.values[
                                     _homeDressingController
                                         .selectedFootService!])
                                 : null,
                         menuItems: FootServices.values
                             .map((e) => DropdownMenuItem(
-                                value: enumToString(e.toString()),
-                                child: Text(enumToString(e.toString()))))
+                                value: Utility.enumToString(e.toString()),
+                                child:
+                                    Text(Utility.enumToString(e.toString()))))
                             .toList(),
                         onChanged: (value) {
                           _homeDressingController.selectedFootService =
-                              stringToEnum(value!, FootServices.values)!.index;
+                              Utility.stringToEnum(value!, FootServices.values)!
+                                  .index;
                           setState(() {});
                         },
                         errorMessage: "Select foot service"),
@@ -138,12 +140,14 @@ class _CreateFootServiceState extends State<CreateFootService> {
                           hint: "Dressing service",
                           menuItems: DressingServices.values
                               .map((e) => DropdownMenuItem(
-                                  value: enumToString(e.toString()),
-                                  child: Text(enumToString(e.toString()))))
+                                  value: Utility.enumToString(e.toString()),
+                                  child:
+                                      Text(Utility.enumToString(e.toString()))))
                               .toList(),
                           onChanged: (value) {
                             _homeDressingController.selectedDressingService =
-                                stringToEnum(value!, DressingServices.values)!
+                                Utility.stringToEnum(
+                                        value!, DressingServices.values)!
                                     .index;
                           },
                           errorMessage: "Select dressing service"),

@@ -31,7 +31,7 @@ class _DietChartScreenState extends State<DietChartScreen> {
     return GetBuilder<DietChartController>(builder: (dietChartController) {
       return Scaffold(
           backgroundColor: AppColors.secondary,
-          floatingActionButton: isAdmin()
+          floatingActionButton: Utility.isAdmin()
               ? FloatingActionButton(
                   onPressed: () {
                     Get.to(() => const AddDietChartScreen());

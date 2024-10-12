@@ -55,7 +55,7 @@ class _PaymentsAndRefundScreenState extends State<PaymentsAndRefundScreen> {
                 ),
               ),
               query: paymentsCollectionReference
-                  .where("uid", isEqualTo: getCurrentUserId())
+                  .where("uid", isEqualTo: Utility().getCurrentUserId())
                   .orderBy('timestamp', descending: true),
               itemBuilder: (context, documentSnapshots, index) {
                 PaymentModel paymentModel =

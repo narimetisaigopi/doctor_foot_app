@@ -1,21 +1,23 @@
+import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/widgets/custom_image.dart';
+import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/small_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class BookNowWidget extends StatefulWidget {
-  const BookNowWidget({
-    super.key,
-  });
+class DoctorWidget extends StatefulWidget {
+  final DoctorModel doctorModel;
+  final bool isAdmin;
+  const DoctorWidget(
+      {super.key, required this.doctorModel, this.isAdmin = false});
 
   @override
-  State<BookNowWidget> createState() => _BookNowWidgetState();
+  State<DoctorWidget> createState() => _DoctorWidgetState();
 }
 
-class _BookNowWidgetState extends State<BookNowWidget> {
+class _DoctorWidgetState extends State<DoctorWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,18 +30,18 @@ class _BookNowWidgetState extends State<BookNowWidget> {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              const Expanded(
+              Expanded(
                 flex: 3,
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Stack(
                     children: [
-                      CustomImage(
-                        path: AssetsConstants.find_doctor,
+                      CustomNetworkImageWidget(
+                        path: widget.doctorModel.image,
                         height: 152,
                         width: 104,
                       ),
-                      Positioned(
+                      const Positioned(
                           top: 3.3,
                           right: 3.3,
                           child: CircleAvatar(
@@ -62,17 +64,17 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "DR. Narendranadh Me...",
-                          style: TextStyle(
+                        Text(
+                          widget.doctorModel.name,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: AppColors.black2,
                           ),
                         ).tr(),
-                        const Text(
-                          "BAMMS - 33 YRS. EXP.",
-                          style: TextStyle(
+                        Text(
+                          "BAMMS - ${widget.doctorModel.yearsOfExperiance} YRS. EXP.",
+                          style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: AppColors.grey,
@@ -88,18 +90,19 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                         ).tr(),
                         Row(
                           children: [
-                            const Text(
-                              "₹399/-",
-                              style: TextStyle(
+                            Text(
+                              "${Utility.numberConvertToEnglish(widget.doctorModel.offerPrice)}/-",
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.black2,
                               ),
                             ).tr(),
-                            const Text(
-                              "₹499/-",
-                              style: TextStyle(
+                            Text(
+                              "${Utility.numberConvertToEnglish(widget.doctorModel.actualPrice)}/-",
+                              style: const TextStyle(
                                 fontSize: 14,
+                                decoration: TextDecoration.lineThrough,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.grey2,
                               ),
@@ -138,7 +141,7 @@ class _BookNowWidgetState extends State<BookNowWidget> {
                           bgColor: AppColors.patientReviewBg,
                           buttonName: "Book Now",
                           textColor: AppColors.whiteBgColor,
-                          onPress: (){},
+                          onPress: () {},
                         )
                       ],
                     ),
