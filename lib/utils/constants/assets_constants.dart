@@ -181,8 +181,7 @@ class AssetsConstants {
       "assets/images/treatement/how_to_upload_3.png";
   static const String treatement_no =
       "assets/images/treatement/treatement_no.png";
-  static const String upload_doc =
-      "assets/images/treatement/upload_doc.png";
+  static const String upload_doc = "assets/images/treatement/upload_doc.png";
 
   // risk_factor_questionary
   static const String abnormal_foot_shape_1 =
@@ -330,4 +329,17 @@ class AssetsConstants {
   static const String _notificationBasePath =
       "assets/images/notification_images";
   static const String alaram_sign = "$_notificationBasePath/alaram_sign.svg";
+
+  // payments
+  static const String payment_reject =
+      "assets/images/payments/payment_reject.png";
+  static const String payment_success =
+      "assets/images/payments/payment_success.png";
+  static const String refund_intiated =
+      "assets/images/payments/refund_intiated.png";
+  static const String payment_failed =
+      "assets/images/payments/payment_failed.png";
+  static const String payment_done = "assets/images/payments/payment_done.png";
+  static const String payment_process =
+      "assets/images/payments/payment_process.png";
 }

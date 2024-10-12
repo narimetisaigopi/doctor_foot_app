@@ -116,11 +116,16 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
 
           Expanded(
             child: GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: riskFactorModel.options.length,
-              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2.5, 
-                // riskFactorModel.options[""] ?2.5:riskFactorModel.options["grid"]?2.5/4? riskFactorModel.options["gridHorizontal"]? 3/4: null,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount:
+                    riskFactorModel.type == "gridHorizontal" ? 3 : 2,
+                childAspectRatio: riskFactorModel.type == "grid"
+                    ? 1.8 / 1.6
+                    : riskFactorModel.type == "gridHorizontal"
+                        ? 2.5 / 2.5
+                        : 2.5,
               ),
               itemBuilder: (context, index) {
                 return buildGridViewItem(
@@ -194,11 +199,30 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
               margin: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  Image.asset(riskFactorOptionModel.image),
-                  Text(
-                    riskFactorOptionModel.subTitle,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500, fontSize: 16),
+                  Expanded(
+                    flex: 8,
+                    child: Container(
+                        height: 159,
+                        width: 163,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: AppColors.grey2,
+                            width: 1,
+                          ),
+                        ),
+                        child: Image.asset(
+                          riskFactorOptionModel.image,
+                          fit: BoxFit.contain,
+                        )),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      riskFactorOptionModel.title,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w500, fontSize: 16),
+                    ),
                   ),
                 ],
               ),

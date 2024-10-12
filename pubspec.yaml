@@ -67,7 +67,7 @@ dependencies:
   image_picker: ^1.0.7
   percent_indicator: ^4.2.3
   flutter_overlay_loader: ^2.0.0
-  
+
   # location
   google_maps_flutter: ^2.6.0
   geolocator: ^13.0.1
@@ -81,7 +81,6 @@ dependencies:
   permission_handler: ^11.3.1
   video_player: ^2.8.6
   chewie: ^1.8.0
-
 
   # paginate_firestore:
   #   git:
@@ -131,6 +130,7 @@ flutter:
     - assets/images/foot_pain_images/
     - assets/images/treatement/
     - assets/images/video_images/
+    - assets/images/payments/
     - assets/svgs/
     - assets/images/notification_images/
   # An image asset can refer to one or more resolution-specific "variants", see
