@@ -33,7 +33,7 @@ class Utility {
     required Function() yes,
     required Function() no,
     String title = "Confirm",
-    String content = "Do you want to Delete Address?",
+    String content = "Do you want to proceed?",
   }) {
     AlertDialog alert = AlertDialog(
       title: Text(title),

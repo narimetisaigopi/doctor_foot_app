@@ -1,5 +1,5 @@
 import 'package:drfootapp/screens/home_widgets/health_record_widget.dart';
-import 'package:drfootapp/screens/home_widgets/models/Health_record_model.dart';
+import 'package:drfootapp/screens/home_widgets/models/health_record_model.dart';
 import 'package:flutter/material.dart';
 
 class HealthRecordsList extends StatefulWidget {

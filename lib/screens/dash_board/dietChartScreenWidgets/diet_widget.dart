@@ -2,7 +2,7 @@ import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
 import 'package:drfootapp/screens/treatement/how_to_upload_image_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/widgets/networl_image_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -85,7 +85,7 @@ class _DietWidgetState extends State<DietWidget> {
                 decoration: const BoxDecoration(color: AppColors.whiteBgColor),
                 child: Column(
                   children: [
-                    NetworkImageWidget(
+                    CustomNetworkImageWidget(
                       path: widget.dietChartModel.dietImage,
                       fit: BoxFit.contain,
                     ),

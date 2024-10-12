@@ -1,5 +1,5 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/custom_Image.dart';
+import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 
 class CheckYourFeetWidget extends StatefulWidget {

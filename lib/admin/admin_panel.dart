@@ -1,15 +1,14 @@
 // ignore_for_file: non_constant_identifier_names
-
 import 'package:drfootapp/admin/admin_view_foot_services.dart';
 import 'package:drfootapp/admin/coupon_codes/coupon_codes_Screen.dart';
 import 'package:drfootapp/admin/total_orders.dart';
 import 'package:drfootapp/admin/users.dart';
-import 'package:drfootapp/admin/video_posting_screen.dart';
 import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+import 'articles/admin_all_articles.dart';
 
 class AdminPanel extends StatefulWidget {
   const AdminPanel({super.key});
@@ -20,41 +19,42 @@ class AdminPanel extends StatefulWidget {
 
 class _AdminPanelState extends State<AdminPanel> {
   int _selectedIndex = 0;
+  String _selectedItem = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Admin Panel",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
-            color: Colors.red,
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextButton.icon(
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                  setState(() {});
-                },
-                icon: const Icon(
-                  Icons.logout,
-                  color: Colors.red,
-                ),
-                label: const Text(
-                  "Logout",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                )),
-          )
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     "Admin Panel",
+      //     style: TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //       fontSize: 30,
+      //       color: Colors.red,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.symmetric(horizontal: 20),
+      //       child: TextButton.icon(
+      //           onPressed: () async {
+      //             await FirebaseAuth.instance.signOut();
+      //             setState(() {});
+      //           },
+      //           icon: const Icon(
+      //             Icons.logout,
+      //             color: Colors.red,
+      //           ),
+      //           label: const Text(
+      //             "Logout",
+      //             style: TextStyle(
+      //                 color: Colors.red,
+      //                 fontWeight: FontWeight.bold,
+      //                 fontSize: 20),
+      //           )),
+      //     )
+      //   ],
+      // ),
       body: Material(
         child: ScreenTypeLayout.builder(
           mobile: (BuildContext context) => mobileAdminPanel(),
@@ -81,21 +81,21 @@ class _AdminPanelState extends State<AdminPanel> {
           ),
           width: 300,
           child: ListView.builder(
-            itemCount: options.length,
+            itemCount: dashboardMenuOptions.length,
             itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  ListTile(
-                    title: Text(options[index]),
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = index;
-                      });
-                    },
-                    selected: _selectedIndex == index,
-                  ),
-                  const Divider(),
-                ],
+              bool isSelected = _selectedIndex == index;
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    _selectedItem = dashboardMenuOptions[index];
+                    _selectedIndex = index;
+                  });
+                },
+                child: Container(
+                    decoration:
+                        BoxDecoration(color: isSelected ? Colors.amber : null),
+                    padding: EdgeInsets.all(8),
+                    child: Text(dashboardMenuOptions[index])),
               );
             },
           ),
@@ -106,18 +106,18 @@ class _AdminPanelState extends State<AdminPanel> {
   }
 
   getLayout() {
-    if (_selectedIndex == 0) {
+    if (_selectedItem == user) {
       return const UsersScreen();
-    } else if (_selectedIndex == 1) {
+    } else if (_selectedItem == couponCodes) {
       return const CouponCodesScreen();
-    } else if (_selectedIndex == 2) {
+    } else if (_selectedItem == homeDressingServices) {
       return const AdminViewFootServices();
-    } else if (_selectedIndex == 3) {
+    } else if (_selectedItem == orders) {
       return const TotalOrders();
-    } else if (_selectedIndex == 4) {
+    } else if (_selectedItem == dietChart) {
       return const DietChartScreen();
-    } else if (_selectedIndex == 5) {
-      return const VideoPostingScreen();
+    } else if (_selectedItem == articlesAndBlogs) {
+      return const AdminAllArticles();
     } else {
       return Container();
     }

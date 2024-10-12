@@ -21,12 +21,20 @@ List<String> names = [
 //   Strings.freePlan3,
 // ];
 
-final List<String> options = [
-  'Total Users',
-  'Coupon Codes Screen',
-  'Home Dressing Services',
-  'Total Orders',
-  'Diet Chart',
+const String user = 'Users';
+const String couponCodes = 'Coupon Codes';
+const String homeDressingServices = 'Home Dressing Services';
+const String orders = 'Orders';
+const String dietChart = 'Diet Chart';
+const String articlesAndBlogs = 'Articles & Blog';
+
+final List<String> dashboardMenuOptions = [
+  user,
+  couponCodes,
+  homeDressingServices,
+  orders,
+  dietChart,
+  articlesAndBlogs
 ];
 final List<String> chooseTimes = [
   '09 AM - 11 AM',

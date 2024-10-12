@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class NetworkImageWidget extends StatefulWidget {
+class CustomNetworkImageWidget extends StatefulWidget {
   final String path;
   final double width;
   final double height;
   final BoxFit fit;
-  const NetworkImageWidget(
+  const CustomNetworkImageWidget(
       {super.key,
       required this.path,
       this.width = 50,
@@ -14,10 +14,11 @@ class NetworkImageWidget extends StatefulWidget {
       this.fit = BoxFit.cover});
 
   @override
-  State<NetworkImageWidget> createState() => _NetworkImageWidgetState();
+  State<CustomNetworkImageWidget> createState() =>
+      _CustomNetworkImageWidgetState();
 }
 
-class _NetworkImageWidgetState extends State<NetworkImageWidget> {
+class _CustomNetworkImageWidgetState extends State<CustomNetworkImageWidget> {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
