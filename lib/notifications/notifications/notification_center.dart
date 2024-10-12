@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:core';
 
-enum NotificationType { All }
 
 class NotificationCenter {
   String title, message, toUserId;

@@ -1,9 +1,11 @@
 import 'package:drfootapp/controllers/hospital_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
+import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/screens/maps/my_google_maps.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_circular_loader.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -11,7 +13,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 class CreateHospital extends StatefulWidget {
-  const CreateHospital({super.key});
+  final HospitalModel? hospitalModel;
+  const CreateHospital({super.key, this.hospitalModel});
 
   @override
   State<CreateHospital> createState() => _CreateHospitalState();
@@ -20,12 +23,30 @@ class CreateHospital extends StatefulWidget {
 class _CreateHospitalState extends State<CreateHospital> {
   HospitalController hospitalController = Get.put(HospitalController());
   final _formKey = GlobalKey<FormBuilderState>();
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
+
+  initData() {
+    if (widget.hospitalModel != null) {
+      hospitalController.titleTextEditingController.text =
+          widget.hospitalModel!.title;
+      hospitalController.addressTextEditingController.text =
+          widget.hospitalModel!.address;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HospitalController>(builder: (hospitalController) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text("Create Hospital"),
+          title: Text(widget.hospitalModel != null
+              ? "Update Hospital"
+              : "Create Hospital"),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -44,7 +65,10 @@ class _CreateHospitalState extends State<CreateHospital> {
                       ),
                       child: hospitalController.xFile != null
                           ? Image.network(hospitalController.xFile!.path)
-                          : const Icon(Icons.image),
+                          : widget.hospitalModel != null
+                              ? CustomNetworkImageWidget(
+                                  path: widget.hospitalModel!.image)
+                              : const Icon(Icons.image),
                     ),
                   ),
                   TextButton(
@@ -110,13 +134,15 @@ class _CreateHospitalState extends State<CreateHospital> {
             onPress: () async {
               bool status = _formKey.currentState!.saveAndValidate();
               if (status) {
-                if (hospitalController.xFile == null) {
+                if (widget.hospitalModel == null &&
+                    hospitalController.xFile == null) {
                   Utility.toast("select image");
                 } else {
                   Utility.showAlertDialogger(
                       yes: () async {
                         Get.back();
-                        hospitalController.createHospital();
+                        hospitalController.createHospital(
+                            hospitalModel: widget.hospitalModel);
                       },
                       no: () {
                         Navigator.pop(context);
@@ -126,7 +152,7 @@ class _CreateHospitalState extends State<CreateHospital> {
                 }
               }
             },
-            buttonName: "Create",
+            buttonName: widget.hospitalModel != null ? "Update" : "Create",
           );
   }
 }

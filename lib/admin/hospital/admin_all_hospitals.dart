@@ -20,7 +20,9 @@ class _AllAdminHospitalsScreenState extends State<AllAdminHospitalsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add_outlined),
+          onPressed: () {
         Get.to(() => const CreateHospital());
       }),
       body: FirestorePagination(
@@ -35,6 +37,7 @@ class _AllAdminHospitalsScreenState extends State<AllAdminHospitalsScreen> {
               HospitalModel.fromMap(documentSnapshots[index].data() as Map);
           return HospitalWidget(
             hospitalModel: hospitalModel,
+            isAdmin: true,
           );
         },
       ),
