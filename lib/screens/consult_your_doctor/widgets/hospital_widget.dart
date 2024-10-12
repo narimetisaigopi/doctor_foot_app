@@ -1,18 +1,19 @@
+import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/widgets/custom_image.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/small_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class AddressViewWidget extends StatefulWidget {
-  const AddressViewWidget({super.key});
+class HospitalWidget extends StatefulWidget {
+  final HospitalModel hospitalModel;
+  const HospitalWidget({super.key, required this.hospitalModel});
 
   @override
-  State<AddressViewWidget> createState() => _AddressViewWidgetState();
+  State<HospitalWidget> createState() => _HospitalWidgetState();
 }
 
-class _AddressViewWidgetState extends State<AddressViewWidget> {
+class _HospitalWidgetState extends State<HospitalWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,8 +32,8 @@ class _AddressViewWidgetState extends State<AddressViewWidget> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      const CustomImage(
-                        path: AssetsConstants.kims_hosptl,
+                      CustomNetworkImageWidget(
+                        path: widget.hospitalModel.image,
                         height: 125,
                         width: 96,
                       ),
@@ -43,7 +44,7 @@ class _AddressViewWidgetState extends State<AddressViewWidget> {
                             color: AppColors.ratingBarColor,
                             size: 22,
                           ),
-                         const  SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           const Text(
                             "4.5",
                             style: TextStyle(
@@ -73,18 +74,18 @@ class _AddressViewWidgetState extends State<AddressViewWidget> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "Kims Hospital",
-                          style: TextStyle(
+                        Text(
+                          widget.hospitalModel.title,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: AppColors.blackBold,
                           ),
                         ).tr(),
                         const SizedBox(height: 12),
-                        const Text(
-                          "1-8-31/1, Minister Rd, Krishna Nagar Colony, Begumpet, Secunderabad",
-                          style: TextStyle(
+                        Text(
+                          widget.hospitalModel.title,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: AppColors.black2,

@@ -10,17 +10,16 @@ class MyTextField extends StatefulWidget {
   final String label;
   final String edit;
   final double borderRadius;
-  // final int maxLength;
   final Color btnColor;
   final Color bgColor;
   final Color iconColor;
   final bool labelNeeded;
   final bool textButtonNeeded;
   final Widget? textButton;
-  // final IconButton? icon;
   final Widget? leadingIcon;
   final bool iconNeeded;
   final Widget? suffixIcon;
+  final Function()? suffixIconPressed;
   final Widget? trailingIcon;
   final TextEditingController textEditingController;
   final Function()? onPress;
@@ -28,12 +27,13 @@ class MyTextField extends StatefulWidget {
   final Function(String?)? onSubmited;
   final TextInputType textInputType;
   final int maxLines;
+  final int minLines;
   final int maxLength;
-  // final int minLines;
   final bool editText;
   final bool enabled;
   final String? Function(String?)? validator;
   final AutovalidateMode? autovalidateMode;
+
   const MyTextField(
       {super.key,
       required this.hint,
@@ -43,14 +43,13 @@ class MyTextField extends StatefulWidget {
       this.bgColor = Colors.transparent,
       this.label = "",
       this.edit = "",
+      this.minLines = 1,
       this.maxLines = 1,
       this.labelNeeded = true,
-      this.borderRadius = 12,
-      // this.minLines = 1,
+      this.borderRadius = 12,    
       this.maxLength = 100,
       this.btnColor = Colors.black,
       this.iconColor = Colors.black,
-      // this.icon,
       this.textInputType = TextInputType.text,
       this.onPress,
       this.onValidate,
@@ -60,6 +59,7 @@ class MyTextField extends StatefulWidget {
       this.trailingIcon = const Icon(Icons.arrow_forward),
       this.editText = true,
       this.suffixIcon,
+      this.suffixIconPressed,
       this.validator,
       this.onSubmited,
       this.autovalidateMode});
@@ -106,6 +106,7 @@ class _MyTextFieldState extends State<MyTextField> {
       name: widget.label,
       onTap: () {},
       enabled: widget.enabled,
+      minLines: widget.minLines,
       validator: widget.validator,
       autovalidateMode: widget.autovalidateMode,
       maxLines: widget.maxLines,
@@ -137,7 +138,10 @@ class _MyTextFieldState extends State<MyTextField> {
           filled: true,
           prefixIcon: widget.leadingIcon,
           suffixIcon:
-              widget.iconNeeded ? widget.suffixIcon : const SizedBox.shrink(),
+           widget.suffixIcon != null
+              ? InkWell(
+                  onTap: widget.suffixIconPressed, child: widget.suffixIcon)
+              : null,
           suffix: widget.textButtonNeeded ? widget.textButton : null,
           disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),

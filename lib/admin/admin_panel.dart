@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:drfootapp/admin/admin_view_foot_services.dart';
 import 'package:drfootapp/admin/coupon_codes/coupon_codes_Screen.dart';
+import 'package:drfootapp/admin/hospital/admin_all_hospitals.dart';
 import 'package:drfootapp/admin/total_orders.dart';
 import 'package:drfootapp/admin/users.dart';
 import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
@@ -94,7 +95,7 @@ class _AdminPanelState extends State<AdminPanel> {
                 child: Container(
                     decoration:
                         BoxDecoration(color: isSelected ? Colors.amber : null),
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: Text(dashboardMenuOptions[index])),
               );
             },
@@ -118,6 +119,10 @@ class _AdminPanelState extends State<AdminPanel> {
       return const DietChartScreen();
     } else if (_selectedItem == articlesAndBlogs) {
       return const AdminAllArticles();
+    } else if (_selectedItem == hospitals) {
+      return const AllAdminHospitalsScreen();
+    } else if (_selectedItem == doctors) {
+      return const AllAdminHospitalsScreen();
     } else {
       return Container();
     }

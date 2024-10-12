@@ -84,7 +84,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   @override
   void initState() {
-    locationController.determinePosition();
+    locationController.getCurrentLocation();
     authenticationController.getUserDataAndStoreLocally();
     super.initState();
   }

@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/consult_your_doctor/widgets/all_clinics_widget.dart';
+import 'package:drfootapp/screens/consult_your_doctor/widgets/all_hospitals_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +83,7 @@ class _FootScreeningScreenState extends State<FootScreeningScreen> {
                     ),
                   ).tr(),
                   const SizedBox(height: 8),
-                  const AllClinicsWidget(),
+                  const AllHospitalsScreen(),
                 ],
               ),
             )

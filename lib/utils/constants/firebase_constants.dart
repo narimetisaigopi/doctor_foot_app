@@ -36,6 +36,12 @@ CollectionReference appointmentsCollectionReference =
 CollectionReference articlesAndBlogsCollectionReference =
     FirebaseFirestore.instance.collection("articles_blogs");
 
+CollectionReference hospitalsCollectionReference =
+    FirebaseFirestore.instance.collection("hospitals");
+
+CollectionReference doctorsCollectionReference =
+    FirebaseFirestore.instance.collection("doctors");
+
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";
 const String storageArticlesBlogs = "articles_blogs";

@@ -8,7 +8,9 @@ class LocationController extends GetxController {
   Position? currentPosition;
   LatLng? currentLatLng;
   Placemark? currentPlacemark;
-  Future<LatLng?> determinePosition() async {
+  LatLng? selectedLatLng;
+
+  Future<LatLng?> getCurrentLocation() async {
     try {
       bool serviceEnabled;
       LocationPermission permission;
@@ -47,5 +49,19 @@ class LocationController extends GetxController {
     List<Placemark> placemarks =
         await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
     return placemarks.first;
+  }
+
+  String getAddressFromPlacemark(Placemark placemark) {
+    String address =
+        '${placemark.name}, ${placemark.subLocality}, ${placemark.locality}, ${placemark.administrativeArea}, ${placemark.country}';
+    return address;
+  }
+
+  Future<String> getAddressForCurrentLocation(LatLng latlng) async {
+    String address = "";
+    Placemark placeMark = await getAddressFromLocation(latlng);
+    address = getAddressFromPlacemark(placeMark);
+    update();
+    return address;
   }
 }

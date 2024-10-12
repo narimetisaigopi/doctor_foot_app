@@ -27,6 +27,8 @@ const String homeDressingServices = 'Home Dressing Services';
 const String orders = 'Orders';
 const String dietChart = 'Diet Chart';
 const String articlesAndBlogs = 'Articles & Blog';
+const String hospitals = 'Hospitals';
+const String doctors = 'Doctors';
 
 final List<String> dashboardMenuOptions = [
   user,
@@ -34,7 +36,9 @@ final List<String> dashboardMenuOptions = [
   homeDressingServices,
   orders,
   dietChart,
-  articlesAndBlogs
+  articlesAndBlogs,
+  hospitals,
+  doctors
 ];
 final List<String> chooseTimes = [
   '09 AM - 11 AM',
