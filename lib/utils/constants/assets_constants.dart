@@ -117,12 +117,16 @@ class AssetsConstants {
       "$skin_and_nail_path/planter_warts_full_image.png";
   static const String toe_nail_fungus_full_image =
       "$toe_deformities_images_path/toe_nail_fungus_full_image.png";
+  static const String nail_fungs_full_image =
+      "assets/images/skin_and_nail_images/nail_fungs_full_image.png";
   static const String filiculities_full_image =
       "$toe_deformities_images_path/filiculities_full_image.png";
+  static const String folli_full_image =
+      "assets/images/skin_and_nail_images/folli_full_image.png";
   static const String ankle_spains =
-      "$toe_deformities_images_path/ankle_spains.png";
+      "assets/images/skin_and_nail_images/ankle_spains.png";
   static const String foot_and_ankle =
-      "$toe_deformities_images_path/foot_and_ankle.png";
+      "assets/images/skin_and_nail_images/foot_and_ankle.png";
   // toe deformities
   static const String toe_deformities_images_path =
       "assets/images/toe_deformities_images";
@@ -181,8 +185,7 @@ class AssetsConstants {
       "assets/images/treatement/how_to_upload_3.png";
   static const String treatement_no =
       "assets/images/treatement/treatement_no.png";
-  static const String upload_doc =
-      "assets/images/treatement/upload_doc.png";
+  static const String upload_doc = "assets/images/treatement/upload_doc.png";
 
   // risk_factor_questionary
   static const String abnormal_foot_shape_1 =
@@ -330,4 +333,17 @@ class AssetsConstants {
   static const String _notificationBasePath =
       "assets/images/notification_images";
   static const String alaram_sign = "$_notificationBasePath/alaram_sign.svg";
+
+  // payments
+  static const String payment_reject =
+      "assets/images/payments/payment_reject.png";
+  static const String payment_success =
+      "assets/images/payments/payment_success.png";
+  static const String refund_intiated =
+      "assets/images/payments/refund_intiated.png";
+  static const String payment_failed =
+      "assets/images/payments/payment_failed.png";
+  static const String payment_done = "assets/images/payments/payment_done.png";
+  static const String payment_process =
+      "assets/images/payments/payment_process.png";
 }

@@ -53,6 +53,7 @@ class _AnkleArthritisScreenState extends State<AnkleArthritisScreen> {
                     height: 196,
                     width: double.infinity,
                     path: AssetsConstants.foot_and_ankle,
+                    fit: BoxFit.fill,
                   ),
                   SizedBox(
                     height: 8,

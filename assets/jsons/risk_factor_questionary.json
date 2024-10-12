@@ -125,7 +125,7 @@
     "description": "",
     "options": [
       {
-        "image": "assets/images/risk_factor_questionary/no.png",
+        "image": "assets/images/risk_factor_questionary/cross-circle.png",
         "title": "NO",
         "subTitle": ""
       },
@@ -250,7 +250,7 @@
     "id": 13,
     "image": "",
     "question": "What is the present condition  of your nails?",
-    "type": "gridHorizontal",
+    "type": "grid",
     "description": "",
     "options": [
       {

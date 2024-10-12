@@ -53,6 +53,7 @@ class _PlantarWartsScreenState extends State<PlantarWartsScreen> {
                     height: 196,
                     width: double.infinity,
                     path: AssetsConstants.planter_warts_full_image,
+                    fit: BoxFit.fill,
                   ),
                   SizedBox(
                     height: 8,

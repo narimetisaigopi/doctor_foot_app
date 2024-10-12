@@ -2,6 +2,7 @@ class RiskFactorModel {
   late String image;
   late String question;
   late String description;
+  late String type;
   late List<RiskFactorOptionModel> options;
   late int id;
   RiskFactorOptionModel? selectedOption;
@@ -10,6 +11,7 @@ class RiskFactorModel {
     this.image = "",
     this.question = "",
     this.description = "",
+    this.type = "",
     this.options = const [],
     this.id = 0,
   });
@@ -18,6 +20,7 @@ class RiskFactorModel {
     image = json['image'] ?? "";
     question = json['question'] ?? "";
     description = json['description'] ?? "";
+    type = json['type'] ?? "";
     id = json['id'] ?? 0;
     if (json['options'] != null) {
       options = <RiskFactorOptionModel>[];
@@ -32,6 +35,7 @@ class RiskFactorModel {
     data['image'] = image;
     data['question'] = question;
     data['description'] = description;
+    data['type'] = type;
     data['id'] = id;
     if (options.isNotEmpty) {
       data['options'] = options.map((v) => v.toJson()).toList();
