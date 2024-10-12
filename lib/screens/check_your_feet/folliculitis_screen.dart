@@ -52,7 +52,8 @@ class _FolliculitisScreenState extends State<FolliculitisScreen> {
                   CustomImage(
                     height: 196,
                     width: double.infinity,
-                    path: AssetsConstants.filiculities_full_image,
+                    path: AssetsConstants.folli_full_image,
+                    fit: BoxFit.fill,
                   ),
                   SizedBox(
                     height: 8,
@@ -181,13 +182,7 @@ class _FolliculitisScreenState extends State<FolliculitisScreen> {
                         SizedBox(
                           height: 34,
                         ),
-                        CustomButton(
-                          buttonName: "Next",
-                          isBoxShadow: false,
-                        ),
-                        SizedBox(
-                          height: 34,
-                        ),
+                       
                       ],
                     ),
                   )

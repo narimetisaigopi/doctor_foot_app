@@ -62,6 +62,7 @@ class _UlcerYesScreenState extends State<UlcerYesScreen> {
               children: [
                 InkWell(
                   onTap: () {
+                    Get.back();
                     Utility.myBottomSheet(
                       context,
                       heightFactor: 0.52,

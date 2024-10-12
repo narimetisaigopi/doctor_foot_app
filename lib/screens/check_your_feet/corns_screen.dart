@@ -50,7 +50,7 @@ class _CornsScreenState extends State<CornsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomImage(
-                    height: 196,
+                    height: 206,
                     width: double.infinity,
                     path: AssetsConstants.corn_full_image,
                   ),

@@ -50,7 +50,7 @@ class _SportsInjuriesScreenState extends State<SportsInjuriesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomImage(
-                    height: 196,
+                    height: 208,
                     width: double.infinity,
                     path: AssetsConstants.ankle_spains,
                   ),
