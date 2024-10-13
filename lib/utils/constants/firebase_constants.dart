@@ -42,11 +42,15 @@ CollectionReference hospitalsCollectionReference =
 CollectionReference doctorsCollectionReference =
     FirebaseFirestore.instance.collection("doctors");
 
+CollectionReference bannersCollectionReference =
+    FirebaseFirestore.instance.collection("banners");
+
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";
 const String storageArticlesBlogs = "articles_blogs";
 const String storageHospitals = "hospitals";
 const String storageDoctors = "doctors";
+const String storageBanners = "banners";
 
 final List<String> adminsList = [
   "bandigowtham6@gmail.com",

@@ -1,15 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
+import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class DoctorsController extends GetxController {
   XFile? xFile;
   bool isLoading = false;
+  final formKey = GlobalKey<FormBuilderState>();
+  HospitalModel? selectedHospitalModel;
   TextEditingController educationTextEditingController =
       TextEditingController();
   TextEditingController addressTextEditingController = TextEditingController();
@@ -43,14 +47,14 @@ class DoctorsController extends GetxController {
       if (doctorModel == null) {
         DoctorModel doctorModelMobile = await getDoctorDataByMobileNumber(
             mobileNumberTextEditingController.text);
-        if (doctorModelMobile.uid.isNotEmpty) {
+        if (doctorModelMobile.docId.isNotEmpty) {
           Utility.toast("Account already existed with this mobile number.");
           doUpdate(false);
           return;
         }
         DoctorModel doctorModelEmail =
             await getDoctorDataByEmail(emailTextEditingController.text);
-        if (doctorModelEmail.uid.isNotEmpty) {
+        if (doctorModelEmail.docId.isNotEmpty) {
           Utility.toast("Account already existed with this email.");
           doUpdate(false);
           return;
@@ -81,7 +85,7 @@ class DoctorsController extends GetxController {
       if (doctorModel == null) {
         // Creating a new doctor
         DocumentReference documentReference = doctorsCollectionReference.doc();
-        newDoctorModel.uid = documentReference.id;
+        newDoctorModel.docId = documentReference.id;
         newDoctorModel.timestamp = DateTime.now();
         newDoctorModel.isActive = true;
         // Save the new doctor to Firestore
@@ -93,10 +97,11 @@ class DoctorsController extends GetxController {
 
         // Update the doctor in Firestore
         await doctorsCollectionReference
-            .doc(newDoctorModel.uid)
+            .doc(newDoctorModel.docId)
             .update(newDoctorModel.toJson());
         Utility.toast("Updated successfully.");
       }
+      resetFields();
       // Navigate back after successful operation
       Get.back();
     } catch (e) {
@@ -130,14 +135,23 @@ class DoctorsController extends GetxController {
   }
 
   resetFields() {
-    xFile = null;
+    // Clear all text fields
     educationTextEditingController.clear();
     addressTextEditingController.clear();
+    nameTextEditingController.clear();
+    mobileNumberTextEditingController.clear();
+    emailTextEditingController.clear();
+    aboutTextEditingController.clear();
+    yearsOfExperienceTextEditingController.clear();
+    actualPriceTextEditingController.clear();
+    offerPriceTextEditingController.clear();
+    selectedHospitalModel = null;
+    formKey.currentState?.reset();
   }
 
   updateActivieStatus(DoctorModel doctorModel, bool status) async {
     await doctorsCollectionReference
-        .doc(doctorModel.uid)
+        .doc(doctorModel.docId)
         .update({"isActive": status, "modifiedAt": DateTime.now()});
     Utility.toast("Updated successfully.");
   }

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'articles/admin_all_articles.dart';
+import 'banners/admin_all_banners.dart';
 
 class AdminPanel extends StatefulWidget {
   const AdminPanel({super.key});
@@ -125,6 +126,8 @@ class _AdminPanelState extends State<AdminPanel> {
       return const AllAdminHospitalsScreen();
     } else if (_selectedItem == doctors) {
       return const AllAdminDoctorsScreen();
+    } else if (_selectedItem == banners) {
+      return const AllAdminBannersScreen();
     } else {
       return Container();
     }
