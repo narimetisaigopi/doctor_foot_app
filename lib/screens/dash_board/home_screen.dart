@@ -1,5 +1,6 @@
+import 'package:drfootapp/controllers/banners_controller.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/home_image.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/home_screen_banners.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
 import 'package:drfootapp/screens/dash_board/ulcer_monitoring_screen.dart';
 import 'package:drfootapp/screens/home_widgets/article_and_blog_list_widget.dart';
@@ -22,6 +23,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  BannersController bannersController = Get.put(BannersController());
+  @override
+  void initState() {
+    bannersController.fetchBanners();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const AppBarWidget(),
-            const HomeImage(),
+            const HomeScreenBanners(),
             const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16),
@@ -132,8 +140,8 @@ class _HomeScreenState extends State<HomeScreen> {
               thickness: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16,top: 8),
-              child:  Text(
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
+              child: Text(
                 "Patient Reviews".toUpperCase(),
                 style: const TextStyle(
                   fontSize: 20,
