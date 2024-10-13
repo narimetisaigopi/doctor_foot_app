@@ -343,4 +343,13 @@ class AssetsConstants {
   static const String payment_done = "assets/images/payments/payment_done.png";
   static const String payment_process =
       "assets/images/payments/payment_process.png";
+  static const String report = "assets/images/payments/report.png";
+  static const String report_image1 =
+      "assets/images/payments/report_image1.png";
+  static const String report_image2 =
+      "assets/images/payments/report_image2.png";
+  static const String report_image3 =
+      "assets/images/payments/report_image3.png";
+  static const String dressing_at_home_image =
+      "assets/images/home/dressing_at_home_image.png";
 }

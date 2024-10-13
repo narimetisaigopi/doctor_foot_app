@@ -4,10 +4,12 @@ import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
 import 'package:drfootapp/screens/foot_services/foot_payment.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:drfootapp/utils/widgets/foot_service_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
@@ -42,11 +44,11 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
         backgroundColor: AppColors.secondary,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: AppColors.whiteBgColor,
+          backgroundColor: AppColors.primaryBlue,
           title: Text(
             getTitle(),
             style: const TextStyle(
-              color: AppColors.primaryBlue,
+              color: AppColors.whiteBgColor,
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),
@@ -58,29 +60,65 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
             },
             icon: const Icon(
               Icons.arrow_back,
-              color: AppColors.primaryBlue,
+              color: AppColors.whiteBgColor,
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: FirestorePagination(
-            query: getQuery(),
-            limit: 10,
-            onEmpty: const Center(child: Text("No Services")),
-            itemBuilder: (context, documentSnapshots, index) {
-              FootServiceModel homeDressingModel = FootServiceModel.fromJson(
-                  documentSnapshots[index].data() as Map<String, dynamic>);
-              return FootServiceWidget(
-                footServiceModel: homeDressingModel,
-                onPress: () {
-                  homeDressingController.addOrRemoveFromList(
-                    footServiceModel: homeDressingModel,
-                  );
-                },
-              );
-            },
-          ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              color: AppColors.whiteBgColor,
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Dressing At Home :",
+                      style: TextStyle(
+                        color: AppColors.black1,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    CustomImage(
+                      height: 180,
+                      width: 352,
+                      path: AssetsConstants.dressing_at_home_image,
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      "Dressing at home is a services where we provide our user to remedy themselves at home by following the instructions & information provided by experts.  ",
+                      style: TextStyle(
+                        color: AppColors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
+              child: Column(
+                children: [
+                  Text(
+                    "Available Services ",
+                    style: TextStyle(
+                      color: AppColors.black1,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            
+          ],
         ),
         floatingActionButton: bottobBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

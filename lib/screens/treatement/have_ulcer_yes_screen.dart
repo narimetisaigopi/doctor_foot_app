@@ -25,7 +25,7 @@ class _HaveUlcerYesScreenState extends State<HaveUlcerYesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
+      backgroundColor: AppColors.whiteBgColor,
       appBar: AppBar(
         backgroundColor: AppColors.primaryBlue,
         centerTitle: true,

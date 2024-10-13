@@ -87,6 +87,7 @@ class AppColors {
   static const black3 = Color(0xFF535353);
   static const black1 = Color(0xFF101010);
   static const uploadBgColor1 = Color(0xFFE8F5FD);
+  static const imagesTextColor = Color(0xFF151314);
 
   // icon colors
   static const searchIconColor = Color(0xFFE5E7EA);

@@ -1,6 +1,8 @@
 import 'package:drfootapp/screens/home_widgets/health_record_widget.dart';
 import 'package:drfootapp/screens/home_widgets/models/health_record_model.dart';
+import 'package:drfootapp/screens/records/images_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HealthRecordsList extends StatefulWidget {
   const HealthRecordsList({super.key});
@@ -19,15 +21,23 @@ class _HealthRecordsListState extends State<HealthRecordsList> {
         child: GridView.builder(
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 3.6/4.8
-            ),
+                crossAxisCount: 3, childAspectRatio: 3.6 / 4.8),
             itemCount: healthRecordsList.length,
             itemBuilder: (context, index) {
               final healthRecordsItem = healthRecordsList[index];
               return InkWell(
                 onTap: () {
-                  switch (index) {}
+                  switch (index) {
+                    case 0:
+                      Get.to(() => const ImagesScreen());
+                      break;
+                    case 1:
+                      Get.to(() => const ImagesScreen());
+                      break;
+                    case 2:
+                      Get.to(() => const ImagesScreen());
+                      break;
+                  }
                 },
                 child: HealthRecordWidget(
                   image: healthRecordsItem.image,
