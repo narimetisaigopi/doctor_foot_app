@@ -1,5 +1,5 @@
 import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
-import 'package:drfootapp/screens/treatement/how_to_upload_image_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/how_to_upload_ulcer_image_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
@@ -57,9 +57,9 @@ class _DietWidgetState extends State<DietWidget> {
                 const SizedBox(
                   height: 6,
                 ),
-                const HowToUploadImage(
+                const HowToUploadUlcerImageWidget(
                   image: AssetsConstants.how_to_upload_1,
-                  nametext: 'Image 1 :',
+                  index: 1,
                   descriptiontext:
                       'Image should be taken from the front which should revile the entire ulcer wound along with entire foot as shown in the example image. ',
                 ),

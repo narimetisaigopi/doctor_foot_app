@@ -11,6 +11,7 @@ class AppColors {
   static const Color sentOtpBg = Color(0xFFD9F0FD);
   static const Color sentOtptextColor = Color(0xFFC0C0C0);
   static const Color patientReviewBg = Color(0xFF0B6FAA);
+  static const Color progressInactive = Color(0xffDBEBF5);
   static const Color secondary = Color(0xFFF1F0F5);
   static const Color secondaryButton = Color(0xFFDAE4FD);
   static const Color grey = Color(0xFFB7B7B7);
