@@ -41,17 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
             const AppBarWidget(),
             const HomeScreenBanners(),
             const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: const Text(
-                "ULCER ASSESMENT",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.textBackThickColor,
-                ),
-              ).tr(),
-            ),
             const UlcerAssesmentWidget(),
             const Divider(
               color: AppColors.riskCheckBg,

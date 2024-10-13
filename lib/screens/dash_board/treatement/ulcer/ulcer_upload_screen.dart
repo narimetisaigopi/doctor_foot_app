@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:drfootapp/controllers/have_ulcer_controller.dart';
+import 'package:drfootapp/controllers/ulcer_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -17,8 +17,7 @@ class UlcerUploadScreen extends StatefulWidget {
 }
 
 class _UlcerUploadScreenState extends State<UlcerUploadScreen> {
-  final HaveUlcerController haveUlcerController =
-      Get.put(HaveUlcerController());
+  final UlcerController haveUlcerController = Get.put(UlcerController());
   XFile? xFile;
 
   @override
@@ -47,7 +46,7 @@ class _UlcerUploadScreenState extends State<UlcerUploadScreen> {
           ),
         ).tr(),
       ),
-      body: GetBuilder<HaveUlcerController>(builder: (haveUlcerController) {
+      body: GetBuilder<UlcerController>(builder: (haveUlcerController) {
         return Column(
           children: [
             Expanded(

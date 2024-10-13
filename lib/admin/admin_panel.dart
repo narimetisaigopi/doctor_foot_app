@@ -5,7 +5,6 @@ import 'package:drfootapp/admin/doctor/admin_all_doctors.dart';
 import 'package:drfootapp/admin/hospital/admin_all_hospitals.dart';
 import 'package:drfootapp/admin/total_orders.dart';
 import 'package:drfootapp/admin/users.dart';
-import 'package:drfootapp/screens/consult_your_doctor/widgets/all_doctors_screen.dart';
 import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:flutter/material.dart';

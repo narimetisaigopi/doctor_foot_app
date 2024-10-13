@@ -43,7 +43,6 @@ class BannersController extends GetxController {
         .toList();
     update();
   }
-
   // Method to create or update a banner
   createBanner({BannerModel? bannerModel}) async {
     try {
