@@ -145,7 +145,6 @@ class _CreateHospitalState extends State<CreateHospital> {
                             hospitalModel: widget.hospitalModel);
                       },
                       no: () {
-                        Navigator.pop(context);
                         Get.back();
                       },
                       context: context);

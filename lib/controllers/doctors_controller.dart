@@ -10,7 +10,8 @@ import 'package:image_picker/image_picker.dart';
 class DoctorsController extends GetxController {
   XFile? xFile;
   bool isLoading = false;
-  TextEditingController titleTextEditingController = TextEditingController();
+  TextEditingController educationTextEditingController =
+      TextEditingController();
   TextEditingController addressTextEditingController = TextEditingController();
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController mobileNumberTextEditingController =
@@ -36,9 +37,28 @@ class DoctorsController extends GetxController {
 
   createDoctor({DoctorModel? doctorModel}) async {
     try {
+      // Start the loading indicator
       doUpdate(true);
-      // If editing, use the passed HospitalModel, else create a new one
+      // checking mobile number or email already in use or not
+      if (doctorModel == null) {
+        DoctorModel doctorModelMobile = await getDoctorDataByMobileNumber(
+            mobileNumberTextEditingController.text);
+        if (doctorModelMobile.uid.isNotEmpty) {
+          Utility.toast("Account already existed with this mobile number.");
+          doUpdate(false);
+          return;
+        }
+        DoctorModel doctorModelEmail =
+            await getDoctorDataByEmail(emailTextEditingController.text);
+        if (doctorModelEmail.uid.isNotEmpty) {
+          Utility.toast("Account already existed with this email.");
+          doUpdate(false);
+          return;
+        }
+      }
+      // If editing, use the passed doctorModel, else create a new one
       DoctorModel newDoctorModel = doctorModel ?? DoctorModel();
+
       // If a new image is picked, upload it and update the image URL
       if (xFile != null) {
         String url = await FirebaseStorageController().uploadImageToFirebase(
@@ -46,37 +66,72 @@ class DoctorsController extends GetxController {
         newDoctorModel.image = url;
       }
       // Update the model with form data
-      newDoctorModel.title = titleTextEditingController.text;
+      newDoctorModel.education = educationTextEditingController.text;
       newDoctorModel.address = addressTextEditingController.text;
+      newDoctorModel.name = nameTextEditingController.text;
+      newDoctorModel.mobileNumber = mobileNumberTextEditingController.text;
+      newDoctorModel.email = emailTextEditingController.text;
+      newDoctorModel.about = aboutTextEditingController.text;
+      newDoctorModel.yearsOfExperiance =
+          double.parse(yearsOfExperienceTextEditingController.text);
+      newDoctorModel.actualPrice =
+          int.parse(actualPriceTextEditingController.text);
+      newDoctorModel.offerPrice =
+          int.parse(offerPriceTextEditingController.text);
       if (doctorModel == null) {
-        // Creating a new hospital
+        // Creating a new doctor
         DocumentReference documentReference = doctorsCollectionReference.doc();
         newDoctorModel.uid = documentReference.id;
         newDoctorModel.timestamp = DateTime.now();
         newDoctorModel.isActive = true;
-        // Save new hospital to Firestore
+        // Save the new doctor to Firestore
         await documentReference.set(newDoctorModel.toJson());
         Utility.toast("Created successfully.");
       } else {
-        // Updating an existing hospital
+        // Updating an existing doctor
         newDoctorModel.modifiedAt = DateTime.now();
-        // Update hospital in Firestore
+
+        // Update the doctor in Firestore
         await doctorsCollectionReference
             .doc(newDoctorModel.uid)
             .update(newDoctorModel.toJson());
         Utility.toast("Updated successfully.");
       }
+      // Navigate back after successful operation
       Get.back();
     } catch (e) {
-      Utility.toast("Failed to create or update: $e");
+      // Display error message
+      Utility.toast("Failed to create or update doctor: $e");
     } finally {
+      // Stop the loading indicator
       doUpdate(false);
     }
   }
 
+  Future<DoctorModel> getDoctorDataByMobileNumber(String mobileNumber) async {
+    QuerySnapshot querySnapshot = await doctorsCollectionReference
+        .where("mobileNumber", isEqualTo: mobileNumber)
+        .get();
+    DoctorModel doctorModel = DoctorModel();
+    if (querySnapshot.docs.isNotEmpty) {
+      doctorModel = DoctorModel.fromMap(querySnapshot.docs.first.data() as Map);
+    }
+    return doctorModel;
+  }
+
+  Future<DoctorModel> getDoctorDataByEmail(String email) async {
+    QuerySnapshot querySnapshot =
+        await doctorsCollectionReference.where("email", isEqualTo: email).get();
+    DoctorModel doctorModel = DoctorModel();
+    if (querySnapshot.docs.isNotEmpty) {
+      doctorModel = DoctorModel.fromMap(querySnapshot.docs.first.data() as Map);
+    }
+    return doctorModel;
+  }
+
   resetFields() {
     xFile = null;
-    titleTextEditingController.clear();
+    educationTextEditingController.clear();
     addressTextEditingController.clear();
   }
 

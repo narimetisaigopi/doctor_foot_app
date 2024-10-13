@@ -1,4 +1,3 @@
-import 'package:drfootapp/models/payment_model.dart';
 import 'package:drfootapp/models/payment_new_model.dart';
 import 'package:drfootapp/screens/dash_board/profile/service_bookings/payment_details_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
