@@ -32,8 +32,8 @@ class _CreateDoctorState extends State<CreateDoctor> {
 
   initData() {
     if (widget.doctorModel != null) {
-      doctorsController.titleTextEditingController.text =
-          widget.doctorModel!.title;
+      doctorsController.educationTextEditingController.text =
+          widget.doctorModel!.education;
       doctorsController.addressTextEditingController.text =
           widget.doctorModel!.address;
       doctorsController.nameTextEditingController.text =
@@ -88,62 +88,80 @@ class _CreateDoctorState extends State<CreateDoctor> {
                   TextButton(
                       onPressed: doctorsController.pickFile,
                       child: const Text("Pick image")),
-
                   // Name
-                  MyTextField(
-                    hint: "Name",
-                    textEditingController:
-                        doctorsController.nameTextEditingController,
-                    textInputType: TextInputType.text,
-                    validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()],
-                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: MyTextField(
+                          hint: "Name",
+                          textEditingController:
+                              doctorsController.nameTextEditingController,
+                          textInputType: TextInputType.text,
+                          validator: FormBuilderValidators.compose(
+                            [FormBuilderValidators.required()],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: MyTextField(
+                          hint: "Education",
+                          textEditingController:
+                              doctorsController.educationTextEditingController,
+                          textInputType: TextInputType.text,
+                          validator: FormBuilderValidators.compose(
+                            [FormBuilderValidators.required()],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  
-                  // Mobile Number
-                  MyTextField(
-                    hint: "Mobile Number",
-                    textEditingController:
-                        doctorsController.mobileNumberTextEditingController,
-                    textInputType: TextInputType.phone,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.numeric(),
-                      FormBuilderValidators.maxLength(10),
-                    ]),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: MyTextField(
+                          hint: "Mobile Number",
+                          enabled: widget.doctorModel == null,
+                          textEditingController: doctorsController
+                              .mobileNumberTextEditingController,
+                          textInputType: TextInputType.phone,
+                          maxLength: 10,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.numeric(),
+                            FormBuilderValidators.maxLength(10),
+                          ]),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: MyTextField(
+                          hint: "Email",
+                          enabled: widget.doctorModel == null,
+                          textEditingController:
+                              doctorsController.emailTextEditingController,
+                          textInputType: TextInputType.emailAddress,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.email(),
+                          ]),
+                        ),
+                      ),
+                    ],
                   ),
-                  
-                  // Email
-                  MyTextField(
-                    hint: "Email",
-                    textEditingController:
-                        doctorsController.emailTextEditingController,
-                    textInputType: TextInputType.emailAddress,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.email(),
-                    ]),
-                  ),
-
-                  // Title
-                  MyTextField(
-                    hint: "Title",
-                    textEditingController:
-                        doctorsController.titleTextEditingController,
-                    maxLength: 1000,
-                    textInputType: TextInputType.text,
-                    validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()],
-                    ),
-                  ),
-                  
                   // Address
                   MyTextField(
                     onPress: () async {},
+                    minLines: 2,
                     maxLines: 3,
                     maxLength: 3000,
                     enabled: true,
-                    textInputType: TextInputType.text,
+                    textInputType: TextInputType.multiline,
                     label: "",
                     suffixIcon: const Icon(Icons.location_on_outlined,
                         color: Colors.black, size: 30),
@@ -165,56 +183,78 @@ class _CreateDoctorState extends State<CreateDoctor> {
                     hint: 'Address',
                     textEditingController:
                         doctorsController.addressTextEditingController,
+                  ), 
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: MyTextField(
+                          hint: "Actual Price",
+                          textEditingController: doctorsController
+                              .actualPriceTextEditingController,
+                          textInputType: TextInputType.number,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.numeric(),
+                          ]),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      // Offer Price
+                      Expanded(
+                        flex: 5,
+                        child: MyTextField(
+                          hint: "Offer Price",
+                          textEditingController:
+                              doctorsController.offerPriceTextEditingController,
+                          textInputType: TextInputType.number,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.numeric(),
+                          ]),
+                        ),
+                      ),
+                    ],
                   ),
-
-                  // About
-                  MyTextField(
-                    hint: "About",
-                    textEditingController:
-                        doctorsController.aboutTextEditingController,
-                    maxLength: 1000,
-                    textInputType: TextInputType.text,
-                    validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()],
-                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: MyTextField(
+                          hint: "Years of Experience",
+                          textEditingController: doctorsController
+                              .yearsOfExperienceTextEditingController,
+                          textInputType: TextInputType.number,
+                          maxLength: 2,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.numeric(),
+                          ]),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        flex: 8,
+                        child: MyTextField(
+                          hint: "About",
+                          textEditingController:
+                              doctorsController.aboutTextEditingController,
+                          maxLength: 1000,
+                          minLines: 3,
+                          maxLines: 10,
+                          textInputType: TextInputType.multiline,
+                          validator: FormBuilderValidators.compose(
+                            [FormBuilderValidators.required()],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-
-                  // Years of Experience
-                  MyTextField(
-                    hint: "Years of Experience",
-                    textEditingController:
-                        doctorsController.yearsOfExperienceTextEditingController,
-                    textInputType: TextInputType.number,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.numeric(),
-                    ]),
-                  ),
-
-                  // Actual Price
-                  MyTextField(
-                    hint: "Actual Price",
-                    textEditingController:
-                        doctorsController.actualPriceTextEditingController,
-                    textInputType: TextInputType.number,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.numeric(),
-                    ]),
-                  ),
-                  
-                  // Offer Price
-                  MyTextField(
-                    hint: "Offer Price",
-                    textEditingController:
-                        doctorsController.offerPriceTextEditingController,
-                    textInputType: TextInputType.number,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.numeric(),
-                    ]),
-                  ),
-
+                
                   const SizedBox(height: 10),
                   submitButton(),
                 ],
@@ -244,7 +284,6 @@ class _CreateDoctorState extends State<CreateDoctor> {
                             doctorModel: widget.doctorModel);
                       },
                       no: () {
-                        Navigator.pop(context);
                         Get.back();
                       },
                       context: context);

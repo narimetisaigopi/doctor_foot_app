@@ -45,8 +45,8 @@ class MyTextField extends StatefulWidget {
       this.edit = "",
       this.minLines = 1,
       this.maxLines = 1,
-      this.labelNeeded = true,
-      this.borderRadius = 12,    
+      this.labelNeeded = false,
+      this.borderRadius = 12,
       this.maxLength = 100,
       this.btnColor = Colors.black,
       this.iconColor = Colors.black,
@@ -71,11 +71,14 @@ class MyTextField extends StatefulWidget {
 class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        widget.labelNeeded ? label() : const SizedBox.shrink(),
-        textFieldWidget(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          widget.labelNeeded ? label() : Container(),
+          textFieldWidget(),
+        ],
+      ),
     );
   }
 
@@ -102,8 +105,12 @@ class _MyTextFieldState extends State<MyTextField> {
   }
 
   Widget textFieldWidget() {
+    String name = widget.label;
+    if (name.isEmpty) {
+      name = widget.hint;
+    }
     return FormBuilderTextField(
-      name: widget.label,
+      name: name,
       onTap: () {},
       enabled: widget.enabled,
       minLines: widget.minLines,
@@ -137,8 +144,7 @@ class _MyTextFieldState extends State<MyTextField> {
           fillColor: widget.bgColor,
           filled: true,
           prefixIcon: widget.leadingIcon,
-          suffixIcon:
-           widget.suffixIcon != null
+          suffixIcon: widget.suffixIcon != null
               ? InkWell(
                   onTap: widget.suffixIconPressed, child: widget.suffixIcon)
               : null,
