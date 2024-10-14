@@ -201,20 +201,10 @@ class _RiskFactorHomeState extends State<RiskFactorHome> {
                 children: [
                   Expanded(
                     flex: 8,
-                    child: Container(
-                        height: 159,
-                        width: 163,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: AppColors.grey2,
-                            width: 1,
-                          ),
-                        ),
-                        child: Image.asset(
-                          riskFactorOptionModel.image,
-                          fit: BoxFit.contain,
-                        )),
+                    child: Image.asset(
+                      riskFactorOptionModel.image,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                   Expanded(
                     flex: 2,

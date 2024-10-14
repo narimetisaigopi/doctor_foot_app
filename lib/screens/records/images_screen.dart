@@ -1,7 +1,10 @@
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_factor_screen.dart';
 import 'package:drfootapp/screens/records/all_recent_images.dart';
 import 'package:drfootapp/screens/records/all_recent_upload_images.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,19 +46,24 @@ class _ImagesScreenState extends State<ImagesScreen> {
             color: AppColors.whiteBgColor,
           ),
         ).tr(),
-        actions: const [
-          Icon(
-            Icons.search,
-            color: AppColors.whiteBgColor,
-            size: 24,
+        actions: [
+          InkWell(
+            onTap: () {
+              Get.to(() => const RiskFactorScreen());
+            },
+            child: const Icon(
+              Icons.search,
+              color: AppColors.whiteBgColor,
+              size: 24,
+            ),
           ),
-          SizedBox(width: 6),
-          Icon(
+          const SizedBox(width: 6),
+          const Icon(
             Icons.more_vert,
             color: AppColors.whiteBgColor,
             size: 24,
           ),
-          SizedBox(width: 6),
+          const SizedBox(width: 6),
         ],
       ),
       body: Column(
@@ -103,7 +111,7 @@ class _ImagesScreenState extends State<ImagesScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primaryBlue,
         onPressed: () {
-          _pickImage();
+          pickImage();
           setState(() {});
         },
         child: const Center(
@@ -116,14 +124,15 @@ class _ImagesScreenState extends State<ImagesScreen> {
     );
   }
 
-  _pickImage() async {
+  pickImage() async {
     ImagePicker imagePicker = ImagePicker();
 
     xFile = await imagePicker.pickImage(source: ImageSource.camera);
     if (xFile != null) {
       customAlert(
-        title: ' Upload Successful',
+        title: '',
         upload: () {
+          Get.back();
           Get.back();
         },
       );
@@ -142,13 +151,37 @@ class _ImagesScreenState extends State<ImagesScreen> {
     return Alert(
       context: context,
       title: title,
-      type: AlertType.success,
+      content: const Column(
+        children: [
+          Text(
+            "Appointment Canceled",
+            style: TextStyle(
+              color: AppColors.cancelColor,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            "You have canceled Your \nappointment",
+            style: TextStyle(
+              color: AppColors.black2,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          CustomImage(
+            path: AssetsConstants.cancel_image,
+            height: 169,
+            width: 223,
+          ),
+        ],
+      ),
       buttons: [
         DialogButton(
           onPressed: upload,
-          color: AppColors.greenColor,
+          color: AppColors.cancelColor,
           child: const Text(
-            "Upload",
+            "BacK to Home",
             style: TextStyle(
               color: AppColors.whiteBgColor,
               fontSize: 20,

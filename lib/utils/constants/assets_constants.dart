@@ -352,4 +352,6 @@ class AssetsConstants {
       "assets/images/payments/report_image3.png";
   static const String dressing_at_home_image =
       "assets/images/home/dressing_at_home_image.png";
+  static const String done_image = "assets/images/payments/done_image.png";
+  static const String cancel_image = "assets/images/payments/cancel_image.png";
 }

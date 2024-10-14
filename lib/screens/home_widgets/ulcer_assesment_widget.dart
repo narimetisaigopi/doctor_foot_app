@@ -37,7 +37,8 @@ class _UlcerAssesmentWidgetState extends State<UlcerAssesmentWidget> {
                       color: AppColors.haveUlcerBg,
                       borderRadius: BorderRadius.circular(32)),
                   child: const Padding(
-                    padding: EdgeInsets.only(left: 30, right: 30,top: 12,bottom: 12),
+                    padding: EdgeInsets.only(
+                        left: 30, right: 30, top: 12, bottom: 12),
                     child: CustomImage(
                       path: AssetsConstants.have_ulcer,
                       height: 152,
@@ -57,6 +58,7 @@ class _UlcerAssesmentWidgetState extends State<UlcerAssesmentWidget> {
               ],
             ),
           ),
+          const SizedBox(width: 6),
           InkWell(
             onTap: () {
               Utility.myBottomSheet(
@@ -73,10 +75,11 @@ class _UlcerAssesmentWidgetState extends State<UlcerAssesmentWidget> {
                     borderRadius: BorderRadius.circular(32),
                   ),
                   child: const Padding(
-                    padding: EdgeInsets.only(left: 30, right: 30,top: 12,bottom: 12),
+                    padding: EdgeInsets.only(
+                        left: 30, right: 30, top: 12, bottom: 12),
                     child: CustomImage(
                       path: AssetsConstants.risk_checker,
-                       height: 152,
+                      height: 152,
                       width: 120,
                       fit: BoxFit.contain,
                     ),

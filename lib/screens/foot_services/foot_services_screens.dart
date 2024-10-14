@@ -20,8 +20,13 @@ import 'package:get/get.dart';
 class HomeFootServicesScreen extends StatefulWidget {
   final FootServices footServices;
   final DressingServices? dressingServices;
-  const HomeFootServicesScreen(
-      {super.key, required this.footServices, this.dressingServices});
+  final DressingServicesItem? dressingServicesItem;
+  const HomeFootServicesScreen({
+    super.key,
+    required this.footServices,
+    this.dressingServices,
+    this.dressingServicesItem,
+  });
 
   @override
   State<HomeFootServicesScreen> createState() => _HomeFootServicesScreenState();
@@ -69,12 +74,12 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
           children: [
             Container(
               color: AppColors.whiteBgColor,
-              child: const Padding(
-                padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Dressing At Home :",
                       style: TextStyle(
                         color: AppColors.black1,
@@ -82,14 +87,14 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     CustomImage(
                       height: 180,
                       width: 352,
-                      path: AssetsConstants.dressing_at_home_image,
+                      path: getImage(),
                     ),
-                    SizedBox(height: 8),
-                    Text(
+                    const SizedBox(height: 8),
+                    const Text(
                       "Dressing at home is a services where we provide our user to remedy themselves at home by following the instructions & information provided by experts.  ",
                       style: TextStyle(
                         color: AppColors.grey,
@@ -117,7 +122,6 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
               ),
             ),
             const SizedBox(height: 12),
-            
           ],
         ),
         floatingActionButton: bottobBar(),
@@ -194,6 +198,20 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
       title = Strings.footwearText;
     }
     return title;
+  }
+
+  String getImage() {
+    String image = AssetsConstants.dressing_at_home_image;
+    if (widget.footServices == FootServices.dressingService) {
+      image = "${AssetsConstants.dressing_at_home_image}";
+    } else if (widget.dressingServicesItem == DressingServicesItem.image) {
+      image = AssetsConstants.dressing_at_home_image;
+    } else if (widget.dressingServicesItem == DressingServicesItem.image) {
+      image = AssetsConstants.diabatic_image;
+    } else if (widget.dressingServicesItem == DressingServicesItem.image) {
+      image = AssetsConstants.ingrow_toe_nail_full_image;
+    }
+    return image;
   }
 
   Query getQuery() {

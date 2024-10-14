@@ -19,7 +19,10 @@ class _HealthModerateWwidgetState extends State<HealthModerateWwidget> {
           width: double.infinity,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(width: 3, color: AppColors.primary),
+              border: Border.all(
+                width: 3,
+                color: AppColors.primaryBlue,
+              ),
               color: Colors.transparent),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -41,7 +44,7 @@ class _HealthModerateWwidgetState extends State<HealthModerateWwidget> {
                               Text(
                                 "Your Progress",
                                 style: TextStyle(
-                                    color: AppColors.primary,
+                                    color: AppColors.primaryBlue,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500),
                               ),
@@ -50,7 +53,7 @@ class _HealthModerateWwidgetState extends State<HealthModerateWwidget> {
                               ),
                               Icon(
                                 Icons.info,
-                                color: AppColors.primary,
+                                color: AppColors.primaryBlue,
                               )
                             ],
                           ),
@@ -61,7 +64,7 @@ class _HealthModerateWwidgetState extends State<HealthModerateWwidget> {
                             children: [
                               Icon(
                                 Icons.emoji_emotions,
-                                color: AppColors.primary,
+                                color: AppColors.primaryBlue,
                               ),
                               SizedBox(
                                 width: 10,
@@ -69,7 +72,7 @@ class _HealthModerateWwidgetState extends State<HealthModerateWwidget> {
                               Text(
                                 "Moderate",
                                 style: TextStyle(
-                                  color: AppColors.primary,
+                                  color: AppColors.primaryBlue,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -82,11 +85,10 @@ class _HealthModerateWwidgetState extends State<HealthModerateWwidget> {
                           Text(
                             "Lorem ipsum is simply dummy text of \nthe printing and typetesting industry",
                             style: TextStyle(
-                                color: AppColors.moderateTextColor,
+                                color: AppColors.primaryBlue,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400),
                           ),
-                          
                         ],
                       ),
                     ),
@@ -97,51 +99,51 @@ class _HealthModerateWwidgetState extends State<HealthModerateWwidget> {
                             radius: 55,
                             lineWidth: 12,
                             percent: 0.24,
-                            progressColor: AppColors.primary,
-                            backgroundColor: AppColors.moderateTextColor,
+                            progressColor: AppColors.primaryBlue,
+                            backgroundColor: AppColors.moderateBgColor,
                             circularStrokeCap: CircularStrokeCap.round,
                             center: const Text(
                               "24%",
                               style: TextStyle(
                                 fontSize: 36,
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.primary,
+                                color: AppColors.primaryBlue,
                               ),
                             ),
                           ),
                         ))
                   ],
                 ),
-              const Row(
-                        children: [
-                          Text(
-                            "Last Time You Took Test :",
-                            style: TextStyle(
-                              color: AppColors.moderateTextColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            Icons.schedule,
-                            color: AppColors.primary,
-                            size: 16,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "10-09-2024",
-                            style: TextStyle(
-                                color: AppColors.primary,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
+                const Row(
+                  children: [
+                    Text(
+                      "Last Time You Took Test :",
+                      style: TextStyle(
+                        color: AppColors.primaryBlue,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
                       ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(
+                      Icons.schedule,
+                      color: AppColors.primaryBlue,
+                      size: 16,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "10-09-2024",
+                      style: TextStyle(
+                          color: AppColors.primaryBlue,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
               ],
             ),
           )),
