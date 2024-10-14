@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class RiskFactorController extends GetxController {
-  List<RiskFactorModel> riskFactorsModelsList = [];
+  List<RiskCheckerModel> riskFactorsModelsList = [];
 
   Future<void> fetchData() async {
     riskFactorsModelsList.clear();
@@ -18,7 +18,7 @@ class RiskFactorController extends GetxController {
       final List<dynamic> data = json.decode(response);
 
       riskFactorsModelsList =
-          data.map((item) => RiskFactorModel.fromJson(item)).toList();
+          data.map((item) => RiskCheckerModel.fromJson(item)).toList();
 
       update();
     } catch (error) {
@@ -26,8 +26,8 @@ class RiskFactorController extends GetxController {
     }
   }
 
-  updateSelectedOption(RiskFactorModel riskFactorModel,
-      RiskFactorOptionModel riskFactorOptionModel) {
+  updateSelectedOption(RiskCheckerModel riskFactorModel,
+      RiskCheckerOptionModel riskFactorOptionModel) {
     riskFactorsModelsList
         .firstWhere((element) => element.id == riskFactorModel.id)
         .selectedOption = riskFactorOptionModel;

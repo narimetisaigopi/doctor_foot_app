@@ -9,7 +9,7 @@ import 'package:drfootapp/screens/home_widgets/check_your_feet_list.dart';
 import 'package:drfootapp/screens/home_widgets/doctor_foot_widget.dart';
 import 'package:drfootapp/screens/home_widgets/health_records_list.dart';
 import 'package:drfootapp/screens/home_widgets/our_services_widget.dart';
-import 'package:drfootapp/screens/home_widgets/ulcer_assesment_widget.dart';
+import 'package:drfootapp/screens/home_widgets/ulcer_rishchecker_assesment_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const AppBarWidget(),
             const HomeScreenBanners(),
             const SizedBox(height: 12),
-            const UlcerAssesmentWidget(),
+            const UlcerRiskCheckerAssesmentWidget(),
             const Divider(
               color: AppColors.riskCheckBg,
               thickness: 5,
