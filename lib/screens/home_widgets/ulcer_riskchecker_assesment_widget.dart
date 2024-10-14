@@ -89,11 +89,15 @@ class _UlcerRiskCheckerAssesmentWidgetState
                     builder: (riskFactorController) {
                   return InkWell(
                     onTap: () {
-                      Utility.myBottomSheet(
-                        context,
-                        heightFactor: 0.7,
-                        widget: const RiskCheckerBottomSheet(),
-                      );
+                      if (riskFactorController.isRiskChecked) {
+                        Get.to(() => const RiskCheckerResultsScreen());
+                      } else {
+                        Utility.myBottomSheet(
+                          context,
+                          heightFactor: 0.7,
+                          widget: const RiskCheckerBottomSheet(),
+                        );
+                      }
                     },
                     child: Column(
                       children: [
@@ -106,12 +110,7 @@ class _UlcerRiskCheckerAssesmentWidgetState
                             padding: const EdgeInsets.only(
                                 left: 30, right: 30, top: 12, bottom: 12),
                             child: riskFactorController.isRiskChecked
-                                ? InkWell(
-                                    onTap: () {
-                                      Get.to(() =>
-                                          const RiskCheckerResultsScreen());
-                                    },
-                                    child: const Text("Risk checked"))
+                                ? const Text("Risk checked")
                                 : const CustomImage(
                                     path: AssetsConstants.risk_checker,
                                     height: 152,

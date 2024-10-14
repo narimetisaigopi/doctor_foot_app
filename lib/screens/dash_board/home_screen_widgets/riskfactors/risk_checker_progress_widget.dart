@@ -1,5 +1,6 @@
 import 'package:drfootapp/models/risk_cheker_response_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -118,9 +119,9 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                         ))
                   ],
                 ),
-                const Row(
+                Row(
                   children: [
-                    Text(
+                    const Text(
                       "Last Time You Took Test :",
                       style: TextStyle(
                         color: AppColors.primaryBlue,
@@ -128,20 +129,21 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.schedule,
                       color: AppColors.primaryBlue,
                       size: 16,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
-                      "10-09-2024",
-                      style: TextStyle(
+                      Utility.convertTimeStamp(
+                          widget.riskChekerResponseModel.timestamp),
+                      style: const TextStyle(
                           color: AppColors.primaryBlue,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),

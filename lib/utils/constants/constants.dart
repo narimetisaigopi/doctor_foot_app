@@ -118,4 +118,6 @@ final dietTimingsList = [
 
 const String rupeeSymbol = "₹";
 
+
+
 const List<String> allowedImageExtensions = ['jpg', 'png', 'jpeg'];
