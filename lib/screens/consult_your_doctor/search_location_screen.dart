@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/consult_your_doctor/find_your_doctor_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/find_your_doctors_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
@@ -153,7 +153,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen> {
                   ),
                   enablePrefixIcon: true,
                   onPress: () {
-                    Get.to(() => const FindYourDoctorScreen());
+                    Get.to(() => const FindYourDoctorsScreen());
                   },
                 ),
               ),

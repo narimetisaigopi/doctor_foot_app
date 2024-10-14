@@ -21,7 +21,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       return Container(
         color: AppColors.primaryBlue,
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, top: 56, right: 6),
+          padding: const EdgeInsets.only(left: 16, top: 24, right: 6),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

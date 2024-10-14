@@ -1,6 +1,7 @@
 import 'package:drfootapp/admin/doctor/create_doctor.dart';
 import 'package:drfootapp/controllers/doctors_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_details_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
@@ -40,7 +41,7 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Stack(
                         children: [
                           CustomNetworkImageWidget(
@@ -49,13 +50,14 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                             width: 104,
                           ),
                           if (!widget.isAdmin)
-                            const Positioned(
+                            Positioned(
                                 top: 3.3,
                                 right: 3.3,
                                 child: CircleAvatar(
                                   radius: 14,
-                                  backgroundColor: AppColors.secondary,
-                                  child: Icon(
+                                  backgroundColor:
+                                      AppColors.secondary.withOpacity(0.6),
+                                  child: const Icon(
                                     size: 22,
                                     Icons.favorite_border,
                                     color: AppColors.primaryBlue,
@@ -149,7 +151,10 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                               bgColor: AppColors.patientReviewBg,
                               buttonName: "Book Now",
                               textColor: AppColors.whiteBgColor,
-                              onPress: () {},
+                              onPress: () {
+                                Get.to(() => DoctorDetailsScreen(
+                                    doctorModel: widget.doctorModel));
+                              },
                             )
                           ],
                         ),

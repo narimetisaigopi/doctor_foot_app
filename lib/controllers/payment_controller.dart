@@ -28,8 +28,8 @@ class PaymentController extends GetxController {
       'name': appName,
       'description': description,
       'prefill': {
-        'contact': authenticationController.loginUserModel.mobileNumber,
-        'email': authenticationController.loginUserModel.emailId
+        'contact': loginUserModel.mobileNumber,
+        'email': loginUserModel.emailId
       }
     };
     _razorpay.open(options);
