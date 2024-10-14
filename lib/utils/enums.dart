@@ -20,6 +20,7 @@ enum FootServices {
 }
 
 enum DressingServices { small, moderate, large, huge }
+enum DressingServicesItem { title, image, dicription }
 
 enum ReviewType { homeService, appointment }
 enum NotificationType { all }

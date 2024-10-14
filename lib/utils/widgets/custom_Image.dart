@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:drfootapp/utils/constants/constants.dart';
-import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 
 class CustomImage extends StatelessWidget {
