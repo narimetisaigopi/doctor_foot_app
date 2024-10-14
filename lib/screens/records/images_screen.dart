@@ -1,4 +1,3 @@
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_factor_screen.dart';
 import 'package:drfootapp/screens/records/all_recent_images.dart';
 import 'package:drfootapp/screens/records/all_recent_upload_images.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -49,7 +48,7 @@ class _ImagesScreenState extends State<ImagesScreen> {
         actions: [
           InkWell(
             onTap: () {
-              Get.to(() => const RiskFactorScreen());
+              // Get.to(() => const RiskFactorScreen());
             },
             child: const Icon(
               Icons.search,
