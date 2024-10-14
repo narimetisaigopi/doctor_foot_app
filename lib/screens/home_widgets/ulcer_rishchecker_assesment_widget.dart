@@ -1,3 +1,4 @@
+import 'package:drfootapp/controllers/risk_checker_controller.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/have_ulcer_bottomsheet.dart';
 import 'package:drfootapp/screens/risk_checker_bottomsheet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -6,6 +7,7 @@ import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UlcerRiskCheckerAssesmentWidget extends StatefulWidget {
   const UlcerRiskCheckerAssesmentWidget({super.key});
@@ -82,43 +84,49 @@ class _UlcerRiskCheckerAssesmentWidgetState
               ),
               Expanded(
                 flex: 5,
-                child: InkWell(
-                  onTap: () {
-                    Utility.myBottomSheet(
-                      context,
-                      heightFactor: 0.7,
-                      widget: const RiskCheckerBottomSheet(),
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.riskCheckBg,
-                          borderRadius: BorderRadius.circular(32),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(
-                              left: 30, right: 30, top: 12, bottom: 12),
-                          child: CustomImage(
-                            path: AssetsConstants.risk_checker,
-                            height: 152,
-                            width: 120,
-                            fit: BoxFit.contain,
+                child: GetBuilder<RiskCheckerController>(
+                    builder: (riskFactorController) {
+                  return InkWell(
+                    onTap: () {
+                      Utility.myBottomSheet(
+                        context,
+                        heightFactor: 0.7,
+                        widget: const RiskCheckerBottomSheet(),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        
+                        Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.riskCheckBg,
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 12, bottom: 12),
+                            child: riskFactorController.isRiskChecked
+                                ? Text("Risk checked")
+                                : CustomImage(
+                                    path: AssetsConstants.risk_checker,
+                                    height: 152,
+                                    width: 120,
+                                    fit: BoxFit.contain,
+                                  ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      const Text(
-                        "RISK CHECKER",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ).tr(),
-                    ],
-                  ),
-                ),
+                        const SizedBox(height: 12),
+                        const Text(
+                          "RISK CHECKER",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ).tr(),
+                      ],
+                    ),
+                  );
+                }),
               )
             ],
           ),

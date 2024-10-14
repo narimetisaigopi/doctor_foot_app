@@ -1,7 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
-import 'package:drfootapp/controllers/risk_factor_controller.dart';
+import 'package:drfootapp/controllers/risk_checker_controller.dart';
 import 'package:drfootapp/models/risk_factor_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,8 @@ class RiskCheckerBottomSheet extends StatefulWidget {
 
 class _RiskCheckerBottomSheetState extends State<RiskCheckerBottomSheet> {
   final PageController _pageController = PageController();
-  final RiskFactorController _riskFactorController =
-      Get.put(RiskFactorController());
+  final RiskCheckerController _riskFactorController =
+      Get.put(RiskCheckerController());
 
   @override
   void initState() {
@@ -29,7 +30,7 @@ class _RiskCheckerBottomSheetState extends State<RiskCheckerBottomSheet> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.whiteBgColor,
-      body: GetBuilder<RiskFactorController>(builder: (context) {
+      body: GetBuilder<RiskCheckerController>(builder: (context) {
         return PageView.builder(
           physics: const NeverScrollableScrollPhysics(),
           controller: _pageController,
@@ -135,6 +136,25 @@ class _RiskCheckerBottomSheetState extends State<RiskCheckerBottomSheet> {
     );
   }
 
+  moveToNextQuestion(
+    RiskCheckerModel riskFactorModel,
+    RiskCheckerOptionModel riskFactorOptionModel,
+  ) {
+    _riskFactorController.updateSelectedOption(
+        riskFactorModel, riskFactorOptionModel);
+    _pageController.animateToPage(
+      _pageController.page!.toInt() + 1,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+    logger("message ${_pageController.page}");
+    logger("message ${_riskFactorController.riskFactorsModelsList.length}");
+    if (_pageController.page ==
+        _riskFactorController.riskFactorsModelsList.length - 1) {
+      _riskFactorController.updateDataToFirestore();
+    }
+  }
+
   Widget buildGridViewItem(
     RiskCheckerModel riskFactorModel,
     RiskCheckerOptionModel riskFactorOptionModel,
@@ -144,13 +164,7 @@ class _RiskCheckerBottomSheetState extends State<RiskCheckerBottomSheet> {
     return riskFactorOptionModel.image.isEmpty
         ? InkWell(
             onTap: () {
-              _riskFactorController.updateSelectedOption(
-                  riskFactorModel, riskFactorOptionModel);
-              _pageController.animateToPage(
-                _pageController.page!.toInt() + 1,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
+              moveToNextQuestion(riskFactorModel, riskFactorOptionModel);
             },
             child: Container(
                 width: double.infinity,
@@ -183,13 +197,7 @@ class _RiskCheckerBottomSheetState extends State<RiskCheckerBottomSheet> {
           )
         : InkWell(
             onTap: () {
-              _riskFactorController.updateSelectedOption(
-                  riskFactorModel, riskFactorOptionModel);
-              _pageController.animateToPage(
-                _pageController.page!.toInt() + 1,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
+              moveToNextQuestion(riskFactorModel, riskFactorOptionModel);
             },
             child: Container(
               padding: const EdgeInsets.all(10),

@@ -1,4 +1,5 @@
 import 'package:drfootapp/controllers/banners_controller.dart';
+import 'package:drfootapp/controllers/risk_checker_controller.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/home_screen_banners.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
@@ -24,9 +25,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   BannersController bannersController = Get.put(BannersController());
+  final RiskCheckerController _riskFactorController =
+      Get.put(RiskCheckerController());
+
   @override
   void initState() {
     bannersController.fetchBanners();
+    _riskFactorController.getMyRiskCheckData();
     super.initState();
   }
 

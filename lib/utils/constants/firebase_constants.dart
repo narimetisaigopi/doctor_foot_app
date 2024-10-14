@@ -47,6 +47,8 @@ CollectionReference bannersCollectionReference =
 
 CollectionReference noUlcerCollectionReference =
     FirebaseFirestore.instance.collection("no_ulcer");
+CollectionReference riskCheckerCollectionReference =
+    FirebaseFirestore.instance.collection("riskchecker");
 
 
 const String storageHomeService = "homeservice";
