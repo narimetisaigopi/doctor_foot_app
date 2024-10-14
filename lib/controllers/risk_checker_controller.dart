@@ -67,23 +67,38 @@ class RiskCheckerController extends GetxController {
       RiskChekerResponseModel riskChekerResponseModel =
           RiskChekerResponseModel(responses: {});
       riskChekerResponseModel.uid = Utility().getCurrentUserId();
+      int score = 0;
       for (var e in riskFactorsModelsList) {
-        riskChekerResponseModel.responses![e.question] =
-            e.selectedOption?.title;
+        if (e.selectedOption != null) {
+          riskChekerResponseModel.responses![e.question] =
+              e.selectedOption?.title;
+          score += e.selectedOption!.score;
+        }
       }
       DocumentReference documentReference =
-          riskCheckerCollectionReference.doc();
+          riskCheckerCollectionReference.doc(riskChekerResponseModel.uid);
       riskChekerResponseModel.docId = documentReference.id;
+      riskChekerResponseModel.score = score;
+      riskChekerResponseModel.status = getStatusBasedOnScore(score);
       await documentReference.set(riskChekerResponseModel.toMap());
       await getMyRiskCheckData();
       Utility.toast("Submitted successfully.");
       Get.to(() => const RiskCheckerResultsScreen());
-      
     } catch (e) {
       Utility.toast("failed to submit. $e");
       logger("updateDataToFirestore $e");
     } finally {
       doUpdate(false);
+    }
+  }
+
+  String getStatusBasedOnScore(int score) {
+    if (score < 16) {
+      return "Mild";
+    } else if (score >= 16 && score <= 30) {
+      return "Moderate";
+    } else {
+      return "High";
     }
   }
 }

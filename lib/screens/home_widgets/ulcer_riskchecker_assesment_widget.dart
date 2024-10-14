@@ -1,4 +1,5 @@
 import 'package:drfootapp/controllers/risk_checker_controller.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_checker_results_screen.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/have_ulcer_bottomsheet.dart';
 import 'package:drfootapp/screens/risk_checker_bottomsheet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -96,7 +97,6 @@ class _UlcerRiskCheckerAssesmentWidgetState
                     },
                     child: Column(
                       children: [
-                        
                         Container(
                           decoration: BoxDecoration(
                             color: AppColors.riskCheckBg,
@@ -106,8 +106,13 @@ class _UlcerRiskCheckerAssesmentWidgetState
                             padding: const EdgeInsets.only(
                                 left: 30, right: 30, top: 12, bottom: 12),
                             child: riskFactorController.isRiskChecked
-                                ? Text("Risk checked")
-                                : CustomImage(
+                                ? InkWell(
+                                    onTap: () {
+                                      Get.to(() =>
+                                          const RiskCheckerResultsScreen());
+                                    },
+                                    child: const Text("Risk checked"))
+                                : const CustomImage(
                                     path: AssetsConstants.risk_checker,
                                     height: 152,
                                     width: 120,
