@@ -75,8 +75,10 @@ class RiskCheckerController extends GetxController {
           riskCheckerCollectionReference.doc();
       riskChekerResponseModel.docId = documentReference.id;
       await documentReference.set(riskChekerResponseModel.toMap());
+      await getMyRiskCheckData();
       Utility.toast("Submitted successfully.");
       Get.to(() => const RiskCheckerResultsScreen());
+      
     } catch (e) {
       Utility.toast("failed to submit. $e");
       logger("updateDataToFirestore $e");
