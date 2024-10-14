@@ -392,7 +392,6 @@ class Utility {
     return formattedNumber.toString();
   }
 
-
 // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // bool checkUserLoginOrNot(BuildContext context) {
@@ -457,128 +456,128 @@ class Utility {
 //   }
 // }
 
-covertInr(int number) {
-  final indianRupeesFormat = NumberFormat.currency(
-    name: "INR",
-    locale: 'en_IN',
-    decimalDigits: 0, // change it to get decimal places
-    symbol: '₹',
-  );
-  return indianRupeesFormat.format(number);
-}
+  covertInr(int number) {
+    final indianRupeesFormat = NumberFormat.currency(
+      name: "INR",
+      locale: 'en_IN',
+      decimalDigits: 0, // change it to get decimal places
+      symbol: '₹',
+    );
+    return indianRupeesFormat.format(number);
+  }
 
-Widget policyWidget(BuildContext context, Color color) {
-  return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-          text: "By creating this post, you are accepting our",
-          style: TextStyle(color: color),
-          children: [
-            TextSpan(
-              text: "\nUser generated Content Policy",
-              style: const TextStyle(color: Colors.green),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  policyDialogger(context);
-                },
-            )
-          ]));
-}
-
-policyDialogger(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('User generated content policy'),
-        content: const SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text(
-                  '- PlaceOfSales follows all security elements as per user generated content policy which are globally accepted.'),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                  '- The content you publish will be secure and confidential.'),
-              SizedBox(
-                height: 10,
-              ),
-              Text('- User privacy is our utmost prioritized policy'),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                  '- Any information regarding user identification is not allowed to publish and we request you to follow our policy'),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                  '- We do not accept any derogatory, sexually explicit, abusive, racist content to publish '),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                  '- PII - We require Phone Number as Personal identification for signing into app and we secure your information according to our privacy policy'),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                  '- We do not share your information to any third party services'),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          Row(
+  Widget policyWidget(BuildContext context, Color color) {
+    return RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+            text: "By creating this post, you are accepting our",
+            style: TextStyle(color: color),
             children: [
-              TextButton(
-                child: const Text('Close'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        ],
-      );
-    },
-  );
-}
+              TextSpan(
+                text: "\nUser generated Content Policy",
+                style: const TextStyle(color: Colors.green),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    policyDialogger(context);
+                  },
+              )
+            ]));
+  }
 
-Widget customDropDownItem(
-    String hint, List<String> valuesList, Function(String) onChanged) {
-  return SizedBox(
-    width: double.infinity,
-    child: InputDecorator(
-      decoration: const InputDecoration(
-          contentPadding: EdgeInsets.all(4),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(4.0)),
-          )),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          borderRadius: BorderRadius.circular(12),
-          isExpanded: true,
-          iconSize: 24,
-          isDense: true,
-          hint: Text(hint),
-          onChanged: (String? newValue) {
-            onChanged(newValue!);
-          },
-          items: valuesList.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: Text(value),
-              ),
-            );
-          }).toList(),
+  policyDialogger(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('User generated content policy'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                    '- PlaceOfSales follows all security elements as per user generated content policy which are globally accepted.'),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                    '- The content you publish will be secure and confidential.'),
+                SizedBox(
+                  height: 10,
+                ),
+                Text('- User privacy is our utmost prioritized policy'),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                    '- Any information regarding user identification is not allowed to publish and we request you to follow our policy'),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                    '- We do not accept any derogatory, sexually explicit, abusive, racist content to publish '),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                    '- PII - We require Phone Number as Personal identification for signing into app and we secure your information according to our privacy policy'),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                    '- We do not share your information to any third party services'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+              children: [
+                TextButton(
+                  child: const Text('Close'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget customDropDownItem(
+      String hint, List<String> valuesList, Function(String) onChanged) {
+    return SizedBox(
+      width: double.infinity,
+      child: InputDecorator(
+        decoration: const InputDecoration(
+            contentPadding: EdgeInsets.all(4),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            )),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<String>(
+            borderRadius: BorderRadius.circular(12),
+            isExpanded: true,
+            iconSize: 24,
+            isDense: true,
+            hint: Text(hint),
+            onChanged: (String? newValue) {
+              onChanged(newValue!);
+            },
+            items: valuesList.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: Text(value),
+                ),
+              );
+            }).toList(),
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
 // List<String> getCategories(CategoriesType categoriesType) {
@@ -606,51 +605,51 @@ Widget customDropDownItem(
 //   return data;
 // }
 
-void makeAndAlertDialogger(
-  BuildContext context, {
-  String title = "",
-  String description = "",
-  String rightText = "",
-  Function()? rightOnFunction,
-  String leftText = "",
-  Function()? leftOnFunction,
-}) {
-  showDialog<void>(
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            10.0,
+  void makeAndAlertDialogger(
+    BuildContext context, {
+    String title = "",
+    String description = "",
+    String rightText = "",
+    Function()? rightOnFunction,
+    String leftText = "",
+    Function()? leftOnFunction,
+  }) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              10.0,
+            ),
           ),
-        ),
-        title: title.isNotEmpty ? Text(title) : null,
-        content: description.isNotEmpty
-            ? SingleChildScrollView(child: Text(description))
-            : null,
-        actions: <Widget>[
-          if (leftText.isNotEmpty)
-            TextButton(
-                onPressed: () {
-                  leftOnFunction!.call();
-                },
-                child: Text(leftText)),
-          if (rightText.isNotEmpty)
-            TextButton(
-                onPressed: () {
-                  rightOnFunction!.call();
-                },
-                child: Text(rightText)),
-        ],
-      );
-    },
-  );
-}
+          title: title.isNotEmpty ? Text(title) : null,
+          content: description.isNotEmpty
+              ? SingleChildScrollView(child: Text(description))
+              : null,
+          actions: <Widget>[
+            if (leftText.isNotEmpty)
+              TextButton(
+                  onPressed: () {
+                    leftOnFunction!.call();
+                  },
+                  child: Text(leftText)),
+            if (rightText.isNotEmpty)
+              TextButton(
+                  onPressed: () {
+                    rightOnFunction!.call();
+                  },
+                  child: Text(rightText)),
+          ],
+        );
+      },
+    );
+  }
 
-closeKeyboard() {
-  FocusManager.instance.primaryFocus?.unfocus();
-}
+  closeKeyboard() {
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
 
 // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
 
@@ -884,192 +883,192 @@ closeKeyboard() {
 //     return 0.0;
 //   }
 // }
-Widget payableData({
-  String title = "title",
-  String value = "value",
-  TextStyle style = const TextStyle(
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-  ),
-  TextStyle valueStyle = const TextStyle(
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-  ),
-}) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text(
-        title,
-        style: style,
-      ),
-      Text(
-        value,
-        style: valueStyle,
-      ),
-    ],
-  );
-}
-
-showLoader(BuildContext context) {
-  Loader.show(context,
-      isSafeAreaOverlay: false,
-      isBottomBarOverlay: false,
-      overlayFromBottom: 80,
-      overlayColor: Colors.black26,
-      progressIndicator: const CustomCircularLoader(),
-      themeData: Theme.of(context).copyWith(
-          colorScheme:
-              ColorScheme.fromSwatch().copyWith(secondary: Colors.green)));
-}
-
-hideLoader(BuildContext context) {
-  Loader.hide();
-}
-
-String maskMobileNumber(String mobileNumber) {
-  if (mobileNumber.length == 10) {
-    String maskedNumber = 'xxxxxx${mobileNumber.substring(6)}';
-    return maskedNumber;
-  } else {
-    return 'Invalid mobile number';
+  Widget payableData({
+    String title = "title",
+    String value = "value",
+    TextStyle style = const TextStyle(
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    ),
+    TextStyle valueStyle = const TextStyle(
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    ),
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: style,
+        ),
+        Text(
+          value,
+          style: valueStyle,
+        ),
+      ],
+    );
   }
-}
 
-static bool isAdmin() {
-  return kIsWeb;
-}
+  showLoader(BuildContext context) {
+    Loader.show(context,
+        isSafeAreaOverlay: false,
+        isBottomBarOverlay: false,
+        overlayFromBottom: 80,
+        overlayColor: Colors.black26,
+        progressIndicator: const CustomCircularLoader(),
+        themeData: Theme.of(context).copyWith(
+            colorScheme:
+                ColorScheme.fromSwatch().copyWith(secondary: Colors.green)));
+  }
+
+  hideLoader(BuildContext context) {
+    Loader.hide();
+  }
+
+  String maskMobileNumber(String mobileNumber) {
+    if (mobileNumber.length == 10) {
+      String maskedNumber = 'xxxxxx${mobileNumber.substring(6)}';
+      return maskedNumber;
+    } else {
+      return 'Invalid mobile number';
+    }
+  }
+
+  static bool isAdmin() {
+    return kIsWeb;
+  }
 
 // Convert enum to string
-static String enumToString<T>(T enumValue) {
-  return enumValue.toString().split('.').last;
-}
+  static String enumToString<T>(T enumValue) {
+    return enumValue.toString().split('.').last;
+  }
 
 // Convert string to enum
-static T? stringToEnum<T>(String value, List<T> values) {
+  static T? stringToEnum<T>(String value, List<T> values) {
     return values.firstWhere((v) => Utility.enumToString(v) == value);
-}
-
-getCurrentUserId() {
-  User? user = FirebaseAuth.instance.currentUser;
-  return user != null ? user.uid : "";
-}
-
-showAlertDialog({
-  required BuildContext context,
-  required Function() yesCallback,
-  required Function() noCallback,
-  String title = "Confirm",
-  String content = "Do you want to Delete Address?",
-}) {
-  AlertDialog alert = AlertDialog(
-    title: Text(title),
-    content: Text(content),
-    actions: [
-      TextButton(
-          onPressed: () {
-            yesCallback.call();
-          },
-          child: const Text("Yes")),
-      TextButton(
-          onPressed: () {
-            noCallback.call();
-          },
-          child: const Text("No"))
-    ],
-  );
-
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
-
-void showConfirmationBottomSheet({
-  required BuildContext context,
-  String title = "'Are you sure you want to perform this action?'",
-  String confirmButtonText = "Yes",
-  String cancelButtonText = "No",
-  Function()? onConfirm,
-  Function()? onCancel,
-}) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return Container(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              title,
-              style: const TextStyle(fontSize: 18.0),
-            ),
-            const SizedBox(height: 20.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  flex: 4,
-                  child: CustomButton(
-                    onPress: onConfirm,
-                    buttonName: confirmButtonText,
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  flex: 4,
-                  child: CustomButton(
-                    onPress: () {
-                      Get.back();
-                    },
-                    buttonName: cancelButtonText,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
-
-String formatDate(DateTime inputDate) {
-  String formattedDate = DateFormat('EEEE/d/MMM/yyyy').format(inputDate);
-  return formattedDate;
-}
-
-String formatTime(DateTime dateTime) {
-  String period = DateFormat('a').format(dateTime); // 'AM' or 'PM'
-  String formattedTime = DateFormat('h:mm').format(dateTime); // '3:00'
-  // Determine the period of the day
-  String periodOfDay = 'Morning';
-  if (dateTime.hour >= 12 && dateTime.hour < 17) {
-    periodOfDay = 'Afternoon';
-  } else if (dateTime.hour >= 17) {
-    periodOfDay = 'Evening';
   }
-  return '$periodOfDay - $formattedTime $period';
-}
 
-Future<void> openUrl(String url) async {
-  print("openUrl $url");
-  if (!url.contains("http")) {
-    url = "https://$url";
+  getCurrentUserId() {
+    User? user = FirebaseAuth.instance.currentUser;
+    return user != null ? user.uid : "";
   }
-  await launchUrl(
-    Uri.parse(url),
-    mode: LaunchMode.externalApplication,
-  );
-}
 
-String toIndianFormat(dynamic value) {
+  showAlertDialog({
+    required BuildContext context,
+    required Function() yesCallback,
+    required Function() noCallback,
+    String title = "Confirm",
+    String content = "Do you want to Delete Address?",
+  }) {
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: [
+        TextButton(
+            onPressed: () {
+              yesCallback.call();
+            },
+            child: const Text("Yes")),
+        TextButton(
+            onPressed: () {
+              noCallback.call();
+            },
+            child: const Text("No"))
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  void showConfirmationBottomSheet({
+    required BuildContext context,
+    String title = "'Are you sure you want to perform this action?'",
+    String confirmButtonText = "Yes",
+    String cancelButtonText = "No",
+    Function()? onConfirm,
+    Function()? onCancel,
+  }) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                title,
+                style: const TextStyle(fontSize: 18.0),
+              ),
+              const SizedBox(height: 20.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Expanded(
+                    flex: 4,
+                    child: CustomButton(
+                      onPress: onConfirm,
+                      buttonName: confirmButtonText,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: CustomButton(
+                      onPress: () {
+                        Get.back();
+                      },
+                      buttonName: cancelButtonText,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  String formatDate(DateTime inputDate) {
+    String formattedDate = DateFormat('EEEE/d/MMM/yyyy').format(inputDate);
+    return formattedDate;
+  }
+
+  String formatTime(DateTime dateTime) {
+    String period = DateFormat('a').format(dateTime); // 'AM' or 'PM'
+    String formattedTime = DateFormat('h:mm').format(dateTime); // '3:00'
+    // Determine the period of the day
+    String periodOfDay = 'Morning';
+    if (dateTime.hour >= 12 && dateTime.hour < 17) {
+      periodOfDay = 'Afternoon';
+    } else if (dateTime.hour >= 17) {
+      periodOfDay = 'Evening';
+    }
+    return '$periodOfDay - $formattedTime $period';
+  }
+
+  Future<void> openUrl(String url) async {
+    print("openUrl $url");
+    if (!url.contains("http")) {
+      url = "https://$url";
+    }
+    await launchUrl(
+      Uri.parse(url),
+      mode: LaunchMode.externalApplication,
+    );
+  }
+
+  String toIndianFormat(dynamic value) {
     final indianRupeesFormat = NumberFormat.currency(
       name: "INR",
       locale: 'en_IN',
@@ -1077,5 +1076,11 @@ String toIndianFormat(dynamic value) {
       symbol: '₹ ',
     );
     return indianRupeesFormat.format(value);
+  }
+
+  static String convertTimeStamp(DateTime dateTime) {
+    String formattedDate =
+        DateFormat('dd-MM-yyyy').format(dateTime); // Formatting the date
+    return formattedDate;
   }
 }
