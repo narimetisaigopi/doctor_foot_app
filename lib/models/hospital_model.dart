@@ -1,5 +1,5 @@
 class HospitalModel {
-  String uid;
+  String docId;
   String image;
   String title;
   String address;
@@ -10,7 +10,7 @@ class HospitalModel {
   double lng;
 
   HospitalModel(
-      {this.uid = "",
+      {this.docId = "",
       this.title = "",
       this.image = "",
       this.address = "",
@@ -22,7 +22,7 @@ class HospitalModel {
 
   factory HospitalModel.fromMap(Map map) {
     return HospitalModel(
-        uid: map["uid"] ?? "",
+        docId: map["docId"] ?? "",
         title: map["title"] ?? "",
         image: map["image"] ?? "",
         address: map["address"] ?? "",
@@ -35,7 +35,7 @@ class HospitalModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "uid": uid,
+      "docId": docId,
       "title": title,
       "address": address,
       "isActive": isActive,

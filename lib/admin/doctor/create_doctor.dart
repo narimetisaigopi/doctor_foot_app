@@ -1,6 +1,8 @@
 import 'package:drfootapp/controllers/doctors_controller.dart';
+import 'package:drfootapp/controllers/hospitals_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
+import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/screens/maps/my_google_maps.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -22,7 +24,6 @@ class CreateDoctor extends StatefulWidget {
 
 class _CreateDoctorState extends State<CreateDoctor> {
   DoctorsController doctorsController = Get.put(DoctorsController());
-  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   void initState() {
@@ -65,7 +66,7 @@ class _CreateDoctorState extends State<CreateDoctor> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: FormBuilder(
-              key: _formKey,
+              key: doctorsController.formKey,
               child: Column(
                 children: [
                   // Image Picker
@@ -88,6 +89,27 @@ class _CreateDoctorState extends State<CreateDoctor> {
                   TextButton(
                       onPressed: doctorsController.pickFile,
                       child: const Text("Pick image")),
+                  GetBuilder<HospitalsController>(initState: (state) {
+                    Get.put(HospitalsController()).fetchHospitals();
+                  }, builder: (hospitalsController) {
+                    return DropdownButtonFormField<HospitalModel>(
+                      value: doctorsController.selectedHospitalModel,
+                      decoration:
+                          const InputDecoration(labelText: "Select Hospital"),
+                      items: hospitalsController.hospitalList.map((hospital) {
+                        return DropdownMenuItem<HospitalModel>(
+                          value: hospital,
+                          child: Text(hospital.title),
+                        );
+                      }).toList(),
+                      onChanged: (HospitalModel? value) {
+                        setState(() {
+                          doctorsController.selectedHospitalModel = value;
+                        });
+                      },
+                      validator: FormBuilderValidators.required(),
+                    );
+                  }),
                   // Name
                   Row(
                     children: [
@@ -183,7 +205,7 @@ class _CreateDoctorState extends State<CreateDoctor> {
                     hint: 'Address',
                     textEditingController:
                         doctorsController.addressTextEditingController,
-                  ), 
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -254,7 +276,7 @@ class _CreateDoctorState extends State<CreateDoctor> {
                       ),
                     ],
                   ),
-                
+
                   const SizedBox(height: 10),
                   submitButton(),
                 ],
@@ -271,11 +293,14 @@ class _CreateDoctorState extends State<CreateDoctor> {
         ? const CustomCircularLoader()
         : CustomButton(
             onPress: () async {
-              bool status = _formKey.currentState!.saveAndValidate();
+              bool status =
+                  doctorsController.formKey.currentState!.saveAndValidate();
               if (status) {
                 if (widget.doctorModel == null &&
                     doctorsController.xFile == null) {
                   Utility.toast("select image");
+                } else if (doctorsController.selectedHospitalModel == null) {
+                  Utility.toast("select hospital");
                 } else {
                   Utility.showAlertDialogger(
                       yes: () async {
@@ -294,4 +319,3 @@ class _CreateDoctorState extends State<CreateDoctor> {
           );
   }
 }
-

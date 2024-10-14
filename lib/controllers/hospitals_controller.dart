@@ -12,6 +12,9 @@ class HospitalsController extends GetxController {
   bool isLoading = false;
   TextEditingController titleTextEditingController = TextEditingController();
   TextEditingController addressTextEditingController = TextEditingController();
+
+  List<HospitalModel> hospitalList = [];
+
   doUpdate(bool status) {
     isLoading = status;
     update();
@@ -40,7 +43,7 @@ class HospitalsController extends GetxController {
         // Creating a new hospital
         DocumentReference documentReference =
             hospitalsCollectionReference.doc();
-        newHospitalModel.uid = documentReference.id;
+        newHospitalModel.docId = documentReference.id;
         newHospitalModel.timestamp = DateTime.now();
         newHospitalModel.isActive = true;
         // Save new hospital to Firestore
@@ -51,7 +54,7 @@ class HospitalsController extends GetxController {
         newHospitalModel.modifiedAt = DateTime.now();
         // Update hospital in Firestore
         await hospitalsCollectionReference
-            .doc(newHospitalModel.uid)
+            .doc(newHospitalModel.docId)
             .update(newHospitalModel.toJson());
         Utility.toast("Updated successfully.");
       }
@@ -71,8 +74,17 @@ class HospitalsController extends GetxController {
 
   updateActivieStatus(HospitalModel hospitalModel, bool status) async {
     await hospitalsCollectionReference
-        .doc(hospitalModel.uid)
+        .doc(hospitalModel.docId)
         .update({"isActive": status, "modifiedAt": DateTime.now()});
     Utility.toast("Updated successfully.");
+  }
+
+  fetchHospitals() async {
+    // Fetch hospitals from Firestore
+    QuerySnapshot querySnapshot = await hospitalsCollectionReference.get();
+    hospitalList = querySnapshot.docs
+        .map((doc) => HospitalModel.fromMap(doc.data() as Map<String, dynamic>))
+        .toList();
+    update();
   }
 }

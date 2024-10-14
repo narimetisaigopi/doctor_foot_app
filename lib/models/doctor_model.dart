@@ -1,5 +1,5 @@
 class DoctorModel {
-  String uid;
+  String docId;
   String mobileNumber;
   String email;
   String name;
@@ -15,9 +15,10 @@ class DoctorModel {
   double lng;
   int actualPrice;
   int offerPrice;
+  String? hospitalId;
 
   DoctorModel(
-      {this.uid = "",
+      {this.docId = "",
       this.education = "",
       this.mobileNumber = "",
       this.email = "",
@@ -32,11 +33,12 @@ class DoctorModel {
       this.lat = 0.0,
       this.lng = 0.0,
       this.offerPrice = 0,
-      this.actualPrice = 0});
+      this.actualPrice = 0,
+      this.hospitalId});
 
   factory DoctorModel.fromMap(Map map) {
     return DoctorModel(
-        uid: map["uid"] ?? "",
+        docId: map["docId"] ?? "",
         mobileNumber: map["mobileNumber"] ?? "",
         email: map["email"] ?? "",
         name: map["name"] ?? "",
@@ -51,12 +53,13 @@ class DoctorModel {
         lng: map["lng"] ?? 0.0,
         actualPrice: map["actualPrice"] ?? 0,
         offerPrice: map["offerPrice"] ?? 0,
+        hospitalId: map["hospitalId"],
         modifiedAt: map["modifiedAt"]);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "uid": uid,
+      "docId": docId,
       "education": education,
       "mobileNumber": mobileNumber,
       "email": email,
@@ -69,6 +72,7 @@ class DoctorModel {
       "image": image,
       "lat": lat,
       "lng": lng,
+      "hospitalId": hospitalId,
       "actualPrice": actualPrice,
       "offerPrice": offerPrice,
       "modifiedAt": modifiedAt
