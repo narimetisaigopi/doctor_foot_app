@@ -67,22 +67,23 @@ class _HaveNoUlcerPreviewScreenState extends State<HaveNoUlcerPreviewScreen> {
                 ),
                 const SizedBox(height: 12),
                 Container(
-                    height: 479,
+                  height: 479,
+                  width: double.infinity,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                  child: CustomImage(
+                    path: ulcerController
+                                .getImage(ulcerController.currentPosition) !=
+                            null
+                        ? ulcerController
+                            .getImage(ulcerController.currentPosition)!
+                            .path
+                        : "",
+                    isFile: true,
+                    height: double.infinity,
                     width: double.infinity,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                    child: CustomImage(
-                      path: ulcerController
-                                  .getImage(ulcerController.currentPosition) !=
-                              null
-                          ? ulcerController
-                              .getImage(ulcerController.currentPosition)!
-                              .path
-                          : "",
-                      isFile: true,
-                      height: double.infinity,
-                      width: double.infinity,
-                    )),
+                  ),
+                ),
                 const Spacer(),
                 Center(
                   child: ulcerController.isLoading

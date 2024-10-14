@@ -23,7 +23,10 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
           width: double.infinity,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(width: 3, color: AppColors.primary),
+              border: Border.all(
+                width: 3,
+                color: AppColors.primaryBlue,
+              ),
               color: Colors.transparent),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -45,7 +48,7 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                               Text(
                                 "Your Progress",
                                 style: TextStyle(
-                                    color: AppColors.primary,
+                                    color: AppColors.primaryBlue,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500),
                               ),
@@ -54,7 +57,7 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                               ),
                               Icon(
                                 Icons.info,
-                                color: AppColors.primary,
+                                color: AppColors.primaryBlue,
                               )
                             ],
                           ),
@@ -65,7 +68,7 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                             children: [
                               const Icon(
                                 Icons.emoji_emotions,
-                                color: AppColors.primary,
+                                color: AppColors.primaryBlue,
                               ),
                               const SizedBox(
                                 width: 10,
@@ -86,7 +89,7 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                           const Text(
                             "Lorem ipsum is simply dummy text of \nthe printing and typetesting industry",
                             style: TextStyle(
-                                color: AppColors.moderateTextColor,
+                                color: AppColors.primaryBlue,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400),
                           ),
@@ -100,15 +103,15 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                             radius: 55,
                             lineWidth: 12,
                             percent: 0.24,
-                            progressColor: AppColors.primary,
-                            backgroundColor: AppColors.moderateTextColor,
+                            progressColor: AppColors.primaryBlue,
+                            backgroundColor: AppColors.moderateBgColor,
                             circularStrokeCap: CircularStrokeCap.round,
                             center: Text(
                               "${widget.riskChekerResponseModel.score}%",
                               style: const TextStyle(
                                 fontSize: 36,
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.primary,
+                                color: AppColors.primaryBlue,
                               ),
                             ),
                           ),
@@ -120,7 +123,7 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                     Text(
                       "Last Time You Took Test :",
                       style: TextStyle(
-                        color: AppColors.moderateTextColor,
+                        color: AppColors.primaryBlue,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                       ),
@@ -130,7 +133,7 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                     ),
                     Icon(
                       Icons.schedule,
-                      color: AppColors.primary,
+                      color: AppColors.primaryBlue,
                       size: 16,
                     ),
                     SizedBox(
@@ -139,7 +142,7 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                     Text(
                       "10-09-2024",
                       style: TextStyle(
-                          color: AppColors.primary,
+                          color: AppColors.primaryBlue,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
                     ),

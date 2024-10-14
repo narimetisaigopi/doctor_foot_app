@@ -6,6 +6,7 @@ class AppColors {
   static const Color warningColor = Color(0xFFF06F38);
   static const Color successColor = Color(0xFF00A537);
   static const Color rejectColor = Color(0xFFEB0017);
+  static const Color cancelColor = Color(0xFFA50010);
   static const Color payTextColor = Color(0xFF4A4A4A);
   static const Color payTextColor1 = Color(0xFF9F9C9C);
   static const Color sentOtpBg = Color(0xFFD9F0FD);
@@ -30,6 +31,7 @@ class AppColors {
   static const Color contactPageBtnColor = Color(0xFFD6E2FF);
 
   static const Color moderateTextColor = Color(0xFF4D74FF);
+  static const Color moderateBgColor = Color(0xFFD9DDED);
   // home screen
   static const Color haveUlcerBg = Color(0xFFFFEEED);
   static const Color riskCheckBg = Color(0xFFE7F6FF);
@@ -88,6 +90,7 @@ class AppColors {
   static const black3 = Color(0xFF535353);
   static const black1 = Color(0xFF101010);
   static const uploadBgColor1 = Color(0xFFE8F5FD);
+  static const imagesTextColor = Color(0xFF151314);
 
   // icon colors
   static const searchIconColor = Color(0xFFE5E7EA);

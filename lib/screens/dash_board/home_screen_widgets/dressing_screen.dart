@@ -71,24 +71,32 @@ class _DressingScreenState extends State<DressingScreen> {
                             Get.to(() => const HomeFootServicesScreen(
                                   footServices: FootServices.dressingService,
                                   dressingServices: DressingServices.small,
+                                  dressingServicesItem:
+                                      DressingServicesItem.image,
                                 ));
                             break;
                           case 1:
                             Get.to(() => const HomeFootServicesScreen(
                                   footServices: FootServices.dressingService,
                                   dressingServices: DressingServices.moderate,
+                                  dressingServicesItem:
+                                      DressingServicesItem.image,
                                 ));
                             break;
                           case 2:
                             Get.to(() => const HomeFootServicesScreen(
                                   footServices: FootServices.dressingService,
                                   dressingServices: DressingServices.large,
+                                  dressingServicesItem:
+                                      DressingServicesItem.image,
                                 ));
                             break;
                           case 3:
                             Get.to(() => const HomeFootServicesScreen(
                                   footServices: FootServices.dressingService,
                                   dressingServices: DressingServices.huge,
+                                  dressingServicesItem:
+                                      DressingServicesItem.image,
                                 ));
                             break;
                           default:
