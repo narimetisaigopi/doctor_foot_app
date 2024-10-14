@@ -4,14 +4,15 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class RiskFactorScreen extends StatefulWidget {
-  const RiskFactorScreen({super.key});
+class RiskCheckerResultsScreen extends StatefulWidget {
+  const RiskCheckerResultsScreen({super.key});
 
   @override
-  State<RiskFactorScreen> createState() => _RiskFactorScreenState();
+  State<RiskCheckerResultsScreen> createState() =>
+      _RiskCheckerResultsScreenState();
 }
 
-class _RiskFactorScreenState extends State<RiskFactorScreen> {
+class _RiskCheckerResultsScreenState extends State<RiskCheckerResultsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,7 +181,7 @@ class _RiskFactorScreenState extends State<RiskFactorScreen> {
                 color: AppColors.textBlackColor,
                 fontWeight: FontWeight.w400),
           ),
-           const SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
@@ -192,7 +193,7 @@ class _RiskFactorScreenState extends State<RiskFactorScreen> {
                     fontSize: 16,
                     fontWeight: FontWeight.w400),
               ),
-             const SizedBox(
+              const SizedBox(
                 width: 05,
               ),
               InkWell(
@@ -207,7 +208,7 @@ class _RiskFactorScreenState extends State<RiskFactorScreen> {
               )
             ],
           ),
-           const SizedBox(
+          const SizedBox(
             height: 8,
           ),
           const Text(
@@ -218,7 +219,7 @@ class _RiskFactorScreenState extends State<RiskFactorScreen> {
                 fontWeight: FontWeight.w400),
           ),
           Row(
-            children:  [
+            children: [
               const Padding(
                 padding: EdgeInsets.only(left: 30),
                 child: Icon(
@@ -228,7 +229,7 @@ class _RiskFactorScreenState extends State<RiskFactorScreen> {
                 ),
               ),
               InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: const Text(
                   "+91-8888888888",
                   style: TextStyle(

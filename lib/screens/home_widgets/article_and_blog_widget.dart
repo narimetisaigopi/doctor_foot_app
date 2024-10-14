@@ -4,6 +4,7 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 
@@ -21,7 +22,7 @@ class ArticleAndBlogWidget extends StatefulWidget {
 class _ArticleAndBlogWidgetState extends State<ArticleAndBlogWidget> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Get.to(() => ArticlesInfoScreen(
               articleModel: widget.articleAndBlogModel,
@@ -69,19 +70,20 @@ class _ArticleAndBlogWidgetState extends State<ArticleAndBlogWidget> {
                         maxLines: 4,
                       ).tr(),
                       const SizedBox(height: 8),
-                      ReadMoreText(
-                        widget.articleAndBlogModel.description,
-                        trimMode: TrimMode.Line,
-                        trimLines: 3,
-                        colorClickableText: AppColors.primaryBlue,
-                        trimCollapsedText: 'view more...',
-                        trimExpandedText: 'view less...',
-                        moreStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.primaryBlue,
-                        ),
-                      ),
+                      HtmlWidget(widget.articleAndBlogModel.description),
+                      // ReadMoreText(
+                      //   widget.articleAndBlogModel.description,
+                      //   trimMode: TrimMode.Line,
+                      //   trimLines: 3,
+                      //   colorClickableText: AppColors.primaryBlue,
+                      //   trimCollapsedText: 'view more...',
+                      //   trimExpandedText: 'view less...',
+                      //   moreStyle: const TextStyle(
+                      //     fontSize: 16,
+                      //     fontWeight: FontWeight.w500,
+                      //     color: AppColors.primaryBlue,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
