@@ -142,7 +142,7 @@ class _RiskCheckerProgressidgetState extends State<RiskCheckerProgressidget> {
                     ),
                     Text(
                       Utility.convertTimeStamp(
-                          widget.riskChekerResponseModel.timestamp),
+                          widget.riskChekerResponseModel.timestamp.toDate()),
                       style: const TextStyle(
                           color: AppColors.primaryBlue,
                           fontSize: 12,
