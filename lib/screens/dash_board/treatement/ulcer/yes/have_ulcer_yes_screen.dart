@@ -1,6 +1,5 @@
-import 'package:drfootapp/controllers/have_ulcer_controller.dart';
-import 'package:drfootapp/screens/treatement/how_to_upload_image_screen.dart';
-import 'package:drfootapp/screens/treatement/ulcer_upload_screen.dart';
+import 'package:drfootapp/controllers/ulcer_controller.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/ulcer_upload_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
@@ -8,6 +7,8 @@ import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../how_to_upload_ulcer_image_widget.dart';
 
 class HaveUlcerYesScreen extends StatefulWidget {
   const HaveUlcerYesScreen({super.key});
@@ -17,8 +18,7 @@ class HaveUlcerYesScreen extends StatefulWidget {
 }
 
 class _HaveUlcerYesScreenState extends State<HaveUlcerYesScreen> {
-  final HaveUlcerController haveUlcerController =
-      Get.put(HaveUlcerController());
+  final UlcerController haveUlcerController = Get.put(UlcerController());
   int currentIndex = 0;
   int currentPosition = 0;
 
@@ -48,7 +48,7 @@ class _HaveUlcerYesScreenState extends State<HaveUlcerYesScreen> {
           ),
         ).tr(),
       ),
-      body: GetBuilder<HaveUlcerController>(
+      body: GetBuilder<UlcerController>(
         builder: (haveUlcerController) {
           return Padding(
             padding: const EdgeInsets.only(left: 20, top: 10, right: 10),
@@ -105,21 +105,21 @@ class _HaveUlcerYesScreenState extends State<HaveUlcerYesScreen> {
                                 const SizedBox(
                                   height: 6,
                                 ),
-                                const HowToUploadImage(
+                                const HowToUploadUlcerImageWidget(
                                   image: AssetsConstants.how_to_upload_1,
-                                  nametext: 'Image 1 :',
+                                  index: 1,
                                   descriptiontext:
                                       'Image should be taken from the front which should revile the entire ulcer wound along with entire foot as shown in the example image. ',
                                 ),
-                                const HowToUploadImage(
+                                const HowToUploadUlcerImageWidget(
                                   image: AssetsConstants.how_to_upload_2,
-                                  nametext: 'Image 2 :',
+                                  index: 2,
                                   descriptiontext:
                                       'Image should be taken from the top which should revile the depth of the ulcer as shown in the example image. ',
                                 ),
-                                const HowToUploadImage(
+                                const HowToUploadUlcerImageWidget(
                                   image: AssetsConstants.how_to_upload_3,
-                                  nametext: 'Image 3 :',
+                                  index: 3,
                                   descriptiontext:
                                       'Image should be taken from side to locate the place of the ulcer on the feet as shown in the example image. ',
                                 ),

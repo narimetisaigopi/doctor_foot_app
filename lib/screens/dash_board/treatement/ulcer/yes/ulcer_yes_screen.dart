@@ -1,5 +1,5 @@
-import 'package:drfootapp/screens/treatement/have_ulcer_yes_screen.dart';
-import 'package:drfootapp/screens/treatement/ulcer_no_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_yes_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/no/have_no_ulcer_upload_bottomsheet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -66,7 +66,7 @@ class _UlcerYesScreenState extends State<UlcerYesScreen> {
                     Utility.myBottomSheet(
                       context,
                       heightFactor: 0.52,
-                      widget: const UlcerNoScreen(),
+                      widget: const HaveNoUlcerUploadBottomSheet(),
                     );
                   },
                   child: const CustomButton(

@@ -1,13 +1,13 @@
-class RiskFactorModel {
+class RiskCheckerModel {
   late String image;
   late String question;
   late String description;
   late String type;
-  late List<RiskFactorOptionModel> options;
+  late List<RiskCheckerOptionModel> options;
   late int id;
-  RiskFactorOptionModel? selectedOption;
+  RiskCheckerOptionModel? selectedOption;
 
-  RiskFactorModel({
+  RiskCheckerModel({
     this.image = "",
     this.question = "",
     this.description = "",
@@ -16,16 +16,16 @@ class RiskFactorModel {
     this.id = 0,
   });
 
-  RiskFactorModel.fromJson(Map<String, dynamic> json) {
+  RiskCheckerModel.fromJson(Map<String, dynamic> json) {
     image = json['image'] ?? "";
     question = json['question'] ?? "";
     description = json['description'] ?? "";
     type = json['type'] ?? "";
     id = json['id'] ?? 0;
     if (json['options'] != null) {
-      options = <RiskFactorOptionModel>[];
+      options = <RiskCheckerOptionModel>[];
       json['options'].forEach((v) {
-        options.add(RiskFactorOptionModel.fromJson(v));
+        options.add(RiskCheckerOptionModel.fromJson(v));
       });
     }
   }
@@ -44,14 +44,15 @@ class RiskFactorModel {
   }
 }
 
-class RiskFactorOptionModel {
+class RiskCheckerOptionModel {
   late String image;
   late String title;
   late String subTitle;
 
-  RiskFactorOptionModel({this.image = "", this.title = "", this.subTitle = ""});
+  RiskCheckerOptionModel(
+      {this.image = "", this.title = "", this.subTitle = ""});
 
-  RiskFactorOptionModel.fromJson(Map<String, dynamic> json) {
+  RiskCheckerOptionModel.fromJson(Map<String, dynamic> json) {
     image = json['image'] ?? "";
     title = json['title'] ?? "";
     subTitle = json['subTitle'] ?? "";

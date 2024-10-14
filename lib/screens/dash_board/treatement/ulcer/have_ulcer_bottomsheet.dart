@@ -1,5 +1,5 @@
-import 'package:drfootapp/screens/treatement/have_ulcer_yes_screen.dart';
-import 'package:drfootapp/screens/treatement/ulcer_no_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_yes_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/no/have_no_ulcer_upload_bottomsheet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -8,14 +8,14 @@ import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HaveUlcerScreen extends StatefulWidget {
-  const HaveUlcerScreen({super.key});
+class HaveUlcerBottomSheet extends StatefulWidget {
+  const HaveUlcerBottomSheet({super.key});
 
   @override
-  State<HaveUlcerScreen> createState() => _HaveUlcerScreenState();
+  State<HaveUlcerBottomSheet> createState() => _HaveUlcerBottomSheetState();
 }
 
-class _HaveUlcerScreenState extends State<HaveUlcerScreen> {
+class _HaveUlcerBottomSheetState extends State<HaveUlcerBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +75,7 @@ class _HaveUlcerScreenState extends State<HaveUlcerScreen> {
                     Utility.myBottomSheet(
                       context,
                       heightFactor: 0.6,
-                      widget: const UlcerNoScreen(),
+                      widget: const HaveNoUlcerUploadBottomSheet(),
                     );
                   },
                   child: const CustomButton(

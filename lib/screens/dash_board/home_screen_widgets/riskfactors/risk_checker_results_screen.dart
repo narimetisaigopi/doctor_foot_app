@@ -5,14 +5,15 @@ import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class RiskFactorScreen extends StatefulWidget {
-  const RiskFactorScreen({super.key});
+class RiskCheckerResultsScreen extends StatefulWidget {
+  const RiskCheckerResultsScreen({super.key});
 
   @override
-  State<RiskFactorScreen> createState() => _RiskFactorScreenState();
+  State<RiskCheckerResultsScreen> createState() =>
+      _RiskCheckerResultsScreenState();
 }
 
-class _RiskFactorScreenState extends State<RiskFactorScreen> {
+class _RiskCheckerResultsScreenState extends State<RiskCheckerResultsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -209,7 +210,7 @@ class _RiskFactorScreenState extends State<RiskFactorScreen> {
                     fontWeight: FontWeight.w400),
               ),
               const SizedBox(
-                height: 8,
+                width: 05,
               ),
               InkWell(
                 onTap: () {},

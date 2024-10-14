@@ -22,6 +22,7 @@ class _ArticleAndBlogWidgetListState extends State<ArticleAndBlogWidgetList> {
       child: FirestorePagination(
         shrinkWrap: false,
         query: getQuery(),
+        scrollDirection: Axis.horizontal,
         onEmpty: const Center(child: EmptyState()),
         itemBuilder: (context, documentSnapshots, index) {
           ArticleModel articleModel =

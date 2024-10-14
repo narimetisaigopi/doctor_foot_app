@@ -45,12 +45,19 @@ CollectionReference doctorsCollectionReference =
 CollectionReference bannersCollectionReference =
     FirebaseFirestore.instance.collection("banners");
 
+CollectionReference noUlcerCollectionReference =
+    FirebaseFirestore.instance.collection("no_ulcer");
+CollectionReference riskCheckerCollectionReference =
+    FirebaseFirestore.instance.collection("riskchecker");
+
+
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";
 const String storageArticlesBlogs = "articles_blogs";
 const String storageHospitals = "hospitals";
 const String storageDoctors = "doctors";
 const String storageBanners = "banners";
+const String storageNoUlcer = "no_ulcer";
 
 final List<String> adminsList = [
   "bandigowtham6@gmail.com",
