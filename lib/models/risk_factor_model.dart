@@ -48,14 +48,15 @@ class RiskCheckerOptionModel {
   late String image;
   late String title;
   late String subTitle;
-
+  late int score;
   RiskCheckerOptionModel(
-      {this.image = "", this.title = "", this.subTitle = ""});
+      {this.image = "", this.title = "", this.subTitle = "", this.score = 0});
 
   RiskCheckerOptionModel.fromJson(Map<String, dynamic> json) {
     image = json['image'] ?? "";
     title = json['title'] ?? "";
     subTitle = json['subTitle'] ?? "";
+    score = json["score"] ?? 0;
   }
 
   Map<String, dynamic> toJson() {
@@ -63,6 +64,7 @@ class RiskCheckerOptionModel {
     data['image'] = image;
     data['title'] = title;
     data['subTitle'] = subTitle;
+    data["score"] = score;
     return data;
   }
 }

@@ -6,10 +6,30 @@
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "0 - 30", "subTitle": "" },
-      { "image": "", "title": "31 - 50", "subTitle": "" },
-      { "image": "", "title": "51 - 70", "subTitle": "" },
-      { "image": "", "title": "Above 70", "subTitle": "" }
+      {
+        "image": "",
+        "title": "0 - 30",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "31 - 50",
+        "subTitle": "",
+        "score": 1
+      },
+      {
+        "image": "",
+        "title": "51 - 70",
+        "subTitle": "",
+        "score": 2
+      },
+      {
+        "image": "",
+        "title": "Above 70",
+        "subTitle": "",
+        "score": 3
+      }
     ]
   },
   {
@@ -18,15 +38,33 @@
     "question": "BMI (Body Mass Index)",
     "type": "",
     "description": "Click here to know your BMI",
-
     "options": [
-      { "image": "", "title": "18.5 - 24.9", "subTitle": "" },
-      { "image": "", "title": "25 - 29.9", "subTitle": "" },
-      { "image": "", "title": "30 - 39.9", "subTitle": "" },
-      { "image": "", "title": "40 or More", "subTitle": "" }
+      {
+        "image": "",
+        "title": "18.5 - 24.9",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "25 - 29.9",
+        "subTitle": "",
+        "score": 1
+      },
+      {
+        "image": "",
+        "title": "30 - 39.9",
+        "subTitle": "",
+        "score": 2
+      },
+      {
+        "image": "",
+        "title": "40 or More",
+        "subTitle": "",
+        "score": 3
+      }
     ]
   },
-
   {
     "id": 2,
     "image": "assets/images/risk_factor_questionary/how_many_years_diabetise.png",
@@ -34,13 +72,32 @@
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "< 5 Yrs", "subTitle": "" },
-      { "image": "", "title": "5 - 10 Yrs", "subTitle": "" },
-      { "image": "", "title": "11 - 20 Yrs", "subTitle": "" },
-      { "image": "", "title": "> 20 Yrs", "subTitle": "" }
+      {
+        "image": "",
+        "title": "< 5 Yrs",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "5 - 10 Yrs",
+        "subTitle": "",
+        "score": 1
+      },
+      {
+        "image": "",
+        "title": "11 - 20 Yrs",
+        "subTitle": "",
+        "score": 2
+      },
+      {
+        "image": "",
+        "title": "> 20 Yrs",
+        "subTitle": "",
+        "score": 3
+      }
     ]
   },
-
   {
     "id": 3,
     "image": "assets/images/risk_factor_questionary/hbac.png",
@@ -48,53 +105,86 @@
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "5.7 or Less", "subTitle": "" },
-      { "image": "", "title": "5.7 - 6.4", "subTitle": "" },
-      { "image": "", "title": "6.5 - 9", "subTitle": "" },
-      { "image": "", "title": "9 or More", "subTitle": "" }
+      {
+        "image": "",
+        "title": "5.7 or Less",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "5.7 - 6.4",
+        "subTitle": "",
+        "score": 1
+      },
+      {
+        "image": "",
+        "title": "6.5 - 9",
+        "subTitle": "",
+        "score": 2
+      },
+      {
+        "image": "",
+        "title": "9 or More",
+        "subTitle": "",
+        "score": 3
+      }
     ]
   },
   {
     "id": 4,
     "image": "",
-    "question": "Do you have any history of  previous amputation?",
+    "question": "Do you have any history of previous amputation?",
     "type": "grid",
     "description": "",
     "options": [
       {
         "image": "assets/images/risk_factor_questionary/no.png",
         "title": "NO",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 0
       },
       {
         "image": "assets/images/risk_factor_questionary/toe_aumpitation.png",
-        "title": "Angioplasty",
-        "subTitle": ""
+        "title": "Toe Amputation",
+        "subTitle": "",
+        "score": 1
       },
       {
         "image": "assets/images/risk_factor_questionary/below_knee.png",
-        "title": "Stenting",
-        "subTitle": ""
+        "title": "Below Knee",
+        "subTitle": "",
+        "score": 2
       },
       {
         "image": "assets/images/risk_factor_questionary/above_knee.png",
-        "title": "Bypass Surgery",
-        "subTitle": ""
+        "title": "Above Knee",
+        "subTitle": "",
+        "score": 3
       }
     ]
   },
   {
     "id": 5,
     "image": "assets/images/risk_factor_questionary/history_foot_ulcer.png",
-    "question": "Do you have any history of  foot ulcer?",
+    "question": "Do you have any history of foot ulcer?",
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "NO", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "NO",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   },
-
   {
     "id": 6,
     "image": "assets/images/risk_factor_questionary/smoker.png",
@@ -102,166 +192,212 @@
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "No", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "No",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   },
   {
     "id": 7,
-    "image": "assets/images/risk_factor_questionary/viaual_disturbution.png",
-    "question": "Do you have any history of vascular surgery?",
+    "image": "assets/images/risk_factor_questionary/smoker.png",
+    "question": "Do you have any visual disturbances?",
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "No", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "No",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   },
   {
     "id": 8,
     "image": "",
-    "question": "Do you have any history of  vascular surgery?",
+    "question": "Do you have any history of vascular surgery?",
     "type": "grid",
     "description": "",
     "options": [
       {
         "image": "assets/images/risk_factor_questionary/cross-circle.png",
         "title": "NO",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 0
       },
       {
         "image": "assets/images/risk_factor_questionary/angiplosty.png",
         "title": "Angioplasty",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 1
       },
       {
         "image": "assets/images/risk_factor_questionary/stenting.png",
         "title": "Stenting",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 2
       },
       {
         "image": "assets/images/risk_factor_questionary/bypass_surgery.png",
         "title": "Bypass Surgery",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 3
       }
     ]
   },
   {
     "id": 9,
     "image": "assets/images/risk_factor_questionary/burnig_shooting.png",
-    "question": "Do you have burning/shooting pain in  your feet? ",
+    "question": "Do you have burning/shooting pain in your feet? ",
     "type": "",
     "description": "",
     "options": [
       {
         "image": "",
         "title": "No pain",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 0
       },
       {
         "image": "",
         "title": "Mild pain",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 1
       },
       {
         "image": "",
         "title": "Moderate pain",
-        "subTitle": "(Pain does not effect my daily activities)"
+        "subTitle": "(Pain does not effect my daily activities)",
+        "score": 2
       },
       {
         "image": "",
         "title": "Severe pain",
-        "subTitle": "(Pain effect my daily activities)"
+        "subTitle": "(Pain effect my daily activities)",
+        "score": 3
       }
     ]
   },
   {
     "id": 10,
     "image": "assets/images/risk_factor_questionary/burnig_shooting.png",
-    "question": "Do you have any tingling/numbness  in your feet? ",
+    "question": "Do you have any tingling/numbness in your feet? ",
     "type": "",
     "description": "",
     "options": [
       {
         "image": "",
         "title": "No pain",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 0
       },
       {
         "image": "",
         "title": "Mild pain",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 1
       },
       {
         "image": "",
         "title": "Moderate pain",
-        "subTitle": "(Pain does not effect my daily activities)"
+        "subTitle": "(Pain does not effect my daily activities)",
+        "score": 2
       },
       {
         "image": "",
         "title": "Severe pain",
-        "subTitle": "(Pain effect my daily activities)"
+        "subTitle": "(Pain effect my daily activities)",
+        "score": 3
       }
     ]
   },
   {
     "id": 11,
     "image": "assets/images/risk_factor_questionary/infection.png",
-    "question": "Do you have any infection between  toes of your feet?",
+    "question": "Do you have any infection between toes of your feet?",
     "type": "",
     "description": "",
-
     "options": [
-      { "image": "", "title": "NO", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "NO",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   },
-
   {
     "id": 12,
     "image": "",
-    "question": "What is the present condition  of your skin?",
+    "question": "What is the present condition of your skin?",
     "type": "grid",
     "description": "",
     "options": [
       {
         "image": "assets/images/risk_factor_questionary/intact_healty.png",
         "title": "Intact & healthy",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 0
       },
       {
         "image": "assets/images/risk_factor_questionary/dry_fungas_cells.png",
         "title": "Dry with fungus/callus",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 1
       },
       {
         "image": "assets/images/risk_factor_questionary/heavy_cellus.png",
         "title": "Heavy callus",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 2
       },
       {
         "image": "assets/images/risk_factor_questionary/open_ulcer.png",
         "title": "Open ulcer",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 3
       }
     ]
   },
   {
     "id": 13,
     "image": "",
-    "question": "What is the present condition  of your nails?",
+    "question": "What is the present condition of your nails?",
     "type": "grid",
     "description": "",
     "options": [
       {
         "image": "assets/images/risk_factor_questionary/well_kept_nails.png",
         "title": "Well kept nails",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 0
       },
       {
         "image": "assets/images/risk_factor_questionary/thick_damaged.png",
         "title": "Thick and damaged",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 1
       }
     ]
   },
@@ -275,22 +411,26 @@
       {
         "image": "assets/images/risk_factor_questionary/regular_foot_wear.png",
         "title": "Regular foot wear",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 0
       },
       {
         "image": "assets/images/risk_factor_questionary/ortho_foot_wear.png",
         "title": "Ortho foot wear",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 1
       },
       {
         "image": "assets/images/risk_factor_questionary/soft_insole_foot_wear.png",
         "title": "Soft Insole foot wear",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 2
       },
       {
         "image": "assets/images/risk_factor_questionary/diabetic_foot_wear.png",
         "title": "Diabetic Foot wear",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 3
       }
     ]
   },
@@ -301,76 +441,128 @@
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "NO", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "NO",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   },
   {
     "id": 16,
     "image": "assets/images/risk_factor_questionary/feet_sensation.png",
-    "question": "Can you feel the sensation  in your feet? ",
+    "question": "Can you feel the sensation in your feet? ",
     "type": "",
-
     "options": [
-      { "image": "", "title": "NO", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "NO",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   },
   {
     "id": 17,
     "image": "",
-    "question": "Do you have abnormal  foot shape?",
+    "question": "Do you have abnormal foot shape?",
     "type": "gridHorizontal",
     "description": "",
     "options": [
       {
         "image": "assets/images/risk_factor_questionary/foot_shape_1.png",
         "title": "NO",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 0
       },
       {
         "image": "assets/images/risk_factor_questionary/foot_shape_2.png",
         "title": "Yes",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 1
       },
       {
         "image": "assets/images/risk_factor_questionary/foot_shape_3.png",
         "title": "",
-        "subTitle": ""
+        "subTitle": "",
+        "score": 2
       }
     ]
   },
   {
     "id": 18,
     "image": "assets/images/risk_factor_questionary/kidney.png",
-    "question": "Do you have any kidney  related issue ? ",
+    "question": "Do you have any kidney related issue? ",
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "NO", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "NO",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   },
   {
     "id": 19,
     "image": "assets/images/risk_factor_questionary/walking.png",
-    "question": "Are you experiencing any pain after  walking a certain distance?",
+    "question": "Are you experiencing any pain after walking a certain distance?",
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "NO", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "NO",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   },
   {
     "id": 20,
     "image": "assets/images/risk_factor_questionary/blakish_feet.png",
-    "question": "Do you have any blackish discoloration  or dilated veins on your legs/feet? ",
+    "question": "Do you have any blackish discoloration or dilated veins on your legs/feet? ",
     "type": "",
     "description": "",
     "options": [
-      { "image": "", "title": "NO", "subTitle": "" },
-      { "image": "", "title": "Yes", "subTitle": "" }
+      {
+        "image": "",
+        "title": "NO",
+        "subTitle": "",
+        "score": 0
+      },
+      {
+        "image": "",
+        "title": "Yes",
+        "subTitle": "",
+        "score": 1
+      }
     ]
   }
 ]

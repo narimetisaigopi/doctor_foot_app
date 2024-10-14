@@ -2,6 +2,7 @@ class RiskChekerResponseModel {
   String docId;
   String uid;
   var timestamp;
+  String status;
   int score;
   Map<String, dynamic>? responses = {};
 
@@ -9,6 +10,7 @@ class RiskChekerResponseModel {
     this.docId = "",
     this.uid = "",
     this.timestamp = "",
+    this.status = "",
     this.score = 0,
     this.responses,
   });
@@ -18,7 +20,8 @@ class RiskChekerResponseModel {
     return RiskChekerResponseModel(
       docId: map['docId'] ?? '',
       uid: map['userId'] ?? '',
-      timestamp: DateTime.parse(map['timestamp']),
+      status: map["status"] ?? "",
+      timestamp: map['timestamp'] ?? "",
       score: map['score'] ?? 0,
       responses: Map<String, dynamic>.from(map['responses']),
     );
@@ -28,6 +31,7 @@ class RiskChekerResponseModel {
     return {
       'docId': docId,
       'uid': uid,
+      "status": status,
       'timestamp': DateTime.now(),
       'score': score,
       'responses': responses,

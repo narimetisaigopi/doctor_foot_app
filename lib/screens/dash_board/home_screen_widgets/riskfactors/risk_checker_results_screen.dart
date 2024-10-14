@@ -1,8 +1,10 @@
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/health_moderate_screen.dart';
+import 'package:drfootapp/controllers/risk_checker_controller.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_checker_progress_widget.dart';
 import 'package:drfootapp/screens/dash_board/videosScreenWidgets/watch_now_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RiskCheckerResultsScreen extends StatefulWidget {
   const RiskCheckerResultsScreen({super.key});
@@ -13,35 +15,42 @@ class RiskCheckerResultsScreen extends StatefulWidget {
 }
 
 class _RiskCheckerResultsScreenState extends State<RiskCheckerResultsScreen> {
+  RiskCheckerController riskCheckerController =
+      Get.put(RiskCheckerController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.secondary,
-        appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+    return GetBuilder<RiskCheckerController>(builder: (riskCheckerController) {
+      return Scaffold(
+          backgroundColor: AppColors.secondary,
+          appBar: AppBar(
+            centerTitle: true,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            title: const Text(
+              "Risk factor",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.primary),
+            ).tr(),
           ),
-          title: const Text(
-            "Risk factor",
-            style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: AppColors.primary),
-          ).tr(),
-        ),
-        body: SingleChildScrollView(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const HealthModerateWwidget(),
-            resultModerate(),
-            stepping(),
-            next(),
-          ]),
-        ));
+          body: SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              RiskCheckerProgressidget(
+                riskChekerResponseModel:
+                    riskCheckerController.riskChekerResponseModel,
+              ),
+              resultModerate(),
+              stepping(),
+              next(),
+            ]),
+          ));
+    });
   }
 
   Widget resultModerate() {
@@ -51,19 +60,19 @@ class _RiskCheckerResultsScreenState extends State<RiskCheckerResultsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           RichText(
-            text: const TextSpan(
-              style: TextStyle(color: Colors.black, fontSize: 22.0),
+            text: TextSpan(
+              style: const TextStyle(color: Colors.black, fontSize: 22.0),
               children: <TextSpan>[
-                TextSpan(
-                  text: 'Result -',
+                const TextSpan(
+                  text: 'Result - ',
                   style: TextStyle(
                       color: AppColors.blackBold,
                       fontWeight: FontWeight.w500,
                       fontSize: 20),
                 ),
                 TextSpan(
-                  text: 'Moderate',
-                  style: TextStyle(
+                  text: riskCheckerController.riskChekerResponseModel.status,
+                  style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       color: AppColors.primary,
                       fontSize: 20),
@@ -75,19 +84,20 @@ class _RiskCheckerResultsScreenState extends State<RiskCheckerResultsScreen> {
             height: 12,
           ),
           RichText(
-            text: const TextSpan(
-              style: TextStyle(color: Colors.black, fontSize: 16),
+            text: TextSpan(
+              style: const TextStyle(color: Colors.black, fontSize: 16),
               children: <TextSpan>[
-                TextSpan(text: 'You are currently at '),
+                const TextSpan(text: 'You are currently at '),
                 TextSpan(
-                  text: '24%',
-                  style: TextStyle(
+                  text:
+                      '${riskCheckerController.riskChekerResponseModel.score}%',
+                  style: const TextStyle(
                       color: AppColors.primary,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
-                TextSpan(
-                  text: ' risk of gettinga diabetic \nfoot ulcer',
+                const TextSpan(
+                  text: ' risk of getting diabetic \nfoot ulcer',
                   style: TextStyle(
                       color: AppColors.textBlackColor,
                       fontSize: 16,
