@@ -1,6 +1,5 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
-import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -23,7 +22,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());
   final _formKey = GlobalKey<FormBuilderState>();
-  int selectedContainerIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +48,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ).tr(),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     MyTextField(
+                        labelNeeded: true,
                         label: Strings.userNameTextFieldLabel,
                         hint: Strings.userNameTextFieldHint,
                         validator: FormBuilderValidators.compose([
@@ -63,10 +59,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ]),
                         textEditingController:
                             _authenticationController.userNameController),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     MyTextField(
+                      labelNeeded: true,
                       label: Strings.dateOfBirthTextFieldLabel,
                       hint: Strings.dateOfBirthTextFieldHint,
                       validator: FormBuilderValidators.compose([
@@ -82,8 +76,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           var date = await Utility.showMyDatePicker(context,
                               lastDate: DateTime.now());
                           setState(() {
-                            _authenticationController.dateOfBirthController.text =
-                                date.toString();
+                            _authenticationController
+                                .dateOfBirthController.text = date.toString();
                           });
                         },
                         child: const Icon(
@@ -91,9 +85,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           color: AppColors.black1,
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -114,10 +105,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Utility.choiceContainer(
                           title: Strings.male,
-                          isSelected: selectedContainerIndex == 0,
+                          isSelected:
+                              _authenticationController.selectedGenderIndex ==
+                                  0,
                           onTap: () {
                             setState(() {
-                              selectedContainerIndex = 0;
+                              _authenticationController.selectedGenderIndex = 0;
                               _authenticationController.genderController.text =
                                   Strings.male;
                             });
@@ -125,10 +118,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         Utility.choiceContainer(
                           title: Strings.female,
-                          isSelected: selectedContainerIndex == 1,
+                          isSelected:
+                              _authenticationController.selectedGenderIndex ==
+                                  1,
                           onTap: () {
                             setState(() {
-                              selectedContainerIndex = 1;
+                              _authenticationController.selectedGenderIndex = 1;
                               _authenticationController.genderController.text =
                                   Strings.female;
                             });
@@ -136,10 +131,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         Utility.choiceContainer(
                           title: Strings.others,
-                          isSelected: selectedContainerIndex == 2,
+                          isSelected:
+                              _authenticationController.selectedGenderIndex ==
+                                  2,
                           onTap: () {
                             setState(() {
-                              selectedContainerIndex = 2;
+                              _authenticationController.selectedGenderIndex = 2;
                               _authenticationController.genderController.text =
                                   Strings.others;
                             });
@@ -147,36 +144,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ],
                     ),
-                    // const SizedBox(
-                    //   height: 10,
-                    // ),
-                    // MyTextField(
-                    //   label: Strings.mobileTextFieldLabel,
-                    //   hint: Strings.mobileTextFieldHint,
-                    //   maxLength: 10,
-                    //   validator: FormBuilderValidators.compose([
-                    //     FormBuilderValidators.required(),
-                    //     FormBuilderValidators.maxLength(10),
-                    //     FormBuilderValidators.minLength(10),
-                    //   ]),
-                    //   textInputType: TextInputType.phone,
-                    //   textEditingController:
-                    //       _authenticationController.mobileNumberController,
-                    //   onSubmited: (value) {
-                    //     validate();
-                    //   },
-                    // ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    MyTextField(
+                      labelNeeded: true,
+                      label: Strings.mobileTextFieldLabel,
+                      hint: Strings.mobileTextFieldHint,
+                      maxLength: 10,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(),
+                        FormBuilderValidators.maxLength(10),
+                        FormBuilderValidators.minLength(10),
+                      ]),
+                      textInputType: TextInputType.phone,
+                      textEditingController:
+                          _authenticationController.mobileNumberController,
+                      onSubmited: (value) {
+                        validate();
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     authenticationController.isLoading
                         ? const CircularProgressIndicator()
                         : CustomButton(
                             buttonName: "signUpText",
-                            // onPres: validate,
-                            onPress: () {
-                              Get.to(const DashBoardScreen());
-                            },
+                            onPress: validate,
                           ),
                     const SizedBox(
                       height: 20,
@@ -221,9 +216,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
     Utility().closeKeyboard();
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
     if (status) {
-      if (selectedContainerIndex == -1) {
+      if (_authenticationController.selectedGenderIndex == -1) {
         Utility.toast("Please select gender");
-      } else {}
+      } else {
+        Utility.showAlertDialogger(
+            context: context,
+            yes: () {
+              Get.back();
+              _authenticationController.signUpFirebaseValidation(context);
+            },
+            no: () {
+              Get.back();
+            });
+      }
     }
   }
 }

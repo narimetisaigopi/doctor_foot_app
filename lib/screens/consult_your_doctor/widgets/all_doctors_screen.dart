@@ -30,7 +30,6 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
               DoctorModel.fromMap(documentSnapshots[index].data() as Map);
           return DoctorWidget(
             doctorModel: doctorModel,
-            isAdmin: true,
           );
         },
       ),

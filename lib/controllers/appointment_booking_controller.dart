@@ -6,9 +6,10 @@ import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AppointmentController extends GetxController {
+class AppointmentBookingController extends GetxController {
   DateTime selectedDateTime = DateTime.now();
   bool isDateSelected = false;
   bool isLoading = false;
@@ -16,11 +17,49 @@ class AppointmentController extends GetxController {
     isLoading = loading;
     update();
   }
-  String selectedDate = "";
+
+  TextEditingController dateTextEditingController = TextEditingController();
+  TextEditingController applyCouponController = TextEditingController();
+
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController mobileNumberTextController = TextEditingController();
+  TextEditingController ageTextController = TextEditingController();
+  String? gender;
+  String whomBooking = "Others";
+  String selectedDate = "", selectedTime = "";
+
+  int billTotalAmount = 0, discountAmount = 0;
+
+  int getPayableAmount() {
+    return billTotalAmount - discountAmount;
+  }
+
+  selectWhomBooking(String value) {
+    whomBooking = value;
+    update();
+  }
+
+  selectGender(String value) {
+    gender = value;
+    update();
+  }
 
   selectDate(String date) {
     selectedDate = date;
+    dateTextEditingController.text = date;
     update();
+  }
+
+  selectTime(String date) {
+    selectedTime = date;
+    update();
+  }
+
+  bool isDateAndTimeSelected() {
+    if (selectedDate.isNotEmpty && selectedTime.isNotEmpty) {
+      return true;
+    }
+    return false;
   }
 
   Future<int> _generatePaymentId() async {

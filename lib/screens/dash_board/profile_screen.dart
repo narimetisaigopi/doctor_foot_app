@@ -112,16 +112,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 SizedBox(
                                   height: circleRadius / 2,
                                 ),
-                                const Text(
-                                  'John Snow',
-                                  style: TextStyle(
+                                Text(
+                                  loginUserModel.userName,
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 18,
                                       color: AppColors.whiteBgColor),
                                 ),
-                                const Text(
-                                  'Reg. No: 9087654321',
-                                  style: TextStyle(
+                                Text(
+                                  'Reg. No: ${loginUserModel.mobileNumber}',
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16,
                                       color: AppColors.whiteBgColor),

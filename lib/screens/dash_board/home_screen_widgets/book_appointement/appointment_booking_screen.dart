@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/appointment_controller.dart';
+import 'package:drfootapp/controllers/appointment_booking_controller.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/calender_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -17,8 +17,8 @@ class AppointmentBookingScreen extends StatefulWidget {
 }
 
 class _AppointmentBookingScreenState extends State<AppointmentBookingScreen> {
-  AppointmentController appointmentController =
-      Get.put(AppointmentController());
+  AppointmentBookingController appointmentController =
+      Get.put(AppointmentBookingController());
 
   @override
   void initState() {
@@ -28,7 +28,8 @@ class _AppointmentBookingScreenState extends State<AppointmentBookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AppointmentController>(builder: (appointmentController) {
+    return GetBuilder<AppointmentBookingController>(
+        builder: (appointmentController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,
         appBar: AppBar(

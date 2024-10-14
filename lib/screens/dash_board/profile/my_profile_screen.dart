@@ -33,28 +33,28 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   setDefault() {
     //email
     _authenticationController.userNameController.text =
-        _authenticationController.loginUserModel.userName;
+        loginUserModel.userName;
     //mobile
     _authenticationController.mobileNumberController.text =
-        _authenticationController.loginUserModel.mobileNumber;
+        loginUserModel.mobileNumber;
     //email
     _authenticationController.emailController.text =
-        _authenticationController.loginUserModel.emailId;
+        loginUserModel.emailId;
     //dob
     _authenticationController.dateOfBirthController.text =
-        _authenticationController.loginUserModel.dateOfBirth;
+        loginUserModel.dateOfBirth;
     //gender
     _authenticationController.genderController.text =
-        _authenticationController.loginUserModel.gender;
+        loginUserModel.gender;
     //blood
     _authenticationController.bloodGroupController.text =
-        _authenticationController.loginUserModel.bloodgroup;
+        loginUserModel.bloodgroup;
     //height
     _authenticationController.heightController.text =
-        _authenticationController.loginUserModel.height;
+        loginUserModel.height;
     //weight
     _authenticationController.weightController.text =
-        _authenticationController.loginUserModel.weight;
+        loginUserModel.weight;
   }
 
   @override

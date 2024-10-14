@@ -14,8 +14,8 @@ class UserModel {
   dynamic timestamp;
   String regNo;
   String profilePic;
-  List<dynamic> androidTokensList;
-  List<dynamic> appleTokensList;
+  String androidToken;
+  String appleToken;
   // ulcermonitoring
   String ulcerMonitoringPlan;
   Timestamp? ulcerMonitoringSubscriptionDate;
@@ -26,8 +26,8 @@ class UserModel {
       this.gender = "",
       this.mobileNumber = "",
       this.docId = "",
-      this.androidTokensList = const [],
-      this.appleTokensList = const [],
+      this.androidToken = "",
+      this.appleToken = "",
       this.timestamp,
       this.fullName = "",
       this.emailId = "",
@@ -48,8 +48,8 @@ class UserModel {
         gender: map['gender'] ?? "",
         mobileNumber: map['mobileNumber'] ?? "",
         timestamp: map['timestamp'] ?? "",
-        androidTokensList: map["androidTokensList"] ?? [],
-        appleTokensList: map["appleTokensList"] ?? [],
+        appleToken: map["appleToken"] ?? "",
+        androidToken: map["androidToken"] ?? "",
         fullName: map['fullName'] ?? "",
         emailId: map['emailId'] ?? "",
         bloodgroup: map['bloodgroup'] ?? "",
@@ -69,8 +69,8 @@ class UserModel {
       'dateOfBirth': dateOfBirth,
       'gender': gender,
       'mobileNumber': mobileNumber,
-      "androidTokensList": androidTokensList,
-      "appleTokensList": appleTokensList,
+      "androidToken": androidToken,
+      "appleToken": appleToken,
       'timestamp': DateTime.now().toString(),
       'fullName': fullName,
       'emailId': emailId,
@@ -82,17 +82,5 @@ class UserModel {
       "ulcerMonitoringPlan": ulcerMonitoringPlan,
       "ulcerMonitoringSubscriptionDate": ulcerMonitoringSubscriptionDate
     };
-  }
-
-  addNewAndroidToken(String token) {
-    if (!androidTokensList.contains(token)) {
-      androidTokensList.add(token);
-    }
-  }
-
-  addNewIosToken(String token) {
-    if (!androidTokensList.contains(token)) {
-      androidTokensList.add(token);
-    }
   }
 }

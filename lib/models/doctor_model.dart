@@ -3,7 +3,7 @@ class DoctorModel {
   String mobileNumber;
   String email;
   String name;
-  double yearsOfExperiance;
+  dynamic yearsOfExperiance;
   String image;
   String education;
   String address;
@@ -11,8 +11,8 @@ class DoctorModel {
   var timestamp;
   var modifiedAt;
   bool isActive;
-  double lat;
-  double lng;
+  dynamic lat;
+  dynamic lng;
   int actualPrice;
   int offerPrice;
   String? hospitalId;
@@ -24,7 +24,7 @@ class DoctorModel {
       this.email = "",
       this.name = "",
       this.about = "",
-      this.yearsOfExperiance = 0,
+      this.yearsOfExperiance = 0.0,
       this.image = "",
       this.address = "",
       this.isActive = true,
@@ -43,7 +43,7 @@ class DoctorModel {
         email: map["email"] ?? "",
         name: map["name"] ?? "",
         about: map["about"] ?? "",
-        yearsOfExperiance: map["yearsOfExperiance"] ?? 0,
+        yearsOfExperiance: map["yearsOfExperiance"] ?? 0.0,
         image: map["image"] ?? "",
         address: map["address"] ?? "",
         education: map["education"] ?? "",
