@@ -1,6 +1,8 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
+import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -138,8 +140,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 const SizedBox(height: 12),
                 InkWell(
                   onTap: () {
-                    Utility.myBottomSheet(context,
-                        widget: const SignUpScreen(), heightFactor: 0.7);
+                    showSignUp();
                   },
                   child: Container(
                     width: double.infinity,
@@ -181,3 +182,19 @@ class _IntroScreenState extends State<IntroScreen> {
         widget: const SignUpScreen(), heightFactor: 0.7);
   }
 }
+        // OverlayState? overlayState = Overlay.of(context);
+        //             OverlayEntry overlayEntry =
+        //                 OverlayEntry(builder: (context) {
+        //               return  Container(
+        //                 color: Colors.transparent,
+        //                 child: const Positioned(
+        //                   child: Center(
+        //                       child: CustomImage(
+        //                     path: AssetsConstants.loder,
+        //                   )),
+        //                 ),
+        //               );
+        //             });
+        //             overlayState.insert(overlayEntry);
+        //             await Future.delayed(const Duration(seconds: 2));
+        //             overlayEntry.remove();
