@@ -195,7 +195,7 @@ class _RiskCheckerResultsScreenState extends State<RiskCheckerResultsScreen> {
             height: 8,
           ),
           const Text(
-            "To prevent yourself from foot ulcer, these are 2 \mandatory steps to fallow",
+            "To prevent yourself from foot ulcer, these are 2 \n mandatory steps to fallow",
             style: TextStyle(
                 fontSize: 16,
                 color: AppColors.textBlackColor,
