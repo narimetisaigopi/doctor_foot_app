@@ -1,1 +1,31 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"drfootapp-2a1c8","appId":"1:249366730872:android:f0e66b6038be3408b0f58d","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"drfootapp-2a1c8","appId":"1:249366730872:ios:6dd19785c5d69650b0f58d","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"drfootapp-2a1c8","configurations":{"android":"1:249366730872:android:f0e66b6038be3408b0f58d","ios":"1:249366730872:ios:6dd19785c5d69650b0f58d","web":"1:249366730872:web:9ac5680510953dd7b0f58d"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "drfootapp-2a1c8",
+                    "appId": "1:249366730872:android:f0e66b6038be3408b0f58d",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "drfootapp-2a1c8",
+                    "appId": "1:249366730872:ios:6dd19785c5d69650b0f58d",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "drfootapp-2a1c8",
+                    "configurations": {
+                        "android": "1:249366730872:android:f0e66b6038be3408b0f58d",
+                        "ios": "1:249366730872:ios:6dd19785c5d69650b0f58d",
+                        "web": "1:249366730872:web:9ac5680510953dd7b0f58d"
+                    }
+                }
+            }
+        }
+    }
+}

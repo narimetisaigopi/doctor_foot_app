@@ -19,6 +19,7 @@ class MyTextField extends StatefulWidget {
   final Widget? leadingIcon;
   final bool iconNeeded;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final Function()? suffixIconPressed;
   final Widget? trailingIcon;
   final TextEditingController textEditingController;
@@ -32,6 +33,7 @@ class MyTextField extends StatefulWidget {
   final bool editText;
   final bool enabled;
   final String? Function(String?)? validator;
+  final String? Function(String?)? onChanged;
   final AutovalidateMode? autovalidateMode;
 
   const MyTextField(
@@ -43,8 +45,10 @@ class MyTextField extends StatefulWidget {
       this.bgColor = Colors.transparent,
       this.label = "",
       this.edit = "",
+      this.onChanged,
       this.minLines = 1,
       this.maxLines = 1,
+      this.prefixIcon,
       this.labelNeeded = false,
       this.borderRadius = 12,
       this.maxLength = 100,
@@ -128,6 +132,7 @@ class _MyTextFieldState extends State<MyTextField> {
               FilteringTextInputFormatter.digitsOnly
             ]
           : null,
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
           counterStyle: const TextStyle(
             height: double.minPositive,
@@ -143,11 +148,16 @@ class _MyTextFieldState extends State<MyTextField> {
               fontWeight: FontWeight.normal),
           fillColor: widget.bgColor,
           filled: true,
+          
           prefixIcon: widget.leadingIcon,
           suffixIcon: widget.suffixIcon != null
               ? InkWell(
                   onTap: widget.suffixIconPressed, child: widget.suffixIcon)
               : null,
+          prefix: widget.prefixIcon != null
+              ? InkWell(onTap: () {}, child: widget.prefixIcon)
+              : null,
+              
           suffix: widget.textButtonNeeded ? widget.textButton : null,
           disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),

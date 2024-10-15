@@ -27,6 +27,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   final _formKey = GlobalKey<FormBuilderState>();
 
+  bool enableSendOTP = false;
+
   @override
   void dispose() {
     _focusNode.dispose();
@@ -73,6 +75,22 @@ class _SignInScreenState extends State<SignInScreen> {
                           _authenticationController.mobileNumberController,
                       labelNeeded: false,
                       maxLength: 10,
+                      prefixIcon: Container(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: const Text(
+                          "+91 ",
+                          style:
+                              TextStyle(color: AppColors.black1, fontSize: 17),
+                        ),
+                      ),
+                      onChanged: (p0) {
+                        if (p0 != null && p0.length >= 10) {
+                          enableSendOTP = true;
+                        } else {
+                          enableSendOTP = false;
+                        }
+                        setState(() {});
+                      },
                       textInputType: TextInputType.phone,
                       onSubmited: (value) {
                         validate();
@@ -86,15 +104,19 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
+                      height: MediaQuery.of(context).size.height * 0.02,
                     ),
                     Align(
                       alignment: Alignment.center,
                       child: authenticationController.isLoading
                           ? const CircularProgressIndicator()
                           : CustomButton(
-                              bgColor: AppColors.sentOtpBg,
-                              textColor: AppColors.sentOtptextColor,
+                              bgColor: enableSendOTP
+                                  ? AppColors.primaryBlue
+                                  : AppColors.sentOtpBg,
+                              textColor: enableSendOTP
+                                  ? AppColors.whiteBgColor
+                                  : AppColors.sentOtptextColor,
                               buttonName: "sendOtpText",
                               onPress: () {
                                 Utility.myBottomSheet(
@@ -114,7 +136,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         onTap: () {
                           Get.back();
                           Utility.myBottomSheet(context,
-                              widget: const SignUpScreen(), heightFactor: 0.7);
+                              widget: const SignUpScreen(), heightFactor: 0.5);
                         },
                         child: RichText(
                           text: TextSpan(

@@ -69,8 +69,7 @@ class _UlcerMonitoringScreenState extends State<UlcerMonitoringScreen> {
                         isSelected: ulcerMonitoringPlanModel.planTitle ==
                             ulcerMonitoringController
                                 .selectedUlcerModel.planTitle,
-                        isCurrentPlan: authenticationController
-                                .loginUserModel.ulcerMonitoringPlan ==
+                        isCurrentPlan: loginUserModel.ulcerMonitoringPlan ==
                             ulcerMonitoringPlanModel.id,
                         onPress: () {
                           Utility.myBottomSheet(context,

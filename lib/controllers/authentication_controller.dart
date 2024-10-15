@@ -16,6 +16,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+UserModel loginUserModel = UserModel();
+
 class AuthenticationController extends GetxController {
   String _verificationId = "";
   bool isLoading = false;
@@ -25,7 +27,7 @@ class AuthenticationController extends GetxController {
 
   bool isSignUp = true;
 
-  UserModel loginUserModel = UserModel();
+  int selectedGenderIndex = -1;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -39,17 +41,7 @@ class AuthenticationController extends GetxController {
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
 
-  late UserModel userModel;
-
   late BuildContext context;
-
-  _setSignUpData() {
-    userModel = UserModel();
-    userModel.userName = userNameController.text.toLowerCase();
-    userModel.dateOfBirth = dateOfBirthController.text;
-    userModel.gender = genderController.text;
-    userModel.mobileNumber = mobileNumberController.text;
-  }
 
   // this method is used to send otp to user .
   firebaseSendOTP(BuildContext context) async {
@@ -58,7 +50,7 @@ class AuthenticationController extends GetxController {
 
     try {
       await _firebaseAuth.verifyPhoneNumber(
-          phoneNumber: "+91${userModel.mobileNumber}",
+          phoneNumber: "+91${mobileNumberController.text}",
           timeout: const Duration(seconds: 5),
           forceResendingToken: forceResendingToken,
           verificationCompleted: _verificationCompleted,
@@ -88,6 +80,7 @@ class AuthenticationController extends GetxController {
 
   // when otp verification failed
   _verificationFailed(FirebaseAuthException authException) {
+    logger("authException ${authException.message}");
     Utility.toast("Error to send otp", textColor: Colors.red);
   }
 
@@ -107,6 +100,7 @@ class AuthenticationController extends GetxController {
           Utility.myBottomSheet(context,
               widget: const ValuePrivacy(), heightFactor: 0.7);
         } else {
+          await getUserDataAndStoreLocally();
           // if login taking directly to sign up
           await updateDeviceToken();
           Get.offAll(() => const DashBoardScreen());
@@ -119,6 +113,7 @@ class AuthenticationController extends GetxController {
       logger(e.toString());
       logger(stack.toString());
       Utility.toast(e.toString(), backgroundColor: Colors.red);
+    } finally {
       _updateLoading(false);
     }
   }
@@ -175,34 +170,18 @@ class AuthenticationController extends GetxController {
 
   updateDeviceToken({bool clearIt = false}) async {
     try {
+      if (clearIt) {
+        await getCurrentUserDocRef()
+            .update({"androidToken": "", "appleToken": ""});
+        return;
+      }
       String? token;
       if (Platform.isAndroid) {
         token = await FirebaseMessaging.instance.getToken();
+        await getCurrentUserDocRef().update({"androidToken": token});
       } else if (Platform.isIOS) {
         token = await FirebaseMessaging.instance.getAPNSToken();
-      }
-
-      if (clearIt) {
-        await getCurrentUserDocRef()
-            .update({"apnToken": null, "deviceTokenList": null});
-      } else {
-        if (token != null) {
-          if (Platform.isAndroid) {
-            userModel.addNewAndroidToken(token);
-            await getCurrentUserDocRef().update({
-              "androidTokensList":
-                  FieldValue.arrayUnion(userModel.androidTokensList)
-            });
-          } else if (Platform.isIOS) {
-            userModel.addNewIosToken(token);
-            await getCurrentUserDocRef().update({
-              "appleTokensList":
-                  FieldValue.arrayUnion(userModel.androidTokensList)
-            });
-          }
-        } else {
-          logger("token is null");
-        }
+        await getCurrentUserDocRef().update({"appleToken": token});
       }
     } catch (e) {
       logger("updateDeviceToken failed exp ${e.toString()}");
@@ -224,7 +203,6 @@ class AuthenticationController extends GetxController {
   signUpFirebaseValidation(BuildContext context) async {
     try {
       _updateLoading(true);
-      _setSignUpData();
       bool userNameStatus = await isUsernameExisted();
       if (!userNameStatus) {
         Utility.toast("Username already taken, please enter another username");
@@ -237,6 +215,7 @@ class AuthenticationController extends GetxController {
       }
       await firebaseSendOTP(context);
     } catch (e) {
+      Utility.toast("Signup failed $e");
       logger(e.toString());
     } finally {
       _updateLoading(false);
@@ -246,7 +225,6 @@ class AuthenticationController extends GetxController {
   signInFirebaseValidation(BuildContext context) async {
     try {
       _updateLoading(true);
-      _setSignUpData();
       bool mobileNumberStatus = await isMobileExisted();
       if (mobileNumberStatus) {
         Utility.toast("Mobile number not registered, please create account");
@@ -262,7 +240,7 @@ class AuthenticationController extends GetxController {
 
   Future<bool> isUsernameExisted() async {
     QuerySnapshot querySnapshot = await usersCollectionReference
-        .where("userName", isEqualTo: userModel.userName.toLowerCase())
+        .where("userName", isEqualTo: userNameController.text.toLowerCase())
         .get();
     logger("message ${querySnapshot.docs.length}");
     if (querySnapshot.docs.isEmpty) {
@@ -274,13 +252,20 @@ class AuthenticationController extends GetxController {
 
   Future<bool> isMobileExisted() async {
     QuerySnapshot querySnapshot = await usersCollectionReference
-        .where("mobileNumber", isEqualTo: userModel.mobileNumber)
+        .where("mobileNumber", isEqualTo: mobileNumberController.text)
         .get();
     if (querySnapshot.docs.isEmpty) {
       return true;
     } else {
       return false;
     }
+  }
+
+  clearSignUpFields() {
+    userNameController.clear();
+    dateOfBirthController.clear();
+    selectedGenderIndex = -1;
+    mobileNumberController.clear();
   }
 
   logout(BuildContext context) {

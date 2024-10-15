@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/appointment_controller.dart';
+import 'package:drfootapp/controllers/appointment_booking_controller.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/all_doctors_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
@@ -8,16 +8,16 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 
-class FindYourDoctorScreen extends StatefulWidget {
-  const FindYourDoctorScreen({super.key});
+class FindYourDoctorsScreen extends StatefulWidget {
+  const FindYourDoctorsScreen({super.key});
 
   @override
-  State<FindYourDoctorScreen> createState() => _FindYourDoctorScreenState();
+  State<FindYourDoctorsScreen> createState() => _FindYourDoctorsScreenState();
 }
 
-class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
-  AppointmentController appointmentController =
-      Get.put(AppointmentController());
+class _FindYourDoctorsScreenState extends State<FindYourDoctorsScreen> {
+  AppointmentBookingController appointmentController =
+      Get.put(AppointmentBookingController());
 
   @override
   void initState() {
@@ -30,7 +30,8 @@ class _FindYourDoctorScreenState extends State<FindYourDoctorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AppointmentController>(builder: (appointmentController) {
+    return GetBuilder<AppointmentBookingController>(
+        builder: (appointmentController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,
         appBar: AppBar(
