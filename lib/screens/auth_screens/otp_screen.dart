@@ -66,7 +66,7 @@ class _OtpScreenState extends State<OtpScreen> {
           fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
+          border: Border.all(color: AppColors.grey4),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -87,96 +87,113 @@ class _OtpScreenState extends State<OtpScreen> {
       ),
     );
     return Scaffold(
+      backgroundColor: AppColors.whiteBgColor,
       body: GetBuilder<AuthenticationController>(
           builder: (authenticationController) {
         return SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    Strings.verificationString,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ).tr(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      text: Strings.otpString,
-                      style: TextStyle(
-                        color: Colors.grey.shade500,
-                      ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const Text(
+                      Strings.verificationString,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ).tr(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextSpan(
-                            text: Utility().maskMobileNumber(
-                                authenticationController
-                                .mobileNumberController.text),
-                            style: TextStyle(
-                              color: Colors.grey.shade500,
-                            )),
-                        TextSpan(
-                            text: Strings.changeNumber,
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () => Navigator.pop(context),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primaryBlue)),
+                        const Text(
+                          Strings.otpString,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: AppColors.grey,
+                          ),
+                          textAlign: TextAlign.start,
+                        ).tr(),
+                        const Text(
+                          Strings.changeNumber,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: AppColors.primaryBlue,
+                          ),
+                          textAlign: TextAlign.start,
+                        ).tr(),
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Pinput(
-                    onChanged: (value) {
-                      otp = value;
-                    },
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                    ],
-                    defaultPinTheme: defaultPinTheme,
-                    focusedPinTheme: focusedPinTheme,
-                    submittedPinTheme: submittedPinTheme,
-                    length: 6,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: _timerSeconds == 0
-                        ? authenticationController.firebaseSendOTP(context)
-                        : null,
-                    child: Text(
-                      _timerSeconds == 0
-                          ? 'Resent'
-                          : 'Retry after $_timerSeconds seconds',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold),
+                    const SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  authenticationController.isLoading
-                      ? const CircularProgressIndicator()
-                      : CustomButton(
-                          buttonName: "verifyOtp",
-                          onPress: () {
-                            if (otp.length == 6) {
-                              authenticationController.firebaseVerifyOTP(otp);
-                            } else {
-                              Utility.toast(Strings.enterOTP);
-                            }
-                          },
+                    Pinput(
+                      onChanged: (value) {
+                        otp = value;
+                      },
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
+                      defaultPinTheme: defaultPinTheme,
+                      focusedPinTheme: focusedPinTheme,
+                      submittedPinTheme: submittedPinTheme,
+                      length: 6,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Didn’t receive the OTP?",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: AppColors.grey,
+                          ),
+                          textAlign: TextAlign.start,
+                        ).tr(),
+                        InkWell(
+                          onTap: _timerSeconds == 0
+                              ? authenticationController
+                                  .firebaseSendOTP(context)
+                              : null,
+                          child: Text(
+                            _timerSeconds == 0 ? 'Resent' : '00:$_timerSeconds',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
-                ],
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    authenticationController.isLoading
+                        ? const Center(child: CircularProgressIndicator())
+                        : CustomButton(
+                            buttonName: "verifyOtp",
+                            onPress: () {
+                              if (otp.length == 6) {
+                                authenticationController.firebaseVerifyOTP(otp);
+                              } else {
+                                Utility.toast(Strings.enterOTP);
+                              }
+                            },
+                          ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -184,7 +201,7 @@ class _OtpScreenState extends State<OtpScreen> {
       }),
     );
   }
-  
+
   @override
   void dispose() {
     if (_timer != null) {

@@ -9,6 +9,7 @@ import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class UlcerRiskCheckerAssesmentWidget extends StatefulWidget {
   const UlcerRiskCheckerAssesmentWidget({super.key});
@@ -20,6 +21,8 @@ class UlcerRiskCheckerAssesmentWidget extends StatefulWidget {
 
 class _UlcerRiskCheckerAssesmentWidgetState
     extends State<UlcerRiskCheckerAssesmentWidget> {
+  RiskCheckerController riskCheckerController =
+      Get.put(RiskCheckerController());
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -109,15 +112,60 @@ class _UlcerRiskCheckerAssesmentWidgetState
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 left: 30, right: 30, top: 12, bottom: 12),
-                            child: riskFactorController.isRiskChecked
-                                ? const Text("Risk checked")
-                                : const CustomImage(
-                                    path: AssetsConstants.risk_checker,
-                                    height: 152,
-                                    width: 120,
-                                    fit: BoxFit.contain,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Row(
+                                  children: [
+                                    CustomImage(
+                                      path: AssetsConstants.smile_image,
+                                      height: 18,
+                                      width: 18,
+                                    ),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      "Moderate",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.primary,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                CircularPercentIndicator(
+                                  radius: 55,
+                                  lineWidth: 12,
+                                  percent: 0.24,
+                                  progressColor: AppColors.primary,
+                                  backgroundColor: AppColors.primaryBlue,
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  center: const Text(
+                                    "24",
+                                    // "${widget.riskChekerResponseModel.score}%",
+                                    style: TextStyle(
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.primaryBlue,
+                                    ),
                                   ),
+                                ),
+                              ],
+                            ),
                           ),
+                          // child: Padding(
+                          //   padding: const EdgeInsets.only(
+                          //       left: 30, right: 30, top: 12, bottom: 12),
+                          //   child: riskFactorController.isRiskChecked
+                          //       ? const Text("Risk checked")
+                          //       : const CustomImage(
+                          //           path: AssetsConstants.risk_checker,
+                          //           height: 152,
+                          //           width: 120,
+                          //           fit: BoxFit.contain,
+                          //         ),
+                          // ),
                         ),
                         const SizedBox(height: 12),
                         const Text(

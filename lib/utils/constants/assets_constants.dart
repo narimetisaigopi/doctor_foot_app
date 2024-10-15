@@ -39,6 +39,7 @@ class AssetsConstants {
   static const String home_1 = "$homePath/home-1.png";
   static const String home_one = "$homePath/home_one.png";
   static const String calendar = "$homePath/calendar.png";
+  static const String smile_image = "assets/images/payments/smile_image.png";
   // our services
   static const String consult_doctor = "$homePath/consult_doctor.png";
   static const String online_consultation = "$homePath/online_consultation.png";
