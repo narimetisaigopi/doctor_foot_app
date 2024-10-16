@@ -166,8 +166,8 @@ class _AppointmentsListScreenState extends State<AppointmentsListScreen> {
 
   Query getQuery() {
     Query query = appointmentsCollectionReference.where("uid",
-        isEqualTo: Utility().getCurrentUserId());
-    //.where("appointmentStatus", isEqualTo: widget.appointmentStatus.index);
+        isEqualTo: Utility().getCurrentUserId())
+        .where("appointmentStatus", isEqualTo: widget.appointmentStatus.index);
     return query;
   }
 }

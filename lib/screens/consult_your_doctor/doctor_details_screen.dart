@@ -220,7 +220,10 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                       ? AppColors.primaryBlue
                       : AppColors.nextButonBg,
                   buttonName: "Next",
-                  textColor: AppColors.grey2,
+                  textColor:
+                      !appointmentBookingController.isDateAndTimeSelected()
+                          ? AppColors.grey2
+                          : AppColors.nextButonBg,
                   onPress: appointmentBookingController.isDateAndTimeSelected()
                       ? () {
                           Get.to(

@@ -7,25 +7,34 @@ class PaymentModel {
   String gatewayTransactionId;
   String message;
   String subscriptionId;
-  double amount;
+  double totalAmount;
+  double paidAmount;
   int paymentId;
   PaymentStatus paymentStatus;
   PaymentServiceType paymentServiceType;
   Timestamp? timestamp;
-  Timestamp? lastUpdate;
+  Timestamp? modifiedAt;
+  PaymentStatus refundStatus;
+  Timestamp? refundTimestamp;
+  Timestamp? refundModifiedAt;
+
 
   PaymentModel({
     this.docId = "",
     this.uid = "",
     this.subscriptionId = "",
     this.gatewayTransactionId = "",
-    this.amount = 0,
+      this.totalAmount = 0,
+      this.paidAmount = 0,
     this.message = "",
     this.paymentId = 0,
     this.paymentStatus = PaymentStatus.none,
+      this.refundStatus = PaymentStatus.none,
     this.paymentServiceType = PaymentServiceType.none,
     this.timestamp,
-    this.lastUpdate,
+      this.modifiedAt,
+      this.refundModifiedAt,
+      this.refundTimestamp
   });
 
   // Convert model to Map for Firestore
@@ -33,7 +42,8 @@ class PaymentModel {
     return {
       'docId': docId,
       'subscriptionId': subscriptionId,
-      'amount': amount,
+      'totalAmount': totalAmount,
+      "paidAmount": paidAmount,
       'uid': uid,
       'paymentId': paymentId,
       'gatewayTransactionId': gatewayTransactionId,
@@ -41,7 +51,10 @@ class PaymentModel {
       'paymentStatus': paymentStatus.index,
       'paymentServiceType': paymentServiceType.index,
       'timestamp': timestamp,
-      'lastUpdate': lastUpdate,
+      'modifiedAt': modifiedAt,
+      'refundStatus': refundStatus.index,
+      'refundModifiedAt': refundModifiedAt,
+      'refundTimestamp': refundTimestamp,
     };
   }
 
@@ -55,15 +68,21 @@ class PaymentModel {
       message: data["message"] ?? "",
       gatewayTransactionId: data["gatewayTransactionId"] ?? "",
       subscriptionId: data['subscriptionId'],
-      amount: double.parse(data['amount'].toString()),
+      totalAmount: double.parse(data['totalAmount'].toString()),
+      paidAmount: double.parse(data['paidAmount'].toString()),
       paymentStatus: data['paymentStatus'] != null
           ? PaymentStatus.values[data['paymentStatus']]
           : PaymentStatus.none, 
       paymentServiceType: data['paymentServiceType'] != null
           ? PaymentServiceType.values[data['paymentServiceType']]
           : PaymentServiceType.none, // Retrieve enum from index
+      refundStatus: data['refundStatus'] != null
+          ? PaymentStatus.values[data['refundStatus']]
+          : PaymentStatus.none, // Retrieve enum from index
       timestamp: data['timestamp'],
-      lastUpdate: data['lastUpdate'],
+      modifiedAt: data['modifiedAt'],
+      refundModifiedAt: data['refundModifiedAt'],
+      refundTimestamp: data['refundTimestamp'],
     );
   }
 }

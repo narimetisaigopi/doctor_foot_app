@@ -112,7 +112,15 @@ class DoctorsController extends GetxController {
       doUpdate(false);
     }
   }
-
+Future<DoctorModel> getDoctorDetailsByUid(String uid) async {
+    DocumentSnapshot documentSnapshot =
+        await doctorsCollectionReference.doc(uid).get();
+    DoctorModel doctorModel = DoctorModel();
+    if (documentSnapshot.exists) {
+      doctorModel = DoctorModel.fromMap(documentSnapshot.data() as Map);
+    }
+    return doctorModel;
+  }
   Future<DoctorModel> getDoctorDataByMobileNumber(String mobileNumber) async {
     QuerySnapshot querySnapshot = await doctorsCollectionReference
         .where("mobileNumber", isEqualTo: mobileNumber)

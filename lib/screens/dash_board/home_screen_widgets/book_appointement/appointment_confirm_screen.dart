@@ -1,7 +1,7 @@
 import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/screens/consult_your_doctor/booking_history_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_view_details_page.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,7 +57,8 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
             height: 16,
           ),
           Text(
-            "Date: ${Utility().formatDate(widget.appointmentModel.appointmentTimestamp!.toDate())}",
+            // "Date: ${Utility().formatDate(widget.appointmentModel.appointmentTimestamp!.toDate())}",
+            "Date: ${widget.appointmentModel.appointmentDate}",
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
@@ -68,8 +69,9 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
             height: 20,
           ),
           Text(
-            Utility().formatTime(
-                widget.appointmentModel.appointmentTimestamp!.toDate()),
+            // Utility().formatTime(
+            //     widget.appointmentModel.appointmentTimestamp!.toDate()),
+            widget.appointmentModel.appointmentTime,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
@@ -92,7 +94,7 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
           CustomButton(
             buttonName: "View details",
             onPress: () {
-              Get.to(() => AppointemntViewDetailsPage(
+              Get.to(() => BookingHistoryScreen(
                     appointmentModel: widget.appointmentModel,
                   ));
             },

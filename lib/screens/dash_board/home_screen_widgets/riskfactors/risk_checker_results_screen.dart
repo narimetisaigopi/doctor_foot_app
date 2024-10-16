@@ -1,4 +1,5 @@
 import 'package:drfootapp/controllers/risk_checker_controller.dart';
+import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_checker_progress_widget.dart';
 import 'package:drfootapp/screens/dash_board/videosScreenWidgets/watch_now_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -45,20 +46,26 @@ class _RiskCheckerResultsScreenState extends State<RiskCheckerResultsScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-           RiskCheckerProgressidget(riskChekerResponseModel: riskCheckerController.riskChekerResponseModel,),
+          RiskCheckerProgressidget(
+            riskChekerResponseModel:
+                riskCheckerController.riskChekerResponseModel,
+          ),
           resultModerate(),
           stepping(),
           next(),
+          const SizedBox(height: 12),
+          Align(
+            alignment: Alignment.center,
+            child: CustomButton(
+              bgColor: AppColors.primaryBlue,
+              buttonName: "Back To Home",
+              onPress: () {
+                Get.offAll(() => const HomeScreen());
+              },
+            ),
+          ),
           const SizedBox(height: 32),
         ]),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(right: 16),
-        child: CustomButton(
-          bgColor: AppColors.primaryBlue,
-          buttonName: "Back To Home",
-          onPress: () {},
-        ),
       ),
     );
   }

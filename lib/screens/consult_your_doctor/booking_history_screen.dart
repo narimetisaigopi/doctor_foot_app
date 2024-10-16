@@ -1,23 +1,42 @@
+import 'package:drfootapp/controllers/appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctors_controller.dart';
+import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/doctor_detail_widget.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/exp_widget.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/custom_image.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class BookingHistoryScreen extends StatefulWidget {
-  const BookingHistoryScreen({super.key});
+  final AppointmentModel appointmentModel;
+  const BookingHistoryScreen({super.key, required this.appointmentModel});
 
   @override
   State<BookingHistoryScreen> createState() => _BookingHistoryScreenState();
 }
 
 class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
+  DoctorModel doctorModel = DoctorModel();
+  @override
+  void initState() {
+    Get.put(DoctorsController())
+        .getDoctorDetailsByUid(widget.appointmentModel.doctorId)
+        .then((data) {
+      setState(() {
+        doctorModel = data;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,14 +63,24 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
         centerTitle: true,
         actions: [
           PopupMenuButton(
-            icon: const Row(
+            icon: Row(
               children: [
-                Icon(
-                  Icons.question_mark,
-                  color: AppColors.whiteBgColor,
-                  size: 16,
+                Container(
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6)),
+                  child: const Icon(
+                    Icons.question_mark_sharp,
+                    color: AppColors.black1,
+                    size: 12,
+                  ),
                 ),
-                Text(
+                const SizedBox(
+                  width: 4,
+                ),
+                const Text(
                   "Help",
                   style: TextStyle(
                     fontSize: 16,
@@ -72,11 +101,20 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                       Get.back();
                     },
                     yes: () {
-                      customAlert(
-                        title: 'Appointment Canceled',
-                        no: () {},
-                        yes: () {},
-                      );
+                      Get.put(AppointmentBookingController())
+                          .cancelAppointment(widget.appointmentModel)
+                          .then((e) {
+                        cancelledAppointmentAlert(
+                            title: '', upload: () async {});
+                      });
+                      // customAlert(
+                      //   title: '',
+                      //   upload: () {
+                      //     Get.back();
+                      //     Get.back();
+                      //   },
+                      // );
+                      
                     },
                   );
                 },
@@ -101,10 +139,10 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                     children: <Widget>[
                       Column(
                         children: <Widget>[
-                          CustomImage(
+                          CustomNetworkImageWidget(
                             height: 300,
                             width: double.infinity,
-                            path: AssetsConstants.doctor_history,
+                            path: doctorModel.image,
                             fit: BoxFit.fill,
                           ),
                         ],
@@ -138,9 +176,9 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                                     color: AppColors.black2,
                                   ),
                                 ).tr(),
-                                const Text(
-                                  "DR. Narendranadh Meda",
-                                  style: TextStyle(
+                                Text(
+                                  "DR. ${doctorModel.name}",
+                                  style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.blackBold,
@@ -156,9 +194,9 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                                         color: AppColors.grey,
                                       ),
                                     ).tr(),
-                                    const Text(
-                                      "Telugu, Urdu & English",
-                                      style: TextStyle(
+                                    Text(
+                                      "${doctorModel.speakingLanguagesList.toList()}",
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500,
                                         color: AppColors.primaryBlue,
@@ -167,28 +205,31 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                                   ],
                                 ),
                                 const SizedBox(height: 8),
-                                const IntrinsicHeight(
+                                IntrinsicHeight(
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     children: [
-                                      ExpWidget(
+                                      const ExpWidget(
                                         image: AssetsConstants.patients,
                                         totolCount: "500+",
                                         title: "General",
                                       ),
-                                      VerticalDivider(
+                                      const VerticalDivider(
                                         color: AppColors.grey,
                                         thickness: 1,
                                       ),
                                       ExpWidget(
                                         image: AssetsConstants.experience,
-                                        totolCount: "7years+",
+                                        totolCount:
+                                            "${doctorModel.yearsOfExperiance} years+",
                                         title: "Experience",
                                       ),
-                                      VerticalDivider(
+                                      const VerticalDivider(
                                         color: AppColors.grey,
                                         thickness: 1,
                                       ),
-                                      ExpWidget(
+                                      const ExpWidget(
                                         image: AssetsConstants.star_image,
                                         totolCount: "4.8",
                                         title: "Rating",
@@ -205,7 +246,10 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  const DoctorDetailWidget(),
+                  DoctorDetailWidget(
+                    appointmentModel: widget.appointmentModel,
+                    doctorModel: doctorModel,
+                  ),
                 ],
               ),
             ),
@@ -244,6 +288,54 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
         ),
       ),
     );
+  }
+
+  Future<bool?> cancelledAppointmentAlert({
+    required String title,
+    required VoidCallback upload,
+  }) {
+    return Alert(
+      context: context,
+      title: title,
+      content: const Column(
+        children: [
+          Text(
+            "Appointment Canceled",
+            style: TextStyle(
+              color: AppColors.cancelColor,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            "You have canceled Your \nappointment",
+            style: TextStyle(
+              color: AppColors.black2,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          CustomImage(
+            path: AssetsConstants.cancel_image,
+            height: 169,
+            width: 223,
+          ),
+        ],
+      ),
+      buttons: [
+        DialogButton(
+          onPressed: upload,
+          color: AppColors.cancelColor,
+          child: const Text(
+            "Back to Home",
+            style: TextStyle(
+              color: AppColors.whiteBgColor,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ],
+    ).show();
   }
 
   Future<bool?> customAlert({

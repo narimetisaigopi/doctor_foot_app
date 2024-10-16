@@ -6,8 +6,9 @@ enum AppointmentStatus {
   confirmed,
   cancelled,
   completed,
+  cancelledByUser,
 }
-enum PaymentServiceType { none, ulcerMonitoring, homeService }
+enum PaymentServiceType { none, ulcerMonitoring, homeService, drAppointment }
 
 // home dressing service
 enum OrderStatus { none, upcoming, completed, cancelled }

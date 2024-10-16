@@ -6,6 +6,7 @@ class UlcerMonitoringSubscriptionModel {
   String subscriptionId;
   String uid;
   int amount;
+  String paymentId;
   PaymentStatus paymentStatus;
   Timestamp? timestamp;
   Timestamp? lastUpdate;
@@ -15,6 +16,7 @@ class UlcerMonitoringSubscriptionModel {
     this.uid = "",
     this.amount = 0,
     this.subscriptionId = "",
+    this.paymentId = "",
     this.paymentStatus = PaymentStatus.none,
     this.timestamp,
     this.lastUpdate,
@@ -26,6 +28,7 @@ class UlcerMonitoringSubscriptionModel {
       'docId': docId,
       'uid': uid,
       'amount': amount,
+      "paymentId": paymentId,
       'subscriptionId': subscriptionId,
       'paymentStatus': paymentStatus.index, // Store enum as index
       'timestamp': timestamp,
@@ -40,6 +43,7 @@ class UlcerMonitoringSubscriptionModel {
     return UlcerMonitoringSubscriptionModel(
       docId: data['docId'] ?? "",
       uid: data['uid'] ?? "",
+      paymentId: data["paymentId"] ?? "",
       amount: data['amount'] ?? 0,
       subscriptionId: data['subscriptionId'] ?? "",
       paymentStatus: data['paymentStatus'] != null
