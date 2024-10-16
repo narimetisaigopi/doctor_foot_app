@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/models/payment_model.dart';
 import 'package:drfootapp/models/ulcer_monitor_models/ulcer_monitoring_subscrption_model.dart';
 import 'package:drfootapp/models/ulcer_monitor_models/ulcer_monitoring_plan_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
+import 'package:drfootapp/screens/payments/razorpay_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
@@ -64,12 +66,10 @@ class UlcerMonitoringController extends GetxController {
     update();
   }
 
-  proceedToPayment() {
-    PaymentController paymentController = Get.put(PaymentController());
-    paymentController.amount = selectedUlcerModel.planAmount.toDouble();
-    paymentController.description =
-        "Ulcer Monitor - ${selectedUlcerModel.planTitle}";
-    paymentController.startPayment(
+  proceedToPayment() {    
+    RazorPayScreen().startPayment(
+        amount: selectedUlcerModel.planAmount.toDouble(),
+        description: "Ulcer Monitor - ${selectedUlcerModel.planTitle}",
         onSuccess: (PaymentSuccessResponse paymentSuccessResponse) async {
           await addUlcerSubscriptionData(
               PaymentStatus.completed, paymentSuccessResponse.paymentId ?? "");
@@ -84,6 +84,8 @@ class UlcerMonitoringController extends GetxController {
 
   addUlcerSubscriptionData(PaymentStatus paymentStatus, String id) async {
     try {
+      PaymentController paymentController = Get.put(PaymentController());
+
       _updateLoading(true);
       await usersCollectionReference.doc(Utility().getCurrentUserId()).update({
         "ulcerMonitoringPlan": selectedUlcerModel.id,
@@ -101,6 +103,13 @@ class UlcerMonitoringController extends GetxController {
       ulcerMonitoringSubscriptionModel.timestamp = Timestamp.now();
       await documentReference.set(ulcerMonitoringSubscriptionModel.toMap());
       await addToPayment(paymentStatus: PaymentStatus.completed, id: id);
+      PaymentModel paymentModel = await paymentController.addPaymentTransaction(
+          totalAmount: double.parse(selectedUlcerModel.planAmount.toString()),
+          paidAmount: double.parse(selectedUlcerModel.planAmount.toString()),
+          subscriptionId: ulcerMonitoringSubscriptionModel.docId,
+          paymentStatus: PaymentStatus.completed,
+          paymentServiceType: PaymentServiceType.ulcerMonitoring);
+      await documentReference.update({"paymentId": paymentModel.docId});
       goToPaymentCompletePage();
     } catch (e) {
       logger(e.toString());
@@ -117,7 +126,8 @@ class UlcerMonitoringController extends GetxController {
       _updateLoading(true);
       DocumentReference documentReference = paymentsCollectionReference.doc();
       await Get.put(PaymentController()).addPaymentTransaction(
-          amount: selectedUlcerModel.planAmount.toDouble(),
+          totalAmount: selectedUlcerModel.planAmount.toDouble(),
+          paidAmount: selectedUlcerModel.planAmount.toDouble(),
           subscriptionId: documentReference.id,
           gatewayTransactionId: id,
           message: message,

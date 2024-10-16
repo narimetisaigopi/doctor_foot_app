@@ -16,6 +16,7 @@ class DoctorModel {
   int actualPrice;
   int offerPrice;
   String? hospitalId;
+  List speakingLanguagesList;
 
   DoctorModel(
       {this.docId = "",
@@ -34,7 +35,8 @@ class DoctorModel {
       this.lng = 0.0,
       this.offerPrice = 0,
       this.actualPrice = 0,
-      this.hospitalId});
+      this.hospitalId,
+      this.speakingLanguagesList = const []});
 
   factory DoctorModel.fromMap(Map map) {
     return DoctorModel(
@@ -54,7 +56,8 @@ class DoctorModel {
         actualPrice: map["actualPrice"] ?? 0,
         offerPrice: map["offerPrice"] ?? 0,
         hospitalId: map["hospitalId"],
-        modifiedAt: map["modifiedAt"]);
+        modifiedAt: map["modifiedAt"],
+        speakingLanguagesList: map["speakingLanguagesList"] ?? []);
   }
 
   Map<String, dynamic> toJson() {
@@ -75,7 +78,8 @@ class DoctorModel {
       "hospitalId": hospitalId,
       "actualPrice": actualPrice,
       "offerPrice": offerPrice,
-      "modifiedAt": modifiedAt
+      "modifiedAt": modifiedAt,
+      "speakingLanguagesList": speakingLanguagesList
     };
   }
 }

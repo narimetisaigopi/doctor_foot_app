@@ -112,60 +112,58 @@ class _UlcerRiskCheckerAssesmentWidgetState
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 left: 30, right: 30, top: 12, bottom: 12),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Row(
-                                  children: [
-                                    CustomImage(
-                                      path: AssetsConstants.smile_image,
-                                      height: 18,
-                                      width: 18,
-                                    ),
-                                    SizedBox(width: 8),
-                                    Text(
-                                      "Moderate",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.primary,
+                            child: riskFactorController.isRiskChecked
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const CustomImage(
+                                            path: AssetsConstants.smile_image,
+                                            height: 18,
+                                            width: 18,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            riskFactorController
+                                                .riskChekerResponseModel.status,
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                              color: AppColors.primary,
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                CircularPercentIndicator(
-                                  radius: 55,
-                                  lineWidth: 12,
-                                  percent: 0.24,
-                                  progressColor: AppColors.primary,
-                                  backgroundColor: AppColors.primaryBlue,
-                                  circularStrokeCap: CircularStrokeCap.round,
-                                  center: const Text(
-                                    "24",
-                                    // "${widget.riskChekerResponseModel.score}%",
-                                    style: TextStyle(
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.w700,
-                                      color: AppColors.primaryBlue,
-                                    ),
+                                      const SizedBox(height: 12),
+                                      CircularPercentIndicator(
+                                        radius: 55,
+                                        lineWidth: 12,
+                                        percent: 0.24,
+                                        progressColor: AppColors.primary,
+                                        backgroundColor: AppColors.primaryBlue,
+                                        circularStrokeCap:
+                                            CircularStrokeCap.round,
+                                        center: Text(
+                                          "${riskFactorController.riskChekerResponseModel.score}%",
+                                          style: const TextStyle(
+                                            fontSize: 36,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.primaryBlue,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : const CustomImage(
+                                    path: AssetsConstants.risk_checker,
+                                    height: 152,
+                                    width: 120,
+                                    fit: BoxFit.contain,
                                   ),
-                                ),
-                              ],
-                            ),
                           ),
-                          // child: Padding(
-                          //   padding: const EdgeInsets.only(
-                          //       left: 30, right: 30, top: 12, bottom: 12),
-                          //   child: riskFactorController.isRiskChecked
-                          //       ? const Text("Risk checked")
-                          //       : const CustomImage(
-                          //           path: AssetsConstants.risk_checker,
-                          //           height: 152,
-                          //           width: 120,
-                          //           fit: BoxFit.contain,
-                          //         ),
-                          // ),
                         ),
                         const SizedBox(height: 12),
                         const Text(

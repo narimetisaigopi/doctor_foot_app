@@ -1,11 +1,17 @@
+import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DoctorDetailWidget extends StatefulWidget {
-  const DoctorDetailWidget({super.key});
+  final AppointmentModel appointmentModel;
+  final DoctorModel doctorModel;
+  const DoctorDetailWidget(
+      {super.key, required this.appointmentModel, required this.doctorModel});
 
   @override
   State<DoctorDetailWidget> createState() => _DoctorDetailWidgetState();
@@ -49,9 +55,11 @@ class _DoctorDetailWidgetState extends State<DoctorDetailWidget> {
                       ).tr(),
                     ],
                   ),
-                  const Text(
-                    "Aug 05,2024",
-                    style: TextStyle(
+                  Text(
+                    // "Aug 05,2024",
+                    Utility.convertToMonthEnglishFormat(
+                        widget.appointmentModel.appointmentDate),
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: AppColors.black1,
@@ -83,9 +91,9 @@ class _DoctorDetailWidgetState extends State<DoctorDetailWidget> {
                       ).tr(),
                     ],
                   ),
-                  const Text(
-                    "03:00PM - 03:30PM",
-                    style: TextStyle(
+                  Text(
+                    widget.appointmentModel.appointmentTime,
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: AppColors.black1,
@@ -117,9 +125,9 @@ class _DoctorDetailWidgetState extends State<DoctorDetailWidget> {
                       ).tr(),
                     ],
                   ),
-                  const Text(
-                    "Secunderabad",
-                    style: TextStyle(
+                  Text(
+                    widget.doctorModel.address,
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: AppColors.black1,

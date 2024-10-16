@@ -1,7 +1,7 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/dash_board/prifile_details/custom_listtile_widget.dart';
 import 'package:drfootapp/screens/dash_board/profile/contact_us_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile/appointments/my_appointment_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/appointments/my_appointments_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/faqs_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/my_profile_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/payments_and_refunds_screen.dart';
@@ -152,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               leadingIcon: Icons.apps_outage,
                                               onPressed: () {
                                                 Get.to(() =>
-                                                    const MyAppointmentScreen());
+                                                    const MyAppointmentsScreen());
                                               }),
                                           CustomListTileWidget(
                                               text: "service",

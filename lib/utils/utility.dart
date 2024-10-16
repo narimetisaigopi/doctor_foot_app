@@ -1079,8 +1079,16 @@ class Utility {
   }
 
   static String convertTimeStamp(DateTime dateTime) {
+    // 05-08-2024
     String formattedDate =
         DateFormat('dd-MM-yyyy').format(dateTime); // Formatting the date
+    return formattedDate;
+  }
+
+  static String convertToMonthEnglishFormat(String date) {
+    // Aug 05,2024
+    String formattedDate = DateFormat('MMM dd, yyyy')
+        .format(DateTime.parse(date)); // Formatting the date
     return formattedDate;
   }
 }

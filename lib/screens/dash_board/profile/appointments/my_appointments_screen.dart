@@ -1,18 +1,20 @@
 import 'package:drfootapp/controllers/appointment_booking_controller.dart';
+import 'package:drfootapp/screens/dash_board/profile/appointments/appointments_list_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyAppointmentScreen extends StatefulWidget {
-  const MyAppointmentScreen({super.key});
+class MyAppointmentsScreen extends StatefulWidget {
+  const MyAppointmentsScreen({super.key});
 
   @override
-  State<MyAppointmentScreen> createState() => _MyAppointmentScreenState();
+  State<MyAppointmentsScreen> createState() => _MyAppointmentsScreenState();
 }
 
-class _MyAppointmentScreenState extends State<MyAppointmentScreen>
+class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
     with SingleTickerProviderStateMixin {
   final AppointmentBookingController appointmentController =
       Get.put(AppointmentBookingController());
@@ -59,16 +61,16 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen>
                 Get.back();
               },
             ),
-            // bottom: const TabBar(
-            //   tabs: [
-            //     Tab(
-            //       text: Strings.completed,
-            //     ),
-            //     Tab(
-            //       text: Strings.cancelled,
-            //     ),
-            //   ],
-            // ),
+            bottom: const TabBar(
+              tabs: [
+                Tab(
+                  text: Strings.completed,
+                ),
+                Tab(
+                  text: Strings.cancelled,
+                ),
+              ],
+            ),
             title: const Text(
               "My Appointments",
               style: TextStyle(
@@ -78,17 +80,16 @@ class _MyAppointmentScreenState extends State<MyAppointmentScreen>
               ),
             ).tr(),
           ),
-          // body: const TabBarView(children: [
-          //   AppointmentsListScreen(
-          //     appointmentStatus: AppointmentStatus.pending,
-          //     title: Strings.upcoming,
-          //   ),
-          //   AppointmentsListScreen(
-          //     appointmentStatus: AppointmentStatus.cancelled,
-          //     title: Strings.cancelled,
-          //   ),
-          // ]),
-          body: _tabBar(),
+          body: const TabBarView(children: [
+            AppointmentsListScreen(
+              appointmentStatus: AppointmentStatus.pending,
+              title: Strings.upcoming,
+            ),
+            AppointmentsListScreen(
+              appointmentStatus: AppointmentStatus.cancelled,
+              title: Strings.cancelled,
+            ),
+          ]),
         ),
       );
     });

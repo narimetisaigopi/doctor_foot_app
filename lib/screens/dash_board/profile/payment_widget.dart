@@ -27,7 +27,7 @@ class PaymentWidget extends StatelessWidget {
                     : "Transaction Id",
                 "#${paymentModel.paymentId.toString()}"),
             item("Refund amount",
-                paymentModel.amount.toInt().inRupeesFormat()),
+                paymentModel.totalAmount.toInt().inRupeesFormat()),
           ],
         ),
       ),

@@ -8,6 +8,7 @@ import 'package:drfootapp/models/homeScreenModels/foot_service_booking_model.dar
 import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
 import 'package:drfootapp/models/payment_model.dart';
 import 'package:drfootapp/screens/foot_services/foot_service_order_successful_screen.dart';
+import 'package:drfootapp/screens/payments/razorpay_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -216,7 +217,8 @@ class FootServiceController extends GetxController {
       orderModel.address = selectedAddressModel;
       // setting payment
       PaymentModel paymentModel = await paymentController.addPaymentTransaction(
-          amount: finalAmount,
+          paidAmount: finalAmount,
+          totalAmount: finalAmount,
           subscriptionId: orderModel.docId,
           paymentStatus: PaymentStatus.completed,
           paymentServiceType: PaymentServiceType.homeService);
@@ -237,10 +239,9 @@ class FootServiceController extends GetxController {
   }
 
   proceedToPayment() {
-    PaymentController paymentController = Get.put(PaymentController());
-    paymentController.amount = finalAmount;
-    paymentController.description = "Home services";
-    paymentController.startPayment(
+    RazorPayScreen().startPayment(
+        amount: finalAmount,
+        description: "Home services",
         onSuccess: (PaymentSuccessResponse paymentSuccessResponse) async {
       await placeOrder();
     }, onError: (PaymentFailureResponse paymentFailureResponse) {
