@@ -48,7 +48,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
         length: 2,
         initialIndex: 0,
         child: Scaffold(
-          backgroundColor: AppColors.secondaryColor,
+          backgroundColor: AppColors.bgColorAppointment,
           appBar: AppBar(
             backgroundColor: AppColors.primaryBlue,
             centerTitle: true,
@@ -81,12 +81,26 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
             ).tr(),
           ),
           body: const TabBarView(children: [
-            AppointmentsListScreen(
-              appointmentStatus: AppointmentStatus.pending,
-              title: Strings.upcoming,
+            Column(
+              children: [
+                Expanded(
+                  child: AppointmentsListScreen(
+                    appointmentStatus: AppointmentStatus.booked,
+                    title: Strings.upcoming,
+                    showHeader: true,
+                  ),
+                ),
+                Expanded(
+                  child: AppointmentsListScreen(
+                    appointmentStatus: AppointmentStatus.completed,
+                    title: Strings.completed,
+                    showHeader: true,
+                  ),
+                ),
+              ],
             ),
             AppointmentsListScreen(
-              appointmentStatus: AppointmentStatus.cancelled,
+              appointmentStatus: AppointmentStatus.cancelledByUser,
               title: Strings.cancelled,
             ),
           ]),

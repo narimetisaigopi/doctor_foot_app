@@ -36,6 +36,7 @@ class AppColors {
   static const Color haveUlcerBg = Color(0xFFFFEEED);
   static const Color riskCheckBg = Color(0xFFE7F6FF);
   static const Color iconColor = Color(0xFF001A72);
+  static const Color bgColorAppointment = Color(0xFFF2F7FB);
 
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);

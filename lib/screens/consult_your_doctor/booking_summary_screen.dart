@@ -3,6 +3,7 @@ import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/gender_widget.dart';
 import 'package:drfootapp/screens/foot_services/available_offers.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_circular_loader.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
@@ -177,8 +178,7 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
                           ),
                           appointmentBookingController.isLoading
                               ? const CustomCircularLoader()
-                              :
-                          InkWell(
+                              : InkWell(
                                   onTap: validateData,
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -225,6 +225,7 @@ class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
       } else if (appointmentBookingController.gender == null) {
         Utility.toast("Please select gender");
       } else {
+        logger("widget.doctorModel ${widget.doctorModel.docId}");
         Utility.showAlertDialogger(
             context: context,
             yes: () {
