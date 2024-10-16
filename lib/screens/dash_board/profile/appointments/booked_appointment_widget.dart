@@ -1,8 +1,12 @@
 import 'package:drfootapp/controllers/doctors_controller.dart';
 import 'package:drfootapp/models/appointment_models/appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
+import 'package:drfootapp/screens/consult_your_doctor/booked_appointment_details_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_details_screen.dart';
+import 'package:drfootapp/screens/reviewrating/add_review_ratings_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/rating_book_again.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +32,7 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
 
   @override
   Widget build(BuildContext context) {
+  
     return FutureBuilder<DoctorModel>(
         future: Get.put(DoctorsController())
             .getDoctorDetailsByUid(widget.appointmentModel.doctorId),
@@ -35,10 +40,7 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
           if (snapshot.hasData && snapshot.data != null) {
             doctorModel = snapshot.data ?? DoctorModel();
           }
-          return widget.appointmentModel.appointmentStatus ==
-                      AppointmentStatus.cancelled ||
-                  widget.appointmentModel.appointmentStatus ==
-                      AppointmentStatus.cancelledByUser ||
+          return Utility.isAppointmentCancelled(widget.appointmentModel) ||
                   widget.appointmentModel.appointmentStatus ==
                       AppointmentStatus.completed
               ? Padding(
@@ -57,19 +59,28 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                         headerLabel(),
                         const SizedBox(height: 12),
                         appointmentWidget(),
-                        const SizedBox(height: 12),
-                        RatingBookAgainWidget(
-                          onBookAgainPressed: () {},
+                        if (!Utility.isAppointmentCancelled(
+                            widget.appointmentModel))
+                          Column(
+                            children: [
+                              const SizedBox(height: 12),
+                              RatingBookAgainWidget(
+                                onBookAgainPressed: () {
+                                  Get.to(() => DoctorDetailsScreen(
+                                      doctorModel: doctorModel));
+                                },
                           onRateServicePressed: () {
-                            // Utility.myBottomSheet(context,
-                            //     widget: AddReviewRatingsScreen(
-                            //       docId:
-                            //           widget.serviceBookingOrderModel.serviceId,
-                            //       reviewType: ReviewType.homeService,
-                            //     ),
-                            //     heightFactor: 0.7);
+                                  Utility.myBottomSheet(context,
+                                      widget: AddReviewRatingsScreen(
+                                        docId: widget.appointmentModel.docId,
+                                        reviewType: ReviewType.appointment,
+                                      ),
+                                      heightFactor: 0.7);
                           },
                         ),
+                            ],
+                          ),
+                        
                       ],
                     ),
                   ),
@@ -128,117 +139,123 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
   }
 
   Widget appointmentWidget() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-      child: Container(
-        height: 132,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: AppColors.whiteBgColor,
-            border: Border.all(
-              color: AppColors.grey,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(8)),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                  child: CustomNetworkImageWidget(
-                    path: doctorModel.image,
-                    height: 108,
-                    width: double.infinity,
+    return InkWell(
+      onTap: () {
+        Get.to(() => BookedAppointmentDetailsScreen(
+            appointmentModel: widget.appointmentModel));
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+        child: Container(
+          height: 132,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              color: AppColors.whiteBgColor,
+              border: Border.all(
+                color: AppColors.grey,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(8)),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    child: CustomNetworkImageWidget(
+                      path: doctorModel.image,
+                      height: 108,
+                      width: double.infinity,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 7,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Dr. ${doctorModel.name}",
-                            style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.blackBold),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: AppColors.ratingBarColor,
-                            size: 14,
-                          ),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            "4.5",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.blackBold),
-                          ),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            "(123 Reviews)",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.textBlackColor),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.location_pin,
-                            color: AppColors.blackBold,
-                            size: 16,
-                          ),
-                          Text(
-                            doctorModel.address,
-                            style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.textBlackColor),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        widget.appointmentModel.appointmentDate,
-                        style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.blackBold),
-                      ),
-                    ],
+              Expanded(
+                flex: 7,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Dr. ${doctorModel.name}",
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.blackBold),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: AppColors.ratingBarColor,
+                              size: 14,
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              "4.5",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.blackBold),
+                            ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(
+                              "(123 Reviews)",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.textBlackColor),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.location_pin,
+                              color: AppColors.blackBold,
+                              size: 16,
+                            ),
+                            Text(
+                              doctorModel.address,
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.textBlackColor),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          widget.appointmentModel.appointmentDate,
+                          style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.blackBold),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

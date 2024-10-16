@@ -5,8 +5,10 @@ import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/doctor_detail_widget.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/exp_widget.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/contact_us_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
@@ -15,15 +17,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class BookingHistoryScreen extends StatefulWidget {
+class BookedAppointmentDetailsScreen extends StatefulWidget {
   final AppointmentModel appointmentModel;
-  const BookingHistoryScreen({super.key, required this.appointmentModel});
+  const BookedAppointmentDetailsScreen(
+      {super.key, required this.appointmentModel});
 
   @override
-  State<BookingHistoryScreen> createState() => _BookingHistoryScreenState();
+  State<BookedAppointmentDetailsScreen> createState() =>
+      _BookedAppointmentDetailsScreenState();
 }
 
-class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
+class _BookedAppointmentDetailsScreenState
+    extends State<BookedAppointmentDetailsScreen> {
   DoctorModel doctorModel = DoctorModel();
   @override
   void initState() {
@@ -53,7 +58,7 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
           },
         ),
         title: const Text(
-          "Booking  History",
+          "Booking History",
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -62,70 +67,72 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
         ).tr(),
         centerTitle: true,
         actions: [
-          PopupMenuButton(
-            icon: Row(
-              children: [
-                Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6)),
-                  child: const Icon(
-                    Icons.question_mark_sharp,
-                    color: AppColors.black1,
-                    size: 12,
+          if (!Utility.isAppointmentCancelled(widget.appointmentModel))
+            PopupMenuButton(
+              icon: Row(
+                children: [
+                  Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6)),
+                    child: const Icon(
+                      Icons.question_mark_sharp,
+                      color: AppColors.black1,
+                      size: 12,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                const Text(
-                  "Help",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.whiteBgColor,
+                  const SizedBox(
+                    width: 4,
                   ),
-                )
+                  const Text(
+                    "Help",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.whiteBgColor,
+                    ),
+                  )
+                ],
+              ),
+              itemBuilder: (ctx) => [
+                _buildPopupMenuItem(
+                  'Cancel Booking',
+                  AppColors.redColor,
+                  () {
+                    customAlert(
+                      title: ' Are sure you want to  \n  Cancel Booking ',
+                      no: () {
+                        Get.back();
+                      },
+                      yes: () {
+                        Get.put(AppointmentBookingController())
+                            .cancelAppointment(widget.appointmentModel)
+                            .then((e) {
+                          cancelledAppointmentAlert(
+                              title: '', upload: () async {});
+                        });
+                        // customAlert(
+                        //   title: '',
+                        //   upload: () {
+                        //     Get.back();
+                        //     Get.back();
+                        //   },
+                        // );
+                      },
+                    );
+                  },
+                ),
+                _buildPopupMenuItem(
+                  'Contact us',
+                  AppColors.black1,
+                  () {
+                    Get.to(() => const ContactUsScreen());
+                  },
+                ),
               ],
-            ),
-            itemBuilder: (ctx) => [
-              _buildPopupMenuItem(
-                'Cancel Booking',
-                AppColors.redColor,
-                () {
-                  customAlert(
-                    title: ' Are sure you want to  \n  Cancel Booking ',
-                    no: () {
-                      Get.back();
-                    },
-                    yes: () {
-                      Get.put(AppointmentBookingController())
-                          .cancelAppointment(widget.appointmentModel)
-                          .then((e) {
-                        cancelledAppointmentAlert(
-                            title: '', upload: () async {});
-                      });
-                      // customAlert(
-                      //   title: '',
-                      //   upload: () {
-                      //     Get.back();
-                      //     Get.back();
-                      //   },
-                      // );
-                      
-                    },
-                  );
-                },
-              ),
-              _buildPopupMenuItem(
-                'Contact us',
-                AppColors.black1,
-                () {},
-              ),
-            ],
-          )
+            )
         ],
       ),
       body: Column(
