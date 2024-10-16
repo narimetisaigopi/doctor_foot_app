@@ -2,11 +2,13 @@
 // import 'dart:typed_data';
 
 import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/models/appointment_models/appointment_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_circular_loader.dart';
@@ -1090,5 +1092,12 @@ class Utility {
     String formattedDate = DateFormat('MMM dd, yyyy')
         .format(DateTime.parse(date)); // Formatting the date
     return formattedDate;
+  }
+
+  static bool isAppointmentCancelled(AppointmentModel appointmentModel) {
+    bool isCancelled = appointmentModel.appointmentStatus ==
+            AppointmentStatus.cancelled ||
+        appointmentModel.appointmentStatus == AppointmentStatus.cancelledByUser;
+    return isCancelled;
   }
 }
