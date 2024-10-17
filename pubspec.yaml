@@ -132,6 +132,7 @@ flutter:
     - assets/images/treatement/
     - assets/images/video_images/
     - assets/images/payments/
+    - assets/images/profile/
     - assets/svgs/
     - assets/images/notification_images/
   # An image asset can refer to one or more resolution-specific "variants", see
