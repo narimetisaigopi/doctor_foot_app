@@ -1,8 +1,9 @@
 import 'package:drfootapp/models/appointment_models/appointment_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/booking_history_screen.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_view_details_page.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,9 +28,10 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
           const SizedBox(
             height: 78,
           ),
-          Container(
-            height: 196,
-            width: double.infinity,
+          const CustomImage(
+            height: 198,
+            width: 248,
+            path: AssetsConstants.appointment_done,
           ),
           const SizedBox(
             height: 16,

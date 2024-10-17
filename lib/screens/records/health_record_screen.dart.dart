@@ -10,14 +10,14 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class ImagesScreen extends StatefulWidget {
-  const ImagesScreen({super.key});
+class HealthRecordScreen extends StatefulWidget {
+  const HealthRecordScreen({super.key});
 
   @override
-  State<ImagesScreen> createState() => _ImagesScreenState();
+  State<HealthRecordScreen> createState() => _HealthRecordScreenState();
 }
 
-class _ImagesScreenState extends State<ImagesScreen> {
+class _HealthRecordScreenState extends State<HealthRecordScreen> {
   XFile? xFile;
 
   @override
@@ -101,7 +101,9 @@ class _ImagesScreenState extends State<ImagesScreen> {
                 padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
                 child: SingleChildScrollView(
                   child: Column(
-                    children: [AllRecentUploadImages()],
+                    children: [
+                      AllRecentUploadImages(),
+                    ],
                   ),
                 ),
               ))
@@ -129,7 +131,6 @@ class _ImagesScreenState extends State<ImagesScreen> {
     xFile = await imagePicker.pickImage(source: ImageSource.camera);
     if (xFile != null) {
       customAlert(
-        title: '',
         upload: () {
           Get.back();
           Get.back();
@@ -144,12 +145,10 @@ class _ImagesScreenState extends State<ImagesScreen> {
   }
 
   Future<bool?> customAlert({
-    required String title,
     required VoidCallback upload,
   }) {
     return Alert(
       context: context,
-      title: title,
       content: const Column(
         children: [
           Text(
@@ -169,9 +168,10 @@ class _ImagesScreenState extends State<ImagesScreen> {
             textAlign: TextAlign.center,
           ),
           CustomImage(
-            path: AssetsConstants.cancel_image,
+            path: AssetsConstants.appointment_cancel,
             height: 169,
             width: 223,
+            fit: BoxFit.contain,
           ),
         ],
       ),

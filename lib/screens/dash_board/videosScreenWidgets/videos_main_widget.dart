@@ -24,12 +24,16 @@ class _VideosMainWidgetState extends State<VideosMainWidget> {
     return GestureDetector(
       onTap: widget.onPress,
       child: Stack(children: [
-        Center(
-          child: SizedBox(
-            child: CustomImage(
-              path: widget.image,
-              height: 160,
-              width: double.infinity,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: SizedBox(
+              child: CustomImage(
+                path: widget.image,
+                height: 160,
+                width: double.infinity,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),
@@ -38,13 +42,16 @@ class _VideosMainWidgetState extends State<VideosMainWidget> {
           left: 16,
           child: Column(
             children: [
-              const Text(
-                "gettingMedisineText",
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textWhiteColor),
-              ).tr(),
+              Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: const Text(
+                  "gettingMedisineText",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textWhiteColor),
+                ).tr(),
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -52,12 +59,12 @@ class _VideosMainWidgetState extends State<VideosMainWidget> {
                 height: 26,
                 width: 120,
                 decoration: BoxDecoration(
-                    color: AppColors.primary,
+                    color: AppColors.primaryBlue,
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child:  Text(
                     widget.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
                         color: AppColors.textWhiteColor),

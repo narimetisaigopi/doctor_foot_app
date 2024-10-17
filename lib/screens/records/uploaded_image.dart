@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/screens/records/uploaded_images_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/widgets/custom_Image.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class UploadedImage extends StatefulWidget {
@@ -45,12 +46,11 @@ class _UploadedImageState extends State<UploadedImage> {
           padding: const EdgeInsets.only(top: 12),
           child: Column(
             children: [
-              CustomImage(
-                height: 104,
-                width: 104,
-                path: widget.recentUploadModel.image,
-                fit: BoxFit.fill,
-              ),
+              // CustomNetworkImageWidget(
+              //   path: widget.recentUploadModel.image,
+              //   height: 104,
+              //   width: 104,
+              // ),
               const SizedBox(height: 6),
               Text(
                 widget.recentUploadModel.type,

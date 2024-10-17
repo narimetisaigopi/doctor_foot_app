@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (FirebaseAuth.instance.currentUser != null) {
           Get.offAll(() => const DashBoardScreen());
         } else {
-          Get.offAll(() => const IntroScreen());
+          Get.offAll(() => const DashBoardScreen());
         }
       }
     });
