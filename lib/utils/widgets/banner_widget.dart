@@ -35,37 +35,41 @@ class _BannerWidgetState extends State<BannerWidget> {
               height: 180,
               width: double.infinity,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30, top: 72),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Positioned(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
-                      child: Text(
-                        widget.bannerModel.descrition,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.secondary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ).tr(),
+            Positioned(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 112),
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            widget.bannerModel.descrition,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.black1,
+                            ),
+                            textAlign: TextAlign.center,
+                          ).tr(),
+                          const SizedBox(height: 8),
+                          SmoothPageIndicator(
+                            controller: Get.put(BannersController())
+                                .bannersPageController,
+                            count: widget.count,
+                            effect: const ScrollingDotsEffect(
+                              dotHeight: 08,
+                              dotWidth: 08,
+                              activeDotColor: AppColors.whiteBgColor,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  SmoothPageIndicator(
-                    controller:
-                        Get.put(BannersController()).bannersPageController,
-                    count: widget.count,
-                    effect: const ScrollingDotsEffect(
-                      dotHeight: 08,
-                      dotWidth: 08,
-                      activeDotColor: AppColors.whiteBgColor,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],

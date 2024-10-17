@@ -3,6 +3,7 @@ import 'package:drfootapp/screens/home_widgets/models/health_record_model.dart';
 import 'package:drfootapp/screens/records/images_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:drfootapp/screens/records/health_record_screen.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,13 +46,13 @@ class _HealthRecordsListState extends State<HealthRecordsList> {
                     onTap: () {
                       switch (index) {
                         case 0:
-                          Get.to(() => const ImagesScreen());
+                          Get.to(() => const HealthRecordScreen());
                           break;
                         case 1:
-                          Get.to(() => const ImagesScreen());
+                          Get.to(() => const HealthRecordScreen());
                           break;
                         case 2:
-                          Get.to(() => const ImagesScreen());
+                          Get.to(() => const HealthRecordScreen());
                           break;
                       }
                     },

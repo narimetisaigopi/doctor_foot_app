@@ -24,6 +24,7 @@ import 'package:get/get.dart';
 // import 'package:flutter/foundation.dart'
 //     show consolidateHttpClientResponseBytes, kIsWeb;
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utility {
@@ -63,6 +64,81 @@ class Utility {
         return alert;
       },
     );
+  }
+
+  static Future<bool?> customAlert({
+    required BuildContext context,
+    String title = "",
+    String subTitle = "",
+    required Widget image,
+    bool isButtonType = false,
+    VoidCallback? upload,
+    VoidCallback? no,
+    VoidCallback? yes,
+    required String buttonName,
+    required Color buttonBg,
+    Color textColor = AppColors.redColor,
+  }) {
+    return Alert(
+      context: context,
+      content: Column(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              color: AppColors.cancelColor,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            subTitle,
+            style: const TextStyle(
+              color: AppColors.black2,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          image,
+        ],
+      ),
+      buttons: [
+        isButtonType
+            ? DialogButton(
+                onPressed: upload,
+                color: buttonBg,
+                child: Text(
+                  buttonName,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 20,
+                  ),
+                ),
+              )
+            : DialogButton(
+                onPressed: no,
+                color: buttonBg,
+                child: Text(
+                  buttonName,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+        DialogButton(
+          onPressed: yes,
+          color: AppColors.primaryBlue,
+          child: Text(
+            buttonName,
+            style: TextStyle(
+              color: textColor,
+              fontSize: 20,
+            ),
+          ),
+        )
+      ],
+    ).show();
   }
 
   static myBottomSheet(BuildContext context,

@@ -141,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         children: [
                                           CustomListTileWidget(
                                             text: "myProfile",
-                                            leadingIcon: Icons.person,
+                                            leadingIcon: AssetsConstants.user_profile,
                                             onPressed: () {
                                               Get.to(() =>
                                                   const EditProfileScreen());
@@ -149,21 +149,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           CustomListTileWidget(
                                               text: "appointment",
-                                              leadingIcon: Icons.apps_outage,
+                                              leadingIcon: AssetsConstants.my_oppoinments,
                                               onPressed: () {
                                                 Get.to(() =>
                                                     const MyAppointmentsScreen());
                                               }),
                                           CustomListTileWidget(
                                               text: "service",
-                                              leadingIcon: Icons.book_online,
+                                              leadingIcon: AssetsConstants.booked_services,
                                               onPressed: () {
                                                 Get.to(
                                                     const MyServiceBookingsScreen());
                                               }),
                                           CustomListTileWidget(
                                               text: "payments",
-                                              leadingIcon: Icons.payments,
+                                              leadingIcon: AssetsConstants.payments_refndes,
                                               onPressed: () {
                                                 Get.to(
                                                     const PaymentsAndRefundScreen());
@@ -171,13 +171,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           CustomListTileWidget(
                                               text: "Records",
                                               leadingIcon:
-                                                  Icons.record_voice_over,
+                                                  AssetsConstants.records_icon,
                                               onPressed: () {
                                                 Get.to(const RecordsScreen());
                                               }),
                                           CustomListTileWidget(
                                               text: "contactus",
-                                              leadingIcon: Icons.call_sharp,
+                                              leadingIcon: AssetsConstants.contact_us_icon,
                                               onPressed: () {
                                                 Get.to(const ContactUsScreen());
                                               }),

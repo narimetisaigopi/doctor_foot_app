@@ -102,7 +102,7 @@ class _BookedAppointmentDetailsScreenState
                   AppColors.redColor,
                   () {
                     customAlert(
-                      title: ' Are sure you want to  \n  Cancel Booking ',
+                      // title: ' Are sure you want to  \n  Cancel Booking ',
                       no: () {
                         Get.back();
                       },
@@ -323,7 +323,7 @@ class _BookedAppointmentDetailsScreenState
             textAlign: TextAlign.center,
           ),
           CustomImage(
-            path: AssetsConstants.cancel_image,
+            path: AssetsConstants.appointment_cancel,
             height: 169,
             width: 223,
           ),
@@ -346,14 +346,29 @@ class _BookedAppointmentDetailsScreenState
   }
 
   Future<bool?> customAlert({
-    required String title,
     required VoidCallback no,
     required VoidCallback yes,
   }) {
     return Alert(
       context: context,
-      type: AlertType.error,
-      title: title,
+      content: const Column(
+        children: [
+          CustomImage(
+            path: AssetsConstants.cancel_booking,
+            height: 64,
+            width: 64,
+          ),
+          Text(
+            "Are sure you want to \nCancel Booking",
+            style: TextStyle(
+              color: AppColors.black1,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
       buttons: [
         DialogButton(
           onPressed: no,

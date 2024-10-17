@@ -40,6 +40,7 @@ class AssetsConstants {
   static const String home_one = "$homePath/home_one.png";
   static const String calendar = "$homePath/calendar.png";
   static const String smile_image = "assets/images/payments/smile_image.png";
+  static const String loder = "assets/images/home/Loder.png";
   // our services
   static const String consult_doctor = "$homePath/consult_doctor.png";
   static const String online_consultation = "$homePath/online_consultation.png";
@@ -354,5 +355,22 @@ class AssetsConstants {
   static const String dressing_at_home_image =
       "assets/images/home/dressing_at_home_image.png";
   static const String done_image = "assets/images/payments/done_image.png";
-  static const String cancel_image = "assets/images/payments/cancel_image.png";
+  static const String appointment_cancel =
+      "assets/images/payments/appointment_cancel.png";
+  static const String cancel_booking =
+      "assets/images/payments/cancel_booking.png";
+  static const String appointment_done =
+      "assets/images/payments/appointment_done.png";
+
+  // profile icons
+  static const String contact_us_icon =
+      "assets/images/profile/contact_us_icon.png";
+  static const String booked_services =
+      "assets/images/profile/booked_services.png";
+  static const String my_oppoinments =
+      "assets/images/profile/my_oppoinments.png";
+  static const String payments_refndes =
+      "assets/images/profile/payments_refndes.png";
+  static const String records_icon = "assets/images/profile/records_icon.png";
+  static const String user_profile = "assets/images/profile/user_profile.png";
 }
