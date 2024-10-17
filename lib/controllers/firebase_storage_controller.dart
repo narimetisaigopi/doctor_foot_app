@@ -9,7 +9,9 @@ import 'package:path/path.dart' as pppp;
 
 class FirebaseStorageController extends GetxController {
   Future<String> uploadImageToFirebase(
-      {required String directoryName, required XFile uploadFile}) async {
+      {required String directoryName,
+      String fileName = "",
+      required XFile uploadFile}) async {
     List<String> urls = await uploadImagesToFirebase(
         directoryName: directoryName, uploadFiles: [uploadFile]);
     if (urls.isNotEmpty) {

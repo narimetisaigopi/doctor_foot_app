@@ -75,36 +75,12 @@ class _HomeScreenState extends State<HomeScreen> {
               thickness: 10,
             ),
             const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: Text(
-                "Check your feet".toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.black2,
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
             const CheckYourFeetList(),
-            const SizedBox(height: 12),
             const Divider(
               color: AppColors.riskCheckBg,
               thickness: 10,
             ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: const Text(
-                "HEALTH RECORDS",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.textBackThickColor,
-                ),
-              ).tr(),
-            ),
+            const SizedBox(height: 10),
             const HealthRecordsList(),
             const Divider(
               color: AppColors.riskCheckBg,

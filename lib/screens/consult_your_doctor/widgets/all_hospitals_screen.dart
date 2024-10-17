@@ -45,6 +45,7 @@ class _AllHospitalsScreenState extends State<AllHospitalsScreen>
               HospitalModel.fromMap(documentSnapshots[index].data() as Map);
           return HospitalWidget(
             hospitalModel: hospitalModel,
+            isAdmin: false,
           );
         },
       ),
@@ -52,7 +53,9 @@ class _AllHospitalsScreenState extends State<AllHospitalsScreen>
   }
 
   Query getQuery() {
-    Query query = hospitalsCollectionReference.orderBy("timestamp");
+    Query query = hospitalsCollectionReference
+        .where("isActive", isEqualTo: true)
+        .orderBy("timestamp");
     return query;
   }
 }

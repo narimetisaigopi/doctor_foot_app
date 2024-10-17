@@ -83,4 +83,16 @@ class UserModel {
       "ulcerMonitoringSubscriptionDate": ulcerMonitoringSubscriptionDate
     };
   }
+
+  Map<String, dynamic> toUpdateMap() {
+    return {
+      'dateOfBirth': dateOfBirth,
+      'gender': gender,
+      'timestamp': DateTime.now().toString(),
+      'emailId': emailId,
+      'bloodgroup': bloodgroup,
+      'height': height,
+      'weight': weight,
+    };
+  }
 }

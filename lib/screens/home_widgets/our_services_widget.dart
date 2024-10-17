@@ -21,7 +21,7 @@ class _OurServicesWidgetState extends State<OurServicesWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 1.45,
+      height: MediaQuery.of(context).size.height * 1.25,
       width: double.infinity,
       child: Container(
         margin: const EdgeInsets.only(
