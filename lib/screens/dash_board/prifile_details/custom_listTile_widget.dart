@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CustomListTileWidget extends StatefulWidget {
   final VoidCallback onPressed;
   final String text;
-  final IconData leadingIcon;
+  final String leadingIcon;
   final bool isIconNeeded;
   final bool isSelected; // New property to determine if the item is selected
   final IconData? trailingIcon;
@@ -48,16 +48,12 @@ class _CustomListTileWidgetState extends State<CustomListTileWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8)),
                 child: Padding(
-                  padding: const EdgeInsets.all(6),
-                  child: CircleAvatar(
-                    radius: 18,
-                    backgroundColor: AppColors.primaryBlue,
-                    child: Icon(
+                    padding: const EdgeInsets.all(6),
+                    child: Image.asset(
                       widget.leadingIcon,
-                      color: AppColors.secondary,
-                    ),
-                  ),
-                ),
+                      height: 22,
+                      width: 22,
+                    )),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
