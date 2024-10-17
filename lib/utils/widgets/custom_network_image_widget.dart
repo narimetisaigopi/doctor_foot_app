@@ -6,12 +6,16 @@ class CustomNetworkImageWidget extends StatefulWidget {
   final String path;
   final double width;
   final double height;
+  final double radius;
   final BoxFit fit;
+  final bool isCircle;
   const CustomNetworkImageWidget(
       {super.key,
       required this.path,
       this.width = 50,
       this.height = 50,
+      this.radius = 30,
+      this.isCircle = false,
       this.fit = BoxFit.cover});
 
   @override
@@ -22,7 +26,19 @@ class CustomNetworkImageWidget extends StatefulWidget {
 class _CustomNetworkImageWidgetState extends State<CustomNetworkImageWidget> {
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
+    return widget.isCircle
+        ? CircleAvatar(
+            radius: widget.radius,
+            child: ClipOval(
+              child: CachedNetworkImage(
+                imageUrl: widget.path,
+                fit: BoxFit.cover,
+                width: widget.width,
+                height: widget.height,
+              ),
+            ),
+          )
+        : CachedNetworkImage(
       height: widget.height,
       width: widget.width,
       imageUrl: widget.path,

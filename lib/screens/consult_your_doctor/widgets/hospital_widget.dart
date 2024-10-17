@@ -1,6 +1,7 @@
 import 'package:drfootapp/admin/hospital/create_hospital.dart';
 import 'package:drfootapp/controllers/hospitals_controller.dart';
 import 'package:drfootapp/models/hospital_model.dart';
+import 'package:drfootapp/screens/consult_your_doctor/find_your_doctors_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/small_button.dart';
@@ -54,17 +55,17 @@ class _HospitalWidgetState extends State<HospitalWidget> {
                                 size: 22,
                               ),
                               const SizedBox(width: 4),
-                              const Text(
-                                "4.5",
-                                style: TextStyle(
+                              Text(
+                                "${widget.hospitalModel.averageRating}",
+                                style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.black2,
                                 ),
                               ).tr(),
-                              const Text(
-                                "(134)",
-                                style: TextStyle(
+                              Text(
+                                "(${widget.hospitalModel.reviewCount})",
+                                style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.grey2,
@@ -94,8 +95,11 @@ class _HospitalWidgetState extends State<HospitalWidget> {
                             const SizedBox(height: 12),
                             Text(
                               widget.hospitalModel.address,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 16,
+                
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.black2,
                               ),
@@ -106,7 +110,11 @@ class _HospitalWidgetState extends State<HospitalWidget> {
                               bgColor: AppColors.primaryBlue,
                               buttonName: "View",
                               textColor: AppColors.whiteBgColor,
-                              onPress: () {},
+                              onPress: () {
+                                Get.to(() => FindYourDoctorsScreen(
+                                      hospitalModel: widget.hospitalModel,
+                                    ));
+                              },
                             )
                           ],
                         ),

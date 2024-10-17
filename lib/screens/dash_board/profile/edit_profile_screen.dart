@@ -1,27 +1,28 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
-class MyProfileScreen extends StatefulWidget {
-  const MyProfileScreen({super.key});
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key});
 
   @override
-  State<MyProfileScreen> createState() => _MyProfileScreenState();
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
-class _MyProfileScreenState extends State<MyProfileScreen> {
+class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
-  int selectedContainerIndex = 0;
 
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());
@@ -32,29 +33,24 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   setDefault() {
     //email
-    _authenticationController.userNameController.text =
-        loginUserModel.userName;
+    _authenticationController.userNameController.text = loginUserModel.userName;
     //mobile
     _authenticationController.mobileNumberController.text =
         loginUserModel.mobileNumber;
     //email
-    _authenticationController.emailController.text =
-        loginUserModel.emailId;
+    _authenticationController.emailController.text = loginUserModel.emailId;
     //dob
     _authenticationController.dateOfBirthController.text =
         loginUserModel.dateOfBirth;
     //gender
-    _authenticationController.genderController.text =
-        loginUserModel.gender;
+    _authenticationController.genderController.text = loginUserModel.gender;
     //blood
     _authenticationController.bloodGroupController.text =
         loginUserModel.bloodgroup;
     //height
-    _authenticationController.heightController.text =
-        loginUserModel.height;
+    _authenticationController.heightController.text = loginUserModel.height;
     //weight
-    _authenticationController.weightController.text =
-        loginUserModel.weight;
+    _authenticationController.weightController.text = loginUserModel.weight;
   }
 
   @override
@@ -66,7 +62,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondary,
+      backgroundColor: AppColors.bgColorAppointment,
       appBar: AppBar(
         backgroundColor: AppColors.primaryBlue,
         leading: IconButton(
@@ -105,61 +101,50 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           height: 22,
                         ),
                         SizedBox(
-                          height: 160,
-                          width: 160,
-                          child: Stack(
-                              clipBehavior: Clip.none,
-                              fit: StackFit.expand,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          color: AppColors.whiteBgColor,
-                                          borderRadius:
-                                              BorderRadius.circular(100)),
-                                      child: const CustomImage(
-                                        path: AssetsConstants.profile_image,
-                                        height: double.infinity,
-                                        width: double.infinity,
-                                      )),
-                                ),
-                                Positioned(
-                                    right: -8,
-                                    bottom: 0,
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          color: AppColors.whiteBgColor,
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                        ),
-                                        height: 46,
-                                        width: 46,
-                                        child: IconButton(
-                                          icon: const Icon(
-                                            Icons.camera_alt_rounded,
-                                            color: AppColors.primaryBlue,
-                                          ),
-                                          onPressed: () {},
-                                        )))
-                                // Container(
-                                //   decoration: BoxDecoration(
-                                //     boxShadow: BoxShadow.,
-                                //       color: AppColors.whiteBgColor,
-                                //       borderRadius: BorderRadius.circular(100),
-                                //       border:
-                                //           Border.all(color: AppColors.secondary, width: 2)),
-                                //   height: 160,
-                                //   width: 160,
-                                //   child: const SvgImageWidget(
-                                //       path: AssetsConstants.profile_image),
-                                // ),
-                              ]),
-                        ),
-                        const SizedBox(
-                          height: 22,
+                          height: 120,
+                          width: 120,
+                          child: Stack(clipBehavior: Clip.none, children: [
+                            CustomNetworkImageWidget(
+                              path: loginUserModel.profilePic,
+                              height: double.infinity,
+                              width: double.infinity,
+                              isCircle: true,
+                              radius: 100,
+                            ),
+                            Positioned(
+                                right: -8,
+                                bottom: 0,
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColors.whiteBgColor,
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                    height: 36,
+                                    width: 36,
+                                    child: IconButton(
+                                      icon: const Icon(
+                                        Icons.camera_alt_rounded,
+                                        size: 16,
+                                        color: AppColors.primaryBlue,
+                                      ),
+                                      onPressed: () async {
+                                        XFile? xFile = await ImagePicker()
+                                            .pickImage(
+                                                source: ImageSource.gallery);
+                                        if (xFile != null) {
+                                          await Get.put(
+                                                  FirebaseStorageController())
+                                              .uploadImageToFirebase(
+                                                  directoryName: storageProfile,
+                                                  uploadFile: xFile);
+                                        }
+                                      },
+                                    )))
+                          ]),
                         ),
                         MyTextField(
                           enabled: false,
+                          labelNeeded: true,
                           textInputType: TextInputType.text,
                           bgColor: AppColors.whiteBgColor,
                           hint: Strings.userNameTextFieldLabel,
@@ -191,6 +176,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           textInputType: TextInputType.number,
                           borderRadius: 8,
                           enabled: false,
+                          labelNeeded: true,
                           bgColor: AppColors.whiteBgColor,
                           hint: Strings.mobileTextFieldHint,
                           textEditingController:
@@ -221,6 +207,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         ),
                         MyTextField(
                           borderRadius: 8,
+                          labelNeeded: true,
                           bgColor: AppColors.whiteBgColor,
                           hint: Strings.emailTextFieldFocusHint,
                           textEditingController:
@@ -251,6 +238,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         MyTextField(
                           iconNeeded: true,
                           borderRadius: 8,
+                          labelNeeded: true,
                           bgColor: AppColors.whiteBgColor,
                           label: Strings.dateOfBirthTextFieldLabel,
                           hint: Strings.dateOfBirthTextFieldHint,
@@ -285,59 +273,68 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             FormBuilderValidators.date(),
                           ]),
                         ),
-                        isSize,
                         Align(
                           alignment: Alignment.topLeft,
-                          child: const Text(
-                            Strings.gender,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 18),
-                          ).tr(),
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(left: 8.0, right: 8.0),
+                            child: const Text(
+                              Strings.gender,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 18),
+                            ).tr(),
+                          ),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Utility.choiceContainer(
-                              title: Strings.male,
-                              isSelected: selectedContainerIndex == 0,
-                              onTap: () {
-                                setState(() {
-                                  selectedContainerIndex = 0;
-                                  _authenticationController
-                                      .genderController.text = Strings.male;
-                                });
-                              },
-                            ),
-                            Utility.choiceContainer(
-                              title: Strings.female,
-                              isSelected: selectedContainerIndex == 1,
-                              onTap: () {
-                                setState(() {
-                                  selectedContainerIndex = 1;
-                                  _authenticationController
-                                      .genderController.text = Strings.female;
-                                });
-                              },
-                            ),
-                            Utility.choiceContainer(
-                              title: Strings.others,
-                              isSelected: selectedContainerIndex == 2,
-                              onTap: () {
-                                setState(() {
-                                  selectedContainerIndex = 2;
-                                  _authenticationController
-                                      .genderController.text = Strings.others;
-                                });
-                              },
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Utility.choiceContainer(
+                                title: Strings.male,
+                                isSelected: _authenticationController
+                                        .genderController.text ==
+                                    Strings.male,
+                                onTap: () {
+                                  setState(() {
+                                    _authenticationController
+                                        .genderController.text = Strings.male;
+                                  });
+                                },
+                              ),
+                              Utility.choiceContainer(
+                                title: Strings.female,
+                                isSelected: _authenticationController
+                                        .genderController.text ==
+                                    Strings.female,
+                                onTap: () {
+                                  setState(() {
+                                    _authenticationController
+                                        .genderController.text = Strings.female;
+                                  });
+                                },
+                              ),
+                              Utility.choiceContainer(
+                                title: Strings.others,
+                                isSelected: _authenticationController
+                                        .genderController.text ==
+                                    Strings.others,
+                                onTap: () {
+                                  setState(() {
+                                    _authenticationController
+                                        .genderController.text = Strings.others;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                        isSize,
                         MyTextField(
                           borderRadius: 8,
+                          labelNeeded: true,
                           bgColor: AppColors.whiteBgColor,
                           hint: "Add blood group",
                           textEditingController:
@@ -349,11 +346,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             FormBuilderValidators.required(),
                           ]),
                         ),
-                        isSize,
                         Row(
                           children: [
                             Expanded(
                               child: MyTextField(
+                                labelNeeded: true,
                                 borderRadius: 8,
                                 bgColor: AppColors.whiteBgColor,
                                 textInputType: TextInputType.number,
@@ -384,6 +381,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             const SizedBox(width: 8),
                             Expanded(
                               child: MyTextField(
+                                labelNeeded: true,
                                 borderRadius: 8,
                                 bgColor: AppColors.whiteBgColor,
                                 textInputType: TextInputType.number,
@@ -414,18 +412,22 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           ],
                         ),
                         isSize,
-
-                        // CustomButton(
-                        //   isBoxShadow: false,
-                        //   buttonName: "Save",
-                        //   onPress: () {
-                        //     if (_formKey.currentState!.validate()) {
-                        //       return Fluttertoast.showToast(msg: "success");
-                        //     } else {
-                        //       return Fluttertoast.showToast(msg: "Failed");
-                        //     }
-                        //   },
-                        // ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            color: AppColors.whiteBgColor,
+                          ),
+                          child: Center(
+                            child: authenticationController.isLoading
+                                ? const CircularProgressIndicator()
+                                : CustomButton(
+                                    bgColor: AppColors.primaryBlue,
+                                    buttonName: "Done",
+                                    textColor: AppColors.whiteBgColor,
+                                    isBoxShadow: false,
+                                    onPress: validate,
+                                  ),
+                          ),
+                        ),
                         const SizedBox(
                           height: 30,
                         ),
@@ -435,25 +437,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 ),
               ),
             ),
-            Expanded(
-              flex: 15,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.whiteBgColor,
-                ),
-                child: Center(
-                  child: authenticationController.isLoading
-                      ? const CircularProgressIndicator()
-                      : CustomButton(
-                          bgColor: AppColors.primaryBlue,
-                          buttonName: "Done",
-                          textColor: AppColors.whiteBgColor,
-                          isBoxShadow: false,
-                          onPress: () => validate(),
-                        ),
-                ),
-              ),
-            )
           ],
         );
       }),
@@ -463,10 +446,16 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   validate() {
     Utility().closeKeyboard();
     bool status = _formKey.currentState!.saveAndValidate();
-    // Utility.myBottomSheet(context, widget: const HomeScreen());
-    // Get.to(() => const DashBoardScreen());
     if (status) {
-      // _authenticationController.firebaseSendOTP(context);
+      Utility().showAlertDialog(
+          context: context,
+          yesCallback: () {
+            Get.back();
+            _authenticationController.editProfile();
+          },
+          noCallback: () {
+            Get.back();
+          });
     }
   }
 }

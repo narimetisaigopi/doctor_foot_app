@@ -961,7 +961,7 @@ class Utility {
     required Function() yesCallback,
     required Function() noCallback,
     String title = "Confirm",
-    String content = "Do you want to Delete Address?",
+    String content = "Do you want to proceed?",
   }) {
     AlertDialog alert = AlertDialog(
       title: Text(title),

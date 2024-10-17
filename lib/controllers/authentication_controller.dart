@@ -15,6 +15,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 UserModel loginUserModel = UserModel();
 
@@ -268,6 +269,29 @@ class AuthenticationController extends GetxController {
     mobileNumberController.clear();
   }
 
+  editProfile() async {
+    try {
+      _updateLoading(true);
+      UserModel userModel = UserModel();
+      userModel.emailId = emailController.text;
+      userModel.dateOfBirth = dateOfBirthController.text;
+      userModel.gender = genderController.text;
+      userModel.bloodgroup = bloodGroupController.text;
+      userModel.height = heightController.text;
+      userModel.weight = weightController.text;
+      await usersCollectionReference
+          .doc(Utility().getCurrentUserId())
+          .update(userModel.toUpdateMap());
+      await getUserDataAndStoreLocally();
+      Utility.toast("Updated profile successfully.");
+      Get.back();
+    } catch (e) {
+      Utility.toast("Failed to update ${e.toString()}");
+    } finally {
+      _updateLoading(false);
+    }
+  }
+
   logout(BuildContext context) {
     showDialog(
       context: context,
@@ -302,5 +326,9 @@ class AuthenticationController extends GetxController {
         );
       },
     );
+  }
+
+  uploadPorfilePic(XFile xfile) {
+    
   }
 }
