@@ -96,6 +96,7 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                 AppColors.redColor,
                 () {
                   customAlert(
+                    title: ' Are sure you want to  \n  Cancel Booking ',
                     no: () {
                       Get.back();
                     },
@@ -113,6 +114,7 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
                       //     Get.back();
                       //   },
                       // );
+                      
                     },
                   );
                 },
@@ -314,7 +316,7 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
             textAlign: TextAlign.center,
           ),
           CustomImage(
-            path: AssetsConstants.appointment_cancel,
+            path: AssetsConstants.cancel_image,
             height: 169,
             width: 223,
           ),
@@ -337,29 +339,14 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
   }
 
   Future<bool?> customAlert({
+    required String title,
     required VoidCallback no,
     required VoidCallback yes,
   }) {
     return Alert(
       context: context,
-      content: const Column(
-        children: [
-          CustomImage(
-            path: AssetsConstants.cancel_booking,
-            height: 64,
-            width: 64,
-          ),
-          Text(
-            "Are sure you want to \nCancel Booking",
-            style: TextStyle(
-              color: AppColors.black1,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
+      type: AlertType.error,
+      title: title,
       buttons: [
         DialogButton(
           onPressed: no,

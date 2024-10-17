@@ -295,7 +295,7 @@ class Strings {
   static const String charcotFootText = "Charcot Foot";
 
   static const String completed = "Completed";
-  static const String upcoming = "UpComing";
+  static const String upcoming = "Upcoming";
   static const String cancelled = "Cancelled";
   // health records
   static const String images = "Images";

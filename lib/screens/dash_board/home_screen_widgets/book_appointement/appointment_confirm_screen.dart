@@ -1,5 +1,5 @@
 import 'package:drfootapp/models/appointment_models/appointment_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/booking_history_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/booked_appointment_details_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -96,7 +96,7 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
           CustomButton(
             buttonName: "View details",
             onPress: () {
-              Get.to(() => BookingHistoryScreen(
+              Get.to(() => BookedAppointmentDetailsScreen(
                     appointmentModel: widget.appointmentModel,
                   ));
             },
