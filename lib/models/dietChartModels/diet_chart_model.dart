@@ -1,3 +1,5 @@
+import 'package:drfootapp/utils/enums.dart';
+
 class DietChartModel {
   String docId;
   String week;
@@ -7,7 +9,9 @@ class DietChartModel {
   String dietDescription;
   bool isActive;
   dynamic timestamp;
-  String dietType; // veg,non-veg,
+  DietType dietType; // veg,non-veg,
+  bool isDiaryProduct;
+  List ingredientsList;
   DietChartModel(
       {this.docId = "",
       this.week = "",
@@ -15,9 +19,11 @@ class DietChartModel {
       this.slotTiming = "",
       this.dietImage = "",
       this.isActive = true,
+      this.isDiaryProduct = false,
       this.timestamp = "",
-      this.dietType = "",
-      this.dietDescription = ""});
+      this.dietType = DietType.veg,
+      this.dietDescription = "",
+      this.ingredientsList = const []});
 
   factory DietChartModel.fromJson(Map<String, dynamic> map) {
     return DietChartModel(
@@ -27,9 +33,13 @@ class DietChartModel {
         slotTiming: map["slotTiming"] ?? "",
         dietImage: map["dietImage"] ?? "",
         isActive: map["isActive"] ?? true,
+        isDiaryProduct: map["isDiaryProduct"] ?? true,
         timestamp: map["timestamp"] ?? "",
-        dietType: map["dietType"] ?? "",
-        dietDescription: map["dietDescription"] ?? "");
+        dietDescription: map["dietDescription"] ?? "",
+        dietType: map['dietType'] != null
+            ? DietType.values[map['dietType']]
+            : DietType.veg,
+        ingredientsList: map["ingredientsList"] ?? []);
   }
 
   Map<String, dynamic> toMap() {
@@ -42,7 +52,9 @@ class DietChartModel {
       "isActive": isActive,
       "timestamp": DateTime.now(),
       "dietDescription": dietDescription,
-      "dietType": dietType
+      "dietType": dietType.index,
+      "isDiaryProduct": isDiaryProduct,
+      "ingredientsList": ingredientsList
     };
   }
 }

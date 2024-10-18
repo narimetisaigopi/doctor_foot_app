@@ -6,7 +6,6 @@ import 'package:drfootapp/screens/check_your_feet/foot_pain_bg_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/skin_and_nail_bg_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/sports_injuries_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/toe_deformities_bg_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

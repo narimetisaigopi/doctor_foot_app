@@ -6,8 +6,10 @@ class HospitalModel {
   var timestamp;
   var modifiedAt;
   bool isActive;
-  double lat;
-  double lng;
+  dynamic lat;
+  dynamic lng;
+  int reviewCount;
+  double averageRating;
 
   HospitalModel(
       {this.docId = "",
@@ -18,7 +20,9 @@ class HospitalModel {
       this.timestamp,
       this.modifiedAt,
       this.lat = 0.0,
-      this.lng = 0.0});
+      this.lng = 0.0,
+      this.reviewCount = 0,
+      this.averageRating = 0.0});
 
   factory HospitalModel.fromMap(Map map) {
     return HospitalModel(
@@ -30,7 +34,10 @@ class HospitalModel {
         timestamp: map["timestamp"],
         lat: map["lat"] ?? 0.0,
         lng: map["lng"] ?? 0.0,
-        modifiedAt: map["modifiedAt"]);
+      modifiedAt: map["modifiedAt"],
+      reviewCount: map["reviewCount"] ?? 0,
+      averageRating: map["averageRating"] ?? 0.0,
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -43,7 +50,9 @@ class HospitalModel {
       "image": image,
       "lat": lat,
       "lng": lng,
-      "modifiedAt": modifiedAt
+      "modifiedAt": modifiedAt,
+      "reviewCount": reviewCount,
+      "averageRating": averageRating
     };
   }
 }

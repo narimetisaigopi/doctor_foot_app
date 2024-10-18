@@ -1037,7 +1037,7 @@ class Utility {
     required Function() yesCallback,
     required Function() noCallback,
     String title = "Confirm",
-    String content = "Do you want to Delete Address?",
+    String content = "Do you want to proceed?",
   }) {
     AlertDialog alert = AlertDialog(
       title: Text(title),
@@ -1175,5 +1175,14 @@ class Utility {
             AppointmentStatus.cancelled ||
         appointmentModel.appointmentStatus == AppointmentStatus.cancelledByUser;
     return isCancelled;
+  }
+
+static String getCurrentWeekDayName() {
+    // Get the current date
+    DateTime now = DateTime.now();
+    // Use DateFormat to get the full weekday name
+    String weekDay =
+        DateFormat('EEEE').format(now); // e.g., "Monday", "Tuesday"
+    return weekDay;
   }
 }

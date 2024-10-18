@@ -134,9 +134,9 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const ExpWidget(
+                          ExpWidget(
                             image: AssetsConstants.patients,
-                            totolCount: "500+",
+                            totolCount: "${widget.doctorModel.noOfPatients}+",
                             title: "General",
                             bgColor: AppColors.expBg,
                           ),
