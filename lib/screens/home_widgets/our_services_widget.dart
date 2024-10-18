@@ -5,6 +5,8 @@ import 'package:drfootapp/screens/dash_board/home_screen_widgets/dressing_screen
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:drfootapp/screens/foot_screening_services/foot_screening_services.dart';
 import 'package:drfootapp/screens/foot_services/foot_services_screens.dart';
+import 'package:drfootapp/static_data/foot_cleansing/foot_cleansing.dart';
+import 'package:drfootapp/static_data/nail_trimming/nail_trimming.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -86,20 +88,21 @@ class _OurServicesWidgetState extends State<OurServicesWidget> {
                                 widget: const DressingScreen());
                             break;
                           case 4:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices: FootServices.footCleaning,
+                            Get.to(() => HomeFootServicesScreen(
+                                  nurseServiceDetailModel:
+                                      FootCleansing.nurseServiceDetailModel,
                                 ));
                             break;
                           case 5:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices:
-                                      FootServices.nailTrimmingService,
+                            Get.to(() => HomeFootServicesScreen(
+                                  nurseServiceDetailModel:
+                                      NailTrimming.nurseServiceDetailModel,
                                 ));
                             break;
                           case 6:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices: FootServices.footware,
-                                ));
+                            // Get.to(() => const HomeFootServicesScreen(
+                            //       footServices: FootServices.footware,
+                            //     ));
                             break;
                           default:
                             break;

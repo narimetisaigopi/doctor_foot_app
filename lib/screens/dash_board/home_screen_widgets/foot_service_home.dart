@@ -77,20 +77,20 @@ class _FootServiceHomeState extends State<FootServiceHome> {
                                 widget: const DressingScreen());
                             break;
                           case 1:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices:
-                                      FootServices.nailTrimmingService,
-                                ));
+                            // Get.to(() => const HomeFootServicesScreen(
+                            //       footServices:
+                            //           FootServices.nailTrimmingService,
+                            //     ));
                             break;
                           case 2:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices: FootServices.footCleaning,
-                                ));
+                            // Get.to(() => const HomeFootServicesScreen(
+                            //       footServices: FootServices.footCleaning,
+                            //     ));
                             break;
                           case 3:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices: FootServices.footware,
-                                ));
+                            // Get.to(() => const HomeFootServicesScreen(
+                            //       footServices: FootServices.footware,
+                            //     ));
                             break;
                           default:
                             break;

@@ -1,8 +1,11 @@
 import 'package:drfootapp/models/homeScreenModels/dressing_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
 import 'package:drfootapp/screens/foot_services/foot_services_screens.dart';
+import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_huge.dart';
+import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_large.dart';
+import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_modarate.dart';
+import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_small.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -68,35 +71,28 @@ class _DressingScreenState extends State<DressingScreen> {
                         Get.back();
                         switch (index) {
                           case 0:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices: FootServices.dressingService,
-                                  dressingServices: DressingServices.small,
-                                  dressingServicesItem:
-                                      DressingServicesItem.image,
+                            Get.to(() => HomeFootServicesScreen(
+                                  nurseServiceDetailModel: DressingAtHomeSmall
+                                      .nurseServiceDetailModel,
                                 ));
                             break;
                           case 1:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices: FootServices.dressingService,
-                                  dressingServices: DressingServices.moderate,
-                                  dressingServicesItem:
-                                      DressingServicesItem.image,
+                            Get.to(() => HomeFootServicesScreen(
+                                  nurseServiceDetailModel:
+                                      DressingAtHomeModearte
+                                          .nurseServiceDetailModel,
                                 ));
                             break;
                           case 2:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices: FootServices.dressingService,
-                                  dressingServices: DressingServices.large,
-                                  dressingServicesItem:
-                                      DressingServicesItem.image,
+                            Get.to(() => HomeFootServicesScreen(
+                                  nurseServiceDetailModel: DressingAtHomeLarge
+                                      .nurseServiceDetailModel,
                                 ));
                             break;
                           case 3:
-                            Get.to(() => const HomeFootServicesScreen(
-                                  footServices: FootServices.dressingService,
-                                  dressingServices: DressingServices.huge,
-                                  dressingServicesItem:
-                                      DressingServicesItem.image,
+                            Get.to(() => HomeFootServicesScreen(
+                                  nurseServiceDetailModel: DressingAtHomeHuge
+                                      .nurseServiceDetailModel,
                                 ));
                             break;
                           default:
