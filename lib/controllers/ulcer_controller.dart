@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/ulcer/have_no_ulcer_model.dart';
+import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -77,7 +78,7 @@ class UlcerController extends GetxController {
           .set(haveNoUlcerModel.toJson());
       Utility.toast("Uploaded successfully.");
       reset();
-      Get.offAll(() => const HomeScreen());
+      Get.offAll(() => const DashBoardScreen());
     } catch (e) {
       logger(e);
       Utility.toast("Failed to upload");

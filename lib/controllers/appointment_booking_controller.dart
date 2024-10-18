@@ -5,7 +5,6 @@ import 'package:drfootapp/models/admin_model.dart';
 import 'package:drfootapp/models/appointment_models/appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/models/payment_model.dart';
-import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_confirm_screen.dart';
 import 'package:drfootapp/screens/payments/razorpay_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
@@ -20,6 +19,7 @@ class AppointmentBookingController extends GetxController {
   DateTime selectedDateTime = DateTime.now();
   bool isDateSelected = false;
   bool isLoading = false;
+  AppointmentType appointmentType = AppointmentType.consultYourDoctor;
   void _updateLoading(bool loading) {
     isLoading = loading;
     update();
@@ -149,6 +149,7 @@ class AppointmentBookingController extends GetxController {
           appointmentDate: selectedDate,
           appointmentTime: selectedTime,
           doctorId: doctorModel.docId,
+          appointmentType: appointmentType,
           timestamp: Timestamp.now(),
           uid: Utility().getCurrentUserId(),
           docId: appointmentDocumentReference.id,

@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/admin/admin_panel.dart';
+import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
 import 'package:drfootapp/screens/auth_screens/privacy.dart';
@@ -15,6 +16,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 UserModel loginUserModel = UserModel();
 
@@ -268,6 +270,29 @@ class AuthenticationController extends GetxController {
     mobileNumberController.clear();
   }
 
+  editProfile() async {
+    try {
+      _updateLoading(true);
+      UserModel userModel = UserModel();
+      userModel.emailId = emailController.text;
+      userModel.dateOfBirth = dateOfBirthController.text;
+      userModel.gender = genderController.text;
+      userModel.bloodgroup = bloodGroupController.text;
+      userModel.height = heightController.text;
+      userModel.weight = weightController.text;
+      await usersCollectionReference
+          .doc(Utility().getCurrentUserId())
+          .update(userModel.toUpdateMap());
+      await getUserDataAndStoreLocally();
+      Utility.toast("Updated profile successfully.");
+      Get.back();
+    } catch (e) {
+      Utility.toast("Failed to update ${e.toString()}");
+    } finally {
+      _updateLoading(false);
+    }
+  }
+
   logout(BuildContext context) {
     showDialog(
       context: context,
@@ -302,5 +327,18 @@ class AuthenticationController extends GetxController {
         );
       },
     );
+  }
+
+  uploadProfilePic(XFile xfile) async {
+    String image = await Get.put(FirebaseStorageController())
+        .uploadImageToFirebase(
+            directoryName: storageProfile,
+            fileName: Utility().getCurrentUserId(),
+            uploadFile: xfile);
+    if (image.isNotEmpty) {
+      loginUserModel.profilePic = image;
+    }
+    update();
+    Utility.toast("Profile pic uploaded successfully.");
   }
 }

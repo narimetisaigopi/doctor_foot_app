@@ -3,7 +3,7 @@ import 'package:drfootapp/screens/dash_board/prifile_details/custom_listtile_wid
 import 'package:drfootapp/screens/dash_board/profile/contact_us_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/appointments/my_appointments_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/faqs_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile/my_profile_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/edit_profile_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/payments_and_refunds_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/records_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/service_bookings/my_service_bookings_screen.dart';
@@ -144,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             leadingIcon: AssetsConstants.user_profile,
                                             onPressed: () {
                                               Get.to(() =>
-                                                  const MyProfileScreen());
+                                                  const EditProfileScreen());
                                             },
                                           ),
                                           CustomListTileWidget(

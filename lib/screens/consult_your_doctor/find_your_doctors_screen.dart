@@ -1,4 +1,5 @@
 import 'package:drfootapp/controllers/appointment_booking_controller.dart';
+import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/all_doctors_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
@@ -9,7 +10,8 @@ import 'package:get/get.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 
 class FindYourDoctorsScreen extends StatefulWidget {
-  const FindYourDoctorsScreen({super.key});
+  final HospitalModel? hospitalModel;
+  const FindYourDoctorsScreen({super.key, this.hospitalModel});
 
   @override
   State<FindYourDoctorsScreen> createState() => _FindYourDoctorsScreenState();

@@ -14,6 +14,7 @@ class AppointmentModel {
   Timestamp? modifiedAt;
   PatientModel? patientModel;
   String paymentId;
+  AppointmentType appointmentType;
 
   AppointmentModel(
       {this.docId = "",
@@ -27,7 +28,8 @@ class AppointmentModel {
       this.appointmentTime = "",
       this.modifiedAt,
       this.patientModel,
-      this.paymentId = ""});
+      this.paymentId = "",
+      this.appointmentType = AppointmentType.consultYourDoctor});
 
   // Convert model to Map for Firestore
   Map<String, dynamic> toMap() {
@@ -44,6 +46,7 @@ class AppointmentModel {
       "paymentId": paymentId,
       "appointmentDate": appointmentDate,
       "appointmentTime": appointmentTime,
+      "appointmentType": appointmentType.index
     };
   }
 
@@ -66,7 +69,10 @@ class AppointmentModel {
         appointmentTime: data["appointmentTime"] ?? "",
         appointmentDate: data["appointmentDate"] ?? "",
         modifiedAt: data['modifiedAt'],
-        paymentId: data["paymentId"] ?? "");
+        paymentId: data["paymentId"] ?? "",
+        appointmentType: data['appointmentType'] != null
+            ? AppointmentType.values[data['appointmentType']]
+            : AppointmentType.consultYourDoctor);
   }
 }
 

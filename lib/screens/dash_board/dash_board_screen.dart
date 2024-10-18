@@ -111,108 +111,48 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           },
           items: [
             BottomNavigationBarItem(
-              icon: selectedIndex == 0
-                  ? Container(
-                      height: 40,
-                      width: 56,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: AppColors.patientReviewBg,
-                            width: 6,
-                          ),
-                        ),
-                      ),
-                      child: Image.asset(
-                        AssetsConstants.home_one,
-                        color: selectedIndex == 0
-                            ? AppColors.patientReviewBg
-                            : AppColors.grey,
-                      ),
-                    )
-                  : Image.asset(
-                      AssetsConstants.home_one,
-                    ),
+              icon: getIcon(AssetsConstants.home_one, 0),
               label: Strings.homeText.tr,
             ),
             BottomNavigationBarItem(
-              icon: selectedIndex == 1
-                  ? Container(
-                      height: 40,
-                      width: 56,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: AppColors.patientReviewBg,
-                            width: 6,
-                          ),
-                        ),
-                      ),
-                      child: Image.asset(
-                        AssetsConstants.calendar,
-                        color: selectedIndex == 1
-                            ? AppColors.patientReviewBg
-                            : AppColors.grey,
-                      ),
-                    )
-                  : Image.asset(
-                      AssetsConstants.calendar,
-                    ),
+              icon: getIcon(AssetsConstants.calendar, 1),
               label: Strings.dietChartText.tr,
             ),
             BottomNavigationBarItem(
-              icon: selectedIndex == 2
-                  ? Container(
-                      height: 40,
-                      width: 56,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: AppColors.patientReviewBg,
-                            width: 6,
-                          ),
-                        ),
-                      ),
-                      child: Image.asset(
-                        AssetsConstants.bell,
-                        color: selectedIndex == 2
-                            ? AppColors.patientReviewBg
-                            : AppColors.grey,
-                      ),
-                    )
-                  : Image.asset(
-                      AssetsConstants.bell,
-                    ),
+              icon: getIcon(AssetsConstants.bell, 2),
               label: Strings.videosText.tr,
             ),
             BottomNavigationBarItem(
-              icon: selectedIndex == 3
-                  ? Container(
-                      height: 40,
-                      width: 56,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: AppColors.patientReviewBg,
-                            width: 6,
-                          ),
-                        ),
-                      ),
-                      child: Image.asset(
-                        AssetsConstants.person_profile,
-                        color: selectedIndex == 3
-                            ? AppColors.patientReviewBg
-                            : AppColors.grey,
-                      ),
-                    )
-                  : Image.asset(
-                      AssetsConstants.person_profile,
-                    ),
+              icon: getIcon(AssetsConstants.person_profile, 3),
               label: Strings.profile.tr,
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget getIcon(String icon, int index) {
+    bool isSelected = selectedIndex == index;
+    return isSelected
+        ? Container(
+            height: 40,
+            width: 56,
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: AppColors.patientReviewBg,
+                  width: 5,
+                ),
+              ),
+            ),
+            child: Image.asset(
+              icon,
+              color: isSelected ? AppColors.patientReviewBg : AppColors.grey,
+            ),
+          )
+        : Image.asset(
+            icon,
+          );
   }
 }
