@@ -94,6 +94,17 @@ class AssetsConstants {
   static const String moderate_image = "$dressing_images_path/moderate.png";
   static const String large = "$dressing_images_path/large.png";
   static const String huge = "$dressing_images_path/huge.png";
+  static const String single_foot = "$dressing_images_path/single_foot.png";
+  static const String both_foot = "$dressing_images_path/both_foot.png";
+  static const String moderate = "$dressing_images_path/moderate_image.png";
+  static const String large_image = "$dressing_images_path/large_image.png";
+  static const String huge_image = "$dressing_images_path/huge_image.png";
+  static const String nail_trimming_detail_image =
+      "$dressing_images_path/nail_trimming_detail_image.png";
+  static const String nail_single_foot =
+      "$dressing_images_path/nail_single_foot.png";
+  static const String nail_both_foots =
+      "$dressing_images_path/nail_both_foots.png";
 
 // check your feet
   static const String skin_and_nail = "$homePath/skin_and_nail.png";
@@ -312,7 +323,7 @@ class AssetsConstants {
   static const String checkup_shedule =
       "$_introImagesBasePath/checkup_shedule.svg";
   static const String ellipse = "$_introImagesBasePath/ellipse.svg";
-  static const String moderate = "$_introImagesBasePath/moderate.svg";
+  // static const String moderate = "$_introImagesBasePath/moderate.svg";
   static const String percentage = "$_introImagesBasePath/percentage.svg";
   static const String speedometer = "$_introImagesBasePath/speedometer.svg";
 

@@ -1,31 +1,21 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/controllers/foot_services_controller.dart';
-import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
+import 'package:drfootapp/screens/foot_services/avaialable_service_widget.dart';
 import 'package:drfootapp/screens/foot_services/foot_payment.dart';
+import 'package:drfootapp/screens/foot_services/model/nurse_service_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/constants/firebase_constants.dart';
-import 'package:drfootapp/utils/constants/string_constants.dart';
-import 'package:drfootapp/utils/enums.dart';
-import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_Image.dart';
-import 'package:drfootapp/utils/widgets/foot_service_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 class HomeFootServicesScreen extends StatefulWidget {
-  final FootServices footServices;
-  final DressingServices? dressingServices;
-  final DressingServicesItem? dressingServicesItem;
+  final NurseServiceDetailModel nurseServiceDetailModel;
+
   const HomeFootServicesScreen({
     super.key,
-    required this.footServices,
-    this.dressingServices,
-    this.dressingServicesItem,
+    required this.nurseServiceDetailModel,
   });
 
   @override
@@ -50,9 +40,9 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.primaryBlue,
-          title: Text(
-            getTitle(),
-            style: const TextStyle(
+          title: const Text(
+            "Check your feet",
+            style: TextStyle(
               color: AppColors.whiteBgColor,
               fontSize: 18,
               fontWeight: FontWeight.w700,
@@ -69,60 +59,83 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
             ),
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: AppColors.whiteBgColor,
-              child: Padding(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                color: AppColors.whiteBgColor,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.nurseServiceDetailModel.title,
+                        style: const TextStyle(
+                          color: AppColors.black1,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      CustomImage(
+                        height: 180,
+                        width: double.infinity,
+                        path: widget.nurseServiceDetailModel.image,
+                        fit: BoxFit.fill,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        widget.nurseServiceDetailModel.description,
+                        style: const TextStyle(
+                          color: AppColors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                                            const SizedBox(height: 16),
+
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Dressing At Home :",
+                      "Available Services ",
                       style: TextStyle(
                         color: AppColors.black1,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    CustomImage(
-                      height: 180,
-                      width: 352,
-                      path: getImage(),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      "Dressing at home is a services where we provide our user to remedy themselves at home by following the instructions & information provided by experts.  ",
-                      style: TextStyle(
-                        color: AppColors.grey,
                         fontSize: 16,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: widget.nurseServiceDetailModel
+                            .nurseServiceModelList.length,
+                        itemBuilder: (context, index) {
+                          final nurseServiceDetailModelItem = widget
+                              .nurseServiceDetailModel
+                              .nurseServiceModelList[index];
+                          return AvaialableServiceWidget(
+                            onPress: () {},
+                            nurseServiceModel: nurseServiceDetailModelItem,
+                          );
+                        })
                   ],
                 ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
-              child: Column(
-                children: [
-                  Text(
-                    "Available Services ",
-                    style: TextStyle(
-                      color: AppColors.black1,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-          ],
+              const SizedBox(height: 12),
+            ],
+          ),
         ),
         floatingActionButton: bottobBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -185,45 +198,31 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
         : const SizedBox.shrink();
   }
 
-  String getTitle() {
-    String title = Strings.dressingServicesText;
-    if (widget.footServices == FootServices.dressingService) {
-      title =
-          "${Strings.dressingServicesText} - ${Utility.enumToString(widget.dressingServices)}";
-    } else if (widget.footServices == FootServices.nailTrimmingService) {
-      title = Strings.nailTrimmingText;
-    } else if (widget.footServices == FootServices.footCleaning) {
-      title = Strings.footCleansingText;
-    } else if (widget.footServices == FootServices.footware) {
-      title = Strings.footwearText;
-    }
-    return title;
-  }
+  // String getTitle() {
+  //   String title = Strings.dressingServicesText;
+  //   if (widget.footServices == FootServices.dressingService) {
+  //     title =
+  //         "${Strings.dressingServicesText} - ${Utility.enumToString(widget.dressingServices)}";
+  //   } else if (widget.footServices == FootServices.nailTrimmingService) {
+  //     title = Strings.nailTrimmingText;
+  //   } else if (widget.footServices == FootServices.footCleaning) {
+  //     title = Strings.footCleansingText;
+  //   } else if (widget.footServices == FootServices.footware) {
+  //     title = Strings.footwearText;
+  //   }
+  //   return title;
+  // }
 
-  String getImage() {
-    String image = AssetsConstants.dressing_at_home_image;
-    if (widget.footServices == FootServices.dressingService) {
-      image = "${AssetsConstants.dressing_at_home_image}";
-    } else if (widget.dressingServicesItem == DressingServicesItem.image) {
-      image = AssetsConstants.dressing_at_home_image;
-    } else if (widget.dressingServicesItem == DressingServicesItem.image) {
-      image = AssetsConstants.diabatic_image;
-    } else if (widget.dressingServicesItem == DressingServicesItem.image) {
-      image = AssetsConstants.ingrow_toe_nail_full_image;
-    }
-    return image;
-  }
-
-  Query getQuery() {
-    Query query = footServicesCollectionReference
-        .where("footService", isEqualTo: widget.footServices.index)
-        .where("isActive", isEqualTo: true);
-    if (widget.dressingServices != null) {
-      query = footServicesCollectionReference
-          .where("footService", isEqualTo: widget.footServices.index)
-          .where("dressingService", isEqualTo: widget.dressingServices!.index)
-          .where("isActive", isEqualTo: true);
-    }
-    return query;
-  }
+  // Query getQuery() {
+  //   Query query = footServicesCollectionReference
+  //       .where("footService", isEqualTo: widget.footServices.index)
+  //       .where("isActive", isEqualTo: true);
+  //   if (widget.dressingServices != null) {
+  //     query = footServicesCollectionReference
+  //         .where("footService", isEqualTo: widget.footServices.index)
+  //         .where("dressingService", isEqualTo: widget.dressingServices!.index)
+  //         .where("isActive", isEqualTo: true);
+  //   }
+  //   return query;
+  // }
 }
