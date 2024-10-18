@@ -1,13 +1,12 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 import 'package:drfootapp/controllers/foot_services_controller.dart';
-import 'package:drfootapp/screens/foot_services/avaialable_service_widget.dart';
+import 'package:drfootapp/screens/foot_services/foor_service_widget.dart';
 import 'package:drfootapp/screens/foot_services/foot_payment.dart';
-import 'package:drfootapp/screens/foot_services/model/nurse_service_model.dart';
+import 'package:drfootapp/models/nurse_service_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class HomeFootServicesScreen extends StatefulWidget {
@@ -122,11 +121,13 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
                         itemCount: widget.nurseServiceDetailModel
                             .nurseServiceModelList.length,
                         itemBuilder: (context, index) {
-                          final nurseServiceDetailModelItem = widget
+                          final NurseServiceModel nurseServiceDetailModelItem =
+                              widget
                               .nurseServiceDetailModel
                               .nurseServiceModelList[index];
-                          return AvaialableServiceWidget(
+                          return FootServiceWidget(
                             onPress: () {},
+                            onAdd: () {},
                             nurseServiceModel: nurseServiceDetailModelItem,
                           );
                         })

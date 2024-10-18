@@ -19,7 +19,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import 'foot_payment_address.dart';
 
-class HomeFootPayment extends StatefulWidget {
+class HomeFootPayient extends StatefulWidget {
   final double height;
   final double width;
   const HomeFootPayment({

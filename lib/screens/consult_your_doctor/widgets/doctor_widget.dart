@@ -101,7 +101,7 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                             Row(
                               children: [
                                 Text(
-                                  "${Utility.numberConvertToEnglish(widget.doctorModel.offerPrice)}/-",
+                                  "${Utility().toIndianFormat(widget.doctorModel.offerPrice)}/-",
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
@@ -109,7 +109,7 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                                   ),
                                 ).tr(),
                                 Text(
-                                  "${Utility.numberConvertToEnglish(widget.doctorModel.actualPrice)}/-",
+                                  "${Utility().toIndianFormat(widget.doctorModel.actualPrice)}/-",
                                   style: const TextStyle(
                                     fontSize: 14,
                                     decoration: TextDecoration.lineThrough,

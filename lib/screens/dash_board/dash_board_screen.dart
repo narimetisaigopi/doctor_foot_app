@@ -1,6 +1,6 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
-import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_chart_screen.dart';
+import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/diet_chart_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:drfootapp/screens/dash_board/profile_screen.dart';

@@ -1,7 +1,7 @@
 import 'package:drfootapp/admin/diet/add_diet_chart_screen.dart';
 import 'package:drfootapp/controllers/diet_chart_controller.dart';
-import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/diet_plan_layout.dart';
-import 'package:drfootapp/screens/dash_board/dietchartscreenwidgets/week_days_widget.dart';
+import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/diet_plan_layout.dart';
+import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/week_days_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';

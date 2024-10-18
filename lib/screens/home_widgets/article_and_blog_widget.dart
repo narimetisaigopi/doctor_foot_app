@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
-import 'package:readmore/readmore.dart';
 
 class ArticleAndBlogWidget extends StatefulWidget {
   final ArticleModel articleAndBlogModel;
