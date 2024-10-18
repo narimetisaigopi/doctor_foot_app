@@ -16,6 +16,12 @@ class DietChartController extends GetxController {
 
   List<DietChartModel> dietChartModelList = [];
 
+  @override
+  void onInit() {
+    selectedDietWeek = Utility.getCurrentWeekDayName();
+    super.onInit();
+  }
+
   String selectedDietWeek = "";
 
   selectWeek(String week) {
@@ -46,7 +52,7 @@ class DietChartController extends GetxController {
     dietChartModel.slotTiming = slotTimingController.text;
     dietChartModel.dietDescription = dietDescriptionController.text;
     dietChartModel.week = weekController.text;
-    dietChartModel.dietType = dietTypeController.text;
+    // dietChartModel.dietType = dietTypeController.text;
     dietChartModel.dietImage = dietImageController.text;
     DocumentReference documentReference = dietCollectionReference.doc();
     dietChartModel.docId = documentReference.id;

@@ -1176,4 +1176,13 @@ class Utility {
         appointmentModel.appointmentStatus == AppointmentStatus.cancelledByUser;
     return isCancelled;
   }
+
+static String getCurrentWeekDayName() {
+    // Get the current date
+    DateTime now = DateTime.now();
+    // Use DateFormat to get the full weekday name
+    String weekDay =
+        DateFormat('EEEE').format(now); // e.g., "Monday", "Tuesday"
+    return weekDay;
+  }
 }
