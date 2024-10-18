@@ -1,6 +1,6 @@
 import 'package:drfootapp/models/videosModels/videos_model.dart';
-import 'package:drfootapp/screens/dash_board/videosScreenWidgets/play_video_screen.dart';
-import 'package:drfootapp/screens/dash_board/videosScreenWidgets/videos_main_widget.dart';
+import 'package:drfootapp/screens/dash_board/videos_screen_widgets/play_video_screen.dart';
+import 'package:drfootapp/screens/dash_board/videos_screen_widgets/videos_main_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

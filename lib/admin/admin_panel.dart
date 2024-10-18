@@ -1,5 +1,4 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:drfootapp/admin/admin_view_foot_services.dart';
 import 'package:drfootapp/admin/coupon_codes/coupon_codes_Screen.dart';
 import 'package:drfootapp/admin/doctor/admin_all_doctors.dart';
 import 'package:drfootapp/admin/hospital/admin_all_hospitals.dart';
@@ -113,8 +112,6 @@ class _AdminPanelState extends State<AdminPanel> {
       return const UsersScreen();
     } else if (_selectedItem == couponCodes) {
       return const CouponCodesScreen();
-    } else if (_selectedItem == homeDressingServices) {
-      return const AdminViewFootServices();
     } else if (_selectedItem == orders) {
       return const TotalOrders();
     } else if (_selectedItem == dietChart) {

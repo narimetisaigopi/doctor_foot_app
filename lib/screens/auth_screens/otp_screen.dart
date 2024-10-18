@@ -4,7 +4,6 @@ import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -110,24 +109,29 @@ class _OtpScreenState extends State<OtpScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          Strings.otpString,
-                          style: TextStyle(
+                        Text(
+                          "${Strings.otpString} ${authenticationController.mobileNumberController.text}",
+                          style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
                             color: AppColors.grey,
                           ),
                           textAlign: TextAlign.start,
                         ).tr(),
-                        const Text(
-                          Strings.changeNumber,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: AppColors.primaryBlue,
-                          ),
-                          textAlign: TextAlign.start,
-                        ).tr(),
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: const Text(
+                            Strings.edit,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: AppColors.primaryBlue,
+                            ),
+                            textAlign: TextAlign.start,
+                          ).tr(),
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -163,8 +167,10 @@ class _OtpScreenState extends State<OtpScreen> {
                         ).tr(),
                         InkWell(
                           onTap: _timerSeconds == 0
-                              ? authenticationController
-                                  .firebaseSendOTP(context)
+                              ? () {
+                                  authenticationController
+                                      .firebaseSendOTP(context);
+                                }
                               : null,
                           child: Text(
                             _timerSeconds == 0 ? 'Resent' : '00:$_timerSeconds',

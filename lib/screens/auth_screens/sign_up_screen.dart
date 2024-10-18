@@ -1,5 +1,4 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -7,6 +6,7 @@ import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
@@ -52,11 +52,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         labelNeeded: true,
                         label: Strings.userNameTextFieldLabel,
                         hint: Strings.userNameTextFieldHint,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'[a-zA-Z0-9-_]')),
+                        ],
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
                           FormBuilderValidators.minLength(3),
                           FormBuilderValidators.maxLength(30),
                         ]),
+                        
                         textEditingController:
                             _authenticationController.userNameController),
                     MyTextField(
@@ -145,27 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
-                    ),
-                    MyTextField(
-                      labelNeeded: true,
-                      label: Strings.mobileTextFieldLabel,
-                      hint: Strings.mobileTextFieldHint,
-                      maxLength: 10,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                        FormBuilderValidators.maxLength(10),
-                        FormBuilderValidators.minLength(10),
-                      ]),
-                      textInputType: TextInputType.phone,
-                      textEditingController:
-                          _authenticationController.mobileNumberController,
-                      onSubmited: (value) {
-                        validate();
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     authenticationController.isLoading
                         ? const CircularProgressIndicator()
@@ -173,37 +158,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             buttonName: "signUpText",
                             onPress: validate,
                           ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: InkWell(
-                        onTap: () {
-                          Get.back();
-                          Utility.myBottomSheet(
-                            context,
-                            heightFactor: 0.45,
-                            widget: const SignInScreen(),
-                          );
-                        },
-                        child: RichText(
-                          text: TextSpan(
-                            text: Strings.alreadyHaveAccount,
-                            style: TextStyle(
-                                color: Colors.grey.shade500, fontSize: 18),
-                            children: const [
-                              TextSpan(
-                                  text: Strings.signInText,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primaryBlue,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),

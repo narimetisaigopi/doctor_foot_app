@@ -59,7 +59,7 @@ class Strings {
 
   /// OTP Screen Strings/////
   static const String otpString =
-      'Please enter 6 OTP sent to your\nmobile number +91 9123456780';
+      'Please enter 6 OTP sent to your\nmobile number +91 ';
 
   static const String verificationString = 'Verification code';
 
@@ -69,7 +69,7 @@ class Strings {
 
   /// Sign-In Screen Strings /////
 
-  static const String changeNumber = 'Edit';
+  static const String edit = 'Edit';
 
   static const String alreadyHaveAccount = 'Already have a account ! ';
 

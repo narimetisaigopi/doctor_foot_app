@@ -10,7 +10,7 @@ import 'package:drfootapp/screens/dash_board/profile/service_bookings/my_service
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/custom_image.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -190,15 +190,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        const CircleAvatar(
+                        CircleAvatar(
                           radius: 60,
                           backgroundColor: AppColors.primary,
                           child: CircleAvatar(
                             radius: 58,
-                            child: CustomImage(
+                            child: CustomNetworkImageWidget(
                               height: double.infinity,
                               width: double.infinity,
-                              path: AssetsConstants.profile_image,
+                              path: loginUserModel.profilePic,
                             ),
                           ),
                         )

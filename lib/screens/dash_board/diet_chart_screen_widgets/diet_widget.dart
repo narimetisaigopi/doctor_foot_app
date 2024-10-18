@@ -1,9 +1,10 @@
 import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
-import 'package:drfootapp/screens/dash_board/dietChartScreenWidgets/diet_details_layout.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'diet_details_layout.dart';
 
 class DietWidget extends StatefulWidget {
   final DietChartModel dietChartModel;

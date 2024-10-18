@@ -1,10 +1,7 @@
+import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
-import 'package:drfootapp/utils/sp_helper.dart';
-import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
-import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -23,47 +20,6 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: AppColors.whiteBgColor,
-        // appBar: PreferredSize(
-        //   preferredSize: const Size.fromHeight(76.0),
-        //   child: AppBar(
-        //     leading: currentPage == 0
-        //         ? Container()
-        //         : IconButton(
-        //             onPressed: () {
-        //               if (currentPage != 0) {
-        //                 setState(() {
-        //                   currentPage--;
-        //                   pageController.jumpTo(currentPage);
-        //                 });
-        //               }
-        //             },
-        //             icon: const SvgImageWidget(
-        //               path: AssetsConstants.arrow_back,
-        //               width: 60,
-        //               height: 60,
-        //             ),
-        //           ),
-        //     // actions: [
-        //     //   Padding(
-        //     //     padding: const EdgeInsets.only(right: 16),
-        //     //     child: InkWell(
-        //     //       onTap: () {
-        //     //         skipIntro();
-        //     //       },
-        //     //       child: const Text(
-        //     //         "skip",
-        //     //         style: TextStyle(
-        //     //           fontSize: 16,
-        //     //           color: AppColors.primary,
-        //     //           fontWeight: FontWeight.w700,
-        //     //         ),
-        //     //       ).tr(),
-        //     //     ),
-        //     //   ),
-        //     // ],
-        //   ),
-        // ),
         body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -140,7 +96,11 @@ class _IntroScreenState extends State<IntroScreen> {
                 const SizedBox(height: 12),
                 InkWell(
                   onTap: () {
-                    showSignUp();
+                    Utility.myBottomSheet(
+                      context,
+                      widget: const SignInScreen(),
+                      heightFactor: 0.45,
+                    );
                   },
                   child: Container(
                     width: double.infinity,
@@ -170,31 +130,4 @@ class _IntroScreenState extends State<IntroScreen> {
       ],
     ));
   }
-
-  skipIntro() {
-    SPHelper().setIntroSeen();
-    // Get.offAll(() => const SignInScreen());
-    showSignUp();
-  }
-
-  showSignUp() {
-    Utility.myBottomSheet(context,
-        widget: const SignUpScreen(), heightFactor: 0.7);
-  }
 }
-        // OverlayState? overlayState = Overlay.of(context);
-        //             OverlayEntry overlayEntry =
-        //                 OverlayEntry(builder: (context) {
-        //               return  Container(
-        //                 color: Colors.transparent,
-        //                 child: const Positioned(
-        //                   child: Center(
-        //                       child: CustomImage(
-        //                     path: AssetsConstants.loder,
-        //                   )),
-        //                 ),
-        //               );
-        //             });
-        //             overlayState.insert(overlayEntry);
-        //             await Future.delayed(const Duration(seconds: 2));
-        //             overlayEntry.remove();
