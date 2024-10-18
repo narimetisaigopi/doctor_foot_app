@@ -129,6 +129,16 @@ class AssetsConstants {
       "assets/images/skin_and_nail_images/ankle_spains.png";
   static const String foot_and_ankle =
       "assets/images/skin_and_nail_images/foot_and_ankle.png";
+  static const String skin_and_nail_bg =
+      "assets/images/skin_and_nail_images/skin_and_nail_bg.png";
+  static const String toe_deformities_bg =
+      "assets/images/skin_and_nail_images/toe_deformities_bg.png";
+  static const String foot_pain_bg =
+      "assets/images/skin_and_nail_images/foot_pain_bg.png";
+  static const String deformities_full_image =
+      "assets/images/skin_and_nail_images/deformities_full_image.png";
+  static const String foot_deformities_bg =
+      "assets/images/skin_and_nail_images/foot_deformities_bg.png";
   // toe deformities
   static const String toe_deformities_images_path =
       "assets/images/toe_deformities_images";

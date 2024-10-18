@@ -57,6 +57,7 @@ class _RiskCheckerBottomSheetState extends State<RiskCheckerBottomSheet> {
                   onPressed: () {
                     if (_pageController.page == 0) {
                       Get.back();
+                      Get.back();
                     } else {
                       _pageController.animateToPage(
                         _pageController.page!.toInt() - 1,

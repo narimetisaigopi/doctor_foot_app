@@ -41,6 +41,7 @@ class AppColors {
   // white varient colors
   static const Color bgColor = Color(0xFFF2F2F2);
   static const Color whiteBgColor = Color(0xFFFFFFFF);
+  static const Color dietBorderBg = Color(0xFFDCEEFD);
   static const Color whiteBgDietColor = Color(0xFFFCFCFC);
 
   // grey varient colors
