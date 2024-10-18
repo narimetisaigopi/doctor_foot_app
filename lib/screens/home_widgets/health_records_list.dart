@@ -1,6 +1,5 @@
 import 'package:drfootapp/screens/home_widgets/health_record_widget.dart';
 import 'package:drfootapp/screens/home_widgets/models/health_record_model.dart';
-import 'package:drfootapp/screens/records/images_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:drfootapp/screens/records/health_record_screen.dart.dart';

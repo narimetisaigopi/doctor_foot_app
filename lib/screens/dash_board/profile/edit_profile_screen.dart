@@ -132,11 +132,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             .pickImage(
                                                 source: ImageSource.gallery);
                                         if (xFile != null) {
-                                          await Get.put(
-                                                  FirebaseStorageController())
-                                              .uploadImageToFirebase(
-                                                  directoryName: storageProfile,
-                                                  uploadFile: xFile);
+                                          await _authenticationController
+                                              .uploadProfilePic(xFile);
+                                          setState(() {});
                                         }
                                       },
                                     )))

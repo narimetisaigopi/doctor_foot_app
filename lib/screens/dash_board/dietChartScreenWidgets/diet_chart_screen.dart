@@ -27,7 +27,7 @@ class _DietChartScreenState extends State<DietChartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double height = 200;
+    double height = 180;
     return GetBuilder<DietChartController>(builder: (dietChartController) {
       return Scaffold(
           backgroundColor: AppColors.secondary,

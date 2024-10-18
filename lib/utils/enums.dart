@@ -25,3 +25,9 @@ enum DressingServicesItem { title, image, dicription }
 
 enum ReviewType { homeService, appointment }
 enum NotificationType { all }
+enum DietType { veg, nonveg }
+enum AppointmentType {
+  consultYourDoctor,
+  onlineConsultation,
+  footScreeningService
+}
