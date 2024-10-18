@@ -13,7 +13,9 @@ class FirebaseStorageController extends GetxController {
       String fileName = "",
       required XFile uploadFile}) async {
     List<String> urls = await uploadImagesToFirebase(
-        directoryName: directoryName, uploadFiles: [uploadFile]);
+        directoryName: directoryName,
+        filesNamesList: [fileName],
+        uploadFiles: [uploadFile]);
     if (urls.isNotEmpty) {
       return urls.first;
     }
@@ -21,11 +23,22 @@ class FirebaseStorageController extends GetxController {
   }
 
   Future<List<String>> uploadImagesToFirebase(
-      {required String directoryName, required List<XFile> uploadFiles}) async {
+      {required String directoryName,
+      List filesNamesList = const [],
+      required List<XFile> uploadFiles}) async {
     List<String> urls = [];
-    for (XFile uploadFile in uploadFiles) {
-      String filePath =
-          '$directoryName/${DateTime.now().microsecondsSinceEpoch}__${pppp.basename(uploadFile.path)}';
+    for (int i = 0; i < uploadFiles.length; i++) {
+      XFile uploadFile = uploadFiles[i];
+      String fileName = ""; // Get name from the filesNamesList
+      if (filesNamesList.isNotEmpty) {
+        String fileExtension = pppp.extension(uploadFile.path);
+        fileName = "${filesNamesList[i]}.$fileExtension";
+      } else {
+        fileName =
+            "${DateTime.now().microsecondsSinceEpoch}__${pppp.basename(uploadFile.path)}";
+      }
+
+      String filePath = '$directoryName/$fileName';
       File file = File(uploadFile.path);
       try {
         late TaskSnapshot uploadTask;

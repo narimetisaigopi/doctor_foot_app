@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/admin/admin_panel.dart';
+import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
 import 'package:drfootapp/screens/auth_screens/privacy.dart';
@@ -328,7 +329,16 @@ class AuthenticationController extends GetxController {
     );
   }
 
-  uploadPorfilePic(XFile xfile) {
-    
+  uploadProfilePic(XFile xfile) async {
+    String image = await Get.put(FirebaseStorageController())
+        .uploadImageToFirebase(
+            directoryName: storageProfile,
+            fileName: Utility().getCurrentUserId(),
+            uploadFile: xfile);
+    if (image.isNotEmpty) {
+      loginUserModel.profilePic = image;
+    }
+    update();
+    Utility.toast("Profile pic uploaded successfully.");
   }
 }
