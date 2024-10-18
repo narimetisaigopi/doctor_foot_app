@@ -43,20 +43,16 @@ class _CheckYourFeetListState extends State<CheckYourFeetList> {
                     switch (index) {
                       case 0:
                         Get.to(() => const SkinAndNailBgScreen());
-
                         break;
                       case 1:
                         Get.to(() => const ToeDeformitiesBgScreen());
-
                         break;
                       case 2:
                         Get.to(() => const FootPainBgScreen());
                         break;
                       case 3:
                         Get.to(() => const FootDeformitiesBgScreen());
-
                         break;
-
                       case 4:
                         Get.to(() => const SportsInjuriesScreen());
                         break;
