@@ -1,5 +1,4 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -145,27 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
-                    ),
-                    MyTextField(
-                      labelNeeded: true,
-                      label: Strings.mobileTextFieldLabel,
-                      hint: Strings.mobileTextFieldHint,
-                      maxLength: 10,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                        FormBuilderValidators.maxLength(10),
-                        FormBuilderValidators.minLength(10),
-                      ]),
-                      textInputType: TextInputType.phone,
-                      textEditingController:
-                          _authenticationController.mobileNumberController,
-                      onSubmited: (value) {
-                        validate();
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     authenticationController.isLoading
                         ? const CircularProgressIndicator()
@@ -173,37 +152,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             buttonName: "signUpText",
                             onPress: validate,
                           ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: InkWell(
-                        onTap: () {
-                          Get.back();
-                          Utility.myBottomSheet(
-                            context,
-                            heightFactor: 0.45,
-                            widget: const SignInScreen(),
-                          );
-                        },
-                        child: RichText(
-                          text: TextSpan(
-                            text: Strings.alreadyHaveAccount,
-                            style: TextStyle(
-                                color: Colors.grey.shade500, fontSize: 18),
-                            children: const [
-                              TextSpan(
-                                  text: Strings.signInText,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primaryBlue,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),

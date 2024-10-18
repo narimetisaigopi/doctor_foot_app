@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
-  String fullName;
   String emailId;
   String bloodgroup;
   String height;
@@ -12,6 +11,7 @@ class UserModel {
   String gender;
   String mobileNumber;
   dynamic timestamp;
+  dynamic modifiedAt;
   String regNo;
   String profilePic;
   String androidToken;
@@ -25,11 +25,11 @@ class UserModel {
       this.dateOfBirth = "",
       this.gender = "",
       this.mobileNumber = "",
+      this.modifiedAt,
       this.docId = "",
       this.androidToken = "",
       this.appleToken = "",
       this.timestamp,
-      this.fullName = "",
       this.emailId = "",
       this.bloodgroup = "",
       this.height = "",
@@ -50,7 +50,7 @@ class UserModel {
         timestamp: map['timestamp'] ?? "",
         appleToken: map["appleToken"] ?? "",
         androidToken: map["androidToken"] ?? "",
-        fullName: map['fullName'] ?? "",
+        modifiedAt: map['modifiedAt'] ?? "",
         emailId: map['emailId'] ?? "",
         bloodgroup: map['bloodgroup'] ?? "",
         height: map['height'] ?? "",
@@ -71,8 +71,8 @@ class UserModel {
       'mobileNumber': mobileNumber,
       "androidToken": androidToken,
       "appleToken": appleToken,
+      "modifiedAt": modifiedAt,
       'timestamp': DateTime.now().toString(),
-      'fullName': fullName,
       'emailId': emailId,
       'bloodgroup': bloodgroup,
       'height': height,
@@ -88,7 +88,7 @@ class UserModel {
     return {
       'dateOfBirth': dateOfBirth,
       'gender': gender,
-      'timestamp': DateTime.now().toString(),
+      'modifiedAt': DateTime.now().toString(),
       'emailId': emailId,
       'bloodgroup': bloodgroup,
       'height': height,

@@ -1,6 +1,4 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
-import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -37,6 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   void initState() {
+    _authenticationController.clearSignUpFields();
     super.initState();
   }
 
@@ -90,6 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           enableSendOTP = false;
                         }
                         setState(() {});
+                        return null;
                       },
                       textInputType: TextInputType.phone,
                       onSubmited: (value) {
@@ -118,41 +118,11 @@ class _SignInScreenState extends State<SignInScreen> {
                                   ? AppColors.whiteBgColor
                                   : AppColors.sentOtptextColor,
                               buttonName: "sendOtpText",
-                              onPress: () {
-                                Utility.myBottomSheet(
-                                  context,
-                                  heightFactor: 0.5,
-                                  widget: const OtpScreen(),
-                                );
-                              },
+                              onPress: validate,
                             ),
                     ),
                     const SizedBox(
                       height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: InkWell(
-                        onTap: () {
-                          Get.back();
-                          Utility.myBottomSheet(context,
-                              widget: const SignUpScreen(), heightFactor: 0.5);
-                        },
-                        child: RichText(
-                          text: TextSpan(
-                            text: Strings.dontHaveAccount,
-                            style: TextStyle(color: Colors.grey.shade500),
-                            children: const [
-                              TextSpan(
-                                  text: Strings.signUpText,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primaryBlue,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
                     ),
                   ],
                 ),
@@ -166,7 +136,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
   validate() {
     Utility().closeKeyboard();
-    _authenticationController.isSignUp = false;
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
     if (status) {
       _authenticationController.signInFirebaseValidation(context);

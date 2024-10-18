@@ -6,6 +6,7 @@ import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
 import 'package:drfootapp/screens/auth_screens/privacy.dart';
+import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
@@ -27,8 +28,6 @@ class AuthenticationController extends GetxController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   String? smsCode;
 
-  bool isSignUp = true;
-
   int selectedGenderIndex = -1;
 
   TextEditingController emailController = TextEditingController();
@@ -44,6 +43,12 @@ class AuthenticationController extends GetxController {
   TextEditingController weightController = TextEditingController();
 
   late BuildContext context;
+
+  @override
+  onInit() {
+    isLoading = false;
+    super.onInit();
+  }
 
   // this method is used to send otp to user .
   firebaseSendOTP(BuildContext context) async {
@@ -96,13 +101,12 @@ class AuthenticationController extends GetxController {
       UserCredential userCredential =
           await _firebaseAuth.signInWithCredential(authCredential);
       if (userCredential.user != null) {
-        if (isSignUp) {
-          // if login taking directly to dashboard
-          await _firebaseAuthInsertData();
+        UserModel? userModel = await getUserDataAndStoreLocally();
+        if (userModel == null) {
+          // user data is not existed so inserting the data
           Utility.myBottomSheet(context,
-              widget: const ValuePrivacy(), heightFactor: 0.7);
+              widget: const SignUpScreen(), heightFactor: 0.7);
         } else {
-          await getUserDataAndStoreLocally();
           // if login taking directly to sign up
           await updateDeviceToken();
           Get.offAll(() => const DashBoardScreen());
@@ -160,8 +164,6 @@ class AuthenticationController extends GetxController {
 
   Future<void> signInwithEmail(String email, String password) async {
     try {
-      logger(email);
-      logger(password);
       final auth = FirebaseAuth.instance;
       await auth.signInWithEmailAndPassword(email: email, password: password);
       Get.offAll(() => const AdminPanel());
@@ -210,12 +212,10 @@ class AuthenticationController extends GetxController {
         Utility.toast("Username already taken, please enter another username");
         return;
       }
-      bool mobileNumberStatus = await isMobileExisted();
-      if (!mobileNumberStatus) {
-        Utility.toast("Mobile number already register, please login");
-        return;
-      }
-      await firebaseSendOTP(context);
+      await _firebaseAuthInsertData();
+      Utility.myBottomSheet(context,
+          widget: const ValuePrivacy(), heightFactor: 0.7);
+
     } catch (e) {
       Utility.toast("Signup failed $e");
       logger(e.toString());
@@ -227,11 +227,11 @@ class AuthenticationController extends GetxController {
   signInFirebaseValidation(BuildContext context) async {
     try {
       _updateLoading(true);
-      bool mobileNumberStatus = await isMobileExisted();
-      if (mobileNumberStatus) {
-        Utility.toast("Mobile number not registered, please create account");
-        return;
-      }
+      // bool mobileNumberStatus = await isMobileExisted();
+      // if (mobileNumberStatus) {
+      //   Utility.toast("Mobile number not registered, please create account");
+      //   return;
+      // }
       await firebaseSendOTP(context);
     } catch (e) {
       logger(e.toString());
