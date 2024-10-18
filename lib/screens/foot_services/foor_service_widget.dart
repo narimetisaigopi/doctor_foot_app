@@ -4,15 +4,14 @@ import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'foot_service_date_time_screen.dart';
 
 class FootServiceWidget extends StatefulWidget {
-  final Function() onPress;
-  final Function() onAdd;
   final NurseServiceModel nurseServiceModel;
   const FootServiceWidget({
     super.key,
-    required this.onPress,
-    required this.onAdd,
     required this.nurseServiceModel,
   });
 
@@ -27,7 +26,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
       padding: const EdgeInsets.only(bottom: 16),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.whiteBgColor,
+          color: AppColors.bookSumBorder.withOpacity(0.3),
           borderRadius: BorderRadius.circular(6),
         ),
         child: Padding(
@@ -115,7 +114,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: AppColors.grey,
+                                color: AppColors.pastTextColor,
                               ),
                             ).tr(),
                           ],
@@ -126,7 +125,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: AppColors.grey,
+                            color: AppColors.pastTextColor,
                           ),
                         ).tr(),
                         const SizedBox(height: 8),
@@ -140,6 +139,9 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                                 color: AppColors.black2,
                               ),
                             ).tr(),
+                            const SizedBox(
+                              width: 5,
+                            ),
                             Text(
                               "${Utility().toIndianFormat(widget.nurseServiceModel.actualPrice)}/-",
                               style: const TextStyle(
@@ -153,7 +155,11 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                         ),
                         const SizedBox(height: 8),
                         InkWell(
-                          onTap: widget.onAdd,
+                          onTap: () {
+                            Get.to(() => FootServiceDateTimeScreen(
+                                  nurseServiceModel: widget.nurseServiceModel,
+                                ));
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               color: AppColors.primaryBlue,
@@ -163,7 +169,7 @@ class _FootServiceWidgetState extends State<FootServiceWidget> {
                               padding: const EdgeInsets.only(
                                   left: 16, right: 16, top: 3, bottom: 3),
                               child: const Text(
-                                "ADD",
+                                "VIEW",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,

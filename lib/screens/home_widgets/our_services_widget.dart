@@ -4,7 +4,7 @@ import 'package:drfootapp/screens/consult_your_doctor/search_location_screen.dar
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/dressing_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
 import 'package:drfootapp/screens/foot_screening_services/foot_screening_services.dart';
-import 'package:drfootapp/screens/foot_services/foot_services_screens.dart';
+import 'package:drfootapp/screens/foot_services/foot_services_details_screen.dart';
 import 'package:drfootapp/static_data/foot_cleansing/foot_cleansing.dart';
 import 'package:drfootapp/static_data/nail_trimming/nail_trimming.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -88,13 +88,13 @@ class _OurServicesWidgetState extends State<OurServicesWidget> {
                                 widget: const DressingScreen());
                             break;
                           case 4:
-                            Get.to(() => HomeFootServicesScreen(
+                            Get.to(() => HomeFootServicesDetailsScreen(
                                   nurseServiceDetailModel:
                                       FootCleansing.nurseServiceDetailModel,
                                 ));
                             break;
                           case 5:
-                            Get.to(() => HomeFootServicesScreen(
+                            Get.to(() => HomeFootServicesDetailsScreen(
                                   nurseServiceDetailModel:
                                       NailTrimming.nurseServiceDetailModel,
                                 ));
