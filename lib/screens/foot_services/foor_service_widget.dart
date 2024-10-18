@@ -1,25 +1,26 @@
-import 'package:drfootapp/screens/foot_services/model/nurse_service_model.dart';
+import 'package:drfootapp/models/nurse_service_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class AvaialableServiceWidget extends StatefulWidget {
+class FootServiceWidget extends StatefulWidget {
   final Function() onPress;
+  final Function() onAdd;
   final NurseServiceModel nurseServiceModel;
-  const AvaialableServiceWidget({
+  const FootServiceWidget({
     super.key,
     required this.onPress,
+    required this.onAdd,
     required this.nurseServiceModel,
   });
 
   @override
-  State<AvaialableServiceWidget> createState() =>
-      _AvaialableServiceWidgetState();
+  State<FootServiceWidget> createState() => _FootServiceWidgetState();
 }
 
-class _AvaialableServiceWidgetState extends State<AvaialableServiceWidget> {
+class _FootServiceWidgetState extends State<FootServiceWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -132,7 +133,7 @@ class _AvaialableServiceWidgetState extends State<AvaialableServiceWidget> {
                         Row(
                           children: [
                             Text(
-                              "${Utility.numberConvertToEnglish(widget.nurseServiceModel.offerPrice)}/-",
+                              "${Utility().toIndianFormat(widget.nurseServiceModel.offerPrice)}/-",
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
@@ -140,7 +141,7 @@ class _AvaialableServiceWidgetState extends State<AvaialableServiceWidget> {
                               ),
                             ).tr(),
                             Text(
-                              "${Utility.numberConvertToEnglish(widget.nurseServiceModel.actualPrice)}/-",
+                              "${Utility().toIndianFormat(widget.nurseServiceModel.actualPrice)}/-",
                               style: const TextStyle(
                                 fontSize: 14,
                                 decoration: TextDecoration.lineThrough,
@@ -152,7 +153,7 @@ class _AvaialableServiceWidgetState extends State<AvaialableServiceWidget> {
                         ),
                         const SizedBox(height: 8),
                         InkWell(
-                          onTap: () {},
+                          onTap: widget.onAdd,
                           child: Container(
                             decoration: BoxDecoration(
                               color: AppColors.primaryBlue,

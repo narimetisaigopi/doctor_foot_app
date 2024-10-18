@@ -21,7 +21,7 @@ class AddDietChartScreen extends StatefulWidget {
 
 class _AddDietChartScreenState extends State<AddDietChartScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
-  DietChartModel _dietChart = DietChartModel(); // New instance or existing data
+  DietChartModel dietChartModel = DietChartModel(); // New instance or existing data
 
   DietChartController dietChartController = Get.put(DietChartController());
 
@@ -33,7 +33,7 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
   void initState() {
     super.initState();
     if (widget.dietChart != null) {
-      _dietChart = widget.dietChart!; // Copy existing data
+      dietChartModel = widget.dietChart!; // Copy existing data
     }
   }
 

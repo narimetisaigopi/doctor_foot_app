@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/foot_services/model/nurse_service_model.dart';
+import 'package:drfootapp/models/nurse_service_model.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 
 class NailTrimming {

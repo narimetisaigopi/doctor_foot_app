@@ -1,5 +1,4 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/screens/dash_board/prifile_details/custom_listtile_widget.dart';
 import 'package:drfootapp/screens/dash_board/profile/contact_us_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/appointments/my_appointments_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/faqs_screen.dart';
@@ -11,6 +10,7 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
+import 'package:drfootapp/utils/widgets/profile_menu_item.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -139,7 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     child: SingleChildScrollView(
                                       child: Column(
                                         children: [
-                                          CustomListTileWidget(
+                                          ProfileMenuItem(
                                             text: "myProfile",
                                             leadingIcon: AssetsConstants.user_profile,
                                             onPressed: () {
@@ -147,35 +147,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   const EditProfileScreen());
                                             },
                                           ),
-                                          CustomListTileWidget(
+                                          ProfileMenuItem(
                                               text: "appointment",
                                               leadingIcon: AssetsConstants.my_oppoinments,
                                               onPressed: () {
                                                 Get.to(() =>
                                                     const MyAppointmentsScreen());
                                               }),
-                                          CustomListTileWidget(
+                                          ProfileMenuItem(
                                               text: "service",
                                               leadingIcon: AssetsConstants.booked_services,
                                               onPressed: () {
                                                 Get.to(
                                                     const MyServiceBookingsScreen());
                                               }),
-                                          CustomListTileWidget(
+                                          ProfileMenuItem(
                                               text: "payments",
                                               leadingIcon: AssetsConstants.payments_refndes,
                                               onPressed: () {
                                                 Get.to(
                                                     const PaymentsAndRefundScreen());
                                               }),
-                                          CustomListTileWidget(
+                                          ProfileMenuItem(
                                               text: "Records",
                                               leadingIcon:
                                                   AssetsConstants.records_icon,
                                               onPressed: () {
                                                 Get.to(const RecordsScreen());
                                               }),
-                                          CustomListTileWidget(
+                                          ProfileMenuItem(
                                               text: "contactus",
                                               leadingIcon: AssetsConstants.contact_us_icon,
                                               onPressed: () {
