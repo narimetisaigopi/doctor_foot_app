@@ -9,19 +9,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeFootServicesScreen extends StatefulWidget {
+class HomeFootServicesDetailsScreen extends StatefulWidget {
   final NurseServiceDetailModel nurseServiceDetailModel;
 
-  const HomeFootServicesScreen({
+  const HomeFootServicesDetailsScreen({
     super.key,
     required this.nurseServiceDetailModel,
   });
 
   @override
-  State<HomeFootServicesScreen> createState() => _HomeFootServicesScreenState();
+  State<HomeFootServicesDetailsScreen> createState() =>
+      _HomeFootServicesDetailsScreenState();
 }
 
-class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
+class _HomeFootServicesDetailsScreenState
+    extends State<HomeFootServicesDetailsScreen> {
   bool isAdded = false;
   final FootServiceController homeDressingController =
       Get.put(FootServiceController());
@@ -35,14 +37,12 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
   Widget build(BuildContext context) {
     return GetBuilder<FootServiceController>(builder: (homeDressingController) {
       return Scaffold(
-        backgroundColor: AppColors.secondary,
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: AppColors.primaryBlue,
+          backgroundColor: AppColors.textWhiteColor,
           title: const Text(
             "Check your feet",
             style: TextStyle(
-              color: AppColors.whiteBgColor,
+              color: AppColors.primary,
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),
@@ -54,7 +54,7 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
             },
             icon: const Icon(
               Icons.arrow_back,
-              color: AppColors.whiteBgColor,
+              color: AppColors.black1,
             ),
           ),
         ),
@@ -88,18 +88,22 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
                       Text(
                         widget.nurseServiceDetailModel.description,
                         style: const TextStyle(
-                          color: AppColors.grey,
+                          color: AppColors.black1,
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                                            const SizedBox(height: 16),
-
+                      const SizedBox(height: 16),
                     ],
                   ),
                 ),
               ),
-              Padding(
+              const Divider(
+                color: AppColors.secondary,
+                thickness: 6,
+              ),
+              Container(
+                decoration: BoxDecoration(color: AppColors.whiteBgColor),
                 padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,12 +126,9 @@ class _HomeFootServicesScreenState extends State<HomeFootServicesScreen> {
                             .nurseServiceModelList.length,
                         itemBuilder: (context, index) {
                           final NurseServiceModel nurseServiceDetailModelItem =
-                              widget
-                              .nurseServiceDetailModel
-                              .nurseServiceModelList[index];
+                              widget.nurseServiceDetailModel
+                                  .nurseServiceModelList[index];
                           return FootServiceWidget(
-                            onPress: () {},
-                            onAdd: () {},
                             nurseServiceModel: nurseServiceDetailModelItem,
                           );
                         })

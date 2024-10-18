@@ -1,6 +1,6 @@
 import 'package:drfootapp/models/homeScreenModels/dressing_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
-import 'package:drfootapp/screens/foot_services/foot_services_screens.dart';
+import 'package:drfootapp/screens/foot_services/foot_services_details_screen.dart';
 import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_huge.dart';
 import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_large.dart';
 import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_modarate.dart';
@@ -20,6 +20,7 @@ class _DressingScreenState extends State<DressingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteBgColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 22),
         child: Column(
@@ -37,12 +38,15 @@ class _DressingScreenState extends State<DressingScreen> {
                     Navigator.pop(context);
                   },
                 ),
+                const SizedBox(
+                  width: 60,
+                ),
                 const Expanded(
                   child: Text(
                     "Dressing Services",
                     style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                       color: AppColors.primary,
                     ),
                   ),
@@ -68,32 +72,39 @@ class _DressingScreenState extends State<DressingScreen> {
                     final dressingServicesItem = dressingServicesList[index];
                     return InkWell(
                       onTap: () {
-                        Get.back();
                         switch (index) {
                           case 0:
-                            Get.to(() => HomeFootServicesScreen(
+                            Get.to(
+                                () => HomeFootServicesDetailsScreen(
                                   nurseServiceDetailModel: DressingAtHomeSmall
                                       .nurseServiceDetailModel,
-                                ));
+                                    ),
+                                transition: Transition.fade);
                             break;
                           case 1:
-                            Get.to(() => HomeFootServicesScreen(
+                            Get.to(
+                                () => HomeFootServicesDetailsScreen(
                                   nurseServiceDetailModel:
                                       DressingAtHomeModearte
                                           .nurseServiceDetailModel,
-                                ));
+                                    ),
+                                transition: Transition.fade);
                             break;
                           case 2:
-                            Get.to(() => HomeFootServicesScreen(
+                            Get.to(
+                                () => HomeFootServicesDetailsScreen(
                                   nurseServiceDetailModel: DressingAtHomeLarge
                                       .nurseServiceDetailModel,
-                                ));
+                                    ),
+                                transition: Transition.fade);
                             break;
                           case 3:
-                            Get.to(() => HomeFootServicesScreen(
+                            Get.to(
+                                () => HomeFootServicesDetailsScreen(
                                   nurseServiceDetailModel: DressingAtHomeHuge
                                       .nurseServiceDetailModel,
-                                ));
+                                    ),
+                                transition: Transition.fade);
                             break;
                           default:
                             break;

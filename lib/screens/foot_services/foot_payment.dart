@@ -3,7 +3,9 @@ import 'package:drfootapp/controllers/address_controller.dart';
 import 'package:drfootapp/controllers/coupon_code_controller.dart';
 import 'package:drfootapp/controllers/foot_services_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
+import 'package:drfootapp/models/nurse_service_model.dart';
 import 'package:drfootapp/screens/foot_services/available_offers.dart';
+import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_huge.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -20,11 +22,14 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'foot_payment_address.dart';
 
 class HomeFootPayment extends StatefulWidget {
+  final NurseServiceModel nurseServiceModel;
+
   final double height;
   final double width;
   const HomeFootPayment({
     super.key,
     this.height = 160,
+    required this.nurseServiceModel,
     this.width = double.infinity,
   });
 
