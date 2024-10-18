@@ -43,7 +43,7 @@ class _ReviewRatingItemState extends State<ReviewRatingItem> {
                     CachedNetworkImageProvider(userModel.profilePic),
               ),
               title: Text(
-                userModel.fullName,
+                userModel.userName,
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!

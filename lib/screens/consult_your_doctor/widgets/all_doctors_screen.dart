@@ -37,7 +37,9 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
   }
 
   Query getQuery() {
-    Query query = doctorsCollectionReference.orderBy("timestamp");
+    Query query = doctorsCollectionReference
+        .where("isActive", isEqualTo: true)
+        .orderBy("timestamp");
     return query;
   }
 }

@@ -94,7 +94,6 @@ class DoctorsController extends GetxController {
       } else {
         // Updating an existing doctor
         newDoctorModel.modifiedAt = DateTime.now();
-
         // Update the doctor in Firestore
         await doctorsCollectionReference
             .doc(newDoctorModel.docId)

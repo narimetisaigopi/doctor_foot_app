@@ -35,6 +35,7 @@ class MyTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final String? Function(String?)? onChanged;
   final AutovalidateMode? autovalidateMode;
+  final List<TextInputFormatter>? inputFormatters;
 
   const MyTextField(
       {super.key,
@@ -66,6 +67,7 @@ class MyTextField extends StatefulWidget {
       this.suffixIconPressed,
       this.validator,
       this.onSubmited,
+      this.inputFormatters,
       this.autovalidateMode});
 
   @override
@@ -125,13 +127,14 @@ class _MyTextFieldState extends State<MyTextField> {
       maxLength: widget.maxLength,
       keyboardType: widget.textInputType,
       controller: widget.textEditingController,
-      inputFormatters: widget.textInputType == TextInputType.number ||
+      inputFormatters: widget.inputFormatters ??
+          (widget.textInputType == TextInputType.number ||
               widget.textInputType == TextInputType.phone
           ? <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
               FilteringTextInputFormatter.digitsOnly
             ]
-          : null,
+              : null),
       onChanged: widget.onChanged,
       decoration: InputDecoration(
           counterStyle: const TextStyle(
@@ -148,7 +151,6 @@ class _MyTextFieldState extends State<MyTextField> {
               fontWeight: FontWeight.normal),
           fillColor: widget.bgColor,
           filled: true,
-          
           prefixIcon: widget.leadingIcon,
           suffixIcon: widget.suffixIcon != null
               ? InkWell(
@@ -157,7 +159,6 @@ class _MyTextFieldState extends State<MyTextField> {
           prefix: widget.prefixIcon != null
               ? InkWell(onTap: () {}, child: widget.prefixIcon)
               : null,
-              
           suffix: widget.textButtonNeeded ? widget.textButton : null,
           disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),

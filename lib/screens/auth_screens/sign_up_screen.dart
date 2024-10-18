@@ -6,6 +6,7 @@ import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
@@ -51,11 +52,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         labelNeeded: true,
                         label: Strings.userNameTextFieldLabel,
                         hint: Strings.userNameTextFieldHint,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'[a-zA-Z0-9-_]')),
+                        ],
                         validator: FormBuilderValidators.compose([
                           FormBuilderValidators.required(),
                           FormBuilderValidators.minLength(3),
                           FormBuilderValidators.maxLength(30),
                         ]),
+                        
                         textEditingController:
                             _authenticationController.userNameController),
                     MyTextField(

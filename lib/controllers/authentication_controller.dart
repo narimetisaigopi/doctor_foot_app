@@ -149,8 +149,8 @@ class AuthenticationController extends GetxController {
   _firebaseAuthInsertData() async {
     try {
       UserModel userModel = UserModel();
-      userModel.userName = userNameController.text;
-      userModel.mobileNumber = userModel.mobileNumber;
+      userModel.userName = userNameController.text.toLowerCase();
+      userModel.mobileNumber = mobileNumberController.text;
       userModel.docId = getCurrentUserDocRef().id;
       userModel.dateOfBirth = dateOfBirthController.text;
       userModel.gender = genderController.text;
