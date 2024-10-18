@@ -33,6 +33,7 @@ class _ToeDeformitiesScreenState extends State<ToeDeformitiesScreen> {
                   ),
                   onPressed: () {
                     Get.back();
+                    Get.back();
                   },
                 ),
                 const Expanded(

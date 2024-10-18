@@ -105,9 +105,11 @@ class _DietWidgetState extends State<DietWidget> {
               child: Container(
                 width: double.infinity,
                 decoration: const BoxDecoration(
-                    color: AppColors.primaryBlue,
-                    borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(7), bottom: Radius.circular(7))),
+                  color: AppColors.primaryBlue,
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(7),
+                  ),
+                ),
                 child: Center(
                   child: Text(
                     "${widget.dietChartModel.slotTitle}\n(${widget.dietChartModel.slotTiming})",

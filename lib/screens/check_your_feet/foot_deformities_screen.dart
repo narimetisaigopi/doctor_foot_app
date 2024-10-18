@@ -33,7 +33,8 @@ class _FootDeformitiesScreenState extends State<FootDeformitiesScreen> {
                     color: AppColors.black1,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
+                    Get.back();
                   },
                 ),
                 const Expanded(

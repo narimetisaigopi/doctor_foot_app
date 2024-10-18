@@ -1,12 +1,12 @@
 import 'package:drfootapp/models/check_your_feet_model.dart';
 import 'package:drfootapp/screens/check_your_feet/ankle_arthritis_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/check_your_feet_widget.dart';
-import 'package:drfootapp/screens/check_your_feet/foot_deformities_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/foot_painn_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/skin_nail_screen.dart';
+import 'package:drfootapp/screens/check_your_feet/foot_deformities_bg_screen.dart';
+import 'package:drfootapp/screens/check_your_feet/foot_pain_bg_screen.dart';
+import 'package:drfootapp/screens/check_your_feet/skin_and_nail_bg_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/sports_injuries_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/toe_deformities_screen.dart';
-import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/screens/check_your_feet/toe_deformities_bg_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,24 +43,19 @@ class _CheckYourFeetListState extends State<CheckYourFeetList> {
                   onTap: () {
                     switch (index) {
                       case 0:
-                        Utility.myBottomSheet(context,
-                            heightFactor: 0.7,
-                            widget: const SkinAndNailScreen());
+                        Get.to(() => const SkinAndNailBgScreen());
+
                         break;
                       case 1:
-                        Utility.myBottomSheet(context,
-                            heightFactor: 0.5,
-                            widget: const ToeDeformitiesScreen());
+                        Get.to(() => const ToeDeformitiesBgScreen());
 
                         break;
                       case 2:
-                        Utility.myBottomSheet(context,
-                            heightFactor: 0.4,
-                            widget: const FootDeformitiesScreen());
+                        Get.to(() => const FootPainBgScreen());
                         break;
                       case 3:
-                        Utility.myBottomSheet(context,
-                            heightFactor: 0.5, widget: const FootPainnScreen());
+                        Get.to(() => const FootDeformitiesBgScreen());
+
                         break;
 
                       case 4:

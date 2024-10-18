@@ -36,6 +36,7 @@ class _SkinAndNailScreenState extends State<SkinAndNailScreen> {
                   ),
                   onPressed: () {
                     Get.back();
+                    Get.back();
                   },
                 ),
                 const Expanded(
@@ -61,7 +62,7 @@ class _SkinAndNailScreenState extends State<SkinAndNailScreen> {
                       vertical: 2.0, horizontal: 2.0),
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 3 / 4.3,
+                    childAspectRatio: 2.5 / 2.9,
                     crossAxisCount: 3,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,

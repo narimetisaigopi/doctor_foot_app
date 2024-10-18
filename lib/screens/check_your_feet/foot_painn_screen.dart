@@ -1,10 +1,6 @@
-import 'package:drfootapp/models/foot_deformities_model.dart';
-import 'package:drfootapp/screens/check_your_feet/foot_pain_achilles_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/foot_pain_metarsalgia_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/foot_pain_plantarfascitis_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/select_region_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +20,7 @@ class _FootPainnScreenState extends State<FootPainnScreen> {
       backgroundColor: AppColors.whiteBgColor,
       body: Padding(
         padding:
-            const EdgeInsets.only(left: 16, right: 16, top: 22, bottom: 30),
+            const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -38,16 +34,20 @@ class _FootPainnScreenState extends State<FootPainnScreen> {
                   ),
                   onPressed: () {
                     Get.back();
+                    Get.back();
                   },
                 ),
                 const Expanded(
                   child: Center(
-                    child: Text(
-                      "Select the region of \n  your foot pain",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.black2,
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 42),
+                      child: Text(
+                        "Foot deformities",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.black2,
+                        ),
                       ),
                     ),
                   ),
@@ -55,73 +55,80 @@ class _FootPainnScreenState extends State<FootPainnScreen> {
               ],
             ),
             const SizedBox(
-              height: 28,
+              height: 10,
             ),
-            Expanded(
-              child: GridView.builder(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 2.0, horizontal: 2.0),
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 3 / 4,
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemCount: footPainList.length,
-                  itemBuilder: (context, index) {
-                    final footDeformitiesItem = footDeformitiesList[index];
-                    return InkWell(
-                      onTap: () {
-                        switch (index) {
-                          case 0:
-                            Get.back();
-                            Utility.myBottomSheet(context,
-                                heightFactor: 0.6,
-                                widget: const FootPainMetarsalgiaScreen());
-                            break;
-                          case 1:
-                            Get.back();
-                            Utility.myBottomSheet(context,
-                                heightFactor: 0.6,
-                                widget: const FootPainPlantarFascitisScreen());
-                            break;
-                          case 2:
-                            Get.back();
-                            Utility.myBottomSheet(context,
-                                heightFactor: 0.6,
-                                widget: const FootPainAchillesScreen());
-                            break;
+            const SelectRegionWidget(
+              image: AssetsConstants.deformities_full_image,
+            ),
+            // Expanded(
+            //   child: GridView.builder(
+            //       padding: const EdgeInsets.symmetric(
+            //           vertical: 2.0, horizontal: 2.0),
+            //       physics: const NeverScrollableScrollPhysics(),
+            //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            //         childAspectRatio: 3 / 4,
+            //         crossAxisCount: 1,
+            //         crossAxisSpacing: 15,
+            //         mainAxisSpacing: 10,
+            //       ),
+            //       itemCount: footPainList.length,
+            //       itemBuilder: (context, index) {
+            //         final footDeformitiesItem = footDeformitiesList[index];
+            //         return InkWell(
+            //           onTap: () {
+            //             switch (index) {
+            //               case 0:
+            //                 Get.back();
+            //                 Utility.myBottomSheet(context,
+            //                     heightFactor: 0.6,
+            //                     widget: const FootPainMetarsalgiaScreen());
+            //                 break;
+            //               case 1:
+            //                 Get.back();
+            //                 Utility.myBottomSheet(context,
+            //                     heightFactor: 0.6,
+            //                     widget: const FootPainPlantarFascitisScreen());
+            //                 break;
+            //               case 2:
+            //                 Get.back();
+            //                 Utility.myBottomSheet(context,
+            //                     heightFactor: 0.6,
+            //                     widget: const FootPainAchillesScreen());
+            //                 break;
 
-                          default:
-                            break;
-                        }
-                      },
-                      child: SelectRegionWidget(
-                        image: footDeformitiesItem.image,
-                        title: footDeformitiesItem.serviceNames,
-                      ),
-                    );
-                  }),
-            ),
+            //               default:
+            //                 break;
+            //             }
+            //           },
+            //           child: SelectRegionWidget(
+            //             image: footDeformitiesItem.image,
+            //             title: footDeformitiesItem.serviceNames,
+            //           ),
+            //         );
+            //       }),
+            // ),
             const SizedBox(
-              height: 20,
+              height: 16,
             ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomButton(
+                  borderRadius: 12,
                   width: 180,
                   buttonName: "No",
+                  textColor: AppColors.grey,
                   isBoxShadow: false,
-                  bgColor: AppColors.secondaryButton,
+                  bgColor: AppColors.nextButonBg,
                   border: false,
                 ),
                 CustomButton(
+                  borderRadius: 12,
                   width: 180,
                   buttonName: "Confirm",
+                  textColor: AppColors.grey,
                   isBoxShadow: false,
-                  bgColor: AppColors.secondaryButton,
+                  bgColor: AppColors.nextButonBg,
                   border: false,
                 ),
               ],
