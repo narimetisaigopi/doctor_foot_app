@@ -54,6 +54,7 @@ class AppColors {
   static const Color calenderGrey = Color(0xFFE6E5E5);
   static const Color calenderTextGrey = Color(0xFFAAAAAA);
   static const Color searchTextGrey = Color(0xFFBCBCBC);
+  static const Color gallaryBg = Color(0xFFF5F5F5);
 
   // text color
   static const Color textWhiteColor = Color(0xFFFBFBFB);

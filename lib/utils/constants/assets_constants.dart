@@ -191,6 +191,8 @@ class AssetsConstants {
   static const String lab_reports = "$homePath/lab_reports.png";
   static const String hopspatil_documents = "$homePath/hopspatil_documents.png";
   static const String articles = "$homePath/articles.png";
+  static const String gallery_image =
+      "assets/images/video_images/gallery_image.png";
 
   static const String diabetes_image =
       "$_introImagesBasePath/diabetes_image.svg";
