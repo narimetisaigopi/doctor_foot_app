@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/screens/dash_board/profile/appointments/booked_appointment_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
@@ -47,8 +47,8 @@ class _AppointmentsListScreenState extends State<AppointmentsListScreen> {
             query: getQuery(),
             onEmpty: Center(child: emptyState()),
             itemBuilder: (context, documentSnapshots, index) {
-              AppointmentModel appointmentModel =
-                  AppointmentModel.fromSnapshot(documentSnapshots[index]);
+              DoctorAppointmentModel appointmentModel =
+                  DoctorAppointmentModel.fromSnapshot(documentSnapshots[index]);
               return BookedAppointmentWidget(
                 appointmentModel: appointmentModel,
                 title: widget.title,
@@ -82,7 +82,7 @@ class _AppointmentsListScreenState extends State<AppointmentsListScreen> {
 
   Query getQuery() {
     logger("getCurrentUserId ${Utility().getCurrentUserId()}");
-    Query query = appointmentsCollectionReference
+    Query query = doctorsAppointmentsCollectionReference
         .where("uid", isEqualTo: Utility().getCurrentUserId())
         .where("appointmentStatus", isEqualTo: widget.appointmentStatus.index);
     return query;

@@ -1,6 +1,6 @@
-import 'package:drfootapp/controllers/appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
 import 'package:drfootapp/controllers/doctors_controller.dart';
-import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/doctor_detail_widget.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/exp_widget.dart';
@@ -18,7 +18,7 @@ import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class BookedAppointmentDetailsScreen extends StatefulWidget {
-  final AppointmentModel appointmentModel;
+  final DoctorAppointmentModel appointmentModel;
   const BookedAppointmentDetailsScreen(
       {super.key, required this.appointmentModel});
 
@@ -107,7 +107,7 @@ class _BookedAppointmentDetailsScreenState
                         Get.back();
                       },
                       yes: () {
-                        Get.put(AppointmentBookingController())
+                        Get.put(DoctorAppointmentBookingController())
                             .cancelAppointment(widget.appointmentModel)
                             .then((e) {
                           cancelledAppointmentAlert(

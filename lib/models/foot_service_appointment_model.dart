@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/models/address_model.dart';
+import 'package:drfootapp/models/foot_service_model.dart';
+import 'package:drfootapp/models/patient_model.dart';
 import 'package:drfootapp/utils/enums.dart';
 
-class AppointmentModel {
+class FootServiceAppointmentModel {
   String docId;
   String doctorId;
   String uid;
@@ -13,10 +16,12 @@ class AppointmentModel {
   Timestamp? timestamp;
   Timestamp? modifiedAt;
   PatientModel? patientModel;
+  AddressModel? addressModel;
+  FootServiceModel? footServiceModel;
   String paymentId;
   AppointmentType appointmentType;
 
-  AppointmentModel(
+  FootServiceAppointmentModel(
       {this.docId = "",
       this.doctorId = "",
       this.uid = "",
@@ -28,6 +33,8 @@ class AppointmentModel {
       this.appointmentTime = "",
       this.modifiedAt,
       this.patientModel,
+      this.addressModel,
+      this.footServiceModel,
       this.paymentId = "",
       this.appointmentType = AppointmentType.consultYourDoctor});
 
@@ -43,6 +50,9 @@ class AppointmentModel {
       'modifiedAt': modifiedAt,
       'appointmentId': appointmentId,
       "patientModel": patientModel != null ? patientModel!.toMap() : {},
+      "addressModel": addressModel != null ? addressModel!.toMap() : {},
+      "footServiceModel":
+          footServiceModel != null ? footServiceModel!.toJson() : {},
       "paymentId": paymentId,
       "appointmentDate": appointmentDate,
       "appointmentTime": appointmentTime,
@@ -51,9 +61,9 @@ class AppointmentModel {
   }
 
   // Create model from Firestore document snapshot
-  factory AppointmentModel.fromSnapshot(DocumentSnapshot snapshot) {
+  factory FootServiceAppointmentModel.fromSnapshot(DocumentSnapshot snapshot) {
     var data = snapshot.data() as Map<String, dynamic>;
-    return AppointmentModel(
+    return FootServiceAppointmentModel(
         docId: data['docId'] ?? "",
         uid: data['uid'] ?? "",
         doctorId: data["doctorId"] ?? "",
@@ -66,6 +76,12 @@ class AppointmentModel {
         patientModel: data["patientModel"] != null
             ? PatientModel.fromMap(data["patientModel"])
             : null,
+        addressModel: data["addressModel"] != null
+            ? AddressModel.fromMap(data["addressModel"])
+            : null,
+        footServiceModel: data["footServiceModel"] != null
+            ? FootServiceModel.fromJson(data["footServiceModel"])
+            : null,
         appointmentTime: data["appointmentTime"] ?? "",
         appointmentDate: data["appointmentDate"] ?? "",
         modifiedAt: data['modifiedAt'],
@@ -73,38 +89,5 @@ class AppointmentModel {
         appointmentType: data['appointmentType'] != null
             ? AppointmentType.values[data['appointmentType']]
             : AppointmentType.consultYourDoctor);
-  }
-}
-
-class PatientModel {
-  String name;
-  String mobileNumber;
-  int age;
-  String gender;
-  String bookingForWhom;
-
-  PatientModel(
-      {this.name = "",
-      this.mobileNumber = "",
-      this.age = 0,
-      this.gender = "",
-      this.bookingForWhom = ""});
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'mobileNumber': mobileNumber,
-      'age': age,
-      'gender': gender,
-      "bookingForWhom": bookingForWhom
-    };
-  }
-
-  factory PatientModel.fromMap(Map<String, dynamic> map) {
-    return PatientModel(
-        name: map['name'] ?? "",
-        mobileNumber: map['mobileNumber'] ?? "",
-        age: map['age'] ?? 0,
-        gender: map['gender'] ?? "",
-        bookingForWhom: map["bookingForWhom"] ?? "");
   }
 }

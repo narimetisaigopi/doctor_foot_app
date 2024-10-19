@@ -1,4 +1,4 @@
-import 'package:drfootapp/models/homeScreenModels/patient_review_model.dart';
+import 'package:drfootapp/models/home_screen_models/patient_review_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/review_widget.dart';
 import 'package:flutter/material.dart';
 

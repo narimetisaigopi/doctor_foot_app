@@ -30,8 +30,14 @@ CollectionReference reviewsCollectionReference =
 CollectionReference adminCollectionReference =
     FirebaseFirestore.instance.collection("admin");
 
-CollectionReference appointmentsCollectionReference =
-    FirebaseFirestore.instance.collection("appointments");
+DocumentReference documentReference =
+    FirebaseFirestore.instance.collection("admin").doc("admin");
+
+CollectionReference doctorsAppointmentsCollectionReference =
+    FirebaseFirestore.instance.collection("doctors_appointments");
+
+CollectionReference footServicesAppointmentsCollectionReference =
+    FirebaseFirestore.instance.collection("foot_services_appointments");
 
 CollectionReference articlesAndBlogsCollectionReference =
     FirebaseFirestore.instance.collection("articles_blogs");

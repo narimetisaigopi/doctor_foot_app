@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drfootapp/models/homeScreenModels/foot_service_booking_model.dart';
+import 'package:drfootapp/models/home_screen_models/foot_service_booking_model.dart';
 import 'package:drfootapp/screens/dash_board/profile/service_bookings/service_booking_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';

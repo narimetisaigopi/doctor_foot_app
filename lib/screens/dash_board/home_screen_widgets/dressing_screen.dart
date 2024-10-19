@@ -1,4 +1,4 @@
-import 'package:drfootapp/models/homeScreenModels/dressing_services_model.dart';
+import 'package:drfootapp/models/home_screen_models/dressing_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
 import 'package:drfootapp/screens/foot_services/foot_services_details_screen.dart';
 import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_huge.dart';
@@ -75,7 +75,7 @@ class _DressingScreenState extends State<DressingScreen> {
                         switch (index) {
                           case 0:
                             Get.to(
-                                () => HomeFootServicesDetailsScreen(
+                                () => FootServiceDetailsScreen(
                                   nurseServiceDetailModel: DressingAtHomeSmall
                                       .nurseServiceDetailModel,
                                     ),
@@ -83,7 +83,7 @@ class _DressingScreenState extends State<DressingScreen> {
                             break;
                           case 1:
                             Get.to(
-                                () => HomeFootServicesDetailsScreen(
+                                () => FootServiceDetailsScreen(
                                   nurseServiceDetailModel:
                                       DressingAtHomeModearte
                                           .nurseServiceDetailModel,
@@ -92,7 +92,7 @@ class _DressingScreenState extends State<DressingScreen> {
                             break;
                           case 2:
                             Get.to(
-                                () => HomeFootServicesDetailsScreen(
+                                () => FootServiceDetailsScreen(
                                   nurseServiceDetailModel: DressingAtHomeLarge
                                       .nurseServiceDetailModel,
                                     ),
@@ -100,7 +100,7 @@ class _DressingScreenState extends State<DressingScreen> {
                             break;
                           case 3:
                             Get.to(
-                                () => HomeFootServicesDetailsScreen(
+                                () => FootServiceDetailsScreen(
                                   nurseServiceDetailModel: DressingAtHomeHuge
                                       .nurseServiceDetailModel,
                                     ),

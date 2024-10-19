@@ -1,13 +1,11 @@
-import 'package:drfootapp/models/home_dressing/foot_service_model.dart';
 import 'package:drfootapp/screens/reviewrating/add_review_ratings_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/rating_book_again.dart';
 import 'package:flutter/material.dart';
-import '../../../../models/homeScreenModels/foot_service_booking_model.dart';
+import '../../../../models/home_screen_models/foot_service_booking_model.dart';
 
 class ServiceBookingWidget extends StatefulWidget {
   final ServiceBookingOrderModel serviceBookingOrderModel;
@@ -26,11 +24,12 @@ class _ServiceBookingWidgetState extends State<ServiceBookingWidget> {
             .doc(widget.serviceBookingOrderModel.serviceId)
             .get(),
         builder: (context, snapshot) {
-          FootServiceModel footServiceModel = FootServiceModel();
-          if (snapshot.hasData && snapshot.data != null) {
-            footServiceModel = FootServiceModel.fromJson(
-                snapshot.data!.data() as Map<String, dynamic>);
-          }
+          
+          // FootServiceModel footServiceModel = FootServiceModel();
+          // if (snapshot.hasData && snapshot.data != null) {
+          //   footServiceModel = FootServiceModel.fromJson(
+          //       snapshot.data!.data() as Map<String, dynamic>);
+          // }
           return Padding(
             padding: const EdgeInsets.only(left: 16, right: 16),
             child: Container(
@@ -42,21 +41,21 @@ class _ServiceBookingWidgetState extends State<ServiceBookingWidget> {
                 children: [
                   Row(
                     children: [
-                      Expanded(
-                        flex: 3,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10)),
-                            child: CustomNetworkImageWidget(
-                              path: footServiceModel.image,
-                              height: 108,
-                              width: double.infinity,
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Expanded(
+                      //   flex: 3,
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.all(8.0),
+                      //     child: Container(
+                      //       decoration: BoxDecoration(
+                      //           borderRadius: BorderRadius.circular(10)),
+                      //       child: CustomNetworkImageWidget(
+                      //         path: footServiceModel.image,
+                      //         height: 108,
+                      //         width: double.infinity,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Expanded(
                         flex: 7,
                         child: Padding(
@@ -74,7 +73,7 @@ class _ServiceBookingWidgetState extends State<ServiceBookingWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      footServiceModel.title,
+                                      "footServiceModel.title",
                                       style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
@@ -105,7 +104,7 @@ class _ServiceBookingWidgetState extends State<ServiceBookingWidget> {
                                     )
                                   ],
                                 ),
-                                ratingLayout(footServiceModel),
+                                // ratingLayout(footServiceModel),
                                 Row(
                                   children: [
                                     const Icon(
@@ -159,37 +158,37 @@ class _ServiceBookingWidgetState extends State<ServiceBookingWidget> {
         });
   }
 
-  Widget ratingLayout(FootServiceModel footServiceModel) {
-    return Row(
-      children: [
-        const Icon(
-          Icons.star,
-          color: AppColors.ratingBarColor,
-          size: 14,
-        ),
-        const SizedBox(
-          width: 4,
-        ),
-        Text(
-          "${footServiceModel.review}",
-          style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: AppColors.blackBold),
-        ),
-        const SizedBox(
-          width: 4,
-        ),
-        Text(
-          footServiceModel.noOfReviews.ceil() == 1
-              ? "(${footServiceModel.noOfReviews.ceil()} Review)"
-              : "(${footServiceModel.noOfReviews.ceil()} Reviews)",
-          style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: AppColors.textBlackColor),
-        ),
-      ],
-    );
-  }
+  // Widget ratingLayout(FootServiceModel footServiceModel) {
+  //   return Row(
+  //     children: [
+  //       const Icon(
+  //         Icons.star,
+  //         color: AppColors.ratingBarColor,
+  //         size: 14,
+  //       ),
+  //       const SizedBox(
+  //         width: 4,
+  //       ),
+  //       Text(
+  //         "${footServiceModel.review}",
+  //         style: const TextStyle(
+  //             fontSize: 14,
+  //             fontWeight: FontWeight.w500,
+  //             color: AppColors.blackBold),
+  //       ),
+  //       const SizedBox(
+  //         width: 4,
+  //       ),
+  //       Text(
+  //         footServiceModel.noOfReviews.ceil() == 1
+  //             ? "(${footServiceModel.noOfReviews.ceil()} Review)"
+  //             : "(${footServiceModel.noOfReviews.ceil()} Reviews)",
+  //         style: const TextStyle(
+  //             fontSize: 12,
+  //             fontWeight: FontWeight.w400,
+  //             color: AppColors.textBlackColor),
+  //       ),
+  //     ],
+  //   );
+  // }
 }

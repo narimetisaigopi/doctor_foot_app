@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
 import 'package:drfootapp/screens/dash_board/profile/appointments/appointments_list_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
@@ -16,8 +16,8 @@ class MyAppointmentsScreen extends StatefulWidget {
 
 class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
     with SingleTickerProviderStateMixin {
-  final AppointmentBookingController appointmentController =
-      Get.put(AppointmentBookingController());
+  final DoctorAppointmentBookingController appointmentController =
+      Get.put(DoctorAppointmentBookingController());
 
   late TabController tabController = TabController(
     length: 2,
@@ -43,7 +43,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AppointmentBookingController>(builder: (context) {
+    return GetBuilder<DoctorAppointmentBookingController>(builder: (context) {
       return DefaultTabController(
         length: 2,
         initialIndex: 0,

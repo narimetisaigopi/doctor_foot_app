@@ -1,4 +1,5 @@
-import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
+import 'package:drfootapp/models/foot_service_appointment_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/booked_appointment_details_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -8,8 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppointmentConfirmScreen extends StatefulWidget {
-  final AppointmentModel appointmentModel;
-  const AppointmentConfirmScreen({super.key, required this.appointmentModel});
+  final DoctorAppointmentModel? doctorAppointmentModel;
+  final FootServiceAppointmentModel? footServiceAppointmentModel;
+  const AppointmentConfirmScreen(
+      {super.key,
+      this.doctorAppointmentModel,
+      this.footServiceAppointmentModel});
 
   @override
   State<AppointmentConfirmScreen> createState() =>
@@ -17,6 +22,23 @@ class AppointmentConfirmScreen extends StatefulWidget {
 }
 
 class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
+  String appointmentId = "", appointmentDate = "", appointmentTime = "";
+  @override
+  void initState() {
+    if (widget.doctorAppointmentModel != null) {
+      appointmentDate = widget.doctorAppointmentModel!.appointmentDate;
+      appointmentTime = widget.doctorAppointmentModel!.appointmentTime;
+      appointmentDate = widget.doctorAppointmentModel!.appointmentId.toString();
+    }
+    if (widget.footServiceAppointmentModel != null) {
+      appointmentDate = widget.footServiceAppointmentModel!.appointmentDate;
+      appointmentTime = widget.footServiceAppointmentModel!.appointmentTime;
+      appointmentDate =
+          widget.footServiceAppointmentModel!.appointmentId.toString();
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +70,7 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
             height: 16,
           ),
           Text(
-            "Appointment Id #${widget.appointmentModel.appointmentId}",
+            "Appointment Id #$appointmentId",
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
@@ -59,8 +81,8 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
             height: 16,
           ),
           Text(
-            // "Date: ${Utility().formatDate(widget.appointmentModel.appointmentTimestamp!.toDate())}",
-            "Date: ${widget.appointmentModel.appointmentDate}",
+            // "Date: ${Utility().formatDate(widget.doctorAppointmentModel.appointmentTimestamp!.toDate())}",
+            "Date: $appointmentDate",
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
@@ -71,9 +93,7 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
             height: 20,
           ),
           Text(
-            // Utility().formatTime(
-            //     widget.appointmentModel.appointmentTimestamp!.toDate()),
-            widget.appointmentModel.appointmentTime,
+            appointmentTime,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
@@ -96,9 +116,12 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
           CustomButton(
             buttonName: "View details",
             onPress: () {
-              Get.to(() => BookedAppointmentDetailsScreen(
-                    appointmentModel: widget.appointmentModel,
+              if (widget.doctorAppointmentModel != null) {
+Get.to(() => BookedAppointmentDetailsScreen(
+                      appointmentModel: widget.doctorAppointmentModel!,
                   ));
+              }
+              
             },
           ),
         ]),

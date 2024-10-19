@@ -1,4 +1,4 @@
-import 'package:drfootapp/models/homeScreenModels/home_services_model.dart';
+import 'package:drfootapp/models/home_screen_models/home_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/dressing_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';

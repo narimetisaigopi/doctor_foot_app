@@ -1,5 +1,6 @@
 import 'package:drfootapp/notifications/notifications/listen_push_notifications.dart';
 import 'package:drfootapp/splash_screen.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/navigation_service.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -56,8 +57,10 @@ class MyApp extends StatelessWidget {
       title: appName,
       locale: context.locale,
       theme: ThemeData(
+        primaryColor: AppColors.primary,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        scaffoldBackgroundColor: AppColors.bgColorAppointment,
         fontFamily: GoogleFonts.dmSans().fontFamily,
       ),
       home: const SplashScreen(),

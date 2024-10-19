@@ -1,32 +1,30 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
-import 'package:drfootapp/controllers/foot_services_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
 import 'package:drfootapp/screens/foot_services/foor_service_widget.dart';
-import 'package:drfootapp/screens/foot_services/foot_payment.dart';
-import 'package:drfootapp/models/nurse_service_model.dart';
+import 'package:drfootapp/models/foot_service_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeFootServicesDetailsScreen extends StatefulWidget {
-  final NurseServiceDetailModel nurseServiceDetailModel;
+class FootServiceDetailsScreen extends StatefulWidget {
+  final FootServiceDetailModel nurseServiceDetailModel;
 
-  const HomeFootServicesDetailsScreen({
+  const FootServiceDetailsScreen({
     super.key,
     required this.nurseServiceDetailModel,
   });
 
   @override
-  State<HomeFootServicesDetailsScreen> createState() =>
-      _HomeFootServicesDetailsScreenState();
+  State<FootServiceDetailsScreen> createState() =>
+      _FootServiceDetailsScreenState();
 }
 
-class _HomeFootServicesDetailsScreenState
-    extends State<HomeFootServicesDetailsScreen> {
+class _FootServiceDetailsScreenState extends State<FootServiceDetailsScreen> {
   bool isAdded = false;
-  final FootServiceController homeDressingController =
-      Get.put(FootServiceController());
+  final DoctorAppointmentBookingController homeDressingController =
+      Get.put(DoctorAppointmentBookingController());
 
   @override
   void initState() {
@@ -35,7 +33,8 @@ class _HomeFootServicesDetailsScreenState
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<FootServiceController>(builder: (homeDressingController) {
+    return GetBuilder<DoctorAppointmentBookingController>(
+        builder: (homeDressingController) {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.textWhiteColor,
@@ -125,11 +124,11 @@ class _HomeFootServicesDetailsScreenState
                         itemCount: widget.nurseServiceDetailModel
                             .nurseServiceModelList.length,
                         itemBuilder: (context, index) {
-                          final NurseServiceModel nurseServiceDetailModelItem =
+                          final FootServiceModel nurseServiceModel =
                               widget.nurseServiceDetailModel
                                   .nurseServiceModelList[index];
                           return FootServiceWidget(
-                            nurseServiceModel: nurseServiceDetailModelItem,
+                            nurseServiceModel: nurseServiceModel,
                           );
                         })
                   ],
@@ -139,66 +138,66 @@ class _HomeFootServicesDetailsScreenState
             ],
           ),
         ),
-        floatingActionButton: bottobBar(),
+        //floatingActionButton: bottobBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       );
     });
   }
 
-  Widget bottobBar() {
-    return homeDressingController.selectedFootServiceModel.docId.isNotEmpty
-        ? FloatingActionButton.extended(
-            extendedPadding: const EdgeInsets.symmetric(horizontal: 10),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            backgroundColor: AppColors.primaryBlue,
-            onPressed: () {
-              //  Get.to(() => const HomeDressingPayment());
-            },
-            label: SizedBox(
-              width: 350,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      text: "Added | Rs.",
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 16),
-                      children: [
-                        TextSpan(
-                          text: "${homeDressingController.finalAmount}",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 16),
-                        )
-                      ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      // Get.to(() => const HomeFootPayment());
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: Colors.white10,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 8),
-                      child: const Text(
-                        "Pay now",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ).tr(),
-                    ),
-                  ),
-                ],
-              ),
-            ))
-        : const SizedBox.shrink();
-  }
+  // Widget bottobBar() {
+  //   return homeDressingController.selectedFootServiceModel.docId.isNotEmpty
+  //       ? FloatingActionButton.extended(
+  //           extendedPadding: const EdgeInsets.symmetric(horizontal: 10),
+  //           shape:
+  //               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  //           backgroundColor: AppColors.primaryBlue,
+  //           onPressed: () {
+  //             //  Get.to(() => const HomeDressingPayment());
+  //           },
+  //           label: SizedBox(
+  //             width: 350,
+  //             child: Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //               children: [
+  //                 RichText(
+  //                   text: TextSpan(
+  //                     text: "Added | Rs.",
+  //                     style: const TextStyle(
+  //                         fontWeight: FontWeight.w400, fontSize: 16),
+  //                     children: [
+  //                       TextSpan(
+  //                         text: "${homeDressingController.finalAmount}",
+  //                         style: const TextStyle(
+  //                             fontWeight: FontWeight.w700, fontSize: 16),
+  //                       )
+  //                     ],
+  //                   ),
+  //                 ),
+  //                 InkWell(
+  //                   onTap: () {
+  //                     // Get.to(() => const HomeFootPayment());
+  //                   },
+  //                   child: Container(
+  //                     decoration: BoxDecoration(
+  //                       borderRadius: BorderRadius.circular(6),
+  //                       color: Colors.white10,
+  //                     ),
+  //                     padding: const EdgeInsets.symmetric(
+  //                         horizontal: 20, vertical: 8),
+  //                     child: const Text(
+  //                       "Pay now",
+  //                       style: TextStyle(
+  //                           fontSize: 16,
+  //                           fontWeight: FontWeight.w700,
+  //                           color: Colors.white),
+  //                     ).tr(),
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ))
+  //       : const SizedBox.shrink();
+  // }
 
   // String getTitle() {
   //   String title = Strings.dressingServicesText;

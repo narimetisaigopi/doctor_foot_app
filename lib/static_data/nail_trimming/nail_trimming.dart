@@ -1,15 +1,15 @@
-import 'package:drfootapp/models/nurse_service_model.dart';
+import 'package:drfootapp/models/foot_service_model.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 
 class NailTrimming {
-  static NurseServiceDetailModel nurseServiceDetailModel =
-      NurseServiceDetailModel(
+  static FootServiceDetailModel nurseServiceDetailModel =
+      FootServiceDetailModel(
     title: "Dressing At Home :",
     description:
         "Dressing at home is a services where we provide our user to remedy themselves at home by following the instructions & information provided by experts.  ",
     image: AssetsConstants.nail_trimming_detail_image,
     nurseServiceModelList: [
-      NurseServiceModel(
+      FootServiceModel(
         image: AssetsConstants.nail_single_foot,
         dayRemain: "",
         title: "Single Foot",
@@ -19,7 +19,7 @@ class NailTrimming {
         reviewCount: 320,
         averageRating: 4.5,
       ),
-      NurseServiceModel(
+      FootServiceModel(
         image: AssetsConstants.nail_both_foots,
         dayRemain: "",
         title: "Both Foot",

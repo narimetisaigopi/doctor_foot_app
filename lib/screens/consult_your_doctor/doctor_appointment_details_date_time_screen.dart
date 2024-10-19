@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:drfootapp/controllers/appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/booking_summary_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_payment_screen.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/choose_appointment_date_time.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/exp_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -12,20 +12,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DoctorDetailsScreen extends StatefulWidget {
+class DoctorAppointmentDetailsDateTimeScreen extends StatefulWidget {
   final DoctorModel doctorModel;
-  const DoctorDetailsScreen({super.key, required this.doctorModel});
+  const DoctorAppointmentDetailsDateTimeScreen(
+      {super.key, required this.doctorModel});
 
   @override
-  State<DoctorDetailsScreen> createState() => _DoctorDetailsScreenState();
+  State<DoctorAppointmentDetailsDateTimeScreen> createState() =>
+      _DoctorAppointmentDetailsDateTimeScreenState();
 }
 
-class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
-  final AppointmentBookingController _appointmentBookingController =
-      Get.put(AppointmentBookingController());
+class _DoctorAppointmentDetailsDateTimeScreenState
+    extends State<DoctorAppointmentDetailsDateTimeScreen> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AppointmentBookingController>(
+    return GetBuilder<DoctorAppointmentBookingController>(
         builder: (appointmentBookingController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,
@@ -197,7 +198,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                         thickness: 10,
                       ),
                       const Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16),
+                        padding: EdgeInsets.only(left: 16, right: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -227,7 +228,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                   onPress: appointmentBookingController.isDateAndTimeSelected()
                       ? () {
                           Get.to(
-                            () => BookingSummaryScreen(
+                            () => DoctorAppointmentPaymentScreen(
                               doctorModel: widget.doctorModel,
                             ),
                           );
@@ -239,7 +240,6 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
           ],
         ),
       );
-    }
-    );
+    });
   }
 }
