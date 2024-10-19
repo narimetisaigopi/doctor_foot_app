@@ -1,3 +1,5 @@
+import 'package:drfootapp/utils/enums.dart';
+
 class FootServiceDetailModel {
   String title;
   String image;
@@ -53,6 +55,8 @@ class FootServiceDetailModel {
 
 class FootServiceModel {
   String image;
+  String docId;
+  FootServiceType footServiceType;
   String dayRemain;
   String title;
   String description;
@@ -61,16 +65,17 @@ class FootServiceModel {
   int reviewCount;
   double averageRating;
 
-  FootServiceModel({
-    this.image = "",
-    this.dayRemain = "",
-    this.title = "",
-    this.description = "",
-    this.offerPrice = 0,
-    this.actualPrice = 0,
-    this.reviewCount = 0,
-    this.averageRating = 0.0,
-  });
+  FootServiceModel(
+      {this.image = "",
+      this.docId = "",
+      this.dayRemain = "",
+      this.title = "",
+      this.description = "",
+      this.offerPrice = 0,
+      this.actualPrice = 0,
+      this.reviewCount = 0,
+      this.averageRating = 0.0,
+      this.footServiceType = FootServiceType.none});
 
   // JSON serialization
   factory FootServiceModel.fromJson(Map json) {
@@ -83,6 +88,9 @@ class FootServiceModel {
       offerPrice: json['offerPrice'] ?? 0,
       reviewCount: json['reviewCount'] ?? 0,
       averageRating: (json['averageRating'] ?? 0.0).toDouble(),
+      footServiceType: json['footServiceType'] != null
+          ? FootServiceType.values[json['footServiceType']]
+          : FootServiceType.none,
     );
   }
 
@@ -96,6 +104,7 @@ class FootServiceModel {
       'offerPrice': offerPrice,
       'reviewCount': reviewCount,
       'averageRating': averageRating,
+      'footServiceType': footServiceType.index
     };
   }
 

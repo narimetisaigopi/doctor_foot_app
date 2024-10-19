@@ -14,6 +14,7 @@ enum PaymentServiceType { none, ulcerMonitoring, homeService, drAppointment }
 enum OrderStatus { none, upcoming, completed, cancelled }
 
 enum FootServiceType {
+  none,
   dressingAtHomeSmall,
   dressingAtHomeModerate,
   dressingAtHomeLarge,

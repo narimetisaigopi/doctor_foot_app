@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/controllers/address_controller.dart';
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
 import 'package:drfootapp/models/admin_model.dart';
-import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
-import 'package:drfootapp/models/doctor_model.dart';
+import 'package:drfootapp/models/foot_service_appointment_model.dart';
+import 'package:drfootapp/models/foot_service_model.dart';
+import 'package:drfootapp/models/patient_model.dart';
 import 'package:drfootapp/models/payment_model.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_confirm_screen.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_success_screen.dart';
 import 'package:drfootapp/screens/payments/razorpay_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
@@ -15,9 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-import '../models/patient_model.dart';
-
-class DoctorAppointmentBookingController extends GetxController {
+class FootServiceAppointmentController extends GetxController {
   DateTime selectedDateTime = DateTime.now();
   bool isDateSelected = false;
   bool isLoading = false;
@@ -65,13 +65,13 @@ class DoctorAppointmentBookingController extends GetxController {
     update();
   }
 
-  selectDate(String date) {
+  onSelectDate(String date) {
     selectedDate = date;
     dateTextEditingController.text = date;
     update();
   }
 
-  selectTime(String date) {
+  onSelectTime(String date) {
     selectedTime = date;
     update();
   }
@@ -105,7 +105,7 @@ class DoctorAppointmentBookingController extends GetxController {
     if (documentSnapshot.exists && documentSnapshot.data() != null) {
       adminModel = AdminModel.fromSnapshot(documentSnapshot);
       await documentReference
-          .update({"doctorAppointmentId": FieldValue.increment(1)});
+          .update({"footServiceAppointmentId": FieldValue.increment(1)});
     } else {
       await documentReference.set(adminModel.toMap());
     }
@@ -118,12 +118,12 @@ class DoctorAppointmentBookingController extends GetxController {
     _updateLoading(false);
   }
 
-  proceedToPayment(DoctorModel doctorModel) {
+  proceedToPayment(FootServiceModel footServiceModel) {
     RazorPayScreen().startPayment(
         amount: getPayableAmount().toDouble(),
         description: "Home services",
         onSuccess: (PaymentSuccessResponse paymentSuccessResponse) async {
-          await createAppointment(doctorModel);
+          await createAppointment(footServiceModel);
         },
         onError: (PaymentFailureResponse paymentFailureResponse) {
           Utility.toast(
@@ -134,32 +134,34 @@ class DoctorAppointmentBookingController extends GetxController {
             (ExternalWalletResponse externalWalletResponse) async {
           Utility.toast(
               "onExternalWallet: payment failed due to  ${externalWalletResponse.walletName}");
-          await createAppointment(doctorModel);
+          await createAppointment(footServiceModel);
         });
   }
 
-  createAppointment(DoctorModel doctorModel) async {
+  createAppointment(FootServiceModel footServiceModel) async {
     try {
       _updateLoading(true); // Show loading at the start
       int appointmentId = await _generatePaymentId();
       DocumentReference appointmentDocumentReference =
-          doctorsAppointmentsCollectionReference.doc();
-      late DoctorAppointmentModel appointmentModel;
+          footServicesAppointmentsCollectionReference.doc();
+      late FootServiceAppointmentModel appointmentModel;
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         // Create Appointment Model
-        appointmentModel = DoctorAppointmentModel(
+        appointmentModel = FootServiceAppointmentModel(
           appointmentDate: selectedDate,
           appointmentTime: selectedTime,
-          doctorId: doctorModel.docId,
+          doctorId: "",
           appointmentType: appointmentType,
           timestamp: Timestamp.now(),
           uid: Utility().getCurrentUserId(),
           docId: appointmentDocumentReference.id,
           appointmentId: appointmentId,
           appointmentStatus: AppointmentStatus.booked,
+          footServiceModel: footServiceModel,
+          addressModel: Get.put(AddressesController()).selectedAddressModel,
           patientModel: PatientModel(
             name: nameTextController.text,
-            age: int.parse(ageTextController.text),
+            age: 0,
             mobileNumber: mobileNumberTextController.text,
             gender: gender ?? "",
             bookingForWhom: bookingForWhom,
@@ -168,13 +170,12 @@ class DoctorAppointmentBookingController extends GetxController {
 
         // Save appointment in transaction
         transaction.set(appointmentDocumentReference, appointmentModel.toMap());
-
         // Payment transaction creation
         PaymentModel paymentModel =
             await Get.put(PaymentController()).addPaymentTransaction(
           totalAmount: getDiscountAmount(
-                  offerPrice: doctorModel.offerPrice,
-                  actualPrice: doctorModel.actualPrice)
+                  offerPrice: footServiceModel.offerPrice,
+                  actualPrice: footServiceModel.actualPrice)
               .toDouble(),
           paidAmount: getPayableAmount().toDouble(),
           subscriptionId: appointmentModel.docId,
@@ -189,18 +190,20 @@ class DoctorAppointmentBookingController extends GetxController {
       // Resetting selection
       isDateSelected = false;
       // Navigate to confirmation screen after the transaction succeeds
-      Get.to(() =>
-          AppointmentConfirmScreen(doctorAppointmentModel: appointmentModel));
+      Get.to(() => AppointmentSuccessScreen(
+            footServiceAppointmentModel: appointmentModel,
+          ));
     } catch (e, stack) {
       logger("createAppointment Transaction Error: ${e.toString()}");
       logger("createAppointment Stack Trace: ${stack.toString()}");
+      Utility.toast("appointment failed due to $e");
     } finally {
       _updateLoading(false); // Ensure loading is hidden at the end
     }
   }
 
-  Future cancelAppointment(DoctorAppointmentModel appointmentModel) async {
-    await doctorsAppointmentsCollectionReference
+  Future cancelAppointment(FootServiceAppointmentModel appointmentModel) async {
+    await footServicesAppointmentsCollectionReference
         .doc(appointmentModel.docId)
         .update({
       "appointmentStatus": AppointmentStatus.cancelledByUser.index,

@@ -1,7 +1,7 @@
 import 'package:drfootapp/controllers/doctors_controller.dart';
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/booked_appointment_details_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_booked_appointment_details_screen.dart';
 import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_details_date_time_screen.dart';
 import 'package:drfootapp/screens/reviewrating/add_review_ratings_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -40,7 +40,8 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
           if (snapshot.hasData && snapshot.data != null) {
             doctorModel = snapshot.data ?? DoctorModel();
           }
-          return Utility.isAppointmentCancelled(widget.appointmentModel) ||
+          return Utility.isAppointmentCancelled(
+                      widget.appointmentModel.appointmentStatus) ||
                   widget.appointmentModel.appointmentStatus ==
                       AppointmentStatus.completed
               ? Padding(
@@ -60,7 +61,7 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                         const SizedBox(height: 12),
                         appointmentWidget(),
                         if (!Utility.isAppointmentCancelled(
-                            widget.appointmentModel))
+                            widget.appointmentModel.appointmentStatus))
                           Column(
                             children: [
                               const SizedBox(height: 12),
@@ -142,7 +143,7 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
   Widget appointmentWidget() {
     return InkWell(
       onTap: () {
-        Get.to(() => BookedAppointmentDetailsScreen(
+        Get.to(() => DoctorBookedAppointmentDetailsScreen(
             appointmentModel: widget.appointmentModel));
       },
       child: Padding(
@@ -198,7 +199,7 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                             ),
                           ],
                         ),
-                        Row(
+                        const Row(
                           children: [
                             Icon(
                               Icons.star,

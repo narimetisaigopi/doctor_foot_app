@@ -62,7 +62,7 @@ class DoctorAppointmentModel {
         appointmentId: data["appointmentId"] ?? 0,
         appointmentStatus: data['appointmentStatus'] != null
             ? AppointmentStatus.values[data['appointmentStatus']]
-            : AppointmentStatus.none, // Retrieve enum from index
+            : AppointmentStatus.none, 
         timestamp: data['timestamp'],
         patientModel: data["patientModel"] != null
             ? PatientModel.fromMap(data["patientModel"])

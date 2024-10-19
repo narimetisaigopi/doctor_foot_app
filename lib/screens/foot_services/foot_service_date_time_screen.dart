@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/foot_service_appointment_controller.dart';
 import 'package:drfootapp/models/foot_service_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/choose_appointment_date_time.dart';
 import 'package:drfootapp/screens/foot_services/foor_service_widget.dart';
@@ -20,11 +20,11 @@ class FootServiceDateTimeScreen extends StatefulWidget {
 }
 
 class _FootServiceDateTimeScreenState extends State<FootServiceDateTimeScreen> {
-  DoctorAppointmentBookingController appointmentBookingController =
-      Get.put(DoctorAppointmentBookingController());
+  FootServiceAppointmentController footServiceAppointmentController =
+      Get.put(FootServiceAppointmentController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DoctorAppointmentBookingController>(
+    return GetBuilder<FootServiceAppointmentController>(
         builder: (appointmentBookingController) {
       return Scaffold(
         appBar: const CustomAppbar(
@@ -36,7 +36,10 @@ class _FootServiceDateTimeScreenState extends State<FootServiceDateTimeScreen> {
           child: Column(
             children: [
               FootServiceWidget(nurseServiceModel: widget.nurseServiceModel),
-              const ChooseAppointmentDateTime(),
+              ChooseAppointmentDateTime(
+                onDateSelection: footServiceAppointmentController.onSelectDate,
+                onTimeSelection: footServiceAppointmentController.onSelectTime,
+              ),
               
             ],
           ),

@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
-import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/screens/foot_services/foor_service_widget.dart';
 import 'package:drfootapp/models/foot_service_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -23,8 +23,8 @@ class FootServiceDetailsScreen extends StatefulWidget {
 
 class _FootServiceDetailsScreenState extends State<FootServiceDetailsScreen> {
   bool isAdded = false;
-  final DoctorAppointmentBookingController homeDressingController =
-      Get.put(DoctorAppointmentBookingController());
+  final DoctorAppointmentController homeDressingController =
+      Get.put(DoctorAppointmentController());
 
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _FootServiceDetailsScreenState extends State<FootServiceDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DoctorAppointmentBookingController>(
+    return GetBuilder<DoctorAppointmentController>(
         builder: (homeDressingController) {
       return Scaffold(
         appBar: AppBar(

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_payment_screen.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/choose_appointment_date_time.dart';
@@ -26,7 +26,7 @@ class _DoctorAppointmentDetailsDateTimeScreenState
     extends State<DoctorAppointmentDetailsDateTimeScreen> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DoctorAppointmentBookingController>(
+    return GetBuilder<DoctorAppointmentController>(
         builder: (appointmentBookingController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,
@@ -197,13 +197,18 @@ class _DoctorAppointmentDetailsDateTimeScreenState
                         color: AppColors.bggrey,
                         thickness: 10,
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 16, right: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ChooseAppointmentDateTime(),
-                            SizedBox(height: 20),
+                            ChooseAppointmentDateTime(
+                              onDateSelection:
+                                  appointmentBookingController.onSelectDate,
+                              onTimeSelection:
+                                  appointmentBookingController.onSelectTime,
+                            ),
+                            const SizedBox(height: 20),
                           ],
                         ),
                       ),
