@@ -3,6 +3,7 @@ import 'package:drfootapp/models/home_screen_models/service_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/search_location_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/dressing_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/service_widget.dart';
+import 'package:drfootapp/screens/dash_board/videos_screen_widgets/gallery_screen.dart';
 import 'package:drfootapp/screens/foot_screening_services/foot_screening_services.dart';
 import 'package:drfootapp/screens/foot_services/foot_services_details_screen.dart';
 import 'package:drfootapp/static_data/foot_cleansing/foot_cleansing.dart';
@@ -100,9 +101,7 @@ class _OurServicesWidgetState extends State<OurServicesWidget> {
                                 ));
                             break;
                           case 6:
-                            // Get.to(() => const HomeFootServicesScreen(
-                            //       footServices: FootServices.footware,
-                            //     ));
+                            Get.to(() => const GalleryScreen());
                             break;
                           default:
                             break;
