@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/gender_widget.dart';
 import 'package:drfootapp/screens/foot_services/available_offers.dart';
@@ -24,8 +24,8 @@ class DoctorAppointmentPaymentScreen extends StatefulWidget {
 
 class _DoctorAppointmentPaymentScreenState
     extends State<DoctorAppointmentPaymentScreen> {
-  final DoctorAppointmentBookingController appointmentBookingController =
-      Get.put(DoctorAppointmentBookingController());
+  final DoctorAppointmentController appointmentBookingController =
+      Get.put(DoctorAppointmentController());
   final _formKey = GlobalKey<FormBuilderState>();
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _DoctorAppointmentPaymentScreenState
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DoctorAppointmentBookingController>(
+    return GetBuilder<DoctorAppointmentController>(
         builder: (appointmentBookingController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,

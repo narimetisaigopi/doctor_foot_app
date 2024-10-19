@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/all_doctors_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -18,8 +18,8 @@ class FindYourDoctorsScreen extends StatefulWidget {
 }
 
 class _FindYourDoctorsScreenState extends State<FindYourDoctorsScreen> {
-  DoctorAppointmentBookingController appointmentController =
-      Get.put(DoctorAppointmentBookingController());
+  DoctorAppointmentController appointmentController =
+      Get.put(DoctorAppointmentController());
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _FindYourDoctorsScreenState extends State<FindYourDoctorsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DoctorAppointmentBookingController>(
+    return GetBuilder<DoctorAppointmentController>(
         builder: (appointmentController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,

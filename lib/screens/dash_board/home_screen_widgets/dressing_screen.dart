@@ -1,5 +1,5 @@
 import 'package:drfootapp/models/home_screen_models/dressing_services_model.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_service_menu_widget.dart';
 import 'package:drfootapp/screens/foot_services/foot_services_details_screen.dart';
 import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_huge.dart';
 import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_large.dart';
@@ -110,7 +110,7 @@ class _DressingScreenState extends State<DressingScreen> {
                             break;
                         }
                       },
-                      child: FootServicesWidget(
+                      child: FootServiceMenuWidget(
                         image: dressingServicesItem.image,
                         title: dressingServicesItem.serviceNames,
                       ),

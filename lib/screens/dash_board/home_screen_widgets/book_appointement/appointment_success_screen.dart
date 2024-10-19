@@ -1,6 +1,7 @@
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/foot_service_appointment_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/booked_appointment_details_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_booked_appointment_details_screen.dart';
+import 'package:drfootapp/screens/foot_services/foot_service_appointment_details_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -8,20 +9,20 @@ import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AppointmentConfirmScreen extends StatefulWidget {
+class AppointmentSuccessScreen extends StatefulWidget {
   final DoctorAppointmentModel? doctorAppointmentModel;
   final FootServiceAppointmentModel? footServiceAppointmentModel;
-  const AppointmentConfirmScreen(
+  const AppointmentSuccessScreen(
       {super.key,
       this.doctorAppointmentModel,
       this.footServiceAppointmentModel});
 
   @override
-  State<AppointmentConfirmScreen> createState() =>
-      _AppointmentConfirmScreenState();
+  State<AppointmentSuccessScreen> createState() =>
+      _AppointmentSuccessScreenState();
 }
 
-class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
+class _AppointmentSuccessScreenState extends State<AppointmentSuccessScreen> {
   String appointmentId = "", appointmentDate = "", appointmentTime = "";
   @override
   void initState() {
@@ -117,11 +118,15 @@ class _AppointmentConfirmScreenState extends State<AppointmentConfirmScreen> {
             buttonName: "View details",
             onPress: () {
               if (widget.doctorAppointmentModel != null) {
-Get.to(() => BookedAppointmentDetailsScreen(
+                Get.to(() => DoctorBookedAppointmentDetailsScreen(
                       appointmentModel: widget.doctorAppointmentModel!,
-                  ));
+                    ));
+              } else if (widget.footServiceAppointmentModel != null) {
+                Get.to(() => FootServiceAppointmentDetailsScreen(
+                      footServiceAppointmentModel:
+                          widget.footServiceAppointmentModel!,
+                    ));
               }
-              
             },
           ),
         ]),

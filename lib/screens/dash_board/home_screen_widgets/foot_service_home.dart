@@ -1,6 +1,6 @@
 import 'package:drfootapp/models/home_screen_models/home_services_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/dressing_screen.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_services_widget.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/foot_service_menu_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +94,7 @@ class _FootServiceHomeState extends State<FootServiceHome> {
                             break;
                         }
                       },
-                      child: FootServicesWidget(
+                      child: FootServiceMenuWidget(
                         image: footServicesItem.image,
                         title: footServicesItem.serviceNames,
                       ),

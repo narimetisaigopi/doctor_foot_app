@@ -1,8 +1,4 @@
-// import 'dart:io';
-// import 'dart:typed_data';
-
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/splash_screen.dart';
@@ -21,8 +17,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:flutter/foundation.dart'
-//     show consolidateHttpClientResponseBytes, kIsWeb;
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -331,27 +325,6 @@ class Utility {
     }
   }
 
-  // For Future need
-
-  // interNetCheck() async {
-  //   bool result = await InternetConnectionChecker().hasConnection;
-  //   if (result == true) {
-  //     logger("interNet is connected");
-  //   } else {
-  //     ConnectionCheck(BuildContext context) {
-  //       AlertDialog alertDialog = AlertDialogger(
-  //         title: Text("Connection error"),
-  //         content: Text("Please check the internet Connection"),
-  //         actions: [ElevatedButton(onPressed: () {}, child: Text("Ok"))],
-  //       );
-  //       return showDialogger(
-  //         context: context,
-  //         builder: (BuildContext context) {
-  //           return alertDialog;
-  //         },
-  //       );
-  //     }}
-
   static toast(String message,
       {Color textColor = Colors.white, Color backgroundColor = Colors.black}) {
     Fluttertoast.showToast(
@@ -452,17 +425,6 @@ class Utility {
       ],
     );
   }
-
-  // CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-  // static navigateBasedOnRole(BuildContext context,
-  //     {bool signInAnonymously = false}) async {
-  //   Navigator.pushAndRemoveUntil(
-  //       context,
-  //       MaterialPageRoute(builder: (builder) => const DashBoardScreen()),
-  //       (route) => false);
-  // }
-
   static String numberConvertToEnglish(int number) {
     var formattedNumber = NumberFormat.compactCurrency(
       decimalDigits: 0,
@@ -471,71 +433,6 @@ class Utility {
     ).format(number);
     return formattedNumber.toString();
   }
-
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-// bool checkUserLoginOrNot(BuildContext context) {
-//   if (loginUserModel == null) {
-//     Utility.toast("Please login");
-//     // Navigator.push(
-//     //     context, MaterialPageRoute(builder: (context) => LoginPage()));
-//     Navigator.push(
-//         context, MaterialPageRoute(builder: (context) => NewLoginScreen()));
-//     return false;
-//   }
-//   return true;
-// }
-
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-// shareImageOrText(BuildContext context, PostModel postModel,
-//     {Uint8List? uint8list}) async {
-//   var status = await Permission.storage.status;
-//   if (!status.isGranted) {
-//     await Permission.storage.request();
-//   }
-//   String title = await getSharingMatter(postModel);
-//   if (uint8list != null) {
-//     await Share.file(title, "amlog.png", uint8list, 'image/png', text: title);
-//   } else if (postModel.imageList.isNotEmpty) {
-//     var request = await HttpClient().getUrl(Uri.parse(postModel.imageList[0]));
-//     var response = await request.close();
-//     Uint8List bytes = await consolidateHttpClientResponseBytes(response);
-//     await Share.file(title, "amlog.jpg", bytes, 'image/jpg', text: title);
-//   } else {
-//     Share.text(title, title, "text/*");
-//   }
-// }
-
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-// Future<String> getSharingMatter(PostModel postModel) async {
-//   String productUrl = await DynamicsService().generateLink(postModel);
-//   String title = '''
-// Hello, I found your product on Place Of Sales app very interesting. I have made an enquiry there, can you please tell me more details on:
-// The price of the product: ${postModel.price}\n
-// Here’s the link of our product on PlaceOfSales: $productUrl\n
-// Share link: $downloadAppLink\n
-// Awaiting your reply\n''';
-//   return title;
-// }
-
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-// sendSMS(UserModel userModel, String message) async {
-//   // String msg = Uri.encodeFull(message); // To encode url
-//   String msg = message.replaceAll(" ", "+");
-//   String url =
-//       "http://sms.unik5.com/v3/api.php?username=ajayvja&apikey=31a2a167ded2a2018565&mobile=${userModel.mobileNumber}&senderid=AJYCHE&message=$msg";
-//   http.Response response = await http.get(Uri.parse(url));
-
-//   if (response.statusCode == 200) {
-//     Utility.toast("We have sent OTP to your number.");
-//   } else {
-//     Utility.toast("Failed to send OTP.");
-//   }
-// }
-
   Widget policyWidget(BuildContext context, Color color) {
     return RichText(
         textAlign: TextAlign.center,
@@ -721,238 +618,6 @@ class Utility {
     FocusManager.instance.primaryFocus?.unfocus();
   }
 
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-// Widget callWhatsAppLayout(BuildContext context, String contactNumber) {
-//   return Container(
-//     height: 40,
-//     decoration: const BoxDecoration(
-//       color: Colors.white,
-//       borderRadius: BorderRadius.only(
-//           topLeft: Radius.circular(16),
-//           bottomLeft: Radius.circular(16),
-//           topRight: Radius.circular(16),
-//           bottomRight: Radius.circular(16)),
-//     ),
-//     child: Row(
-//       children: [
-//         Expanded(
-//           flex: 5,
-//           child: Container(
-//               width: MediaQuery.of(context).size.width / 2.5,
-//               decoration: const BoxDecoration(
-//                 color: Colors.blue,
-//                 borderRadius: BorderRadius.only(
-//                   topLeft: Radius.circular(16),
-//                   bottomLeft: Radius.circular(16),
-//                 ),
-//               ),
-//               child: TextButton.icon(
-//                   onPressed: () async {
-//                     if (checkUserLoginOrNot(context)) {
-//                       final Uri launchUri = Uri(
-//                         scheme: 'tel',
-//                         path: contactNumber,
-//                       );
-
-//                       await launchUrl(launchUri);
-//                     }
-//                   },
-//                   icon: const Icon(
-//                     Icons.call_sharp,
-//                     color: Colors.white,
-//                   ),
-//                   label: const Text(
-//                     "Call",
-//                     style: TextStyle(color: Colors.white),
-//                   ))),
-//         ),
-//         Expanded(
-//           flex: 5,
-//           child: Container(
-//               decoration: const BoxDecoration(
-//                 color: Colors.green,
-//                 borderRadius: BorderRadius.only(
-//                     topRight: Radius.circular(16),
-//                     bottomRight: Radius.circular(16)),
-//               ),
-//               width: MediaQuery.of(context).size.width / 2.5,
-//               child: TextButton.icon(
-//                   onPressed: () async {
-//                     if (checkUserLoginOrNot(context)) {
-//                       launchUrl(
-//                           Uri.parse(
-//                               'https://wa.me/91$contactNumber?text="i seen your shop in placeofsales of app."'),
-//                           mode: LaunchMode.externalApplication);
-//                     }
-//                   },
-//                   icon: const Icon(
-//                     FontAwesomeIcons.whatsapp,
-//                     color: Colors.white,
-//                   ),
-//                   label: const Text(
-//                     "Whatsapp",
-//                     style: TextStyle(color: Colors.white),
-//                   ))),
-//         ),
-//       ],
-//     ),
-//   );
-// }
-
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-// Widget thisUserPosts(String userid, String header,
-//     {bool disableScroll = true}) {
-//   return PaginateFirestore(
-//     itemsPerPage: 10,
-//     shrinkWrap: true,
-//     physics: disableScroll
-//         ? const NeverScrollableScrollPhysics()
-//         : const AlwaysScrollableScrollPhysics(),
-//     onEmpty: const EmptyStateWidget(
-//       message: "No Posts",
-//       bottomMargin: 0,
-//     ),
-//     header: header.isNotEmpty
-//         ? SliverToBoxAdapter(
-//             child: Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Text(
-//               header,
-//               maxLines: 1,
-//               style: const TextStyle(fontSize: 16),
-//             ),
-//           ))
-//         : null,
-//     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//         childAspectRatio: 0.78, crossAxisCount: 2),
-//     itemBuilder: (context, documentSnapshots, index) {
-//       final data = documentSnapshots[index].data() as Map;
-//       PostModel postModel = PostModel(data);
-//       return GridPostItem(
-//         postModel,
-//         hideMorePosts: true,
-//       );
-//     },
-//     query: postsCollectionReference
-//         .where('userId', isEqualTo: userid)
-//         .orderBy("timestamp", descending: true),
-//     itemBuilderType: PaginateBuilderType.gridView,
-//     isLive: false,
-//   );
-// }
-
-// checkAuthTypeAndAskMobileNumber(BuildContext context) {
-//   if ((loginUserModel!.typeAuth == 1 ||
-//           loginUserModel!.typeAuth == 2 ||
-//           loginUserModel!.typeAuth == 3) &&
-//       loginUserModel!.socialAuthMobileNumber.isEmpty) {
-//     Utility.toast("You need to verify your mobile number posting..");
-//     Navigator.push(
-//         context,
-//         MaterialPageRoute(
-//             builder: (builder) => const VerifyMobileNumberScreen()));
-//     return false;
-//   }
-//   return true;
-// }
-
-// Future<String> getPriceMatter(PostModel postModel) async {
-//   String productUrl = await DynamicsService().generateLink(postModel);
-//   String title = '''
-// Hello ${postModel.contactName}, I found your product ${postModel.title} on Place Of Sales app very interesting. can you please tell me price :
-// Here’s the link of our product on PlaceOfSales: $productUrl\n
-// Awaiting your reply\n''';
-//   return title;
-// }
-
-// void sendGetPriceMessage(BuildContext context, PostModel postModel) async {
-//   if (checkUserLoginOrNot(context)) {
-//     String text = await getPriceMatter(postModel);
-//     String phoneNumber = "91${postModel.contactNumber}";
-//     launchUrl(Uri.parse('https://wa.me/$phoneNumber?text=$text'),
-//         mode: LaunchMode.externalApplication);
-//   }
-// }
-
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-// Widget getPriceWidget(BuildContext context, PostModel postModel,
-//     {double width = 100}) {
-//   return InkWell(
-//     onTap: () {
-//       sendGetPriceMessage(context, postModel);
-//     },
-//     child: Container(
-//       width: width,
-//       height: 35,
-//       alignment: Alignment.center,
-//       padding: const EdgeInsets.fromLTRB(8, 0, 4, 0),
-//       decoration: const BoxDecoration(
-//           borderRadius: BorderRadius.vertical(
-//             top: Radius.circular(10),
-//             bottom: Radius.circular(10),
-//           ),
-//           gradient: LinearGradient(
-//             colors: [
-//               Color(0xFF3366FF),
-//               Color(0xFF00CCFF),
-//             ],
-//             begin: FractionalOffset(0.0, 0.0),
-//             end: FractionalOffset(1.0, 0.0),
-//             stops: [0.0, 1.0],
-//             tileMode: TileMode.clamp,
-//           ),
-//           color: Colors.black),
-//       child: const Text(
-//         "Get Price >",
-//         style: TextStyle(color: Colors.white),
-//       ),
-//     ),
-//   );
-// }
-
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-
-// Widget reportWidget(BuildContext context, {bool doPop = false}) {
-//   return TextButton.icon(
-//     onPressed: () {
-//       if (doPop) Navigator.pop(context);
-//       Navigator.push(context,
-//           MaterialPageRoute(builder: (builder) => const ReportScreen()));
-//     },
-//     label: const Text(
-//       "Report",
-//       style: TextStyle(
-//         color: Colors.red,
-//       ),
-//     ),
-//     icon: const Icon(
-//       Icons.report_sharp,
-//       color: Colors.red,
-//     ),
-//   );
-// }
-
-// CODE FOR FIREBASE DATABASE SO FOR THE FUTURE USE COMMENTED THIS CODE////
-// Future<void> openUrl(String url) async {
-//   if (!url.contains("http")) {
-//     url = "https://$url";
-//   }
-//   await launchUrl(
-//     Uri.parse(url),
-//     mode: LaunchMode.externalApplication,
-//   );
-// }
-
-// double getShopAverageRating(ShopModel shopModel) {
-//   try {
-//     return (shopModel.review / shopModel.noOfReviews).toPrecision(1);
-//   } catch (e) {
-//     return 0.0;
-//   }
-// }
   Widget payableData({
     String title = "title",
     String value = "value",
@@ -1162,10 +827,10 @@ class Utility {
     return formattedDate;
   }
 
-  static bool isAppointmentCancelled(DoctorAppointmentModel appointmentModel) {
-    bool isCancelled = appointmentModel.appointmentStatus ==
+  static bool isAppointmentCancelled(AppointmentStatus appointmentStatus) {
+    bool isCancelled = appointmentStatus ==
             AppointmentStatus.cancelled ||
-        appointmentModel.appointmentStatus == AppointmentStatus.cancelledByUser;
+        appointmentStatus == AppointmentStatus.cancelledByUser;
     return isCancelled;
   }
 

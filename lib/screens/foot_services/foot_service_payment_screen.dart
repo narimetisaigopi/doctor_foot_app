@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_import
 import 'package:drfootapp/controllers/address_controller.dart';
 import 'package:drfootapp/controllers/coupon_code_controller.dart';
-import 'package:drfootapp/controllers/foot_appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/foot_service_appointment_controller.dart';
 import 'package:drfootapp/models/foot_service_model.dart';
 import 'package:drfootapp/screens/foot_services/available_offers.dart';
 import 'package:drfootapp/screens/foot_services/foor_service_widget.dart';
@@ -34,8 +34,8 @@ class FootServicePaymentScreen extends StatefulWidget {
 
 class _FootServicePaymentScreenState extends State<FootServicePaymentScreen> {
   int selectedContainerIndex = 0;
-  final FootAppointmentBookingController footAppointmentBookingController =
-      Get.put(FootAppointmentBookingController());
+  final FootServiceAppointmentController footAppointmentBookingController =
+      Get.put(FootServiceAppointmentController());
   final AddressesController _addressesController =
       Get.put(AddressesController());
   final CouponCodeController couponCodeController =
@@ -74,7 +74,7 @@ class _FootServicePaymentScreenState extends State<FootServicePaymentScreen> {
       appBar: const CustomAppbar(
         title: "Dressing at home",
       ),
-      body: GetBuilder<FootAppointmentBookingController>(
+      body: GetBuilder<FootServiceAppointmentController>(
           builder: (footAppointmentBookingController) {
         return SingleChildScrollView(
           child: Container(

@@ -2,21 +2,21 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 
-class FootServicesWidget extends StatefulWidget {
+class FootServiceMenuWidget extends StatefulWidget {
   final String image;
   final String title;
 
-  const FootServicesWidget({
+  const FootServiceMenuWidget({
     super.key,
     required this.image,
     required this.title,
   });
 
   @override
-  State<FootServicesWidget> createState() => _FootServicesWidgetState();
+  State<FootServiceMenuWidget> createState() => _FootServiceMenuWidgetState();
 }
 
-class _FootServicesWidgetState extends State<FootServicesWidget> {
+class _FootServiceMenuWidgetState extends State<FootServiceMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(

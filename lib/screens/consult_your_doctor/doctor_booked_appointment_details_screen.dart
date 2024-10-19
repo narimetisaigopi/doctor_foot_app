@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/controllers/doctors_controller.dart';
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
@@ -17,18 +17,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class BookedAppointmentDetailsScreen extends StatefulWidget {
+class DoctorBookedAppointmentDetailsScreen extends StatefulWidget {
   final DoctorAppointmentModel appointmentModel;
-  const BookedAppointmentDetailsScreen(
+  const DoctorBookedAppointmentDetailsScreen(
       {super.key, required this.appointmentModel});
 
   @override
-  State<BookedAppointmentDetailsScreen> createState() =>
-      _BookedAppointmentDetailsScreenState();
+  State<DoctorBookedAppointmentDetailsScreen> createState() =>
+      _DoctorBookedAppointmentDetailsScreenState();
 }
 
-class _BookedAppointmentDetailsScreenState
-    extends State<BookedAppointmentDetailsScreen> {
+class _DoctorBookedAppointmentDetailsScreenState
+    extends State<DoctorBookedAppointmentDetailsScreen> {
   DoctorModel doctorModel = DoctorModel();
   @override
   void initState() {
@@ -67,7 +67,8 @@ class _BookedAppointmentDetailsScreenState
         ).tr(),
         centerTitle: true,
         actions: [
-          if (!Utility.isAppointmentCancelled(widget.appointmentModel))
+          if (!Utility.isAppointmentCancelled(
+              widget.appointmentModel.appointmentStatus))
             PopupMenuButton(
               icon: Row(
                 children: [
@@ -107,7 +108,7 @@ class _BookedAppointmentDetailsScreenState
                         Get.back();
                       },
                       yes: () {
-                        Get.put(DoctorAppointmentBookingController())
+                        Get.put(DoctorAppointmentController())
                             .cancelAppointment(widget.appointmentModel)
                             .then((e) {
                           cancelledAppointmentAlert(

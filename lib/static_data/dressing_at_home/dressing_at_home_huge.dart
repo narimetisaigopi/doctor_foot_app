@@ -1,5 +1,6 @@
 import 'package:drfootapp/models/foot_service_model.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/enums.dart';
 
 class DressingAtHomeHuge {
   static FootServiceDetailModel nurseServiceDetailModel =
@@ -12,6 +13,8 @@ class DressingAtHomeHuge {
       FootServiceModel(
         image: AssetsConstants.huge_image,
         dayRemain: "1 Day",
+        docId: "d8c3ffcb-d453-47a0-bfd4-38b3607ab18b",
+        footServiceType: FootServiceType.dressingAtHomeHuge,
         title: "Huge",
         description: "If your wound is <1000cm ,\n Then it is recommended.",
         offerPrice: 2000,
@@ -21,6 +24,8 @@ class DressingAtHomeHuge {
       ),
       FootServiceModel(
         image: AssetsConstants.huge_image,
+        docId: "7620c85c-b38b-429c-b63f-1900744f1021",
+        footServiceType: FootServiceType.dressingAtHomeHuge,
         dayRemain: "5 Day",
         title: "Huge",
         description: "If your wound is <1000cm ,\n Then it is recommended.",
@@ -32,6 +37,8 @@ class DressingAtHomeHuge {
       FootServiceModel(
         image: AssetsConstants.huge_image,
         dayRemain: "2 Day",
+        docId: "d8c3ffcb-d453-47a0-bfd4-38b3607ab18b",
+        footServiceType: FootServiceType.dressingAtHomeHuge,
         title: "Huge",
         description: "If your wound is <1000cm ,\n Then it is recommended.",
         offerPrice: 1360,

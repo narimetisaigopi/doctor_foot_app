@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/models/home_screen_models/service_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/search_location_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/dressing_screen.dart';
@@ -62,19 +62,19 @@ class _OurServicesWidgetState extends State<OurServicesWidget> {
                       onTap: () {
                         switch (index) {
                           case 0:
-                            Get.put(DoctorAppointmentBookingController())
+                            Get.put(DoctorAppointmentController())
                                     .appointmentType =
                                 AppointmentType.consultYourDoctor;
                             Get.to(() => const SearchLocationScreen());
                             break;
                           case 1:
-                            Get.put(DoctorAppointmentBookingController())
+                            Get.put(DoctorAppointmentController())
                                     .appointmentType =
                                 AppointmentType.onlineConsultation;
                             Get.to(() => const SearchLocationScreen());
                             break;
                           case 2:
-                            Get.put(DoctorAppointmentBookingController())
+                            Get.put(DoctorAppointmentController())
                                     .appointmentType =
                                 AppointmentType.footScreeningService;
                             Utility.myBottomSheet(context,
