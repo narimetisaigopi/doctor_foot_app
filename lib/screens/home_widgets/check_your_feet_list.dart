@@ -1,11 +1,12 @@
 import 'package:drfootapp/models/check_your_feet_model.dart';
-import 'package:drfootapp/screens/check_your_feet/ankle_arthritis_screen.dart';
+import 'package:drfootapp/screens/check_your_feet/check_your_feet_detail_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/check_your_feet_widget.dart';
 import 'package:drfootapp/screens/check_your_feet/foot_deformities_bg_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/foot_pain_bg_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/skin_and_nail_bg_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/sports_injuries_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/toe_deformities_bg_screen.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/foot_ankle.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/sports_injuries.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -54,10 +55,16 @@ class _CheckYourFeetListState extends State<CheckYourFeetList> {
                         Get.to(() => const FootDeformitiesBgScreen());
                         break;
                       case 4:
-                        Get.to(() => const SportsInjuriesScreen());
+                        Get.to(() => CheckYourFeetDetailScreen(
+                              checkYourFeetDataModel:
+                                  SportsInjuries.checkYourFeetDataModelList,
+                            ));
                         break;
                       case 5:
-                        Get.to(() => const AnkleArthritisScreen());
+                        Get.to(() => CheckYourFeetDetailScreen(
+                              checkYourFeetDataModel:
+                                  FootAnkle.checkYourFeetDataModelList,
+                            ));
                         break;
                       default:
                         break;

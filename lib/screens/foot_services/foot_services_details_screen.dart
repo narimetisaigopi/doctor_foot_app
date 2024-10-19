@@ -175,7 +175,7 @@ class _FootServiceDetailsScreenState extends State<FootServiceDetailsScreen> {
   //                 ),
   //                 InkWell(
   //                   onTap: () {
-  //                     //Get.to(() => const HomeFootPayment());
+  //                     // Get.to(() => const HomeFootPayment());
   //                   },
   //                   child: Container(
   //                     decoration: BoxDecoration(
