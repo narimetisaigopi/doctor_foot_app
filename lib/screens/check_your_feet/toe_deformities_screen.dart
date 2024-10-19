@@ -1,7 +1,8 @@
 import 'package:drfootapp/models/toe_deformities_model.dart';
+import 'package:drfootapp/screens/check_your_feet/check_your_feet_detail_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/check_your_feet_widget.dart';
-import 'package:drfootapp/screens/check_your_feet/claw_toe_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/hammer_toe_screen.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/toe_deformities/claw_toe.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/toe_deformities/hammer_toe.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -71,11 +72,16 @@ class _ToeDeformitiesScreenState extends State<ToeDeformitiesScreen> {
                       onTap: () {
                         switch (index) {
                           case 0:
-                            Get.to(() => const HammerToeScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      HammerToe.checkYourFeetDataModelList,
+                                ));
                             break;
                           case 1:
-                            Get.back();
-                            Get.to(() => const ClawToeScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      ClawToe.checkYourFeetDataModelList,
+                                ));
                             break;
                           default:
                             break;

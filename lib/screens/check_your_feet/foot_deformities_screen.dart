@@ -1,8 +1,9 @@
 import 'package:drfootapp/models/foot_deformities_model.dart';
-import 'package:drfootapp/screens/check_your_feet/bunions_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/charcot_foot_screen.dart';
+import 'package:drfootapp/screens/check_your_feet/check_your_feet_detail_screen.dart';
 import 'package:drfootapp/screens/check_your_feet/check_your_feet_widget.dart';
-import 'package:drfootapp/screens/check_your_feet/flat_feet_screen.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/foot_deformities/bunions.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/foot_deformities/charcot_foot.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/foot_deformities/flat_feet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,16 +73,24 @@ class _FootDeformitiesScreenState extends State<FootDeformitiesScreen> {
                       onTap: () {
                         switch (index) {
                           case 0:
-                            Get.back();
-                            Get.to(() => const FlatFeetScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      FlatFeet.checkYourFeetDataModelList,
+                                ));
+
                             break;
                           case 1:
-                            Get.back();
-                            Get.to(() => const BunionsScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      Bunions.checkYourFeetDataModelList,
+                                ));
+
                             break;
                           case 2:
-                            Get.back();
-                            Get.to(() => const ChaecotFootScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      CharcotFoot.checkYourFeetDataModelList,
+                                ));
                             break;
                           default:
                             break;
