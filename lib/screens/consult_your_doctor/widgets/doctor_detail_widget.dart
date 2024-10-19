@@ -1,4 +1,4 @@
-import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -8,7 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DoctorDetailWidget extends StatefulWidget {
-  final AppointmentModel appointmentModel;
+  final DoctorAppointmentModel appointmentModel;
   final DoctorModel doctorModel;
   const DoctorDetailWidget(
       {super.key, required this.appointmentModel, required this.doctorModel});

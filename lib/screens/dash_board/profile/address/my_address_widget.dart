@@ -1,5 +1,5 @@
 import 'package:drfootapp/controllers/address_controller.dart';
-import 'package:drfootapp/controllers/foot_services_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
 import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/screens/dash_board/profile/address/add_address_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -31,8 +31,6 @@ class _MyAddressWidgetState extends State<MyAddressWidget> {
       onTap: () {
         if (widget.allowEdit) {
           addressesController.updateSelectedAddress(widget.addressModel);
-          Get.put(FootServiceController())
-              .updateAddressSelection(widget.addressModel);
           setState(() {});
         }
       },

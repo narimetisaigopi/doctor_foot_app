@@ -1,8 +1,8 @@
 import 'package:drfootapp/controllers/doctors_controller.dart';
-import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/booked_appointment_details_screen.dart';
-import 'package:drfootapp/screens/consult_your_doctor/doctor_details_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_details_date_time_screen.dart';
 import 'package:drfootapp/screens/reviewrating/add_review_ratings_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BookedAppointmentWidget extends StatefulWidget {
-  final AppointmentModel appointmentModel;
+  final DoctorAppointmentModel appointmentModel;
   final String title;
   const BookedAppointmentWidget(
       {super.key, required this.appointmentModel, this.title = ""});
@@ -66,7 +66,8 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                               const SizedBox(height: 12),
                               RatingBookAgainWidget(
                                 onBookAgainPressed: () {
-                                  Get.to(() => DoctorDetailsScreen(
+                                  Get.to(() =>
+                                      DoctorAppointmentDetailsDateTimeScreen(
                                       doctorModel: doctorModel));
                                 },
                           onRateServicePressed: () {

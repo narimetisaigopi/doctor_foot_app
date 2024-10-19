@@ -1,4 +1,4 @@
-import 'package:drfootapp/models/homeScreenModels/foot_service_booking_model.dart';
+import 'package:drfootapp/models/home_screen_models/foot_service_booking_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';

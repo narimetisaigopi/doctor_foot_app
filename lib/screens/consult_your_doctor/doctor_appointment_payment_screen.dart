@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/gender_widget.dart';
 import 'package:drfootapp/screens/foot_services/available_offers.dart';
@@ -13,30 +13,34 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'widgets/doctor_card.dart';
 
-class BookingSummaryScreen extends StatefulWidget {
+class DoctorAppointmentPaymentScreen extends StatefulWidget {
   final DoctorModel doctorModel;
-  const BookingSummaryScreen({super.key, required this.doctorModel});
+  const DoctorAppointmentPaymentScreen({super.key, required this.doctorModel});
 
   @override
-  State<BookingSummaryScreen> createState() => _BookingSummaryScreenState();
+  State<DoctorAppointmentPaymentScreen> createState() =>
+      _DoctorAppointmentPaymentScreenState();
 }
 
-class _BookingSummaryScreenState extends State<BookingSummaryScreen> {
-  final AppointmentBookingController appointmentBookingController =
-      Get.put(AppointmentBookingController());
+class _DoctorAppointmentPaymentScreenState
+    extends State<DoctorAppointmentPaymentScreen> {
+  final DoctorAppointmentBookingController appointmentBookingController =
+      Get.put(DoctorAppointmentBookingController());
   final _formKey = GlobalKey<FormBuilderState>();
   @override
   void initState() {
     appointmentBookingController.billTotalAmount =
         widget.doctorModel.actualPrice;
     appointmentBookingController.discountAmount =
-        appointmentBookingController.getDiscountAmount(widget.doctorModel);
+        appointmentBookingController.getDiscountAmount(
+            offerPrice: widget.doctorModel.offerPrice,
+            actualPrice: widget.doctorModel.actualPrice);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AppointmentBookingController>(
+    return GetBuilder<DoctorAppointmentBookingController>(
         builder: (appointmentBookingController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,

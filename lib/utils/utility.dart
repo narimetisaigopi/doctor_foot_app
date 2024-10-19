@@ -2,7 +2,7 @@
 // import 'dart:typed_data';
 
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/models/appointment_models/appointment_model.dart';
+import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/splash_screen.dart';
@@ -301,13 +301,15 @@ class Utility {
   static Future<String?> showMyDatePicker(BuildContext context,
       {bool returnOnlyDate = true,
       DateTime? selectedDate,
+      DateTime? firstDate,
       DateTime? lastDate}) async {
     selectedDate ??= DateTime.now();
     lastDate ??= DateTime.now();
+    firstDate ??= DateTime(1950);
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
-        firstDate: DateTime(1950),
+        firstDate: firstDate,
         lastDate: lastDate);
     if (picked != null && picked != selectedDate) {
       return returnOnlyDate
@@ -1160,7 +1162,7 @@ class Utility {
     return formattedDate;
   }
 
-  static bool isAppointmentCancelled(AppointmentModel appointmentModel) {
+  static bool isAppointmentCancelled(DoctorAppointmentModel appointmentModel) {
     bool isCancelled = appointmentModel.appointmentStatus ==
             AppointmentStatus.cancelled ||
         appointmentModel.appointmentStatus == AppointmentStatus.cancelledByUser;

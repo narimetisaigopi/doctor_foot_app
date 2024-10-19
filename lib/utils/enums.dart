@@ -13,11 +13,13 @@ enum PaymentServiceType { none, ulcerMonitoring, homeService, drAppointment }
 // home dressing service
 enum OrderStatus { none, upcoming, completed, cancelled }
 
-enum FootServices { 
-  nailTrimmingService,
-  dressingService,
+enum FootServiceType {
+  dressingAtHomeSmall,
+  dressingAtHomeModerate,
+  dressingAtHomeLarge,
+  dressingAtHomeHuge,
+  nailTrimming,
   footCleaning,
-  footware
 }
 
 enum DressingServices { small, moderate, large, huge }

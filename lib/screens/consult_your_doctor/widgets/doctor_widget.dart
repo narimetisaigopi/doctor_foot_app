@@ -1,7 +1,7 @@
 import 'package:drfootapp/admin/doctor/create_doctor.dart';
 import 'package:drfootapp/controllers/doctors_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/doctor_details_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_details_date_time_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
@@ -152,7 +152,8 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                               buttonName: "Book Now",
                               textColor: AppColors.whiteBgColor,
                               onPress: () {
-                                Get.to(() => DoctorDetailsScreen(
+                                Get.to(() =>
+                                    DoctorAppointmentDetailsDateTimeScreen(
                                     doctorModel: widget.doctorModel));
                               },
                             )

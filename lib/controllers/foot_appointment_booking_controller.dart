@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/controllers/address_controller.dart';
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
+import 'package:drfootapp/models/address_model.dart';
 import 'package:drfootapp/models/admin_model.dart';
-import 'package:drfootapp/models/appointment_models/appointment_model.dart';
-import 'package:drfootapp/models/doctor_model.dart';
+import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
+import 'package:drfootapp/models/foot_service_appointment_model.dart';
+import 'package:drfootapp/models/foot_service_model.dart';
+import 'package:drfootapp/models/patient_model.dart';
 import 'package:drfootapp/models/payment_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_confirm_screen.dart';
 import 'package:drfootapp/screens/payments/razorpay_screen.dart';
@@ -15,7 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-class AppointmentBookingController extends GetxController {
+class FootAppointmentBookingController extends GetxController {
   DateTime selectedDateTime = DateTime.now();
   bool isDateSelected = false;
   bool isLoading = false;
@@ -27,7 +31,6 @@ class AppointmentBookingController extends GetxController {
 
   TextEditingController dateTextEditingController = TextEditingController();
   TextEditingController applyCouponController = TextEditingController();
-
   TextEditingController nameTextController = TextEditingController();
   TextEditingController mobileNumberTextController = TextEditingController();
   TextEditingController ageTextController = TextEditingController();
@@ -37,12 +40,15 @@ class AppointmentBookingController extends GetxController {
 
   int billTotalAmount = 0, discountAmount = 0;
 
+  // coupon
+  TextEditingController searchCouponCodeController = TextEditingController();
+
   int getPayableAmount() {
     return billTotalAmount - discountAmount;
   }
 
-  int getDiscountAmount(DoctorModel doctorModel) {
-    discountAmount = doctorModel.actualPrice - doctorModel.offerPrice;
+  int getDiscountAmount({required int actualPrice, required int offerPrice}) {
+    discountAmount = actualPrice - offerPrice;
     return discountAmount;
   }
 
@@ -100,12 +106,10 @@ class AppointmentBookingController extends GetxController {
     AdminModel adminModel = AdminModel();
     if (documentSnapshot.exists && documentSnapshot.data() != null) {
       adminModel = AdminModel.fromSnapshot(documentSnapshot);
-      appointmentId = adminModel.appointmentId + 1;
-      await adminCollectionReference
-          .doc("admin")
-          .update({"appointmentId": appointmentId});
+      await documentReference
+          .update({"footServiceAppointmentId": FieldValue.increment(1)});
     } else {
-      await adminCollectionReference.doc("admin").set(adminModel.toMap());
+      await documentReference.set(adminModel.toMap());
     }
     return appointmentId;
   }
@@ -116,12 +120,12 @@ class AppointmentBookingController extends GetxController {
     _updateLoading(false);
   }
 
-  proceedToPayment(DoctorModel doctorModel) {
+  proceedToPayment(FootServiceModel footServiceModel) {
     RazorPayScreen().startPayment(
         amount: getPayableAmount().toDouble(),
         description: "Home services",
         onSuccess: (PaymentSuccessResponse paymentSuccessResponse) async {
-          await createAppointment(doctorModel);
+          await createAppointment(footServiceModel);
         },
         onError: (PaymentFailureResponse paymentFailureResponse) {
           Utility.toast(
@@ -132,29 +136,31 @@ class AppointmentBookingController extends GetxController {
             (ExternalWalletResponse externalWalletResponse) async {
           Utility.toast(
               "onExternalWallet: payment failed due to  ${externalWalletResponse.walletName}");
-          await createAppointment(doctorModel);
+          await createAppointment(footServiceModel);
         });
   }
 
-  createAppointment(DoctorModel doctorModel) async {
+  createAppointment(FootServiceModel footServiceModel) async {
     try {
       _updateLoading(true); // Show loading at the start
       int appointmentId = await _generatePaymentId();
       DocumentReference appointmentDocumentReference =
-          appointmentsCollectionReference.doc();
-      late AppointmentModel appointmentModel;
+          footServicesAppointmentsCollectionReference.doc();
+      late FootServiceAppointmentModel appointmentModel;
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         // Create Appointment Model
-        appointmentModel = AppointmentModel(
+        appointmentModel = FootServiceAppointmentModel(
           appointmentDate: selectedDate,
           appointmentTime: selectedTime,
-          doctorId: doctorModel.docId,
+          doctorId: "",
           appointmentType: appointmentType,
           timestamp: Timestamp.now(),
           uid: Utility().getCurrentUserId(),
           docId: appointmentDocumentReference.id,
           appointmentId: appointmentId,
           appointmentStatus: AppointmentStatus.booked,
+          footServiceModel: footServiceModel,
+          addressModel: Get.put(AddressesController()).selectedAddressModel,
           patientModel: PatientModel(
             name: nameTextController.text,
             age: int.parse(ageTextController.text),
@@ -166,11 +172,13 @@ class AppointmentBookingController extends GetxController {
 
         // Save appointment in transaction
         transaction.set(appointmentDocumentReference, appointmentModel.toMap());
-
         // Payment transaction creation
         PaymentModel paymentModel =
             await Get.put(PaymentController()).addPaymentTransaction(
-          totalAmount: getDiscountAmount(doctorModel).toDouble(),
+          totalAmount: getDiscountAmount(
+                  offerPrice: footServiceModel.offerPrice,
+                  actualPrice: footServiceModel.actualPrice)
+              .toDouble(),
           paidAmount: getPayableAmount().toDouble(),
           subscriptionId: appointmentModel.docId,
           paymentStatus: PaymentStatus.completed,
@@ -184,8 +192,9 @@ class AppointmentBookingController extends GetxController {
       // Resetting selection
       isDateSelected = false;
       // Navigate to confirmation screen after the transaction succeeds
-      Get.to(
-          () => AppointmentConfirmScreen(appointmentModel: appointmentModel));
+      Get.to(() => AppointmentConfirmScreen(
+            footServiceAppointmentModel: appointmentModel,
+          ));
     } catch (e, stack) {
       logger("createAppointment Transaction Error: ${e.toString()}");
       logger("createAppointment Stack Trace: ${stack.toString()}");
@@ -194,8 +203,10 @@ class AppointmentBookingController extends GetxController {
     }
   }
 
-  Future cancelAppointment(AppointmentModel appointmentModel) async {
-    await appointmentsCollectionReference.doc(appointmentModel.docId).update({
+  Future cancelAppointment(DoctorAppointmentModel appointmentModel) async {
+    await footServicesAppointmentsCollectionReference
+        .doc(appointmentModel.docId)
+        .update({
       "appointmentStatus": AppointmentStatus.cancelledByUser.index,
       "modifiedAt": DateTime.now()
     });

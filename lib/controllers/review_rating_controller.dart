@@ -22,7 +22,7 @@ class ReviewRatingController extends GetxController {
   CollectionReference getCollection(ReviewType reviewType) {
     CollectionReference collectionReference = footServicesCollectionReference;
     if (reviewType == ReviewType.appointment) {
-      collectionReference = appointmentsCollectionReference;
+      collectionReference = doctorsAppointmentsCollectionReference;
     }
     return collectionReference;
   }

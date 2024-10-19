@@ -5,18 +5,26 @@ import 'package:get/get.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final Color color;
+  final Color titleColor;
+  final Color bgColor;
+  final Color iconColor;
   const CustomAppbar(
-      {super.key, this.title = "", this.color = AppColors.textWhiteColor});
+      {
+    super.key,
+    this.title = "",
+    this.bgColor = AppColors.primaryBlue,
+    this.titleColor = AppColors.textWhiteColor,
+    this.iconColor = AppColors.textWhiteColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: color,
+      backgroundColor: bgColor,
       title: Text(
         title,
-        style: const TextStyle(
-          color: AppColors.primary,
+        style: TextStyle(
+          color: titleColor,
           fontSize: 18,
           fontWeight: FontWeight.w700,
         ),
@@ -26,9 +34,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Get.back();
         },
-        icon: const Icon(
+        icon: Icon(
           Icons.arrow_back,
-          color: AppColors.black1,
+          color: iconColor,
         ),
       ),
     );

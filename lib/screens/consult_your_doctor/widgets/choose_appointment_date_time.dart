@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/appointment_booking_controller.dart';
+import 'package:drfootapp/controllers/doctor_appointment_booking_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
@@ -17,11 +17,11 @@ class ChooseAppointmentDateTime extends StatefulWidget {
 }
 
 class _ChooseAppointmentDateTimeState extends State<ChooseAppointmentDateTime> {
-  final AppointmentBookingController appointmentController =
-      Get.put(AppointmentBookingController());
+  final DoctorAppointmentBookingController appointmentController =
+      Get.put(DoctorAppointmentBookingController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AppointmentBookingController>(
+    return GetBuilder<DoctorAppointmentBookingController>(
         builder: (appointmentController) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,8 @@ class _ChooseAppointmentDateTimeState extends State<ChooseAppointmentDateTime> {
               onTap: () async {
                 Utility().closeKeyboard();
                 var date = await Utility.showMyDatePicker(context,
-                    lastDate: DateTime.now());
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now().add(const Duration(days: 5)));
                 appointmentController.selectDate(date.toString());
               },
               child: const Icon(

@@ -1,16 +1,15 @@
 // ignore_for_file: unnecessary_import
 import 'package:drfootapp/controllers/address_controller.dart';
 import 'package:drfootapp/controllers/coupon_code_controller.dart';
-import 'package:drfootapp/controllers/foot_services_controller.dart';
-import 'package:drfootapp/controllers/payment_controller.dart';
-import 'package:drfootapp/models/nurse_service_model.dart';
+import 'package:drfootapp/controllers/foot_appointment_booking_controller.dart';
+import 'package:drfootapp/models/foot_service_model.dart';
 import 'package:drfootapp/screens/foot_services/available_offers.dart';
-import 'package:drfootapp/static_data/dressing_at_home/dressing_at_home_huge.dart';
+import 'package:drfootapp/screens/foot_services/foor_service_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_appbar.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
-import 'package:drfootapp/utils/widgets/foot_service_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,29 +20,22 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import 'foot_payment_address.dart';
 
-class HomeFootPayment extends StatefulWidget {
-  final NurseServiceModel nurseServiceModel;
-
-  final double height;
-  final double width;
-  const HomeFootPayment({
+class FootServicePaymentScreen extends StatefulWidget {
+  final FootServiceModel nurseServiceModel;
+  const FootServicePaymentScreen({
     super.key,
-    this.height = 160,
     required this.nurseServiceModel,
-    this.width = double.infinity,
   });
 
   @override
-  State<HomeFootPayment> createState() => _HomeFootPaymentState();
+  State<FootServicePaymentScreen> createState() =>
+      _FootServicePaymentScreenState();
 }
 
-class _HomeFootPaymentState extends State<HomeFootPayment> {
+class _FootServicePaymentScreenState extends State<FootServicePaymentScreen> {
   int selectedContainerIndex = 0;
-  final FootServiceController homeDressingController =
-      Get.put(FootServiceController());
-
-  final PaymentController paymentController = Get.put(PaymentController());
-
+  final FootAppointmentBookingController footAppointmentBookingController =
+      Get.put(FootAppointmentBookingController());
   final AddressesController _addressesController =
       Get.put(AddressesController());
   final CouponCodeController couponCodeController =
@@ -58,14 +50,20 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
       if (_addressesController.addressesList.isEmpty) {
         _addressesController.getMyAddress().then((value) {
           if (value.isNotEmpty) {
-            homeDressingController.updateAddressSelection(value.first);
+            // homeDressingController.updateAddressSelection(value.first);
           }
         });
       } else {
-        homeDressingController
-            .updateAddressSelection(_addressesController.addressesList.first);
+        // homeDressingController
+        //     .updateAddressSelection(_addressesController.addressesList.first);
       }
     }
+    footAppointmentBookingController.billTotalAmount =
+        widget.nurseServiceModel.actualPrice;
+    footAppointmentBookingController.discountAmount =
+        footAppointmentBookingController.getDiscountAmount(
+            offerPrice: widget.nurseServiceModel.offerPrice,
+            actualPrice: widget.nurseServiceModel.actualPrice);
     super.initState();
   }
 
@@ -73,65 +71,19 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.secondary,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: const Text(
-          "Payment",
-          style: TextStyle(
-              color: AppColors.primaryBlue,
-              fontSize: 18,
-              fontWeight: FontWeight.w700),
-        ).tr(),
-        centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: AppColors.primaryBlue,
-            )),
+      appBar: const CustomAppbar(
+        title: "Dressing at home",
       ),
-      body: GetBuilder<FootServiceController>(builder: (footServiceController) {
+      body: GetBuilder<FootAppointmentBookingController>(
+          builder: (footAppointmentBookingController) {
         return SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 2),
+            // constraints: BoxConstraints(
+            //     maxHeight: MediaQuery.of(context).size.height * 2),
             child: Column(
               children: [
-                FootServiceWidget(
-                  footServiceModel:
-                      footServiceController.selectedFootServiceModel,
-                  onPress: () {
-                    couponCodeController.selectedCouponCodeModel == null
-                        ? Get.back()
-                        : Null;
-                    footServiceController.addOrRemoveFromList(
-                        footServiceModel:
-                            footServiceController.selectedFootServiceModel);
-                  },
-                ),
-                // ListView.builder(
-                //     physics: const NeverScrollableScrollPhysics(),
-                //     shrinkWrap: true,
-                //     itemCount: homeDressingController
-                //         .homeDressingServicesAddedList.length,
-                //     itemBuilder: (context, index) {
-                //       final homeDressingService = homeDressingController
-                //           .homeDressingServicesAddedList[index];
-                //       return FootServiceWidget(
-                //         footServiceModel: homeDressingService,
-                //         onPress: () {
-                //           couponCodeController.selectedCouponCodeModel == null
-                //               ? Get.back()
-                //               : Null;
-                //           homeDressingController.addOrRemoveFromList(
-                //               homeDressingModel: homeDressingService);
-                //         },
-                //       );
-                //     }),
+                FootServiceWidget(nurseServiceModel: widget.nurseServiceModel),
                 const SizedBox(
                   height: 20,
                 ),
@@ -164,14 +116,16 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
                         height: 10,
                       ),
                       paymentText(
-                        amount: footServiceController.finalAmount,
+                        amount: footAppointmentBookingController.billTotalAmount
+                            .toDouble(),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       paymentText(
                         defaultText: "Discount amount ",
-                        amount: footServiceController.discountAmount,
+                        amount: footAppointmentBookingController.discountAmount
+                            .toDouble(),
                       ),
                       const SizedBox(
                         height: 10,
@@ -196,12 +150,9 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
                       ),
                       paymentText(
                         defaultText: "Pay you",
-                        amount:
-                            couponCodeController.selectedCouponCodeModel == null
-                                ? footServiceController.finalAmount
-                                : footServiceController.finalAmount -
-                                    couponCodeController
-                                        .selectedCouponCodeModel!.maxDiscount,
+                        amount: footAppointmentBookingController
+                            .getPayableAmount()
+                            .toDouble(),
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
@@ -211,27 +162,20 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
                 const SizedBox(
                   height: 20,
                 ),
-                GetBuilder<AddressesController>(builder: (context) {
+                GetBuilder<AddressesController>(builder: (addressesController) {
                   return FootPaymentWidget(
-                    addressModel: footServiceController.selectedAddressModel,
+                    addressModel: addressesController.selectedAddressModel,
                   );
                 }),
                 const SizedBox(
                   height: 20,
                 ),
-                footServiceController.isLoading
+                footAppointmentBookingController.isLoading
                     ? const CircularProgressIndicator()
                     : CustomButton(
                         buttonName:
-                            "Make Payment | ₹ ${footServiceController.finalAmount}",
-                        onPress: () {
-                          if (footServiceController
-                              .selectedAddressModel.docId.isEmpty) {
-                            Utility.toast("Please select address");
-                          } else {
-                            footServiceController.proceedToPayment();
-                          }
-                        },
+                            "Make Payment | ${Utility().toIndianFormat(footAppointmentBookingController.getPayableAmount())}",
+                        onPress: validate,
                       ),
                 const SizedBox(
                   height: 20,
@@ -242,6 +186,23 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
         );
       }),
     );
+  }
+
+  validate() {
+    if (_addressesController.selectedAddressModel.docId.isEmpty) {
+      Utility.toast("Please select address");
+    } else {
+      Utility.showAlertDialogger(
+          context: context,
+          yes: () {
+            Get.back();
+            footAppointmentBookingController
+                .proceedToPayment(widget.nurseServiceModel);
+          },
+          no: () {
+            Get.back();
+          });
+    }
   }
 
   Widget paymentText(
@@ -260,7 +221,7 @@ class _HomeFootPaymentState extends State<HomeFootPayment> {
               fontWeight: fontWeight, fontSize: fontSize, color: textColor),
         ).tr(),
         Text(
-          "₹${amount.round()}",
+          Utility().toIndianFormat(amount),
           style: TextStyle(
               fontWeight: fontWeight, fontSize: fontSize, color: textColor),
         )
