@@ -129,7 +129,7 @@ class AssetsConstants {
   static const String planter_warts_full_image =
       "$skin_and_nail_path/planter_warts_full_image.png";
   static const String toe_nail_fungus_full_image =
-      "$toe_deformities_images_path/toe_nail_fungus_full_image.png";
+      "assets/images/skin_and_nail_images/toe_nail_fungus_full_image.png";
   static const String nail_fungs_full_image =
       "assets/images/skin_and_nail_images/nail_fungs_full_image.png";
   static const String filiculities_full_image =

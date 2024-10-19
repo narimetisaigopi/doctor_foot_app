@@ -1,10 +1,11 @@
 import 'package:drfootapp/models/skin_and_nail_model.dart';
 import 'package:drfootapp/screens/check_your_feet/check_your_feet_widget.dart';
-import 'package:drfootapp/screens/check_your_feet/corns_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/folliculitis_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/ingrown_toe_nail_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/plantar_warts_screen.dart';
-import 'package:drfootapp/screens/check_your_feet/toe_nail_fungus_screen.dart';
+import 'package:drfootapp/screens/check_your_feet/check_your_feet_detail_screen.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/skin&nail/corns.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/skin&nail/folliculitis.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/skin&nail/ingrown_toe_nails.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/skin&nail/planter_warts.dart';
+import 'package:drfootapp/static_data/check_your_feet_data/skin&nail/toe_nail_fungus.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,24 +75,34 @@ class _SkinAndNailScreenState extends State<SkinAndNailScreen> {
                       onTap: () {
                         switch (index) {
                           case 0:
-                            Get.back();
-                            Get.to(() => const IngrownToeNailScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel: IngrownToeNails
+                                      .checkYourFeetDataModelList,
+                                ));
                             break;
                           case 1:
-                            Get.back();
-                            Get.to(() => const CornsScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      Corns.checkYourFeetDataModelList,
+                                ));
                             break;
                           case 2:
-                            Get.back();
-                            Get.to(() => const PlantarWartsScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      PlanterWarts.checkYourFeetDataModelList,
+                                ));
                             break;
                           case 3:
-                            Get.back();
-                            Get.to(() => const ToeNailFungusScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      ToeNailFungus.checkYourFeetDataModelList,
+                                ));
                             break;
                           case 4:
-                            Get.back();
-                            Get.to(() => const FolliculitisScreen());
+                            Get.to(() => CheckYourFeetDetailScreen(
+                                  checkYourFeetDataModel:
+                                      Folliculitis.checkYourFeetDataModelList,
+                                ));
                             break;
                           default:
                             break;
