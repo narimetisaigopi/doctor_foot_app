@@ -1,5 +1,7 @@
+import 'package:drfootapp/screens/check_internet_connection/network_connection_screen.dart';
 import 'package:drfootapp/screens/dash_board/ulcer_monitor_widgets/gallary_image_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -98,10 +100,18 @@ class _GalleryScreenState extends State<GalleryScreen> {
               color: AppColors.whiteBgColor,
               child: Center(
                 child: CustomButton(
-                  bgColor: AppColors.primaryBlue,
+                  bgColor: AppColors.whiteBgColor,
                   buttonName: "Upload",
-                  textColor: AppColors.whiteBgColor,
-                  onPress: () {},
+                  textColor: AppColors.primaryBlue,
+                  border: true,
+                  onPress: () {
+                    Get.to(() => const NetworkConnectionScreen(
+                          image: AssetsConstants.no_internet,
+                          title: 'No internet connection',
+                          subTitle:
+                              'Please check your internet connection and \ntry again',
+                        ));
+                  },
                 ),
               ),
             ),
