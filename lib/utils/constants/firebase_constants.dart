@@ -45,8 +45,8 @@ CollectionReference doctorsCollectionReference =
 CollectionReference bannersCollectionReference =
     FirebaseFirestore.instance.collection("banners");
 
-CollectionReference noUlcerCollectionReference =
-    FirebaseFirestore.instance.collection("no_ulcer");
+CollectionReference haveUlcerCollectionReference =
+    FirebaseFirestore.instance.collection("have_ulcer");
 CollectionReference riskCheckerCollectionReference =
     FirebaseFirestore.instance.collection("riskchecker");
 

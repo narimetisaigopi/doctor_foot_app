@@ -1,3 +1,4 @@
+import 'package:drfootapp/controllers/have_ulcer_controller.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_yes_screen.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/no/have_no_ulcer_upload_bottomsheet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -72,6 +73,7 @@ class _HaveUlcerBottomSheetState extends State<HaveUlcerBottomSheet> {
               children: [
                 InkWell(
                   onTap: () {
+                    Get.put(HaveUlcerController()).haveUcler = false;
                     Utility.myBottomSheet(
                       context,
                       heightFactor: 0.6,
@@ -88,6 +90,7 @@ class _HaveUlcerBottomSheetState extends State<HaveUlcerBottomSheet> {
                 ),
                 InkWell(
                   onTap: () {
+                    Get.put(HaveUlcerController()).haveUcler = true;
                     Get.to(() => const HaveUlcerYesScreen());
                   },
                   child: const CustomButton(

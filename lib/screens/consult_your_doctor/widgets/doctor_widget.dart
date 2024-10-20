@@ -124,24 +124,28 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                             ),
                             Row(
                               children: [
-                                RatingBar.builder(
-                                  initialRating: 4,
-                                  itemSize: 20,
-                                  minRating: 1,
-                                  direction: Axis.horizontal,
-                                  allowHalfRating: true,
-                                  itemCount: 5,
-                                  itemPadding: const EdgeInsets.symmetric(
-                                      horizontal: 1.0),
-                                  itemBuilder: (context, index) => const Icon(
-                                    Icons.star,
-                                    color: AppColors.ratingBarColor,
+                                IgnorePointer(
+                                  child: RatingBar.builder(
+                                    initialRating: Utility.getAverageRating(
+                                        widget.doctorModel.reviewCount,
+                                        widget.doctorModel.totalRating),
+                                    itemSize: 20,
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemPadding: const EdgeInsets.symmetric(
+                                        horizontal: 1.0),
+                                    itemBuilder: (context, index) => const Icon(
+                                      Icons.star,
+                                      color: AppColors.ratingBarColor,
+                                    ),
+                                    onRatingUpdate: (double value) {},
                                   ),
-                                  onRatingUpdate: (double value) {},
                                 ),
-                                const Text(
-                                  "(134)",
-                                  style: TextStyle(
+                                Text(
+                                  "(${widget.doctorModel.reviewCount})",
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.grey2,

@@ -17,8 +17,8 @@ class DoctorModel {
   int offerPrice;
   String? hospitalId;
   List speakingLanguagesList;
-  int reviewCount;
-  double totalRating;
+  dynamic reviewCount;
+  dynamic totalRating;
   int noOfPatients;
 
   DoctorModel(
@@ -63,11 +63,10 @@ class DoctorModel {
         offerPrice: map["offerPrice"] ?? 0,
         hospitalId: map["hospitalId"],
         modifiedAt: map["modifiedAt"],
-      speakingLanguagesList: map["speakingLanguagesList"] ?? [],
-      reviewCount: map["reviewCount"] ?? 0,
+        speakingLanguagesList: map["speakingLanguagesList"] ?? [],
+        reviewCount: map["reviewCount"] ?? 0,
         totalRating: map["totalRating"] ?? 0.0,
-      noOfPatients: map["noOfPatients"] ?? 0
-    );
+        noOfPatients: map["noOfPatients"] ?? 0);
   }
 
   Map<String, dynamic> toJson() {
@@ -92,7 +91,7 @@ class DoctorModel {
       "speakingLanguagesList": speakingLanguagesList,
       "reviewCount": reviewCount,
       "totalRating": totalRating,
-      "noOfPatients":noOfPatients
+      "noOfPatients": noOfPatients
     };
   }
 }

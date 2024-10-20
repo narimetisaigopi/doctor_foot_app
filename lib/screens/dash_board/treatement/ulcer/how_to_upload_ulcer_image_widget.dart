@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/ulcer_controller.dart';
+import 'package:drfootapp/controllers/have_ulcer_controller.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/no/have_no_ulcer_preview_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
@@ -23,10 +23,10 @@ class HowToUploadUlcerImageWidget extends StatefulWidget {
 
 class _HowToUploadUlcerImageWidgetState
     extends State<HowToUploadUlcerImageWidget> {
-  UlcerController ulcerController = Get.put(UlcerController());
+  HaveUlcerController ulcerController = Get.put(HaveUlcerController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UlcerController>(builder: (ulcerController) {
+    return GetBuilder<HaveUlcerController>(builder: (ulcerController) {
       return InkWell(
         onTap: () async {
           ulcerController.pickFile(widget.index).then((e) {

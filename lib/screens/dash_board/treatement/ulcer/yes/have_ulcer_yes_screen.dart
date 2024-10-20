@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/ulcer_controller.dart';
+import 'package:drfootapp/controllers/have_ulcer_controller.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/ulcer_upload_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -18,7 +18,8 @@ class HaveUlcerYesScreen extends StatefulWidget {
 }
 
 class _HaveUlcerYesScreenState extends State<HaveUlcerYesScreen> {
-  final UlcerController haveUlcerController = Get.put(UlcerController());
+  final HaveUlcerController haveUlcerController =
+      Get.put(HaveUlcerController());
   int currentIndex = 0;
   int currentPosition = 0;
 
@@ -48,7 +49,7 @@ class _HaveUlcerYesScreenState extends State<HaveUlcerYesScreen> {
           ),
         ).tr(),
       ),
-      body: GetBuilder<UlcerController>(
+      body: GetBuilder<HaveUlcerController>(
         builder: (haveUlcerController) {
           return Padding(
             padding: const EdgeInsets.only(left: 20, top: 10, right: 10),

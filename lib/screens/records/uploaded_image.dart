@@ -1,14 +1,15 @@
-
-import 'package:drfootapp/screens/records/uploaded_images_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class UploadedImage extends StatefulWidget {
-  final UploadedImagesModel recentUploadModel;
+  final String date;
+  final List imagesList;
 
   const UploadedImage({
     super.key,
-    required this.recentUploadModel,
+    required this.date,
+    required this.imagesList,
   });
 
   @override
@@ -25,14 +26,14 @@ class _UploadedImageState extends State<UploadedImage> {
           children: [
             const Text(
               "Date - ",
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
                 color: AppColors.imagesTextColor,
               ),
             ),
             Text(
-              widget.recentUploadModel.date,
+              widget.date,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
@@ -41,27 +42,31 @@ class _UploadedImageState extends State<UploadedImage> {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 12),
-          child: Column(
-            children: [
-              // CustomNetworkImageWidget(
-              //   path: widget.recentUploadModel.image,
-              //   height: 104,
-              //   width: 104,
-              // ),
-              const SizedBox(height: 6),
-              Text(
-                widget.recentUploadModel.type,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.imagesTextColor,
+        ListView.builder(
+            itemCount: widget.imagesList.length,
+            itemBuilder: (ctx, index) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Column(
+                  children: [
+                    CustomNetworkImageWidget(
+                      path: widget.imagesList[index],
+                      height: 104,
+                      width: 104,
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      "",
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.imagesTextColor,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        ),
+              );
+            }),
       ],
     );
   }
