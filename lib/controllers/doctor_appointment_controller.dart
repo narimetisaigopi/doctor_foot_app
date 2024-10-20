@@ -3,6 +3,7 @@ import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
 import 'package:drfootapp/models/admin_model.dart';
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
+import 'package:drfootapp/models/check_your_feet_data_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/models/payment_model.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/book_appointement/appointment_success_screen.dart';
@@ -21,11 +22,10 @@ class DoctorAppointmentController extends GetxController {
   DateTime selectedDateTime = DateTime.now();
   bool isDateSelected = false;
   bool isLoading = false;
-  AppointmentType appointmentType = AppointmentType.consultYourDoctor;
-  void _updateLoading(bool loading) {
-    isLoading = loading;
-    update();
-  }
+  DoctorAppointmentType appointmentType =
+      DoctorAppointmentType.consultYourDoctor;
+
+  CheckYourFeetDataModel? selectedCheckYourFeetDataModel;
 
   TextEditingController dateTextEditingController = TextEditingController();
   TextEditingController applyCouponController = TextEditingController();
@@ -43,6 +43,11 @@ class DoctorAppointmentController extends GetxController {
 
   int getPayableAmount() {
     return billTotalAmount - discountAmount;
+  }
+
+  void _updateLoading(bool loading) {
+    isLoading = loading;
+    update();
   }
 
   int getDiscountAmount({required int actualPrice, required int offerPrice}) {
@@ -154,6 +159,7 @@ class DoctorAppointmentController extends GetxController {
           appointmentType: appointmentType,
           timestamp: Timestamp.now(),
           uid: Utility().getCurrentUserId(),
+          checkYourFeetDataModel: selectedCheckYourFeetDataModel,
           docId: appointmentDocumentReference.id,
           appointmentId: appointmentId,
           appointmentStatus: AppointmentStatus.booked,

@@ -28,8 +28,14 @@ enum DressingServicesItem { title, image, dicription }
 enum ReviewType { homeService, appointment }
 enum NotificationType { all }
 enum DietType { veg, nonveg }
-enum AppointmentType {
+enum DoctorAppointmentType {
   consultYourDoctor,
   onlineConsultation,
-  footScreeningService
+  footScreeningService,
+  skinAndNail,
+  toeDeformities,
+  footPain,
+  footDeformities,
+  sportsInjuries,
+  footAndAnkleArthritis
 }

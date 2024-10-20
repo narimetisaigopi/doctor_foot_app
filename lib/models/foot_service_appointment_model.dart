@@ -20,7 +20,7 @@ class FootServiceAppointmentModel {
   FootServiceModel? footServiceModel;
   String paymentId;
   String cancelledByUid;
-  AppointmentType appointmentType;
+  DoctorAppointmentType appointmentType;
 
   FootServiceAppointmentModel(
       {this.docId = "",
@@ -38,7 +38,7 @@ class FootServiceAppointmentModel {
       this.footServiceModel,
       this.paymentId = "",
       this.cancelledByUid = "",
-      this.appointmentType = AppointmentType.consultYourDoctor});
+      this.appointmentType = DoctorAppointmentType.consultYourDoctor});
 
   // Convert model to Map for Firestore
   Map<String, dynamic> toMap() {
@@ -90,7 +90,7 @@ class FootServiceAppointmentModel {
         paymentId: data["paymentId"] ?? "",
         cancelledByUid: data["cancelledByUid"] ?? "",
         appointmentType: data['appointmentType'] != null
-            ? AppointmentType.values[data['appointmentType']]
-            : AppointmentType.consultYourDoctor);
+            ? DoctorAppointmentType.values[data['appointmentType']]
+            : DoctorAppointmentType.consultYourDoctor);
   }
 }

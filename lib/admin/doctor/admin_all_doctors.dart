@@ -37,6 +37,7 @@ class _AllAdminDoctorsScreenState extends State<AllAdminDoctorsScreen> {
           return DoctorWidget(
             doctorModel: doctorModel,
             isAdmin: true,
+            onPressed: () {},
           );
         },
       ),
