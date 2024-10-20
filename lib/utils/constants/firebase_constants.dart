@@ -19,6 +19,8 @@ CollectionReference dietCollectionReference =
 
 CollectionReference ulcerSubscrptionsCollectionReference =
     FirebaseFirestore.instance.collection("ulcer_monitoring_subscriptions");
+CollectionReference ulcerMonitoringRecordsCollectionReference =
+    FirebaseFirestore.instance.collection("ulcer_monitoring_records");
 CollectionReference paymentsCollectionReference =
     FirebaseFirestore.instance.collection("payments");
 
@@ -56,6 +58,8 @@ CollectionReference noUlcerCollectionReference =
 CollectionReference riskCheckerCollectionReference =
     FirebaseFirestore.instance.collection("riskchecker");
 
+CollectionReference adminReviewsCollectionReference =
+    FirebaseFirestore.instance.collection("admin_reviews");
 
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";
@@ -64,10 +68,12 @@ const String storageHospitals = "hospitals";
 const String storageDoctors = "doctors";
 const String storageBanners = "banners";
 const String storageNoUlcer = "no_ulcer";
+const String storageUlcerMonitoringRecords = "ulcer_monitoring_records";
 
 final List<String> adminsList = [
   "bandigowtham6@gmail.com",
 ];
+
 bool amIAdmin() {
   String email = "";
   if (FirebaseAuth.instance.currentUser != null) {

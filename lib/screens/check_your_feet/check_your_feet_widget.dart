@@ -23,7 +23,7 @@ class _CheckYourFeetWidgetState extends State<CheckYourFeetWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Expanded(
-          flex: 8,
+          flex: 6,
           child: CustomImage(
             path: widget.image,
             height: double.infinity,
