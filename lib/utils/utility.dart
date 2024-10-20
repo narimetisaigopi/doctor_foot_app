@@ -31,7 +31,7 @@ class Utility {
   static showAlertDialogger({
     required BuildContext context,
     required Function() yes,
-    required Function() no,
+    required Function()? no,
     String title = "Confirm",
     String content = "Do you want to proceed?",
   }) {
@@ -40,7 +40,10 @@ class Utility {
       content: Text(content),
       actions: [
         TextButton(
-            onPressed: no,
+            onPressed: no ??
+                () {
+                  Get.back();
+                },
             child: const Text(
               "No",
               style: TextStyle(color: Colors.black),
@@ -884,7 +887,10 @@ class Utility {
     return int.parse(today);
   }
 
-  static double getAverageRating(int reviewCount, double totalRating) {
+  static double getAverageRating(dynamic reviewCount, dynamic totalRating) {
+    if (reviewCount == 0 || totalRating == 0) {
+      return 0;
+    }
     double normalizedTotalRating = (totalRating / (reviewCount * 5)) * 5;
     normalizedTotalRating = normalizedTotalRating.toPrecision(1);
     return normalizedTotalRating;

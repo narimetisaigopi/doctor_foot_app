@@ -1,5 +1,4 @@
 import 'package:drfootapp/screens/records/all_recent_images.dart';
-import 'package:drfootapp/screens/records/all_recent_upload_images.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -98,7 +97,7 @@ class _HealthRecordScreenState extends State<HealthRecordScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      AllRecentUploadImages(),
+                      //    AllRecentUploadImages(),
                     ],
                   ),
                 ),

@@ -102,8 +102,16 @@ class _UlcerMonitoringUploadDocumentsScreenState
                                 .selectedImagesList.isEmpty) {
                               Utility.toast("Upload images");
                             } else {
-                              ulcerMonitoringController
-                                  .addUlcerMonitoringRecord();
+                              Utility.showAlertDialogger(
+                                  context: context,
+                                  yes: () {
+                                    Get.back();
+                                    ulcerMonitoringController
+                                        .addUlcerMonitoringRecord();
+                                  },
+                                  no: () {
+                                    Get.back();
+                                  });
                             }
                           },
                         ),

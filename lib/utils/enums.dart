@@ -8,7 +8,6 @@ enum AppointmentStatus {
   completed
 }
 enum PaymentServiceType { none, ulcerMonitoring, homeService, drAppointment }
-
 enum FootServiceType {
   none,
   dressingAtHomeSmall,
@@ -18,10 +17,6 @@ enum FootServiceType {
   nailTrimming,
   footCleaning,
 }
-
-enum DressingServices { small, moderate, large, huge }
-enum DressingServicesItem { title, image, dicription }
-
 enum ReviewType { doctor }
 enum NotificationType { all }
 enum DietType { veg, nonveg }

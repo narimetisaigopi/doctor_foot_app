@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
-import 'package:drfootapp/models/ulcer/have_no_ulcer_model.dart';
+import 'package:drfootapp/models/ulcer/have_ulcer_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -10,10 +10,11 @@ import 'package:image_picker/image_picker.dart';
 
 import '../utils/constants/firebase_constants.dart';
 
-class UlcerController extends GetxController {
+class HaveUlcerController extends GetxController {
   bool isLoading = false;
   XFile? xfile, xfile2, xfile3;
   int currentPosition = 1;
+  bool haveUcler = false;
 
   void _updateLoading(bool loading) {
     isLoading = loading;
@@ -64,17 +65,19 @@ class UlcerController extends GetxController {
   uploadNoUlcerImages() async {
     try {
       _updateLoading(true);
-      HaveNoUlcerModel haveNoUlcerModel = HaveNoUlcerModel();
+      HaveUlcerModel haveUlcerModel = HaveUlcerModel();
       List images = await FirebaseStorageController().uploadImagesToFirebase(
           directoryName: storageNoUlcer,
           uploadFiles: [xfile!, xfile2!, xfile3!]);
-      haveNoUlcerModel.docId = Utility().getCurrentUserId();
-      haveNoUlcerModel.uid = Utility().getCurrentUserId();
-      haveNoUlcerModel.images = images;
-      haveNoUlcerModel.timestamp = DateTime.now();
-      await noUlcerCollectionReference
+      haveUlcerModel.docId = Utility().getCurrentUserId();
+      haveUlcerModel.uid = Utility().getCurrentUserId();
+      haveUlcerModel.haveUlcer = haveUcler;
+      if (haveUcler) haveUlcerModel.yesImages = images;
+      if (!haveUcler) haveUlcerModel.noImages = images;
+      haveUlcerModel.timestamp = DateTime.now();
+      await haveUlcerCollectionReference
           .doc(Utility().getCurrentUserId())
-          .set(haveNoUlcerModel.toJson());
+          .set(haveUlcerModel.toJson());
       Utility.toast("Uploaded successfully.");
       reset();
       Get.offAll(() => const DashBoardScreen());

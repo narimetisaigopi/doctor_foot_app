@@ -6,8 +6,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class NotificationService {
   Future<void> initNotification() async {
     // Android initialization
-    final AndroidInitializationSettings initializationSettingsAndroid =
-        const AndroidInitializationSettings('@mipmap/ic_launcher');
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     // ios initialization
     const DarwinInitializationSettings initializationSettingsIOS =
