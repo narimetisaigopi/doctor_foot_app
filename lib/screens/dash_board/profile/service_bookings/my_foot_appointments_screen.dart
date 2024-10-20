@@ -1,5 +1,5 @@
 import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
-import 'package:drfootapp/screens/dash_board/profile/service_bookings/booking_services_list_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/service_bookings/foot_appointments_list_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -7,16 +7,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyServiceBookingsScreen extends StatefulWidget {
-  const MyServiceBookingsScreen({super.key});
+class MyFootAppointmentsScreen extends StatefulWidget {
+  const MyFootAppointmentsScreen({super.key});
 
   @override
-  
-  State<MyServiceBookingsScreen> createState() =>
-      _MyServiceBookingsScreenState();
+  State<MyFootAppointmentsScreen> createState() =>
+      _MyFootAppointmentsScreenState();
 }
 
-class _MyServiceBookingsScreenState extends State<MyServiceBookingsScreen>
+class _MyFootAppointmentsScreenState extends State<MyFootAppointmentsScreen>
     with TickerProviderStateMixin {
   final DoctorAppointmentController appointmentController =
       Get.put(DoctorAppointmentController());
@@ -75,11 +74,25 @@ class _MyServiceBookingsScreenState extends State<MyServiceBookingsScreen>
                 ),
               ),
               body: const TabBarView(children: [
-                BookingServicesListScreen(
-                  orderStatus: OrderStatus.upcoming,
-                  title: Strings.upcoming,
+                Column(
+                  children: [
+                    Expanded(
+                      child: FootAppointmentsListScreen(
+                        orderStatus: OrderStatus.upcoming,
+                        title: Strings.upcoming,
+                        showHeader: true,
+                      ),
+                    ),
+                    Expanded(
+                      child: FootAppointmentsListScreen(
+                        orderStatus: OrderStatus.upcoming,
+                        title: Strings.upcoming,
+                        showHeader: true,
+                      ),
+                    ),
+                  ],
                 ),
-                BookingServicesListScreen(
+                FootAppointmentsListScreen(
                   orderStatus: OrderStatus.cancelled,
                   title: "",
                 ),

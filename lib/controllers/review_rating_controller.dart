@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/review_rating_model.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -25,7 +24,8 @@ class ReviewRatingController extends GetxController {
   ReviewRatingModel myRatingModel = ReviewRatingModel();
 
   CollectionReference getCollection(ReviewType reviewType) {
-    CollectionReference collectionReference = footServicesCollectionReference;
+    CollectionReference collectionReference =
+        footServicesAppointmentsCollectionReference;
     if (reviewType == ReviewType.appointment) {
       collectionReference = doctorsAppointmentsCollectionReference;
     }

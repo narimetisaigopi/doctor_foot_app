@@ -6,12 +6,7 @@ CollectionReference usersCollectionReference =
 
 CollectionReference couponCodesCollectionReference =
     FirebaseFirestore.instance.collection("coupon_codes");
-
-CollectionReference footServicesCollectionReference =
-    FirebaseFirestore.instance.collection("foot_services");
-CollectionReference footServicesBookingsCollectionReference =
-    FirebaseFirestore.instance.collection("foot_services_bookings");
-
+    
 CollectionReference addressesCollectionReference =
     FirebaseFirestore.instance.collection("addresses");
 CollectionReference dietCollectionReference =

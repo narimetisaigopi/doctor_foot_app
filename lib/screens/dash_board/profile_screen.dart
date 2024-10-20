@@ -5,7 +5,7 @@ import 'package:drfootapp/screens/dash_board/profile/faqs_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/edit_profile_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/payments_and_refunds_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/ulcer_monitioring_records_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile/service_bookings/my_service_bookings_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/service_bookings/my_foot_appointments_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -159,7 +159,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               leadingIcon: AssetsConstants.booked_services,
                                               onPressed: () {
                                                 Get.to(
-                                                    const MyServiceBookingsScreen());
+                                                    const MyFootAppointmentsScreen());
                                               }),
                                           ProfileMenuItem(
                                               text: "payments",

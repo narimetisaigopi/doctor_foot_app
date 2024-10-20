@@ -61,8 +61,7 @@ class FootServiceAppointmentModel {
   }
 
   // Create model from Firestore document snapshot
-  factory FootServiceAppointmentModel.fromSnapshot(DocumentSnapshot snapshot) {
-    var data = snapshot.data() as Map<String, dynamic>;
+  factory FootServiceAppointmentModel.fromSnapshot(Map data) {
     return FootServiceAppointmentModel(
         docId: data['docId'] ?? "",
         uid: data['uid'] ?? "",

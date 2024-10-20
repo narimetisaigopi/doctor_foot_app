@@ -9,21 +9,23 @@ import 'package:drfootapp/utils/utility.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
 
-class AppointmentsListScreen extends StatefulWidget {
+class DoctorAppointmentsListScreen extends StatefulWidget {
   final AppointmentStatus appointmentStatus;
   final String title;
   final bool showHeader;
-  const AppointmentsListScreen(
+  const DoctorAppointmentsListScreen(
       {super.key,
       required this.appointmentStatus,
       this.title = "",
       this.showHeader = false});
 
   @override
-  State<AppointmentsListScreen> createState() => _AppointmentsListScreenState();
+  State<DoctorAppointmentsListScreen> createState() =>
+      _DoctorAppointmentsListScreenState();
 }
 
-class _AppointmentsListScreenState extends State<AppointmentsListScreen> {
+class _DoctorAppointmentsListScreenState
+    extends State<DoctorAppointmentsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
