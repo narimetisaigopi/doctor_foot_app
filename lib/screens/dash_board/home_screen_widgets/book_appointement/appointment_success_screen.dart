@@ -1,6 +1,6 @@
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/foot_service_appointment_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/doctor_booked_appointment_details_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_details_screen.dart';
 import 'package:drfootapp/screens/foot_services/foot_service_appointment_details_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -118,7 +118,7 @@ class _AppointmentSuccessScreenState extends State<AppointmentSuccessScreen> {
             buttonName: "View details",
             onPress: () {
               if (widget.doctorAppointmentModel != null) {
-                Get.to(() => DoctorBookedAppointmentDetailsScreen(
+                Get.to(() => DoctorAppointmentDetailsScreen(
                       appointmentModel: widget.doctorAppointmentModel!,
                     ));
               } else if (widget.footServiceAppointmentModel != null) {

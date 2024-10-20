@@ -109,11 +109,11 @@ class _FootServiceAppointmentDetailsScreenState
                             .cancelAppointment(
                                 widget.footServiceAppointmentModel)
                             .then((e) {
-                          cancelledAppointmentAlert(
-                              title: '',
-                              upload: () async {
-                                Get.offAll(() => const DashBoardScreen());
-                              });
+                          Utility.appointmentCancelledDialog(
+                            onDone: Utility.goToHome,
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                          );
                         });
                       },
                     );
@@ -183,54 +183,6 @@ class _FootServiceAppointmentDetailsScreenState
         ),
       ),
     );
-  }
-
-  Future<bool?> cancelledAppointmentAlert({
-    required String title,
-    required VoidCallback upload,
-  }) {
-    return Alert(
-      context: context,
-      title: title,
-      content: const Column(
-        children: [
-          Text(
-            "Appointment Canceled",
-            style: TextStyle(
-              color: AppColors.cancelColor,
-              fontSize: 20,
-            ),
-          ),
-          Text(
-            "You have canceled Your \nappointment",
-            style: TextStyle(
-              color: AppColors.black2,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          CustomImage(
-            path: AssetsConstants.appointment_cancel,
-            height: 169,
-            width: 223,
-          ),
-        ],
-      ),
-      buttons: [
-        DialogButton(
-          onPressed: upload,
-          color: AppColors.cancelColor,
-          child: const Text(
-            "Back to Home",
-            style: TextStyle(
-              color: AppColors.whiteBgColor,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ],
-    ).show();
   }
 
   Future<bool?> customAlert({

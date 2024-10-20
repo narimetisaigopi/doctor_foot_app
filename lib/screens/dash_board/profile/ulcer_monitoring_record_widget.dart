@@ -17,7 +17,7 @@ class UlcerMonitoringRecordWidget extends StatelessWidget {
         Text(
           DateFormat('MMMM - yyyy')
               .format(ulcerMonitoringRecordModel.timestamp.toDate()),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
             color: AppColors.black2,

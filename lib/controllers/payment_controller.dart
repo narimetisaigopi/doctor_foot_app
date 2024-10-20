@@ -1,5 +1,6 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/controllers/admin_data_controller.dart';
 import 'package:drfootapp/models/admin_model.dart';
 import 'package:drfootapp/models/payment_model.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
@@ -10,20 +11,9 @@ import 'package:get/get.dart';
 class PaymentController extends GetxController {
   
   Future<int> generatePaymentId() async {
-    DocumentSnapshot documentSnapshot =
-        await adminCollectionReference.doc("admin").get();
-    int paymentId = 1;
-    AdminModel adminModel = AdminModel();
-    if (documentSnapshot.exists && documentSnapshot.data() != null) {
-      adminModel = AdminModel.fromSnapshot(documentSnapshot);
-      paymentId = adminModel.paymentId + 1;
-      await adminCollectionReference
-          .doc("admin")
-          .update({"paymentId": paymentId});
-    } else {
-      await adminCollectionReference.doc("admin").set(adminModel.toMap());
-    }
-    return paymentId;
+    AdminModel adminModel = await Get.put(AdminDataController()).getAdminData();
+    return int.parse(
+        "${Utility.getAppointmentTodayId()}${adminModel.paymentId}");
   }
 
   Future<PaymentModel> addPaymentTransaction({
@@ -49,6 +39,7 @@ class PaymentController extends GetxController {
     paymentModel.paidAmount = paidAmount;
     paymentModel.timestamp = Timestamp.now();
     await documentReference.set(paymentModel.toMap());
+    await adminDocumentReference.update({"paymentId": FieldValue.increment(1)});
     return paymentModel;
   }
 }

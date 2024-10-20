@@ -18,7 +18,7 @@ class DoctorModel {
   String? hospitalId;
   List speakingLanguagesList;
   int reviewCount;
-  double averageRating;
+  double totalRating;
   int noOfPatients;
 
   DoctorModel(
@@ -41,7 +41,8 @@ class DoctorModel {
       this.hospitalId,
       this.speakingLanguagesList = const [],
       this.reviewCount = 0,
-      this.averageRating = 0.0,this.noOfPatients =0});
+      this.totalRating = 0.0,
+      this.noOfPatients = 0});
 
   factory DoctorModel.fromMap(Map map) {
     return DoctorModel(
@@ -64,7 +65,7 @@ class DoctorModel {
         modifiedAt: map["modifiedAt"],
       speakingLanguagesList: map["speakingLanguagesList"] ?? [],
       reviewCount: map["reviewCount"] ?? 0,
-      averageRating: map["averageRating"] ?? 0.0,
+        totalRating: map["totalRating"] ?? 0.0,
       noOfPatients: map["noOfPatients"] ?? 0
     );
   }
@@ -90,7 +91,7 @@ class DoctorModel {
       "modifiedAt": modifiedAt,
       "speakingLanguagesList": speakingLanguagesList,
       "reviewCount": reviewCount,
-      "averageRating": averageRating,
+      "totalRating": totalRating,
       "noOfPatients":noOfPatients
     };
   }

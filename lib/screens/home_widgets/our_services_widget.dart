@@ -64,20 +64,20 @@ class _OurServicesWidgetState extends State<OurServicesWidget> {
                         switch (index) {
                           case 0:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.consultYourDoctor;
+                                .setDoctorAppointmentType(
+                                    DoctorAppointmentType.consultYourDoctor);
                             Get.to(() => const SearchLocationScreen());
                             break;
                           case 1:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.onlineConsultation;
+                                .setDoctorAppointmentType(
+                                    DoctorAppointmentType.onlineConsultation);
                             Get.to(() => const SearchLocationScreen());
                             break;
                           case 2:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.footScreeningService;
+                                .setDoctorAppointmentType(
+                                    DoctorAppointmentType.footScreeningService);
                             Utility.myBottomSheet(context,
                                 heightFactor: 0.8,
                                 widget: const FootScreeningServices());

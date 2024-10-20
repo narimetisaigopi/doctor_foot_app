@@ -19,6 +19,8 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
   final DoctorAppointmentController appointmentController =
       Get.put(DoctorAppointmentController());
 
+  String key = "${DateTime.now()}";
+
   late TabController tabController = TabController(
     length: 2,
     vsync: this,
@@ -44,6 +46,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DoctorAppointmentController>(builder: (context) {
+      
       return DefaultTabController(
         length: 2,
         initialIndex: 0,
@@ -80,9 +83,10 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
               ),
             ).tr(),
           ),
-          body: const TabBarView(children: [
+          body: TabBarView(children: [
             Column(
-              children: [
+              key: Key(key),
+              children: const [
                 Expanded(
                   child: DoctorAppointmentsListScreen(
                     appointmentStatus: AppointmentStatus.booked,
@@ -99,7 +103,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
                 ),
               ],
             ),
-            DoctorAppointmentsListScreen(
+            const DoctorAppointmentsListScreen(
               appointmentStatus: AppointmentStatus.cancelled,
               title: Strings.cancelled,
             ),
@@ -107,21 +111,5 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
         ),
       );
     });
-  }
-
-  Widget _tabBar() {
-    return TabBar(
-      indicatorColor: AppColors.primaryBlue,
-      indicatorWeight: 5,
-      controller: tabController,
-      tabs: const [
-        Tab(
-          text: Strings.completed,
-        ),
-        Tab(
-          text: Strings.cancelled,
-        ),
-      ],
-    );
   }
 }

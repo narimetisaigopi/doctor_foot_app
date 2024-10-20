@@ -21,12 +21,12 @@ class _DoctorDetailWidgetState extends State<DoctorDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
+      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 20),
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: AppColors.whiteBgColor,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: AppColors.secondary,
               ),

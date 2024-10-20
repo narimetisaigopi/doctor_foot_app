@@ -8,7 +8,7 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
-import 'package:drfootapp/utils/widgets/rating_book_again.dart';
+import 'package:drfootapp/utils/widgets/rating_book_again_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -63,7 +63,7 @@ class _FootAppointmentWidgetState extends State<FootAppointmentWidget> {
                           Column(
                             children: [
                               const SizedBox(height: 12),
-                              RatingBookAgainWidget(
+                              RatingBookAgainLayout(
                                 onBookAgainPressed: () {
                                   Get.to(() =>
                                       DoctorAppointmentDetailsDateTimeScreen(
@@ -73,7 +73,7 @@ class _FootAppointmentWidgetState extends State<FootAppointmentWidget> {
                                   Utility.myBottomSheet(context,
                                       widget: AddReviewRatingsScreen(
                                         docId: widget.appointmentModel.docId,
-                                        reviewType: ReviewType.appointment,
+                                        reviewType: ReviewType.doctor,
                                       ),
                                       heightFactor: 0.7);
                                 },

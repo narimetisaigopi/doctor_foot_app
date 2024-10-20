@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/utils/enums.dart';
 
 class ReviewRatingModel {
+  String docId;
   String uid;
-  String review;
-  double rating;
+  String reviewText;
+  double noOfStars;
   Timestamp? timestamp;
+  String serviceId;
+  ReviewType reviewType;
   // this is for admin reviews
   String profileUrl;
   String name;
@@ -13,24 +17,35 @@ class ReviewRatingModel {
       {this.profileUrl = "",
       this.name = "",
       this.uid = "",
-      this.review = "",
+      this.reviewText = "",
       this.timestamp,
-      this.rating = 0.0});
+      this.noOfStars = 0.0,
+      this.docId = "",
+      this.serviceId = "",
+      this.reviewType = ReviewType.doctor});
 
   factory ReviewRatingModel.fromMap(Map map) {
     return ReviewRatingModel(
       uid: map['uid'] ?? "",
-      review: map['review'] ?? "",
+      reviewText: map['review'] ?? "",
       timestamp: map['timestamp'] ?? "",
-      rating: map['rating'] ?? 0.0,
+      noOfStars: map['rating'] ?? 0.0,
+      serviceId: map['serviceId'] ?? "",
+      docId: map['docId'] ?? "",
+      reviewType: map['reviewType'] != null
+          ? ReviewType.values[map['reviewType']]
+          : ReviewType.doctor,
     );
   }
   Map<String, dynamic> toMap() {
     return {
       "uid": uid,
-      "review": review,
+      "review": reviewText,
       "timestamp": DateTime.now(),
-      "rating": rating
+      "rating": noOfStars,
+      "serviceId": serviceId,
+      "docId": docId,
+      "reviewType": reviewType.index,
     };
   }
 }

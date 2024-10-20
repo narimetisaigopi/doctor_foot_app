@@ -10,8 +10,7 @@ class ReviewRatingsListScreen extends StatefulWidget {
   final ReviewType reviewType;
   final String docId;
   const ReviewRatingsListScreen(
-      {Key? key, required this.reviewType, required this.docId})
-      : super(key: key);
+      {super.key, required this.reviewType, required this.docId});
 
   @override
   State<ReviewRatingsListScreen> createState() =>

@@ -27,14 +27,23 @@ class _DoctorAppointmentPaymentScreenState
   final DoctorAppointmentController appointmentBookingController =
       Get.put(DoctorAppointmentController());
   final _formKey = GlobalKey<FormBuilderState>();
+  int actualPrice = 0, offerPrice = 0;
   @override
   void initState() {
-    appointmentBookingController.billTotalAmount =
-        widget.doctorModel.actualPrice;
-    appointmentBookingController.discountAmount =
-        appointmentBookingController.getDiscountAmount(
-            offerPrice: widget.doctorModel.offerPrice,
-            actualPrice: widget.doctorModel.actualPrice);
+    if (appointmentBookingController.selectedCheckYourFeetDataModel != null) {
+      actualPrice = appointmentBookingController
+          .selectedCheckYourFeetDataModel!.actualPrice;
+      offerPrice = appointmentBookingController
+          .selectedCheckYourFeetDataModel!.offerPrice;
+    } else {
+      actualPrice = widget.doctorModel.actualPrice;
+      offerPrice = widget.doctorModel.offerPrice;
+    }
+    logger("actualPrice $actualPrice");
+    logger("offerPrice $offerPrice");
+    appointmentBookingController.billTotalAmount = actualPrice;
+    appointmentBookingController.discountAmount = appointmentBookingController
+        .getDiscountAmount(offerPrice: offerPrice, actualPrice: actualPrice);
     super.initState();
   }
 
@@ -270,7 +279,7 @@ class _DoctorAppointmentPaymentScreenState
                 )
               ],
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

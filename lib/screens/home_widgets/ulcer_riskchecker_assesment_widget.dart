@@ -2,7 +2,6 @@ import 'package:drfootapp/controllers/risk_checker_controller.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_checker_results_screen.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/have_ulcer_bottomsheet.dart';
 import 'package:drfootapp/screens/home_widgets/risk_checker_bg_screen.dart';
-import 'package:drfootapp/screens/risk_checker_bottomsheet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';

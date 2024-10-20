@@ -4,10 +4,10 @@ class AdminModel {
   int paymentId;
   int orderId;
   int doctorAppointmentId;
-  int footServiceAppointmentId;
+  int footAppointmentId;
   AdminModel(
       {this.doctorAppointmentId = 1,
-      this.footServiceAppointmentId = 1,
+      this.footAppointmentId = 1,
       this.paymentId = 1,
       this.orderId = 1});
 
@@ -16,14 +16,14 @@ class AdminModel {
     return AdminModel(
         doctorAppointmentId: data["doctorAppointmentId"] ?? 1,
         paymentId: data["paymentId"] ?? 1,
-        footServiceAppointmentId: data["footServiceAppointmentId"] ?? 1,
+        footAppointmentId: data["footAppointmentId"] ?? 1,
         orderId: data["orderId"] ?? 1);
   }
 
   Map<String, dynamic> toMap() {
     return {
       "doctorAppointmentId": doctorAppointmentId,
-      "footServiceAppointmentId": footServiceAppointmentId,
+      "footAppointmentId": footAppointmentId,
       "paymentId": paymentId,
       "orderId": orderId
     };

@@ -60,32 +60,32 @@ class _CheckYourFeetListState extends State<CheckYourFeetList> {
                         switch (index) {
                           case 0:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.skinAndNail;
+                                .setDoctorAppointmentType(
+                                    DoctorAppointmentType.skinAndNail);
                             Get.to(() => const SkinAndNailBgScreen());
                             break;
                           case 1:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.toeDeformities;
+                                .setDoctorAppointmentType(
+                                    DoctorAppointmentType.toeDeformities);
                             Get.to(() => const ToeDeformitiesBgScreen());
                             break;
                           case 2:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.footPain;
+                                .setDoctorAppointmentType(
+                                    DoctorAppointmentType.footPain);
                             Get.to(() => const FootPainBgScreen());
                             break;
                           case 3:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.footDeformities;
+                                .setDoctorAppointmentType(
+                                    DoctorAppointmentType.footDeformities);
                             Get.to(() => const FootDeformitiesBgScreen());
                             break;
                           case 4:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.sportsInjuries;
+                                .setDoctorAppointmentType(
+                                    DoctorAppointmentType.sportsInjuries);
                             Get.to(() => CheckYourFeetDetailScreen(
                                   checkYourFeetDataModel:
                                       SportsInjuries.checkYourFeetDataModelList,
@@ -93,8 +93,8 @@ class _CheckYourFeetListState extends State<CheckYourFeetList> {
                             break;
                           case 5:
                             Get.put(DoctorAppointmentController())
-                                    .appointmentType =
-                                DoctorAppointmentType.footAndAnkleArthritis;
+                                .setDoctorAppointmentType(DoctorAppointmentType
+                                    .footAndAnkleArthritis);
                             Get.to(() => CheckYourFeetDetailScreen(
                                   checkYourFeetDataModel:
                                       FootAnkle.checkYourFeetDataModelList,

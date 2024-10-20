@@ -17,6 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
+import 'admin_data_controller.dart';
+
 class FootServiceAppointmentController extends GetxController {
   DateTime selectedDateTime = DateTime.now();
   bool isDateSelected = false;
@@ -99,18 +101,9 @@ class FootServiceAppointmentController extends GetxController {
   }
 
   Future<int> _generatePaymentId() async {
-    DocumentSnapshot documentSnapshot =
-        await adminCollectionReference.doc("admin").get();
-    int appointmentId = 1;
-    AdminModel adminModel = AdminModel();
-    if (documentSnapshot.exists && documentSnapshot.data() != null) {
-      adminModel = AdminModel.fromSnapshot(documentSnapshot);
-      await documentReference
-          .update({"footServiceAppointmentId": FieldValue.increment(1)});
-    } else {
-      await documentReference.set(adminModel.toMap());
-    }
-    return appointmentId;
+    AdminModel adminModel = await Get.put(AdminDataController()).getAdminData();
+    return int.parse(
+        "${Utility.getAppointmentTodayId()}${adminModel.footAppointmentId}");
   }
 
   onDateSelection(DateTime dateTime) {
@@ -186,6 +179,8 @@ class FootServiceAppointmentController extends GetxController {
         // Update appointment with payment id in transaction
         transaction.update(
             appointmentDocumentReference, {"paymentId": paymentModel.docId});
+        transaction.update(adminDocumentReference,
+            {"doctorAppointmentId": FieldValue.increment(1)});
       });
 
       // Resetting selection

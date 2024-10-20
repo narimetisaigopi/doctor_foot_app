@@ -67,7 +67,7 @@ class _ArticlesInfoScreenState extends State<ArticlesInfoScreen> {
                   ),
                   Text(
                     widget.articleModel.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: AppColors.blackBold,
