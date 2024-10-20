@@ -102,7 +102,8 @@ class FootServiceAppointmentController extends GetxController {
 
   Future<int> _generatePaymentId() async {
     AdminModel adminModel = await Get.put(AdminDataController()).getAdminData();
-    return Utility.getAppointmentTodayId() + adminModel.footAppointmentId;
+    return int.parse(
+        "${Utility.getAppointmentTodayId()}${adminModel.footAppointmentId}");
   }
 
   onDateSelection(DateTime dateTime) {

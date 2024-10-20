@@ -12,7 +12,8 @@ class PaymentController extends GetxController {
   
   Future<int> generatePaymentId() async {
     AdminModel adminModel = await Get.put(AdminDataController()).getAdminData();
-    return Utility.getAppointmentTodayId() + adminModel.paymentId;
+    return int.parse(
+        "${Utility.getAppointmentTodayId()}${adminModel.paymentId}");
   }
 
   Future<PaymentModel> addPaymentTransaction({

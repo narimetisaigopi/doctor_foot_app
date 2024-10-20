@@ -50,14 +50,14 @@ class _ReviewRatingItemState extends State<ReviewRatingItem> {
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text(widget.ratingModel.review), actionLayout()],
+                children: [Text(widget.ratingModel.reviewText), actionLayout()],
               ),
               trailing: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IgnorePointer(
                     child: RatingBar.builder(
-                      initialRating: widget.ratingModel.rating,
+                      initialRating: widget.ratingModel.noOfStars,
                       itemCount: 5,
                       itemSize: 20,
                       itemBuilder: (context, _) => const Icon(

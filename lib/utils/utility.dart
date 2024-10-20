@@ -21,6 +21,9 @@ import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'constants/assets_constants.dart';
+import 'widgets/custom_image.dart';
+
 class Utility {
   static DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss aaa');
   static DateFormat formatterOnlyDate = DateFormat('yyyy-MM-dd');
@@ -879,5 +882,63 @@ class Utility {
   static int getAppointmentTodayId() {
     String today = DateFormat('yyyyMMdd').format(DateTime.now());
     return int.parse(today);
+  }
+
+  static double getAverageRating(int reviewCount, double totalRating) {
+    double normalizedTotalRating = (totalRating / (reviewCount * 5)) * 5;
+    normalizedTotalRating = normalizedTotalRating.toPrecision(1);
+    return normalizedTotalRating;
+  }
+
+  static goToHome() {
+    Get.offAll(() => const DashBoardScreen());
+  }
+
+  static Future<bool?> appointmentCancelledDialog({
+    required BuildContext context,
+    required Function() onDone,
+  }) {
+    return Alert(
+      context: context,
+      content: const Column(
+        children: [
+          Text(
+            "Appointment Canceled",
+            style: TextStyle(
+              color: AppColors.cancelColor,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            "You have canceled Your \nappointment",
+            style: TextStyle(
+              color: AppColors.black2,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          CustomImage(
+            path: AssetsConstants.appointment_cancel,
+            height: 169,
+            width: 223,
+            fit: BoxFit.contain,
+          ),
+        ],
+      ),
+      buttons: [
+        DialogButton(
+          onPressed: onDone,
+          color: AppColors.cancelColor,
+          child: const Text(
+            "BacK to Home",
+            style: TextStyle(
+              color: AppColors.whiteBgColor,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ],
+    ).show();
   }
 }

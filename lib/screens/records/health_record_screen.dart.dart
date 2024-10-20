@@ -1,14 +1,10 @@
 import 'package:drfootapp/screens/records/all_recent_images.dart';
 import 'package:drfootapp/screens/records/all_recent_upload_images.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/custom_Image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class HealthRecordScreen extends StatefulWidget {
   const HealthRecordScreen({super.key});
@@ -130,11 +126,10 @@ class _HealthRecordScreenState extends State<HealthRecordScreen> {
 
     xFile = await imagePicker.pickImage(source: ImageSource.camera);
     if (xFile != null) {
-      customAlert(
-        upload: () {
-          Get.back();
-          Get.back();
-        },
+      Utility.appointmentCancelledDialog(
+        onDone: Utility.goToHome,
+        // ignore: use_build_context_synchronously
+        context: context,
       );
       setState(() {});
     } else {
@@ -142,52 +137,5 @@ class _HealthRecordScreenState extends State<HealthRecordScreen> {
         "Image Not Picked",
       );
     }
-  }
-
-  Future<bool?> customAlert({
-    required VoidCallback upload,
-  }) {
-    return Alert(
-      context: context,
-      content: const Column(
-        children: [
-          Text(
-            "Appointment Canceled",
-            style: TextStyle(
-              color: AppColors.cancelColor,
-              fontSize: 20,
-            ),
-          ),
-          Text(
-            "You have canceled Your \nappointment",
-            style: TextStyle(
-              color: AppColors.black2,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          CustomImage(
-            path: AssetsConstants.appointment_cancel,
-            height: 169,
-            width: 223,
-            fit: BoxFit.contain,
-          ),
-        ],
-      ),
-      buttons: [
-        DialogButton(
-          onPressed: upload,
-          color: AppColors.cancelColor,
-          child: const Text(
-            "BacK to Home",
-            style: TextStyle(
-              color: AppColors.whiteBgColor,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ],
-    ).show();
   }
 }

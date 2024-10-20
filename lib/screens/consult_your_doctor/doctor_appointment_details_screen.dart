@@ -17,18 +17,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class DoctorBookedAppointmentDetailsScreen extends StatefulWidget {
+class DoctorAppointmentDetailsScreen extends StatefulWidget {
   final DoctorAppointmentModel appointmentModel;
-  const DoctorBookedAppointmentDetailsScreen(
+  const DoctorAppointmentDetailsScreen(
       {super.key, required this.appointmentModel});
 
   @override
-  State<DoctorBookedAppointmentDetailsScreen> createState() =>
-      _DoctorBookedAppointmentDetailsScreenState();
+  State<DoctorAppointmentDetailsScreen> createState() =>
+      _DoctorAppointmentDetailsScreenState();
 }
 
-class _DoctorBookedAppointmentDetailsScreenState
-    extends State<DoctorBookedAppointmentDetailsScreen> {
+class _DoctorAppointmentDetailsScreenState
+    extends State<DoctorAppointmentDetailsScreen> {
   DoctorModel doctorModel = DoctorModel();
   @override
   void initState() {
@@ -111,8 +111,11 @@ class _DoctorBookedAppointmentDetailsScreenState
                         Get.put(DoctorAppointmentController())
                             .cancelAppointment(widget.appointmentModel)
                             .then((e) {
-                          cancelledAppointmentAlert(
-                              title: '', upload: () async {});
+                          Utility.appointmentCancelledDialog(
+                            onDone: Utility.goToHome,
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                          );
                         });
                         // customAlert(
                         //   title: '',
@@ -220,7 +223,7 @@ class _DoctorBookedAppointmentDetailsScreenState
                                     children: [
                                       ExpWidget(
                                         image: AssetsConstants.patients,
-                                        totolCount:
+                                        totalCount:
                                             "${doctorModel.noOfPatients}+",
                                         title: "General",
                                       ),
@@ -230,7 +233,7 @@ class _DoctorBookedAppointmentDetailsScreenState
                                       ),
                                       ExpWidget(
                                         image: AssetsConstants.experience,
-                                        totolCount:
+                                        totalCount:
                                             "${doctorModel.yearsOfExperiance} years+",
                                         title: "Experience",
                                       ),
@@ -238,9 +241,12 @@ class _DoctorBookedAppointmentDetailsScreenState
                                         color: AppColors.grey,
                                         thickness: 1,
                                       ),
-                                      const ExpWidget(
+                                      ExpWidget(
                                         image: AssetsConstants.star_image,
-                                        totolCount: "4.8",
+                                        totalCount: Utility.getAverageRating(
+                                                doctorModel.reviewCount,
+                                                doctorModel.totalRating)
+                                            .toString(),
                                         title: "Rating",
                                       ),
                                     ],
@@ -297,54 +303,6 @@ class _DoctorBookedAppointmentDetailsScreenState
         ),
       ),
     );
-  }
-
-  Future<bool?> cancelledAppointmentAlert({
-    required String title,
-    required VoidCallback upload,
-  }) {
-    return Alert(
-      context: context,
-      title: title,
-      content: const Column(
-        children: [
-          Text(
-            "Appointment Canceled",
-            style: TextStyle(
-              color: AppColors.cancelColor,
-              fontSize: 20,
-            ),
-          ),
-          Text(
-            "You have canceled Your \nappointment",
-            style: TextStyle(
-              color: AppColors.black2,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          CustomImage(
-            path: AssetsConstants.appointment_cancel,
-            height: 169,
-            width: 223,
-          ),
-        ],
-      ),
-      buttons: [
-        DialogButton(
-          onPressed: upload,
-          color: AppColors.cancelColor,
-          child: const Text(
-            "Back to Home",
-            style: TextStyle(
-              color: AppColors.whiteBgColor,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ],
-    ).show();
   }
 
   Future<bool?> customAlert({

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/review_rating_model.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -26,8 +27,8 @@ class ReviewRatingController extends GetxController {
   CollectionReference getCollection(ReviewType reviewType) {
     CollectionReference collectionReference =
         footServicesAppointmentsCollectionReference;
-    if (reviewType == ReviewType.appointment) {
-      collectionReference = doctorsAppointmentsCollectionReference;
+    if (reviewType == ReviewType.doctor) {
+      collectionReference = doctorsCollectionReference;
     }
     return collectionReference;
   }
@@ -54,47 +55,58 @@ class ReviewRatingController extends GetxController {
   }
 
   addReview(ReviewType reviewType, String docId) async {
-    _updateLoading(true);
-    ReviewRatingModel ratingModel = ReviewRatingModel();
-    ratingModel.rating = selectedRating;
-    ratingModel.review = messageTextEditingController.text;
-    ratingModel.uid = Utility().getCurrentUserId();
-    await getServicesReviewsCollection(reviewType, docId)
-        .set(ratingModel.toMap());
-    if (myRatingModel.uid.isNotEmpty) {
-      //removing old reviews from shops
-      await removeReviewsInShop(reviewType, docId);
+    try {
+      _updateLoading(true);
+      ReviewRatingModel ratingModel = ReviewRatingModel();
+      ratingModel.noOfStars = selectedRating;
+      ratingModel.reviewText = messageTextEditingController.text;
+      ratingModel.uid = Utility().getCurrentUserId();
+      DocumentReference documentReference = reviewsCollectionReference.doc();
+      ratingModel.docId = documentReference.id;
+      ratingModel.reviewType = reviewType;
+      ratingModel.serviceId = docId;
+      await documentReference.set(ratingModel.toMap());
+      //adding new reviews
+      if (reviewType == ReviewType.doctor) {
+        await addReviewInDoctor(reviewType, docId);
+      }
+      resetFields();
+      Utility.toast("Thank you,\nreview submitted successfully.");
+      Get.back();
+    } catch (e) {
+      logger("addReview $e");
+      Utility.toast("Failed to add review $e");
+    } finally {
+      _updateLoading(false);
     }
-    //adding new reviews
-    await addReviewInShops(reviewType, docId);
-    selectedRating = 0;
-    messageTextEditingController.clear();
-    _updateLoading(false);
-    Utility.toast("Thank you,\nreview submitted successfully.");
-    Get.back();
   }
 
-  addReviewInShops(ReviewType reviewType, String docId) async {
+  resetFields() {
+    selectedRating = 0;
+    messageTextEditingController.clear();
+  }
+
+  addReviewInDoctor(ReviewType reviewType, String docId) async {
     await getCollection(reviewType).doc(docId).update({
-      "review": FieldValue.increment(selectedRating),
-      "noOfReviews": FieldValue.increment(1),
+      "totalRating": FieldValue.increment(selectedRating),
+      "reviewCount": FieldValue.increment(1),
     });
   }
 
-  removeReviewsInShop(
+  removeReview(
     ReviewType reviewType,
     String docId,
   ) async {
     ReviewRatingModel ratingModel = await getMyRating(reviewType, docId);
     await getCollection(reviewType).doc(docId).update({
-      "review": FieldValue.increment(-ratingModel.rating),
+      "review": FieldValue.increment(-ratingModel.noOfStars),
       "noOfReviews": FieldValue.increment(-1),
     });
   }
 
   deleteReview(ReviewType reviewType, String docId) async {
     await getServicesReviewsCollection(reviewType, docId).delete();
-    await removeReviewsInShop(reviewType, docId);
+    await removeReview(reviewType, docId);
     Utility.toast("Deleted successfully.!!!");
     update();
   }
@@ -102,8 +114,8 @@ class ReviewRatingController extends GetxController {
   adminAddReview() async {
     _updateLoading(true);
     ReviewRatingModel ratingModel = ReviewRatingModel();
-    ratingModel.rating = selectedRating;
-    ratingModel.review = messageTextEditingController.text;
+    ratingModel.noOfStars = selectedRating;
+    ratingModel.reviewText = messageTextEditingController.text;
     ratingModel.uid = Utility().getCurrentUserId();
     _updateLoading(false);
     Utility.toast("Thank you,\nreview submitted successfully.");

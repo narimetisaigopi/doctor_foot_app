@@ -26,9 +26,11 @@ class DoctorAppointmentsListScreen extends StatefulWidget {
 
 class _DoctorAppointmentsListScreenState
     extends State<DoctorAppointmentsListScreen> {
+  String key = "${DateTime.now()}";
   @override
   Widget build(BuildContext context) {
     return Column(
+      key: Key(key),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.title.isNotEmpty && widget.showHeader)
@@ -84,10 +86,11 @@ class _DoctorAppointmentsListScreenState
 
   Query getQuery() {
     logger("getCurrentUserId ${Utility().getCurrentUserId()}");
-    logger("appointmentStatus ${widget.appointmentStatus.index}");
+  
     Query query = doctorsAppointmentsCollectionReference
         .where("uid", isEqualTo: Utility().getCurrentUserId())
-        .where("appointmentStatus", isEqualTo: widget.appointmentStatus.index);
+        .where("appointmentStatus", isEqualTo: widget.appointmentStatus.index)
+        .orderBy("timestamp", descending: true);
     return query;
   }
 }

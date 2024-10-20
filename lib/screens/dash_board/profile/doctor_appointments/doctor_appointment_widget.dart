@@ -1,14 +1,15 @@
+import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/controllers/doctors_controller.dart';
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/doctor_booked_appointment_details_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_details_screen.dart';
 import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_details_date_time_screen.dart';
 import 'package:drfootapp/screens/reviewrating/add_review_ratings_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
-import 'package:drfootapp/utils/widgets/rating_book_again.dart';
+import 'package:drfootapp/utils/widgets/rating_book_again_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -64,8 +65,11 @@ class _DoctorAppointmentWidgetState extends State<DoctorAppointmentWidget> {
                           Column(
                             children: [
                               const SizedBox(height: 12),
-                              RatingBookAgainWidget(
+                              RatingBookAgainLayout(
                                 onBookAgainPressed: () {
+                                  Get.put(DoctorAppointmentController())
+                                      .setDoctorAppointmentType(widget
+                                          .appointmentModel.appointmentType);
                                   Get.to(() =>
                                       DoctorAppointmentDetailsDateTimeScreen(
                                           doctorModel: doctorModel));
@@ -73,8 +77,8 @@ class _DoctorAppointmentWidgetState extends State<DoctorAppointmentWidget> {
                                 onRateServicePressed: () {
                                   Utility.myBottomSheet(context,
                                       widget: AddReviewRatingsScreen(
-                                        docId: widget.appointmentModel.docId,
-                                        reviewType: ReviewType.appointment,
+                                        docId: widget.appointmentModel.doctorId,
+                                        reviewType: ReviewType.doctor,
                                       ),
                                       heightFactor: 0.7);
                                 },
@@ -137,7 +141,7 @@ class _DoctorAppointmentWidgetState extends State<DoctorAppointmentWidget> {
   Widget appointmentWidget() {
     return InkWell(
       onTap: () {
-        Get.to(() => DoctorBookedAppointmentDetailsScreen(
+        Get.to(() => DoctorAppointmentDetailsScreen(
             appointmentModel: widget.appointmentModel));
       },
       child: Padding(
@@ -193,29 +197,31 @@ class _DoctorAppointmentWidgetState extends State<DoctorAppointmentWidget> {
                             ),
                           ],
                         ),
-                        const Row(
+                        Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.star,
                               color: AppColors.ratingBarColor,
                               size: 14,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Text(
-                              "4.5",
-                              style: TextStyle(
+                              Utility.getAverageRating(doctorModel.reviewCount,
+                                      doctorModel.totalRating)
+                                  .toString(),
+                              style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.blackBold),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Text(
-                              "(123 Reviews)",
-                              style: TextStyle(
+                              "(${doctorModel.reviewCount} Reviews)",
+                              style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   color: AppColors.textBlackColor),

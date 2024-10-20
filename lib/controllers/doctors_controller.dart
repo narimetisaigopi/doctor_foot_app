@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/models/hospital_model.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,8 @@ class DoctorsController extends GetxController {
       doUpdate(false);
     }
   }
-Future<DoctorModel> getDoctorDetailsByUid(String uid) async {
+
+  Future<DoctorModel> getDoctorDetailsByUid(String uid) async {
     DocumentSnapshot documentSnapshot =
         await doctorsCollectionReference.doc(uid).get();
     DoctorModel doctorModel = DoctorModel();
@@ -120,6 +122,7 @@ Future<DoctorModel> getDoctorDetailsByUid(String uid) async {
     }
     return doctorModel;
   }
+
   Future<DoctorModel> getDoctorDataByMobileNumber(String mobileNumber) async {
     QuerySnapshot querySnapshot = await doctorsCollectionReference
         .where("mobileNumber", isEqualTo: mobileNumber)
@@ -155,6 +158,7 @@ Future<DoctorModel> getDoctorDetailsByUid(String uid) async {
     selectedHospitalModel = null;
     formKey.currentState?.reset();
   }
+
   updateActivieStatus(DoctorModel doctorModel, bool status) async {
     await doctorsCollectionReference
         .doc(doctorModel.docId)
@@ -163,6 +167,7 @@ Future<DoctorModel> getDoctorDetailsByUid(String uid) async {
   }
 
   updateDoctorNoOfPatientsCount(String docId) async {
+    logger("docId$docId");
     await doctorsCollectionReference
         .doc(docId)
         .update({"noOfPatients": FieldValue.increment(1)});

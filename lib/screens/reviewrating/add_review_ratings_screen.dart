@@ -25,13 +25,12 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
 
   @override
   void initState() {
-    reviewRatingController
-        .getMyRating(widget.reviewType, widget.docId)
-        .then((value) {
-      // if (value.uid.isNotEmpty) Utility.toast("you already submitted review");
-      reviewRatingController.messageTextEditingController.text = value.review;
-      reviewRatingController.selectedRating = value.rating;
-    });
+    // reviewRatingController
+    //     .getMyRating(widget.reviewType, widget.docId)
+    //     .then((value) {
+    //   reviewRatingController.messageTextEditingController.text = value.review;
+    //   reviewRatingController.selectedRating = value.rating;
+    // });
     super.initState();
   }
 
@@ -40,86 +39,82 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
     return GetBuilder<ReviewRatingController>(
         builder: (reviewRatingController) {
       return Scaffold(
-        body: SizedBox(
-          height: MediaQuery.of(context).size.height / 2,
-          width: double.infinity,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const Icon(
-                      Icons.close_outlined,
-                      size: 32,
-                    )),
-                const SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  "What is your rating?",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                RatingBar.builder(
-                  initialRating: reviewRatingController.myRatingModel.rating,
-                  minRating: 1,
-                  itemSize: 40,
-                  direction: Axis.horizontal,
-                  allowHalfRating: false,
-                  itemCount: 5,
-                  itemPadding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star,
-                    color: AppColors.primary,
-                  ),
-                  onRatingUpdate: (rating) {
-                    reviewRatingController.selectedRating = rating;
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              IconButton(
+                  onPressed: () {
+                    Get.back();
                   },
+                  icon: const Icon(
+                    Icons.close_outlined,
+                    size: 32,
+                  )),
+              const SizedBox(
+                height: 12,
+              ),
+              Text(
+                "What is your rating?",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              RatingBar.builder(
+                initialRating: reviewRatingController.myRatingModel.noOfStars,
+                minRating: 1,
+                itemSize: 40,
+                direction: Axis.horizontal,
+                allowHalfRating: false,
+                itemCount: 5,
+                itemPadding: const EdgeInsets.symmetric(horizontal: 12.0),
+                itemBuilder: (context, _) => const Icon(
+                  Icons.star,
+                  color: AppColors.primary,
                 ),
-                const SizedBox(
-                  height: 8,
+                onRatingUpdate: (rating) {
+                  reviewRatingController.selectedRating = rating;
+                },
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                "Please share your valuable feedback",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller:
+                      reviewRatingController.messageTextEditingController,
+                  maxLines: 5,
+                  maxLength: 1000,
+                  decoration: const InputDecoration(
+                      hintText: "Describe your review",
+                      border: OutlineInputBorder()),
                 ),
-                Text(
-                  "Please share your valuable feedback",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller:
-                        reviewRatingController.messageTextEditingController,
-                    maxLines: 5,
-                    maxLength: 1000,
-                    decoration: const InputDecoration(
-                        hintText: "Describe your review",
-                        border: OutlineInputBorder()),
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                reviewRatingController.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : CustomButton(
-                        onPress: () {
-                          validate();
-                        },
-                        buttonName: "Add Review",
-                      ),
-                const SizedBox(
-                  height: 18,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              reviewRatingController.isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : CustomButton(
+                      onPress: () {
+                        validate();
+                      },
+                      buttonName: "Add Review",
+                    ),
+              const SizedBox(
+                height: 18,
+              ),
+            ],
           ),
         ),
       );

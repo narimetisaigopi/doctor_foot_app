@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 
 class ExpWidget extends StatefulWidget {
   final String image;
-  final String totolCount;
+  final String totalCount;
   final String title;
   final Color bgColor;
   const ExpWidget({
     super.key,
     required this.image,
-    required this.totolCount,
+    required this.totalCount,
     required this.title,
     this.bgColor = AppColors.whiteBgColor,
   });
@@ -42,7 +42,7 @@ class _ExpWidgetState extends State<ExpWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  widget.totolCount,
+                  widget.totalCount,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,

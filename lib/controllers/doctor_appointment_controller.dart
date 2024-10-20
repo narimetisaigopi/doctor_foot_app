@@ -24,8 +24,12 @@ class DoctorAppointmentController extends GetxController {
   DateTime selectedDateTime = DateTime.now();
   bool isDateSelected = false;
   bool isLoading = false;
-  DoctorAppointmentType appointmentType =
+  DoctorAppointmentType _doctorAppointmentType =
       DoctorAppointmentType.consultYourDoctor;
+
+  setDoctorAppointmentType(DoctorAppointmentType doctorAppointmentType) {
+    _doctorAppointmentType = doctorAppointmentType;
+  }
 
   CheckYourFeetDataModel? selectedCheckYourFeetDataModel;
 
@@ -96,7 +100,7 @@ class DoctorAppointmentController extends GetxController {
     gender = null;
     bookingForWhom = "Others";
     selectedCheckYourFeetDataModel = null;
-    appointmentType = DoctorAppointmentType.consultYourDoctor;
+    _doctorAppointmentType = DoctorAppointmentType.consultYourDoctor;
     selectedDate = "";
     selectedTime = "";
   }
@@ -118,7 +122,8 @@ class DoctorAppointmentController extends GetxController {
 
   Future<int> _generatePaymentId() async {
     AdminModel adminModel = await Get.put(AdminDataController()).getAdminData();
-    return Utility.getAppointmentTodayId() + adminModel.doctorAppointmentId;
+    return int.parse(
+        "${Utility.getAppointmentTodayId()}${adminModel.doctorAppointmentId}");
   }
 
   onDateSelection(DateTime dateTime) {
@@ -161,7 +166,7 @@ class DoctorAppointmentController extends GetxController {
           appointmentDate: selectedDate,
           appointmentTime: selectedTime,
           doctorId: doctorModel.docId,
-          appointmentType: appointmentType,
+          appointmentType: _doctorAppointmentType,
           timestamp: Timestamp.now(),
           uid: Utility().getCurrentUserId(),
           checkYourFeetDataModel: selectedCheckYourFeetDataModel,
