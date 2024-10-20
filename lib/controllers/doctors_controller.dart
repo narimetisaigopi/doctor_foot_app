@@ -155,11 +155,16 @@ Future<DoctorModel> getDoctorDetailsByUid(String uid) async {
     selectedHospitalModel = null;
     formKey.currentState?.reset();
   }
-
   updateActivieStatus(DoctorModel doctorModel, bool status) async {
     await doctorsCollectionReference
         .doc(doctorModel.docId)
         .update({"isActive": status, "modifiedAt": DateTime.now()});
     Utility.toast("Updated successfully.");
+  }
+
+  updateDoctorNoOfPatientsCount(String docId) async {
+    await doctorsCollectionReference
+        .doc(docId)
+        .update({"noOfPatients": FieldValue.increment(1)});
   }
 }

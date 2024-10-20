@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/controllers/admin_data_controller.dart';
 import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/controllers/doctors_controller.dart';
 import 'package:drfootapp/controllers/payment_controller.dart';
 import 'package:drfootapp/models/admin_model.dart';
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
@@ -87,6 +89,18 @@ class DoctorAppointmentController extends GetxController {
     gender = loginUserModel.gender;
   }
 
+  resetAllFields() {
+    nameTextController.clear();
+    ageTextController.clear();
+    mobileNumberTextController.clear();
+    gender = null;
+    bookingForWhom = "Others";
+    selectedCheckYourFeetDataModel = null;
+    appointmentType = DoctorAppointmentType.consultYourDoctor;
+    selectedDate = "";
+    selectedTime = "";
+  }
+
   setOthersData() {
     nameTextController.clear();
     ageTextController.clear();
@@ -103,18 +117,8 @@ class DoctorAppointmentController extends GetxController {
   }
 
   Future<int> _generatePaymentId() async {
-    DocumentSnapshot documentSnapshot =
-        await adminCollectionReference.doc("admin").get();
-    int appointmentId = 1;
-    AdminModel adminModel = AdminModel();
-    if (documentSnapshot.exists && documentSnapshot.data() != null) {
-      adminModel = AdminModel.fromSnapshot(documentSnapshot);
-      await documentReference
-          .update({"doctorAppointmentId": FieldValue.increment(1)});
-    } else {
-      await documentReference.set(adminModel.toMap());
-    }
-    return appointmentId;
+    AdminModel adminModel = await Get.put(AdminDataController()).getAdminData();
+    return Utility.getAppointmentTodayId() + adminModel.doctorAppointmentId;
   }
 
   onDateSelection(DateTime dateTime) {
@@ -146,11 +150,12 @@ class DoctorAppointmentController extends GetxController {
   createAppointment(DoctorModel doctorModel) async {
     try {
       _updateLoading(true); // Show loading at the start
-      int appointmentId = await _generatePaymentId();
+
       DocumentReference appointmentDocumentReference =
           doctorsAppointmentsCollectionReference.doc();
       late DoctorAppointmentModel appointmentModel;
       await FirebaseFirestore.instance.runTransaction((transaction) async {
+        int appointmentId = await _generatePaymentId();
         // Create Appointment Model
         appointmentModel = DoctorAppointmentModel(
           appointmentDate: selectedDate,
@@ -178,10 +183,7 @@ class DoctorAppointmentController extends GetxController {
         // Payment transaction creation
         PaymentModel paymentModel =
             await Get.put(PaymentController()).addPaymentTransaction(
-          totalAmount: getDiscountAmount(
-                  offerPrice: doctorModel.offerPrice,
-                  actualPrice: doctorModel.actualPrice)
-              .toDouble(),
+          totalAmount: discountAmount.toDouble(),
           paidAmount: getPayableAmount().toDouble(),
           subscriptionId: appointmentModel.docId,
           paymentStatus: PaymentStatus.completed,
@@ -190,11 +192,15 @@ class DoctorAppointmentController extends GetxController {
         // Update appointment with payment id in transaction
         transaction.update(
             appointmentDocumentReference, {"paymentId": paymentModel.docId});
+        transaction.update(adminDocumentReference,
+            {"doctorAppointmentId": FieldValue.increment(1)});
+        await Get.put(DoctorsController())
+            .updateDoctorNoOfPatientsCount(doctorModel.docId);
       });
-
       // Resetting selection
       isDateSelected = false;
       // Navigate to confirmation screen after the transaction succeeds
+      resetAllFields();
       Get.to(() =>
           AppointmentSuccessScreen(doctorAppointmentModel: appointmentModel));
     } catch (e, stack) {

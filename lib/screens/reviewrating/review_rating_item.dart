@@ -17,8 +17,7 @@ class ReviewRatingItem extends StatefulWidget {
   final ReviewRatingModel ratingModel;
   final ReviewType reviewType;
   const ReviewRatingItem(
-      {Key? key, required this.ratingModel, required this.reviewType})
-      : super(key: key);
+      {super.key, required this.ratingModel, required this.reviewType});
 
   @override
   State<ReviewRatingItem> createState() => _ReviewRatingItemState();

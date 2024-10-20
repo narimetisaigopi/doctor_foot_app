@@ -84,6 +84,7 @@ class _DoctorAppointmentsListScreenState
 
   Query getQuery() {
     logger("getCurrentUserId ${Utility().getCurrentUserId()}");
+    logger("appointmentStatus ${widget.appointmentStatus.index}");
     Query query = doctorsAppointmentsCollectionReference
         .where("uid", isEqualTo: Utility().getCurrentUserId())
         .where("appointmentStatus", isEqualTo: widget.appointmentStatus.index);

@@ -26,7 +26,7 @@ class _DoctorDetailWidgetState extends State<DoctorDetailWidget> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: AppColors.whiteBgColor,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: AppColors.secondary,
               ),

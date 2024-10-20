@@ -60,7 +60,7 @@ class _MyGoogleMapsScreenState extends State<MyGoogleMapsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Map"),
+        title: const Text("Map"),
       ),
       body: Stack(
         children: [

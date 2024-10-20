@@ -218,9 +218,10 @@ class _DoctorBookedAppointmentDetailsScreenState
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      const ExpWidget(
+                                      ExpWidget(
                                         image: AssetsConstants.patients,
-                                        totolCount: "500+",
+                                        totolCount:
+                                            "${doctorModel.noOfPatients}+",
                                         title: "General",
                                       ),
                                       const VerticalDivider(

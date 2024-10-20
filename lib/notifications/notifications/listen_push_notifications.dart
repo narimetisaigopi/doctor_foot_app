@@ -30,7 +30,7 @@ Future<void> setupFlutterNotifications() async {
 
   // Declaration of variables
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-  if (Platform.isIOS)
+  if (Platform.isIOS) {
     await firebaseMessaging.requestPermission(
       alert: true,
       announcement: false,
@@ -40,6 +40,7 @@ Future<void> setupFlutterNotifications() async {
       provisional: false,
       sound: true,
     );
+  }
 
   if (Platform.isIOS) {
     await firebaseMessaging.setForegroundNotificationPresentationOptions(

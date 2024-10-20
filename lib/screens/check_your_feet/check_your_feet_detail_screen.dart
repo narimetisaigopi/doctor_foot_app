@@ -2,6 +2,7 @@ import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/models/check_your_feet_data_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/all_available_clinics_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_appbar.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -112,8 +113,9 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                                   Row(
                                     children: [
                                       Text(
-                                        "₹${widget.checkYourFeetDataModel.actualPrice}/-"
-                                            .toString(),
+                                        Utility().toIndianFormat(widget
+                                            .checkYourFeetDataModel
+                                            .actualPrice),
                                         style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
@@ -122,10 +124,12 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                                       ),
                                       const SizedBox(width: 6),
                                       Text(
-                                        "₹${widget.checkYourFeetDataModel.offerPrice}/-"
-                                            .toString(),
+                                        Utility().toIndianFormat(widget
+                                            .checkYourFeetDataModel.offerPrice),
                                         style: const TextStyle(
                                           fontSize: 18,
+                                          decoration:
+                                              TextDecoration.lineThrough,
                                           fontWeight: FontWeight.w500,
                                           color: AppColors.grey2,
                                         ),

@@ -875,4 +875,9 @@ class Utility {
         return 'th';
     }
   }
+
+  static int getAppointmentTodayId() {
+    String today = DateFormat('yyyyMMdd').format(DateTime.now());
+    return int.parse(today);
+  }
 }
