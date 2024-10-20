@@ -5,9 +5,17 @@ class ReviewRatingModel {
   String review;
   double rating;
   Timestamp? timestamp;
+  // this is for admin reviews
+  String profileUrl;
+  String name;
 
   ReviewRatingModel(
-      {this.uid = "", this.review = "", this.timestamp, this.rating = 0.0});
+      {this.profileUrl = "",
+      this.name = "",
+      this.uid = "",
+      this.review = "",
+      this.timestamp,
+      this.rating = 0.0});
 
   factory ReviewRatingModel.fromMap(Map map) {
     return ReviewRatingModel(

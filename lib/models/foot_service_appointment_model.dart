@@ -19,6 +19,7 @@ class FootServiceAppointmentModel {
   AddressModel? addressModel;
   FootServiceModel? footServiceModel;
   String paymentId;
+  String cancelledByUid;
   AppointmentType appointmentType;
 
   FootServiceAppointmentModel(
@@ -36,6 +37,7 @@ class FootServiceAppointmentModel {
       this.addressModel,
       this.footServiceModel,
       this.paymentId = "",
+      this.cancelledByUid = "",
       this.appointmentType = AppointmentType.consultYourDoctor});
 
   // Convert model to Map for Firestore
@@ -56,13 +58,13 @@ class FootServiceAppointmentModel {
       "paymentId": paymentId,
       "appointmentDate": appointmentDate,
       "appointmentTime": appointmentTime,
-      "appointmentType": appointmentType.index
+      "appointmentType": appointmentType.index,
+      "cancelledByUid": cancelledByUid
     };
   }
 
   // Create model from Firestore document snapshot
-  factory FootServiceAppointmentModel.fromSnapshot(DocumentSnapshot snapshot) {
-    var data = snapshot.data() as Map<String, dynamic>;
+  factory FootServiceAppointmentModel.fromSnapshot(Map data) {
     return FootServiceAppointmentModel(
         docId: data['docId'] ?? "",
         uid: data['uid'] ?? "",
@@ -86,6 +88,7 @@ class FootServiceAppointmentModel {
         appointmentDate: data["appointmentDate"] ?? "",
         modifiedAt: data['modifiedAt'],
         paymentId: data["paymentId"] ?? "",
+        cancelledByUid: data["cancelledByUid"] ?? "",
         appointmentType: data['appointmentType'] != null
             ? AppointmentType.values[data['appointmentType']]
             : AppointmentType.consultYourDoctor);

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
-import 'package:drfootapp/screens/dash_board/profile/appointments/booked_appointment_widget.dart';
+import 'package:drfootapp/screens/dash_board/profile/doctor_appointments/doctor_appointment_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
@@ -9,21 +9,23 @@ import 'package:drfootapp/utils/utility.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
 
-class AppointmentsListScreen extends StatefulWidget {
+class DoctorAppointmentsListScreen extends StatefulWidget {
   final AppointmentStatus appointmentStatus;
   final String title;
   final bool showHeader;
-  const AppointmentsListScreen(
+  const DoctorAppointmentsListScreen(
       {super.key,
       required this.appointmentStatus,
       this.title = "",
       this.showHeader = false});
 
   @override
-  State<AppointmentsListScreen> createState() => _AppointmentsListScreenState();
+  State<DoctorAppointmentsListScreen> createState() =>
+      _DoctorAppointmentsListScreenState();
 }
 
-class _AppointmentsListScreenState extends State<AppointmentsListScreen> {
+class _DoctorAppointmentsListScreenState
+    extends State<DoctorAppointmentsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,7 +51,7 @@ class _AppointmentsListScreenState extends State<AppointmentsListScreen> {
             itemBuilder: (context, documentSnapshots, index) {
               DoctorAppointmentModel appointmentModel =
                   DoctorAppointmentModel.fromSnapshot(documentSnapshots[index]);
-              return BookedAppointmentWidget(
+              return DoctorAppointmentWidget(
                 appointmentModel: appointmentModel,
                 title: widget.title,
               );

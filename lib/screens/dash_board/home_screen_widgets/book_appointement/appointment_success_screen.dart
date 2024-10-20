@@ -29,12 +29,12 @@ class _AppointmentSuccessScreenState extends State<AppointmentSuccessScreen> {
     if (widget.doctorAppointmentModel != null) {
       appointmentDate = widget.doctorAppointmentModel!.appointmentDate;
       appointmentTime = widget.doctorAppointmentModel!.appointmentTime;
-      appointmentDate = widget.doctorAppointmentModel!.appointmentId.toString();
+      appointmentId = widget.doctorAppointmentModel!.appointmentId.toString();
     }
     if (widget.footServiceAppointmentModel != null) {
       appointmentDate = widget.footServiceAppointmentModel!.appointmentDate;
       appointmentTime = widget.footServiceAppointmentModel!.appointmentTime;
-      appointmentDate =
+      appointmentId =
           widget.footServiceAppointmentModel!.appointmentId.toString();
     }
     super.initState();

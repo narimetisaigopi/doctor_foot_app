@@ -1,16 +1,22 @@
+import 'package:drfootapp/models/ulcer_monitor_models/ulcer_monitoring_record_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class RecordWidget extends StatelessWidget {
-  const RecordWidget({super.key});
+class UlcerMonitoringRecordWidget extends StatelessWidget {
+  final UlcerMonitoringRecordModel ulcerMonitoringRecordModel;
+  const UlcerMonitoringRecordWidget(
+      {super.key, required this.ulcerMonitoringRecordModel});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "January - 2024",
+        Text(
+          DateFormat('MMMM - yyyy')
+              .format(ulcerMonitoringRecordModel.timestamp.toDate()),
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -37,9 +43,9 @@ class RecordWidget extends StatelessWidget {
                       top: Radius.circular(8),
                     ),
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         flex: 3,
                         child: Icon(
                           Icons.personal_injury,
@@ -54,13 +60,13 @@ class RecordWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              "January 24th , 2024",
-                              style: TextStyle(
+                              getDate(),
+                              style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.textWhiteColor),
                             ),
-                            Text(
+                            const Text(
                               "Ulcer",
                               style: TextStyle(
                                   fontSize: 16,
@@ -127,5 +133,18 @@ class RecordWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String getDate() {
+    DateTime date = ulcerMonitoringRecordModel.timestamp
+        .toDate(); // Example date: 24th January 2024
+    String day = DateFormat('d').format(date); // Get day as a number
+    String suffix =
+        Utility.getDaySuffix(int.parse(day)); // Get suffix for the day
+    String formattedDate = DateFormat('MMMM d').format(date) +
+        suffix +
+        DateFormat(', yyyy').format(date);
+
+    return formattedDate;
   }
 }

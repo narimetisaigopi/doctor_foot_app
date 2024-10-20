@@ -1,7 +1,5 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
-import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
-import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';

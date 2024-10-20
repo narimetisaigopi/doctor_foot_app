@@ -1,11 +1,11 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/dash_board/profile/contact_us_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile/appointments/my_appointments_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/doctor_appointments/my_appointments_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/faqs_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/edit_profile_screen.dart';
 import 'package:drfootapp/screens/dash_board/profile/payments_and_refunds_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile/records_screen.dart';
-import 'package:drfootapp/screens/dash_board/profile/service_bookings/my_service_bookings_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/ulcer_monitioring_records_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/foot_appointments/my_foot_appointments_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -159,7 +159,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               leadingIcon: AssetsConstants.booked_services,
                                               onPressed: () {
                                                 Get.to(
-                                                    const MyServiceBookingsScreen());
+                                                    const MyFootAppointmentsScreen());
                                               }),
                                           ProfileMenuItem(
                                               text: "payments",
@@ -173,7 +173,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               leadingIcon:
                                                   AssetsConstants.records_icon,
                                               onPressed: () {
-                                                Get.to(const RecordsScreen());
+                                                Get.to(
+                                                    const UlcerMonitoringRecordsScreen());
                                               }),
                                           ProfileMenuItem(
                                               text: "contactus",
@@ -198,6 +199,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: CustomNetworkImageWidget(
                               height: double.infinity,
                               width: double.infinity,
+                              isCircle: true,
+                              radius: 100,
                               path: loginUserModel.profilePic,
                             ),
                           ),

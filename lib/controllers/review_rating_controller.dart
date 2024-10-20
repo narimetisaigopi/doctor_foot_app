@@ -6,12 +6,16 @@ import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ReviewRatingController extends GetxController {
   TextEditingController messageTextEditingController = TextEditingController();
+  TextEditingController nameTextEditingController = TextEditingController();
   double selectedRating = 0;
   bool isLoading = false;
-  
+
+  XFile? selectedXFile;
+
   void _updateLoading(bool loading) {
     isLoading = loading;
     update();
@@ -20,7 +24,8 @@ class ReviewRatingController extends GetxController {
   ReviewRatingModel myRatingModel = ReviewRatingModel();
 
   CollectionReference getCollection(ReviewType reviewType) {
-    CollectionReference collectionReference = footServicesCollectionReference;
+    CollectionReference collectionReference =
+        footServicesAppointmentsCollectionReference;
     if (reviewType == ReviewType.appointment) {
       collectionReference = doctorsAppointmentsCollectionReference;
     }
@@ -92,5 +97,16 @@ class ReviewRatingController extends GetxController {
     await removeReviewsInShop(reviewType, docId);
     Utility.toast("Deleted successfully.!!!");
     update();
+  }
+
+  adminAddReview() async {
+    _updateLoading(true);
+    ReviewRatingModel ratingModel = ReviewRatingModel();
+    ratingModel.rating = selectedRating;
+    ratingModel.review = messageTextEditingController.text;
+    ratingModel.uid = Utility().getCurrentUserId();
+    _updateLoading(false);
+    Utility.toast("Thank you,\nreview submitted successfully.");
+    Get.back();
   }
 }

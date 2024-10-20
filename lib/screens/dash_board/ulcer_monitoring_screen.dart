@@ -1,13 +1,13 @@
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/controllers/ulcer_monitoring_controller.dart';
 import 'package:drfootapp/models/ulcer_monitor_models/ulcer_monitoring_plan_model.dart';
+import 'package:drfootapp/screens/dash_board/videos_screen_widgets/ulcer_monitoring_upload_documents_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:drfootapp/utils/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'ulcer_monitor_widgets/plan_detail_screen.dart';
 import 'ulcer_monitor_widgets/ulcer_monitoring_widget.dart';
 
 class UlcerMonitoringScreen extends StatefulWidget {
@@ -28,25 +28,8 @@ class _UlcerMonitoringScreenState extends State<UlcerMonitoringScreen> {
         builder: (ulcerMonitoringController) {
       return Scaffold(
         backgroundColor: AppColors.secondary,
-        appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(
-              Icons.arrow_back_outlined,
-              color: AppColors.whiteBgColor,
-            ),
-          ),
-          backgroundColor: AppColors.primaryBlue,
-          title: const Text(
-            "ulcerMonitorText",
-            style: TextStyle(
-                color: AppColors.whiteBgColor,
-                fontSize: 17,
-                fontWeight: FontWeight.w700),
-          ).tr(),
-          centerTitle: true,
+        appBar: const CustomAppbar(
+          title: Strings.ulcerMonitoringText,
         ),
         body: Container(
           margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
@@ -66,27 +49,41 @@ class _UlcerMonitoringScreenState extends State<UlcerMonitoringScreen> {
                       UlcerMonitoringPlanModel ulcerMonitoringPlanModel =
                           ulcerMonitoringController.ulcerPlansList[index];
                       return UlcerMonitoringWidget(
+                        isLoading: ulcerMonitoringController.isLoading,
                         ulcerMonitoringPlanModel: ulcerMonitoringPlanModel,
                         isSelected: ulcerMonitoringPlanModel.planTitle ==
                             ulcerMonitoringController
                                 .selectedUlcerModel.planTitle,
                         isCurrentPlan: loginUserModel.ulcerMonitoringPlan ==
                             ulcerMonitoringPlanModel.id,
-                        onPress: () {
-                          Utility.myBottomSheet(context,
-                              heightFactor: 0.7,
-                              widget: const PlanDetailScreen());
-                          ulcerMonitoringController
-                              .updatePlanSelection(ulcerMonitoringPlanModel);
-                        },
                         getStarted: () {
+                          // Utility.myBottomSheet(context,
+                          //     heightFactor: 0.7,
+                          //     widget: const PlanDetailScreen());
+                          // ulcerMonitoringController
+                          //     .updatePlanSelection(ulcerMonitoringPlanModel);
+                          // ulcerMonitoringController
+                          //     .updatePlanSelection(ulcerMonitoringPlanModel);
+                          // ulcerMonitoringController.proceedToPayment();
                           ulcerMonitoringController
-                              .updatePlanSelection(ulcerMonitoringPlanModel);
-                          ulcerMonitoringController.proceedToPayment();
+                              .getUlcerMonitoringRecord(
+                                  ulcerMonitoringController
+                                      .getTodayDocumentId())
+                              .then((e) {
+                            if (e.docId.isEmpty) {
+                              Get.to(() =>
+                                  const UlcerMonitoringUploadDocumentsScreen());
+                            } else {
+                              Utility.toast("Todau you already uploaded.");
+                            }
+                          });
                         },
                       );
                     }),
               ),
+              const SizedBox(
+                height: 20,
+              )
             ],
           ),
           // child: Column(

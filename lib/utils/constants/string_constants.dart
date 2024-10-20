@@ -7,7 +7,7 @@ class Strings {
   static const String rectImageText =
       "Of the estimated 537 million people worldwide who have \n diabetes, 19-34% will develop an ulcer in their life time";
   static const String serviceText = "Services";
-  static const String ulcerMonitorText = "Ulcer Monitor";
+  static const String ulcerMonitorText = "Ulcer Monitoring";
   static const String ulcerMonitoringText = "Ulcer Monitoring";
   static const String homeText = "Home";
   static const String dietChartText = "Diet Chart";
