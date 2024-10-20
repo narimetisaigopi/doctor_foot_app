@@ -1,6 +1,7 @@
 import 'package:drfootapp/models/check_your_feet_data_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/foot_screening_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/widgets/custom_appbar.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -25,28 +26,7 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.whiteBgColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryBlue,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            size: 24,
-            color: AppColors.whiteBgColor,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          "Check your feet",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: AppColors.whiteBgColor,
-          ),
-        ).tr(),
-      ),
+      appBar: const CustomAppbar(title: "Check your feet"),
       body: Column(
         children: [
           Expanded(
@@ -171,7 +151,7 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                           ),
                         ),
                         const SizedBox(height: 6),
-                        HtmlWidget(widget.checkYourFeetDataModel.about),
+                        Text(widget.checkYourFeetDataModel.about),
                         const SizedBox(
                           height: 22,
                         ),

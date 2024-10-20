@@ -30,7 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    bannersController.fetchBanners();
+    if (bannersController.bannersList.isEmpty) {
+      bannersController.fetchBanners();
+    }
     _riskFactorController.getMyRiskCheckData();
     super.initState();
   }
