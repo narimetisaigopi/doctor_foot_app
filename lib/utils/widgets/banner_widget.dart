@@ -36,21 +36,24 @@ class _BannerWidgetState extends State<BannerWidget> {
               width: double.infinity,
             ),
             Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 112),
                   child: Container(
-                    color: Colors.transparent,
+                    color: Colors.black.withOpacity(0.4),
                     child: Center(
                       child: Column(
                         children: [
                           Text(
-                            widget.bannerModel.descrition,
+                            widget.bannerModel.descrition.capitalizeFirst ?? "",
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
-                              color: AppColors.black1,
+                              color: AppColors.whiteBgColor,
                             ),
                             textAlign: TextAlign.center,
                           ).tr(),
@@ -65,6 +68,9 @@ class _BannerWidgetState extends State<BannerWidget> {
                               activeDotColor: AppColors.whiteBgColor,
                             ),
                           ),
+                          const SizedBox(
+                            height: 8,
+                          )
                         ],
                       ),
                     ),

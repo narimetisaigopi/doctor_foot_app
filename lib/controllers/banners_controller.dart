@@ -37,7 +37,9 @@ class BannersController extends GetxController {
 
   fetchBanners() async {
     // Fetch hospitals from Firestore
-    QuerySnapshot querySnapshot = await bannersCollectionReference.get();
+    QuerySnapshot querySnapshot = await bannersCollectionReference
+        .where("isActive", isEqualTo: true)
+        .get();
     bannersList = querySnapshot.docs
         .map((doc) => BannerModel.fromMap(doc.data() as Map<String, dynamic>))
         .toList();
