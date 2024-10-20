@@ -204,8 +204,9 @@ class DoctorAppointmentController extends GetxController {
     await doctorsAppointmentsCollectionReference
         .doc(appointmentModel.docId)
         .update({
-      "appointmentStatus": AppointmentStatus.cancelledByUser.index,
-      "modifiedAt": DateTime.now()
+      "appointmentStatus": AppointmentStatus.cancelled.index,
+      "modifiedAt": DateTime.now(),
+      "cancelledByUid": Utility().getCurrentUserId()
     });
     await paymentsCollectionReference.doc(appointmentModel.paymentId).update({
       "paymentStatus": PaymentStatus.cancelled.index,

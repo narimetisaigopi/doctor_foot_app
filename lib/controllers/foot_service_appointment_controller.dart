@@ -203,19 +203,29 @@ class FootServiceAppointmentController extends GetxController {
   }
 
   Future cancelAppointment(FootServiceAppointmentModel appointmentModel) async {
-    await footServicesAppointmentsCollectionReference
-        .doc(appointmentModel.docId)
-        .update({
-      "appointmentStatus": AppointmentStatus.cancelledByUser.index,
-      "modifiedAt": DateTime.now()
-    });
-    await paymentsCollectionReference.doc(appointmentModel.paymentId).update({
-      "paymentStatus": PaymentStatus.cancelled.index,
-      "modifiedAt": DateTime.now(),
-      "refundStatus": PaymentStatus.pending.index,
-      "refundModifiedAt": DateTime.now(),
-      "refundTimestamp": DateTime.now(),
-    });
-    Utility.toast("Appointment cancelled successfully.");
+    try {
+      await FirebaseFirestore.instance.runTransaction((transaction) async {
+        await footServicesAppointmentsCollectionReference
+            .doc(appointmentModel.docId)
+            .update({
+          "appointmentStatus": AppointmentStatus.cancelled.index,
+          "modifiedAt": DateTime.now(),
+          "cancelledByUid": Utility().getCurrentUserId()
+        });
+        await paymentsCollectionReference
+            .doc(appointmentModel.paymentId)
+            .update({
+          "paymentStatus": PaymentStatus.cancelled.index,
+          "modifiedAt": DateTime.now(),
+          "refundStatus": PaymentStatus.pending.index,
+          "refundModifiedAt": DateTime.now(),
+          "refundTimestamp": DateTime.now(),
+        });
+      });
+      Utility.toast("Appointment cancelled successfully.");
+    } catch (e) {
+      logger("cancelAppointment $e");
+      Utility.toast("failed due to $e");
+    } finally {}
   }
 }

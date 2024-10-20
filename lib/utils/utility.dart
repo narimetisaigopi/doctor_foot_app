@@ -425,6 +425,7 @@ class Utility {
       ],
     );
   }
+
   static String numberConvertToEnglish(int number) {
     var formattedNumber = NumberFormat.compactCurrency(
       decimalDigits: 0,
@@ -433,6 +434,7 @@ class Utility {
     ).format(number);
     return formattedNumber.toString();
   }
+
   Widget policyWidget(BuildContext context, Color color) {
     return RichText(
         textAlign: TextAlign.center,
@@ -676,7 +678,24 @@ class Utility {
 
 // Convert enum to string
   static String enumToString<T>(T enumValue) {
-    return enumValue.toString().split('.').last;
+    String result = "";
+    try {
+      // Get the last part of the enum and split it at each uppercase letter
+      result = enumValue.toString().split('.').last;
+
+      // Add space before each capital letter and convert to title case
+      result = result.replaceAllMapped(
+          RegExp(r'[A-Z]'), (match) => ' ${match.group(0)}');
+
+      // Capitalize the first letter of the result
+      return result
+          .trim()
+          .split(' ')
+          .map((word) => word[0].toUpperCase() + word.substring(1))
+          .join(' ');
+    } catch (e) {
+      return result;
+    }
   }
 
 // Convert string to enum
@@ -828,13 +847,11 @@ class Utility {
   }
 
   static bool isAppointmentCancelled(AppointmentStatus appointmentStatus) {
-    bool isCancelled = appointmentStatus ==
-            AppointmentStatus.cancelled ||
-        appointmentStatus == AppointmentStatus.cancelledByUser;
+    bool isCancelled = appointmentStatus == AppointmentStatus.cancelled;
     return isCancelled;
   }
 
-static String getCurrentWeekDayName() {
+  static String getCurrentWeekDayName() {
     // Get the current date
     DateTime now = DateTime.now();
     // Use DateFormat to get the full weekday name

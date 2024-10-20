@@ -110,7 +110,10 @@ class _FootServiceAppointmentDetailsScreenState
                                 widget.footServiceAppointmentModel)
                             .then((e) {
                           cancelledAppointmentAlert(
-                              title: '', upload: () async {});
+                              title: '',
+                              upload: () async {
+                                Get.offAll(() => const DashBoardScreen());
+                              });
                         });
                       },
                     );

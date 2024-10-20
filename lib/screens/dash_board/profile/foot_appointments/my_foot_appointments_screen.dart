@@ -1,5 +1,5 @@
 import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
-import 'package:drfootapp/screens/dash_board/profile/service_bookings/foot_appointments_list_screen.dart';
+import 'package:drfootapp/screens/dash_board/profile/foot_appointments/foot_appointments_list_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -78,14 +78,14 @@ class _MyFootAppointmentsScreenState extends State<MyFootAppointmentsScreen>
                   children: [
                     Expanded(
                       child: FootAppointmentsListScreen(
-                        orderStatus: OrderStatus.upcoming,
+                        appointmentStatus: AppointmentStatus.booked,
                         title: Strings.upcoming,
                         showHeader: true,
                       ),
                     ),
                     Expanded(
                       child: FootAppointmentsListScreen(
-                        orderStatus: OrderStatus.upcoming,
+                        appointmentStatus: AppointmentStatus.completed,
                         title: Strings.upcoming,
                         showHeader: true,
                       ),
@@ -93,8 +93,8 @@ class _MyFootAppointmentsScreenState extends State<MyFootAppointmentsScreen>
                   ],
                 ),
                 FootAppointmentsListScreen(
-                  orderStatus: OrderStatus.cancelled,
-                  title: "",
+                  appointmentStatus: AppointmentStatus.cancelled,
+                  title: Strings.cancelled,
                 ),
               ])));
     });

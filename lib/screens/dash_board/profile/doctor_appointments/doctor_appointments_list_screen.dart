@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
-import 'package:drfootapp/screens/dash_board/profile/appointments/booked_appointment_widget.dart';
+import 'package:drfootapp/screens/dash_board/profile/doctor_appointments/doctor_appointment_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
@@ -51,7 +51,7 @@ class _DoctorAppointmentsListScreenState
             itemBuilder: (context, documentSnapshots, index) {
               DoctorAppointmentModel appointmentModel =
                   DoctorAppointmentModel.fromSnapshot(documentSnapshots[index]);
-              return BookedAppointmentWidget(
+              return DoctorAppointmentWidget(
                 appointmentModel: appointmentModel,
                 title: widget.title,
               );

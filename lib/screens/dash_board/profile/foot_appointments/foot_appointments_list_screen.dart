@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/foot_service_appointment_model.dart';
-import 'package:drfootapp/screens/dash_board/profile/service_bookings/foot_appointment_widget.dart';
+import 'package:drfootapp/screens/dash_board/profile/foot_appointments/foot_appointment_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/enums.dart';
@@ -52,7 +52,8 @@ class _FootAppointmentsListScreenState
                   FootServiceAppointmentModel.fromSnapshot(
                       documentSnapshots[index].data() as Map);
               return FootAppointmentWidget(
-                footServiceAppointmentModel: footServiceAppointmentModel,
+                appointmentModel: footServiceAppointmentModel,
+                title: widget.title,
               );
             },
           ),

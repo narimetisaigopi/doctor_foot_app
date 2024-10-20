@@ -16,6 +16,7 @@ class DoctorAppointmentModel {
   PatientModel? patientModel;
   String paymentId;
   AppointmentType appointmentType;
+  String cancelledByUid;
 
   DoctorAppointmentModel(
       {this.docId = "",
@@ -30,6 +31,7 @@ class DoctorAppointmentModel {
       this.modifiedAt,
       this.patientModel,
       this.paymentId = "",
+      this.cancelledByUid = "",
       this.appointmentType = AppointmentType.consultYourDoctor});
 
   // Convert model to Map for Firestore
@@ -47,7 +49,8 @@ class DoctorAppointmentModel {
       "paymentId": paymentId,
       "appointmentDate": appointmentDate,
       "appointmentTime": appointmentTime,
-      "appointmentType": appointmentType.index
+      "appointmentType": appointmentType.index,
+      "cancelledByUid": cancelledByUid
     };
   }
 
@@ -71,6 +74,7 @@ class DoctorAppointmentModel {
         appointmentDate: data["appointmentDate"] ?? "",
         modifiedAt: data['modifiedAt'],
         paymentId: data["paymentId"] ?? "",
+        cancelledByUid: data["cancelledByUid"] ?? "",
         appointmentType: data['appointmentType'] != null
             ? AppointmentType.values[data['appointmentType']]
             : AppointmentType.consultYourDoctor);

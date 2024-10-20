@@ -1,29 +1,28 @@
 import 'package:drfootapp/controllers/doctors_controller.dart';
-import 'package:drfootapp/models/appointment_models/doctor_appointment_model.dart';
 import 'package:drfootapp/models/doctor_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/doctor_booked_appointment_details_screen.dart';
+import 'package:drfootapp/models/foot_service_appointment_model.dart';
 import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_details_date_time_screen.dart';
+import 'package:drfootapp/screens/foot_services/foot_service_appointment_details_screen.dart';
 import 'package:drfootapp/screens/reviewrating/add_review_ratings_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/rating_book_again.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BookedAppointmentWidget extends StatefulWidget {
-  final DoctorAppointmentModel appointmentModel;
+class FootAppointmentWidget extends StatefulWidget {
+  final FootServiceAppointmentModel appointmentModel;
   final String title;
-  const BookedAppointmentWidget(
+  const FootAppointmentWidget(
       {super.key, required this.appointmentModel, this.title = ""});
 
   @override
-  State<BookedAppointmentWidget> createState() =>
-      _BookedAppointmentWidgetState();
+  State<FootAppointmentWidget> createState() => _FootAppointmentWidgetState();
 }
 
-class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
+class _FootAppointmentWidgetState extends State<FootAppointmentWidget> {
   DoctorModel doctorModel = DoctorModel();
   @override
   void initState() {
@@ -32,7 +31,6 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
 
   @override
   Widget build(BuildContext context) {
-  
     return FutureBuilder<DoctorModel>(
         future: Get.put(DoctorsController())
             .getDoctorDetailsByUid(widget.appointmentModel.doctorId),
@@ -69,20 +67,19 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                                 onBookAgainPressed: () {
                                   Get.to(() =>
                                       DoctorAppointmentDetailsDateTimeScreen(
-                                      doctorModel: doctorModel));
+                                          doctorModel: doctorModel));
                                 },
-                          onRateServicePressed: () {
+                                onRateServicePressed: () {
                                   Utility.myBottomSheet(context,
                                       widget: AddReviewRatingsScreen(
                                         docId: widget.appointmentModel.docId,
                                         reviewType: ReviewType.appointment,
                                       ),
                                       heightFactor: 0.7);
-                          },
-                        ),
+                                },
+                              ),
                             ],
                           ),
-                        
                       ],
                     ),
                   ),
@@ -94,9 +91,7 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
   IconData getIcon() {
     IconData iconData = Icons.download_done_rounded;
     if (widget.appointmentModel.appointmentStatus ==
-            AppointmentStatus.cancelled ||
-        widget.appointmentModel.appointmentStatus ==
-            AppointmentStatus.cancelledByUser) {
+        AppointmentStatus.cancelled) {
       iconData = Icons.cancel_rounded;
     }
     return iconData;
@@ -109,9 +104,7 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
       color = AppColors.successColor;
     }
     if (widget.appointmentModel.appointmentStatus ==
-            AppointmentStatus.cancelled ||
-        widget.appointmentModel.appointmentStatus ==
-            AppointmentStatus.cancelledByUser) {
+        AppointmentStatus.cancelled) {
       color = AppColors.cancelColor;
     }
     return color;
@@ -143,8 +136,8 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
   Widget appointmentWidget() {
     return InkWell(
       onTap: () {
-        Get.to(() => DoctorBookedAppointmentDetailsScreen(
-            appointmentModel: widget.appointmentModel));
+        Get.to(() => FootServiceAppointmentDetailsScreen(
+            footServiceAppointmentModel: widget.appointmentModel));
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
@@ -167,8 +160,8 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                   child: Container(
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                    child: CustomNetworkImageWidget(
-                      path: doctorModel.image,
+                    child: CustomImage(
+                      path: widget.appointmentModel.footServiceModel!.image,
                       height: 108,
                       width: double.infinity,
                     ),
@@ -191,7 +184,7 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Dr. ${doctorModel.name}",
+                              "${Utility.enumToString(widget.appointmentModel.footServiceModel!.footServiceType).replaceAll(widget.appointmentModel.footServiceModel!.title, "")} - ${widget.appointmentModel.footServiceModel!.title}",
                               style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
@@ -199,29 +192,31 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                             ),
                           ],
                         ),
-                        const Row(
+                        Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.star,
                               color: AppColors.ratingBarColor,
                               size: 14,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Text(
-                              "4.5",
-                              style: TextStyle(
+                              widget.appointmentModel.footServiceModel!
+                                  .averageRating
+                                  .toString(),
+                              style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.blackBold),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 4,
                             ),
                             Text(
-                              "(123 Reviews)",
-                              style: TextStyle(
+                              "(${widget.appointmentModel.footServiceModel!.reviewCount} Reviews)",
+                              style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   color: AppColors.textBlackColor),
@@ -236,7 +231,9 @@ class _BookedAppointmentWidgetState extends State<BookedAppointmentWidget> {
                               size: 16,
                             ),
                             Text(
-                              doctorModel.address,
+                              widget.appointmentModel.addressModel!
+                                  .getAddress(),
+                              maxLines: 1,
                               style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
