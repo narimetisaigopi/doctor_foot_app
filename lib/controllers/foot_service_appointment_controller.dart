@@ -21,7 +21,8 @@ class FootServiceAppointmentController extends GetxController {
   DateTime selectedDateTime = DateTime.now();
   bool isDateSelected = false;
   bool isLoading = false;
-  AppointmentType appointmentType = AppointmentType.consultYourDoctor;
+  DoctorAppointmentType appointmentType =
+      DoctorAppointmentType.consultYourDoctor;
   void _updateLoading(bool loading) {
     isLoading = loading;
     update();

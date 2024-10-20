@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/consult_your_doctor/foot_screening_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/all_available_clinics_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
@@ -138,7 +138,7 @@ class _MetarsalgiaScreenState extends State<MetarsalgiaScreen> {
                   buttonName: "Book appointment",
                   textColor: AppColors.whiteBgColor,
                   onPress: () {
-                    Get.to(() => const FootScreeningScreen());
+                    Get.to(() => const AllAvailableClinicsScreen());
                   },
                 ),
               ),

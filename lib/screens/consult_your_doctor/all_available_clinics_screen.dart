@@ -4,14 +4,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_week_calendar/horizontal_week_calendar.dart';
 
-class FootScreeningScreen extends StatefulWidget {
-  const FootScreeningScreen({super.key});
+class AllAvailableClinicsScreen extends StatefulWidget {
+  const AllAvailableClinicsScreen({super.key});
 
   @override
-  State<FootScreeningScreen> createState() => _FootScreeningScreenState();
+  State<AllAvailableClinicsScreen> createState() =>
+      _AllAvailableClinicsScreenState();
 }
 
-class _FootScreeningScreenState extends State<FootScreeningScreen> {
+class _AllAvailableClinicsScreenState extends State<AllAvailableClinicsScreen> {
   var selectedDate = DateTime.now();
 
   @override

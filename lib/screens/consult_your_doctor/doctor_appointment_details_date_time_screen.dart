@@ -198,7 +198,7 @@ class _DoctorAppointmentDetailsDateTimeScreenState
                         thickness: 10,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 16, right: 16),
+                        padding: const EdgeInsets.only(left: 16, right: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

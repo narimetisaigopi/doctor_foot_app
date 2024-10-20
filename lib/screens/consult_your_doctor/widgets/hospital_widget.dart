@@ -1,7 +1,6 @@
 import 'package:drfootapp/admin/hospital/create_hospital.dart';
 import 'package:drfootapp/controllers/hospitals_controller.dart';
 import 'package:drfootapp/models/hospital_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/find_your_doctors_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/small_button.dart';
@@ -12,8 +11,12 @@ import 'package:get/get.dart';
 class HospitalWidget extends StatefulWidget {
   final HospitalModel hospitalModel;
   final bool isAdmin;
+  final Function() onViewPressed;
   const HospitalWidget(
-      {super.key, required this.hospitalModel, this.isAdmin = false});
+      {super.key,
+      required this.hospitalModel,
+      this.isAdmin = false,
+      required this.onViewPressed});
 
   @override
   State<HospitalWidget> createState() => _HospitalWidgetState();
@@ -99,7 +102,6 @@ class _HospitalWidgetState extends State<HospitalWidget> {
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 16,
-                
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.black2,
                               ),
@@ -110,11 +112,7 @@ class _HospitalWidgetState extends State<HospitalWidget> {
                               bgColor: AppColors.primaryBlue,
                               buttonName: "View",
                               textColor: AppColors.whiteBgColor,
-                              onPress: () {
-                                Get.to(() => FindYourDoctorsScreen(
-                                      hospitalModel: widget.hospitalModel,
-                                    ));
-                              },
+                              onPress: widget.onViewPressed,
                             )
                           ],
                         ),
