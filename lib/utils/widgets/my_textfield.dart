@@ -78,7 +78,7 @@ class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
+      padding: const EdgeInsets.only(bottom: 4, top: 4),
       child: Column(
         children: [
           widget.labelNeeded ? label() : Container(),
