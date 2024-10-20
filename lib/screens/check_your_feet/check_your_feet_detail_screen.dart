@@ -5,6 +5,7 @@ import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 
 class CheckYourFeetDetailScreen extends StatefulWidget {
@@ -155,15 +156,13 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                     color: AppColors.secondary,
                     thickness: 6,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 24, right: 16),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24, right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Text(
+                        const SizedBox(height: 6),
+                        const Text(
                           "About ",
                           style: TextStyle(
                             fontSize: 18,
@@ -171,48 +170,9 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                             color: AppColors.blackBold,
                           ),
                         ),
-                        Text(
-                          "An ingrown toenail occurs when the side or corner of the nail digs into the skin of the toe. This happens mostly to the big toenail, but it can happen to any toenail. ",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.textBlackColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "CAUSES:",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.textBlackColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          " ● Wearing shoes that do not fit well.\n ● Incorrectly cutting your toenails is another \n    main cause. Toenails that are peeled off at the \n    edge or trimmed down at the corners are \n    more likely to become ingrown.\n● An injury to your toe also can cause an \n    ingrown toenail.\n● People who have deformed or misshaped \n    toenails have a higher risk of ingrown toenails.",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.textBlackColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          "To avoid ingrown toenails, cut your nails straight across. The top of your nail should make a straight line. Do not pick at your nails or tear them at the corners. Wear shoes that fit correctly and allow plenty of room for your toes. Avoid high heels and tight-fitting shoes.",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.textBlackColor,
-                          ),
-                        ),
-                        SizedBox(
+                        const SizedBox(height: 6),
+                        HtmlWidget(widget.checkYourFeetDataModel.about),
+                        const SizedBox(
                           height: 22,
                         ),
                       ],

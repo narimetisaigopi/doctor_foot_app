@@ -52,9 +52,9 @@ class _CustomButtonState extends State<CustomButton> {
           //         )
           //       : const BoxShadow()
           // ],
-          // border: widget.border
-          //     ? Border.all(color: AppColors.primary, width: 1)
-          //     : null,
+          border: widget.border
+              ? Border.all(color: AppColors.primaryBlue, width: 1)
+              : null,
           borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
         child: Center(

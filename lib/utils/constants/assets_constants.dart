@@ -384,6 +384,11 @@ class AssetsConstants {
       "assets/images/payments/cancel_booking.png";
   static const String appointment_done =
       "assets/images/payments/appointment_done.png";
+  static const String no_internet = "assets/images/payments/no_internet.png";
+  static const String payment_failed_image =
+      "assets/images/payments/payment_failed_image.png";
+  static const String page_not_found =
+      "assets/images/payments/page_not_found.png";
 
   // profile icons
   static const String contact_us_icon =

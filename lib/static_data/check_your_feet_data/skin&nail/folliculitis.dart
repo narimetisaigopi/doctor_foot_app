@@ -11,7 +11,15 @@ class Folliculitis {
     subTitle: "Corner of the nail digs \ninto the skin of the toe",
     actualPrice: 399,
     offerPrice: 499,
-    about: "",
+    about:
+        """Folliculitis is a skin disorder involving the inflammation of hair follicles. It is typically due to an infection and results in irritated pimple-like spots or pustules. Antibiotic or antifungal creams and other therapies can help.\n 
+        Folliculitis affectsTrusted Source the hair-bearing areas of the body, often the arms, head, and face. The condition presents small discolored bumps that may have a white, pus-filled tip.\n
+    ● In most cases, folliculitis is a harmless condition. However, it can progress to a more serious disease in people with compromised immune systems.\n
+    ● Staphylococcus aureus is the most common infectious cause of folliculitis.\n
+    ● In most cases, folliculitis will disappear independently.\n
+    ● The most common cause of folliculitis is damage to the hair follicle.\n
+    ● Improper shaving techniques, tight clothing, skin rubbing, and some medications can all cause follicle damage.
+""",
     isPriceing: true,
   );
 }
