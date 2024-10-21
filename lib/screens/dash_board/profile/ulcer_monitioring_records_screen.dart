@@ -3,6 +3,7 @@ import 'package:drfootapp/models/ulcer_monitor_models/ulcer_monitoring_record_mo
 import 'package:drfootapp/screens/dash_board/profile/ulcer_monitoring_record_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_appbar.dart';
 import 'package:drfootapp/utils/widgets/empty_state.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
@@ -69,7 +70,9 @@ class _UlcerMonitoringRecordsScreenState
 
   Query getQuery() {
     Query query =
-        ulcerMonitoringRecordsCollectionReference.orderBy("timestamp");
+        ulcerMonitoringRecordsCollectionReference
+        .where("uid", isEqualTo: Utility().getCurrentUserId())
+        .orderBy("timestamp");
     return query;
   }
 }

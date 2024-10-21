@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/consult_your_doctor/foot_screening_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/all_available_clinics_screen.dart';
 import 'package:drfootapp/screens/foot_screening_services/models/foot_screening_model.dart';
 import 'package:drfootapp/screens/foot_screening_services/widgets/foot_screening_service_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -67,16 +67,16 @@ class _FootScreeningServicesState extends State<FootScreeningServices> {
                       onTap: () {
                         switch (index) {
                           case 0:
-                            Get.to(() => const FootScreeningScreen());
+                            Get.to(() => const AllAvailableClinicsScreen());
                             break;
                           case 1:
-                            Get.to(() => const FootScreeningScreen());
+                            Get.to(() => const AllAvailableClinicsScreen());
                             break;
                           case 2:
-                            Get.to(() => const FootScreeningScreen());
+                            Get.to(() => const AllAvailableClinicsScreen());
                             break;
                           case 3:
-                            Get.to(() => const FootScreeningScreen());
+                            Get.to(() => const AllAvailableClinicsScreen());
                             break;
                           default:
                             break;

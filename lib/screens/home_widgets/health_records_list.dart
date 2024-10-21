@@ -1,10 +1,11 @@
-import 'package:drfootapp/screens/home_widgets/health_record_widget.dart';
-import 'package:drfootapp/screens/home_widgets/models/health_record_model.dart';
+import 'package:drfootapp/screens/home_widgets/health_record_option_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:drfootapp/screens/records/health_record_screen.dart.dart';
+import 'package:drfootapp/screens/records/health_record_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'models/health_record_menu_model.dart';
 
 class HealthRecordsList extends StatefulWidget {
   const HealthRecordsList({super.key});
@@ -31,16 +32,16 @@ class _HealthRecordsListState extends State<HealthRecordsList> {
           ).tr(),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.28,
+          height: MediaQuery.of(context).size.height * 0.25,
           child: Padding(
             padding: const EdgeInsets.only(left: 16, right: 16),
             child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, childAspectRatio: 3.6 / 4.8),
-                itemCount: healthRecordsList.length,
+                itemCount: healthRecordsMenuList.length,
                 itemBuilder: (context, index) {
-                  final healthRecordsItem = healthRecordsList[index];
+                  final healthRecordsItem = healthRecordsMenuList[index];
                   return InkWell(
                     onTap: () {
                       switch (index) {
@@ -55,7 +56,7 @@ class _HealthRecordsListState extends State<HealthRecordsList> {
                           break;
                       }
                     },
-                    child: HealthRecordWidget(
+                    child: HealthRecordOptionWidget(
                       image: healthRecordsItem.image,
                       title: healthRecordsItem.serviceNames,
                     ),

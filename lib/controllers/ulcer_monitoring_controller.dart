@@ -155,7 +155,7 @@ class UlcerMonitoringController extends GetxController {
   String getTodayDocumentId() {
     DateTime date = DateTime.now(); // Example date: 9th Dec 2024
     String formattedDate = DateFormat('ddMMyyyy').format(date);
-    return "${Utility().getCurrentUserId()}$formattedDate";
+    return "${Utility().getCurrentUserId()}_$formattedDate";
   }
 
   addUlcerMonitoringRecord() async {

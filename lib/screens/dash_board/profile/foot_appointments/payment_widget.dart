@@ -103,17 +103,17 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                 ),
                               ],
                             ),
-                            Text(
+                            const Text(
                               "widget.paymentNewModel.statusSubTitle",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
                                 color: AppColors.payTextColor,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "widget.paymentNewModel.statusDisc",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w400,
                                 color: AppColors.payTextColor1,

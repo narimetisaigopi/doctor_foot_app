@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/hospital_model.dart';
+import 'package:drfootapp/screens/consult_your_doctor/find_your_doctors_screen.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/hospital_widget.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/widgets/empty_state.dart';
 import 'package:firebase_pagination/firebase_pagination.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AllHospitalsScreen extends StatefulWidget {
   const AllHospitalsScreen({super.key});
@@ -46,6 +48,11 @@ class _AllHospitalsScreenState extends State<AllHospitalsScreen>
           return HospitalWidget(
             hospitalModel: hospitalModel,
             isAdmin: false,
+            onViewPressed: () {
+              Get.to(() => FindYourDoctorsScreen(
+                    hospitalModel: hospitalModel,
+                  ));
+            },
           );
         },
       ),

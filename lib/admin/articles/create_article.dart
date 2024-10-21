@@ -24,7 +24,7 @@ class _CreateArticleState extends State<CreateArticle> {
     return GetBuilder<ArticlesController>(builder: (articlesController) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Articles & Blog"),
+          title: const Text("Articles & Blog"),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -84,7 +84,7 @@ class _CreateArticleState extends State<CreateArticle> {
                   HtmlEditor(
                     controller:
                         articlesController.htmlEditorController, //required
-                    htmlToolbarOptions: HtmlToolbarOptions(
+                    htmlToolbarOptions: const HtmlToolbarOptions(
                       toolbarPosition: ToolbarPosition.belowEditor, //by default
                       toolbarType: ToolbarType.nativeScrollable, //by default
                     ),

@@ -1,7 +1,6 @@
 import 'package:drfootapp/admin/doctor/create_doctor.dart';
 import 'package:drfootapp/controllers/doctors_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/doctor_appointment_details_date_time_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
@@ -14,8 +13,12 @@ import 'package:get/get.dart';
 class DoctorWidget extends StatefulWidget {
   final DoctorModel doctorModel;
   final bool isAdmin;
+  final Function() onPressed;
   const DoctorWidget(
-      {super.key, required this.doctorModel, this.isAdmin = false});
+      {super.key,
+      required this.doctorModel,
+      this.isAdmin = false,
+      required this.onPressed});
 
   @override
   State<DoctorWidget> createState() => _DoctorWidgetState();
@@ -121,24 +124,28 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                             ),
                             Row(
                               children: [
-                                RatingBar.builder(
-                                  initialRating: 4,
-                                  itemSize: 20,
-                                  minRating: 1,
-                                  direction: Axis.horizontal,
-                                  allowHalfRating: true,
-                                  itemCount: 5,
-                                  itemPadding: const EdgeInsets.symmetric(
-                                      horizontal: 1.0),
-                                  itemBuilder: (context, index) => const Icon(
-                                    Icons.star,
-                                    color: AppColors.ratingBarColor,
+                                IgnorePointer(
+                                  child: RatingBar.builder(
+                                    initialRating: Utility.getAverageRating(
+                                        widget.doctorModel.reviewCount,
+                                        widget.doctorModel.totalRating),
+                                    itemSize: 20,
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemPadding: const EdgeInsets.symmetric(
+                                        horizontal: 1.0),
+                                    itemBuilder: (context, index) => const Icon(
+                                      Icons.star,
+                                      color: AppColors.ratingBarColor,
+                                    ),
+                                    onRatingUpdate: (double value) {},
                                   ),
-                                  onRatingUpdate: (double value) {},
                                 ),
-                                const Text(
-                                  "(134)",
-                                  style: TextStyle(
+                                Text(
+                                  "(${widget.doctorModel.reviewCount})",
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.grey2,
@@ -151,11 +158,7 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                               bgColor: AppColors.patientReviewBg,
                               buttonName: "Book Now",
                               textColor: AppColors.whiteBgColor,
-                              onPress: () {
-                                Get.to(() =>
-                                    DoctorAppointmentDetailsDateTimeScreen(
-                                    doctorModel: widget.doctorModel));
-                              },
+                              onPress: widget.onPressed,
                             )
                           ],
                         ),

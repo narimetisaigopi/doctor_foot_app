@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/ulcer_controller.dart';
+import 'package:drfootapp/controllers/have_ulcer_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +8,13 @@ import '../how_to_upload_ulcer_image_widget.dart';
 
 // ignore: must_be_immutable
 class UploadNoUlcerPhotosGuidePopup extends StatelessWidget {
-  UlcerController ulcerController = Get.put(UlcerController());
+  HaveUlcerController ulcerController = Get.put(HaveUlcerController());
 
   UploadNoUlcerPhotosGuidePopup({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UlcerController>(builder: (ulcerController) {
+    return GetBuilder<HaveUlcerController>(builder: (ulcerController) {
       return Column(
         children: [
           Row(

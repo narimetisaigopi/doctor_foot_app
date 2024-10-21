@@ -8,6 +8,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Color titleColor;
   final Color bgColor;
   final Color iconColor;
+  final List<Widget> actions;
   const CustomAppbar(
       {
     super.key,
@@ -15,6 +16,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.bgColor = AppColors.primaryBlue,
     this.titleColor = AppColors.textWhiteColor,
     this.iconColor = AppColors.textWhiteColor,
+      this.actions = const []
   });
 
   @override
@@ -39,6 +41,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           color: iconColor,
         ),
       ),
+      actions: actions,
     );
   }
 

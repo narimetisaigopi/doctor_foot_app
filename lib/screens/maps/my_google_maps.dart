@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -60,7 +59,7 @@ class _MyGoogleMapsScreenState extends State<MyGoogleMapsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Map"),
+        title: const Text("Map"),
       ),
       body: Stack(
         children: [

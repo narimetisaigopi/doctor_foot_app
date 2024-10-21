@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/admin/hospital/create_hospital.dart';
 import 'package:drfootapp/models/hospital_model.dart';
+import 'package:drfootapp/screens/consult_your_doctor/find_your_doctors_screen.dart';
 import 'package:drfootapp/screens/consult_your_doctor/widgets/hospital_widget.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/widgets/empty_state.dart';
@@ -38,6 +39,11 @@ class _AllAdminHospitalsScreenState extends State<AllAdminHospitalsScreen> {
           return HospitalWidget(
             hospitalModel: hospitalModel,
             isAdmin: true,
+            onViewPressed: () {
+              Get.to(() => FindYourDoctorsScreen(
+                    hospitalModel: hospitalModel,
+                  ));
+            },
           );
         },
       ),

@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/ulcer_controller.dart';
+import 'package:drfootapp/controllers/have_ulcer_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
@@ -80,7 +80,7 @@ class _HaveNoUlcerUploadBottomSheetState
                 bgColor: AppColors.patientReviewBg,
                 textColor: AppColors.whiteBgColor,
                 onPress: () {
-                  Get.put(UlcerController()).reset();
+                  Get.put(HaveUlcerController()).reset();
                   Get.defaultDialog(
                       title: "", content: UploadNoUlcerPhotosGuidePopup());
                 },

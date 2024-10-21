@@ -24,17 +24,14 @@ CollectionReference paymentsCollectionReference =
 CollectionReference reviewsCollectionReference =
     FirebaseFirestore.instance.collection("reviews");
 
-CollectionReference adminCollectionReference =
-    FirebaseFirestore.instance.collection("admin");
-
-DocumentReference documentReference =
+DocumentReference adminDocumentReference =
     FirebaseFirestore.instance.collection("admin").doc("admin");
 
 CollectionReference doctorsAppointmentsCollectionReference =
     FirebaseFirestore.instance.collection("doctors_appointments");
 
 CollectionReference footServicesAppointmentsCollectionReference =
-    FirebaseFirestore.instance.collection("foot_services_appointments");
+    FirebaseFirestore.instance.collection("foot_appointments");
 
 CollectionReference articlesAndBlogsCollectionReference =
     FirebaseFirestore.instance.collection("articles_blogs");
@@ -48,8 +45,8 @@ CollectionReference doctorsCollectionReference =
 CollectionReference bannersCollectionReference =
     FirebaseFirestore.instance.collection("banners");
 
-CollectionReference noUlcerCollectionReference =
-    FirebaseFirestore.instance.collection("no_ulcer");
+CollectionReference haveUlcerCollectionReference =
+    FirebaseFirestore.instance.collection("have_ulcer");
 CollectionReference riskCheckerCollectionReference =
     FirebaseFirestore.instance.collection("riskchecker");
 

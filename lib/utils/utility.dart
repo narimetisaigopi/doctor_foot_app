@@ -21,6 +21,9 @@ import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'constants/assets_constants.dart';
+import 'widgets/custom_image.dart';
+
 class Utility {
   static DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss aaa');
   static DateFormat formatterOnlyDate = DateFormat('yyyy-MM-dd');
@@ -28,7 +31,7 @@ class Utility {
   static showAlertDialogger({
     required BuildContext context,
     required Function() yes,
-    required Function() no,
+    required Function()? no,
     String title = "Confirm",
     String content = "Do you want to proceed?",
   }) {
@@ -37,7 +40,10 @@ class Utility {
       content: Text(content),
       actions: [
         TextButton(
-            onPressed: no,
+            onPressed: no ??
+                () {
+                  Get.back();
+                },
             child: const Text(
               "No",
               style: TextStyle(color: Colors.black),
@@ -832,6 +838,15 @@ class Utility {
     return indianRupeesFormat.format(value);
   }
 
+  static String getFileNameFromUrl(String url) {
+    // Parse the URL
+    Uri uri = Uri.parse(url);
+    // Extract the path and split it to get the filename
+    String path = uri.path;
+    String fileName = path.split('/').last;
+    return fileName;
+  }
+
   static String convertTimeStamp(DateTime dateTime) {
     // 05-08-2024
     String formattedDate =
@@ -874,5 +889,71 @@ class Utility {
       default:
         return 'th';
     }
+  }
+
+  static int getAppointmentTodayId() {
+    String today = DateFormat('yyyyMMdd').format(DateTime.now());
+    return int.parse(today);
+  }
+
+  static double getAverageRating(dynamic reviewCount, dynamic totalRating) {
+    if (reviewCount == 0 || totalRating == 0) {
+      return 0;
+    }
+    double normalizedTotalRating = (totalRating / (reviewCount * 5)) * 5;
+    normalizedTotalRating = normalizedTotalRating.toPrecision(1);
+    return normalizedTotalRating;
+  }
+
+  static goToHome() {
+    Get.offAll(() => const DashBoardScreen());
+  }
+
+  static Future<bool?> appointmentCancelledDialog({
+    required BuildContext context,
+    required Function() onDone,
+  }) {
+    return Alert(
+      context: context,
+      content: const Column(
+        children: [
+          Text(
+            "Appointment Canceled",
+            style: TextStyle(
+              color: AppColors.cancelColor,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            "You have canceled Your \nappointment",
+            style: TextStyle(
+              color: AppColors.black2,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          CustomImage(
+            path: AssetsConstants.appointment_cancel,
+            height: 169,
+            width: 223,
+            fit: BoxFit.contain,
+          ),
+        ],
+      ),
+      buttons: [
+        DialogButton(
+          onPressed: onDone,
+          color: AppColors.cancelColor,
+          child: const Text(
+            "BacK to Home",
+            style: TextStyle(
+              color: AppColors.whiteBgColor,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ],
+    ).show();
   }
 }

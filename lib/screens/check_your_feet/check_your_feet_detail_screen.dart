@@ -1,6 +1,8 @@
+import 'package:drfootapp/controllers/doctor_appointment_controller.dart';
 import 'package:drfootapp/models/check_your_feet_data_model.dart';
-import 'package:drfootapp/screens/consult_your_doctor/foot_screening_screen.dart';
+import 'package:drfootapp/screens/consult_your_doctor/all_available_clinics_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_appbar.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -20,6 +22,13 @@ class CheckYourFeetDetailScreen extends StatefulWidget {
 }
 
 class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
+  @override
+  void initState() {
+    Get.put(DoctorAppointmentController()).selectedCheckYourFeetDataModel =
+        widget.checkYourFeetDataModel;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,6 +129,33 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                                       color: AppColors.grey2,
                                     ),
                                   ),
+
+                                  Row(
+                                    children: [
+                                      Text(
+                                        Utility().toIndianFormat(widget
+                                            .checkYourFeetDataModel
+                                            .actualPrice),
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.black2,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        Utility().toIndianFormat(widget
+                                            .checkYourFeetDataModel.offerPrice),
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.grey2,
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               )
                             ],
@@ -168,7 +204,7 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                   buttonName: "Book appointment",
                   textColor: AppColors.whiteBgColor,
                   onPress: () {
-                    Get.to(() => const FootScreeningScreen());
+                    Get.to(() => const AllAvailableClinicsScreen());
                   },
                 ),
               ),

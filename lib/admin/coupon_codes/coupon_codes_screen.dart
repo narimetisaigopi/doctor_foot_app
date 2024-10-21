@@ -7,7 +7,7 @@ import 'package:drfootapp/models/coupon_code_model.dart';
 import 'package:flutter/material.dart';
 
 class CouponCodesScreen extends StatefulWidget {
-  const CouponCodesScreen({Key? key}) : super(key: key);
+  const CouponCodesScreen({super.key});
 
   @override
   _CouponCodesScreenState createState() => _CouponCodesScreenState();

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../utils/constants/firebase_constants.dart';
 
 class UsersScreen extends StatelessWidget {
-  const UsersScreen({Key? key}) : super(key: key);
+  const UsersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -137,20 +137,20 @@ class _DoctorAppointmentDetailsDateTimeScreenState
                         children: [
                           ExpWidget(
                             image: AssetsConstants.patients,
-                            totolCount: "${widget.doctorModel.noOfPatients}+",
+                            totalCount: "${widget.doctorModel.noOfPatients}+",
                             title: "General",
                             bgColor: AppColors.expBg,
                           ),
                           ExpWidget(
                             image: AssetsConstants.experience,
-                            totolCount:
+                            totalCount:
                                 "${widget.doctorModel.yearsOfExperiance}years+",
                             title: "Experience",
                             bgColor: AppColors.expBg,
                           ),
                           const ExpWidget(
                             image: AssetsConstants.star_image,
-                            totolCount: "4.8",
+                            totalCount: "4.8",
                             title: "Rating",
                             bgColor: AppColors.expBg,
                           ),
@@ -198,7 +198,7 @@ class _DoctorAppointmentDetailsDateTimeScreenState
                         thickness: 10,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 16, right: 16),
+                        padding: const EdgeInsets.only(left: 16, right: 16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

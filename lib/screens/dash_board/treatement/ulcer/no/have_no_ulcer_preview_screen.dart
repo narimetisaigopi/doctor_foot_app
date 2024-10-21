@@ -1,4 +1,4 @@
-import 'package:drfootapp/controllers/ulcer_controller.dart';
+import 'package:drfootapp/controllers/have_ulcer_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -17,10 +17,10 @@ class HaveNoUlcerPreviewScreen extends StatefulWidget {
 }
 
 class _HaveNoUlcerPreviewScreenState extends State<HaveNoUlcerPreviewScreen> {
-  UlcerController ulcerController = Get.put(UlcerController());
+  HaveUlcerController ulcerController = Get.put(HaveUlcerController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UlcerController>(builder: (ulcerController) {
+    return GetBuilder<HaveUlcerController>(builder: (ulcerController) {
       return SafeArea(
         child: Scaffold(
           backgroundColor: AppColors.secondary,

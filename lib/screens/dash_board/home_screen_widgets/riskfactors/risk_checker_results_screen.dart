@@ -1,6 +1,5 @@
 import 'package:drfootapp/controllers/risk_checker_controller.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
-import 'package:drfootapp/screens/dash_board/home_screen.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/riskfactors/risk_checker_progress_widget.dart';
 import 'package:drfootapp/screens/dash_board/videos_screen_widgets/watch_now_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';

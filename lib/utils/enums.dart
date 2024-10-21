@@ -8,10 +8,6 @@ enum AppointmentStatus {
   completed
 }
 enum PaymentServiceType { none, ulcerMonitoring, homeService, drAppointment }
-
-// home dressing service
-enum OrderStatus { none, upcoming, completed, cancelled }
-
 enum FootServiceType {
   none,
   dressingAtHomeSmall,
@@ -21,15 +17,20 @@ enum FootServiceType {
   nailTrimming,
   footCleaning,
 }
-
-enum DressingServices { small, moderate, large, huge }
-enum DressingServicesItem { title, image, dicription }
-
-enum ReviewType { homeService, appointment }
+enum ReviewType { doctor }
 enum NotificationType { all }
 enum DietType { veg, nonveg }
-enum AppointmentType {
+enum DoctorAppointmentType {
   consultYourDoctor,
   onlineConsultation,
-  footScreeningService
+  footScreeningService,
+  skinAndNail,
+  toeDeformities,
+  footPain,
+  footDeformities,
+  sportsInjuries,
+  footAndAnkleArthritis
 }
+enum FileType { image, pdf, video }
+
+enum HealthRecordType { image, labReports, hospitalDocuments }

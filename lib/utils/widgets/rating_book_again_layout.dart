@@ -1,11 +1,13 @@
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class RatingBookAgainWidget extends StatelessWidget {
-  final Function()? onRateServicePressed;
-  final Function()? onBookAgainPressed;
-  const RatingBookAgainWidget(
-      {super.key, this.onRateServicePressed, this.onBookAgainPressed});
+class RatingBookAgainLayout extends StatelessWidget {
+  final Function() onRateServicePressed;
+  final Function() onBookAgainPressed;
+  const RatingBookAgainLayout(
+      {super.key,
+      required this.onRateServicePressed,
+      required this.onBookAgainPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +17,7 @@ class RatingBookAgainWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           InkWell(
-            onTap: () {
-              onRateServicePressed!();
-            },
+            onTap: onRateServicePressed,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
@@ -46,9 +46,7 @@ class RatingBookAgainWidget extends StatelessWidget {
             width: 20,
           ),
           InkWell(
-            onTap: () {
-              onBookAgainPressed!();
-            },
+            onTap: onBookAgainPressed,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: const BoxDecoration(

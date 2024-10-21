@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drfootapp/models/check_your_feet_data_model.dart';
 import 'package:drfootapp/models/patient_model.dart';
 import 'package:drfootapp/utils/enums.dart';
 
@@ -15,8 +16,9 @@ class DoctorAppointmentModel {
   Timestamp? modifiedAt;
   PatientModel? patientModel;
   String paymentId;
-  AppointmentType appointmentType;
+  DoctorAppointmentType appointmentType;
   String cancelledByUid;
+  CheckYourFeetDataModel? checkYourFeetDataModel;
 
   DoctorAppointmentModel(
       {this.docId = "",
@@ -32,7 +34,8 @@ class DoctorAppointmentModel {
       this.patientModel,
       this.paymentId = "",
       this.cancelledByUid = "",
-      this.appointmentType = AppointmentType.consultYourDoctor});
+      this.checkYourFeetDataModel,
+      this.appointmentType = DoctorAppointmentType.consultYourDoctor});
 
   // Convert model to Map for Firestore
   Map<String, dynamic> toMap() {
@@ -45,12 +48,13 @@ class DoctorAppointmentModel {
       'timestamp': timestamp,
       'modifiedAt': modifiedAt,
       'appointmentId': appointmentId,
-      "patientModel": patientModel != null ? patientModel!.toMap() : {},
+      "patientModel": patientModel?.toMap(),
       "paymentId": paymentId,
       "appointmentDate": appointmentDate,
       "appointmentTime": appointmentTime,
       "appointmentType": appointmentType.index,
-      "cancelledByUid": cancelledByUid
+      "cancelledByUid": cancelledByUid,
+      "checkYourFeetDataModel": checkYourFeetDataModel?.toJson()
     };
   }
 
@@ -65,10 +69,13 @@ class DoctorAppointmentModel {
         appointmentId: data["appointmentId"] ?? 0,
         appointmentStatus: data['appointmentStatus'] != null
             ? AppointmentStatus.values[data['appointmentStatus']]
-            : AppointmentStatus.none, 
+            : AppointmentStatus.none,
         timestamp: data['timestamp'],
         patientModel: data["patientModel"] != null
             ? PatientModel.fromMap(data["patientModel"])
+            : null,
+        checkYourFeetDataModel: data["checkYourFeetDataModel"] != null
+            ? CheckYourFeetDataModel.fromJson(data["checkYourFeetDataModel"])
             : null,
         appointmentTime: data["appointmentTime"] ?? "",
         appointmentDate: data["appointmentDate"] ?? "",
@@ -76,7 +83,7 @@ class DoctorAppointmentModel {
         paymentId: data["paymentId"] ?? "",
         cancelledByUid: data["cancelledByUid"] ?? "",
         appointmentType: data['appointmentType'] != null
-            ? AppointmentType.values[data['appointmentType']]
-            : AppointmentType.consultYourDoctor);
+            ? DoctorAppointmentType.values[data['appointmentType']]
+            : DoctorAppointmentType.consultYourDoctor);
   }
 }
