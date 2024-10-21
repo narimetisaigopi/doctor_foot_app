@@ -22,167 +22,170 @@ class FootServiceWidget extends StatefulWidget {
 class _FootServiceWidgetState extends State<FootServiceWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: AppColors.whiteBgColor,
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Expanded(
-                flex: 4,
-                child: Column(
-                  children: [
-                    Stack(children: [
-                      CustomImage(
-                        path: widget.nurseServiceModel.image,
-                        height: 125,
-                        width: 98,
-                      ),
-                      Positioned(
-                          top: 3.3,
-                          right: 5,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 0, color: AppColors.grey)),
-                            child: const Icon(
-                              size: 15,
-                              Icons.favorite_border,
-                              color: AppColors.primaryBlue,
-                            ),
-                          ))
-                    ]),
-                    const SizedBox(height: 6),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: AppColors.ratingBarColor,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          "${widget.nurseServiceModel.averageRating}"
-                              .toString(),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.black2,
-                          ),
-                        ).tr(),
-                        Text(
-                          "(${widget.nurseServiceModel.reviewCount})"
-                              .toString(),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.grey2,
-                          ),
-                        ).tr(),
-                      ],
-                    ),
-                  ],
-                )),
-            Expanded(
-                flex: 6,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 6, right: 8),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.whiteBgColor,
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Expanded(
+                  flex: 4,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            widget.nurseServiceModel.title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.black1,
-                            ),
-                          ).tr(),
-                          if (widget.nurseServiceModel.dayRemain.isNotEmpty)
-                            Text(
-                              "(${widget.nurseServiceModel.dayRemain})"
-                                  .toString(),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.pastTextColor,
-                              ),
-                            ).tr(),
-                        ],
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        widget.nurseServiceModel.description,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.pastTextColor,
+                      Stack(children: [
+                        CustomImage(
+                          path: widget.nurseServiceModel.image,
+                          height: 125,
+                          width: 98,
+                          fit: BoxFit.fill,
                         ),
-                      ).tr(),
-                      const SizedBox(height: 8),
+                        Positioned(
+                            top: 5,
+                            right: 8,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 1, color: AppColors.grey)),
+                              child: const Icon(
+                                size: 15,
+                                Icons.favorite_border,
+                                color: AppColors.primaryBlue,
+                              ),
+                            ))
+                      ]),
+                      const SizedBox(height: 6),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          const Icon(
+                            Icons.star,
+                            color: AppColors.ratingBarColor,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 4),
                           Text(
-                            "${Utility().toIndianFormat(widget.nurseServiceModel.offerPrice)}/-",
+                            "${widget.nurseServiceModel.averageRating}"
+                                .toString(),
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w500,
                               color: AppColors.black2,
                             ),
                           ).tr(),
-                          const SizedBox(
-                            width: 5,
-                          ),
                           Text(
-                            "${Utility().toIndianFormat(widget.nurseServiceModel.actualPrice)}/-",
+                            "(${widget.nurseServiceModel.reviewCount})"
+                                .toString(),
                             style: const TextStyle(
                               fontSize: 14,
-                              decoration: TextDecoration.lineThrough,
                               fontWeight: FontWeight.w500,
                               color: AppColors.grey2,
                             ),
                           ).tr(),
                         ],
                       ),
-                      const SizedBox(height: 8),
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => FootServiceDateTimeScreen(
-                                nurseServiceModel: widget.nurseServiceModel,
-                              ));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryBlue,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 16, right: 16, top: 3, bottom: 3),
-                            child: const Text(
-                              "VIEW",
-                              style: TextStyle(
+                    ],
+                  )),
+              Expanded(
+                  flex: 6,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 6, right: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              widget.nurseServiceModel.title,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: AppColors.whiteBgColor,
+                                color: AppColors.black1,
                               ),
                             ).tr(),
-                          ),
+                            if (widget.nurseServiceModel.dayRemain.isNotEmpty)
+                              Text(
+                                "(${widget.nurseServiceModel.dayRemain})"
+                                    .toString(),
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.pastTextColor,
+                                ),
+                              ).tr(),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                )),
-          ],
+                        const SizedBox(height: 6),
+                        Text(
+                          widget.nurseServiceModel.description,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.pastTextColor,
+                          ),
+                        ).tr(),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Text(
+                              "${Utility().toIndianFormat(widget.nurseServiceModel.offerPrice)}/-",
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black2,
+                              ),
+                            ).tr(),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "${Utility().toIndianFormat(widget.nurseServiceModel.actualPrice)}/-",
+                              style: const TextStyle(
+                                fontSize: 14,
+                                decoration: TextDecoration.lineThrough,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.grey2,
+                              ),
+                            ).tr(),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => FootServiceDateTimeScreen(
+                                  nurseServiceModel: widget.nurseServiceModel,
+                                ));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryBlue,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 16, right: 16, top: 3, bottom: 3),
+                              child: const Text(
+                                "ADD",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.whiteBgColor,
+                                ),
+                              ).tr(),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+            ],
+          ),
         ),
       ),
     );

@@ -51,65 +51,85 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                   const SizedBox(
                     height: 8,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-                    child: widget.checkYourFeetDataModel.isPriceing
-                        ? Column(
+                  if (widget.checkYourFeetDataModel.isPriceing)
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Text(
+                                widget.checkYourFeetDataModel.title,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.blackBold,
+                                ),
+                              ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
                                 children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: AppColors.ratingBarColor,
+                                  ),
+                                  const SizedBox(width: 6),
                                   Text(
-                                    widget.checkYourFeetDataModel.title,
+                                    "${widget.checkYourFeetDataModel.averageRating}"
+                                        .toString(),
                                     style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.blackBold,
                                     ),
                                   ),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.star,
-                                        color: AppColors.ratingBarColor,
-                                      ),
-                                      const SizedBox(width: 6),
-                                      Text(
-                                        "${widget.checkYourFeetDataModel.averageRating}"
-                                            .toString(),
-                                        style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.blackBold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "(${widget.checkYourFeetDataModel.reviewCount})"
-                                            .toString(),
-                                        style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.grey2,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
                                   Text(
-                                    widget.checkYourFeetDataModel.subTitle,
+                                    "(${widget.checkYourFeetDataModel.reviewCount})"
+                                        .toString(),
                                     style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColors.grey,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.grey2,
                                     ),
                                   ),
+                                ],
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.checkYourFeetDataModel.subTitle,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.grey,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "₹${widget.checkYourFeetDataModel.actualPrice}/-"
+                                        .toString(),
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.black2,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    "₹${widget.checkYourFeetDataModel.offerPrice}/-"
+                                        .toString(),
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.grey2,
+                                    ),
+                                  ),
+
                                   Row(
                                     children: [
                                       Text(
@@ -137,15 +157,17 @@ class _CheckYourFeetDetailScreenState extends State<CheckYourFeetDetailScreen> {
                                     ],
                                   )
                                 ],
-                              ),
+                              )
                             ],
-                          )
-                        : Container(),
-                  ),
-                  const Divider(
-                    color: AppColors.secondary,
-                    thickness: 6,
-                  ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  if (widget.checkYourFeetDataModel.isPriceing)
+                    const Divider(
+                      color: AppColors.secondary,
+                      thickness: 6,
+                    ),
                   Padding(
                     padding: const EdgeInsets.only(left: 24, right: 16),
                     child: Column(

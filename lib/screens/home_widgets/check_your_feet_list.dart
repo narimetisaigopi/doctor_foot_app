@@ -37,6 +37,44 @@ class _CheckYourFeetListState extends State<CheckYourFeetList> {
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
+              itemCount: checkYourFeetList.length,
+              itemBuilder: (context, index) {
+                final checkYourFeetItem = checkYourFeetList[index];
+                return InkWell(
+                  onTap: () {
+                    switch (index) {
+                      case 0:
+                        Get.to(() => const CheckYourFeetBgScreen());
+                        break;
+                      case 1:
+                        Get.to(() => const ToeDeformitiesBgScreen());
+                        break;
+                      case 2:
+                        Get.to(() => const FootPainBgScreen());
+                        break;
+                      case 3:
+                        Get.to(() => const FootDeformitiesBgScreen());
+                        break;
+                      case 4:
+                        Get.to(() => CheckYourFeetDetailScreen(
+                              checkYourFeetDataModel:
+                                  SportsInjuries.checkYourFeetDataModelList,
+                            ));
+                        break;
+                      case 5:
+                        Get.to(() => CheckYourFeetDetailScreen(
+                              checkYourFeetDataModel:
+                                  FootAnkle.checkYourFeetDataModelList,
+                            ));
+                        break;
+                      default:
+                        break;
+                    }
+                  },
+                  child: CheckYourFeetWidget(
+                    image: checkYourFeetItem.image,
+                    title: checkYourFeetItem.serviceNames,
+
             ).tr(),
             const SizedBox(
               height: 10,

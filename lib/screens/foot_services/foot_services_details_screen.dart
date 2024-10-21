@@ -97,11 +97,14 @@ class _FootServiceDetailsScreenState extends State<FootServiceDetailsScreen> {
                   ),
                 ),
               ),
-              const Divider(
-                color: AppColors.secondary,
-                thickness: 6,
-              ),
+              // const Divider(
+              //   color: AppColors.abBorderColor,
+              //   thickness: 4,
+              // ),
               Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.secondary,
+                ),
                 decoration: const BoxDecoration(color: AppColors.whiteBgColor),
                 padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                 child: Column(
@@ -124,9 +127,9 @@ class _FootServiceDetailsScreenState extends State<FootServiceDetailsScreen> {
                         itemCount: widget.nurseServiceDetailModel
                             .nurseServiceModelList.length,
                         itemBuilder: (context, index) {
-                          final FootServiceModel nurseServiceModel =
-                              widget.nurseServiceDetailModel
-                                  .nurseServiceModelList[index];
+                          final FootServiceModel nurseServiceModel = widget
+                              .nurseServiceDetailModel
+                              .nurseServiceModelList[index];
                           return FootServiceWidget(
                             nurseServiceModel: nurseServiceModel,
                           );

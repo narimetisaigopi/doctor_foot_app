@@ -59,31 +59,19 @@ class _MyFootAppointmentsScreenState extends State<MyFootAppointmentsScreen>
                     color: AppColors.whiteBgColor,
                   ),
                 ),
-                bottom: const TabBar(
-                  dividerColor: AppColors.secondaryColor,
-                  indicatorWeight: 6,
-                  indicatorColor: AppColors.primaryBlue,
-                  tabs: [
-                    Tab(
-                      text: Strings.completed,
-                    ),
-                    Tab(
-                      text: Strings.cancelled,
-                    ),
-                  ],
-                ),
               ),
-              body: const TabBarView(children: [
+              body: TabBarView(children: [
                 Column(
                   children: [
-                    Expanded(
+                    _tabBar(),
+                    const Expanded(
                       child: FootAppointmentsListScreen(
                         appointmentStatus: AppointmentStatus.booked,
                         title: Strings.upcoming,
                         showHeader: true,
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: FootAppointmentsListScreen(
                         appointmentStatus: AppointmentStatus.completed,
                         title: Strings.upcoming,
@@ -92,11 +80,27 @@ class _MyFootAppointmentsScreenState extends State<MyFootAppointmentsScreen>
                     ),
                   ],
                 ),
-                FootAppointmentsListScreen(
+                const FootAppointmentsListScreen(
                   appointmentStatus: AppointmentStatus.cancelled,
                   title: Strings.cancelled,
                 ),
               ])));
     });
+  }
+
+  Widget _tabBar() {
+    return TabBar(
+      indicatorColor: AppColors.primaryBlue,
+      indicatorWeight: 5,
+      controller: tabController,
+      tabs: const [
+        Tab(
+          text: Strings.completed,
+        ),
+        Tab(
+          text: Strings.cancelled,
+        ),
+      ],
+    );
   }
 }

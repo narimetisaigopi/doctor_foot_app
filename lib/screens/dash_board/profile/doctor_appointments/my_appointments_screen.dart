@@ -64,16 +64,6 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
                 Get.back();
               },
             ),
-            bottom: const TabBar(
-              tabs: [
-                Tab(
-                  text: Strings.completed,
-                ),
-                Tab(
-                  text: Strings.cancelled,
-                ),
-              ],
-            ),
             title: const Text(
               "My Appointments",
               style: TextStyle(
@@ -85,6 +75,9 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
           ),
           body: TabBarView(children: [
             Column(
+              children: [
+                _tabBar(),
+                const Expanded(
               key: Key(key),
               children: const [
                 Expanded(
@@ -94,7 +87,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
                     showHeader: true,
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: DoctorAppointmentsListScreen(
                     appointmentStatus: AppointmentStatus.completed,
                     title: Strings.completed,
