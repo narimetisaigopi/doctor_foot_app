@@ -31,3 +31,6 @@ enum DoctorAppointmentType {
   sportsInjuries,
   footAndAnkleArthritis
 }
+enum FileType { image, pdf, video }
+
+enum HealthRecordType { image, labReports, hospitalDocuments }

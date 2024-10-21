@@ -838,6 +838,15 @@ class Utility {
     return indianRupeesFormat.format(value);
   }
 
+  static String getFileNameFromUrl(String url) {
+    // Parse the URL
+    Uri uri = Uri.parse(url);
+    // Extract the path and split it to get the filename
+    String path = uri.path;
+    String fileName = path.split('/').last;
+    return fileName;
+  }
+
   static String convertTimeStamp(DateTime dateTime) {
     // 05-08-2024
     String formattedDate =
