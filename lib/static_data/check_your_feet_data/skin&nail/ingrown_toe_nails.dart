@@ -9,8 +9,8 @@ class IngrownToeNails {
     averageRating: 4.5,
     reviewCount: 320,
     subTitle: "Corner of the nail digs \ninto the skin of the toe",
-    actualPrice: 399,
-    offerPrice: 499,
+     actualPrice: 499,
+    offerPrice: 399,
     about:
         """An ingrown toenail occurs when the side or corner of the nail digs into the skin of the toe. This happens mostly to the big toenail, but it can happen to any toenail.
     CAUSES:

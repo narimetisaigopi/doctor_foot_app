@@ -61,16 +61,6 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
                 Get.back();
               },
             ),
-            bottom: const TabBar(
-              tabs: [
-                Tab(
-                  text: Strings.completed,
-                ),
-                Tab(
-                  text: Strings.cancelled,
-                ),
-              ],
-            ),
             title: const Text(
               "My Appointments",
               style: TextStyle(
@@ -80,17 +70,18 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
               ),
             ).tr(),
           ),
-          body: const TabBarView(children: [
+          body: TabBarView(children: [
             Column(
               children: [
-                Expanded(
+                _tabBar(),
+                const Expanded(
                   child: DoctorAppointmentsListScreen(
                     appointmentStatus: AppointmentStatus.booked,
                     title: Strings.upcoming,
                     showHeader: true,
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: DoctorAppointmentsListScreen(
                     appointmentStatus: AppointmentStatus.completed,
                     title: Strings.completed,
@@ -99,7 +90,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
                 ),
               ],
             ),
-            DoctorAppointmentsListScreen(
+            const DoctorAppointmentsListScreen(
               appointmentStatus: AppointmentStatus.cancelled,
               title: Strings.cancelled,
             ),

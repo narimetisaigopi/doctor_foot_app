@@ -43,7 +43,7 @@ class _CheckYourFeetListState extends State<CheckYourFeetList> {
                   onTap: () {
                     switch (index) {
                       case 0:
-                        Get.to(() => const SkinAndNailBgScreen());
+                        Get.to(() => const CheckYourFeetBgScreen());
                         break;
                       case 1:
                         Get.to(() => const ToeDeformitiesBgScreen());
