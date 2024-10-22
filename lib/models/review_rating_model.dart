@@ -32,6 +32,8 @@ class ReviewRatingModel {
       noOfStars: map['rating'] ?? 0.0,
       serviceId: map['serviceId'] ?? "",
       docId: map['docId'] ?? "",
+      name: map['name'] ?? "",
+      profileUrl: map['profileUrl'] ?? "",
       reviewType: map['reviewType'] != null
           ? ReviewType.values[map['reviewType']]
           : ReviewType.doctor,
@@ -41,6 +43,8 @@ class ReviewRatingModel {
     return {
       "uid": uid,
       "review": reviewText,
+      "name": name,
+      "profileUrl": profileUrl,
       "timestamp": DateTime.now(),
       "rating": noOfStars,
       "serviceId": serviceId,

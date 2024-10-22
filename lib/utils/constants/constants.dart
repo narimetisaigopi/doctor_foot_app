@@ -30,6 +30,7 @@ const String articlesAndBlogs = 'Articles & Blog';
 const String hospitals = 'Hospitals';
 const String doctors = 'Doctors';
 const String banners = 'Banners';
+const String adminReviews = 'Admin Reviews';
 
 final List<String> dashboardMenuOptions = [
   user,
@@ -39,15 +40,16 @@ final List<String> dashboardMenuOptions = [
   dietChart,
   articlesAndBlogs,
   hospitals,
-  banners
+  banners,
+  adminReviews
 ];
 final List<String> chooseTimes = [
   '09 AM - 11 AM',
-  '11 AM - 01PM',
-  '01PM - 03PM',
-  '03PM - 05PM',
-  '05 PM - 07PM',
-  '07PM-09 PM',
+  '11 AM - 01 PM',
+  '01 PM - 03 PM',
+  '03 PM - 05 PM',
+  '05 PM - 07 PM',
+  '07 PM - 09 PM',
 ];
 
 const introScreenImages = [
