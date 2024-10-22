@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:drfootapp/admin/admin_panel.dart';
+import 'package:drfootapp/admin/diet/add_diet_chart_screen.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -28,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 1), () {
       if (kIsWeb) {
         Get.offAll(() => const AdminPanel());
+        //Get.offAll(() => const AddDietChartScreen());
       } else {
         if (FirebaseAuth.instance.currentUser != null) {
           Get.offAll(() => const DashBoardScreen());

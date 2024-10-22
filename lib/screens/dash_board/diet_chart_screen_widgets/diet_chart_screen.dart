@@ -21,7 +21,7 @@ class _DietChartScreenState extends State<DietChartScreen> {
 
   @override
   void initState() {
-    dietChartController.getAllDiets();
+    dietChartController.getAllDietsFromServer();
     super.initState();
   }
 
@@ -88,27 +88,30 @@ class _DietChartScreenState extends State<DietChartScreen> {
                           height: height,
                           width: double.infinity,
                           child: DietPlanLayout(
-                            title: Strings.morningText,
+                            title: Strings.morningNoonText,
                             dietChartModelList:
-                                dietChartController.dietChartModelList,
+                                dietChartController
+                                .getDietBasedOnFilter(Strings.morningNoonText),
                           ),
                         ),
                         SizedBox(
                           height: height,
                           width: double.infinity,
                           child: DietPlanLayout(
-                            title: Strings.afternoonText,
+                            title: Strings.afternoonEveningText,
                             dietChartModelList:
-                                dietChartController.dietChartModelList,
+                                dietChartController.getDietBasedOnFilter(
+                                    Strings.afternoonEveningText),
                           ),
                         ),
                         SizedBox(
                           height: height,
                           width: double.infinity,
                           child: DietPlanLayout(
-                            title: Strings.eveningText,
+                            title: Strings.eveningBedTimeText,
                             dietChartModelList:
-                                dietChartController.dietChartModelList,
+                                dietChartController.getDietBasedOnFilter(
+                                    Strings.eveningBedTimeText),
                           ),
                         ),
                       ],

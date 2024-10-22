@@ -14,7 +14,7 @@ class FirebaseStorageController extends GetxController {
       required XFile uploadFile}) async {
     List<String> urls = await uploadImagesToFirebase(
         directoryName: directoryName,
-        filesNamesList: [fileName],
+        filesNamesList: fileName.isNotEmpty ? [fileName] : [],
         uploadFiles: [uploadFile]);
     if (urls.isNotEmpty) {
       return urls.first;

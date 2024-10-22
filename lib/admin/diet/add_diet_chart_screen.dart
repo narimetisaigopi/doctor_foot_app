@@ -2,18 +2,22 @@ import 'package:drfootapp/controllers/diet_chart_controller.dart';
 import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/enums.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_drop_down_widget.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class AddDietChartScreen extends StatefulWidget {
-  final DietChartModel? dietChart; // Existing diet chart data (optional)
+  final DietChartModel? dietChartModel; // Existing diet chart data (optional)
 
-  const AddDietChartScreen({super.key, this.dietChart});
+  const AddDietChartScreen({super.key, this.dietChartModel});
 
   @override
   State<AddDietChartScreen> createState() => _AddDietChartScreenState();
@@ -21,7 +25,8 @@ class AddDietChartScreen extends StatefulWidget {
 
 class _AddDietChartScreenState extends State<AddDietChartScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
-  DietChartModel dietChartModel = DietChartModel(); // New instance or existing data
+  DietChartModel dietChartModel =
+      DietChartModel(); // New instance or existing data
 
   DietChartController dietChartController = Get.put(DietChartController());
 
@@ -32,8 +37,8 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
   @override
   void initState() {
     super.initState();
-    if (widget.dietChart != null) {
-      dietChartModel = widget.dietChart!; // Copy existing data
+    if (widget.dietChartModel != null) {
+      dietChartModel = widget.dietChartModel!; // Copy existing data
     }
   }
 
@@ -42,8 +47,9 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryBlue,
-        title: Text(
-            widget.dietChart != null ? "Edit Diet Chart" : "New Diet Chart"),
+        title: Text(widget.dietChartModel != null
+            ? "Edit Diet Chart"
+            : "New Diet Chart"),
       ),
       body: GetBuilder<DietChartController>(builder: (dietChartController) {
         return SingleChildScrollView(
@@ -54,79 +60,105 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
               child: Column(
                 children: [
                   defaultSize,
-                  // Week dropdown
-                  CustomDropDownWidget(
-                      hint: "Select week",
-                      menuItems: weeksList
-                          .map(
-                              (e) => DropdownMenuItem(value: e, child: Text(e)))
-                          .toList(),
-                      onChanged: (value) {
-                        dietChartController.weekController.text = value ?? "";
-                      },
-                      errorMessage: "Please select a day"),
-                  defaultSize,
-                  CustomDropDownWidget(
-                      hint: "Select diet type",
-                      menuItems: dietTypesList
-                          .map(
-                              (e) => DropdownMenuItem(value: e, child: Text(e)))
-                          .toList(),
-                      onChanged: (value) {
-                        dietChartController.dietTypeController.text =
-                            value ?? "";
-                      },
-                      errorMessage: "Please select diet type"),
-                  defaultSize,
-                  CustomDropDownWidget(
-                      hint: "Select slot title",
-                      menuItems: dietTitlesList
-                          .map(
-                              (e) => DropdownMenuItem(value: e, child: Text(e)))
-                          .toList(),
-                      onChanged: (value) {
-                        dietChartController.slotTitleController.text =
-                            value ?? "";
-                      },
-                      errorMessage: "Please select slot title"),
-                  defaultSize,
-                  CustomDropDownWidget(
-                      hint: "Select slot time",
-                      menuItems: dietTimingsList
-                          .map(
-                              (e) => DropdownMenuItem(value: e, child: Text(e)))
-                          .toList(),
-                      onChanged: (value) {
-                        dietChartController.slotTimingController.text =
-                            value ?? "";
-                      },
-                      errorMessage: "Please select slot timing"),
-                  defaultSize,
-                  // Diet Image MyTextField (assuming image URL)
-                  MyTextField(
-                    label: "Diet Image URL",
-                    hint: "Diet Image URL",
-                    labelNeeded: false,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.url(),
-                    ]),
-                    textEditingController:
-                        dietChartController.dietImageController,
+                  InkWell(
+                    onTap: dietChartController.pickFile,
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                      child: dietChartController.xFile != null
+                          ? Image.network(dietChartController.xFile!.path)
+                          : widget.dietChartModel != null
+                              ? CustomNetworkImageWidget(
+                                  path: widget.dietChartModel!.image)
+                              : const Icon(Icons.image),
+                    ),
                   ),
+                  TextButton(
+                      onPressed: dietChartController.pickFile,
+                      child: const Text("Pick Image")),
                   defaultSize,
                   // Diet Description MyTextField
                   MyTextField(
                     label: "Diet Description",
                     hint: "Diet Description",
                     maxLines: 5,
+                    minLines: 3,
+                    maxLength: 5005,
                     labelNeeded: false,
+                    textInputType: TextInputType.multiline,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                     ]),
                     textEditingController:
                         dietChartController.dietDescriptionController,
                   ),
+                  defaultSize,
+                  MultiSelectDialogField(
+                    buttonText: const Text("Select weeks"),
+                    items: weeksList.map((e) => MultiSelectItem(e, e)).toList(),
+                    listType: MultiSelectListType.CHIP,
+                    onConfirm: (values) {
+                      dietChartController.weeksList = values;
+                    },
+                  ),
+                  defaultSize,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomDropDownWidget(
+                            hint: "Select diet type",
+                            menuItems: dietTypesList
+                                .map((e) =>
+                                    DropdownMenuItem(value: e, child: Text(e)))
+                                .toList(),
+                            onChanged: (value) {
+                              if (value == "Veg") {
+                                dietChartController.dietType = DietType.veg;
+                              } else {
+                                dietChartController.dietType = DietType.nonVeg;
+                              }
+                            },
+                            errorMessage: "Please select diet type"),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: CustomDropDownWidget(
+                            hint: "Select slot title",
+                            menuItems: dietTitlesList
+                                .map((e) =>
+                                    DropdownMenuItem(value: e, child: Text(e)))
+                                .toList(),
+                            onChanged: (value) {
+                              dietChartController.slotTitleController.text =
+                                  value ?? "";
+                            },
+                            errorMessage: "Please select slot title"),
+                      ),
+                      Expanded(
+                        child: CustomDropDownWidget(
+                            hint: "is contain diary products?",
+                            menuItems: ["Yes", "No"]
+                                .map((e) =>
+                                    DropdownMenuItem(value: e, child: Text(e)))
+                                .toList(),
+                            initialValue: "No",
+                            onChanged: (value) {
+                              if (value == "yes") {
+                                dietChartController.isDiaryProduct = true;
+                              } else {
+                                dietChartController.isDiaryProduct = false;
+                              }
+                            },
+                            errorMessage: "Please select slot title"),
+                      ),
+                    ],
+                  ),
+
                   defaultSize,
                   // Save Button
                   dietChartController.isLoading
@@ -146,9 +178,25 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
   }
 
   validate() {
-    bool status = _formKey.currentState?.saveAndValidate() ?? false;
-    if (status) {
-      dietChartController.addNewDiet();
+    if (dietChartController.xFile == null) {
+      Utility.toast("please select image");
+    } else if (dietChartController.dietDescriptionController.text.isEmpty) {
+      Utility.toast("Enter description");
+    } else if (dietChartController.dietType == null) {
+      Utility.toast("Enter diet type");
+    } else if (dietChartController.slotTitleController.text.isEmpty) {
+      Utility.toast("Enter slot title");
+    } else {
+      Utility.showAlertDialogger(
+          context: context,
+          yes: () {
+            Get.back();
+            dietChartController.addNewDiet();
+          });
     }
+    // bool status = _formKey.currentState?.saveAndValidate() ?? false;
+    // if (status) {
+
+    // }
   }
 }

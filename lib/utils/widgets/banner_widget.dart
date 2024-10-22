@@ -3,6 +3,7 @@ import 'package:drfootapp/admin/banners/create_banner.dart';
 import 'package:drfootapp/controllers/banners_controller.dart';
 import 'package:drfootapp/models/banner_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,19 @@ class _BannerWidgetState extends State<BannerWidget> {
                   }),
             ],
           ),
-        )
+        ),
+        IconButton(
+            onPressed: () async {
+              Utility.showAlertDialogger(
+                  context: context,
+                  yes: () async {
+                    Get.back();
+                    await Get.put(BannersController())
+                        .deleteBanner(widget.bannerModel);
+                    setState(() {});
+                  });
+            },
+            icon: const CircleAvatar(child: Icon(Icons.delete_outline))),
       ],
     );
   }

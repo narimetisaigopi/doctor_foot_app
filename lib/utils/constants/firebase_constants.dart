@@ -56,6 +56,7 @@ CollectionReference adminReviewsCollectionReference =
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";
 const String storageArticlesBlogs = "articles_blogs";
+const String storageDietChart = "diet_chart";
 const String storageHospitals = "hospitals";
 const String storageDoctors = "doctors";
 const String storageBanners = "banners";
