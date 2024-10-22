@@ -2,7 +2,7 @@ import 'package:drfootapp/controllers/banners_controller.dart';
 import 'package:drfootapp/controllers/risk_checker_controller.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/app_bar_widget.dart';
 import 'package:drfootapp/screens/dash_board/home_screen_widgets/home_screen_banners.dart';
-import 'package:drfootapp/screens/dash_board/home_screen_widgets/patiant_review_widget.dart';
+import 'package:drfootapp/screens/dash_board/home_screen_widgets/reviews/home_screen_reviews_layout.dart';
 import 'package:drfootapp/screens/dash_board/ulcer_monitoring_screen.dart';
 import 'package:drfootapp/screens/home_widgets/article_and_blog_list_widget.dart';
 import 'package:drfootapp/screens/home_widgets/book_premium_plan_widget.dart';
@@ -111,19 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: AppColors.riskCheckBg,
               thickness: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
-              child: Text(
-                "Patient Reviews".toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
-              ).tr(),
-            ),
-            const SizedBox(height: 12),
-            PatiantReviewWidget(
-              onPress: () {},
+            const HomeScreenReviewsLayout(
             ),
             const SizedBox(height: 12),
             const DoctorFootWidget(),

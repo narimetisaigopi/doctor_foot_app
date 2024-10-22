@@ -1,8 +1,10 @@
 import 'package:drfootapp/controllers/review_rating_controller.dart';
+import 'package:drfootapp/models/review_rating_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
+import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -12,8 +14,14 @@ import 'package:get/route_manager.dart';
 class AddReviewRatingsScreen extends StatefulWidget {
   final ReviewType reviewType;
   final String docId;
+  final bool isAdmin;
+  final ReviewRatingModel? reviewRatingModel;
   const AddReviewRatingsScreen(
-      {super.key, required this.docId, required this.reviewType});
+      {super.key,
+      required this.docId,
+      required this.reviewType,
+      this.reviewRatingModel,
+      this.isAdmin = false});
 
   @override
   State<AddReviewRatingsScreen> createState() => _AddReviewRatingsScreenState();
@@ -25,6 +33,14 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
 
   @override
   void initState() {
+    if (widget.reviewRatingModel != null) {
+      reviewRatingController.messageTextEditingController.text =
+          widget.reviewRatingModel!.reviewText;
+      reviewRatingController.selectedRating =
+          widget.reviewRatingModel!.noOfStars;
+      reviewRatingController.nameTextEditingController.text =
+          widget.reviewRatingModel!.name;
+    }
     // reviewRatingController
     //     .getMyRating(widget.reviewType, widget.docId)
     //     .then((value) {
@@ -43,9 +59,6 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 20,
-              ),
               IconButton(
                   onPressed: () {
                     Get.back();
@@ -57,6 +70,7 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
               const SizedBox(
                 height: 12,
               ),
+              if (widget.isAdmin) adminLayout(),
               Text(
                 "What is your rating?",
                 style: Theme.of(context).textTheme.titleMedium,
@@ -65,7 +79,7 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
                 height: 8,
               ),
               RatingBar.builder(
-                initialRating: reviewRatingController.myRatingModel.noOfStars,
+                initialRating: reviewRatingController.selectedRating,
                 minRating: 1,
                 itemSize: 40,
                 direction: Axis.horizontal,
@@ -106,10 +120,10 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
               reviewRatingController.isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : CustomButton(
-                      onPress: () {
-                        validate();
-                      },
-                      buttonName: "Add Review",
+                      onPress: validate,
+                      buttonName: widget.reviewRatingModel != null
+                          ? "Update Review"
+                          : "Add Review",
                     ),
               const SizedBox(
                 height: 18,
@@ -121,6 +135,38 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
     });
   }
 
+  Widget adminLayout() {
+    return Column(
+      children: [
+        InkWell(
+          onTap: reviewRatingController.pickFile,
+          child: Container(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+            ),
+            child: reviewRatingController.xFile != null
+                ? Image.network(reviewRatingController.xFile!.path)
+                : widget.reviewRatingModel != null
+                    ? CustomNetworkImageWidget(
+                        path: widget.reviewRatingModel!.profileUrl)
+                    : const Icon(Icons.image),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: reviewRatingController.nameTextEditingController,
+            maxLines: 1,
+            decoration: const InputDecoration(
+                hintText: "Name", border: OutlineInputBorder()),
+          ),
+        ),
+      ],
+    );
+  }
+
   validate() {
     if (reviewRatingController.selectedRating == 0) {
       Utility.toast("Please select rating");
@@ -128,7 +174,8 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
         .messageTextEditingController.text.isEmpty) {
       Utility.toast("Please enter review");
     } else {
-      reviewRatingController.addReview(widget.reviewType, widget.docId);
+      reviewRatingController.addReview(widget.reviewType, widget.docId,
+          isAdmin: widget.isAdmin, reviewRatingModel: widget.reviewRatingModel);
     }
   }
 }

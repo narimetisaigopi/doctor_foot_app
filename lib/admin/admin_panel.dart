@@ -2,6 +2,7 @@
 import 'package:drfootapp/admin/coupon_codes/coupon_codes_Screen.dart';
 import 'package:drfootapp/admin/doctor/admin_all_doctors.dart';
 import 'package:drfootapp/admin/hospital/admin_all_hospitals.dart';
+import 'package:drfootapp/admin/reviews/all_admin_reviews_screen.dart';
 import 'package:drfootapp/admin/total_orders.dart';
 import 'package:drfootapp/admin/users.dart';
 import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/diet_chart_screen.dart';
@@ -124,6 +125,8 @@ class _AdminPanelState extends State<AdminPanel> {
       return const AllAdminDoctorsScreen();
     } else if (_selectedItem == banners) {
       return const AllAdminBannersScreen();
+    } else if (_selectedItem == adminReviews) {
+      return const AllAdminReviewsScreen();
     } else {
       return Container();
     }

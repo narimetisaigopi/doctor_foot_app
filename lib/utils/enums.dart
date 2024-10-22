@@ -17,7 +17,7 @@ enum FootServiceType {
   nailTrimming,
   footCleaning,
 }
-enum ReviewType { doctor }
+enum ReviewType { doctor, admin }
 enum NotificationType { all }
 enum DietType { veg, nonVeg }
 enum DoctorAppointmentType {

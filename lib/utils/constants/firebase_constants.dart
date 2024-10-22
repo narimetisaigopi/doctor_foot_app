@@ -61,6 +61,7 @@ const String storageHospitals = "hospitals";
 const String storageDoctors = "doctors";
 const String storageBanners = "banners";
 const String storageNoUlcer = "no_ulcer";
+const String storageAdminReviews = "admin_reviews";
 const String storageUlcerMonitoringRecords = "ulcer_monitoring_records";
 
 final List<String> adminsList = [
