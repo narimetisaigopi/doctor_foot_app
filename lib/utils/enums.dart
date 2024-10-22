@@ -19,7 +19,7 @@ enum FootServiceType {
 }
 enum ReviewType { doctor }
 enum NotificationType { all }
-enum DietType { veg, nonveg }
+enum DietType { veg, nonVeg }
 enum DoctorAppointmentType {
   consultYourDoctor,
   onlineConsultation,

@@ -2,40 +2,40 @@ import 'package:drfootapp/utils/enums.dart';
 
 class DietChartModel {
   String docId;
-  String week;
+  List weeksList;
   String slotTitle;
-  String slotTiming;
-  String dietImage;
-  String dietDescription;
+  String image;
+  String description;
   bool isActive;
   dynamic timestamp;
+  dynamic modifiedAt;
   DietType dietType; // veg,non-veg,
   bool isDiaryProduct;
   List ingredientsList;
   DietChartModel(
       {this.docId = "",
-      this.week = "",
+      this.weeksList = const [],
       this.slotTitle = "",
-      this.slotTiming = "",
-      this.dietImage = "",
+      this.image = "",
       this.isActive = true,
       this.isDiaryProduct = false,
       this.timestamp = "",
       this.dietType = DietType.veg,
-      this.dietDescription = "",
+      this.description = "",
+      this.modifiedAt = "",
       this.ingredientsList = const []});
 
   factory DietChartModel.fromJson(Map<String, dynamic> map) {
     return DietChartModel(
         docId: map["docId"] ?? "",
-        week: map["week"] ?? "",
+        weeksList: map["weeksList"] ?? "",
         slotTitle: map["slotTitle"] ?? "",
-        slotTiming: map["slotTiming"] ?? "",
-        dietImage: map["dietImage"] ?? "",
+        image: map["image"] ?? "",
         isActive: map["isActive"] ?? true,
         isDiaryProduct: map["isDiaryProduct"] ?? true,
         timestamp: map["timestamp"] ?? "",
-        dietDescription: map["dietDescription"] ?? "",
+        description: map["description"] ?? "",
+        modifiedAt: map["modifiedAt"] ?? "",
         dietType: map['dietType'] != null
             ? DietType.values[map['dietType']]
             : DietType.veg,
@@ -45,16 +45,16 @@ class DietChartModel {
   Map<String, dynamic> toMap() {
     return {
       "docId": docId,
-      "week": week,
+      "weeksList": weeksList,
       "slotTitle": slotTitle,
-      "slotTiming": slotTiming,
-      "dietImage": dietImage,
+      "image": image,
       "isActive": isActive,
       "timestamp": DateTime.now(),
-      "dietDescription": dietDescription,
+      "description": description,
       "dietType": dietType.index,
       "isDiaryProduct": isDiaryProduct,
-      "ingredientsList": ingredientsList
+      "ingredientsList": ingredientsList,
+      "modifiedAt": modifiedAt
     };
   }
 }

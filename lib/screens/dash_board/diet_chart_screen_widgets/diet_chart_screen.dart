@@ -1,4 +1,4 @@
-import 'package:drfootapp/admin/diet/add_diet_chart_screen.dart';
+import 'package:drfootapp/admin/diet/create_diet_chart_screen.dart';
 import 'package:drfootapp/controllers/diet_chart_controller.dart';
 import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/diet_plan_layout.dart';
 import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/week_days_widget.dart';
@@ -21,7 +21,7 @@ class _DietChartScreenState extends State<DietChartScreen> {
 
   @override
   void initState() {
-    dietChartController.getAllDiets();
+    dietChartController.getAllDietsFromServer();
     super.initState();
   }
 
@@ -34,7 +34,7 @@ class _DietChartScreenState extends State<DietChartScreen> {
           floatingActionButton: Utility.isAdmin()
               ? FloatingActionButton(
                   onPressed: () {
-                    Get.to(() => const AddDietChartScreen());
+                    Get.to(() => const CreateDietChartScreen());
                   },
                   child: const Icon(Icons.add),
                 )
@@ -88,27 +88,30 @@ class _DietChartScreenState extends State<DietChartScreen> {
                           height: height,
                           width: double.infinity,
                           child: DietPlanLayout(
-                            title: Strings.morningText,
+                            title: Strings.morningNoonText,
                             dietChartModelList:
-                                dietChartController.dietChartModelList,
+                                dietChartController
+                                .getDietBasedOnFilter(Strings.morningNoonText),
                           ),
                         ),
                         SizedBox(
                           height: height,
                           width: double.infinity,
                           child: DietPlanLayout(
-                            title: Strings.afternoonText,
+                            title: Strings.afternoonEveningText,
                             dietChartModelList:
-                                dietChartController.dietChartModelList,
+                                dietChartController.getDietBasedOnFilter(
+                                    Strings.afternoonEveningText),
                           ),
                         ),
                         SizedBox(
                           height: height,
                           width: double.infinity,
                           child: DietPlanLayout(
-                            title: Strings.eveningText,
+                            title: Strings.eveningBedTimeText,
                             dietChartModelList:
-                                dietChartController.dietChartModelList,
+                                dietChartController.getDietBasedOnFilter(
+                                    Strings.eveningBedTimeText),
                           ),
                         ),
                       ],

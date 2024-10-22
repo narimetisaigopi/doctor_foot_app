@@ -58,7 +58,7 @@ class _WeekDaysWidgetState extends State<WeekDaysWidget> {
             final weekDaysItem = weeksList[index];
             return InkWell(
                 onTap: () {
-                  dietChartController.selectWeek(weekDaysItem);
+                  dietChartController.onWeekSelection(weekDaysItem);
                 },
                 child: weekContainer(weekDaysItem,
                     dietChartController.selectedDietWeek == weekDaysItem));

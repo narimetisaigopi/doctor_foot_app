@@ -31,7 +31,7 @@ class Utility {
   static showAlertDialogger({
     required BuildContext context,
     required Function() yes,
-    required Function()? no,
+    Function()? no,
     String title = "Confirm",
     String content = "Do you want to proceed?",
   }) {

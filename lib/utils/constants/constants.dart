@@ -97,14 +97,23 @@ final weeksList = [
 ];
 
 final dietTypesList = ["Veg", "Non-Veg"];
+
+const String earlyMorning = "Early Morning";
+const String breakfast = "Breakfast";
+const String midMorningSnack = "Mid Morning Snack";
+const String lunch = "Lunch";
+const String eveningSnack = "Evening Snack";
+const String dinner = "Dinner";
+const String beforeBedtime = "Before Bedtime";
+
 final dietTitlesList = [
-  "Early Morning",
-  "Breakfast",
-  "Mid Morning Snack",
-  "Lunch",
-  "Evening Snack",
-  "Dinner",
-  "Before Bedtime",
+  earlyMorning,
+  breakfast,
+  midMorningSnack,
+  lunch,
+  eveningSnack,
+  dinner,
+  beforeBedtime,
 ];
 
 final dietTimingsList = [
@@ -112,12 +121,21 @@ final dietTimingsList = [
   "8am-9am",
   "11am-11.30am",
   "1pm-2pm",
-  "4pm-5pm",
+  "4pm-6pm",
   "8pm-9pm",
 ];
 
+// Mapping titles to their corresponding time slots
+final dietTimeMapping = {
+  "Early Morning": "6am-7am",
+  "Breakfast": "8am-9am",
+  "Mid Morning Snack": "11am-11.30am",
+  "Lunch": "1pm-2pm",
+  "Evening Snack": "4pm-6pm",
+  "Dinner": "8pm-9pm",
+  "Before Bedtime": "8pm-9pm",
+};
+
 const String rupeeSymbol = "₹";
-
-
 
 const List<String> allowedImageExtensions = ['jpg', 'png', 'jpeg'];

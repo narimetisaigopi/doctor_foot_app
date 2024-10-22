@@ -54,11 +54,11 @@ class _DietPlanLayoutState extends State<DietPlanLayout> {
 
   getTitle() {
     String path = AssetsConstants.sun_morning;
-    if (widget.title == Strings.morningText) {
+    if (widget.title == Strings.morningNoonText) {
       path = AssetsConstants.sun_morning;
-    } else if (widget.title == Strings.afternoonText) {
+    } else if (widget.title == Strings.afternoonEveningText) {
       path = AssetsConstants.sun_afternoon;
-    } else if (widget.title == Strings.eveningText) {
+    } else if (widget.title == Strings.eveningBedTimeText) {
       path = AssetsConstants.sun_evening;
     } else if (widget.title == Strings.nightText) {
       path = AssetsConstants.sun_evening;

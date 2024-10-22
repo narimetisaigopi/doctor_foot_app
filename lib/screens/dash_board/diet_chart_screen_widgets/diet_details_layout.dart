@@ -1,5 +1,6 @@
 import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,17 +31,24 @@ class DietDetailsLayout extends StatelessWidget {
           height: 6,
         ),
         Text(
-          "${dietChartModel.slotTitle} (${dietChartModel.slotTiming})",
+          "${dietChartModel.slotTitle} (${dietTimeMapping[dietChartModel.slotTitle]})",
           style: const TextStyle(
               fontSize: 18,
               color: AppColors.primaryBlue,
               fontWeight: FontWeight.bold),
         ),
         CustomNetworkImageWidget(
-          path: dietChartModel.dietImage,
+          path: dietChartModel.image,
           fit: BoxFit.contain,
           height: 130,
           width: 130,
+        ),
+        Text(
+          dietChartModel.description,
+          style: const TextStyle(
+              fontSize: 18,
+              color: AppColors.black1,
+              fontWeight: FontWeight.w500),
         ),
       ],
     );

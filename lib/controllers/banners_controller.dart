@@ -45,6 +45,7 @@ class BannersController extends GetxController {
         .toList();
     update();
   }
+
   // Method to create or update a banner
   createBanner({BannerModel? bannerModel}) async {
     try {
@@ -114,5 +115,11 @@ class BannersController extends GetxController {
         .doc(bannerModel.docId)
         .update({"isActive": status, "modifiedAt": DateTime.now()});
     Utility.toast("Banner status updated successfully.");
+  }
+
+  deleteBanner(BannerModel bannerModel) async {
+    await bannersCollectionReference.doc(bannerModel.docId).delete();
+    await Get.put(FirebaseStorageController()).deleteImage(bannerModel.image);
+    Utility.toast("Banner deleted successfully.");
   }
 }
