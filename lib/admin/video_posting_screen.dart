@@ -1,4 +1,4 @@
-import 'package:drfootapp/admin/diet/add_diet_chart_screen.dart';
+import 'package:drfootapp/admin/diet/create_diet_chart_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class _VideoPostingScreenState extends State<VideoPostingScreen> {
       floatingActionButton: Utility.isAdmin()
               ? FloatingActionButton(
                   onPressed: () {
-                    Get.to(() => const AddDietChartScreen());
+                Get.to(() => const CreateDietChartScreen());
                   },
                   child: const Icon(Icons.add),
                 )

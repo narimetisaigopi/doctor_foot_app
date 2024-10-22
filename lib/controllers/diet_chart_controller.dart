@@ -79,29 +79,52 @@ class DietChartController extends GetxController {
     return list;
   }
 
-  addNewDiet() async {
+  addNewDiet({DietChartModel? dietChartModel}) async {
     try {
       _updateLoading(true);
-      String imageUrl = await Get.put(FirebaseStorageController())
-          .uploadImageToFirebase(
-              directoryName: storageDietChart, uploadFile: xFile!);
-      DietChartModel dietChartModel = DietChartModel();
-      dietChartModel.slotTitle = slotTitleController.text;
-      dietChartModel.description = dietDescriptionController.text;
-      dietChartModel.weeksList = weeksList;
-      dietChartModel.isDiaryProduct = isDiaryProduct;
-      dietChartModel.image = imageUrl;
-      dietChartModel.dietType = dietType!;
-      DocumentReference documentReference = dietCollectionReference.doc();
-      dietChartModel.docId = documentReference.id;
-      await documentReference.set(dietChartModel.toMap());
-      Utility.toast("Added sucessfully.");
+      DietChartModel newDietChartModel = dietChartModel ?? DietChartModel();
+      if (xFile != null) {
+        String imageUrl = await Get.put(FirebaseStorageController())
+            .uploadImageToFirebase(
+                directoryName: storageDietChart, uploadFile: xFile!);
+        newDietChartModel.image = imageUrl;
+      }
+      newDietChartModel.slotTitle = slotTitleController.text;
+      newDietChartModel.description = dietDescriptionController.text;
+      newDietChartModel.weeksList = weeksList;
+      newDietChartModel.isDiaryProduct = isDiaryProduct;
+      newDietChartModel.dietType = dietType!;
+      if (dietChartModel == null) {
+        DocumentReference documentReference = dietCollectionReference.doc();
+        newDietChartModel.docId = documentReference.id;
+        await documentReference.set(newDietChartModel.toMap());
+        Utility.toast("Added sucessfully.");
+      } else {
+        newDietChartModel.modifiedAt = DateTime.now();
+        // Update the doctor in Firestore
+        await dietCollectionReference
+            .doc(newDietChartModel.docId)
+            .update(newDietChartModel.toMap());
+        Utility.toast("Updated successfully.");
+      }
+
+      dietChartModelList.clear();
+      getAllDietsFromServer();
       Get.back();
+      // resetFields();
     } catch (e) {
       logger(e);
       Utility.toast("Failed to update ${e}");
     } finally {
       _updateLoading(false);
     }
+  }
+
+  resetFields() {
+    dietDescriptionController.clear();
+    xFile = null;
+    isDiaryProduct = false;
+    dietType = null;
+    slotTitleController.clear();
   }
 }

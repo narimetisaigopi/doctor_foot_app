@@ -1,4 +1,5 @@
 import 'package:drfootapp/utils/enums.dart';
+
 class DietChartModel {
   String docId;
   List weeksList;
@@ -7,6 +8,7 @@ class DietChartModel {
   String description;
   bool isActive;
   dynamic timestamp;
+  dynamic modifiedAt;
   DietType dietType; // veg,non-veg,
   bool isDiaryProduct;
   List ingredientsList;
@@ -20,6 +22,7 @@ class DietChartModel {
       this.timestamp = "",
       this.dietType = DietType.veg,
       this.description = "",
+      this.modifiedAt = "",
       this.ingredientsList = const []});
 
   factory DietChartModel.fromJson(Map<String, dynamic> map) {
@@ -32,6 +35,7 @@ class DietChartModel {
         isDiaryProduct: map["isDiaryProduct"] ?? true,
         timestamp: map["timestamp"] ?? "",
         description: map["description"] ?? "",
+        modifiedAt: map["modifiedAt"] ?? "",
         dietType: map['dietType'] != null
             ? DietType.values[map['dietType']]
             : DietType.veg,
@@ -49,7 +53,8 @@ class DietChartModel {
       "description": description,
       "dietType": dietType.index,
       "isDiaryProduct": isDiaryProduct,
-      "ingredientsList": ingredientsList
+      "ingredientsList": ingredientsList,
+      "modifiedAt": modifiedAt
     };
   }
 }

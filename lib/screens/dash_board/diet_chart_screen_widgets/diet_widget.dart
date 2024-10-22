@@ -1,7 +1,10 @@
+import 'package:drfootapp/admin/diet/create_diet_chart_screen.dart';
 import 'package:drfootapp/models/dietChartModels/diet_chart_model.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_network_image_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -64,6 +67,14 @@ class _DietWidgetState extends State<DietWidget> {
                 ),
               ),
             ),
+            if (Utility.isAdmin() && kIsWeb)
+              InkWell(
+                  onTap: () {
+                    Get.to(() => CreateDietChartScreen(
+                          dietChartModel: widget.dietChartModel,
+                        ));
+                  },
+                  child: const Text("Edit"))
           ],
         ),
       ),

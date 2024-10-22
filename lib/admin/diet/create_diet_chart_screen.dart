@@ -14,31 +14,38 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
-class AddDietChartScreen extends StatefulWidget {
+class CreateDietChartScreen extends StatefulWidget {
   final DietChartModel? dietChartModel; // Existing diet chart data (optional)
 
-  const AddDietChartScreen({super.key, this.dietChartModel});
+  const CreateDietChartScreen({super.key, this.dietChartModel});
 
   @override
-  State<AddDietChartScreen> createState() => _AddDietChartScreenState();
+  State<CreateDietChartScreen> createState() => _CreateDietChartScreenState();
 }
 
-class _AddDietChartScreenState extends State<AddDietChartScreen> {
+class _CreateDietChartScreenState extends State<CreateDietChartScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
-  DietChartModel dietChartModel =
-      DietChartModel(); // New instance or existing data
-
   DietChartController dietChartController = Get.put(DietChartController());
 
   SizedBox defaultSize = const SizedBox(
     height: 10,
   );
 
+  setEditData() {
+    dietChartController.dietDescriptionController.text =
+        widget.dietChartModel!.description;
+    dietChartController.slotTitleController.text =
+        widget.dietChartModel!.slotTitle;
+    dietChartController.isDiaryProduct = widget.dietChartModel!.isDiaryProduct;
+    dietChartController.weeksList = widget.dietChartModel!.weeksList;
+    dietChartController.dietType = widget.dietChartModel!.dietType;
+  }
+
   @override
   void initState() {
     super.initState();
     if (widget.dietChartModel != null) {
-      dietChartModel = widget.dietChartModel!; // Copy existing data
+      setEditData();
     }
   }
 
@@ -97,6 +104,7 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
                   ),
                   defaultSize,
                   MultiSelectDialogField(
+                    initialValue: dietChartController.weeksList,
                     buttonText: const Text("Select weeks"),
                     items: weeksList.map((e) => MultiSelectItem(e, e)).toList(),
                     listType: MultiSelectListType.CHIP,
@@ -114,6 +122,8 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
                                 .map((e) =>
                                     DropdownMenuItem(value: e, child: Text(e)))
                                 .toList(),
+                            initialValue: Utility.enumToString(
+                                dietChartController.dietType),
                             onChanged: (value) {
                               if (value == "Veg") {
                                 dietChartController.dietType = DietType.veg;
@@ -129,6 +139,8 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
                       Expanded(
                         child: CustomDropDownWidget(
                             hint: "Select slot title",
+                            initialValue:
+                                dietChartController.slotTitleController.text,
                             menuItems: dietTitlesList
                                 .map((e) =>
                                     DropdownMenuItem(value: e, child: Text(e)))
@@ -146,7 +158,9 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
                                 .map((e) =>
                                     DropdownMenuItem(value: e, child: Text(e)))
                                 .toList(),
-                            initialValue: "No",
+                            initialValue: dietChartController.isDiaryProduct
+                                ? "Yes"
+                                : "No",
                             onChanged: (value) {
                               if (value == "yes") {
                                 dietChartController.isDiaryProduct = true;
@@ -165,7 +179,9 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
                       ? const CircularProgressIndicator()
                       : CustomButton(
                           onPress: validate,
-                          buttonName: "Create",
+                          buttonName: widget.dietChartModel != null
+                              ? "Update"
+                              : "Create",
                         ),
                   defaultSize,
                 ],
@@ -178,8 +194,8 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
   }
 
   validate() {
-    if (dietChartController.xFile == null) {
-      Utility.toast("please select image");
+    if (widget.dietChartModel == null && dietChartController.xFile == null) {
+      Utility.toast("select image");
     } else if (dietChartController.dietDescriptionController.text.isEmpty) {
       Utility.toast("Enter description");
     } else if (dietChartController.dietType == null) {
@@ -191,7 +207,8 @@ class _AddDietChartScreenState extends State<AddDietChartScreen> {
           context: context,
           yes: () {
             Get.back();
-            dietChartController.addNewDiet();
+            dietChartController.addNewDiet(
+                dietChartModel: widget.dietChartModel);
           });
     }
     // bool status = _formKey.currentState?.saveAndValidate() ?? false;

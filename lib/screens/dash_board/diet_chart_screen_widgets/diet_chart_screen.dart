@@ -1,4 +1,4 @@
-import 'package:drfootapp/admin/diet/add_diet_chart_screen.dart';
+import 'package:drfootapp/admin/diet/create_diet_chart_screen.dart';
 import 'package:drfootapp/controllers/diet_chart_controller.dart';
 import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/diet_plan_layout.dart';
 import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/week_days_widget.dart';
@@ -34,7 +34,7 @@ class _DietChartScreenState extends State<DietChartScreen> {
           floatingActionButton: Utility.isAdmin()
               ? FloatingActionButton(
                   onPressed: () {
-                    Get.to(() => const AddDietChartScreen());
+                    Get.to(() => const CreateDietChartScreen());
                   },
                   child: const Icon(Icons.add),
                 )
