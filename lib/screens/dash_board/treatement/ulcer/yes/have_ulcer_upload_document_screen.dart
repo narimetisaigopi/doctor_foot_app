@@ -1,7 +1,7 @@
 import 'package:drfootapp/controllers/have_ulcer_controller.dart';
-import 'package:drfootapp/screens/dash_board/treatement/ulcer/ulcer_upload_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/widgets/custom_appbar.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
@@ -10,9 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HaveUlcerUploadDocumentScreen extends StatefulWidget {
-  final UlcerDocumentType ulcerDocumentType;
-  const HaveUlcerUploadDocumentScreen(
-      {super.key, this.ulcerDocumentType = UlcerDocumentType.dischargeSummary});
+  final UlcerDocumentType? ulcerDocumentType;
+  const HaveUlcerUploadDocumentScreen({super.key, this.ulcerDocumentType});
 
   @override
   State<HaveUlcerUploadDocumentScreen> createState() =>
@@ -25,6 +24,12 @@ class _HaveUlcerUploadDocumentScreenState
       Get.put(HaveUlcerController());
   int currentIndex = 0;
   int currentPosition = 0;
+
+  @override
+  void initState() {
+    logger("initstate ulcerDocumentType ${widget.ulcerDocumentType}");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +46,12 @@ class _HaveUlcerUploadDocumentScreenState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      "Upload Discharge Summary ",
-                      style: TextStyle(
+                    Text(
+                      widget.ulcerDocumentType ==
+                              UlcerDocumentType.dischargeSummary
+                          ? "Upload Discharge Summary"
+                          : "Upload Consultation Document",
+                      style: const TextStyle(
                         fontSize: 16,
                         color: AppColors.blackBold,
                         fontWeight: FontWeight.w700,
@@ -54,18 +62,19 @@ class _HaveUlcerUploadDocumentScreenState
                       InkWell(
                         onTap: haveUlcerController.uploadUlcerPictures,
                         child: Container(
-                          decoration: const BoxDecoration(
+                          width: 80,
+                          height: 40,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
                               color: AppColors.abBorderColor),
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
+                          child: const Text(
                               "Skip",
                               style: TextStyle(
-                                fontSize: 20,
+                              fontSize: 18,
                                 color: AppColors.primaryBlue,
                                 fontWeight: FontWeight.w700,
                               ),
-                            ),
                           ),
                         ),
                       )
@@ -83,17 +92,42 @@ class _HaveUlcerUploadDocumentScreenState
                 const SizedBox(
                   height: 32,
                 ),
-                const Text(
-                  """
-Step to upload discharge :
-Step 1 : Click on “ Next “ button.
-Step 2 : Open the document files and select the needed documents to upload.
-Step 3 : Click on “Upload “ button.""",
+                RichText(
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.blackBold,
+                  text: const TextSpan(
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      color: AppColors.black1,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: 'Step to upload discharge:\n\n',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: 'Step 1: ',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: 'Click on “Next“ button.\n',
+                      ),
+                      TextSpan(
+                        text: 'Step 2: ',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text:
+                            'Open the document files and select the needed documents to upload.\n',
+                      ),
+                      TextSpan(
+                        text: 'Step 3: ',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: 'Click on “Upload“ button.',
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(
@@ -109,7 +143,7 @@ Step 3 : Click on “Upload “ button.""",
                       borderRadius: 12,
                       onPress: () {
                         haveUlcerController.haveUlcerYesUploadDocument(
-                            context, widget.ulcerDocumentType);
+                            context, widget.ulcerDocumentType!);
                       },
                     ),
                   ),

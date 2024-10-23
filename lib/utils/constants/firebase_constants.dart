@@ -50,6 +50,9 @@ CollectionReference haveUlcerCollectionReference =
 CollectionReference riskCheckerCollectionReference =
     FirebaseFirestore.instance.collection("riskchecker");
 
+CollectionReference healthRecordsCollectionReference =
+    FirebaseFirestore.instance.collection("health_records");
+
 CollectionReference adminReviewsCollectionReference =
     FirebaseFirestore.instance.collection("admin_reviews");
 
@@ -60,6 +63,7 @@ const String storageDietChart = "diet_chart";
 const String storageHospitals = "hospitals";
 const String storageDoctors = "doctors";
 const String storageBanners = "banners";
+const String storageYesUlcer = "yes_ulcer";
 const String storageNoUlcer = "no_ulcer";
 const String storageAdminReviews = "admin_reviews";
 const String storageUlcerMonitoringRecords = "ulcer_monitoring_records";

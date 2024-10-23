@@ -125,10 +125,13 @@ class _HealthRecordScreenState extends State<HealthRecordScreen> {
 
     xFile = await imagePicker.pickImage(source: ImageSource.camera);
     if (xFile != null) {
-      Utility.appointmentCancelledDialog(
-        onDone: Utility.goToHome,
-        // ignore: use_build_context_synchronously
-        context: context,
+      Utility.stateAlertDialog(
+          title: "Appointment Canceled",
+          description: "You have canceled Your \nappointment",
+          onDone: Utility.goToHome,
+          // ignore: use_build_context_synchronously
+          context: context,
+          buttonText: "Back to Home"
       );
       setState(() {});
     } else {

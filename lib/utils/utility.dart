@@ -66,132 +66,80 @@ class Utility {
     );
   }
 
-  static Future<bool?> redAlertDialog({
-    required BuildContext context,
-    String title = "",
-    String subTitle = "",
-    required Widget image,
-    bool isButtonType = false,
-    VoidCallback? upload,
-    VoidCallback? no,
-    VoidCallback? yes,
-    required String buttonName,
-    required Color buttonBg,
-    Color textColor = AppColors.redColor,
-  }) {
-    return Alert(
-      context: context,
-      content: Column(
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: AppColors.cancelColor,
-              fontSize: 20,
-            ),
-          ),
-          Text(
-            subTitle,
-            style: const TextStyle(
-              color: AppColors.black2,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          image,
-        ],
-      ),
-      buttons: [
-        isButtonType
-            ? DialogButton(
-                onPressed: upload,
-                color: buttonBg,
-                child: Text(
-                  buttonName,
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: 20,
-                  ),
-                ),
-              )
-            : DialogButton(
-                onPressed: no,
-                color: buttonBg,
-                child: Text(
-                  buttonName,
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-        DialogButton(
-          onPressed: yes,
-          color: AppColors.primaryBlue,
-          child: Text(
-            buttonName,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 20,
-            ),
-          ),
-        )
-      ],
-    ).show();
-  }
-
-  Future<bool?> successAlertDialog(
-      {required BuildContext context,
-      required String title,
-      required String description,
-      required Function() onUploadPressed,
-      String buttonText = "Done"}) {
-    return Alert(
-      context: context,
-      title: title,
-      content: Column(
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: AppColors.greenColor,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const CustomImage(
-            path: AssetsConstants.done_image,
-            height: 169,
-            width: 223,
-          ),
-          Text(
-            description,
-            style: const TextStyle(
-              color: AppColors.black1,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          )
-        ],
-      ),
-      buttons: [
-        DialogButton(
-          onPressed: onUploadPressed,
-          color: AppColors.successColor,
-          child: Text(
-            buttonText,
-            style: const TextStyle(
-              color: AppColors.whiteBgColor,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ],
-    ).show();
-  }
+  // static Future<bool?> redAlertDialog({
+  //   required BuildContext context,
+  //   String title = "",
+  //   String subTitle = "",
+  //   required Widget image,
+  //   bool isButtonType = false,
+  //   VoidCallback? upload,
+  //   VoidCallback? no,
+  //   VoidCallback? yes,
+  //   required String buttonName,
+  //   required Color buttonBg,
+  //   Color textColor = AppColors.redColor,
+  // }) {
+  //   return Alert(
+  //     context: context,
+  //     content: Column(
+  //       children: [
+  //         Text(
+  //           title,
+  //           style: const TextStyle(
+  //             color: AppColors.cancelColor,
+  //             fontSize: 20,
+  //           ),
+  //         ),
+  //         Text(
+  //           subTitle,
+  //           style: const TextStyle(
+  //             color: AppColors.black2,
+  //             fontSize: 16,
+  //             fontWeight: FontWeight.w500,
+  //           ),
+  //           textAlign: TextAlign.center,
+  //         ),
+  //         image,
+  //       ],
+  //     ),
+  //     buttons: [
+  //       isButtonType
+  //           ? DialogButton(
+  //               onPressed: upload,
+  //               color: buttonBg,
+  //               child: Text(
+  //                 buttonName,
+  //                 style: TextStyle(
+  //                   color: textColor,
+  //                   fontSize: 20,
+  //                 ),
+  //               ),
+  //             )
+  //           : DialogButton(
+  //               onPressed: no,
+  //               color: buttonBg,
+  //               child: Text(
+  //                 buttonName,
+  //                 style: TextStyle(
+  //                   color: textColor,
+  //                   fontSize: 20,
+  //                 ),
+  //               ),
+  //             ),
+  //       DialogButton(
+  //         onPressed: yes,
+  //         color: AppColors.primaryBlue,
+  //         child: Text(
+  //           buttonName,
+  //           style: TextStyle(
+  //             color: textColor,
+  //             fontSize: 20,
+  //           ),
+  //         ),
+  //       )
+  //     ],
+  //   ).show();
+  // }
 
   static myBottomSheet(BuildContext context,
       {required Widget widget, double heightFactor = 0.5}) {
@@ -961,32 +909,40 @@ class Utility {
     Get.offAll(() => const DashBoardScreen());
   }
 
-  static Future<bool?> appointmentCancelledDialog({
-    required BuildContext context,
-    required Function() onDone,
-  }) {
+  static Future<bool?> stateAlertDialog(
+      {required BuildContext context,
+      required Function() onDone,
+      String title = "",
+      String description = "",
+      String buttonText = "",
+      String image = AssetsConstants.appointment_cancel,
+      Color color = AppColors.cancelColor}) {
     return Alert(
       context: context,
-      content: const Column(
+      closeIcon: Container(),
+      content: Column(
         children: [
-          Text(
-            "Appointment Canceled",
-            style: TextStyle(
-              color: AppColors.cancelColor,
-              fontSize: 20,
+          if (title.isNotEmpty)
+            Text(
+              title,
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
-          ),
-          Text(
-            "You have canceled Your \nappointment",
-            style: TextStyle(
-              color: AppColors.black2,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+          if (description.isNotEmpty)
+            Text(
+              description,
+              style: const TextStyle(
+                color: AppColors.black2,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
           CustomImage(
-            path: AssetsConstants.appointment_cancel,
+            path: image,
             height: 169,
             width: 223,
             fit: BoxFit.contain,
@@ -996,12 +952,13 @@ class Utility {
       buttons: [
         DialogButton(
           onPressed: onDone,
-          color: AppColors.cancelColor,
-          child: const Text(
-            "BacK to Home",
-            style: TextStyle(
+          color: color,
+          child: Text(
+            buttonText,
+            style: const TextStyle(
               color: AppColors.whiteBgColor,
-              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
           ),
         ),

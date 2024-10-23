@@ -1,10 +1,11 @@
 import 'dart:developer';
-
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/ulcer/have_ulcer_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
-import 'package:drfootapp/screens/dash_board/treatement/ulcer/upload_ulcer_photos_guide_popup.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/images/upload_ulcer_photos_guide_popup.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_upload_document_screen.dart';
+import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -40,6 +41,14 @@ class HaveUlcerController extends GetxController {
     return xFileLocal;
   }
 
+  List getPickedImages() {
+    List list = [];
+    if (xfile != null) list.add(xfile);
+    if (xfile2 != null) list.add(xfile2);
+    if (xfile3 != null) list.add(xfile3);
+    return list;
+  }
+
   XFile? getImage(int position) {
     log("getImage position: $position");
     if (position == 1) {
@@ -66,12 +75,12 @@ class HaveUlcerController extends GetxController {
     return false;
   }
 
-  uploadNoUlcerImages() async {
+  uploadHaveUlcerImages() async {
     try {
       _updateLoading(true);
       HaveUlcerModel haveUlcerModel = HaveUlcerModel();
       List images = await FirebaseStorageController().uploadImagesToFirebase(
-          directoryName: storageNoUlcer,
+          directoryName: haveUcler ? storageYesUlcer : storageNoUlcer,
           uploadFiles: [xfile!, xfile2!, xfile3!]);
       haveUlcerModel.docId = Utility().getCurrentUserId();
       haveUlcerModel.uid = Utility().getCurrentUserId();
@@ -98,29 +107,32 @@ class HaveUlcerController extends GetxController {
     filePicker.FilePickerResult? result = await filePicker.FilePicker.platform
         .pickFiles(
             allowMultiple: false,
-            type: filePicker.FileType.custom,
+            type: filePicker.FileType.any,
             dialogTitle: Utility.enumToString(ulcerDocumentType));
 
-    if (ulcerDocumentType == UlcerDocumentType.dischargeSummary) {
-      Utility().successAlertDialog(
-          context: context,
-          title: 'Upload Successful',
-          description: "",
-          onUploadPressed: () {
-            Get.to(() => const HaveUlcerUploadDocumentScreen(
-                  ulcerDocumentType: UlcerDocumentType.dischargeSummary,
-                ));
-          });
-    } else if (ulcerDocumentType == UlcerDocumentType.consultationDocument) {
-      Utility().successAlertDialog(
-          context: context,
-          title: 'Upload Ulcer Pictures',
-          description: "",
-          onUploadPressed: () {
-            Get.back();
+    Utility.stateAlertDialog(
+        // ignore: use_build_context_synchronously
+        context: context,
+        title: 'Upload Successful',
+        description: "",
+        buttonText: ulcerDocumentType == UlcerDocumentType.dischargeSummary
+            ? "Next"
+            : "Upload Ulcer Pictures",
+        image: AssetsConstants.done_image,
+        color: AppColors.successColor,
+        onDone: () {
+          Get.back();
+          if (ulcerDocumentType == UlcerDocumentType.dischargeSummary) {
+            Get.to(
+                () => const HaveUlcerUploadDocumentScreen(
+                      ulcerDocumentType: UlcerDocumentType.consultationDocument,
+                    ),
+                preventDuplicates: false);
+          } else if (ulcerDocumentType ==
+              UlcerDocumentType.consultationDocument) {
             uploadUlcerPictures();
-          });
-    }
+          }
+        });
   }
 
   uploadUlcerPictures() {

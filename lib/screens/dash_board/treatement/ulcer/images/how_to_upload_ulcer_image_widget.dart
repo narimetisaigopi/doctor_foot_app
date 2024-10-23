@@ -1,5 +1,5 @@
 import 'package:drfootapp/controllers/have_ulcer_controller.dart';
-import 'package:drfootapp/screens/dash_board/treatement/ulcer/no/have_no_ulcer_preview_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/images/have_ulcer_preview_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class _HowToUploadUlcerImageWidgetState
         onTap: () async {
           ulcerController.pickFile(widget.index).then((e) {
             if (e != null) {
-              Get.to(() => const HaveNoUlcerPreviewScreen());
+              Get.to(() => const HaveUlcerPreviewScreen());
             }
           });
         },

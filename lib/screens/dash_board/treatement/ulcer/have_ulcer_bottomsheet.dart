@@ -74,6 +74,7 @@ class _HaveUlcerBottomSheetState extends State<HaveUlcerBottomSheet> {
               children: [
                 InkWell(
                   onTap: () {
+                    Get.back();
                     Get.put(HaveUlcerController()).haveUcler = false;
                     Utility.myBottomSheet(
                       context,
@@ -91,6 +92,7 @@ class _HaveUlcerBottomSheetState extends State<HaveUlcerBottomSheet> {
                 ),
                 InkWell(
                   onTap: () {
+                    Get.back();
                     Get.put(HaveUlcerController()).haveUcler = true;
                     Get.to(() => const HaveUlcerUploadDocumentScreen(
                           ulcerDocumentType: UlcerDocumentType.dischargeSummary,

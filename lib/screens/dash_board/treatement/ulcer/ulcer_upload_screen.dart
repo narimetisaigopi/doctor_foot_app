@@ -172,11 +172,14 @@ class _UlcerUploadScreenState extends State<UlcerUploadScreen> {
 
     xFile = await imagePicker.pickImage(source: ImageSource.camera);
     if (xFile != null) {
-      Utility().successAlertDialog(
+      Utility.stateAlertDialog(
+        // ignore: use_build_context_synchronously
         context: context,
         title: 'Upload Successful',
         description: "",
-        onUploadPressed: () {
+        image: AssetsConstants.appointment_done,
+        color: AppColors.successColor,
+        onDone: () {
           Get.back();
           Get.back();
         },
