@@ -37,6 +37,7 @@ class _HomeScreenReviewsLayoutState extends State<HomeScreenReviewsLayout> {
           child: FirestorePagination(
             shrinkWrap: false,
             query: getQuery(),
+            scrollDirection: Axis.horizontal,
             viewType: ViewType.list,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3),

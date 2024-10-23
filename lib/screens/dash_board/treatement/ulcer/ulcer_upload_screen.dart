@@ -172,9 +172,11 @@ class _UlcerUploadScreenState extends State<UlcerUploadScreen> {
 
     xFile = await imagePicker.pickImage(source: ImageSource.camera);
     if (xFile != null) {
-      customAlert(
+      Utility().successAlertDialog(
+        context: context,
         title: 'Upload Successful',
-        upload: () {
+        description: "",
+        onUploadPressed: () {
           Get.back();
           Get.back();
         },
@@ -185,46 +187,5 @@ class _UlcerUploadScreenState extends State<UlcerUploadScreen> {
         "Image Not Picked",
       );
     }
-  }
-
-  Future<bool?> customAlert({
-    required String title,
-    required VoidCallback upload,
-  }) {
-    return Alert(
-      context: context,
-      title: title,
-      content: const Column(
-        children: [
-          CustomImage(
-            path: AssetsConstants.done_image,
-            height: 169,
-            width: 223,
-          ),
-          Text(
-            "We will get back to you once our \nexperts review your ulcer",
-            style: TextStyle(
-              color: AppColors.black1,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          )
-        ],
-      ),
-      buttons: [
-        DialogButton(
-          onPressed: upload,
-          color: AppColors.successColor,
-          child: const Text(
-            "Upload",
-            style: TextStyle(
-              color: AppColors.whiteBgColor,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ],
-    ).show();
   }
 }

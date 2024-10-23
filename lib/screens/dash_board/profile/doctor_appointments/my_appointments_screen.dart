@@ -73,13 +73,9 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
               ),
             ).tr(),
           ),
-          body: TabBarView(children: [
+          body: const TabBarView(children: [
             Column(
               children: [
-                _tabBar(),
-                const Expanded(
-              key: Key(key),
-              children: const [
                 Expanded(
                   child: DoctorAppointmentsListScreen(
                     appointmentStatus: AppointmentStatus.booked,
@@ -87,7 +83,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
                     showHeader: true,
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   child: DoctorAppointmentsListScreen(
                     appointmentStatus: AppointmentStatus.completed,
                     title: Strings.completed,
@@ -96,7 +92,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
                 ),
               ],
             ),
-            const DoctorAppointmentsListScreen(
+            DoctorAppointmentsListScreen(
               appointmentStatus: AppointmentStatus.cancelled,
               title: Strings.cancelled,
             ),

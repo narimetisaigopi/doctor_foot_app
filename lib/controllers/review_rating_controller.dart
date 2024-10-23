@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 class ReviewRatingController extends GetxController {
   TextEditingController messageTextEditingController = TextEditingController();
   TextEditingController nameTextEditingController = TextEditingController();
-  double selectedRating = 0;
+  int selectedRating = 0;
   bool isLoading = false;
 
   XFile? xFile;
@@ -68,7 +68,7 @@ class ReviewRatingController extends GetxController {
       CollectionReference collectionReference = reviewsCollectionReference;
       ReviewRatingModel newReviewRatingModel =
           reviewRatingModel ?? ReviewRatingModel();
-      newReviewRatingModel.noOfStars = selectedRating;
+      newReviewRatingModel.noOfStars = selectedRating.toInt();
       newReviewRatingModel.reviewText = messageTextEditingController.text;
       newReviewRatingModel.uid = currentUserId;
       newReviewRatingModel.reviewType = reviewType;

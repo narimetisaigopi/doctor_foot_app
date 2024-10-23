@@ -66,7 +66,7 @@ class Utility {
     );
   }
 
-  static Future<bool?> customAlert({
+  static Future<bool?> redAlertDialog({
     required BuildContext context,
     String title = "",
     String subTitle = "",
@@ -137,6 +137,58 @@ class Utility {
             ),
           ),
         )
+      ],
+    ).show();
+  }
+
+  Future<bool?> successAlertDialog(
+      {required BuildContext context,
+      required String title,
+      required String description,
+      required Function() onUploadPressed,
+      String buttonText = "Done"}) {
+    return Alert(
+      context: context,
+      title: title,
+      content: Column(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              color: AppColors.greenColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const CustomImage(
+            path: AssetsConstants.done_image,
+            height: 169,
+            width: 223,
+          ),
+          Text(
+            description,
+            style: const TextStyle(
+              color: AppColors.black1,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
+      buttons: [
+        DialogButton(
+          onPressed: onUploadPressed,
+          color: AppColors.successColor,
+          child: Text(
+            buttonText,
+            style: const TextStyle(
+              color: AppColors.whiteBgColor,
+              fontSize: 20,
+            ),
+          ),
+        ),
       ],
     ).show();
   }

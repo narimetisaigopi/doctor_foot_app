@@ -3,11 +3,15 @@ import 'dart:developer';
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/ulcer/have_ulcer_model.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/upload_ulcer_photos_guide_popup.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_upload_document_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
+import 'package:file_picker/file_picker.dart' as filePicker;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../utils/constants/firebase_constants.dart';
 
 class HaveUlcerController extends GetxController {
@@ -87,5 +91,40 @@ class HaveUlcerController extends GetxController {
     } finally {
       _updateLoading(false);
     }
+  }
+
+  haveUlcerYesUploadDocument(
+      BuildContext context, UlcerDocumentType ulcerDocumentType) async {
+    filePicker.FilePickerResult? result = await filePicker.FilePicker.platform
+        .pickFiles(
+            allowMultiple: false,
+            type: filePicker.FileType.custom,
+            dialogTitle: Utility.enumToString(ulcerDocumentType));
+
+    if (ulcerDocumentType == UlcerDocumentType.dischargeSummary) {
+      Utility().successAlertDialog(
+          context: context,
+          title: 'Upload Successful',
+          description: "",
+          onUploadPressed: () {
+            Get.to(() => const HaveUlcerUploadDocumentScreen(
+                  ulcerDocumentType: UlcerDocumentType.dischargeSummary,
+                ));
+          });
+    } else if (ulcerDocumentType == UlcerDocumentType.consultationDocument) {
+      Utility().successAlertDialog(
+          context: context,
+          title: 'Upload Ulcer Pictures',
+          description: "",
+          onUploadPressed: () {
+            Get.back();
+            uploadUlcerPictures();
+          });
+    }
+  }
+
+  uploadUlcerPictures() {
+    Get.put(HaveUlcerController()).reset();
+    Get.defaultDialog(title: "", content: UploadUlcerPhotosGuidePopup());
   }
 }

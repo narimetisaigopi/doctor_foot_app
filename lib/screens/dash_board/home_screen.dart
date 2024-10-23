@@ -111,7 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
               color: AppColors.riskCheckBg,
               thickness: 10,
             ),
-            const HomeScreenReviewsLayout(
+            const SizedBox(
+              height: 250,
+              child: HomeScreenReviewsLayout(),
             ),
             const SizedBox(height: 12),
             const DoctorFootWidget(),

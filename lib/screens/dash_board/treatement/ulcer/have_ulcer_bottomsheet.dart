@@ -1,8 +1,9 @@
 import 'package:drfootapp/controllers/have_ulcer_controller.dart';
-import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_yes_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_upload_document_screen.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/no/have_no_ulcer_upload_bottomsheet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/enums.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
@@ -91,7 +92,9 @@ class _HaveUlcerBottomSheetState extends State<HaveUlcerBottomSheet> {
                 InkWell(
                   onTap: () {
                     Get.put(HaveUlcerController()).haveUcler = true;
-                    Get.to(() => const HaveUlcerYesScreen());
+                    Get.to(() => const HaveUlcerUploadDocumentScreen(
+                          ulcerDocumentType: UlcerDocumentType.dischargeSummary,
+                        ));
                   },
                   child: const CustomButton(
                     width: 150,
