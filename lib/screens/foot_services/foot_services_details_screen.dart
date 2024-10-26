@@ -105,7 +105,6 @@ class _FootServiceDetailsScreenState extends State<FootServiceDetailsScreen> {
                 decoration: const BoxDecoration(
                   color: AppColors.secondary,
                 ),
-                decoration: const BoxDecoration(color: AppColors.whiteBgColor),
                 padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

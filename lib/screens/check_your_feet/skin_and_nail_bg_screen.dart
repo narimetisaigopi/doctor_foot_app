@@ -6,14 +6,14 @@ import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class CheckYourFeetBgScreen extends StatefulWidget {
-  const CheckYourFeetBgScreen({super.key});
+class SkinAndNailBgScreen extends StatefulWidget {
+  const SkinAndNailBgScreen({super.key});
 
   @override
-  State<CheckYourFeetBgScreen> createState() => _CheckYourFeetBgScreenState();
+  State<SkinAndNailBgScreen> createState() => _SkinAndNailBgScreenState();
 }
 
-class _CheckYourFeetBgScreenState extends State<CheckYourFeetBgScreen> {
+class _SkinAndNailBgScreenState extends State<SkinAndNailBgScreen> {
   @override
   void initState() {
     skinAndNail();
