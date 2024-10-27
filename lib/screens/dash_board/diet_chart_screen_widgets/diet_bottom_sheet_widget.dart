@@ -31,10 +31,10 @@ class _DietBottmsheetWidgetState extends State<DietBottmsheetWidget> {
           height: 20,
         ),
         const Text(
-          "What Is Your Dietary Preference ?",
+          "What is your dietary preference?",
           style: TextStyle(
               color: AppColors.black1,
-              fontSize: 16,
+              fontSize: 18,
               fontWeight: FontWeight.w700),
         ),
         const SizedBox(
@@ -45,17 +45,19 @@ class _DietBottmsheetWidgetState extends State<DietBottmsheetWidget> {
           children: [
             CustomButton(
               width: 150,
-              bgColor: AppColors.greenColor,
-              buttonName: "veg",
+              bgColor: AppColors.primaryBlue,
+              buttonName: "Veg",
               textColor: AppColors.whiteBgColor,
               border: false,
+              borderRadius: 12,
             ),
             CustomButton(
               width: 150,
-              bgColor: AppColors.primaryBlue,
+              bgColor: AppColors.buttonBg1,
               buttonName: "Non-veg",
-              textColor: AppColors.whiteBgColor,
+              textColor: AppColors.grey,
               border: false,
+              borderRadius: 12,
             ),
           ],
         ),
@@ -63,10 +65,10 @@ class _DietBottmsheetWidgetState extends State<DietBottmsheetWidget> {
           height: 10,
         ),
         const Text(
-          "Do You Prefer Diery Products?",
+          "Do you prefer dairy product?",
           style: TextStyle(
             color: AppColors.black1,
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -78,17 +80,19 @@ class _DietBottmsheetWidgetState extends State<DietBottmsheetWidget> {
           children: [
             CustomButton(
               width: 150,
-              bgColor: AppColors.primaryBlue,
-              buttonName: "yes",
-              textColor: AppColors.whiteBgColor,
+              bgColor: AppColors.buttonBg1,
+              buttonName: "Yes",
+              textColor: AppColors.grey,
               border: false,
+              borderRadius: 12,
             ),
             CustomButton(
               width: 150,
-              bgColor: AppColors.greenColor,
-              buttonName: "no",
+              bgColor: AppColors.primaryBlue,
+              buttonName: "No",
               textColor: AppColors.whiteBgColor,
               border: false,
+              borderRadius: 12,
             ),
           ],
         ),

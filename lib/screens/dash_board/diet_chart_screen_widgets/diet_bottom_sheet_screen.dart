@@ -23,26 +23,25 @@ class _DietBottomsheetScreenState extends State<DietBottomsheetScreen> {
               height: 10,
             ),
             const Text(
-              "incase if you want specific item ,\nplease let us now?",
-              textAlign: TextAlign.start,
+              "Incase if you want to avoid specific \nitem, please let us know",
               style: TextStyle(
-                  color: AppColors.black1,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700),
+                color: AppColors.black1,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
-                height: MediaQuery.of(context).size.height * 0.05,
                 decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.black,
-                      width: 0.5,
+                      color: AppColors.grey,
+                      width: 1,
                     ),
-                    borderRadius: BorderRadius.circular(15)),
+                    borderRadius: BorderRadius.circular(12)),
                 child: const Padding(
-                  padding: EdgeInsets.all(4.0),
+                  padding: EdgeInsets.all(8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -51,29 +50,29 @@ class _DietBottomsheetScreenState extends State<DietBottomsheetScreen> {
                           "Tell us here to avoid the  specific item",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: AppColors.black1,
+                            color: AppColors.grey,
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          VerticalDivider(
-                            color: Colors.black,
-                            indent: 8,
-                            endIndent: 8,
-                            thickness: 1,
-                          ),
-                          SizedBox(
-                            width: 3,
-                          ),
-                          Icon(
-                            Icons.attach_file_outlined,
-                            size: 22,
-                          )
-                        ],
+                      IntrinsicHeight(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            VerticalDivider(
+                              color: AppColors.grey,
+                              thickness: 1,
+                            ),
+                            SizedBox(
+                              width: 3,
+                            ),
+                            Icon(
+                              Icons.attach_file_outlined,
+                              size: 22,
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -84,7 +83,6 @@ class _DietBottomsheetScreenState extends State<DietBottomsheetScreen> {
             Container(
               height: MediaQuery.of(context).size.height * 0.3,
               decoration: BoxDecoration(
-                  color: Colors.white,
                   border: Border.all(
                     color: AppColors.grey,
                   ),
@@ -98,17 +96,25 @@ class _DietBottomsheetScreenState extends State<DietBottomsheetScreen> {
                       children: [
                         const Text(
                           "image",
-                          style: TextStyle(color: Colors.black87),
+                          style: TextStyle(
+                            color: AppColors.grey2,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.height * 0.04,
-                          width: MediaQuery.of(context).size.width * 0.07,
                           decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black),
+                              border: Border.all(
+                                color: AppColors.grey,
+                              ),
                               borderRadius: BorderRadius.circular(6)),
-                          child: const Icon(
-                            Icons.edit,
-                            size: 16,
+                          child: const Padding(
+                            padding: EdgeInsets.all(4.0),
+                            child: Icon(
+                              Icons.edit,
+                              size: 24,
+                              color: AppColors.grey,
+                            ),
                           ),
                         ),
                       ],
@@ -119,9 +125,10 @@ class _DietBottomsheetScreenState extends State<DietBottomsheetScreen> {
                     const Text(
                       "Preview",
                       style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500),
+                        color: AppColors.grey,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
                     )
                   ],
                 ),
