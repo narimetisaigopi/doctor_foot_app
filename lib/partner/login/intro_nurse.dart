@@ -1,15 +1,15 @@
 import 'package:drfootapp/partner/login/signup/signup_nurse.dart';
 import 'package:drfootapp/screens/auth_screens/sign_in_screen.dart';
-import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
+//import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
-import 'package:drfootapp/utils/constants/constants.dart';
-import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
+//import 'package:drfootapp/utils/constants/constants.dart';
+//import 'package:drfootapp/utils/widgets/svg_image_widget.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+//import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class IntroNurseScreen extends StatefulWidget {
   const IntroNurseScreen({super.key});
