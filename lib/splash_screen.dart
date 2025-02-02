@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:drfootapp/admin/admin_panel.dart';
+import 'package:drfootapp/doctor_consult.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -32,7 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
         if (FirebaseAuth.instance.currentUser != null) {
           Get.offAll(() => const DashBoardScreen());
         } else {
-          Get.offAll(() => const IntroScreen());
+         // Get.offAll(() => const IntroScreen());
+         Get.offAll(()=>  DoctorConsultScreen());
         }
       }
     });
