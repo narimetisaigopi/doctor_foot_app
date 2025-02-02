@@ -9,6 +9,7 @@ class MyTextField extends StatefulWidget {
   final String hint;
   final String label;
   final String edit;
+  //final String age;
   final double borderRadius;
   final Color btnColor;
   final Color bgColor;
@@ -40,6 +41,7 @@ class MyTextField extends StatefulWidget {
   const MyTextField(
       {super.key,
       required this.hint,
+      //required this.age,
       this.textButton,
       this.textButtonNeeded = false,
       required this.textEditingController,
@@ -68,7 +70,9 @@ class MyTextField extends StatefulWidget {
       this.validator,
       this.onSubmited,
       this.inputFormatters,
-      this.autovalidateMode});
+      this.autovalidateMode, 
+     // required TextInputType keyboardType
+      });
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
@@ -125,7 +129,7 @@ class _MyTextFieldState extends State<MyTextField> {
       maxLines: widget.maxLines,
       onSubmitted: widget.onSubmited,
       maxLength: widget.maxLength,
-      keyboardType: widget.textInputType,
+      //keyboardType: widget.textInputType,
       controller: widget.textEditingController,
       inputFormatters: widget.inputFormatters ??
           (widget.textInputType == TextInputType.number ||

@@ -43,6 +43,7 @@ class NotificationCenter {
       }
     };
     var url = Uri.parse("https://fcm.googleapis.com/fcm/send");
+    // ignore: unused_local_variable
     http.Response response =
         await http.post(url, headers: headers, body: jsonEncode(body));
   }
