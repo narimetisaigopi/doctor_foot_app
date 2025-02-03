@@ -340,6 +340,8 @@ class AssetsConstants {
       "assets/images/video_images/doctor_horizontal.png";
   static const String diabatic_image =
       "assets/images/video_images/diabatic_image.png";
+  static const String delivery_bike =
+      "assets/images/video_images/delivery_bike.png";
   static const String diabete_check_meter =
       "$_introImagesBasePath/diabete_check_meter.svg";
   static const String foot_testing = "$_introImagesBasePath/foot_testing.svg";
