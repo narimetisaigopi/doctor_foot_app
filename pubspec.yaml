@@ -93,6 +93,7 @@ dependencies:
   html_editor_enhanced: ^2.6.0
   flutter_widget_from_html: ^0.15.2
   multi_select_flutter: ^4.1.3
+  flutter_switch: ^0.3.2
 
 dev_dependencies:
   flutter_test:
