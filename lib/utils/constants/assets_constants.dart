@@ -403,4 +403,7 @@ class AssetsConstants {
       "assets/images/profile/payments_refndes.png";
   static const String records_icon = "assets/images/profile/records_icon.png";
   static const String user_profile = "assets/images/profile/user_profile.png";
+  //nurse
+  static const String nurse_logo = "assets/images/nurse/nurse_logo.png";
+static const String nurse_intro = "assets/images/nurse/nurse_intro.png";
 }

@@ -21,6 +21,7 @@ class MyGoogleMapsScreen extends StatefulWidget {
 
 class _MyGoogleMapsScreenState extends State<MyGoogleMapsScreen> {
   GoogleMapController? _controller;
+  // ignore: unused_field
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController searchController = TextEditingController();
 
