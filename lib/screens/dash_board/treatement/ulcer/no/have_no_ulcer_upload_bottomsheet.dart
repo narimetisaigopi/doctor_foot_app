@@ -5,7 +5,7 @@ import 'package:drfootapp/utils/widgets/custom_image.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'upload_no_ulcer_photos_guide_popup.dart';
+import '../images/upload_ulcer_photos_guide_popup.dart';
 
 class HaveNoUlcerUploadBottomSheet extends StatefulWidget {
   const HaveNoUlcerUploadBottomSheet({super.key});
@@ -82,7 +82,7 @@ class _HaveNoUlcerUploadBottomSheetState
                 onPress: () {
                   Get.put(HaveUlcerController()).reset();
                   Get.defaultDialog(
-                      title: "", content: UploadNoUlcerPhotosGuidePopup());
+                      title: "", content: UploadUlcerPhotosGuidePopup());
                 },
               ),
             )

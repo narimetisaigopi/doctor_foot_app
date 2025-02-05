@@ -5,7 +5,7 @@ class ReviewRatingModel {
   String docId;
   String uid;
   String reviewText;
-  double noOfStars;
+  int noOfStars;
   Timestamp? timestamp;
   String serviceId;
   ReviewType reviewType;
@@ -19,7 +19,7 @@ class ReviewRatingModel {
       this.uid = "",
       this.reviewText = "",
       this.timestamp,
-      this.noOfStars = 0.0,
+      this.noOfStars = 0,
       this.docId = "",
       this.serviceId = "",
       this.reviewType = ReviewType.doctor});
@@ -29,7 +29,7 @@ class ReviewRatingModel {
       uid: map['uid'] ?? "",
       reviewText: map['review'] ?? "",
       timestamp: map['timestamp'] ?? "",
-      noOfStars: map['rating'] ?? 0.0,
+      noOfStars: map['rating'] ?? 0,
       serviceId: map['serviceId'] ?? "",
       docId: map['docId'] ?? "",
       name: map['name'] ?? "",

@@ -111,19 +111,16 @@ class _DoctorAppointmentDetailsScreenState
                         Get.put(DoctorAppointmentController())
                             .cancelAppointment(widget.appointmentModel)
                             .then((e) {
-                          Utility.appointmentCancelledDialog(
+                          Utility.stateAlertDialog(
+                              title: "Appointment Canceled",
+                              description:
+                                  "You have canceled Your \nappointment",
                             onDone: Utility.goToHome,
                             // ignore: use_build_context_synchronously
                             context: context,
+                              buttonText: "Back to Home"
                           );
                         });
-                        // customAlert(
-                        //   title: '',
-                        //   upload: () {
-                        //     Get.back();
-                        //     Get.back();
-                        //   },
-                        // );
                       },
                     );
                   },

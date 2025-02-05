@@ -29,6 +29,7 @@ class _ReviewRatingWidgetState extends State<ReviewRatingWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.8,
+      height: 220,
       margin: const EdgeInsets.only(left: 16, right: 16),
       decoration: BoxDecoration(
         color: AppColors.patientReviewBg,
@@ -64,7 +65,8 @@ class _ReviewRatingWidgetState extends State<ReviewRatingWidget> {
                           ignoring: true,
                           child: RatingBar.builder(
                             itemSize: 12,
-                            initialRating: widget.reviewRatingModel.noOfStars,
+                            initialRating:
+                                widget.reviewRatingModel.noOfStars.toDouble(),
                             minRating: 1,
                             direction: Axis.horizontal,
                             allowHalfRating: true,

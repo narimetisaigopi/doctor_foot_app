@@ -4,7 +4,7 @@ class AppColors {
   static const Color primary = Color(0xFF0b6faa);
   static const Color primaryBlue = Color(0xFF0b6faa);
   static const Color warningColor = Color(0xFFF06F38);
-  static const Color successColor = Color(0xFF00A537);
+  static const Color successColor = Color(0xFF00823d);
   static const Color rejectColor = Color(0xFFEB0017);
   static const Color cancelColor = Color(0xFFA50010);
   static const Color payTextColor = Color(0xFF4A4A4A);

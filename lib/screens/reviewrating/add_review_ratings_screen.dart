@@ -79,7 +79,7 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
                 height: 8,
               ),
               RatingBar.builder(
-                initialRating: reviewRatingController.selectedRating,
+                initialRating: reviewRatingController.selectedRating.toDouble(),
                 minRating: 1,
                 itemSize: 40,
                 direction: Axis.horizontal,
@@ -91,7 +91,7 @@ class _AddReviewRatingsScreenState extends State<AddReviewRatingsScreen> {
                   color: AppColors.primary,
                 ),
                 onRatingUpdate: (rating) {
-                  reviewRatingController.selectedRating = rating;
+                  reviewRatingController.selectedRating = rating.toInt();
                 },
               ),
               const SizedBox(

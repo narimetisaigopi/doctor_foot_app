@@ -8,15 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class HaveNoUlcerPreviewScreen extends StatefulWidget {
-  const HaveNoUlcerPreviewScreen({super.key});
+class HaveUlcerPreviewScreen extends StatefulWidget {
+  const HaveUlcerPreviewScreen({super.key});
 
   @override
-  State<HaveNoUlcerPreviewScreen> createState() =>
-      _HaveNoUlcerPreviewScreenState();
+  State<HaveUlcerPreviewScreen> createState() => _HaveUlcerPreviewScreenState();
 }
 
-class _HaveNoUlcerPreviewScreenState extends State<HaveNoUlcerPreviewScreen> {
+class _HaveUlcerPreviewScreenState extends State<HaveUlcerPreviewScreen> {
   HaveUlcerController ulcerController = Get.put(HaveUlcerController());
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class _HaveNoUlcerPreviewScreenState extends State<HaveNoUlcerPreviewScreen> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      "${ulcerController.currentPosition}/3",
+                      "${ulcerController.getPickedImages().length}/3",
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
@@ -50,7 +49,7 @@ class _HaveNoUlcerPreviewScreenState extends State<HaveNoUlcerPreviewScreen> {
                       width: 200.0,
                       lineHeight: 12.0,
                       barRadius: const Radius.circular(8),
-                      percent: ulcerController.currentPosition / 3,
+                      percent: ulcerController.getPickedImages().length / 3,
                       backgroundColor: AppColors.progressInactive,
                       progressColor: AppColors.patientReviewBg,
                     )
@@ -100,7 +99,7 @@ class _HaveNoUlcerPreviewScreenState extends State<HaveNoUlcerPreviewScreen> {
                                   context: context,
                                   yes: () async {
                                     Get.back();
-                                    ulcerController.uploadNoUlcerImages();
+                                    ulcerController.uploadHaveUlcerImages();
                                   },
                                   no: () {
                                     Get.back();

@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_yes_screen.dart';
+import 'package:drfootapp/screens/dash_board/treatement/ulcer/yes/have_ulcer_upload_document_screen.dart';
 import 'package:drfootapp/screens/dash_board/treatement/ulcer/no/have_no_ulcer_upload_bottomsheet.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -79,7 +79,7 @@ class _UlcerYesScreenState extends State<UlcerYesScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const HaveUlcerYesScreen());
+                    Get.to(const HaveUlcerUploadDocumentScreen());
                   },
                   child: const CustomButton(
                     width: 150,

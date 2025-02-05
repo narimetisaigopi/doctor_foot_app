@@ -4,13 +4,13 @@ import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../how_to_upload_ulcer_image_widget.dart';
+import 'how_to_upload_ulcer_image_widget.dart';
 
 // ignore: must_be_immutable
-class UploadNoUlcerPhotosGuidePopup extends StatelessWidget {
+class UploadUlcerPhotosGuidePopup extends StatelessWidget {
   HaveUlcerController ulcerController = Get.put(HaveUlcerController());
 
-  UploadNoUlcerPhotosGuidePopup({super.key});
+  UploadUlcerPhotosGuidePopup({super.key});
 
   @override
   Widget build(BuildContext context) {

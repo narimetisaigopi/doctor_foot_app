@@ -57,7 +57,7 @@ class _ReviewRatingItemState extends State<ReviewRatingItem> {
                 children: [
                   IgnorePointer(
                     child: RatingBar.builder(
-                      initialRating: widget.ratingModel.noOfStars,
+                      initialRating: widget.ratingModel.noOfStars.toDouble(),
                       itemCount: 5,
                       itemSize: 20,
                       itemBuilder: (context, _) => const Icon(

@@ -34,3 +34,4 @@ enum DoctorAppointmentType {
 enum FileType { image, pdf, video }
 
 enum HealthRecordType { image, labReports, hospitalDocuments }
+enum UlcerDocumentType { dischargeSummary, consultationDocument }
