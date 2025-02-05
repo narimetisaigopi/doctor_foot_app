@@ -1,5 +1,6 @@
 import 'package:drfootapp/admin/diet/create_diet_chart_screen.dart';
 import 'package:drfootapp/controllers/diet_chart_controller.dart';
+import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/diet_bottom_sheet_screen.dart';
 import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/diet_plan_layout.dart';
 import 'package:drfootapp/screens/dash_board/diet_chart_screen_widgets/week_days_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -47,7 +48,12 @@ class _DietChartScreenState extends State<DietChartScreen> {
                 color: AppColors.whiteBgColor,
               ),
               onPressed: () {
-                Get.back();
+                // Get.back();
+                Utility.myBottomSheet(
+                  context,
+                  widget: const DietBottomsheetScreen(),
+                  heightFactor: 0.9,
+                );
               },
             ),
             title: const Text(
@@ -89,8 +95,7 @@ class _DietChartScreenState extends State<DietChartScreen> {
                           width: double.infinity,
                           child: DietPlanLayout(
                             title: Strings.morningNoonText,
-                            dietChartModelList:
-                                dietChartController
+                            dietChartModelList: dietChartController
                                 .getDietBasedOnFilter(Strings.morningNoonText),
                           ),
                         ),

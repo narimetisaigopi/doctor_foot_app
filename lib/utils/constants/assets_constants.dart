@@ -340,6 +340,8 @@ class AssetsConstants {
       "assets/images/video_images/doctor_horizontal.png";
   static const String diabatic_image =
       "assets/images/video_images/diabatic_image.png";
+  static const String delivery_bike =
+      "assets/images/video_images/delivery_bike.png";
   static const String diabete_check_meter =
       "$_introImagesBasePath/diabete_check_meter.svg";
   static const String foot_testing = "$_introImagesBasePath/foot_testing.svg";
@@ -401,4 +403,7 @@ class AssetsConstants {
       "assets/images/profile/payments_refndes.png";
   static const String records_icon = "assets/images/profile/records_icon.png";
   static const String user_profile = "assets/images/profile/user_profile.png";
+  //nurse
+  static const String nurse_logo = "assets/images/nurse/nurse_logo.png";
+static const String nurse_intro = "assets/images/nurse/nurse_intro.png";
 }

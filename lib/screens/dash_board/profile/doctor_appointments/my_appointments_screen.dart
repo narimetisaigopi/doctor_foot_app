@@ -46,7 +46,6 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DoctorAppointmentController>(builder: (context) {
-      
       return DefaultTabController(
         length: 2,
         initialIndex: 0,
@@ -73,17 +72,18 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
               ),
             ).tr(),
           ),
-          body: const TabBarView(children: [
+          body: TabBarView(children: [
             Column(
               children: [
-                Expanded(
+                _tabBar(),
+                const Expanded(
                   child: DoctorAppointmentsListScreen(
                     appointmentStatus: AppointmentStatus.booked,
                     title: Strings.upcoming,
                     showHeader: true,
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: DoctorAppointmentsListScreen(
                     appointmentStatus: AppointmentStatus.completed,
                     title: Strings.completed,
@@ -92,7 +92,7 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
                 ),
               ],
             ),
-            DoctorAppointmentsListScreen(
+            const DoctorAppointmentsListScreen(
               appointmentStatus: AppointmentStatus.cancelled,
               title: Strings.cancelled,
             ),
@@ -100,5 +100,21 @@ class _MyAppointmentsScreenState extends State<MyAppointmentsScreen>
         ),
       );
     });
+  }
+
+  Widget _tabBar() {
+    return TabBar(
+      indicatorColor: AppColors.primaryBlue,
+      indicatorWeight: 5,
+      controller: tabController,
+      tabs: const [
+        Tab(
+          text: Strings.completed,
+        ),
+        Tab(
+          text: Strings.cancelled,
+        ),
+      ],
+    );
   }
 }
