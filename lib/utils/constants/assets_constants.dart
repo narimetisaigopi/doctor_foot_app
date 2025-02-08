@@ -405,5 +405,10 @@ class AssetsConstants {
   static const String user_profile = "assets/images/profile/user_profile.png";
   //nurse
   static const String nurse_logo = "assets/images/nurse/nurse_logo.png";
-static const String nurse_intro = "assets/images/nurse/nurse_intro.png";
+  static const String nurse_intro = "assets/images/nurse/nurse_intro.png";
+  static const String dr_foot_text = "assets/images/nurse/dr_foot_text.png";
+  static const String user_profile_nurse = "assets/images/nurse/user_profile_nurse.png";
+  static const String delivery_boy_image = "assets/images/nurse/delivery_boy_image.png";
+  static const String michell_ross = "assets/images/nurse/michell_ross.png";
+  static const String location_map = "assets/images/nurse/location_map.png";
 }

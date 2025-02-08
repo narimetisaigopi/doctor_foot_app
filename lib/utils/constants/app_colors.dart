@@ -101,4 +101,5 @@ class AppColors {
   static const nextButonBg = Color(0xFFE8F1F5);
   static const bookSumBorder = Color(0xFFE3E3E3);
   static const forwardArrowColor = Color(0xFF2A2A2A);
+  static const slideBtnColor = Color(0xFFFCFCFC);
 }
