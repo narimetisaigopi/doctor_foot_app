@@ -413,4 +413,7 @@ class AssetsConstants {
   static const String location_map = "assets/images/nurse/location_map.png";
   static const String doctor_option = "assets/images/nurse/doctor_option.png";
   static const String nurse_option = "assets/images/nurse/nurse_option.png";
+  static const String nurse_ulcer_picture = "assets/images/nurse/nurse_ulcer_picture.png";
+  static const String nurse_wound_checker = "assets/images/nurse/nurse_wound_checker.png";
+  static const String nurse_gallery = "assets/images/nurse/nurse_gallery.png";
 }

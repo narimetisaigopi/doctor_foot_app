@@ -1,18 +1,18 @@
-import 'dart:io';
-
 import 'package:drfootapp/screens/dash_board/videos_screen_widgets/watch_now_widget.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class ClientScreen extends StatefulWidget {
   const ClientScreen({super.key});
 
   @override
-  State<ClientScreen> createState() => _ClientScreenState();
+  _ClientScreenState createState() => _ClientScreenState();
 }
 
 class _ClientScreenState extends State<ClientScreen> {
@@ -45,91 +45,8 @@ class _ClientScreenState extends State<ClientScreen> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.secondary,
-        appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(
-              Icons.arrow_back_outlined,
-              color: AppColors.whiteBgColor,
-            ),
-          ),
-          backgroundColor: AppColors.primaryBlue,
-          title: const Text(
-            "Client",
-            style: TextStyle(
-                color: AppColors.whiteBgColor,
-                fontSize: 17,
-                fontWeight: FontWeight.w700),
-          ).tr(),
-          centerTitle: true,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const WatchNowWidget(),
-              const SizedBox(height: 12),
-              questionContainer("Have you reached location safely?",
-                  ["Yes", "No"], "woundCheck", Icons.location_on),
-              if (showWoundCheck)
-                questionContainer("Is the wound same as displayed picture?",
-                    ["Yes", "No"], "woundSize", Icons.image),
-              if (showWoundSize)
-                questionContainer(
-                    "What is the size of the wound?",
-                    ["Small", "Med", "Large"],
-                    "woundSize",
-                    Icons.accessibility_new),
-              const SizedBox(height: 20),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 16),
-              //   child: InkWell(
-              //     onTap: () {
-              //       setState(() {
-              //         isStartTreatmentPressed = true;
-              //       });
-              //       showStartTreatmentDialog();
-              //     },
-              //     child: AnimatedContainer(
-              //       duration: const Duration(milliseconds: 300),
-              //       width: double.infinity,
-              //       alignment: Alignment.center,
-              //       padding: const EdgeInsets.symmetric(vertical: 12),
-              //       decoration: BoxDecoration(
-              //         color: isStartTreatmentPressed
-              //             ? AppColors.primaryBlue
-              //             : AppColors.treatmentYesbg,
-              //         borderRadius: BorderRadius.circular(16),
-              //       ),
-              //       child: Text(
-              //         "Start Treatment",
-              //         style: TextStyle(
-              //           color: isStartTreatmentPressed
-              //               ? Colors.white
-              //               : AppColors.black2,
-              //           fontWeight: FontWeight.w500,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              CustomButton(
-                buttonName: "Start Treatment",
-                onPress: (){},
-              ),
-            ],
-          ),
-        ));
-  }
-
   Widget questionContainer(
-      String question, List<String> options, String type, IconData icon) {
+      String question, List<String> options, String type, String image) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       child: Container(
@@ -141,8 +58,10 @@ class _ClientScreenState extends State<ClientScreen> {
           children: [
             Row(
               children: [
-                Icon(icon, color: AppColors.primaryBlue),
-                const SizedBox(width: 12),
+                Image.asset(
+                  image,
+                ),
+                const SizedBox(width: 8),
                 Expanded(
                     child: Text(question,
                             style: const TextStyle(
@@ -237,6 +156,83 @@ class _ClientScreenState extends State<ClientScreen> {
                 ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.secondary,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_outlined,
+              color: AppColors.whiteBgColor),
+          onPressed: () => Get.back(),
+        ),
+        backgroundColor: AppColors.primaryBlue,
+        title: const Text("Client",
+                style: TextStyle(
+                    color: AppColors.whiteBgColor,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700))
+            .tr(),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            const WatchNowWidget(),
+            const SizedBox(height: 12),
+            questionContainer("Have you reached location safely?",
+                ["Yes", "No"], "woundCheck", AssetsConstants.delivery_bike),
+            if (!showWoundCheck)
+              questionContainer("Is the wound same as displayed picture?",
+                  ["Yes", "No"], "woundSize", AssetsConstants.delivery_bike),
+            if (!showWoundSize) ...[
+              questionContainer(
+                "What is the size of the wound?",
+                ["Small", "Med", "Large"],
+                "woundSize",
+                AssetsConstants.delivery_bike,
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      isStartTreatmentPressed = true;
+                    });
+                    showStartTreatmentDialog();
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    decoration: BoxDecoration(
+                      color: isStartTreatmentPressed
+                          ? AppColors.primaryBlue
+                          : AppColors.treatmentYesbg,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Text(
+                      "Start Treatment",
+                      style: TextStyle(
+                        color: isStartTreatmentPressed
+                            ? Colors.white
+                            : AppColors.black2,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ],
         ),
       ),
     );
