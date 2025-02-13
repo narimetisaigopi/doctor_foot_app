@@ -43,6 +43,7 @@ class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
+          leading: Container(),
           backgroundColor: AppColors.primaryBlue,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

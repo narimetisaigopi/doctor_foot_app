@@ -411,4 +411,6 @@ class AssetsConstants {
   static const String delivery_boy_image = "assets/images/nurse/delivery_boy_image.png";
   static const String michell_ross = "assets/images/nurse/michell_ross.png";
   static const String location_map = "assets/images/nurse/location_map.png";
+  static const String doctor_option = "assets/images/nurse/doctor_option.png";
+  static const String nurse_option = "assets/images/nurse/nurse_option.png";
 }

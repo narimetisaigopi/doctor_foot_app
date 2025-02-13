@@ -38,41 +38,41 @@ class MyTextField extends StatefulWidget {
   final AutovalidateMode? autovalidateMode;
   final List<TextInputFormatter>? inputFormatters;
 
-  const MyTextField(
-      {super.key,
-      required this.hint,
-      //required this.age,
-      this.textButton,
-      this.textButtonNeeded = false,
-      required this.textEditingController,
-      this.bgColor = Colors.transparent,
-      this.label = "",
-      this.edit = "",
-      this.onChanged,
-      this.minLines = 1,
-      this.maxLines = 1,
-      this.prefixIcon,
-      this.labelNeeded = false,
-      this.borderRadius = 12,
-      this.maxLength = 100,
-      this.btnColor = Colors.black,
-      this.iconColor = Colors.black,
-      this.textInputType = TextInputType.text,
-      this.onPress,
-      this.onValidate,
-      this.iconNeeded = false,
-      this.enabled = true,
-      this.leadingIcon,
-      this.trailingIcon = const Icon(Icons.arrow_forward),
-      this.editText = true,
-      this.suffixIcon,
-      this.suffixIconPressed,
-      this.validator,
-      this.onSubmited,
-      this.inputFormatters,
-      this.autovalidateMode, 
-     // required TextInputType keyboardType
-      });
+  const MyTextField({
+    super.key,
+    required this.hint,
+    //required this.age,
+    this.textButton,
+    this.textButtonNeeded = false,
+    required this.textEditingController,
+    this.bgColor = Colors.transparent,
+    this.label = "",
+    this.edit = "",
+    this.onChanged,
+    this.minLines = 1,
+    this.maxLines = 1,
+    this.prefixIcon,
+    this.labelNeeded = false,
+    this.borderRadius = 12,
+    this.maxLength = 100,
+    this.btnColor = Colors.black,
+    this.iconColor = Colors.black,
+    this.textInputType = TextInputType.text,
+    this.onPress,
+    this.onValidate,
+    this.iconNeeded = false,
+    this.enabled = true,
+    this.leadingIcon,
+    this.trailingIcon = const Icon(Icons.arrow_forward),
+    this.editText = true,
+    this.suffixIcon,
+    this.suffixIconPressed,
+    this.validator,
+    this.onSubmited,
+    this.inputFormatters,
+    this.autovalidateMode,
+    // required TextInputType keyboardType
+  });
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
@@ -133,11 +133,11 @@ class _MyTextFieldState extends State<MyTextField> {
       controller: widget.textEditingController,
       inputFormatters: widget.inputFormatters ??
           (widget.textInputType == TextInputType.number ||
-              widget.textInputType == TextInputType.phone
-          ? <TextInputFormatter>[
-              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-              FilteringTextInputFormatter.digitsOnly
-            ]
+                  widget.textInputType == TextInputType.phone
+              ? <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  FilteringTextInputFormatter.digitsOnly
+                ]
               : null),
       onChanged: widget.onChanged,
       decoration: InputDecoration(

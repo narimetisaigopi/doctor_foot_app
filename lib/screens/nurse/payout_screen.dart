@@ -84,7 +84,7 @@ class _PayoutScreenState extends State<PayoutScreen> {
               ),
             ),
           ),
-
+        
           // Expanded(child: _buildGraph()),
 
           _buildEarningsContainer(),

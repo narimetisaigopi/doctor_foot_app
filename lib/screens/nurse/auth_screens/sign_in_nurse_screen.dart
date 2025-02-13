@@ -1,7 +1,8 @@
-import 'package:drfootapp/controllers/authentication_controller.dart';
+import 'package:drfootapp/controllers/nurse/nurse_auth_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
+import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -9,22 +10,19 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
-import '../../utils/widgets/custom_button.dart';
-
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignInNurseScreen extends StatefulWidget {
+  const SignInNurseScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignInNurseScreen> createState() => _SignInNurseScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInNurseScreenState extends State<SignInNurseScreen> {
   final FocusNode _focusNode = FocusNode();
-  final AuthenticationController _authenticationController =
-      Get.put(AuthenticationController());
 
+  final NurseAuthController _nurseAuthController =
+      Get.put(NurseAuthController());
   final _formKey = GlobalKey<FormBuilderState>();
-
   bool enableSendOTP = false;
 
   @override
@@ -34,15 +32,8 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   @override
-  void initState() {
-    _authenticationController.clearSignUpFields();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthenticationController>(
-        builder: (authenticationController) {
+    return GetBuilder<NurseAuthController>(builder: (nurseAuthController) {
       return Scaffold(
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
@@ -71,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ? Strings.mobileTextFieldFocusHint
                           : Strings.mobileTextFieldHint,
                       textEditingController:
-                          _authenticationController.mobileNumberController,
+                          _nurseAuthController.mobileNumberController,
                       labelNeeded: false,
                       maxLength: 10,
                       prefixIcon: Container(
@@ -104,11 +95,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
+                      height: MediaQuery.of(context).size.height * 0.02,
                     ),
                     Align(
                       alignment: Alignment.center,
-                      child: authenticationController.isLoading
+                      child: nurseAuthController.isLoading
                           ? const CircularProgressIndicator()
                           : CustomButton(
                               bgColor: enableSendOTP
@@ -138,7 +129,6 @@ class _SignInScreenState extends State<SignInScreen> {
     Utility().closeKeyboard();
     bool status = _formKey.currentState?.saveAndValidate() ?? false;
     if (status) {
-      _authenticationController.signInFirebaseValidation(context);
-    }
+    } else {}
   }
 }
