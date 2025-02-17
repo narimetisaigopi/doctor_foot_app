@@ -1,5 +1,4 @@
 import 'package:drfootapp/notifications/notifications/listen_push_notifications.dart';
-import 'package:drfootapp/screens/nurse/auth_screens/intro_nurse.dart';
 import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
@@ -16,7 +15,7 @@ import 'firebase_options.dart';
 
 late SharedPreferences sharedPreferences;
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

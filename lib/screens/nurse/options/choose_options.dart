@@ -32,7 +32,9 @@ class _ChooseOptionsState extends State<ChooseOptions> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const IntroNurseScreen());
+                },
                 child: Column(
                   children: [
                     Container(
@@ -61,7 +63,7 @@ class _ChooseOptionsState extends State<ChooseOptions> {
               const SizedBox(width: 20),
               InkWell(
                 onTap: () {
-                  Get.to(()=> const IntroNurseScreen());
+                  Get.to(() => const IntroNurseScreen());
                 },
                 child: Column(
                   children: [

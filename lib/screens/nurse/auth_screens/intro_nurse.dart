@@ -96,7 +96,7 @@ class _IntroNurseScreenState extends State<IntroNurseScreen> {
                             Utility.myBottomSheet(
                               context,
                               widget: const NurseSignUpScreen(),
-                              heightFactor: 1,
+                              heightFactor: 0.75,
                             );
                           },
                           child: const Text(

@@ -1,3 +1,4 @@
+import 'package:drfootapp/app_config.dart';
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
@@ -966,3 +967,7 @@ class Utility {
     ).show();
   }
 }
+
+bool isUserApp() => AppConfig.shared.flavor == Flavor.user;
+bool isPartnerApp() => AppConfig.shared.flavor == Flavor.partner;
+bool isAdminApp() => AppConfig.shared.flavor == Flavor.admin;

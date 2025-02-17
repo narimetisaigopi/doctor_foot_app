@@ -1,10 +1,6 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drfootapp/models/user_model.dart';
-import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
-import 'package:drfootapp/screens/nurse/auth_screens/nurse_signup_screen.dart';
-import 'package:drfootapp/screens/nurse/nurse_dash_board_screen.dart';
+import 'package:drfootapp/models/partner_model.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
@@ -15,12 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NurseAuthController extends GetxController {
-  UserModel loginUserModel = UserModel();
-
+  PartnerModel partnerModel = PartnerModel();
   bool isLoading = false;
-  String _verificationId = "";
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  int? forceResendingToken;
+
+  updateLoading(bool status) {
+    isLoading = status;
+    update();
+  }
 
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
@@ -37,116 +34,58 @@ class NurseAuthController extends GetxController {
   int selectedGenderIndex = -1;
   late BuildContext context;
 
-  void updateLoading(bool loading) {
-    isLoading = loading;
-    update();
-  }
+  Map<String, dynamic> partnerEducationDetailsMap = {};
 
-  // this method is used to send otp to user .
-  firebaseSendOTP(BuildContext context) async {
-    updateLoading(true);
-    this.context = context;
-
-    try {
-      await _firebaseAuth.verifyPhoneNumber(
-          phoneNumber: "+91${mobileNumberController.text}",
-          timeout: const Duration(seconds: 5),
-          forceResendingToken: forceResendingToken,
-          verificationCompleted: _verificationCompleted,
-          verificationFailed: _verificationFailed,
-          codeSent: _codeSent,
-          codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout);
-    } catch (e) {
-      Utility.toast("Failed to Verify Phone Number: $e",
-          backgroundColor: Colors.red);
-    } finally {
-      updateLoading(false);
-    }
-  }
-
-  _codeSent(verificationId, forceResendingToken) {
-    Utility.toast("OTP Sent.",
-        backgroundColor: Colors.green, textColor: Colors.white);
-    this.forceResendingToken = forceResendingToken;
-    _verificationId = verificationId;
-    Utility.myBottomSheet(context, widget: const OtpScreen());
-  }
-
-  _verificationCompleted(phoneAuthCredential) async {
-    otpController.text = phoneAuthCredential.smsCode.toString();
-    await _firebasePhoneAuthVerifyCredentials(phoneAuthCredential);
-  }
-
-  // when otp verification failed
-  _verificationFailed(FirebaseAuthException authException) {
-    logger("authException ${authException.message}");
-    Utility.toast("Error to send otp", textColor: Colors.red);
-  }
-
-  _codeAutoRetrievalTimeout(verificationId) {
-    _verificationId = verificationId;
-  }
-
-  _firebasePhoneAuthVerifyCredentials(AuthCredential authCredential) async {
+  Future<bool> signUp() async {
+    bool status = false;
     try {
       updateLoading(true);
-      UserCredential userCredential =
-          await _firebaseAuth.signInWithCredential(authCredential);
-      if (userCredential.user != null) {
-        UserModel? userModel = await getUserDataAndStoreLocally();
-        if (userModel == null) {
-          // user data is not existed so inserting the data
-          Utility.myBottomSheet(context,
-              widget: const NurseSignUpScreen(), heightFactor: 0.7);
-        } else {
-          // if login taking directly to sign up
-          await updateDeviceToken();
-          Get.offAll(() => const NurseDashBoardScreen());
-        }
+      if (!await isMobileExisted()) {
+        Utility.toast("Mobile number already existed");
+      } else if (!await isUsernameExisted()) {
+        Utility.toast("Username already existed");
       } else {
-        Utility.toast("Something went wrong, please try again.",
-            backgroundColor: Colors.red);
+        DocumentReference documentReference = partnersCollectionReference.doc();
+        PartnerModel partnerModel = PartnerModel(
+            docId: documentReference.id,
+            userName: userNameController.text,
+            age: int.parse(ageController.text),
+            gender: genderController.text,
+            city: cityController.text,
+            mobileNumber: mobileNumberController.text,
+            degree: degreeController.text,
+            timestamp: DateTime.now());
+        await documentReference.set(partnerModel.toJson());
+        Utility.toast("Registration successfully");
+        status = true;
       }
-    } catch (e, stack) {
-      logger(e.toString());
-      logger(stack.toString());
-      Utility.toast(e.toString(), backgroundColor: Colors.red);
+    } catch (e) {
+      logger(e);
     } finally {
       updateLoading(false);
     }
+    return status;
   }
 
-  // this method will verify the otp and perform the operation after that
-  firebaseVerifyOTP(String enteredOTP) async {
-    try {
-      AuthCredential authCredential = PhoneAuthProvider.credential(
-          verificationId: _verificationId, smsCode: enteredOTP);
-      await _firebasePhoneAuthVerifyCredentials(authCredential);
-    } catch (e, stack) {
-      logger("message $e");
-      logger("message $stack");
-      Utility.toast("$e", backgroundColor: Colors.red);
-    }
-  }
-
-  Future<UserModel?> getUserDataAndStoreLocally() async {
+  Future<PartnerModel?> getUserDataAndStoreLocally() async {
     if (FirebaseAuth.instance.currentUser != null) {
       DocumentSnapshot documentSnapshot = await getCurrentUserDocRef().get();
       logger(documentSnapshot.data().toString());
       if (documentSnapshot.data() != null) {
-        loginUserModel = UserModel.fromJson(documentSnapshot.data() as Map);
-        return loginUserModel;
+        partnerModel = PartnerModel.fromJson(documentSnapshot.data() as Map);
+        return partnerModel;
       }
     }
     return null;
   }
 
   DocumentReference getCurrentUserDocRef() {
-    return usersCollectionReference.doc(FirebaseAuth.instance.currentUser?.uid);
+    return partnersCollectionReference
+        .doc(FirebaseAuth.instance.currentUser?.uid);
   }
 
   Future<bool> isUsernameExisted() async {
-    QuerySnapshot querySnapshot = await usersCollectionReference
+    QuerySnapshot querySnapshot = await partnersCollectionReference
         .where("userName", isEqualTo: userNameController.text.toLowerCase())
         .get();
     logger("message ${querySnapshot.docs.length}");
@@ -172,7 +111,9 @@ class NurseAuthController extends GetxController {
     userNameController.clear();
     dateOfBirthController.clear();
     selectedGenderIndex = -1;
+    genderController.clear();
     mobileNumberController.clear();
+    degreeController.clear();
   }
 
   logout(BuildContext context) {
