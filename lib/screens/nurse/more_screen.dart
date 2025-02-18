@@ -4,6 +4,7 @@ import 'package:drfootapp/screens/nurse/dash_board_widgets/go_to_widget.dart';
 import 'package:drfootapp/screens/nurse/dash_board_widgets/profile_widget.dart';
 import 'package:drfootapp/screens/nurse/risk_checker/risk_checker_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,7 +43,7 @@ class _MoreScreenState extends State<MoreScreen> {
             GoToWidget(
               text: "Emergency Program",
               onPress: () {
-                  Get.to(() => const RiskCheckerScreen());
+                Get.to(() => const RiskCheckerScreen());
               },
             ),
             const SizedBox(height: 12),
@@ -62,7 +63,9 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             const SizedBox(height: 12),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Utility.logout(context);
+              },
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),

@@ -2,6 +2,7 @@ import 'package:drfootapp/controllers/hospitals_controller.dart';
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/screens/maps/my_google_maps.dart';
+import 'package:drfootapp/screens/maps/my_google_maps_copu.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_circular_loader.dart';
@@ -98,14 +99,14 @@ class _CreateHospitalState extends State<CreateHospital> {
                     suffixIconPressed: () async {
                       LocationController locationController =
                           Get.put(LocationController());
-                      await Get.to(() => const MyGoogleMapsScreen());
-                      locationController
-                          .getAddressForCurrentLocation(
-                              locationController.selectedLatLng!)
-                          .then((value) {
-                        hospitalController.addressTextEditingController.text =
-                            value;
-                      });
+                      await Get.to(() => const MyGoogleMap());
+                      // locationController
+                      //     .getAddressFromLatlng(
+                      //         locationController.selectedLatLng!)
+                      //     .then((value) {
+                      //   hospitalController.addressTextEditingController.text =
+                      //       value;
+                      // });
                     },
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),

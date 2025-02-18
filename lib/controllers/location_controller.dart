@@ -5,10 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationController extends GetxController {
-  Position? currentPosition;
-  LatLng? currentLatLng;
-  Placemark? currentPlacemark;
-  LatLng? selectedLatLng;
+  Rx<Position?> currentPosition = Rx<Position?>(null);
+  Rx<LatLng?> _currentLatLng = Rx<LatLng?>(null);
+  Rx<Placemark?> currentPlacemark = Rx<Placemark?>(null);
 
   Future<LatLng?> getCurrentLocation() async {
     try {
@@ -30,38 +29,73 @@ class LocationController extends GetxController {
             'Location permissions are permanently denied, we cannot request permissions.');
       }
 
-      currentPosition = await Geolocator.getCurrentPosition();
-      if (currentPosition != null) {
-        currentLatLng =
-            LatLng(currentPosition!.latitude, currentPosition!.longitude);
-        currentPlacemark = await getAddressFromLocation(currentLatLng!);
-        update();
-      }
+      Position position = await Geolocator.getCurrentPosition();
+      currentPosition.value = position;
 
-      return currentLatLng;
+      // Update LatLng and Placemark
+      LatLng latLng = LatLng(position.latitude, position.longitude);
+      await setCurrentLatLng(latLng);
+      update();
+
+      return latLng;
     } catch (e) {
       logger("determinePosition $e");
-      return currentLatLng;
+      return null;
     } finally {}
   }
 
-  Future<Placemark> getAddressFromLocation(LatLng latLng) async {
+  Future<Placemark?> getPlacemarkFromLatlng(LatLng latLng) async {
     List<Placemark> placemarks =
         await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
-    return placemarks.first;
+    if (placemarks.isNotEmpty) {
+      return placemarks.first;
+    }
+    return null;
   }
 
-  String getAddressFromPlacemark(Placemark placemark) {
-    String address =
-        '${placemark.name}, ${placemark.subLocality}, ${placemark.locality}, ${placemark.administrativeArea}, ${placemark.country}';
-    return address;
+  Future<String> getAddressFromLatlng(LatLng? latLng) async {
+    if (latLng == null) return "";
+    Placemark? placemark = await getPlacemarkFromLatlng(latLng);
+    if (placemark != null) {
+      return getFormattedAddress(placemark);
+    }
+    return "";
   }
 
-  Future<String> getAddressForCurrentLocation(LatLng latlng) async {
-    String address = "";
-    Placemark placeMark = await getAddressFromLocation(latlng);
-    address = getAddressFromPlacemark(placeMark);
-    update();
-    return address;
+  String getFormattedAddress(Placemark? placemark, {bool userCurrent = false}) {
+    if (placemark == null) {
+      return "Address not available";
+    }
+
+    // Build the address using available Placemark properties
+    return [
+      placemark.street,
+      placemark.locality,
+      placemark.subAdministrativeArea,
+      placemark.administrativeArea,
+      // placemark.postalCode,
+      // placemark.country,
+    ].where((element) => element != null && element.isNotEmpty).join(", ");
+  }
+
+  String getCity() {
+    String location = "";
+    if (currentPlacemark.value != null) {
+      location = currentPlacemark.value!.locality ?? "";
+    }
+    return location;
+  }
+
+  setCurrentLatLng(LatLng latLng) async {
+    _currentLatLng.value = latLng;
+    currentPlacemark.value = await getPlacemarkFromLatlng(latLng);
+  }
+
+  LatLng getCurrentLatlng() {
+    LatLng latLng = const LatLng(0.0, 0.0);
+    if (_currentLatLng.value != null) {
+      latLng = _currentLatLng.value ?? const LatLng(0.0, 0.0);
+    }
+    return latLng;
   }
 }

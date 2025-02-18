@@ -6,10 +6,13 @@ import 'package:drfootapp/utils/widgets/my_textfield.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart' as filePicker;
 import 'package:path/path.dart';
 import 'work_experience_picker.dart';
+
+final nursingEducationDetailsFormKey = GlobalKey<FormBuilderState>();
 
 class NurseSignupFormComponent extends StatefulWidget {
   final String type;
@@ -25,18 +28,23 @@ class NurseSignupFormComponent extends StatefulWidget {
 class _NurseSignupFormComponentState extends State<NurseSignupFormComponent> {
   final NurseAuthController _nurseAuthController =
       Get.put(NurseAuthController());
-  final _formKey = GlobalKey<FormBuilderState>();
 
-  printData() {
+  void printData() {
     logger(
         "_nurseAuthController ${_nurseAuthController.partnerEducationDetailsMap.toString()}");
+  }
+
+  @override
+  void initState() {
+    _nurseAuthController.partnerEducationDetailsMap[widget.type] = {};
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NurseAuthController>(builder: (nurseAuthController) {
       return FormBuilder(
-        key: _formKey,
+        key: nursingEducationDetailsFormKey,
         child: Column(
           children: [
             const SizedBox(height: 10),
@@ -55,6 +63,10 @@ class _NurseSignupFormComponentState extends State<NurseSignupFormComponent> {
               hint: Strings.collegeTextFieldHint,
               textEditingController:
                   _nurseAuthController.collegeUnisersityController,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(
+                    errorText: "Please enter your college or university"),
+              ]),
               onChanged: (p0) {
                 _nurseAuthController.partnerEducationDetailsMap[widget.type]
                     ["college"] = p0 ?? "";
@@ -62,12 +74,24 @@ class _NurseSignupFormComponentState extends State<NurseSignupFormComponent> {
                 return p0;
               },
             ),
+            // Year of Completion field with required and numeric validation
             MyTextField(
               labelNeeded: true,
               label: Strings.yearTextFieldLabel,
               hint: Strings.yearTextFieldHint,
+              maxLength: 4,
               textEditingController:
                   _nurseAuthController.yearofCompletionController,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(
+                    errorText: "Please enter your year of completion"),
+                FormBuilderValidators.numeric(
+                    errorText: "Year must be numeric"),
+                FormBuilderValidators.min(1900,
+                    errorText: "Enter a valid year"),
+                FormBuilderValidators.max(DateTime.now().year,
+                    errorText: "Year cannot be in the future"),
+              ]),
               onChanged: (p0) {
                 _nurseAuthController.partnerEducationDetailsMap[widget.type]
                     ["educationCompletion"] = p0 ?? "";
@@ -87,6 +111,7 @@ class _NurseSignupFormComponentState extends State<NurseSignupFormComponent> {
               ),
             ),
             const SizedBox(height: 6),
+            // Work Experience picker – assume it handles its own internal validation if needed
             WorkExperiencePicker(
               onChanged: (year, month) {
                 _nurseAuthController.partnerEducationDetailsMap[widget.type]
@@ -97,11 +122,16 @@ class _NurseSignupFormComponentState extends State<NurseSignupFormComponent> {
               },
             ),
             const SizedBox(height: 6),
+            // Degree Certificate field with required validation (if needed)
             MyTextField(
               labelNeeded: true,
               label: Strings.DegreeCertiTextFieldLabel,
               hint: Strings.DegreeCertiTextFieldHint,
               textEditingController: _nurseAuthController.degreeCertiController,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(
+                    errorText: "Please upload your degree certificate"),
+              ]),
               suffixIcon: GestureDetector(
                   onTap: () async {
                     filePicker.FilePickerResult? result =
@@ -109,12 +139,15 @@ class _NurseSignupFormComponentState extends State<NurseSignupFormComponent> {
                             allowMultiple: false,
                             type: filePicker.FileType.custom,
                             allowedExtensions: ["pdf", "png", "jpg", "jpeg"]);
-                    if (result != null && result.paths.isNotEmpty) {
+
+                    if (result != null && result.xFiles.isNotEmpty) {
+                      String path = result.xFiles.first.path;
+                      logger("result path ${path}");
                       _nurseAuthController
                               .partnerEducationDetailsMap[widget.type]
-                          ["documentPath"] = result.paths.first;
+                          ["documentPath"] = path;
                       _nurseAuthController.degreeCertiController.text =
-                          basename(result.paths.first ?? "");
+                          basename(path);
                       setState(() {});
                     }
                     printData();

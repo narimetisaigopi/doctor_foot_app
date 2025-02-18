@@ -1,18 +1,17 @@
-import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
+import 'package:drfootapp/screens/maps/my_google_maps.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ValuePrivacy extends StatefulWidget {
-  const ValuePrivacy({super.key});
+class PrivacyScreen extends StatefulWidget {
+  const PrivacyScreen({super.key});
 
   @override
-  State<ValuePrivacy> createState() => _ValuePrivacyState();
+  State<PrivacyScreen> createState() => _PrivacyScreenState();
 }
 
-class _ValuePrivacyState extends State<ValuePrivacy> {
+class _PrivacyScreenState extends State<PrivacyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +65,7 @@ class _ValuePrivacyState extends State<ValuePrivacy> {
               CustomButton(
                   buttonName: "acceptAndContinue",
                   onPress: () {
-                    Get.offAll(() => const DashBoardScreen());
+                    Get.offAll(() => const MyGoogleMap());
                   })
             ],
           ),

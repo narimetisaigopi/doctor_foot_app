@@ -1,12 +1,11 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/partner_model.dart';
+import 'package:drfootapp/screens/auth_screens/privacy_screen.dart';
+import 'package:drfootapp/screens/nurse/auth_screens/nurse_otp_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
 import 'package:drfootapp/utils/utility.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,6 +34,49 @@ class NurseAuthController extends GetxController {
   late BuildContext context;
 
   Map<String, dynamic> partnerEducationDetailsMap = {};
+
+  String sentOTP = "";
+
+  Future<bool> signIn(BuildContext context) async {
+    bool status = false;
+    try {
+      updateLoading(true);
+      if (await isMobileExisted()) {
+        Utility.toast("Mobile number not registered.");
+      } else {
+        await sendOTP(context);
+      }
+    } catch (e) {
+      logger(e);
+    } finally {
+      updateLoading(false);
+    }
+    return status;
+  }
+
+  sendOTP(BuildContext context) async {
+    sentOTP = generateOtp();
+    await sendSMS(sentOTP);
+    Utility.myBottomSheet2(widget: const NurseOtpScreen());
+  }
+
+  verifyOTP(String otp) async {
+    try {
+      if (sentOTP == otp) {
+        if (await getUserDataAndStoreLocally() != null) {
+          // Get.to(() => const NurseDashBoardScreen());
+          Utility.myBottomSheet2(
+              widget: const PrivacyScreen(), heightFactor: 0.8);
+        } else {
+          Utility.toast("Something went wrong please try again.");
+        }
+      } else {
+        Utility.toast("Invalid OTP");
+      }
+    } catch (e) {
+      Utility.toast("Something went wrong please try again. $e");
+    }
+  }
 
   Future<bool> signUp() async {
     bool status = false;
@@ -68,20 +110,16 @@ class NurseAuthController extends GetxController {
   }
 
   Future<PartnerModel?> getUserDataAndStoreLocally() async {
-    if (FirebaseAuth.instance.currentUser != null) {
-      DocumentSnapshot documentSnapshot = await getCurrentUserDocRef().get();
-      logger(documentSnapshot.data().toString());
-      if (documentSnapshot.data() != null) {
-        partnerModel = PartnerModel.fromJson(documentSnapshot.data() as Map);
-        return partnerModel;
+    if (mobileNumberController.text.isNotEmpty) {
+      PartnerModel dataPartnerModel =
+          await getDataByMobileNumber(mobileNumberController.text);
+      if (dataPartnerModel.docId.isNotEmpty) {
+        partnerModel = dataPartnerModel;
+        await SPHelper.setUser(dataPartnerModel);
+        return dataPartnerModel;
       }
     }
     return null;
-  }
-
-  DocumentReference getCurrentUserDocRef() {
-    return partnersCollectionReference
-        .doc(FirebaseAuth.instance.currentUser?.uid);
   }
 
   Future<bool> isUsernameExisted() async {
@@ -96,8 +134,20 @@ class NurseAuthController extends GetxController {
     }
   }
 
+  Future<PartnerModel> getDataByMobileNumber(String mobileNumber) async {
+    QuerySnapshot querySnapshot = await partnersCollectionReference
+        .where("mobileNumber", isEqualTo: mobileNumber)
+        .get();
+    PartnerModel partnerModel = PartnerModel();
+    if (querySnapshot.docs.isNotEmpty) {
+      partnerModel =
+          PartnerModel.fromJson(querySnapshot.docs.first.data() as Map);
+    }
+    return partnerModel;
+  }
+
   Future<bool> isMobileExisted() async {
-    QuerySnapshot querySnapshot = await usersCollectionReference
+    QuerySnapshot querySnapshot = await partnersCollectionReference
         .where("mobileNumber", isEqualTo: mobileNumberController.text)
         .get();
     if (querySnapshot.docs.isEmpty) {
@@ -116,59 +166,23 @@ class NurseAuthController extends GetxController {
     degreeController.clear();
   }
 
-  logout(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Logout"),
-          content: const Text("Do you want to logout from the app?"),
-          actions: [
-            TextButton(
-                onPressed: () async {
-                  try {
-                    Navigator.of(context).pop();
-                    await updateDeviceToken(clearIt: true);
-                    await FirebaseAuth.instance.signOut();
-                  } catch (e) {
-                    logger(e.toString());
-                  } finally {
-                    await SPHelper().clear();
-                    // Get.offUntil(
-                    //     MaterialPageRoute(
-                    //         builder: (builder) => const SplashScreen()),
-                    //     (route) => false);
-                  }
-                },
-                child: const Text("Yes")),
-            TextButton(
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                },
-                child: const Text("No"))
-          ],
-        );
-      },
-    );
-  }
-
   updateDeviceToken({bool clearIt = false}) async {
-    try {
-      if (clearIt) {
-        await getCurrentUserDocRef()
-            .update({"androidToken": "", "appleToken": ""});
-        return;
-      }
-      String? token;
-      if (Platform.isAndroid) {
-        token = await FirebaseMessaging.instance.getToken();
-        await getCurrentUserDocRef().update({"androidToken": token});
-      } else if (Platform.isIOS) {
-        token = await FirebaseMessaging.instance.getAPNSToken();
-        await getCurrentUserDocRef().update({"appleToken": token});
-      }
-    } catch (e) {
-      logger("updateDeviceToken failed exp ${e.toString()}");
-    }
+    // try {
+    //   if (clearIt) {
+    //     await getCurrentUserDocRef()
+    //         .update({"androidToken": "", "appleToken": ""});
+    //     return;
+    //   }
+    //   String? token;
+    //   if (Platform.isAndroid) {
+    //     token = await FirebaseMessaging.instance.getToken();
+    //     await getCurrentUserDocRef().update({"androidToken": token});
+    //   } else if (Platform.isIOS) {
+    //     token = await FirebaseMessaging.instance.getAPNSToken();
+    //     await getCurrentUserDocRef().update({"appleToken": token});
+    //   }
+    // } catch (e) {
+    //   logger("updateDeviceToken failed exp ${e.toString()}");
+    // }
   }
 }

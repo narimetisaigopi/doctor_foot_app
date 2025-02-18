@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:drfootapp/app_config.dart';
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
+import 'package:drfootapp/screens/nurse/nurse_splash_screen.dart';
 import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
@@ -142,6 +145,25 @@ class Utility {
   //   ).show();
   // }
 
+  static void myBottomSheet2({
+    required Widget widget,
+    double heightFactor = 0.5,
+  }) {
+    Get.bottomSheet(
+      FractionallySizedBox(
+        heightFactor: heightFactor,
+        child: widget,
+      ),
+      isScrollControlled: true,
+      backgroundColor: AppColors.bottomSheetBackgroundColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      isDismissible: false,
+    );
+  }
+
   static myBottomSheet(BuildContext context,
       {required Widget widget, double heightFactor = 0.5}) {
     showModalBottomSheet(
@@ -269,7 +291,8 @@ class Utility {
         TextButton(
             onPressed: () async {
               Utility.toast("Thanks for using app");
-              logoutFunction(context);
+              // logoutFunction(context);
+              nurseLogoutFunction(context);
             },
             child: const Text("Yes"))
       ],
@@ -296,6 +319,17 @@ class Utility {
       logger(e);
     } finally {
       Get.offAll(() => const SplashScreen());
+    }
+  }
+
+  static nurseLogoutFunction(BuildContext context) async {
+    try {
+      await SPHelper().clear();
+    } catch (e) {
+      logger(e);
+    } finally {
+      await SPHelper().clear();
+      Get.offAll(() => const NurseSplashScreen());
     }
   }
 
@@ -971,3 +1005,17 @@ class Utility {
 bool isUserApp() => AppConfig.shared.flavor == Flavor.user;
 bool isPartnerApp() => AppConfig.shared.flavor == Flavor.partner;
 bool isAdminApp() => AppConfig.shared.flavor == Flavor.admin;
+
+String generateOtp() {
+  final Random random = Random();
+  int otp = 100000 +
+      random.nextInt(900000); // Generates a number between 100000 and 999999
+  return otp.toString();
+}
+
+Future sendSMS(String message) async {
+  Utility.toast(message);
+  Utility.toast(message);
+  Utility.toast(message);
+  Utility.toast(message);
+}

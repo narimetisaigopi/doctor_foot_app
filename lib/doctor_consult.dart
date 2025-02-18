@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/nurse/auth_screens/intro_nurse.dart';
+import 'package:drfootapp/screens/nurse/auth_screens/nurse_login_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -56,7 +56,7 @@ class _DoctorConsultScreenState extends State<DoctorConsultScreen> {
                 GestureDetector(
                   onTap: () {
                     //  Get.to(() => const IntroScreen());
-                    Get.to(() => const IntroNurseScreen());
+                    Get.to(() => const NurseLoginScreen());
                   },
                   child: const Column(
                     children: [
