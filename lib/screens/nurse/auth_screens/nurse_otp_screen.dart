@@ -168,7 +168,7 @@ class _NurseOtpScreenState extends State<NurseOtpScreen> {
                         InkWell(
                           onTap: _timerSeconds == 0
                               ? () {
-                                  nurseAuthController.sendOTP(context);
+                                  nurseAuthController.sendOTP();
                                 }
                               : null,
                           child: Text(

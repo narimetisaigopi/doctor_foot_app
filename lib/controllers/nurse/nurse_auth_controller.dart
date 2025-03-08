@@ -9,8 +9,9 @@ import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+PartnerModel loginPartnerModel = PartnerModel();
+
 class NurseAuthController extends GetxController {
-  PartnerModel partnerModel = PartnerModel();
   bool isLoading = false;
 
   updateLoading(bool status) {
@@ -44,7 +45,7 @@ class NurseAuthController extends GetxController {
       if (await isMobileExisted()) {
         Utility.toast("Mobile number not registered.");
       } else {
-        await sendOTP(context);
+        await sendOTP();
       }
     } catch (e) {
       logger(e);
@@ -54,7 +55,7 @@ class NurseAuthController extends GetxController {
     return status;
   }
 
-  sendOTP(BuildContext context) async {
+  sendOTP() async {
     sentOTP = generateOtp();
     await sendSMS(sentOTP);
     Utility.myBottomSheet2(widget: const NurseOtpScreen());
@@ -114,7 +115,7 @@ class NurseAuthController extends GetxController {
       PartnerModel dataPartnerModel =
           await getDataByMobileNumber(mobileNumberController.text);
       if (dataPartnerModel.docId.isNotEmpty) {
-        partnerModel = dataPartnerModel;
+        loginPartnerModel = dataPartnerModel;
         await SPHelper.setUser(dataPartnerModel);
         return dataPartnerModel;
       }
@@ -166,23 +167,5 @@ class NurseAuthController extends GetxController {
     degreeController.clear();
   }
 
-  updateDeviceToken({bool clearIt = false}) async {
-    // try {
-    //   if (clearIt) {
-    //     await getCurrentUserDocRef()
-    //         .update({"androidToken": "", "appleToken": ""});
-    //     return;
-    //   }
-    //   String? token;
-    //   if (Platform.isAndroid) {
-    //     token = await FirebaseMessaging.instance.getToken();
-    //     await getCurrentUserDocRef().update({"androidToken": token});
-    //   } else if (Platform.isIOS) {
-    //     token = await FirebaseMessaging.instance.getAPNSToken();
-    //     await getCurrentUserDocRef().update({"appleToken": token});
-    //   }
-    // } catch (e) {
-    //   logger("updateDeviceToken failed exp ${e.toString()}");
-    // }
-  }
+  updateDeviceToken({bool clearIt = false}) async {}
 }

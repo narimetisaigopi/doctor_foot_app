@@ -4,7 +4,6 @@ import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/models/doctor_model.dart';
 import 'package:drfootapp/models/hospital_model.dart';
 import 'package:drfootapp/screens/maps/my_google_maps.dart';
-import 'package:drfootapp/screens/maps/my_google_maps_copu.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:drfootapp/utils/widgets/custom_circular_loader.dart';
@@ -189,8 +188,6 @@ class _CreateDoctorState extends State<CreateDoctor> {
                     suffixIcon: const Icon(Icons.location_on_outlined,
                         color: Colors.black, size: 30),
                     suffixIconPressed: () async {
-                      LocationController locationController =
-                          Get.put(LocationController());
                       await Get.to(() => const MyGoogleMap());
                       // locationController
                       //     .getAddressForCurrentLocation(

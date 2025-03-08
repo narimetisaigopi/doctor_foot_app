@@ -19,14 +19,11 @@ class _WatchNowWidgetState extends State<WatchNowWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 225,
+      height: 195,
       width: double.infinity,
       color: AppColors.videoImageBgColor,
       child: Column(
         children: [
-          const SizedBox(
-            height: 10,
-          ),
           Expanded(
             child: SizedBox(
               child: PageView.builder(

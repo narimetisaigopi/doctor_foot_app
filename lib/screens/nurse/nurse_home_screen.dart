@@ -1,8 +1,14 @@
+import 'package:drfootapp/controllers/location_controller.dart';
+import 'package:drfootapp/screens/nurse/utilities/online_shirmmer.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:slide_to_act/slide_to_act.dart';
+
+import 'controller/nurse_controller.dart';
 
 class NurseHomeScreen extends StatefulWidget {
   const NurseHomeScreen({super.key});
@@ -12,60 +18,100 @@ class NurseHomeScreen extends StatefulWidget {
 }
 
 class _NurseHomeScreenState extends State<NurseHomeScreen> {
+  NurseController nurseController = Get.put(NurseController());
+  CameraPosition? _kGooglePlex;
+  LatLng? selectedLatlng;
+  LocationController locationController = Get.put(LocationController());
+
   @override
   void initState() {
+    moveToCurrentLocation();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.secondaryColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          // goOnlineBtmAlert(),
-          startBtmAlert()
-        ],
-      ),
+    return GetBuilder<NurseController>(builder: (nurseController) {
+      return Scaffold(
+        backgroundColor: AppColors.secondaryColor,
+        body: Obx(
+          () => nurseController.isLoading.value
+              ? const OnlineShirmmer()
+              : Stack(
+                  children: [
+                    GoogleMap(
+                      mapType: MapType.terrain,
+                      initialCameraPosition: _kGooglePlex!,
+                    ),
+                    Positioned(
+                        bottom: 0,
+                        left: 8,
+                        right: 8,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: goOnlineBtmAlert(),
+                        )),
+                    //startBtmAlert()
+                  ],
+                ),
+        ),
+      );
+    });
+  }
+
+  moveToCurrentLocation({bool live = false}) {
+    selectedLatlng = locationController.getCurrentLatlng();
+
+    if (live) {
+      selectedLatlng = LatLng(
+          locationController.currentPosition.value!.latitude,
+          locationController.currentPosition.value!.longitude);
+    }
+
+    _kGooglePlex = CameraPosition(
+      target: LatLng(selectedLatlng!.latitude, selectedLatlng!.longitude),
+      zoom: 14.4746,
     );
   }
 
   Widget goOnlineBtmAlert() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.whiteBgColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Start Your Service Now!!",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.blackBold,
-                ),
+    return Container(
+      height: 140,
+      decoration: BoxDecoration(
+        color: AppColors.whiteBgColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 8),
+            const Text(
+              "Start Your Service Now!!",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: AppColors.blackBold,
               ),
-              Text(
-                "Click here to go Online & Start",
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300,
-                  color: AppColors.blackBold,
-                ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              "Click here to go Online & Start",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                color: AppColors.blackBold,
               ),
-              SizedBox(height: 12),
-              CustomButton(
-                buttonName: "Go Online",
-              )
-            ],
-          ),
+            ),
+            const SizedBox(height: 12),
+            CustomButton(
+              buttonName: "Go Online",
+              onPress: () {
+                nurseController.goOnlineOrOffiline(true);
+              },
+            )
+          ],
         ),
       ),
     );

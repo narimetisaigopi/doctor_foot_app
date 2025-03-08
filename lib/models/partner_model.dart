@@ -11,6 +11,8 @@ class PartnerModel {
   String degree;
   dynamic timestamp;
   dynamic modifiedAt;
+  bool isOnline;
+  dynamic onlineTimestamp;
 
   PartnerModel({
     this.docId = "",
@@ -25,6 +27,8 @@ class PartnerModel {
     this.degree = "",
     this.timestamp,
     this.modifiedAt,
+    this.isOnline = false,
+    this.onlineTimestamp,
   });
 
   factory PartnerModel.fromJson(Map json) {
@@ -41,6 +45,8 @@ class PartnerModel {
       degree: json['degree'] ?? "",
       timestamp: json['timestamp'],
       modifiedAt: json['modifiedAt'],
+      isOnline: json["isOnline"] ?? false,
+      onlineTimestamp: json["onlineTimestamp"],
     );
   }
 
@@ -58,6 +64,8 @@ class PartnerModel {
       'degree': degree,
       'timestamp': timestamp,
       'modifiedAt': modifiedAt,
+      'isOnline': isOnline,
+      'onlineTimestamp': onlineTimestamp
     };
   }
 }

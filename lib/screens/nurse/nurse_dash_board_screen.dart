@@ -1,3 +1,5 @@
+import 'package:drfootapp/controllers/location_controller.dart';
+import 'package:drfootapp/controllers/nurse/nurse_auth_controller.dart';
 import 'package:drfootapp/screens/nurse/dash_board_widgets/booking_widget.dart';
 import 'package:drfootapp/screens/nurse/id_card_screen.dart';
 import 'package:drfootapp/screens/nurse/materials_screen.dart';
@@ -11,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 
+import 'controller/nurse_controller.dart';
+
 class NurseDashBoardScreen extends StatefulWidget {
   const NurseDashBoardScreen({super.key});
 
@@ -20,7 +24,8 @@ class NurseDashBoardScreen extends StatefulWidget {
 
 class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
   int selectedIndex = 0;
-  bool isOnline = false;
+  NurseController nurseController = Get.put(NurseController());
+  LocationController locationController = Get.put(LocationController());
   List pages = [
     const NurseHomeScreen(),
     const PayoutScreen(),
@@ -42,87 +47,7 @@ class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
         onBackPressed(didPop);
       },
       child: Scaffold(
-        appBar: AppBar(
-          leading: Container(),
-          backgroundColor: AppColors.primaryBlue,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              FlutterSwitch(
-                value: isOnline,
-                onToggle: (val) {
-                  setState(() {
-                    isOnline = val;
-                  });
-                },
-                activeColor: AppColors.successColor,
-                inactiveColor: AppColors.rejectColor,
-                activeText: "ONLINE",
-                inactiveText: "OFFLINE",
-                width: 120.0,
-                height: 40.0,
-                toggleSize: 30.0,
-                showOnOff: true,
-              ),
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.to(() => const IdCardScreen());
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteBgColor.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.headset_mic_outlined,
-                              color: AppColors.whiteBgColor,
-                              size: 18,
-                            ),
-                            SizedBox(width: 4),
-                            Text(
-                              'Help',
-                              style: TextStyle(
-                                color: AppColors.whiteBgColor,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  InkWell(
-                    onTap: () {
-                      // Get.to(() => const NurseBookingOrdersScreen());
-                      bookingBtmWidget();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteBgColor.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.person_add_alt_1,
-                          color: AppColors.whiteBgColor,
-                          size: 18,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+        appBar: AppBar(backgroundColor: AppColors.primaryBlue, title: appbar()),
         backgroundColor: AppColors.secondary,
         body: pages[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -155,6 +80,82 @@ class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget appbar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        FlutterSwitch(
+          value: loginPartnerModel.isOnline,
+          onToggle: (val) => nurseController.goOnlineOrOffiline,
+          activeColor: AppColors.successColor,
+          inactiveColor: AppColors.rejectColor,
+          activeText: "ONLINE",
+          inactiveText: "OFFLINE",
+          width: 140.0,
+          height: 40.0,
+          toggleSize: 30.0,
+          showOnOff: true,
+        ),
+        Row(
+          children: [
+            InkWell(
+              onTap: () {
+                Get.to(() => const IdCardScreen());
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.whiteBgColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.headset_mic_outlined,
+                        color: AppColors.whiteBgColor,
+                        size: 18,
+                      ),
+                      SizedBox(width: 4),
+                      Text(
+                        'Help',
+                        style: TextStyle(
+                          color: AppColors.whiteBgColor,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            InkWell(
+              onTap: () {
+                // Get.to(() => const NurseBookingOrdersScreen());
+                bookingBtmWidget();
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.whiteBgColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.person_add_alt_1,
+                    color: AppColors.whiteBgColor,
+                    size: 18,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
