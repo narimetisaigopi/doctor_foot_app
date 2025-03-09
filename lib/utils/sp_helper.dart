@@ -7,6 +7,7 @@ class SPHelper {
   static setUser(PartnerModel userModel) async {
     userModel.timestamp = "";
     userModel.modifiedAt = "";
+    userModel.modifiedAt = "";
     await sharedPreferences.setString(
         "partner_login", jsonEncode(userModel.toJson()));
   }

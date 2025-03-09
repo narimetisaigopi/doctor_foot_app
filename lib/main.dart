@@ -21,7 +21,6 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   sharedPreferences = await SharedPreferences.getInstance();
-  await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   if (!kIsWeb) {
     await Permission.notification.isDenied.then((value) {

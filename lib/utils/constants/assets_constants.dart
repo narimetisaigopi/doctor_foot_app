@@ -342,6 +342,9 @@ class AssetsConstants {
       "assets/images/video_images/diabatic_image.png";
   static const String delivery_bike =
       "assets/images/video_images/delivery_bike.png";
+  static const String imageGallery =
+      "assets/images/video_images/image_gallery.png";
+  static const String weightBar = "assets/images/video_images/weight_bar.png";
   static const String diabete_check_meter =
       "$_introImagesBasePath/diabete_check_meter.svg";
   static const String foot_testing = "$_introImagesBasePath/foot_testing.svg";
@@ -407,13 +410,17 @@ class AssetsConstants {
   static const String nurse_logo = "assets/images/nurse/nurse_logo.png";
   static const String nurse_intro = "assets/images/nurse/nurse_intro.png";
   static const String dr_foot_text = "assets/images/nurse/dr_foot_text.png";
-  static const String user_profile_nurse = "assets/images/nurse/user_profile_nurse.png";
-  static const String delivery_boy_image = "assets/images/nurse/delivery_boy_image.png";
+  static const String user_profile_nurse =
+      "assets/images/nurse/user_profile_nurse.png";
+  static const String delivery_boy_image =
+      "assets/images/nurse/delivery_boy_image.png";
   static const String michell_ross = "assets/images/nurse/michell_ross.png";
   static const String location_map = "assets/images/nurse/location_map.png";
   static const String doctor_option = "assets/images/nurse/doctor_option.png";
   static const String nurse_option = "assets/images/nurse/nurse_option.png";
-  static const String nurse_ulcer_picture = "assets/images/nurse/nurse_ulcer_picture.png";
-  static const String nurse_wound_checker = "assets/images/nurse/nurse_wound_checker.png";
+  static const String nurse_ulcer_picture =
+      "assets/images/nurse/nurse_ulcer_picture.png";
+  static const String nurse_wound_checker =
+      "assets/images/nurse/nurse_wound_checker.png";
   static const String nurse_gallery = "assets/images/nurse/nurse_gallery.png";
 }

@@ -1,4 +1,7 @@
 import 'package:drfootapp/controllers/location_controller.dart';
+import 'package:drfootapp/models/address_model.dart';
+import 'package:drfootapp/models/patient_model.dart';
+import 'package:drfootapp/screens/nurse/client/treatment_client_screen.dart';
 import 'package:drfootapp/screens/nurse/utilities/online_shirmmer.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
@@ -26,6 +29,8 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
   @override
   void initState() {
     moveToCurrentLocation();
+    nurseController.fetchAndAssignOrder();
+
     super.initState();
   }
 
@@ -49,9 +54,14 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                         right: 8,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: goOnlineBtmAlert(),
+                          child: nurseController.isLoading.value
+                              ? goOnlineBottomSheet()
+                              : Obx(() => nurseController
+                                          .footServiceAppointmentModel.value !=
+                                      null
+                                  ? jobCardBottomSheet()
+                                  : Container()),
                         )),
-                    //startBtmAlert()
                   ],
                 ),
         ),
@@ -74,7 +84,7 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
     );
   }
 
-  Widget goOnlineBtmAlert() {
+  Widget goOnlineBottomSheet() {
     return Container(
       height: 140,
       decoration: BoxDecoration(
@@ -117,7 +127,13 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
     );
   }
 
-  Widget startBtmAlert() {
+  Widget jobCardBottomSheet() {
+    PatientModel patientModel =
+        nurseController.footServiceAppointmentModel.value!.patientModel ??
+            PatientModel();
+    AddressModel addressModel =
+        nurseController.footServiceAppointmentModel.value!.addressModel ??
+            AddressModel();
     return Container(
       decoration: BoxDecoration(
         color: AppColors.whiteBgColor,
@@ -139,9 +155,9 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                         AssetsConstants.michell_ross,
                       ),
                       const SizedBox(width: 12),
-                      const Text(
-                        "Michel Tross",
-                        style: TextStyle(
+                      Text(
+                        patientModel.name,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: AppColors.black1,
@@ -160,9 +176,9 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                 ],
               ),
               const SizedBox(height: 8),
-              const Row(
+              Row(
                 children: [
-                  Text(
+                  const Text(
                     "2.16 km",
                     style: TextStyle(
                       fontSize: 16,
@@ -170,8 +186,8 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                       color: AppColors.grey2,
                     ),
                   ),
-                  SizedBox(width: 6),
-                  Text(
+                  const SizedBox(width: 6),
+                  const Text(
                     "*",
                     style: TextStyle(
                       fontSize: 16,
@@ -179,10 +195,11 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                       color: AppColors.blackBold,
                     ),
                   ),
-                  SizedBox(width: 6),
+                  const SizedBox(width: 6),
                   Text(
-                    "10:00 AM - 11:00 AM",
-                    style: TextStyle(
+                    nurseController
+                        .footServiceAppointmentModel.value!.appointmentTime,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: AppColors.black2,
@@ -191,9 +208,9 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                 ],
               ),
               const SizedBox(height: 8),
-              const Text(
-                "CAS 572/3, Door 881, Dargamitta, Ram Nagar, 8th Street, Secundrabad.",
-                style: TextStyle(
+              Text(
+                addressModel.getAddress(),
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: AppColors.grey2,
@@ -216,13 +233,16 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                 ],
               ),
               const SizedBox(height: 12),
-              const SlideAction(
+              SlideAction(
                 elevation: 10,
                 borderRadius: 16,
                 innerColor: AppColors.slideBtnColor,
                 outerColor: AppColors.primaryBlue,
                 text: "Start",
-                textStyle: TextStyle(
+                onSubmit: () async {
+                  Get.to(() => const TreatmentClientScreen());
+                },
+                textStyle: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: AppColors.whiteBgColor,

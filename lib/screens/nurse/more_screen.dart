@@ -1,5 +1,5 @@
 import 'package:drfootapp/screens/nurse/billing_details/bill_checker_screen.dart';
-import 'package:drfootapp/screens/nurse/client/client_screen.dart';
+import 'package:drfootapp/screens/nurse/client/treatment_client_screen.dart';
 import 'package:drfootapp/screens/nurse/dash_board_widgets/go_to_widget.dart';
 import 'package:drfootapp/screens/nurse/dash_board_widgets/profile_widget.dart';
 import 'package:drfootapp/screens/nurse/risk_checker/risk_checker_screen.dart';
@@ -36,7 +36,7 @@ class _MoreScreenState extends State<MoreScreen> {
             GoToWidget(
               text: "Benefits",
               onPress: () {
-                Get.to(() => const ClientScreen());
+                Get.to(() => const TreatmentClientScreen());
               },
             ),
             const SizedBox(height: 12),

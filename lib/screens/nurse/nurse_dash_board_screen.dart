@@ -25,6 +25,7 @@ class NurseDashBoardScreen extends StatefulWidget {
 class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
   int selectedIndex = 0;
   NurseController nurseController = Get.put(NurseController());
+  NurseAuthController nurseAuthController = Get.put(NurseAuthController());
   LocationController locationController = Get.put(LocationController());
   List pages = [
     const NurseHomeScreen(),
@@ -37,6 +38,12 @@ class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
       return;
     }
     pages[selectedIndex];
+  }
+
+  @override
+  void initState() {
+    nurseAuthController.refreshLocalData();
+    super.initState();
   }
 
   @override

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:drfootapp/screens/dash_board/videos_screen_widgets/watch_now_widget.dart';
 import 'package:drfootapp/screens/nurse/controller/treatment_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
@@ -8,24 +7,18 @@ import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+import 'take_image_popup.dart';
 
-class ClientScreen extends StatefulWidget {
-  const ClientScreen({super.key});
+class TreatmentClientScreen extends StatefulWidget {
+  const TreatmentClientScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _ClientScreenState createState() => _ClientScreenState();
+  _TreatmentClientScreenState createState() => _TreatmentClientScreenState();
 }
 
-class _ClientScreenState extends State<ClientScreen> {
-  File? _image;
-
-  final ImagePicker _picker = ImagePicker();
-
+class _TreatmentClientScreenState extends State<TreatmentClientScreen> {
   TreatmentController treatmentController = Get.put(TreatmentController());
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TreatmentController>(builder: (treatmentController) {
@@ -70,7 +63,7 @@ class _ClientScreenState extends State<ClientScreen> {
                       "Is the wound same as displayed picture?",
                       ["Yes", "No"],
                       "woundSize",
-                      AssetsConstants.delivery_bike,
+                      AssetsConstants.imageGallery,
                       treatmentController.isWoundSameAsPicture.value, (value) {
                     treatmentController.isWoundSameAsPicture.value = value;
                   }),
@@ -79,7 +72,7 @@ class _ClientScreenState extends State<ClientScreen> {
                       "What is the size of the wound?",
                       ["Small", "Med", "Large"],
                       "woundSize",
-                      AssetsConstants.delivery_bike,
+                      AssetsConstants.weightBar,
                       treatmentController.whatIsSizeOfTheWound.value, (value) {
                     treatmentController.whatIsSizeOfTheWound.value = value;
                   }),
@@ -87,9 +80,13 @@ class _ClientScreenState extends State<ClientScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: InkWell(
-                      onTap: () {
-                        showStartTreatmentDialog();
-                      },
+                      onTap: isStartTreatment()
+                          ? () {
+                              Get.to(() => const TakeImagePopup(
+                                    index: 0,
+                                  ));
+                            }
+                          : null,
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         width: double.infinity,
@@ -120,15 +117,6 @@ class _ClientScreenState extends State<ClientScreen> {
         ),
       );
     });
-  }
-
-  Future<void> _pickImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-    }
   }
 
   Widget questionContainer(String question, List<String> options, String type,
@@ -189,62 +177,18 @@ class _ClientScreenState extends State<ClientScreen> {
     );
   }
 
-  void showStartTreatmentDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    child: Text(
-                      "If no, Please upload the picture!",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.black2),
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      _pickImage();
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                "Image 1 :\nImage should be taken from the front which should reveal the entire ulcer wound along with the entire foot as shown in the example image.",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.black2),
-              ),
-              if (_image != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Image.file(
-                    _image!,
-                    height: 150,
-                    width: 150,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // void showStartTreatmentDialog() {
+  //   showDialog(
+  //     context: context,
+  //     barrierDismissible: false,
+  //     builder: (context) => Dialog(
+  //         shape:
+  //             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+  //         child: TakeImagePopup(
+  //           index: 0,
+  //         )),
+  //   );
+  // }
 
   isStartTreatment() {
     return treatmentController.haveYouReachedLocationSafely.value == "Yes" &&

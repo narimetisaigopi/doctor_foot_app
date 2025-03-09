@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drfootapp/models/partner_model.dart';
 import 'package:drfootapp/screens/auth_screens/privacy_screen.dart';
 import 'package:drfootapp/screens/nurse/auth_screens/nurse_otp_screen.dart';
+import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/constants/firebase_constants.dart';
 import 'package:drfootapp/utils/sp_helper.dart';
@@ -121,6 +122,19 @@ class NurseAuthController extends GetxController {
       }
     }
     return null;
+  }
+
+  Future<PartnerModel?> refreshLocalData() async {
+    if (SPHelper.getUser() != null) {
+      loginPartnerModel = SPHelper.getUser()!;
+      loginPartnerModel =
+          await getDataByMobileNumber(loginPartnerModel.mobileNumber);
+      await SPHelper.setUser(loginPartnerModel);
+    } else {
+      Get.offAll(() => const SplashScreen());
+      Utility.toast("Session out, please relogin again.");
+    }
+    return loginPartnerModel;
   }
 
   Future<bool> isUsernameExisted() async {
