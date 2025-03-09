@@ -1,4 +1,3 @@
-import 'package:drfootapp/screens/nurse/billing_details/bill_checker_screen.dart';
 import 'package:drfootapp/screens/nurse/client/treatment_client_screen.dart';
 import 'package:drfootapp/screens/nurse/dash_board_widgets/go_to_widget.dart';
 import 'package:drfootapp/screens/nurse/dash_board_widgets/profile_widget.dart';
@@ -7,6 +6,8 @@ import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'client/treatment_end_screen.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
@@ -29,7 +30,8 @@ class _MoreScreenState extends State<MoreScreen> {
             GoToWidget(
               text: "Manage Profile",
               onPress: () {
-                Get.to(() => const BillCheckerScreen());
+                // Get.to(() => const BillCheckerScreen());
+                Get.to(() => const TreatmentEndScreen());
               },
             ),
             const SizedBox(height: 12),

@@ -20,6 +20,14 @@ class TreatmentClientScreen extends StatefulWidget {
 class _TreatmentClientScreenState extends State<TreatmentClientScreen> {
   TreatmentController treatmentController = Get.put(TreatmentController());
   @override
+  void initState() {
+    treatmentController.haveYouReachedLocationSafely.value = "";
+    treatmentController.isWoundSameAsPicture.value = "";
+    treatmentController.whatIsSizeOfTheWound.value = "";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<TreatmentController>(builder: (treatmentController) {
       return Obx(
@@ -67,7 +75,8 @@ class _TreatmentClientScreenState extends State<TreatmentClientScreen> {
                       treatmentController.isWoundSameAsPicture.value, (value) {
                     treatmentController.isWoundSameAsPicture.value = value;
                   }),
-                if (treatmentController.isWoundSameAsPicture.value == "No") ...[
+                if (treatmentController
+                    .isWoundSameAsPicture.value.isNotEmpty) ...[
                   questionContainer(
                       "What is the size of the wound?",
                       ["Small", "Med", "Large"],
@@ -82,9 +91,7 @@ class _TreatmentClientScreenState extends State<TreatmentClientScreen> {
                     child: InkWell(
                       onTap: isStartTreatment()
                           ? () {
-                              Get.to(() => const TakeImagePopup(
-                                    index: 0,
-                                  ));
+                              showStartTreatmentDialog();
                             }
                           : null,
                       child: AnimatedContainer(
@@ -117,6 +124,18 @@ class _TreatmentClientScreenState extends State<TreatmentClientScreen> {
         ),
       );
     });
+  }
+
+  void showStartTreatmentDialog() {
+    Get.dialog(
+      Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: const TakeImagePopup(
+          index: 0,
+        ),
+      ),
+      barrierDismissible: false, // Prevent dismissing by tapping outside
+    );
   }
 
   Widget questionContainer(String question, List<String> options, String type,
@@ -177,21 +196,9 @@ class _TreatmentClientScreenState extends State<TreatmentClientScreen> {
     );
   }
 
-  // void showStartTreatmentDialog() {
-  //   showDialog(
-  //     context: context,
-  //     barrierDismissible: false,
-  //     builder: (context) => Dialog(
-  //         shape:
-  //             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-  //         child: TakeImagePopup(
-  //           index: 0,
-  //         )),
-  //   );
-  // }
-
   isStartTreatment() {
-    return treatmentController.haveYouReachedLocationSafely.value == "Yes" &&
-        treatmentController.isWoundSameAsPicture.isNotEmpty;
+    return treatmentController.haveYouReachedLocationSafely.value.isNotEmpty &&
+        treatmentController.isWoundSameAsPicture.isNotEmpty &&
+        treatmentController.whatIsSizeOfTheWound.isNotEmpty;
   }
 }

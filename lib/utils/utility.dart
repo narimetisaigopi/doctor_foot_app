@@ -944,7 +944,7 @@ class Utility {
     Get.offAll(() => const DashBoardScreen());
   }
 
-  static Future<bool?> stateAlertDialog(
+  static void stateAlertDialog(
       {required BuildContext context,
       required Function() onDone,
       String title = "",
@@ -952,53 +952,66 @@ class Utility {
       String buttonText = "",
       String image = AssetsConstants.appointment_cancel,
       Color color = AppColors.cancelColor}) {
-    return Alert(
-      context: context,
-      closeIcon: Container(),
-      content: Column(
-        children: [
-          if (title.isNotEmpty)
-            Text(
-              title,
-              style: TextStyle(
-                color: color,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+    Get.dialog(
+      Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (title.isNotEmpty)
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              const SizedBox(height: 8),
+              if (description.isNotEmpty)
+                Text(
+                  description,
+                  style: const TextStyle(
+                    color: AppColors.black2,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              const SizedBox(height: 16),
+              CustomImage(
+                path: image,
+                height: 169,
+                width: 223,
+                fit: BoxFit.contain,
               ),
-            ),
-          if (description.isNotEmpty)
-            Text(
-              description,
-              style: const TextStyle(
-                color: AppColors.black2,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.back(); // Close dialog
+                    onDone(); // Execute callback
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: color),
+                  child: Text(
+                    buttonText,
+                    style: const TextStyle(
+                      color: AppColors.whiteBgColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
-          CustomImage(
-            path: image,
-            height: 169,
-            width: 223,
-            fit: BoxFit.contain,
-          ),
-        ],
-      ),
-      buttons: [
-        DialogButton(
-          onPressed: onDone,
-          color: color,
-          child: Text(
-            buttonText,
-            style: const TextStyle(
-              color: AppColors.whiteBgColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            ],
           ),
         ),
-      ],
-    ).show();
+      ),
+      barrierDismissible: false,
+    );
   }
 }
 

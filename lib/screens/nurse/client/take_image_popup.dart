@@ -2,6 +2,7 @@ import 'package:drfootapp/screens/nurse/controller/treatment_controller.dart';
 import 'package:drfootapp/screens/nurse/nurse_dash_board_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
+import 'package:drfootapp/utils/constants/constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,6 @@ class _TakeImagePopupState extends State<TakeImagePopup> {
 
   @override
   void initState() {
-    showStartTreatmentDialog(context);
     super.initState();
   }
 
@@ -73,8 +73,10 @@ class _TakeImagePopupState extends State<TakeImagePopup> {
                       XFile? xFile = await ImagePicker()
                           .pickImage(source: ImageSource.camera);
                       if (xFile != null) {
-                        treatmentController.treatmentsImagesList[widget.index] =
-                            xFile;
+                        treatmentController.treatmentsImagesList.add(xFile);
+                        logger("TakeImagePopup index: ${widget.index}");
+                        logger(
+                            "TakeImagePopup treatmentsImagesList: ${treatmentController.treatmentsImagesList.length}");
                         if (widget.index == 2) {
                           // all steps completed
                           Utility.stateAlertDialog(
@@ -90,9 +92,7 @@ class _TakeImagePopupState extends State<TakeImagePopup> {
                                 Get.offAll(() => const NurseDashBoardScreen());
                               });
                         } else {
-                          Get.to(() => TakeImagePopup(
-                                index: widget.index + 1,
-                              ));
+                          showStartTreatmentDialog();
                         }
                       } else {
                         Utility.toast("Provide image");
@@ -163,16 +163,15 @@ class _TakeImagePopupState extends State<TakeImagePopup> {
     });
   }
 
-  void showStartTreatmentDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          child: TakeImagePopup(
-            index: widget.index,
-          )),
+  void showStartTreatmentDialog() {
+    Get.dialog(
+      Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: TakeImagePopup(
+          index: widget.index + 1,
+        ),
+      ),
+      barrierDismissible: false, // Prevent dismissing by tapping outside
     );
   }
 }
