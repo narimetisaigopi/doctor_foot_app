@@ -1,6 +1,6 @@
 import 'package:drfootapp/screens/nurse/client/treatment_client_screen.dart';
 import 'package:drfootapp/screens/nurse/dash_board_widgets/go_to_widget.dart';
-import 'package:drfootapp/screens/nurse/dash_board_widgets/profile_widget.dart';
+import 'package:drfootapp/screens/nurse/dash_board_widgets/nurse_profile_screen.dart';
 import 'package:drfootapp/screens/nurse/risk_checker/risk_checker_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/utility.dart';
@@ -25,12 +25,11 @@ class _MoreScreenState extends State<MoreScreen> {
         padding: const EdgeInsets.fromLTRB(14, 16, 14, 0),
         child: Column(
           children: [
-            const ProfileWidget(),
+            const NurseProfileScreen(),
             const SizedBox(height: 12),
             GoToWidget(
               text: "Manage Profile",
               onPress: () {
-                // Get.to(() => const BillCheckerScreen());
                 Get.to(() => const TreatmentEndScreen());
               },
             ),

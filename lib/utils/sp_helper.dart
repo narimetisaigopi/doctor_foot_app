@@ -8,6 +8,7 @@ class SPHelper {
     userModel.timestamp = "";
     userModel.modifiedAt = "";
     userModel.modifiedAt = "";
+    userModel.onlineTimestamp = "";
     await sharedPreferences.setString(
         "partner_login", jsonEncode(userModel.toJson()));
   }
