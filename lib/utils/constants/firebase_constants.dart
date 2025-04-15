@@ -6,7 +6,7 @@ CollectionReference usersCollectionReference =
 
 CollectionReference couponCodesCollectionReference =
     FirebaseFirestore.instance.collection("coupon_codes");
-    
+
 CollectionReference addressesCollectionReference =
     FirebaseFirestore.instance.collection("addresses");
 CollectionReference dietCollectionReference =
@@ -18,8 +18,6 @@ CollectionReference ulcerMonitoringRecordsCollectionReference =
     FirebaseFirestore.instance.collection("ulcer_monitoring_records");
 CollectionReference paymentsCollectionReference =
     FirebaseFirestore.instance.collection("payments");
-
-
 
 CollectionReference reviewsCollectionReference =
     FirebaseFirestore.instance.collection("reviews");
@@ -55,6 +53,10 @@ CollectionReference healthRecordsCollectionReference =
 
 CollectionReference adminReviewsCollectionReference =
     FirebaseFirestore.instance.collection("admin_reviews");
+
+// partners
+CollectionReference partnersCollectionReference =
+    FirebaseFirestore.instance.collection("partners");
 
 const String storageHomeService = "homeservice";
 const String storageProfile = "profiles";

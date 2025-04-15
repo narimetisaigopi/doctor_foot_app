@@ -105,42 +105,41 @@ class Strings {
   static const String emailIdTextFieldFocusLabel = "Email ID";
   static const String emailTextFieldFocusHint = "doctor@gmail.com";
 
-
   static const String userNameTextFieldLabel = 'User Name';
   static const String userFullNameTextFieldLabel = 'Full Name';
   static const String userNameTextFieldHint = 'Enter your name here';
 //age
-static const String ageTextFieldLabel = 'Age';
-static const String ageTextFieldHint = 'Enter your age';
+  static const String ageTextFieldLabel = 'Age';
+  static const String ageTextFieldHint = 'Enter your age';
 //bob
   static const String dateOfBirthTextFieldLabel = 'Date Of Birth';
   static const String dateOfBirthTextFieldHint = 'DD/MM/YYYY';
 //city
-  static const String city= 'City';
+  static const String city = 'City';
   static const String cityTextFieldLabel = 'City';
   static const String cityTextFieldHint = 'Enter the city you belong';
- //degree
-   static const String degree ='Degree';
+  //degree
+  static const String degree = 'Degree';
   static const String degreeTextFieldLabel = 'Degree';
   static const String degreeTextFieldHint = 'Select an option';
 //college
-  static const String college ='College';
+  static const String college = 'College';
   static const String collegeTextFieldLabel = 'College/University';
   static const String collegeTextFieldHint = 'Enter name of the college';
 //completion
-static const String yearofCompletion ='yearofCompletion';
-static const String yearTextFieldLabel = 'year of completion';
-static const String yearTextFieldHint = 'Ex:1992';
+  static const String yearofCompletion = 'yearofCompletion';
+  static const String yearTextFieldLabel = 'year of completion';
+  static const String yearTextFieldHint = 'Ex:1992';
 //degree certification
-static const String DegreeCerti ='Degree Certification ';
-static const String DegreeCertiTextFieldLabel = 'Degree Certification';
-static const String DegreeCertiTextFieldHint = 'Upload your document';
+  static const String DegreeCerti = 'Degree Certification ';
+  static const String DegreeCertiTextFieldLabel = 'Degree Certification';
+  static const String DegreeCertiTextFieldHint = 'Upload your document';
 //work Experience
-static const String WorkExp ='Working experience';
-static const String WorkExpTextFieldLabel = 'Working experience';
-static const String WorkExpTextFieldHint = '00';
-static const String YearsTextFieldHint = 'Years';
-static const String MonthsTextFieldHint = 'Months';
+  static const String WorkExp = 'Working experience';
+  static const String WorkExpTextFieldLabel = 'Working experience';
+  static const String WorkExpTextFieldHint = '00';
+  static const String YearsTextFieldHint = 'Years';
+  static const String MonthsTextFieldHint = 'Months';
 
   static const String gender = 'Gender';
   static const String editText = 'Edit';
@@ -341,4 +340,24 @@ static const String MonthsTextFieldHint = 'Months';
   static const String abiTbi = "ABI &\nTBI";
   static const String neuropathyAssessment = "Neuropathy\nAssessment";
   static const String footPressureAssessment = "Foot Pressure\nAssessment";
+
+  static const String mscNursingText = "MSC - Nursing";
+  static const String bscNursingText = "BSC - Nursing";
+  static const String gnmGeneralNursingAndMidwiefery =
+      "GNM - General Nursing and Midwiefery";
+  static const String anmAuxiliaryNurseAndMidwife =
+      "ANM - Auxiliary Nurse and Midwife";
+
+  static const String mscNursing = "MSC Nursing";
+  static const String bscNursing = "BSC Nursing";
+  static const String gnm = "GNM";
+  static const String anm = "ANM";
+
+// Create a list of nursing degrees
+  static const List<String> nursingList = [
+    mscNursing,
+    bscNursing,
+    gnm,
+    anm,
+  ];
 }

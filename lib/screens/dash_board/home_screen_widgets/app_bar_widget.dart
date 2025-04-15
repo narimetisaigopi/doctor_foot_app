@@ -39,8 +39,8 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                     child: Row(
                       children: [
                         Text(
-                          locationController.currentPlacemark != null
-                              ? "${locationController.currentPlacemark!.locality}"
+                          locationController.getCurrentLatlng() != null
+                              ? "${locationController.getAddressFromLatlng(locationController.getCurrentLatlng())}"
                               : "Not available",
                           style: const TextStyle(
                             color: AppColors.whiteBgDietColor,

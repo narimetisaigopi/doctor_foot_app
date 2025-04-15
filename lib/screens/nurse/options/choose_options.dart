@@ -1,4 +1,4 @@
-import 'package:drfootapp/screens/nurse/auth_screens/intro_nurse.dart';
+import 'package:drfootapp/screens/nurse/auth_screens/nurse_login_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,9 @@ class _ChooseOptionsState extends State<ChooseOptions> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const NurseLoginScreen());
+                },
                 child: Column(
                   children: [
                     Container(
@@ -61,7 +63,7 @@ class _ChooseOptionsState extends State<ChooseOptions> {
               const SizedBox(width: 20),
               InkWell(
                 onTap: () {
-                  Get.to(()=> const IntroNurseScreen());
+                  Get.to(() => const NurseLoginScreen());
                 },
                 child: Column(
                   children: [

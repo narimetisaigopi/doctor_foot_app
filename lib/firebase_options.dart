@@ -72,4 +72,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'drfootapp-2a1c8.appspot.com',
     iosBundleId: 'com.drfootapp',
   );
+
 }

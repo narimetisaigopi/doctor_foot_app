@@ -1,15 +1,16 @@
+import 'package:drfootapp/controllers/nurse/nurse_auth_controller.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:flutter/material.dart';
 
-class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({super.key});
+class NurseProfileScreen extends StatefulWidget {
+  const NurseProfileScreen({super.key});
 
   @override
-  State<ProfileWidget> createState() => _ProfileWidgetState();
+  State<NurseProfileScreen> createState() => _NurseProfileScreenState();
 }
 
-class _ProfileWidgetState extends State<ProfileWidget> {
+class _NurseProfileScreenState extends State<NurseProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,19 +39,19 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       )),
                     ),
                     const SizedBox(width: 8),
-                    const Column(
+                    Column(
                       children: [
                         Text(
-                          'DEEPAK',
-                          style: TextStyle(
+                          loginPartnerModel.userName,
+                          style: const TextStyle(
                             color: AppColors.blackBold,
                             fontWeight: FontWeight.w700,
                             fontSize: 20,
                           ),
                         ),
                         Text(
-                          'FE2041566',
-                          style: TextStyle(
+                          loginPartnerModel.regNo,
+                          style: const TextStyle(
                             color: AppColors.blackBold,
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
@@ -67,20 +68,20 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         color: AppColors.grey,
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.fromLTRB(8, 2, 8, 2),
                         child: Row(
                           children: [
                             Text(
-                              "4.5",
-                              style: TextStyle(
+                              "${loginPartnerModel.getAvgRating()}",
+                              style: const TextStyle(
                                 color: AppColors.blackBold,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 16,
                               ),
                             ),
-                            SizedBox(width: 4),
-                            Icon(
+                            const SizedBox(width: 4),
+                            const Icon(
                               Icons.star,
                               color: AppColors.ratingBarColor,
                             )
@@ -112,39 +113,41 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.phone_android_sharp,
                         ),
-                        SizedBox(width: 6),
-                        Text("Phone:  8686868686",
-                            style: TextStyle(
+                        const SizedBox(width: 6),
+                        Text("Phone:  ${loginPartnerModel.mobileNumber}",
+                            style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: AppColors.grey2,
                             ))
                       ],
                     ),
-                    SizedBox(height: 6),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.location_on_outlined,
-                        ),
-                        SizedBox(width: 6),
-                        Text("Zone:  Secundrabad,Hyderabad",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.grey2,
-                            ))
-                      ],
-                    ),
+                    const SizedBox(height: 6),
+                    if (loginPartnerModel.addressModel != null)
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.location_on_outlined,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                              "Zone:  ${loginPartnerModel.addressModel!.getAddress()}",
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.grey2,
+                              ))
+                        ],
+                      ),
                   ],
                 ),
               ),

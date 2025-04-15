@@ -1,4 +1,5 @@
 enum PaymentStatus { none, pending, completed, cancelled, refunded }
+
 enum AppointmentStatus {
   none,
   pending,
@@ -7,7 +8,9 @@ enum AppointmentStatus {
   cancelled,
   completed
 }
+
 enum PaymentServiceType { none, ulcerMonitoring, homeService, drAppointment }
+
 enum FootServiceType {
   none,
   dressingAtHomeSmall,
@@ -17,9 +20,13 @@ enum FootServiceType {
   nailTrimming,
   footCleaning,
 }
+
 enum ReviewType { doctor, admin }
+
 enum NotificationType { all }
+
 enum DietType { veg, nonVeg }
+
 enum DoctorAppointmentType {
   consultYourDoctor,
   onlineConsultation,
@@ -31,7 +38,11 @@ enum DoctorAppointmentType {
   sportsInjuries,
   footAndAnkleArthritis
 }
+
 enum FileType { image, pdf, video }
 
 enum HealthRecordType { image, labReports, hospitalDocuments }
+
 enum UlcerDocumentType { dischargeSummary, consultationDocument }
+
+enum Flavor { user, partner, admin }

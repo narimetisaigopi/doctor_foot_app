@@ -61,11 +61,12 @@ class _CustomButtonState extends State<CustomButton> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 12
+              if (widget.enablePrefixIcon)
+                Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child:
+                      widget.enablePrefixIcon ? widget.prefixIcon : Container(),
                 ),
-                child: widget.enablePrefixIcon ? widget.prefixIcon : Container(),
-              ),
               Text(
                 widget.buttonName,
                 style: TextStyle(

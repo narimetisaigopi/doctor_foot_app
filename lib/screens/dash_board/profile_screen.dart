@@ -141,7 +141,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         children: [
                                           ProfileMenuItem(
                                             text: "myProfile",
-                                            leadingIcon: AssetsConstants.user_profile,
+                                            leadingIcon:
+                                                AssetsConstants.user_profile,
                                             onPressed: () {
                                               Get.to(() =>
                                                   const EditProfileScreen());
@@ -149,21 +150,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           ProfileMenuItem(
                                               text: "appointment",
-                                              leadingIcon: AssetsConstants.my_oppoinments,
+                                              leadingIcon: AssetsConstants
+                                                  .my_oppoinments,
                                               onPressed: () {
                                                 Get.to(() =>
                                                     const MyAppointmentsScreen());
                                               }),
                                           ProfileMenuItem(
                                               text: "service",
-                                              leadingIcon: AssetsConstants.booked_services,
+                                              leadingIcon: AssetsConstants
+                                                  .booked_services,
                                               onPressed: () {
                                                 Get.to(
                                                     const MyFootAppointmentsScreen());
                                               }),
                                           ProfileMenuItem(
                                               text: "payments",
-                                              leadingIcon: AssetsConstants.payments_refndes,
+                                              leadingIcon: AssetsConstants
+                                                  .payments_refndes,
                                               onPressed: () {
                                                 Get.to(
                                                     const PaymentsAndRefundScreen());
@@ -178,7 +182,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               }),
                                           ProfileMenuItem(
                                               text: "contactus",
-                                              leadingIcon: AssetsConstants.contact_us_icon,
+                                              leadingIcon: AssetsConstants
+                                                  .contact_us_icon,
                                               onPressed: () {
                                                 Get.to(const ContactUsScreen());
                                               }),

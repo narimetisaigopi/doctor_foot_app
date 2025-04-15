@@ -15,13 +15,12 @@ import 'firebase_options.dart';
 
 late SharedPreferences sharedPreferences;
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   sharedPreferences = await SharedPreferences.getInstance();
-  await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   if (!kIsWeb) {
     await Permission.notification.isDenied.then((value) {
@@ -63,7 +62,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.bgColorAppointment,
         fontFamily: GoogleFonts.dmSans().fontFamily,
       ),
-      home: const SplashScreen(),
+      home: const NurseSplashScreen(),
+      // home: const SplashScreen(),
+      // home: const NurseEducationDetailsSignupScreen(),
     );
   }
 }

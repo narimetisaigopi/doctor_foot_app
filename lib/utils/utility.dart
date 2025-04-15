@@ -1,6 +1,10 @@
+import 'dart:math';
+
+import 'package:drfootapp/app_config.dart';
 import 'package:drfootapp/controllers/authentication_controller.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/screens/intro_screen.dart';
+import 'package:drfootapp/screens/nurse/nurse_splash_screen.dart';
 import 'package:drfootapp/splash_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/constants.dart';
@@ -141,6 +145,25 @@ class Utility {
   //   ).show();
   // }
 
+  static void myBottomSheet2({
+    required Widget widget,
+    double heightFactor = 0.5,
+  }) {
+    Get.bottomSheet(
+      FractionallySizedBox(
+        heightFactor: heightFactor,
+        child: widget,
+      ),
+      isScrollControlled: true,
+      backgroundColor: AppColors.bottomSheetBackgroundColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      isDismissible: false,
+    );
+  }
+
   static myBottomSheet(BuildContext context,
       {required Widget widget, double heightFactor = 0.5}) {
     showModalBottomSheet(
@@ -268,7 +291,8 @@ class Utility {
         TextButton(
             onPressed: () async {
               Utility.toast("Thanks for using app");
-              logoutFunction(context);
+              // logoutFunction(context);
+              nurseLogoutFunction(context);
             },
             child: const Text("Yes"))
       ],
@@ -295,6 +319,17 @@ class Utility {
       logger(e);
     } finally {
       Get.offAll(() => const SplashScreen());
+    }
+  }
+
+  static nurseLogoutFunction(BuildContext context) async {
+    try {
+      await SPHelper().clear();
+    } catch (e) {
+      logger(e);
+    } finally {
+      await SPHelper().clear();
+      Get.offAll(() => const NurseSplashScreen());
     }
   }
 
@@ -909,7 +944,7 @@ class Utility {
     Get.offAll(() => const DashBoardScreen());
   }
 
-  static Future<bool?> stateAlertDialog(
+  static void stateAlertDialog(
       {required BuildContext context,
       required Function() onDone,
       String title = "",
@@ -917,52 +952,83 @@ class Utility {
       String buttonText = "",
       String image = AssetsConstants.appointment_cancel,
       Color color = AppColors.cancelColor}) {
-    return Alert(
-      context: context,
-      closeIcon: Container(),
-      content: Column(
-        children: [
-          if (title.isNotEmpty)
-            Text(
-              title,
-              style: TextStyle(
-                color: color,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+    Get.dialog(
+      Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (title.isNotEmpty)
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              const SizedBox(height: 8),
+              if (description.isNotEmpty)
+                Text(
+                  description,
+                  style: const TextStyle(
+                    color: AppColors.black2,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              const SizedBox(height: 16),
+              CustomImage(
+                path: image,
+                height: 169,
+                width: 223,
+                fit: BoxFit.contain,
               ),
-            ),
-          if (description.isNotEmpty)
-            Text(
-              description,
-              style: const TextStyle(
-                color: AppColors.black2,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.back(); // Close dialog
+                    onDone(); // Execute callback
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: color),
+                  child: Text(
+                    buttonText,
+                    style: const TextStyle(
+                      color: AppColors.whiteBgColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
-          CustomImage(
-            path: image,
-            height: 169,
-            width: 223,
-            fit: BoxFit.contain,
-          ),
-        ],
-      ),
-      buttons: [
-        DialogButton(
-          onPressed: onDone,
-          color: color,
-          child: Text(
-            buttonText,
-            style: const TextStyle(
-              color: AppColors.whiteBgColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            ],
           ),
         ),
-      ],
-    ).show();
+      ),
+      barrierDismissible: false,
+    );
   }
+}
+
+bool isUserApp() => AppConfig.shared.flavor == Flavor.user;
+bool isPartnerApp() => AppConfig.shared.flavor == Flavor.partner;
+bool isAdminApp() => AppConfig.shared.flavor == Flavor.admin;
+
+String generateOtp() {
+  final Random random = Random();
+  int otp = 100000 +
+      random.nextInt(900000); // Generates a number between 100000 and 999999
+  return otp.toString();
+}
+
+Future sendSMS(String message) async {
+  Utility.toast(message);
+  Utility.toast(message);
+  Utility.toast(message);
+  Utility.toast(message);
 }

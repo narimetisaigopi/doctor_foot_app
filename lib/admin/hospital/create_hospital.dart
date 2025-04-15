@@ -96,16 +96,7 @@ class _CreateHospitalState extends State<CreateHospital> {
                     suffixIcon: const Icon(Icons.location_on_outlined,
                         color: Colors.black, size: 30),
                     suffixIconPressed: () async {
-                      LocationController locationController =
-                          Get.put(LocationController());
-                      await Get.to(() => const MyGoogleMapsScreen());
-                      locationController
-                          .getAddressForCurrentLocation(
-                              locationController.selectedLatLng!)
-                          .then((value) {
-                        hospitalController.addressTextEditingController.text =
-                            value;
-                      });
+                      await Get.to(() => const MyGoogleMap());
                     },
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),

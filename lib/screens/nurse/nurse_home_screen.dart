@@ -1,8 +1,17 @@
+import 'package:drfootapp/controllers/location_controller.dart';
+import 'package:drfootapp/models/address_model.dart';
+import 'package:drfootapp/models/patient_model.dart';
+import 'package:drfootapp/screens/nurse/client/treatment_client_screen.dart';
+import 'package:drfootapp/screens/nurse/utilities/online_shirmmer.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:slide_to_act/slide_to_act.dart';
+
+import 'controller/nurse_controller.dart';
 
 class NurseHomeScreen extends StatefulWidget {
   const NurseHomeScreen({super.key});
@@ -12,66 +21,119 @@ class NurseHomeScreen extends StatefulWidget {
 }
 
 class _NurseHomeScreenState extends State<NurseHomeScreen> {
+  NurseController nurseController = Get.put(NurseController());
+  CameraPosition? _kGooglePlex;
+  LatLng? selectedLatlng;
+  LocationController locationController = Get.put(LocationController());
+
   @override
   void initState() {
+    moveToCurrentLocation();
+    nurseController.fetchAndAssignOrder();
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.secondaryColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          // goOnlineBtmAlert(),
-          startBtmAlert()
-        ],
+    return GetBuilder<NurseController>(builder: (nurseController) {
+      return Scaffold(
+        backgroundColor: AppColors.secondaryColor,
+        body: Obx(
+          () => nurseController.isLoading.value
+              ? const OnlineShirmmer()
+              : Stack(
+                  children: [
+                    GoogleMap(
+                      mapType: MapType.terrain,
+                      initialCameraPosition: _kGooglePlex!,
+                    ),
+                    Positioned(
+                        bottom: 0,
+                        left: 8,
+                        right: 8,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: nurseController.isLoading.value
+                              ? goOnlineBottomSheet()
+                              : Obx(() => nurseController
+                                          .footServiceAppointmentModel.value !=
+                                      null
+                                  ? jobCardBottomSheet()
+                                  : Container()),
+                        )),
+                  ],
+                ),
+        ),
+      );
+    });
+  }
+
+  moveToCurrentLocation({bool live = false}) {
+    selectedLatlng = locationController.getCurrentLatlng();
+
+    if (live) {
+      selectedLatlng = LatLng(
+          locationController.currentPosition.value!.latitude,
+          locationController.currentPosition.value!.longitude);
+    }
+
+    _kGooglePlex = CameraPosition(
+      target: LatLng(selectedLatlng!.latitude, selectedLatlng!.longitude),
+      zoom: 14.4746,
+    );
+  }
+
+  Widget goOnlineBottomSheet() {
+    return Container(
+      height: 140,
+      decoration: BoxDecoration(
+        color: AppColors.whiteBgColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 8),
+            const Text(
+              "Start Your Service Now!!",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: AppColors.blackBold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              "Click here to go Online & Start",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                color: AppColors.blackBold,
+              ),
+            ),
+            const SizedBox(height: 12),
+            CustomButton(
+              buttonName: "Go Online",
+              onPress: () {
+                nurseController.goOnlineOrOffiline(true);
+              },
+            )
+          ],
+        ),
       ),
     );
   }
 
-  Widget goOnlineBtmAlert() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.whiteBgColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Start Your Service Now!!",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.blackBold,
-                ),
-              ),
-              Text(
-                "Click here to go Online & Start",
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300,
-                  color: AppColors.blackBold,
-                ),
-              ),
-              SizedBox(height: 12),
-              CustomButton(
-                buttonName: "Go Online",
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget startBtmAlert() {
+  Widget jobCardBottomSheet() {
+    PatientModel patientModel =
+        nurseController.footServiceAppointmentModel.value!.patientModel ??
+            PatientModel();
+    AddressModel addressModel =
+        nurseController.footServiceAppointmentModel.value!.addressModel ??
+            AddressModel();
     return Container(
       decoration: BoxDecoration(
         color: AppColors.whiteBgColor,
@@ -93,9 +155,9 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                         AssetsConstants.michell_ross,
                       ),
                       const SizedBox(width: 12),
-                      const Text(
-                        "Michel Tross",
-                        style: TextStyle(
+                      Text(
+                        patientModel.name,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: AppColors.black1,
@@ -114,9 +176,9 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                 ],
               ),
               const SizedBox(height: 8),
-              const Row(
+              Row(
                 children: [
-                  Text(
+                  const Text(
                     "2.16 km",
                     style: TextStyle(
                       fontSize: 16,
@@ -124,8 +186,8 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                       color: AppColors.grey2,
                     ),
                   ),
-                  SizedBox(width: 6),
-                  Text(
+                  const SizedBox(width: 6),
+                  const Text(
                     "*",
                     style: TextStyle(
                       fontSize: 16,
@@ -133,10 +195,11 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                       color: AppColors.blackBold,
                     ),
                   ),
-                  SizedBox(width: 6),
+                  const SizedBox(width: 6),
                   Text(
-                    "10:00 AM - 11:00 AM",
-                    style: TextStyle(
+                    nurseController
+                        .footServiceAppointmentModel.value!.appointmentTime,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: AppColors.black2,
@@ -145,9 +208,9 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                 ],
               ),
               const SizedBox(height: 8),
-              const Text(
-                "CAS 572/3, Door 881, Dargamitta, Ram Nagar, 8th Street, Secundrabad.",
-                style: TextStyle(
+              Text(
+                addressModel.getAddress(),
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: AppColors.grey2,
@@ -170,13 +233,16 @@ class _NurseHomeScreenState extends State<NurseHomeScreen> {
                 ],
               ),
               const SizedBox(height: 12),
-              const SlideAction(
+              SlideAction(
                 elevation: 10,
                 borderRadius: 16,
                 innerColor: AppColors.slideBtnColor,
                 outerColor: AppColors.primaryBlue,
                 text: "Start",
-                textStyle: TextStyle(
+                onSubmit: () async {
+                  Get.to(() => const TreatmentClientScreen());
+                },
+                textStyle: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: AppColors.whiteBgColor,

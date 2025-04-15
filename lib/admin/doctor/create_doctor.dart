@@ -188,16 +188,14 @@ class _CreateDoctorState extends State<CreateDoctor> {
                     suffixIcon: const Icon(Icons.location_on_outlined,
                         color: Colors.black, size: 30),
                     suffixIconPressed: () async {
-                      LocationController locationController =
-                          Get.put(LocationController());
-                      await Get.to(() => const MyGoogleMapsScreen());
-                      locationController
-                          .getAddressForCurrentLocation(
-                              locationController.selectedLatLng!)
-                          .then((value) {
-                        doctorsController.addressTextEditingController.text =
-                            value;
-                      });
+                      await Get.to(() => const MyGoogleMap());
+                      // locationController
+                      //     .getAddressForCurrentLocation(
+                      //         locationController.selectedLatLng!)
+                      //     .then((value) {
+                      //   doctorsController.addressTextEditingController.text =
+                      //       value;
+                      // });
                     },
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),

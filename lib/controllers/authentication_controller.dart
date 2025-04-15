@@ -5,7 +5,7 @@ import 'package:drfootapp/admin/admin_panel.dart';
 import 'package:drfootapp/controllers/firebase_storage_controller.dart';
 import 'package:drfootapp/models/user_model.dart';
 import 'package:drfootapp/screens/auth_screens/otp_screen.dart';
-import 'package:drfootapp/screens/auth_screens/privacy.dart';
+import 'package:drfootapp/screens/auth_screens/privacy_screen.dart';
 import 'package:drfootapp/screens/auth_screens/sign_up_screen.dart';
 import 'package:drfootapp/screens/dash_board/dash_board_screen.dart';
 import 'package:drfootapp/splash_screen.dart';
@@ -37,16 +37,16 @@ class AuthenticationController extends GetxController {
   TextEditingController genderController = TextEditingController();
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController otpController = TextEditingController();
- TextEditingController ageController = TextEditingController();
-  TextEditingController WorkExpController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController workExpController = TextEditingController();
   TextEditingController workExpYearsController = TextEditingController();
-  
- TextEditingController cityController = TextEditingController();
- TextEditingController collegeController = TextEditingController();
- TextEditingController yearofCompletionController= TextEditingController();
- TextEditingController DegreeCertiController = TextEditingController();
- TextEditingController workController = TextEditingController();
- TextEditingController degreeController = TextEditingController();
+
+  TextEditingController cityController = TextEditingController();
+  TextEditingController collegeController = TextEditingController();
+  TextEditingController yearofCompletionController = TextEditingController();
+  TextEditingController DegreeCertiController = TextEditingController();
+  TextEditingController workController = TextEditingController();
+  TextEditingController degreeController = TextEditingController();
   TextEditingController bloodGroupController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
@@ -207,6 +207,7 @@ class AuthenticationController extends GetxController {
       logger(documentSnapshot.data().toString());
       if (documentSnapshot.data() != null) {
         loginUserModel = UserModel.fromJson(documentSnapshot.data() as Map);
+
         return loginUserModel;
       }
     }
@@ -223,8 +224,7 @@ class AuthenticationController extends GetxController {
       }
       await _firebaseAuthInsertData();
       Utility.myBottomSheet(context,
-          widget: const ValuePrivacy(), heightFactor: 0.7);
-
+          widget: const PrivacyScreen(), heightFactor: 0.7);
     } catch (e) {
       Utility.toast("Signup failed $e");
       logger(e.toString());
