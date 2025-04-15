@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/constants/string_constants.dart';
 
-const String mapKey = "AIzaSyCvOdFfsLVqeHN4esCWbTXZxTj8OMRhY7Q";
+const String mapKey = "";
 
 const String appName = "Doctor Foot";
 
