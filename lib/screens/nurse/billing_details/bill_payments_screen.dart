@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:drfootapp/screens/dash_board/videos_screen_widgets/watch_now_widget.dart';
+import 'package:drfootapp/screens/nurse/billing_details/risk_checker_treatement_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
 import 'package:drfootapp/utils/widgets/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -135,7 +136,9 @@ class _BillPaymentsScreenState extends State<BillPaymentsScreen> {
                     bgColor: AppColors.primaryBlue,
                     buttonName: "Collect Cash",
                     textColor: AppColors.whiteBgColor,
-                    onPress: () {},
+                    onPress: () {
+                      Get.to(()=> const RiskCheckerTreatementScreen());
+                    },
                   ),
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:drfootapp/controllers/location_controller.dart';
 import 'package:drfootapp/controllers/nurse/nurse_auth_controller.dart';
 import 'package:drfootapp/screens/nurse/dash_board_widgets/booking_widget.dart';
+import 'package:drfootapp/screens/nurse/dash_board_widgets/reached_location_widget.dart';
 import 'package:drfootapp/screens/nurse/id_card_screen.dart';
 import 'package:drfootapp/screens/nurse/materials_screen.dart';
 import 'package:drfootapp/screens/nurse/more_screen.dart';
@@ -8,6 +9,7 @@ import 'package:drfootapp/screens/nurse/nurse_bookings/nurse_bookings_screen.dar
 import 'package:drfootapp/screens/nurse/nurse_home_screen.dart';
 import 'package:drfootapp/screens/nurse/payout_screen.dart';
 import 'package:drfootapp/utils/constants/app_colors.dart';
+import 'package:drfootapp/utils/constants/assets_constants.dart';
 import 'package:drfootapp/utils/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -190,6 +192,166 @@ class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
           );
   }
 
+  Widget chooseLocation() {
+    return Utility.myBottomSheet(
+      context,
+      heightFactor: 0.3,
+      widget: Container(
+        color: AppColors.whiteBgColor,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              const Padding(
+                padding:
+                    EdgeInsets.only(top: 12, left: 160, right: 160, bottom: 12),
+                child: Divider(
+                  thickness: 6,
+                  color: AppColors.black1,
+                ),
+              ),
+              ReachedLocationWidget(
+                onPress: () {
+                  reachedLocation();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget reachedLocation() {
+    return Utility.myBottomSheet(
+      context,
+      heightFactor: 0.6,
+      widget: Container(
+        color: AppColors.whiteBgColor,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding:
+                    EdgeInsets.only(top: 12, left: 160, right: 160, bottom: 12),
+                child: Divider(
+                  thickness: 6,
+                  color: AppColors.black1,
+                ),
+              ),
+              const Text(
+                "Booking Details",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.blackBold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Image.asset(
+                    AssetsConstants.michell_ross,
+                  ),
+                  const SizedBox(width: 12),
+                  const Text(
+                    "Michel Tross",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.black1,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 8),
+              const Row(
+                children: [
+                  Text(
+                    "2.16 km",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.grey2,
+                    ),
+                  ),
+                  SizedBox(width: 6),
+                  Text(
+                    "*",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.blackBold,
+                    ),
+                  ),
+                  SizedBox(width: 6),
+                  Text(
+                    "10:00 AM - 11:00 AM",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.black2,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "Foot cleansing  & Nail trimming",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.grey2,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      width: 0.5,
+                      color: AppColors.grey,
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 8, 16, 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Reached",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.black2,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: 10,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: AppColors.primaryBlue,
+                              borderRadius: BorderRadius.circular(5))),
+                      const SizedBox(height: 12),
+                      ReachedLocationWidget(
+                        onPress: () {
+                          bookingBtmWidget();
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget bookingBtmWidget() {
     return Utility.myBottomSheet(
       context,
@@ -200,7 +362,7 @@ class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  top: 16, left: 160, right: 160, bottom: 8),
+                  top: 16, left: 160, right: 160, bottom: 16),
               child: InkWell(
                 onTap: () {
                   Get.to(() => const NurseBookingsScreen());
@@ -218,7 +380,7 @@ class _NurseDashBoardScreenState extends State<NurseDashBoardScreen> {
             ),
             BookingWidget(
               onPress: () {},
-            )
+            ),
           ],
         ),
       ),
